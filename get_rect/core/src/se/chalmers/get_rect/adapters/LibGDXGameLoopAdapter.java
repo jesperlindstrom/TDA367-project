@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.adapters;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import se.chalmers.get_rect.GameManager;
 
@@ -10,7 +11,7 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
 
 	@Override
 	public void create() {
-		IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(graphics);
+		IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch());
 		IInputAdapter inputAdapter = new LibGDXInputAdapter(keyboard);
 
 		gameManager = new GameManager(graphicsAdapter, inputAdapter);
