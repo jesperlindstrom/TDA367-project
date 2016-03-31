@@ -1,7 +1,26 @@
 package se.chalmers.get_rect.log;
 
-/**
- * Created by Samuel on 2016-03-31.
- */
-public class GameLog {
+
+import java.util.Observable;
+
+public class GameLog extends Observable {
+    private String observedVale;
+
+    public GameLog(String observedVale){
+        this.observedVale = observedVale;
+    }
+
+    public void setObservedVale(String newObservedValue){
+
+        if(!observedVale.equals(newObservedValue)){
+            //Sets new value to old value
+            observedVale = newObservedValue;
+            //Mark value has changed
+            setChanged();
+            //Notify all listeners what has happened.
+            notifyObservers(observedVale);
+        }
+    }
+
+
 }
