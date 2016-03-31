@@ -1,10 +1,7 @@
 package se.chalmers.get_rect.entities.controller;
 
-/**
- * Created by simsund on 2016-03-31.
- */
-public interface ISolidEntity extends IEntity {
-    void update();
-    void draw();
+import se.chalmers.get_rect.physics.ISolidObject;
+
+public interface ISolidEntity extends IEntity, ISolidObject {
 
 }
