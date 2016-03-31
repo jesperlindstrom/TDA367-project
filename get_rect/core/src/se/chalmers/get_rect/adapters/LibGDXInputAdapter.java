@@ -47,7 +47,7 @@ public class LibGDXInputAdapter implements IInputAdapter{
      * Maps our Keys with the corresponding key for libGDX.
      */
     private void initKeyMap(){
-        this.keyMap = new HashMap<>();
+        this.keyMap = new HashMap<Keys, Integer>();
         keyMap.put(Keys.Q, Input.Keys.Q);
         keyMap.put(Keys.A, Input.Keys.A);
         keyMap.put(Keys.W, Input.Keys.W);
