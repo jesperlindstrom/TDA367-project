@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameManager implements IGame {
-    public static enum State { SPLASH, GAME, MENU };
     private static State DEFAULT_STATE = State.GAME;
     private IGraphicsAdapter graphicsAdapter;
     private IInputAdapter inputAdapter;
@@ -30,6 +29,10 @@ public class GameManager implements IGame {
         states = new HashMap<State, IState>();
 
         loadStates();
+        initialize();
+
+        // Load the default state
+        setState(DEFAULT_STATE);
     }
 
     /**
@@ -39,9 +42,15 @@ public class GameManager implements IGame {
         states.put(State.SPLASH, new SplashState());
         states.put(State.GAME, new GameState());
         states.put(State.MENU, new StartMenuState());
+    }
 
-        // Load the default state
-        setState(DEFAULT_STATE);
+    /**
+     * Initialize all states
+     */
+    private void initialize() {
+        for (State state : State.values()) {
+            states.get(state).initialize(this);
+        }
     }
 
 
@@ -54,7 +63,7 @@ public class GameManager implements IGame {
 
         if (nextState != null) {
             currentState = nextState;
-            currentState.initialize(this);
+            currentState.show();
         }
     }
 
