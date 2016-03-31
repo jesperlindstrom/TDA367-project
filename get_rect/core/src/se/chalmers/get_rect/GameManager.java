@@ -27,6 +27,10 @@ public class GameManager implements IGame {
         states = new HashMap<State, IState>();
 
         loadStates();
+        initializeStates();
+
+        // Load the default state
+        setState(DEFAULT_STATE);
     }
 
     /**
@@ -36,9 +40,15 @@ public class GameManager implements IGame {
         states.put(State.SPLASH, new SplashState());
         states.put(State.GAME, new GameState());
         states.put(State.MENU, new StartMenuState());
+    }
 
-        // Load the default state
-        setState(DEFAULT_STATE);
+    /**
+     * Initialize all states
+     */
+    private void initialize() {
+        for (State state : State.values()) {
+            states.get(state).initialize(this);
+        }
     }
 
 
@@ -51,7 +61,7 @@ public class GameManager implements IGame {
 
         if (nextState != null) {
             currentState = nextState;
-            currentState.initialize(this);
+            currentState.show();
         }
     }
 
