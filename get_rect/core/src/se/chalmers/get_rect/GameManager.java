@@ -1,10 +1,9 @@
 package se.chalmers.get_rect;
 
-import se.chalmers.get_rect.adapters.IGameLoopAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 
-public class GameManager implements IGameLoopAdapter {
+public class GameManager {
     private IGraphicsAdapter graphicsAdapter;
     private IInputAdapter inputAdapter;
 
@@ -13,12 +12,10 @@ public class GameManager implements IGameLoopAdapter {
         this.inputAdapter = inputAdapter;
     }
 
-    @Override
     public void draw() {
 
     }
 
-    @Override
     public void update(long delta) {
 
     }

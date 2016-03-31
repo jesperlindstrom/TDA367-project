@@ -2,11 +2,11 @@ package se.chalmers.get_rect.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import se.chalmers.get_rect.MainGame;
+import se.chalmers.get_rect.adapters.LibGDXGameLoopAdapter;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new MainGame(), config);
+		new LwjglApplication(new LibGDXGameLoopAdapter(), config);
 	}
 }
