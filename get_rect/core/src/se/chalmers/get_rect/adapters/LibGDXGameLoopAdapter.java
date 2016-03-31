@@ -1,11 +1,8 @@
 package se.chalmers.get_rect.adapters;
 
 import com.badlogic.gdx.ApplicationAdapter;
-<<<<<<< HEAD
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-=======
 import com.badlogic.gdx.Gdx;
->>>>>>> 3054abba04b8cbaf5182d98e9367aa183733b030
 import com.badlogic.gdx.utils.TimeUtils;
 import se.chalmers.get_rect.GameManager;
 
