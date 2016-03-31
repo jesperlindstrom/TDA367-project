@@ -2,6 +2,7 @@ package se.chalmers.get_rect;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.log.GameLog;
 import se.chalmers.get_rect.states.*;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ public class GameManager implements IGame {
     private IInputAdapter inputAdapter;
     private Map<State, IState> states;
     private IState currentState;
+    private GameLog gameLog;
 
     /**
      * Create a new game manager
@@ -23,6 +25,7 @@ public class GameManager implements IGame {
     public GameManager(IGraphicsAdapter graphicsAdapter, IInputAdapter inputAdapter) {
         this.graphicsAdapter = graphicsAdapter;
         this.inputAdapter = inputAdapter;
+        this.gameLog = new GameLog();
 
         states = new HashMap<State, IState>();
 
@@ -78,5 +81,14 @@ public class GameManager implements IGame {
     @Override
     public IInputAdapter getInput() {
         return inputAdapter;
+    }
+
+    /**
+     * Getter for GameLog
+     * @return
+     */
+    @Override
+    public GameLog getGameLog() {
+        return gameLog;
     }
 }
