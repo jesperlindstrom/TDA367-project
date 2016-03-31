@@ -59,6 +59,6 @@ public class StateManager {
      * @return The currently active IState
      */
     public IState getState() {
-        return states.get(currentState);
+        return currentState;
     }
 }
