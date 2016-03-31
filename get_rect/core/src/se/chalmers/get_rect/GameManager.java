@@ -2,7 +2,7 @@ package se.chalmers.get_rect;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
-import se.chalmers.get_rect.log.GameLog;
+import se.chalmers.get_rect.gameLog.GameLog;
 import se.chalmers.get_rect.states.*;
 
 public class GameManager implements IGame {
@@ -66,8 +66,8 @@ public class GameManager implements IGame {
     }
 
     /**
-     * Get the log instance
-     * @return Game log
+     * Get the gameLog instance
+     * @return Game gameLog
      */
     @Override
     public GameLog getGameLog() {
