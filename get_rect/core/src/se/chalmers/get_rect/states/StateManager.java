@@ -14,7 +14,7 @@ public class StateManager {
 
     public StateManager(IGame game) {
         this.game = game;
-        this.states = new HashMap<State, IState>();
+        this.states = new HashMap<>();
 
         loadStates();
         initialize();
