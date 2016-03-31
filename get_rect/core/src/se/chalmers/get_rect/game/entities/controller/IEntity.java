@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.entities.controller;
+package se.chalmers.get_rect.game.entities.controller;
 
 /**
  * Created by simsund on 2016-03-31.

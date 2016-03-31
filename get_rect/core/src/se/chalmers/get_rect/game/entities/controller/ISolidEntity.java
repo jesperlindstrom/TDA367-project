@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.entities.controller;
+package se.chalmers.get_rect.game.entities.controller;
 
 import se.chalmers.get_rect.physics.ISolidObject;
 

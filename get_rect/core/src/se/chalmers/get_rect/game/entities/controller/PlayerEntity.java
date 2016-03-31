@@ -1,7 +1,7 @@
-package se.chalmers.get_rect.entities.controller;
+package se.chalmers.get_rect.game.entities.controller;
 
-import se.chalmers.get_rect.entities.model.Player;
-import se.chalmers.get_rect.entities.view.PlayerView;
+import se.chalmers.get_rect.game.entities.model.Player;
+import se.chalmers.get_rect.game.entities.view.PlayerView;
 
 public class PlayerEntity implements ISolidEntity {
     private Player model;

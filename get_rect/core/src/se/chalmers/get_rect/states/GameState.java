@@ -1,8 +1,8 @@
 package se.chalmers.get_rect.states;
 
 import se.chalmers.get_rect.IGame;
-import se.chalmers.get_rect.gameLog.GameLog;
-import se.chalmers.get_rect.gameLog.GameLogEvent;
+import se.chalmers.get_rect.log.GameLog;
+import se.chalmers.get_rect.log.GameLogEvent;
 
 import java.util.Observable;
 import java.util.Observer;

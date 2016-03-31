@@ -1,6 +1,6 @@
-package se.chalmers.get_rect.entities.view;
+package se.chalmers.get_rect.game.entities.view;
 
-import se.chalmers.get_rect.entities.model.Player;
+import se.chalmers.get_rect.game.entities.model.Player;
 
 public class PlayerView implements IView {
     private Player model;

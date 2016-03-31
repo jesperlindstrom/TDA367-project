@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.quests;
+package se.chalmers.get_rect.game.quests;
 
 public class QuestFactory {
 
