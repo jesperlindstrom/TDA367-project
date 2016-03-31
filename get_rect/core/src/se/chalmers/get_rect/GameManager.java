@@ -27,7 +27,7 @@ public class GameManager implements IGame {
         states = new HashMap<State, IState>();
 
         loadStates();
-        initializeStates();
+        initialize();
 
         // Load the default state
         setState(DEFAULT_STATE);
