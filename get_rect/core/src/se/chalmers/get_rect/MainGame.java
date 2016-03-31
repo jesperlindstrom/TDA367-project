@@ -1,29 +1,35 @@
 package se.chalmers.get_rect;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.TimeUtils;
+import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.adapters.LibGDXGraphicsAdapter;
+import se.chalmers.get_rect.adapters.LibGDXInputAdapter;
 
 public class MainGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+	private GameManager gameManager;
+	private long lastTime = 0;
+
 	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+	public void create() {
+		IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(graphics);
+		IInputAdapter inputAdapter = new LibGDXInputAdapter(keyboard);
+
+		gameManager = new GameManager(graphicsAdapter, inputAdapter);
 	}
 
 	@Override
-	public void render () {
-		Gdx.gl.glClearColor(0, 1, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+	public void render() {
+		long delta = 0;
+
+		if (lastTime != 0) {
+			delta = TimeUtils.timeSinceNanos(lastTime);
+		}
+
+		gameManager.update(delta);
+		gameManager.draw();
+
+		lastTime = TimeUtils.nanoTime();
 	}
 }
