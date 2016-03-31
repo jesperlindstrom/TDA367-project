@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameManager implements IGame {
-    public static enum State { SPLASH, GAME, MENU };
     private static State DEFAULT_STATE = State.GAME;
     private IGraphicsAdapter graphicsAdapter;
     private IInputAdapter inputAdapter;
