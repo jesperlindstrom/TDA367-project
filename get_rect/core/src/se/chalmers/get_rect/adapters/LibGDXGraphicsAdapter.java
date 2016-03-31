@@ -14,16 +14,28 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         this.batch = batch;
     }
 
+    /**
+     *
+     * @param img image location
+     * @param x x co-ordinates
+     * @param y y co-ordinates
+     */
     @Override
     public void draw(String img, float x, float y) {
         batch.draw(new Texture(img), x, y);
     }
 
+    /**
+     * Starts the collections of sprites.
+     */
     @Override
     public void start() {
         batch.begin();
     }
 
+    /**
+     * Ends the collections of sprites and draws them
+     */
     @Override
     public void end() {
         batch.end();

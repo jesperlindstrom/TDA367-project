@@ -17,6 +17,11 @@ public class LibGDXInputAdapter implements IInputAdapter{
 
     }
 
+    /**
+     * Checks if the key is being pressed
+     * @param key the key to look for
+     * @return true if the key is currently pressed
+     */
     @Override
     public boolean isKeyPressed(Keys key) {
         if(isTranslateable(key)) {
@@ -25,6 +30,11 @@ public class LibGDXInputAdapter implements IInputAdapter{
         return false;
     }
 
+    /**
+     * Checks if the key being pressed is implemented
+     * @param key The key in question
+     * @return true if is available in KeyMap
+     */
     @Override
     public boolean isTranslateable(Keys key) {
         if (keyMap.get(key) != null) {
@@ -33,7 +43,9 @@ public class LibGDXInputAdapter implements IInputAdapter{
         return false;
     }
 
-
+    /**
+     * Maps our Keys with the corresponding key for libGDX.
+     */
     private void initKeyMap(){
         this.keyMap = new HashMap<>();
         keyMap.put(Keys.Q, Input.Keys.Q);
@@ -49,6 +61,8 @@ public class LibGDXInputAdapter implements IInputAdapter{
         keyMap.put(Keys.LEFTKEY, Input.Keys.LEFT);
         keyMap.put(Keys.RIGHTKEY, Input.Keys.RIGHT);
         keyMap.put(Keys.DOWNKEY, Input.Keys.DOWN);
+        keyMap.put(Keys.MOUSELEFT, Input.Buttons.LEFT);
+        keyMap.put(Keys.MOUSERIGHT, Input.Buttons.RIGHT);
     }
 
 }

@@ -10,6 +10,9 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
 	private GameManager gameManager;
 	private long lastTime = 0;
 
+	/**
+	 * Starts the program.
+	 */
 	@Override
 	public void create() {
 		IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch());
@@ -18,6 +21,9 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
 		gameManager = new GameManager(graphicsAdapter, inputAdapter);
 	}
 
+	/**
+	 * Gameloop method.
+	 */
 	@Override
 	public void render() {
 		long delta = 0;
@@ -32,11 +38,18 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
 		lastTime = TimeUtils.nanoTime();
 	}
 
+	/**
+	 * Used to draw next frame
+	 */
 	@Override
 	public void draw() {
 		gameManager.draw();
 	}
 
+	/**
+	 * Calls for game logic update
+	 * @param delta frequenzy of updating
+     */
 	@Override
 	public void update(long delta) {
 		gameManager.update(delta);
