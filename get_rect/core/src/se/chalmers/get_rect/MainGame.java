@@ -4,6 +4,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.utils.TimeUtils;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.adapters.LibGDXGraphicsAdapter;
+import se.chalmers.get_rect.adapters.LibGDXInputAdapter;
 
 public class MainGame extends ApplicationAdapter {
 	private GameManager gameManager;
