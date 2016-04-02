@@ -20,7 +20,9 @@ public class AuditoriumStreetScene implements IScene {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+        graphics.start();
         player.draw(graphics);
+        graphics.end();
     }
 
     @Override

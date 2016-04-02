@@ -30,18 +30,19 @@ public class GameManager implements IGame {
         screenManager = new StateManager<>();
 
         // Add screens
-        screenManager.add("game", new GameScreen(this));
         screenManager.add("splash", new SplashScreen(this));
         screenManager.add("startMenu", new StartMenuScreen(this));
+        screenManager.add("game", new GameScreen(this));
 
         // Set the active state
-        screenManager.set("game");
+        screenManager.set("splash");
     }
 
     /**
      * Tell current state to draw
      */
     public void draw() {
+        graphicsAdapter.clear();
         screenManager.getState().draw(graphicsAdapter);
     }
 

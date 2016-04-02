@@ -13,6 +13,6 @@ class PlayerView implements IView<Player> {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-
+        graphics.draw("data/badlogic.jpg", 0, 0);
     }
 }
