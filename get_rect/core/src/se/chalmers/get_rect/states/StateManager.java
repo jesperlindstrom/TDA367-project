@@ -26,8 +26,7 @@ public class StateManager<T extends IState> {
      */
     public void set(String stateName) {
         if (!states.containsKey(stateName)) {
-            // todo: throw some "State not found" exception?
-            return;
+            throw new StateNotFoundException(stateName);
         }
 
         // Keep a copy of the previous state name
