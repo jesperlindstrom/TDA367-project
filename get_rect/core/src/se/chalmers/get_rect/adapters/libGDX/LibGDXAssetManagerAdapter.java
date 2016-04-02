@@ -41,7 +41,6 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
     }
 
     public Texture getTexture(String path) {
-        // todo: move this to some hashmap or something, or we'll be creating too many instances
         return manager.get(path, Texture.class);
     }
 }
