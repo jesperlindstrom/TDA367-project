@@ -1,12 +1,13 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.ISolidEntity;
+import se.chalmers.get_rect.game.entities.IView;
 
-class PlayerView implements ISolidEntity.View {
+class PlayerView implements IView<Player> {
     private Player model;
 
-    public PlayerView(Player model) {
+    @Override
+    public void setModel(Player model) {
         this.model = model;
     }
 
