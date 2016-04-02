@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.screens;
 
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.states.IState;
 
 public class SplashScreen implements IScreen {
     public SplashScreen(IGame game) {

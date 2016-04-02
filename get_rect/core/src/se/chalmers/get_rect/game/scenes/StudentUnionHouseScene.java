@@ -1,7 +1,29 @@
 package se.chalmers.get_rect.game.scenes;
 
-/**
- * Created by Samuel on 2016-03-31.
- */
-public class StudentUnionHouseScene {
+import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+
+public class StudentUnionHouseScene implements IScene {
+    public StudentUnionHouseScene() {
+
+    }
+
+    @Override
+    public void update(long delta) {
+
+    }
+
+    @Override
+    public void draw(IGraphicsAdapter graphics) {
+
+    }
+
+    @Override
+    public void enteringState(String previousStateName) {
+
+    }
+
+    @Override
+    public void leavingState(String nextStateName) {
+
+    }
 }

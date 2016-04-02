@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.scenes;
 
-/**
- * Created by Samuel on 2016-03-31.
- */
-public interface IScene {
-}
+import se.chalmers.get_rect.game.IGameComponent;
+import se.chalmers.get_rect.states.IState;
+
+public interface IScene extends IGameComponent, IState { }
