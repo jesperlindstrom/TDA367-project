@@ -1,19 +1,21 @@
-package se.chalmers.get_rect.adapters;
+package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.ITextureAdapter;
 
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private SpriteBatch batch;
-    private AssetManager assetManager;
+    private LibGDXAssetManagerAdapter assetManager;
     private GL20 graphics;
 
-    public LibGDXGraphicsAdapter(SpriteBatch batch, GL20 graphics) {
+    public LibGDXGraphicsAdapter(SpriteBatch batch, GL20 graphics, LibGDXAssetManagerAdapter assetManager) {
         this.batch = batch;
         this.graphics = graphics;
-        assetManager = new AssetManager();
+        this.assetManager = assetManager;
     }
 
     /**
@@ -24,12 +26,7 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
      */
     @Override
     public void draw(String img, float x, float y) {
-        if (!assetManager.containsAsset(img)) {
-            System.out.println("loading " + img);
-            assetManager.load(img, Texture.class);
-        }
-
-        batch.draw(assetManager.get(img, Texture.class), x, y);
+        batch.draw(assetManager.getTexture(img), x, y);
     }
 
     /**

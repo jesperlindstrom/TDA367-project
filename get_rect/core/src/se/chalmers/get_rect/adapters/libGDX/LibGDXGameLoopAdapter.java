@@ -1,12 +1,15 @@
-package se.chalmers.get_rect.adapters;
+package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 import se.chalmers.get_rect.GameManager;
+import se.chalmers.get_rect.adapters.IGameLoopAdapter;
+import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.IInputAdapter;
 
-public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLoopAdapter{
+public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLoopAdapter {
     private GameManager gameManager;
     private long lastTime = 0;
 
@@ -15,10 +18,11 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
      */
     @Override
     public void create() {
-        IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20);
+        LibGDXAssetManagerAdapter assetManagerAdapter = new LibGDXAssetManagerAdapter();
+        IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20, assetManagerAdapter);
         IInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
 
-        gameManager = new GameManager(graphicsAdapter, inputAdapter);
+        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter);
     }
 
     /**

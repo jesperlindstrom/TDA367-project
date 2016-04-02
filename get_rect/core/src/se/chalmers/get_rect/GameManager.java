@@ -1,5 +1,6 @@
 package se.chalmers.get_rect;
 
+import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.screens.GameScreen;
@@ -10,20 +11,23 @@ import se.chalmers.get_rect.log.GameLog;
 import se.chalmers.get_rect.states.*;
 
 public class GameManager implements IGame {
-    private IGraphicsAdapter graphicsAdapter;
-    private IInputAdapter inputAdapter;
+    private IGraphicsAdapter graphics;
+    private IInputAdapter input;
+    private IAssetManagerAdapter assetManager;
     private GameLog gameLog;
     private StateManager<IScreen> screenManager;
 
     /**
      * Create a new game manager
-     * @param graphicsAdapter A graphics adapter
-     * @param inputAdapter An input adapter
+     * @param graphics A graphics adapter
+     * @param input An input adapter
+     * @param assetManager An assetManager adapter
      */
-    public GameManager(IGraphicsAdapter graphicsAdapter, IInputAdapter inputAdapter) {
+    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager) {
         // Store game engine adapters
-        this.graphicsAdapter = graphicsAdapter;
-        this.inputAdapter = inputAdapter;
+        this.graphics = graphics;
+        this.input = input;
+        this.assetManager = assetManager;
 
         // Initialize components
         gameLog = new GameLog();
@@ -42,8 +46,8 @@ public class GameManager implements IGame {
      * Tell current state to draw
      */
     public void draw() {
-        graphicsAdapter.clear();
-        screenManager.getState().draw(graphicsAdapter);
+        graphics.clear();
+        screenManager.getState().draw(graphics);
     }
 
     /**
@@ -60,7 +64,16 @@ public class GameManager implements IGame {
      */
     @Override
     public IInputAdapter getInput() {
-        return inputAdapter;
+        return input;
+    }
+
+    /**
+     * Get the assetManager instance
+     * @return assetManager adapter
+     */
+    @Override
+    public IAssetManagerAdapter getAssetManager() {
+        return assetManager;
     }
 
     /**

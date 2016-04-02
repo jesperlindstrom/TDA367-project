@@ -18,6 +18,9 @@ public class GameScreen implements IScreen {
         // Create the scene manager
         sceneManager = new StateManager<>();
 
+        // todo: move asset loading code into entities
+        game.getAssetManager().loadTexture("data/badlogic.jpg");
+
         // Register scenes
         sceneManager.add("auditoriumStreet", new AuditoriumStreetScene());
         sceneManager.add("EDIT", new EDITScene());
