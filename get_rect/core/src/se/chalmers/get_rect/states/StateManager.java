@@ -1,64 +1,55 @@
 package se.chalmers.get_rect.states;
 
-import se.chalmers.get_rect.IGame;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class StateManager {
-    public enum State { SPLASH, GAME, MENU };
-    private static State DEFAULT_STATE = State.GAME;
-    private Map<State, IState> states;
-    private IState currentState;
-    private IGame game;
+public class StateManager<T extends IState> {
+    private Map<String, T> states;
+    private String currentState;
 
-    public StateManager(IGame game) {
-        this.game = game;
+    public StateManager() {
         this.states = new HashMap<>();
-
-        loadStates();
-        initialize();
-
-        // Load the default state
-        setState(DEFAULT_STATE);
     }
 
     /**
-     * Create the states
+     * Register a state
+     * @param key The state name
+     * @param state The state
      */
-    public void loadStates() {
-        states.put(State.SPLASH, new SplashState());
-        states.put(State.GAME, new GameState());
-        states.put(State.MENU, new StartMenuState());
-    }
-
-    /**
-     * Initialize all states
-     */
-    public void initialize() {
-        for (State state : State.values()) {
-            states.get(state).initialize(game);
-        }
+    public void add(String key, T state) {
+        states.put(key, state);
     }
 
     /**
      * Switch to another state
-     * @param state The new state
+     * @param stateName The state name
      */
-    public void setState(State state) {
-        IState nextState = states.get(state);
-
-        if (nextState != null) {
-            currentState = nextState;
-            currentState.show();
+    public void set(String stateName) {
+        if (!states.containsKey(stateName)) {
+            // todo: throw some "State not found" exception?
+            return;
         }
+
+        // Keep a copy of the previous state name
+        String oldState = currentState;
+
+        // Tell the current state it's being replaced
+        if (oldState != null) {
+            getState().leavingState(stateName);
+        }
+
+        // Change to the new state
+        currentState = stateName;
+
+        // Tell the new state it's becoming active
+        getState().enteringState(oldState);
     }
 
     /**
      * Get the current state
      * @return The currently active IState
      */
-    public IState getState() {
-        return currentState;
+    public T getState() {
+        return states.get(currentState);
     }
 }
