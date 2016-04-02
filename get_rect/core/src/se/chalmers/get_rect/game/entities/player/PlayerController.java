@@ -2,7 +2,7 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.game.entities.IController;
 
-public class PlayerController implements IController<Player> {
+class PlayerController implements IController<Player> {
     private Player model;
 
     @Override
