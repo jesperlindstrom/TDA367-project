@@ -12,7 +12,7 @@ Background: [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/co
 2. Commit changes and push to your branch countinously
 
 	```
-	git add .
+	git add -A
 	git commit -m "Did stuff"
 	git push
 	```
