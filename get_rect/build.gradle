@@ -2,6 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
     }
     dependencies {
     }
@@ -31,6 +32,9 @@ allprojects {
 project(":desktop") {
     apply plugin: "java"
 
+    compileJava {
+        sourceCompatibility = '1.7'
+    }
 
     dependencies {
         compile project(":core")
@@ -42,11 +46,31 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java"
+    apply plugin: "jacoco"
 
+    compileJava {
+        sourceCompatibility = '1.7'
+    }
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        testCompile "junit:junit:4.12"
+        testCompile "org.mockito:mockito-core:1.+"
+    }
+
+    jacocoTestReport{
+        additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+        reports {
+            xml.enabled false
+            csv.enabled false
+            html.destination "${buildDir}/reports/jacoco/html"
+        }
+        executionData = files("build/jacoco/test.exec")
+    }
+
+    test {
+        finalizedBy jacocoTestReport
     }
 }
 
