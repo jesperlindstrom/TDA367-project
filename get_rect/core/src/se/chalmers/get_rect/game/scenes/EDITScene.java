@@ -1,10 +1,14 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 public class EDITScene implements IScene {
-    public EDITScene() {
 
+    private PlayerController playerController;
+
+    public EDITScene(PlayerController playerController) {
+        this.playerController = playerController;
     }
 
     @Override
