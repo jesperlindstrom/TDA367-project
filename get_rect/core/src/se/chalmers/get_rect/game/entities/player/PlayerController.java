@@ -27,6 +27,6 @@ class PlayerController implements IPhysicsController {
 
     @Override
     public void getBoundingBox() {
-        
+
     }
 }
