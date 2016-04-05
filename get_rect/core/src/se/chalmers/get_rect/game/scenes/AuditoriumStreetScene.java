@@ -3,6 +3,8 @@ package se.chalmers.get_rect.game.scenes;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
+import se.chalmers.get_rect.physics.FrostbiteEngine;
+import se.chalmers.get_rect.physics.ISolidObject;
 
 public class AuditoriumStreetScene implements IScene {
     private IController player;

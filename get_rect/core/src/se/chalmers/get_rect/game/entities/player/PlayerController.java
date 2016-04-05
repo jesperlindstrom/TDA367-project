@@ -2,9 +2,11 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IController;
+import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.physics.ISolidObject;
 
-class PlayerController implements IController {
+class PlayerController implements IPhysicsController {
     private Player model;
     private IView view;
 
@@ -21,5 +23,10 @@ class PlayerController implements IController {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         view.draw(graphics);
+    }
+
+    @Override
+    public void getBoundingBox() {
+
     }
 }
