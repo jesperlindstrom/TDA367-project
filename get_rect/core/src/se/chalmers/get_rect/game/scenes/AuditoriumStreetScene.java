@@ -1,17 +1,14 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.IController;
-import se.chalmers.get_rect.game.entities.player.PlayerFactory;
-import se.chalmers.get_rect.physics.FrostbiteEngine;
-import se.chalmers.get_rect.physics.ISolidObject;
+import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 public class AuditoriumStreetScene implements IScene {
-    private IController player;
+    private PlayerController player;
 
-    public AuditoriumStreetScene() {
-        PlayerFactory playerFactory = new PlayerFactory();
-        player = playerFactory.make();
+    public AuditoriumStreetScene(PlayerController player) {
+        this.player = player;
+
     }
 
     @Override
