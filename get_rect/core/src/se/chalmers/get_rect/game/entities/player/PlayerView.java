@@ -13,5 +13,6 @@ class PlayerView implements IView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw("data/player.png", player.getxCoordinate(), player.getyCoordinate());
+
     }
 }

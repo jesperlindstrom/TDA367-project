@@ -19,6 +19,7 @@ public class SplashScreen implements IScreen {
     @Override
     public void enteringState(String previousStateName) {
         System.out.println("Entering SplashScreen");
+        loadTextures();
     }
 
     @Override
@@ -40,5 +41,13 @@ public class SplashScreen implements IScreen {
     @Override
     public void draw(IGraphicsAdapter graphics) {
 
+    }
+
+    /**
+     * Method for loading textures
+     */
+    private void loadTextures() {
+        assetManager.loadTexture("data/background.png");
+        assetManager.loadTexture("data/player.png");
     }
 }

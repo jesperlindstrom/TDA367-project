@@ -4,24 +4,23 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 
+public class TestScene implements IScene {
+    private PlayerController playerController;
 
-public class AuditoriumStreetScene implements IScene {
-    private PlayerController player;
-
-    public AuditoriumStreetScene(PlayerController player) {
-        this.player = player;
-
+    public TestScene(PlayerController playerController) {
+        this.playerController = playerController;
     }
 
     @Override
     public void update(long delta) {
-        player.update(delta);
+        playerController.update(delta);
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.start();
-        player.draw(graphics);
+        graphics.draw("data/background.png", 0, 0);
+        playerController.draw(graphics);
         graphics.end();
     }
 
@@ -34,4 +33,5 @@ public class AuditoriumStreetScene implements IScene {
     public void leavingState(String nextStateName) {
 
     }
+
 }

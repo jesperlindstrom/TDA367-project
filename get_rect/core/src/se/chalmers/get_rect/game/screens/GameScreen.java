@@ -2,13 +2,13 @@ package se.chalmers.get_rect.game.screens;
 
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.scenes.AuditoriumStreetScene;
 import se.chalmers.get_rect.game.scenes.EDITScene;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.StudentUnionHouseScene;
+import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.states.StateManager;
 
 
@@ -21,8 +21,6 @@ public class GameScreen implements IScreen {
         // Create the scene manager
         sceneManager = new StateManager<>();
 
-        // todo: move asset loading code into entities
-        game.getAssetManager().loadTexture("data/badlogic.jpg");
 
         //Initialize player
         PlayerFactory playerFactory = new PlayerFactory(game.getInput());
@@ -33,9 +31,11 @@ public class GameScreen implements IScreen {
         sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
         sceneManager.add("EDIT", new EDITScene(playerController));
         sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
+        sceneManager.add("test", new TestScene(playerController));
+
 
         // Set starting scene
-        sceneManager.set("auditoriumStreet");
+        sceneManager.set("test");
     }
 
     @Override
