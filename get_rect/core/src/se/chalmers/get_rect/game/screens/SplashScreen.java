@@ -19,6 +19,7 @@ public class SplashScreen implements IScreen {
     @Override
     public void enteringState(String previousStateName) {
         System.out.println("Entering SplashScreen");
+        assetManager.loadTexture("data/zombie.png");
     }
 
     @Override
