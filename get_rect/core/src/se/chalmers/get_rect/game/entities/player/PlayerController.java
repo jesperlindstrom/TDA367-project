@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.physics.ISolidObject;
 
-class PlayerController implements IPhysicsController {
+public class PlayerController implements IPhysicsController {
     private Player model;
     private IView view;
 
