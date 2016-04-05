@@ -25,8 +25,8 @@ public class GameScreen implements IScreen {
         game.getAssetManager().loadTexture("data/badlogic.jpg");
 
         //Initialize player
-        PlayerFactory playerFactory = new PlayerFactory();
-        playerController = playerFactory.make();
+        PlayerFactory playerFactory = new PlayerFactory(game.getInput());
+        playerController = playerFactory.make(0,0);
 
 
         // Register scenes

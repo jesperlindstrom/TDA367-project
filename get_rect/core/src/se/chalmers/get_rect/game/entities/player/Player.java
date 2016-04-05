@@ -11,22 +11,16 @@ class Player implements IModel {
     private int level;
 
     /**
-     * Initialize a new player with 10 hp and level 1.
-     */
-    public Player(){
-        this.maxHealth = 10;
-        this.currentHealth = maxHealth;
-        this.level = 1;
-    }
-
-    /**
-     * Initialize a new player with fixed position
+     * Initialize a new player with fixed position and 10 hp and level 1.
      * @param xCoordinate
      * @param yCoordinate
      */
     public Player(int xCoordinate, int yCoordinate){
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
+        this.maxHealth = 10;
+        this.currentHealth = maxHealth;
+        this.level = 1;
     }
 
     /**

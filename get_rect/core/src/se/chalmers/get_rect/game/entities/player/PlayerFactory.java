@@ -1,12 +1,28 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.IView;
 
 public class PlayerFactory {
-    public PlayerController make() {
-        Player model = new Player();
+    private IInputAdapter input;
+
+    /**
+     * Initialize a new player factory.
+     * @param input
+     */
+    public PlayerFactory(IInputAdapter input){
+        this.input = input;
+    }
+
+    /**
+     * Maker for a new player.
+     * @return
+     */
+    public PlayerController make(int x, int y) {
+        Player model = new Player(x, y);
         IView view = new PlayerView(model);
 
-        return new PlayerController(model, view);
+
+        return new PlayerController(model, view, input);
     }
 }
