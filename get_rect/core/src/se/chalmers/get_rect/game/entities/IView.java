@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 
-public interface IView<T extends IModel> {
+public interface IView {
     void draw(IGraphicsAdapter graphics);
-    void setModel(T model);
 }

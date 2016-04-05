@@ -1,15 +1,13 @@
 package se.chalmers.get_rect.game.entities.player;
 
-import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 
 public class PlayerFactory {
-    public Entity<Player> make() {
+    public IController make() {
         Player model = new Player();
-        IView<Player> view = new PlayerView();
-        IController<Player> controller = new PlayerController();
+        IView view = new PlayerView(model);
 
-        return new Entity<>(model, view, controller);
+        return new PlayerController(model, view);
     }
 }

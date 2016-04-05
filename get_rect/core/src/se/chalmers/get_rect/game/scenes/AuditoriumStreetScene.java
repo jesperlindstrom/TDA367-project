@@ -1,12 +1,11 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.Entity;
-import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 
 public class AuditoriumStreetScene implements IScene {
-    private Entity<Player> player;
+    private IController player;
 
     public AuditoriumStreetScene() {
         PlayerFactory playerFactory = new PlayerFactory();

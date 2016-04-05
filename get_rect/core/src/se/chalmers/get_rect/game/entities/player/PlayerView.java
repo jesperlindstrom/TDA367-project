@@ -3,12 +3,10 @@ package se.chalmers.get_rect.game.entities.player;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IView;
 
-class PlayerView implements IView<Player> {
+class PlayerView implements IView {
     private Player model;
 
-    @Override
-    public void setModel(Player model) {
-        this.model = model;
+    public PlayerView(Player model){
     }
 
     @Override
