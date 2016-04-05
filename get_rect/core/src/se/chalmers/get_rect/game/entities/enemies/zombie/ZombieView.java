@@ -9,11 +9,12 @@ public class ZombieView implements IView{
     private Zombie model;
 
     public ZombieView(Zombie model){
-
+        this.model = model;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+        graphics.draw("data/badlogic.jpg", model.getX(), model.getY());
 
     }
 }

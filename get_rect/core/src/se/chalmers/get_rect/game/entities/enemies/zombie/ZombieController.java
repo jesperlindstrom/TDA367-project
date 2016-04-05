@@ -9,12 +9,15 @@ public class ZombieController implements IPhysicsController {
     private Zombie model;
     private IView view;
 
-    public ZombieController(Zombie zombie, IView view) {
+    public ZombieController(Zombie model, IView view) {
         this.model = model;
         this.view = view;
     }
     @Override
     public void update(long delta) {
+        model.setX(model.getX()+1);
+        model.setY(model.getY()+1);
+        //implement AI
 
     }
 
