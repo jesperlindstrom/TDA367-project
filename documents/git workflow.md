@@ -22,7 +22,7 @@ Background: [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/co
 	```
 	git add -A
 	git commit -m "Did stuff"
-	git push origin develop
+	git push origin my-cool-feature
 	```
 
 4. Merge the pull request into `develop` and delete the branch.
