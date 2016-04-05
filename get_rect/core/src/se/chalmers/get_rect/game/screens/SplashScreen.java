@@ -49,5 +49,6 @@ public class SplashScreen implements IScreen {
     private void loadTextures() {
         assetManager.loadTexture("data/background.png");
         assetManager.loadTexture("data/player.png");
+        assetManager.loadTexture("data/zombie.png");
     }
 }
