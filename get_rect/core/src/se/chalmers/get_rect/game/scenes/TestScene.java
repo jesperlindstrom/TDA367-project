@@ -1,14 +1,17 @@
 package se.chalmers.get_rect.game.scenes;
 
+import javafx.scene.text.Text;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 
-
-public class AuditoriumStreetScene implements IScene {
+/**
+ * Created by simsund on 2016-04-05.
+ */
+public class TestScene implements IScene {
     private IController player;
 
-    public AuditoriumStreetScene() {
+    public TestScene() {
         PlayerFactory playerFactory = new PlayerFactory();
         player = playerFactory.make();
     }
@@ -21,6 +24,7 @@ public class AuditoriumStreetScene implements IScene {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.start();
+        graphics.draw("data/background.png", 0, 0);
         player.draw(graphics);
         graphics.end();
     }
@@ -34,4 +38,5 @@ public class AuditoriumStreetScene implements IScene {
     public void leavingState(String nextStateName) {
 
     }
+
 }
