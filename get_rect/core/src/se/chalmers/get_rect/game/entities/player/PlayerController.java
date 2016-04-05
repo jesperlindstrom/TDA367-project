@@ -20,7 +20,11 @@ public class PlayerController implements IPhysicsController {
 
     @Override
     public void update(long delta) {
-
+        if(input.equals(IInputAdapter.Keys.A)){
+            player.setxCoordinate(player.getxCoordinate() - 3);
+        }else if(input.equals(IInputAdapter.Keys.D)){
+            player.setxCoordinate(player.getyCoordinate() - 3);
+        }
     }
 
     @Override
