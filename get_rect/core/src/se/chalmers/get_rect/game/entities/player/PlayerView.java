@@ -8,6 +8,7 @@ class PlayerView implements IView {
     private Player player;
 
     public PlayerView(Player player){
+        this.player = player;
     }
 
     @Override
