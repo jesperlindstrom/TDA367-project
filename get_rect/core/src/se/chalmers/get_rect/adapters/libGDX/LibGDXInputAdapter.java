@@ -25,7 +25,7 @@ public class LibGDXInputAdapter implements IInputAdapter {
      */
     @Override
     public boolean isKeyPressed(Keys key) {
-        if(isTranslateable(key)) {
+        if(isTranslatable(key)) {
             return input.isKeyPressed(keyMap.get(key));
         }
         return false;
@@ -37,7 +37,7 @@ public class LibGDXInputAdapter implements IInputAdapter {
      * @return true if is available in KeyMap
      */
     @Override
-    public boolean isTranslateable(Keys key) {
+    public boolean isTranslatable(Keys key) {
         if (keyMap.get(key) != null) {
             return true;
         }

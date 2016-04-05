@@ -26,7 +26,13 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
      */
     @Override
     public void draw(String img, float x, float y) {
-        batch.draw(assetManager.getTexture(img), x, y);
+        Texture texture = assetManager.getTexture(img);
+        batch.draw(texture, x, y, texture.getWidth(), texture.getHeight());
+    }
+
+    @Override
+    public void draw(String img, float x, float y, float width, float height) {
+        batch.draw(assetManager.getTexture(img), x, y, width, height);
     }
 
     /**
