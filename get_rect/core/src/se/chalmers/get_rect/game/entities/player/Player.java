@@ -6,13 +6,17 @@ class Player implements IModel {
 
     private int xCoordinate;
     private int yCoordinate;
-    private int health;
+    private int currentHealth;
+    private int maxHealth;
+    private int level;
 
     /**
-     * Initialize a new player
+     * Initialize a new player with 10 hp and level 1.
      */
     public Player(){
-
+        this.maxHealth = 10;
+        this.currentHealth = maxHealth;
+        this.level = 1;
     }
 
     /**
@@ -26,19 +30,21 @@ class Player implements IModel {
     }
 
     /**
-     * Setter for plaer xCoordinate
+     * Setter for player x & y coordinates
+     * @param xCoordinate
+     * @param yCoordinate
+     */
+    public void setCoordinates(int xCoordinate, int yCoordinate){
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+    }
+
+    /**
+     * Setter for player xCoordinate
      * @param xCoordinate
      */
     public void setxCoordinate(int xCoordinate) {
         this.xCoordinate = xCoordinate;
-    }
-
-    /**
-     * Getter for player xCoordinate
-     * @return
-     */
-    public int getxCoordinate() {
-        return xCoordinate;
     }
 
     /**
@@ -50,6 +56,14 @@ class Player implements IModel {
     }
 
     /**
+     * Getter for player xCoordinate
+     * @return
+     */
+    public int getxCoordinate() {
+        return xCoordinate;
+    }
+
+    /**
      * Getter for player yCoordinate
      * @return
      */
@@ -58,28 +72,42 @@ class Player implements IModel {
     }
 
     /**
-     * Setter for player health
+     * Setter for player current health
      * @param health
      */
-    public void setHealth(int health) {
-        this.health = health;
+    public void setCurrentHealth(int health) {
+        this.currentHealth = health;
     }
 
     /**
-     * Getter for player health
+     * Getter for player current health
      * @return
      */
-    public int getHealth() {
-        return health;
+    public int getCurrentHealth() {
+        return currentHealth;
     }
 
     /**
-     * Setter for player x & y coordinates
-     * @param xCoordinate
-     * @param yCoordinate
+     * Setter for player maxHealth
+     * @param maxHealth
      */
-    public void setCoordinates(int xCoordinate, int yCoordinate){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    /**
+     * Setter for player level
+     * @param level
+     */
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    /**
+     * Getter for player level
+     * @return
+     */
+    public int getLevel() {
+        return level;
     }
 }
