@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.loaders;
 
+import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieController;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieDataStore;
 import se.chalmers.get_rect.io.IOFacade;
@@ -14,8 +15,8 @@ public class SceneLoader {
         zombieLoader = new IOFacade<>("scenes/" + sceneName + "/zombies.json", ZombieDataStore.class);
     }
 
-    public List<ZombieController> getZombies() throws FileNotFoundException {
-        List<ZombieController> entities = new ArrayList<>();
+    public List<IController> getZombies() throws FileNotFoundException {
+        List<IController> entities = new ArrayList<>();
 
         for (ZombieDataStore data : zombieLoader.load()) {
             entities.add(data.extract());
