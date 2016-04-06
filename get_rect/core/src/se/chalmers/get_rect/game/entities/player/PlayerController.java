@@ -29,10 +29,10 @@ public class PlayerController implements IPhysicsController {
         //Section for player walking function
         //// TODO: 2016-04-06 Fix walking such as delta is in use.
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            player.setxCoordinate(player.getxCoordinate() - 3);
+            player.setX(player.getX() - 3);
             player.setWalking(true);
         }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
-            player.setxCoordinate(player.getxCoordinate() + 3);
+            player.setX(player.getX() + 3);
             player.setWalking(true);
         }else{
             player.setWalking(false);
@@ -41,8 +41,8 @@ public class PlayerController implements IPhysicsController {
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
             t0=currentTime();
-            xCoord = player.getxCoordinate();
-            yCoord = player.getyCoordinate();
+            xCoord = player.getX();
+            yCoord = player.getY();
            // speed0X = speed;
           //  speed0Y += speedJump;
         }
@@ -63,8 +63,10 @@ public class PlayerController implements IPhysicsController {
     }
 
     public void setPosition(int x, int y){
-        player.setxCoordinate(x);
-        player.setyCoordinate(y);
+        player.setPosition(x, y);
     }
 
+    public int getxCoord() {
+        return player.getX();
+    }
 }

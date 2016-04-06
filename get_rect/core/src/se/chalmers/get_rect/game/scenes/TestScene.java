@@ -40,10 +40,11 @@ public class TestScene implements IScene {
 
     @Override
     public void enteringState(String previousStateName) {
-        playerController.setPosition(5, 90);
-        enemies = new ArrayList<IController>();
-        ZombieFactory zombieFactory = new ZombieFactory();
-        enemies.add(zombieFactory.make(60, 90));
+        playerController.setPosition(200, 90);
+        enemies = new ArrayList<>();
+        ZombieFactory zombieFactory = new ZombieFactory(playerController);
+        enemies.add(zombieFactory.make(5, 90));
+        enemies.add(zombieFactory.make(400, 90));
     }
 
     @Override

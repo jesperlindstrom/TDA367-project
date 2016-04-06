@@ -37,6 +37,11 @@ public class Zombie implements IModel {
         this.y = y;
     }
 
+    public void setPosition(int x, int y) {
+        this.y = y;
+        this.x = x;
+    }
+
     public int getDamage(){
         return damage;
     }
