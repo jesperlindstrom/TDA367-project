@@ -31,7 +31,7 @@ class Player implements IModel {
      * @param yCoordinate
      */
     public void setPosition(int xCoordinate, int yCoordinate){
-        position.setPosition(xCoordinate, yCoordinate);
+        position = position.setPosition(xCoordinate, yCoordinate);
     }
 
     /**
@@ -39,7 +39,7 @@ class Player implements IModel {
      * @param xCoordinate
      */
     public void setX(int xCoordinate) {
-        position.setxCoodrinate(xCoordinate);
+        position = position.setxCoodrinate(xCoordinate);
     }
 
     /**
@@ -47,7 +47,7 @@ class Player implements IModel {
      * @param yCoordinate
      */
     public void setY(int yCoordinate) {
-        position.setyCoordinate(yCoordinate);
+        position = position.setyCoordinate(yCoordinate);
     }
 
     /**
