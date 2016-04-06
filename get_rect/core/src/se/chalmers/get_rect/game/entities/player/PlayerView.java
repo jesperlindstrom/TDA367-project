@@ -11,7 +11,6 @@ class PlayerView implements IView {
     private String twoLegImagePath;
     private String currentImagePath;
     private int imageCount;
-    private IInputAdapter input;
 
     public PlayerView(Player player, IInputAdapter input){
 
@@ -20,13 +19,12 @@ class PlayerView implements IView {
         this.twoLegImagePath = "data/playerTwoLeg.png";
         this.currentImagePath = twoLegImagePath;
         this.imageCount = 0;
-        this.input = input;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(currentImagePath, player.getxCoordinate(), player.getyCoordinate());
-        if(input.isKeyPressed(IInputAdapter.Keys.A) || input.isKeyPressed(IInputAdapter.Keys.D)) {
+        if(player.getIsWalking()) {
             imageCount++;
             setImagePath();
         }

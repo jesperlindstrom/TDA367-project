@@ -9,6 +9,7 @@ class Player implements IModel {
     private int currentHealth;
     private int maxHealth;
     private int level;
+    private boolean isWalking;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -21,6 +22,7 @@ class Player implements IModel {
         this.maxHealth = 10;
         this.currentHealth = maxHealth;
         this.level = 1;
+        this.isWalking = false;
     }
 
     /**
@@ -90,7 +92,15 @@ class Player implements IModel {
     }
 
     /**
-     * Setter for player level
+     * Getter for player max health
+     * @return
+     */
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    /**
+     * Setter for player level.
      * @param level
      */
     public void setLevel(int level) {
@@ -98,10 +108,26 @@ class Player implements IModel {
     }
 
     /**
-     * Getter for player level
+     * Getter for player level..
      * @return
      */
     public int getLevel() {
         return level;
+    }
+
+    /**
+     * Setter for "if player is walking".
+     * @param isWalking
+     */
+    public void setIsWalking(boolean isWalking){
+        this.isWalking = isWalking;
+    }
+
+    /**
+     * Geter to check if player is walking.
+     * @return
+     */
+    public boolean getIsWalking(){
+        return isWalking;
     }
 }

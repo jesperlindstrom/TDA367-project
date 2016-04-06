@@ -22,8 +22,12 @@ public class PlayerController implements IPhysicsController {
     public void update(long delta) {
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
             player.setxCoordinate(player.getxCoordinate() - 3);
+            player.setIsWalking(true);
         }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
             player.setxCoordinate(player.getxCoordinate() + 3);
+            player.setIsWalking(true);
+        }else{
+            player.setIsWalking(false);
         }
     }
 
@@ -36,4 +40,5 @@ public class PlayerController implements IPhysicsController {
     public void getBoundingBox() {
 
     }
+
 }
