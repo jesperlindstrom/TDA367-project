@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.EntityManager;
-import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 
@@ -36,7 +35,7 @@ public class TestScene implements IScene {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.start();
-        
+
         // todo: move to some background thing
         graphics.draw("data/background.png", 0, 0);
 
