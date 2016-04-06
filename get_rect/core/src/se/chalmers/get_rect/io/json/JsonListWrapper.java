@@ -6,7 +6,7 @@ import java.util.List;
 
 public class JsonListWrapper<T> implements ParameterizedType {
     private Class<?> data;
-    
+
     public JsonListWrapper(Class<T> data) {
         this.data = data;
     }
