@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.IView;
 
 class PlayerView implements IView {
@@ -11,18 +10,14 @@ class PlayerView implements IView {
     private String twoLegImagePath;
     private String currentImagePath;
     private int imageWalkCount;
-    private int imageJumpCount;
-    private boolean isJumpDone;
 
-    public PlayerView(Player player, IInputAdapter input){
+    public PlayerView(Player player){
 
         this.player = player;
         this.oneLegImagePath = "data/playerOneLeg.png";
         this.twoLegImagePath = "data/playerTwoLeg.png";
         this.currentImagePath = twoLegImagePath;
         this.imageWalkCount = 0;
-        this.imageJumpCount = 0;
-        this.isJumpDone = true;
     }
 
     @Override
@@ -31,9 +26,6 @@ class PlayerView implements IView {
         if(player.getWalking()) {
             imageWalkCount++;
             setImagePath();
-        }
-        if(player.getJumping()){
-            setPlayerLatitud();
         }
 
     }
@@ -53,18 +45,5 @@ class PlayerView implements IView {
             currentImagePath = oneLegImagePath;
         }
     }
-    private void setPlayerLatitud(){
-        if(imageJumpCount <= 3){
-            player.setyCoordinate(player.getyCoordinate() + 12);
-            imageJumpCount++;
-        } else if (imageJumpCount <= 6){
-            player.setyCoordinate(player.getyCoordinate() - 12);
-            imageJumpCount++;
-        }
-        if(imageJumpCount > 6) {
-            player.setJumping(false);
-            imageJumpCount = 0;
-        }
 
-    }
 }

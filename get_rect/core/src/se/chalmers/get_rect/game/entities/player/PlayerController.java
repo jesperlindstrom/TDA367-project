@@ -11,6 +11,12 @@ public class PlayerController implements IPhysicsController {
     private Player player;
     private IView view;
     private IInputAdapter input;
+    private int t0;
+    private int xCoord;
+    private int yCoord;
+    private int speed0Y;
+    private int speed;
+
 
     public PlayerController(Player player, IView view, IInputAdapter input) {
         this.player = player;
@@ -34,6 +40,11 @@ public class PlayerController implements IPhysicsController {
         //Section for player jump function
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
+            t0=currentTime();
+            xCoord = player.getxCoordinate();
+            yCoord = player.getyCoordinate();
+           // speed0X = speed;
+          //  speed0Y += speedJump;
         }
     }
 
@@ -45,6 +56,15 @@ public class PlayerController implements IPhysicsController {
     @Override
     public void getBoundingBox() {
 
+    }
+
+    private int currentTime(){
+        return 1;
+    }
+
+    public void setPosition(int x, int y){
+        player.setxCoordinate(x);
+        player.setyCoordinate(y);
     }
 
 }
