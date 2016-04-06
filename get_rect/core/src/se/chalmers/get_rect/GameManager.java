@@ -47,7 +47,9 @@ public class GameManager implements IGame {
      */
     public void draw() {
         graphics.clear();
+        graphics.start();
         screenManager.getState().draw(graphics);
+        graphics.end();
     }
 
     /**
@@ -55,6 +57,9 @@ public class GameManager implements IGame {
      * @param delta Time since last draw
      */
     public void update(long delta) {
+        if(input.isKeyPressed(IInputAdapter.Keys.S)) {
+            System.exit(1);
+        }
         screenManager.getState().update(delta);
     }
 
