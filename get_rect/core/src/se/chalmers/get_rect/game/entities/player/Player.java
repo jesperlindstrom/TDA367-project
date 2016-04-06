@@ -32,7 +32,7 @@ class Player implements IModel {
      * @param xCoordinate
      * @param yCoordinate
      */
-    public void setCoordinates(int xCoordinate, int yCoordinate){
+    public void setPosition(int xCoordinate, int yCoordinate){
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
@@ -41,7 +41,7 @@ class Player implements IModel {
      * Setter for player xCoordinate
      * @param xCoordinate
      */
-    public void setxCoordinate(int xCoordinate) {
+    public void setX(int xCoordinate) {
         this.xCoordinate = xCoordinate;
     }
 
@@ -49,7 +49,7 @@ class Player implements IModel {
      * Setter for player yCoordinate
      * @param yCoordinate
      */
-    public void setyCoordinate(int yCoordinate) {
+    public void setY(int yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
 
@@ -57,7 +57,7 @@ class Player implements IModel {
      * Getter for player xCoordinate
      * @return
      */
-    public int getxCoordinate() {
+    public int getX() {
         return xCoordinate;
     }
 
@@ -65,7 +65,7 @@ class Player implements IModel {
      * Getter for player yCoordinate
      * @return
      */
-    public int getyCoordinate() {
+    public int getY() {
         return yCoordinate;
     }
 
