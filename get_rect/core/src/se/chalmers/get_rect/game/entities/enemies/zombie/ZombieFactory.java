@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.entities.enemies.zombie;
 
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.utilities.Point;
 
 public class ZombieFactory {
 
@@ -16,7 +17,7 @@ public class ZombieFactory {
     }
 
     public ZombieController make(int x, int y) {
-        Zombie model = new Zombie(x, y);
+        Zombie model = new Zombie(new Point(x, y));
         IView view = new ZombieView(model);
 
         return new ZombieController(model, view, playerController);

@@ -1,11 +1,11 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.utilities.Point;
 
 class Player implements IModel {
 
-    private int xCoordinate;
-    private int yCoordinate;
+    private Point position;
     private int currentHealth;
     private int maxHealth;
     private int level;
@@ -14,12 +14,10 @@ class Player implements IModel {
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
-     * @param xCoordinate
-     * @param yCoordinate
+     * @param position
      */
-    public Player(int xCoordinate, int yCoordinate){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public Player(Point position){
+        this.position = position;
         this.maxHealth = 10;
         this.currentHealth = maxHealth;
         this.level = 1;
@@ -33,8 +31,7 @@ class Player implements IModel {
      * @param yCoordinate
      */
     public void setPosition(int xCoordinate, int yCoordinate){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+        position.setPosition(xCoordinate, yCoordinate);
     }
 
     /**
@@ -42,7 +39,7 @@ class Player implements IModel {
      * @param xCoordinate
      */
     public void setX(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
+        position.setxCoodrinate(xCoordinate);
     }
 
     /**
@@ -50,7 +47,7 @@ class Player implements IModel {
      * @param yCoordinate
      */
     public void setY(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
+        position.setyCoordinate(yCoordinate);
     }
 
     /**
@@ -58,7 +55,7 @@ class Player implements IModel {
      * @return
      */
     public int getX() {
-        return xCoordinate;
+        return position.getxCoodrinate();
     }
 
     /**
@@ -66,7 +63,7 @@ class Player implements IModel {
      * @return
      */
     public int getY() {
-        return yCoordinate;
+        return position.getyCoordinate();
     }
 
     /**
