@@ -13,9 +13,9 @@ public class IOFacade<T> {
         this.io = new JsonIOStrategy<T>();
     }
 
-    public List<T> load() {
+    /*public List<T> load() {
         return io.read(file);
-    }
+    }*/
 
     public void save(List<T> data) {
         io.write(file, data);
