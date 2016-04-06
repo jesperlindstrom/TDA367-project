@@ -36,6 +36,19 @@ Background: [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/co
 
 6. Start on a new feature and return to step 1.
 
+**Work in another person's branch (that you don't have locally yet)**
+1. Make sure you are up to date
+
+	```
+	git fetch origin
+	```
+
+2. Checkout the branch and set up a local copy that references the remote branch.
+
+	```
+	git checkout -b feature-min-feature origin/feature-min-feature
+	```
+
 ## Weekly releases
 Once a week, we merge the `develop` branch to `master`.
 
