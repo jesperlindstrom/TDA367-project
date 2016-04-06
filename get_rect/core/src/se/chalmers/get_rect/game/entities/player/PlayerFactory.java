@@ -20,7 +20,7 @@ public class PlayerFactory {
      */
     public PlayerController make(int x, int y) {
         Player model = new Player(x, y);
-        IView view = new PlayerView(model);
+        IView view = new PlayerView(model, input);
 
 
         return new PlayerController(model, view, input);
