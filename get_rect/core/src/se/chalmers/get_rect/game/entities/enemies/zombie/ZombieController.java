@@ -23,7 +23,6 @@ public class ZombieController implements IPhysicsController {
         int X = model.getX();
         int Y = model.getY();
 
-        System.out.println("player = " + playerController);
         if (X-playerController.getxCoord() < 0) {
             X = X + pace;
         } else {
