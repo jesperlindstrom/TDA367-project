@@ -11,7 +11,7 @@ public class IOFacade<T> {
 
     public IOFacade(String file, Class<T> className) {
         this.file = file;
-        this.io = new JsonIOStrategy<T>(className);
+        this.io = new JsonIOStrategy<>(className);
     }
 
     public List<T> load() throws FileNotFoundException {
