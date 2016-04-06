@@ -2,6 +2,7 @@ package se.chalmers.get_rect.io;
 
 import se.chalmers.get_rect.io.json.JsonIOStrategy;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class IOFacade<T> {
@@ -13,7 +14,7 @@ public class IOFacade<T> {
         this.io = new JsonIOStrategy<T>();
     }
 
-    public List<T> load() {
+    public List<T> load() throws FileNotFoundException {
         return io.read(file);
     }
 
