@@ -90,4 +90,8 @@ public class PlayerController implements IPhysicsController {
     public int getxCoord() {
         return player.getX();
     }
+
+    public int getyCoord() {
+        return player.getY();
+    }
 }
