@@ -20,14 +20,20 @@ public class PlayerController implements IPhysicsController {
 
     @Override
     public void update(long delta) {
+        //Section for player walking function
+        //// TODO: 2016-04-06 Fix walking such as delta is in use.
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
             player.setxCoordinate(player.getxCoordinate() - 3);
-            player.setIsWalking(true);
+            player.setWalking(true);
         }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
             player.setxCoordinate(player.getxCoordinate() + 3);
-            player.setIsWalking(true);
+            player.setWalking(true);
         }else{
-            player.setIsWalking(false);
+            player.setWalking(false);
+        }
+        //Section for player jump function
+        if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
+            player.setJumping(true);
         }
     }
 

@@ -10,6 +10,7 @@ class Player implements IModel {
     private int maxHealth;
     private int level;
     private boolean isWalking;
+    private boolean isJumping;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -23,6 +24,7 @@ class Player implements IModel {
         this.currentHealth = maxHealth;
         this.level = 1;
         this.isWalking = false;
+        this.isJumping = false;
     }
 
     /**
@@ -116,18 +118,34 @@ class Player implements IModel {
     }
 
     /**
-     * Setter for "if player is walking".
-     * @param isWalking
+     * Setter for "player is walking".
+     * @param Walking
      */
-    public void setIsWalking(boolean isWalking){
-        this.isWalking = isWalking;
+    public void setWalking(boolean Walking){
+        this.isWalking = Walking;
     }
 
     /**
-     * Geter to check if player is walking.
+     * Geter to check if player walks.
      * @return
      */
-    public boolean getIsWalking(){
+    public boolean getWalking(){
         return isWalking;
+    }
+
+    /**
+     * Setter to change player jumping state
+     * @param jumping
+     */
+    public void setJumping(boolean jumping) {
+        isJumping = jumping;
+    }
+
+    /**
+     * Getter to check if player jumps
+     * @return
+     */
+    public boolean getJumping(){
+        return isJumping;
     }
 }
