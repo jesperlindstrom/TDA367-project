@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.screens;
 
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.scenes.AuditoriumStreetScene;
@@ -15,8 +16,14 @@ import se.chalmers.get_rect.states.StateManager;
 public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
     private PlayerController playerController;
+    private IInputAdapter input;
+    private IScene menu;
+
     public GameScreen(IGame game) {
+        this.input = game.getInput();
         System.out.println("GameScreen is initialized");
+
+        menu = new MenuScene(input);
 
         // Create the scene manager
         sceneManager = new StateManager<>();
@@ -32,7 +39,6 @@ public class GameScreen implements IScreen {
         sceneManager.add("EDIT", new EDITScene(playerController));
         sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
         sceneManager.add("test", new TestScene(playerController));
-        sceneManager.add("menu", new MenuScene());
 
 
         // Set starting scene
@@ -51,6 +57,9 @@ public class GameScreen implements IScreen {
 
     @Override
     public void update(long delta) {
+        if (input.isKeyPressed(IInputAdapter.Keys.ESC)) {
+
+        }
         sceneManager.getState().update(delta);
     }
 
