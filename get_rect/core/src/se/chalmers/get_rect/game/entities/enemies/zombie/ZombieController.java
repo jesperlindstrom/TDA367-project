@@ -16,7 +16,7 @@ public class ZombieController implements IPhysicsController {
         this.model = model;
         this.view = view;
         this.playerController = playerController;
-        pace = (int)(Math.random()*5 + 1);
+        pace = (int)(Math.random()*5 + 1)-2;
     }
     @Override
     public void update(long delta) {
@@ -27,6 +27,12 @@ public class ZombieController implements IPhysicsController {
             X = X + pace;
         } else {
             X = X - pace;
+        }
+
+        if(Y-playerController.getyCoord() < 0) {
+            Y = Y + pace;
+        } else {
+            Y = Y - pace;
         }
 
         model.setPosition(X, Y);
