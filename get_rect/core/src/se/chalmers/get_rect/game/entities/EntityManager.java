@@ -8,22 +8,29 @@ import java.util.List;
 public class EntityManager {
     private List<IController> list;
 
-    EntityManager(){
+    public EntityManager() {
         list = new ArrayList<>();
     }
-    EntityManager(List<IController> list){
+
+    public EntityManager(List<IController> list) {
         this.list = list;
     }
-    public void add(IController c){
+
+    public void add(IController c) {
         list.add(c);
     }
-    public void update(long delta){
-        for (IController entity : list){
+
+    public void addAll(List<IController> entities) {
+        list.addAll(entities);
+    }
+
+    public void update(long delta) {
+        for (IController entity : list) {
             entity.update(delta);
         }
     }
-    public void draw(IGraphicsAdapter g){
-        for (IController entity : list){
+    public void draw(IGraphicsAdapter g) {
+        for (IController entity : list) {
             entity.draw(g);
         }
     }
