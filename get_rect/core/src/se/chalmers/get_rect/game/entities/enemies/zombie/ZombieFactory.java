@@ -8,7 +8,7 @@ public class ZombieFactory {
     }
 
     public ZombieController make(int x, int y) {
-        Zombie model = new Zombie();
+        Zombie model = new Zombie(x, y);
         IView view = new ZombieView(model);
 
         return new ZombieController(model, view);

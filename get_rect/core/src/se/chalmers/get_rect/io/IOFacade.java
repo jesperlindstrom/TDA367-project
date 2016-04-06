@@ -9,9 +9,9 @@ public class IOFacade<T> {
     private String file;
     private IOStrategy<T> io;
 
-    public IOFacade(String file) {
+    public IOFacade(String file, Class<T> className) {
         this.file = file;
-        this.io = new JsonIOStrategy<T>();
+        this.io = new JsonIOStrategy<T>(className);
     }
 
     public List<T> load() throws FileNotFoundException {
