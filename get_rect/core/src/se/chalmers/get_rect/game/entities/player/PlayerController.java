@@ -16,7 +16,6 @@ public class PlayerController implements IPhysicsController {
     private int ground;
     private int timeSinceJump = 0;
     private float deltaInSec;
-    private int maxJump = 50;
 
     public PlayerController(Player player, IView view, IInputAdapter input) {
         this.player = player;

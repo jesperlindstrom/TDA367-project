@@ -41,7 +41,6 @@ public class TestScene implements IScene {
     public void enteringState(String previousStateName) {
         background = new EntityManager();
         foreground = new EntityManager();
-        foreground.add(playerController);
 
         SceneLoader loader = new SceneLoader("test", playerController);
 
@@ -51,6 +50,7 @@ public class TestScene implements IScene {
             System.out.println(e.getMessage());
         }
         playerController.setPosition(200, 90);
+        foreground.add(playerController);
     }
 
     @Override
