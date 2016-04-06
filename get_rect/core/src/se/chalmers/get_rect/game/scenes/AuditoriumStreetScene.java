@@ -14,7 +14,7 @@ public class AuditoriumStreetScene implements IScene {
     public AuditoriumStreetScene(PlayerController player) {
         this.player = player;
 
-        ZombieFactory zombieFactory = new ZombieFactory();
+        ZombieFactory zombieFactory = new ZombieFactory(player);
         zombie = zombieFactory.make();
     }
 

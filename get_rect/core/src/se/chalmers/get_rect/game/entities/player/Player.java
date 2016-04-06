@@ -1,26 +1,28 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.utilities.Point;
 
 class Player implements IModel {
 
-    private int xCoordinate;
-    private int yCoordinate;
+    private Point position;
     private int currentHealth;
     private int maxHealth;
     private int level;
+    private boolean isWalking;
+    private boolean isJumping;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
-     * @param xCoordinate
-     * @param yCoordinate
+     * @param position
      */
-    public Player(int xCoordinate, int yCoordinate){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public Player(Point position){
+        this.position = position;
         this.maxHealth = 10;
         this.currentHealth = maxHealth;
         this.level = 1;
+        this.isWalking = false;
+        this.isJumping = false;
     }
 
     /**
@@ -28,41 +30,40 @@ class Player implements IModel {
      * @param xCoordinate
      * @param yCoordinate
      */
-    public void setCoordinates(int xCoordinate, int yCoordinate){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public void setPosition(int xCoordinate, int yCoordinate){
+        position.setPosition(xCoordinate, yCoordinate);
     }
 
     /**
      * Setter for player xCoordinate
      * @param xCoordinate
      */
-    public void setxCoordinate(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
+    public void setX(int xCoordinate) {
+        position.setxCoodrinate(xCoordinate);
     }
 
     /**
      * Setter for player yCoordinate
      * @param yCoordinate
      */
-    public void setyCoordinate(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
+    public void setY(int yCoordinate) {
+        position.setyCoordinate(yCoordinate);
     }
 
     /**
      * Getter for player xCoordinate
      * @return
      */
-    public int getxCoordinate() {
-        return xCoordinate;
+    public int getX() {
+        return position.getxCoodrinate();
     }
 
     /**
      * Getter for player yCoordinate
      * @return
      */
-    public int getyCoordinate() {
-        return yCoordinate;
+    public int getY() {
+        return position.getyCoordinate();
     }
 
     /**
@@ -90,7 +91,15 @@ class Player implements IModel {
     }
 
     /**
-     * Setter for player level
+     * Getter for player max health
+     * @return
+     */
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    /**
+     * Setter for player level.
      * @param level
      */
     public void setLevel(int level) {
@@ -98,10 +107,42 @@ class Player implements IModel {
     }
 
     /**
-     * Getter for player level
+     * Getter for player level..
      * @return
      */
     public int getLevel() {
         return level;
+    }
+
+    /**
+     * Setter for "player is walking".
+     * @param Walking
+     */
+    public void setWalking(boolean Walking){
+        this.isWalking = Walking;
+    }
+
+    /**
+     * Geter to check if player walks.
+     * @return
+     */
+    public boolean getWalking(){
+        return isWalking;
+    }
+
+    /**
+     * Setter to change player jumping state
+     * @param jumping
+     */
+    public void setJumping(boolean jumping) {
+        isJumping = jumping;
+    }
+
+    /**
+     * Getter to check if player jumps
+     * @return
+     */
+    public boolean getJumping(){
+        return isJumping;
     }
 }

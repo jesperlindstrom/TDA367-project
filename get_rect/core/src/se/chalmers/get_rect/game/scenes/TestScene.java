@@ -7,23 +7,15 @@ import se.chalmers.get_rect.game.loaders.SceneLoader;
 
 import java.io.FileNotFoundException;
 
-
 public class TestScene implements IScene {
+
+    private PlayerController playerController;
     private EntityManager background;
     private EntityManager foreground;
 
     public TestScene(PlayerController playerController) {
-        background = new EntityManager();
-        foreground = new EntityManager();
-        foreground.add(playerController);
+        this.playerController = playerController;
 
-        SceneLoader loader = new SceneLoader("test");
-
-        try {
-            foreground.addAll(loader.getZombies());
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     @Override
@@ -47,7 +39,18 @@ public class TestScene implements IScene {
 
     @Override
     public void enteringState(String previousStateName) {
+        background = new EntityManager();
+        foreground = new EntityManager();
+        foreground.add(playerController);
 
+        SceneLoader loader = new SceneLoader("test", playerController);
+
+        try {
+            foreground.addAll(loader.getZombies());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        playerController.setPosition(200, 90);
     }
 
     @Override

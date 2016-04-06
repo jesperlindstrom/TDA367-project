@@ -2,39 +2,42 @@ package se.chalmers.get_rect.game.entities.enemies.zombie;
 
 
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.utilities.Point;
 
 public class Zombie implements IModel {
-    private int x;
-    private int y;
+    private Point position;
     private int health;
     private int damage;
     private int currentHealth;
 
     public Zombie(){
-        this(0,0);
+        this(new Point(0 ,0));
     }
 
-    public Zombie(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Zombie(Point point){
+        this.position = point;
         damage = 2;
         health = 5; //temp values
     }
 
     public int getX() {
-        return x;
+        return position.getxCoodrinate();
     }
 
     public int getY() {
-        return y;
+        return position.getyCoordinate();
     }
 
     public void setX(int x) {
-        this.x = x;
+        position.setxCoodrinate(x);
     }
 
     public void setY(int y) {
-        this.y = y;
+        position.setyCoordinate(y);
+    }
+
+    public void setPosition(int x, int y) {
+        position.setPosition(x, y);
     }
 
     public int getDamage(){
