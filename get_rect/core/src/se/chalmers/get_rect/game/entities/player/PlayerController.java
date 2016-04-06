@@ -2,21 +2,21 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
-import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.physics.ISolidObject;
+
+
 
 public class PlayerController implements IPhysicsController {
     private Player player;
     private IView view;
     private IInputAdapter input;
-    private int t0;
-    private int xCoord;
     private int yCoord;
-    private int speed0Y;
-    private int speed;
-
+    private int speedY;
+    private int ground;
+    private int timeSinceJump = 0;
+    private float deltaInSec;
+    private int maxJump = 50;
 
     public PlayerController(Player player, IView view, IInputAdapter input) {
         this.player = player;
@@ -40,11 +40,12 @@ public class PlayerController implements IPhysicsController {
         //Section for player jump function
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
-            t0=currentTime();
-            xCoord = player.getX();
-            yCoord = player.getY();
-           // speed0X = speed;
-          //  speed0Y += speedJump;
+            setData(delta);
+            ground = player.getY();
+        }
+        if(player.getJumping()){
+            jump();
+
         }
     }
 
@@ -58,9 +59,29 @@ public class PlayerController implements IPhysicsController {
 
     }
 
-    private int currentTime(){
-        return 1;
+    private void setData(long delta){
+        deltaInSec = (float)(delta / 10000000);
+        ground = player.getY();
+        yCoord = ground + 1;
+        speedY = 25;
+
     }
+
+    private void jump(){
+        double g = .04;
+        speedY -= 1;
+        timeSinceJump += deltaInSec;
+        player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
+        // And test that the character is not on the ground again.
+
+        if (player.getY() <= ground)
+        {
+            player.setY(ground);
+            timeSinceJump = 0;
+            player.setJumping(false);
+        }
+    }
+
 
     public void setPosition(int x, int y){
         player.setPosition(x, y);
