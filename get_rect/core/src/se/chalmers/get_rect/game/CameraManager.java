@@ -14,6 +14,7 @@ public class CameraManager {
     private ICameraAdapter cameraAdapter;
     private PlayerController playerController;
 
+    //TODO Use ponit
     public CameraManager(ICameraAdapter cameraAdapter, PlayerController playerController){
         this.cameraAdapter = cameraAdapter;
         this.playerController = playerController;
