@@ -14,4 +14,5 @@ public interface IGame {
     GameLog getGameLog();
     StateManager<IScreen> getScreenManager();
     ICameraAdapter getCamera();
+    void exit();
 }

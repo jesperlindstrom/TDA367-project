@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,7 +26,7 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
         IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20, assetManagerAdapter);
         IInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
 
-        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapter);
+        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapter, this);
     }
 
     /**
@@ -39,26 +40,14 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
             delta = TimeUtils.timeSinceNanos(lastTime);
         }
 
-        draw();
-        update(delta);
+        gameManager.draw();
+        gameManager.update(delta);
 
         lastTime = TimeUtils.nanoTime();
     }
 
-    /**
-     * Used to draw next frame
-     */
     @Override
-    public void draw() {
-        gameManager.draw();
-    }
-
-    /**
-     * Calls for game logic update
-     * @param delta frequenzy of updating
-     */
-    @Override
-    public void update(long delta) {
-        gameManager.update(delta);
+    public void exit() {
+        Gdx.app.exit();
     }
 }

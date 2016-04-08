@@ -1,9 +1,6 @@
 package se.chalmers.get_rect;
 
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.adapters.ICameraAdapter;
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.adapters.libGDX.LibGDXICameraAdapter;
 import se.chalmers.get_rect.game.screens.GameScreen;
 import se.chalmers.get_rect.game.screens.IScreen;
@@ -16,6 +13,7 @@ public class GameManager implements IGame {
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
     private IAssetManagerAdapter assetManager;
+    private IGameLoopAdapter gameLoop;
     private GameLog gameLog;
     private StateManager<IScreen> screenManager;
     private ICameraAdapter camera;
@@ -26,13 +24,13 @@ public class GameManager implements IGame {
      * @param input An input adapter
      * @param assetManager An assetManager adapter
      */
-    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraAdapter camera) {
+    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraAdapter camera, IGameLoopAdapter gameLoop) {
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;
         this.assetManager = assetManager;
         this.camera = camera;
-        System.out.println(camera);
+        this.gameLoop = gameLoop;
 
         // Initialize components
         gameLog = new GameLog();
@@ -93,6 +91,12 @@ public class GameManager implements IGame {
     @Override
     public ICameraAdapter getCamera() {
         return camera;
+    }
+
+    @Override
+    public void exit() {
+        assetManager.dispose();
+        gameLoop.exit();
     }
 
     /**

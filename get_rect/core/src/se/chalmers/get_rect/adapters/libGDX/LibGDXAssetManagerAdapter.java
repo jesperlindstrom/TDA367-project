@@ -39,7 +39,14 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
         return manager.getProgress();
     }
 
+    @Override
+    public void dispose() {
+      manager.dispose();
+    }
+
     public Texture getTexture(String path) {
         return manager.get(path, Texture.class);
     }
+
+
 }
