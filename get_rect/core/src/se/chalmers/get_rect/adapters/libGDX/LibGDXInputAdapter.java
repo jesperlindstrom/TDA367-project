@@ -2,7 +2,6 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.Input;
 import se.chalmers.get_rect.adapters.IInputAdapter;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +31,16 @@ public class LibGDXInputAdapter implements IInputAdapter {
     }
 
     /**
+     * Checks whether the key in question was recently pressed
+     * @param key the key in question
+     * @return true if the key was recently pressed
+     */
+    @Override
+    public boolean isKeyJustPressed(Keys key) {
+        return input.isKeyJustPressed(keyMap.get(key));
+    }
+
+    /**
      * Checks if the key being pressed is implemented
      * @param key The key in question
      * @return true if is available in KeyMap
@@ -43,6 +52,8 @@ public class LibGDXInputAdapter implements IInputAdapter {
         }
         return false;
     }
+
+
 
     /**
      * Maps our Keys with the corresponding key for libGDX.

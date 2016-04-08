@@ -10,6 +10,7 @@ import se.chalmers.get_rect.game.scenes.EDITScene;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.StudentUnionHouseScene;
 import se.chalmers.get_rect.game.scenes.*;
+import se.chalmers.get_rect.game.scenes.menu.MenuScene;
 import se.chalmers.get_rect.states.StateManager;
 
 
@@ -17,13 +18,17 @@ public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
     private PlayerController playerController;
     private IInputAdapter input;
-    private IScene menu;
+    private MenuScene menu;
+    private boolean menuActive;
 
     public GameScreen(IGame game) {
         this.input = game.getInput();
         System.out.println("GameScreen is initialized");
 
-        menu = new MenuScene(input);
+//        Sets menuActive to false
+        menuActive = false;
+
+        menu = new MenuScene(game);
 
         // Create the scene manager
         sceneManager = new StateManager<>();
@@ -55,16 +60,32 @@ public class GameScreen implements IScreen {
         System.out.println("Leaving GameScreen");
     }
 
+    /**
+     * Will set update for the correct scene
+     * and check if the menu button is pressed
+     * @param delta time since last draw.
+     */
     @Override
     public void update(long delta) {
-        if (input.isKeyPressed(IInputAdapter.Keys.ESC)) {
 
+        if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
+            menuActive = !menuActive;
         }
-        sceneManager.getState().update(delta);
+
+//        Will update the menu if it is active and pause the current scene.
+        if (menuActive) {
+            menu.update(delta);
+        } else {
+            sceneManager.getState().update(delta);
+        }
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         sceneManager.getState().draw(graphics);
+        if (menuActive) {
+            menu.draw(graphics);
+        }
     }
+
 }
