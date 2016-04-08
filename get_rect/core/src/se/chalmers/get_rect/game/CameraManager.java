@@ -19,7 +19,7 @@ public class CameraManager {
         this.playerController = playerController;
         deltaX = playerController.getxCoord();
         deltaY = playerController.getyCoord();
-        cameraAdapter.translate(-1920/2, -1080/6);
+        cameraAdapter.translate(0, 300);
     }
 
     public void update() {

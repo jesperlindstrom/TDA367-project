@@ -33,7 +33,7 @@ public class GameScreen implements IScreen {
 
 
         //Initialize player
-        PlayerFactory playerFactory = new PlayerFactory(game.getInput());
+        PlayerFactory playerFactory = new PlayerFactory(game.getInput(), game.getRectangleFactory());
         playerController = playerFactory.make(0,0);
 
         //Create the CameraManager
@@ -43,7 +43,7 @@ public class GameScreen implements IScreen {
         sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
         sceneManager.add("EDIT", new EDITScene(playerController));
         sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
-        sceneManager.add("test", new TestScene(playerController));
+        sceneManager.add("test", new TestScene(playerController, game.getRectangleFactory()));
 
 
         // Set starting scene

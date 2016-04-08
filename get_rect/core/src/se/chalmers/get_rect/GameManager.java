@@ -1,11 +1,7 @@
 package se.chalmers.get_rect;
 
 import se.chalmers.get_rect.adapters.*;
-import se.chalmers.get_rect.adapters.libGDX.LibGDXICameraAdapter;
-import se.chalmers.get_rect.game.screens.GameScreen;
-import se.chalmers.get_rect.game.screens.IScreen;
-import se.chalmers.get_rect.game.screens.SplashScreen;
-import se.chalmers.get_rect.game.screens.StartMenuScreen;
+import se.chalmers.get_rect.game.screens.*;
 import se.chalmers.get_rect.log.GameLog;
 import se.chalmers.get_rect.states.*;
 
@@ -14,6 +10,7 @@ public class GameManager implements IGame {
     private IInputAdapter input;
     private IAssetManagerAdapter assetManager;
     private IGameLoopAdapter gameLoop;
+    private IRectangleFactoryAdapter rectangleFactory;
     private GameLog gameLog;
     private StateManager<IScreen> screenManager;
     private ICameraAdapter camera;
@@ -24,13 +21,14 @@ public class GameManager implements IGame {
      * @param input An input adapter
      * @param assetManager An assetManager adapter
      */
-    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraAdapter camera, IGameLoopAdapter gameLoop) {
+    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraAdapter camera, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;
         this.assetManager = assetManager;
         this.camera = camera;
         this.gameLoop = gameLoop;
+        this.rectangleFactory = rectangleFactory;
 
         // Initialize components
         gameLog = new GameLog();
@@ -82,6 +80,15 @@ public class GameManager implements IGame {
     @Override
     public IAssetManagerAdapter getAssetManager() {
         return assetManager;
+    }
+
+    /**
+     * Get the rectangle factory
+     * @return rectangleFactory adapter
+     */
+    @Override
+    public IRectangleFactoryAdapter getRectangleFactory() {
+        return rectangleFactory;
     }
 
     /**

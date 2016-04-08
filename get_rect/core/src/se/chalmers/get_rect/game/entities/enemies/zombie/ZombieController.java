@@ -2,9 +2,11 @@ package se.chalmers.get_rect.game.entities.enemies.zombie;
 
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.physics.ISolidObject;
 
 public class ZombieController implements IPhysicsController {
     private Zombie model;
@@ -44,7 +46,12 @@ public class ZombieController implements IPhysicsController {
     public void draw(IGraphicsAdapter graphics) {view.draw(graphics);}
 
     @Override
-    public void getBoundingBox() {
+    public IRectangleAdapter getBoundingBox() {
+        return model.getBoundingBox();
+    }
 
+    @Override
+    public void onCollision(ISolidObject otherObject) {
+        System.out.println("Zombie collided with " + otherObject.getClass());
     }
 }

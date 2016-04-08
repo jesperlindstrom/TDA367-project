@@ -1,11 +1,15 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.utilities.Point;
 
 class Player implements IModel {
-
+    private static final int WIDTH = 100;
+    private static final int HEIGHT = 100;
     private Point position;
+    private IRectangleAdapter boundingBox;
     private int currentHealth;
     private int maxHealth;
     private int level;
@@ -15,14 +19,20 @@ class Player implements IModel {
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
      * @param position
+     * @param rectangleFactory
      */
-    public Player(Point position){
+    public Player(Point position, IRectangleFactoryAdapter rectangleFactory) {
         this.position = position;
+        this.boundingBox = rectangleFactory.make(position.getxCoodrinate(), position.getyCoordinate(), WIDTH, HEIGHT);
         this.maxHealth = 10;
         this.currentHealth = maxHealth;
         this.level = 1;
         this.isWalking = false;
         this.isJumping = false;
+    }
+
+    public IRectangleAdapter getBoundingBox() {
+        return boundingBox;
     }
 
     /**

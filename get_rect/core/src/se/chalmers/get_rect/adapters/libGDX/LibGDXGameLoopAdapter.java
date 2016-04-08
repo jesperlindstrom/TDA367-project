@@ -8,8 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 import se.chalmers.get_rect.GameManager;
 import se.chalmers.get_rect.adapters.IGameLoopAdapter;
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.IInputAdapter;
 
 public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLoopAdapter {
     private GameManager gameManager;
@@ -21,16 +19,16 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
     @Override
     public void create() {
         LibGDXICameraAdapter cameraAdapter = new LibGDXICameraAdapter();
-        cameraAdapter.translate(1920/2,1080/2);
         LibGDXAssetManagerAdapter assetManagerAdapter = new LibGDXAssetManagerAdapter();
-        IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20, assetManagerAdapter);
-        IInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
+        LibGDXGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20, assetManagerAdapter);
+        LibGDXInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
+        LibGDXRectangleFactoryAdapter rectangleFactoryAdapter = new LibGDXRectangleFactoryAdapter();
 
-        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapter, this);
+        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapter, this, rectangleFactoryAdapter);
     }
 
     /**
-     * Gameloop method.
+     * Game loop method.
      */
     @Override
     public void render() {

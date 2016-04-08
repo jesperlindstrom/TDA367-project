@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.loaders;
 
-import se.chalmers.get_rect.game.entities.IController;
+import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieController;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieDataStore;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieFactory;
@@ -13,15 +13,17 @@ import java.util.List;
 public class SceneLoader {
     private IOFacade<ZombieDataStore> zombieLoader;
     private PlayerController player;
+    private IRectangleFactoryAdapter rectangleFactory;
 
-    public SceneLoader(String sceneName, PlayerController player) {
+    public SceneLoader(String sceneName, PlayerController player, IRectangleFactoryAdapter rectangleFactory) {
         zombieLoader = new IOFacade<>("scenes/" + sceneName + "/zombies.json", ZombieDataStore.class);
         this.player = player;
+        this.rectangleFactory = rectangleFactory;
     }
 
-    public List<IController> getZombies() throws FileNotFoundException {
-        List<IController> entities = new ArrayList<>();
-        ZombieFactory factory = new ZombieFactory(player);
+    public List<ZombieController> getZombies() throws FileNotFoundException {
+        List<ZombieController> entities = new ArrayList<>();
+        ZombieFactory factory = new ZombieFactory(player, rectangleFactory);
 
         for (ZombieDataStore data : zombieLoader.load()) {
             entities.add(factory.make(data));
