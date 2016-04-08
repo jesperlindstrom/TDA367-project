@@ -59,7 +59,7 @@ class Player implements IModel {
     public void setY(int yCoordinate) {
         position = position.setyCoordinate(yCoordinate);
     }
-    
+
     /**
      * Setter for player current health
      * @param health
@@ -106,6 +106,14 @@ class Player implements IModel {
      */
     public int getLevel() {
         return level;
+    }
+
+    public int getX() {
+        return position.getxCoodrinate();
+    }
+
+    public int getY() {
+        return position.getyCoordinate();
     }
 
     /**
