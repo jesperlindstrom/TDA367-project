@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.utilities.Point;
 
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private SpriteBatch batch;
@@ -33,6 +34,16 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     @Override
     public void draw(String img, float x, float y, float width, float height) {
         batch.draw(assetManager.getTexture(img), x, y, width, height);
+    }
+
+    @Override
+    public void draw(String img, Point point) {
+        draw(img, point.getxCoodrinate(), point.getyCoordinate());
+    }
+
+    @Override
+    public void draw(String img, Point point, float width, float height) {
+        draw(img, point.getxCoodrinate(), point.getyCoordinate(), width, height);
     }
 
     /**

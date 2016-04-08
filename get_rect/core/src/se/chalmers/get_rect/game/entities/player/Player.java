@@ -34,6 +34,16 @@ class Player implements IModel {
         position = position.setPosition(xCoordinate, yCoordinate);
     }
 
+    @Override
+    public void setPosition(Point point) {
+        position = new Point(point);
+    }
+
+    @Override
+    public Point getPosition() {
+        return position;
+    }
+
     /**
      * Setter for player xCoordinate
      * @param xCoordinate
@@ -49,23 +59,7 @@ class Player implements IModel {
     public void setY(int yCoordinate) {
         position = position.setyCoordinate(yCoordinate);
     }
-
-    /**
-     * Getter for player xCoordinate
-     * @return
-     */
-    public int getX() {
-        return position.getxCoodrinate();
-    }
-
-    /**
-     * Getter for player yCoordinate
-     * @return
-     */
-    public int getY() {
-        return position.getyCoordinate();
-    }
-
+    
     /**
      * Setter for player current health
      * @param health

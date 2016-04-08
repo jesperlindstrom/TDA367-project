@@ -5,13 +5,16 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.game.screens.GameScreen;
+import se.chalmers.get_rect.utilities.Point;
 
 public class MenuScene implements IGameComponent {
 
     private IInputAdapter input;
+    private Point position;
 
     public MenuScene(IGame game) {
         this.input = game.getInput();
+        position = new Point(0, 0);
 
     }
 
@@ -22,7 +25,7 @@ public class MenuScene implements IGameComponent {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("scenes/MenuBackground.png", 0, 0);
+        graphics.draw("scenes/MenuBackground.png", position);
     }
 
 }

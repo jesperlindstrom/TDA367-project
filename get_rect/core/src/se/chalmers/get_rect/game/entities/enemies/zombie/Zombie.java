@@ -20,14 +20,6 @@ public class Zombie implements IModel {
         health = 5; //temp values
     }
 
-    public int getX() {
-        return position.getxCoodrinate();
-    }
-
-    public int getY() {
-        return position.getyCoordinate();
-    }
-
     public void setX(int x) {
         position = position.setxCoodrinate(x);
     }
@@ -38,6 +30,15 @@ public class Zombie implements IModel {
 
     public void setPosition(int x, int y) {
         position = position.setPosition(x, y);
+    }
+
+    @Override
+    public void setPosition(Point point) {
+        position = new Point(point);
+    }
+
+    public Point getPosition() {
+        return position;
     }
 
     public int getDamage(){
