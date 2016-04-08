@@ -17,4 +17,20 @@ public class FrostbiteEngine implements IPhysicsEngine {
     public void add(ISolidObject entity) {
         entities.add(entity);
     }
+
+    @Override
+    public void addAll(List<ISolidObject> newEntities) {
+        entities.addAll(newEntities);
+    }
+
+    @Override
+    public void update(long delta) {
+        for (ISolidObject entity1 : entities) {
+            for(ISolidObject entity2 : entities) {
+                if (entity1.getBoundingBox().intersects(entity2.getBoundingBox())) {
+                    entity1.onCollision(entity2);
+                }
+            }
+        }
+    }
 }

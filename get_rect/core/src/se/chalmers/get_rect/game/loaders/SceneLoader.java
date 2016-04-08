@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.loaders;
 
-import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieController;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieDataStore;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieFactory;
@@ -19,8 +18,8 @@ public class SceneLoader {
         this.player = player;
     }
 
-    public List<IController> getZombies() throws FileNotFoundException {
-        List<IController> entities = new ArrayList<>();
+    public List<ZombieController> getZombies() throws FileNotFoundException {
+        List<ZombieController> entities = new ArrayList<>();
         ZombieFactory factory = new ZombieFactory(player);
 
         for (ZombieDataStore data : zombieLoader.load()) {

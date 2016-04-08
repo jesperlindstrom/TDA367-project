@@ -15,6 +15,7 @@ public class ZombieFactory {
     public ZombieController make() {
         return make(0, 0);
     }
+
     public ZombieController make(ZombieDataStore data) {
         return make(data.getX(), data.getY());
     }

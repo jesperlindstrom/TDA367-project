@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.EntityManager;
+import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.FrostbiteEngine;
@@ -46,19 +47,25 @@ public class TestScene implements IScene {
         foreground = new EntityManager();
         physics = new FrostbiteEngine();
 
+        physics.add(playerController);
         foreground.add(playerController);
 
         SceneLoader loader = new SceneLoader("test", playerController);
 
         try {
-            foreground.addAll(loader.getZombies());
+            loadZombies(loader);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        playerController.setPosition(200, 90);
 
-        // Physics
-        //physics.addAll(foreground);
+        playerController.setPosition(200, 90);
+    }
+
+    private void loadZombies(SceneLoader loader) throws FileNotFoundException {
+        for (IPhysicsController entity : loader.getZombies()) {
+            foreground.add(entity);
+            physics.add(entity);
+        }
     }
 
     @Override
