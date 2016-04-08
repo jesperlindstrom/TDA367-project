@@ -50,4 +50,10 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
     public void exit() {
         Gdx.app.exit();
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        gameManager.exit();
+    }
 }
