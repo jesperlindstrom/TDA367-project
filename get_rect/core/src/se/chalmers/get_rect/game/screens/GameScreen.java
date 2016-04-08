@@ -2,12 +2,9 @@ package se.chalmers.get_rect.game.screens;
 
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
-import se.chalmers.get_rect.game.scenes.AuditoriumStreetScene;
-import se.chalmers.get_rect.game.scenes.EDITScene;
-import se.chalmers.get_rect.game.scenes.IScene;
-import se.chalmers.get_rect.game.scenes.StudentUnionHouseScene;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.states.StateManager;
 
@@ -15,6 +12,8 @@ import se.chalmers.get_rect.states.StateManager;
 public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
     private PlayerController playerController;
+    private CameraManager cameraManager;
+
     public GameScreen(IGame game) {
         System.out.println("GameScreen is initialized");
 
@@ -26,6 +25,8 @@ public class GameScreen implements IScreen {
         PlayerFactory playerFactory = new PlayerFactory(game.getInput());
         playerController = playerFactory.make(0,0);
 
+        //Create the CameraManager
+        cameraManager = new CameraManager(game.getCamera(), playerController);
 
         // Register scenes
         sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
@@ -51,10 +52,12 @@ public class GameScreen implements IScreen {
     @Override
     public void update(long delta) {
         sceneManager.getState().update(delta);
+        cameraManager.update();
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+        cameraManager.draw(graphics);
         sceneManager.getState().draw(graphics);
     }
 }

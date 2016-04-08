@@ -1,7 +1,9 @@
 package se.chalmers.get_rect;
 
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.adapters.libGDX.LibGDXICameraAdapter;
 import se.chalmers.get_rect.game.screens.IScreen;
 import se.chalmers.get_rect.log.GameLog;
 import se.chalmers.get_rect.states.StateManager;
@@ -11,4 +13,5 @@ public interface IGame {
     IAssetManagerAdapter getAssetManager();
     GameLog getGameLog();
     StateManager<IScreen> getScreenManager();
+    ICameraAdapter getCamera();
 }

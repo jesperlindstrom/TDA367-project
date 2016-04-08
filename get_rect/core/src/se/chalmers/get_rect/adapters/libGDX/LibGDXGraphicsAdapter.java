@@ -1,11 +1,11 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
+import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.ITextureAdapter;
 
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private SpriteBatch batch;
@@ -58,5 +58,9 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     @Override
     public void end() {
         batch.end();
+    }
+
+    public void setMatrix(Matrix4 cameraMatrix) {
+        batch.setProjectionMatrix(cameraMatrix);
     }
 }

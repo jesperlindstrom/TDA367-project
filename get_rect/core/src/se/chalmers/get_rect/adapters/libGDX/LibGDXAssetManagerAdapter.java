@@ -5,7 +5,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
-import se.chalmers.get_rect.adapters.ITextureAdapter;
 
 public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
     private AssetManager manager;
