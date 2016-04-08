@@ -26,7 +26,6 @@ public class TestScene implements IScene {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.start();
 
         // todo: move to some background thing
         graphics.draw("data/background.png", 0, 0);
@@ -34,7 +33,6 @@ public class TestScene implements IScene {
         background.draw(graphics);
         foreground.draw(graphics);
 
-        graphics.end();
     }
 
     @Override

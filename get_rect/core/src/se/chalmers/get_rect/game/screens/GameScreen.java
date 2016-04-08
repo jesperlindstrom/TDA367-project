@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.screens;
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.scenes.*;
@@ -13,9 +14,14 @@ public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
     private PlayerController playerController;
     private CameraManager cameraManager;
+    private IInputAdapter input;
+    private IScene menu;
 
     public GameScreen(IGame game) {
+        this.input = game.getInput();
         System.out.println("GameScreen is initialized");
+
+        menu = new MenuScene(input);
 
         // Create the scene manager
         sceneManager = new StateManager<>();
@@ -51,6 +57,9 @@ public class GameScreen implements IScreen {
 
     @Override
     public void update(long delta) {
+        if (input.isKeyPressed(IInputAdapter.Keys.ESC)) {
+
+        }
         sceneManager.getState().update(delta);
         cameraManager.update();
     }
