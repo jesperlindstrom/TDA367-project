@@ -13,7 +13,6 @@ import se.chalmers.get_rect.states.StateManager;
 
 public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
-    private PlayerController playerController;
     private CameraManager cameraManager;
     private IInputAdapter input;
     private MenuScene menu;
@@ -23,7 +22,7 @@ public class GameScreen implements IScreen {
         this.input = game.getInput();
         System.out.println("GameScreen is initialized");
 
-//        Sets menuActive to false
+        // Sets menuActive to false
         menuActive = false;
 
         menu = new MenuScene(game);
@@ -34,7 +33,7 @@ public class GameScreen implements IScreen {
 
         //Initialize player
         PlayerFactory playerFactory = new PlayerFactory(game.getInput(), game.getRectangleFactory());
-        playerController = playerFactory.make(0,0);
+        PlayerController playerController = playerFactory.make(0,0);
 
         //Create the CameraManager
         cameraManager = new CameraManager(game.getCamera(), playerController);
@@ -72,21 +71,20 @@ public class GameScreen implements IScreen {
             menuActive = !menuActive;
         }
 
-//        Will update the menu if it is active and pause the current scene.
+        // Will update the menu if it is active and pause the current scene.
         if (menuActive) {
             menu.update(delta);
         } else {
             sceneManager.getState().update(delta);
             cameraManager.update();
         }
-
-
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         cameraManager.draw(graphics);
         sceneManager.getState().draw(graphics);
+
         if (menuActive) {
             menu.draw(graphics);
         }
