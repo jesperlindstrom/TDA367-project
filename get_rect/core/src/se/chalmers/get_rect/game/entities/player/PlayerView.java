@@ -22,7 +22,7 @@ class PlayerView implements IView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(currentImagePath, player.getX(), player.getY());
+        graphics.draw(currentImagePath, player.getPosition().getxCoodrinate(), player.getPosition().getyCoordinate());
         if(player.getWalking()) {
             imageWalkCount++;
             setImagePath();

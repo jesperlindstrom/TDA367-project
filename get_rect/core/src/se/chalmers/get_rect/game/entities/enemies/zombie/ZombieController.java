@@ -22,20 +22,22 @@ public class ZombieController implements IPhysicsController {
     @Override
     public void update(long delta) {
         Point modelPosition = model.getPosition();
+        int x = modelPosition.getxCoodrinate();
+        int y = modelPosition.getyCoordinate();
 
-        if (X-playerController.getxCoord()+40 < 0) {
-            X = X + pace;
+        if (x-playerController.getPosition().getxCoodrinate()+40 < 0) {
+            x = x + pace;
         } else {
-            X = X - pace;
+            x = x - pace;
         }
 
-        if(Y-playerController.getyCoord() < 0) {
-            Y = Y + pace;
+        if(y-playerController.getPosition().getyCoordinate() < 0) {
+            y = y + pace;
         } else {
-            Y = Y - pace;
+            y = y - pace;
         }
 
-        model.setPosition(X, Y);
+        model.setPosition(x, y);
         //implement AI
 
     }
