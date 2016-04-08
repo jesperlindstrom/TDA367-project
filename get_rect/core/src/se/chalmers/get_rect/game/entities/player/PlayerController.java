@@ -6,9 +6,11 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.physics.ISolidObject;
+import se.chalmers.get_rect.utilities.Point;
 
 
 public class PlayerController implements IPhysicsController {
+    private final Point MOVEMENT_SPEED;
     private Player player;
     private IView view;
     private IInputAdapter input;
@@ -22,6 +24,7 @@ public class PlayerController implements IPhysicsController {
         this.player = player;
         this.view = view;
         this.input = input;
+        this.MOVEMENT_SPEED = new Point(3,0);
     }
 
     @Override
@@ -29,10 +32,10 @@ public class PlayerController implements IPhysicsController {
         //Section for player walking function
         //// TODO: 2016-04-06 Fix walking such as delta is in use.
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            player.setX(player.getX() - 3);
+            player.setPosition(getPosition().add(MOVEMENT_SPEED));
             player.setWalking(true);
         }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
-            player.setX(player.getX() + 3);
+            player.setPosition(getPosition().subtract(MOVEMENT_SPEED));
             player.setWalking(true);
         }else{
             player.setWalking(false);
@@ -41,7 +44,7 @@ public class PlayerController implements IPhysicsController {
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
             setData(delta);
-            ground = player.getY();
+            ground = getPosition().getyCoordinate();
         }
         if(player.getJumping()){
             jump();
@@ -66,7 +69,7 @@ public class PlayerController implements IPhysicsController {
 
     private void setData(long delta){
         deltaInSec = (float)(delta / 10000000);
-        ground = player.getY();
+        ground = getPosition().getyCoordinate();
         yCoord = ground + 1;
         speedY = 25;
 
@@ -79,7 +82,7 @@ public class PlayerController implements IPhysicsController {
         player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
         // And test that the character is not on the ground again.
 
-        if (player.getY() <= ground)
+        if (getPosition().getyCoordinate() <= ground)
         {
             player.setY(ground);
             timeSinceJump = 0;
@@ -92,11 +95,7 @@ public class PlayerController implements IPhysicsController {
         player.setPosition(x, y);
     }
 
-    public int getxCoord() {
-        return player.getX();
-    }
-
-    public int getyCoord() {
-        return player.getY();
+    public Point getPosition(){
+        return player.getPosition();
     }
 }

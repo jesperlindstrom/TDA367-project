@@ -26,6 +26,7 @@ public class Zombie implements IModel {
         health = 5; //temp values
     }
 
+
     public IRectangleAdapter getBoundingBox() {
         return boundingBox;
     }
@@ -37,6 +38,7 @@ public class Zombie implements IModel {
     public int getY() {
         return position.getyCoordinate();
     }
+
 
     public void setX(int x) {
         position = position.setxCoodrinate(x);

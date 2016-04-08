@@ -12,18 +12,21 @@ public class CameraManager {
     private ICameraAdapter cameraAdapter;
     private PlayerController playerController;
 
+    //TODO Use ponit
     public CameraManager(ICameraAdapter cameraAdapter, PlayerController playerController){
         this.cameraAdapter = cameraAdapter;
         this.playerController = playerController;
-        deltaX = playerController.getxCoord();
-        deltaY = playerController.getyCoord();
-        cameraAdapter.translate(0, 300);
+
+        deltaX = playerController.getPosition().getxCoodrinate();
+        deltaY = playerController.getPosition().getyCoordinate();
+        cameraAdapter.translate(-1920/2, -1080/6);
+
     }
 
     public void update() {
-        cameraAdapter.translate(playerController.getxCoord() - deltaX, playerController.getyCoord() - deltaY);
-        deltaX = playerController.getxCoord();
-        deltaY = playerController.getyCoord();
+        cameraAdapter.translate(playerController.getPosition().getxCoodrinate() - deltaX, playerController.getPosition().getyCoordinate() - deltaY);
+        deltaX = playerController.getPosition().getxCoodrinate();
+        deltaY = playerController.getPosition().getyCoordinate();
         cameraAdapter.update();
 
     }
