@@ -32,10 +32,10 @@ public class PlayerController implements IPhysicsController {
         //Section for player walking function
         //// TODO: 2016-04-06 Fix walking such as delta is in use.
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            player.setPosition(getPosition().add(MOVEMENT_SPEED));
+            player.setPosition(getPosition().subtract(MOVEMENT_SPEED));
             player.setWalking(true);
         }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
-            player.setPosition(getPosition().subtract(MOVEMENT_SPEED));
+            player.setPosition(getPosition().add(MOVEMENT_SPEED));
             player.setWalking(true);
         }else{
             player.setWalking(false);
