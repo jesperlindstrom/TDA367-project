@@ -77,10 +77,9 @@ public class GameScreen implements IScreen {
             menu.update(delta);
         } else {
             sceneManager.getState().update(delta);
+            cameraManager.update();
         }
-        
-        sceneManager.getState().update(delta);
-        cameraManager.update();
+
 
     }
 
