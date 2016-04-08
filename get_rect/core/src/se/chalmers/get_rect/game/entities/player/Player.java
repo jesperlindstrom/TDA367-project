@@ -108,13 +108,6 @@ class Player implements IModel {
         return level;
     }
 
-    public int getX() {
-        return position.getxCoodrinate();
-    }
-
-    public int getY() {
-        return position.getyCoordinate();
-    }
 
     /**
      * Setter for "player is walking".
