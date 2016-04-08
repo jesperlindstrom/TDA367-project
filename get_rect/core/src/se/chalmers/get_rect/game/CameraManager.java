@@ -6,8 +6,6 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 public class CameraManager {
-
-
     private int deltaX;
     private int deltaY;
 
