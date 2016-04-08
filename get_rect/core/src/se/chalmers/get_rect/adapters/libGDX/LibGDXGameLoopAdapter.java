@@ -20,10 +20,11 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
     @Override
     public void create() {
         LibGDXAssetManagerAdapter assetManagerAdapter = new LibGDXAssetManagerAdapter();
-        IGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20, assetManagerAdapter);
-        IInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
+        LibGDXGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20, assetManagerAdapter);
+        LibGDXInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
+        LibGDXRectangleFactoryAdapter rectangleFactoryAdapter = new LibGDXRectangleFactoryAdapter();
 
-        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter);
+        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, rectangleFactoryAdapter);
     }
 
     /**
