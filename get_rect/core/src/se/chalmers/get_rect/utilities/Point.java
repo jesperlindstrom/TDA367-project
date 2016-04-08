@@ -45,8 +45,12 @@ public class Point {
         return new Point(xCoodrinate + x, yCoordinate);
     }
 
-    public Point add(Point p1, Point p2) {
-        return null;
+    public Point add(Point p2) {
+        return new Point(this.getxCoodrinate() + p2.getxCoodrinate(), this.getyCoordinate() + p2.getyCoordinate());
+    }
+
+    public Point subtract(Point p2) {
+        return new Point(this.getxCoodrinate() - p2.getxCoodrinate(), this.getyCoordinate() - p2.getyCoordinate());
     }
 
     public Point setPosition(int x, int y) {
@@ -57,8 +61,4 @@ public class Point {
         return new Point(point);
     }
 
-    @Override
-    public Point clone() {
-        return new Point(this);
-    }
 }
