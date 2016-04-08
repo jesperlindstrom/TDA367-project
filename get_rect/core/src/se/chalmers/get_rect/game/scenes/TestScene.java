@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
@@ -13,12 +14,14 @@ import java.io.FileNotFoundException;
 public class TestScene implements IScene {
 
     private PlayerController playerController;
+    private IRectangleFactoryAdapter rectangleFactory;
     private EntityManager background;
     private EntityManager foreground;
     private IPhysicsEngine physics;
 
-    public TestScene(PlayerController playerController) {
+    public TestScene(PlayerController playerController, IRectangleFactoryAdapter rectangleFactory) {
         this.playerController = playerController;
+        this.rectangleFactory = rectangleFactory;
     }
 
     @Override
@@ -50,7 +53,7 @@ public class TestScene implements IScene {
         physics.add(playerController);
         foreground.add(playerController);
 
-        SceneLoader loader = new SceneLoader("test", playerController);
+        SceneLoader loader = new SceneLoader("test", playerController, rectangleFactory);
 
         try {
             loadZombies(loader);

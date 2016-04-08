@@ -2,9 +2,10 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
-
+import se.chalmers.get_rect.physics.ISolidObject;
 
 
 public class PlayerController implements IPhysicsController {
@@ -55,8 +56,13 @@ public class PlayerController implements IPhysicsController {
     }
 
     @Override
-    public void getBoundingBox() {
+    public IRectangleAdapter getBoundingBox() {
+        return player.getBoundingBox();
+    }
 
+    @Override
+    public void onCollision(ISolidObject otherObject) {
+        System.out.println("Player collided with " + otherObject.getClass());
     }
 
     private void setData(long delta){
