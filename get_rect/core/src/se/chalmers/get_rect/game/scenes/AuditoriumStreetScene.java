@@ -9,26 +9,20 @@ import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 
 public class AuditoriumStreetScene implements IScene {
     private PlayerController player;
-    private IController zombie;
 
     public AuditoriumStreetScene(PlayerController player) {
         this.player = player;
-
-        ZombieFactory zombieFactory = new ZombieFactory();
-        zombie = zombieFactory.make();
     }
 
     @Override
     public void update(long delta) {
-        player.update(delta);
-        zombie.update(delta);
+
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.start();
-        player.draw(graphics);
-        zombie.draw(graphics);
+
         graphics.end();
     }
 

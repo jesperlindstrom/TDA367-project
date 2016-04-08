@@ -6,4 +6,5 @@ public interface IAssetManagerAdapter {
     ISoundAdapter getSound(String path);
     boolean update();
     float getProgress();
+    void dispose();
 }

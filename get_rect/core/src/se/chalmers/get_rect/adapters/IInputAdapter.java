@@ -5,6 +5,7 @@ public interface IInputAdapter {
         Q, W, E, A, S, D, SPACE, MOUSELEFT, MOUSERIGHT, LEFTKEY, RIGHTKEY, UPKEY, DOWNKEY, ENTER, ESC
     }
     boolean isKeyPressed(Keys key);
+    boolean isKeyJustPressed(Keys key);
     boolean isTranslatable(Keys key);
 
 }

@@ -13,7 +13,7 @@ public class ZombieView implements IView{
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("data/zombie.png", model.getX(), model.getY());
+        graphics.draw("data/zombie.png", model.getPosition());
 
     }
 }

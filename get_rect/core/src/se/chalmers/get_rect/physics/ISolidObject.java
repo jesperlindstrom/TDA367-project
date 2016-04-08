@@ -1,5 +1,8 @@
 package se.chalmers.get_rect.physics;
 
+import se.chalmers.get_rect.adapters.IRectangleAdapter;
+
 public interface ISolidObject {
-    void getBoundingBox();
+    IRectangleAdapter getBoundingBox();
+    void onCollision(ISolidObject otherObject);
 }
