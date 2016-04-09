@@ -14,6 +14,7 @@ public class Zombie implements IModel {
     private int health;
     private int damage;
     private int currentHealth;
+    private boolean walking;
 
     public Zombie(IRectangleFactoryAdapter rectangleFactory){
         this(new Point(0 ,0), rectangleFactory);
@@ -73,4 +74,7 @@ public class Zombie implements IModel {
         return currentHealth;
     }
 
+    public boolean isWalking() {
+        return walking;
+    }
 }

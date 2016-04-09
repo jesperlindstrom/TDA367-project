@@ -95,6 +95,10 @@ public class PlayerController implements IPhysicsController {
         player.setPosition(x, y);
     }
 
+    public void setPosition(Point position){
+        player.setPosition(position);
+    }
+
     public Point getPosition(){
         return player.getPosition();
     }

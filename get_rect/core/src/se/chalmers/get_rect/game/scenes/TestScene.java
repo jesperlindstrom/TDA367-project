@@ -35,7 +35,7 @@ public class TestScene implements IScene {
     public void draw(IGraphicsAdapter graphics) {
 
         // todo: move to some background thing
-        graphics.draw("data/background.png", 0, 0);
+        graphics.draw("img/backgrounds/background.png", 0, 0);
 
         background.draw(graphics);
         foreground.draw(graphics);

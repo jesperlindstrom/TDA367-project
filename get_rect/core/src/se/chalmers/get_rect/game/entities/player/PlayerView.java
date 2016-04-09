@@ -14,15 +14,15 @@ class PlayerView implements IView {
     public PlayerView(Player player){
 
         this.player = player;
-        this.oneLegImagePath = "data/playerOneLeg.png";
-        this.twoLegImagePath = "data/playerTwoLeg.png";
+        this.oneLegImagePath = "img/entities/player/playerOneLeg.png";
+        this.twoLegImagePath = "img/entities/player/playerTwoLeg.png";
         this.currentImagePath = twoLegImagePath;
         this.imageWalkCount = 0;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(currentImagePath, player.getPosition().getxCoodrinate(), player.getPosition().getyCoordinate());
+        graphics.draw(currentImagePath, player.getPosition());
         if(player.getWalking()) {
             imageWalkCount++;
             setImagePath();
