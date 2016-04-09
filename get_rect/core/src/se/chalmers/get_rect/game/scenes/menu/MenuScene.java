@@ -25,7 +25,7 @@ public class MenuScene implements IGameComponent {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("scenes/MenuBackground.png", position);
+        graphics.draw("img/backgrounds/MenuBackground.png", position);
     }
 
 }
