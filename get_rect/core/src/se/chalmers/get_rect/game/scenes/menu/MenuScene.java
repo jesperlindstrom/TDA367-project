@@ -33,6 +33,8 @@ public class MenuScene implements IGameComponent {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw("img/backgrounds/menuShader.png", getRelativePosition("shader"));
         graphics.draw("img/scenes/menuBackground.png", getRelativePosition("background"));
+        graphics.draw("img/scenes/exitButton.png", getRelativePosition("exit"));
+        graphics.draw("img/scenes/continueButton.png", getRelativePosition("continue"));
     }
 
     /**
@@ -41,6 +43,8 @@ public class MenuScene implements IGameComponent {
     private void addPositions() {
         relativePosition.put("shader", new Point(-960, -240));
         relativePosition.put("background", new Point(-300, -100));
+        relativePosition.put("exit", new Point(-225, 100));
+        relativePosition.put("continue", new Point(-225, 400));
     }
 
     /**

@@ -58,5 +58,7 @@ public class SplashScreen implements IScreen {
         // In-game menu
         assetManager.loadTexture("img/backgrounds/menuShader.png");
         assetManager.loadTexture("img/scenes/menuBackground.png");
+        assetManager.loadTexture("img/scenes/exitButton.png");
+        assetManager.loadTexture("img/scenes/continueButton.png");
     }
 }
