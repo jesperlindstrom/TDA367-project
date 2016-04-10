@@ -49,7 +49,6 @@ public class TestScene implements IScene {
         physics = new FrostbiteEngine();
 
         physics.add(playerController);
-        foreground.add(playerController);
 
         SceneLoader loader = new SceneLoader("test", playerController, rectangleFactory);
 
