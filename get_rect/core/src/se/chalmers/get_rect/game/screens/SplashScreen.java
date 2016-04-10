@@ -47,11 +47,16 @@ public class SplashScreen implements IScreen {
      * Method for loading textures
      */
     private void loadTextures() {
+        //TestScene
         assetManager.loadTexture("img/backgrounds/background.png");
-        assetManager.loadTexture("img/backgrounds/MenuBackground.png");
+        //Player
         assetManager.loadTexture("img/entities/player/playerTwoLeg.png");
         assetManager.loadTexture("img/entities/player/playerOneLeg.png");
+        //Zombie
         assetManager.loadTexture("img/entities/zombies/zombie.png");
         assetManager.loadTexture("img/entities/zombies/zombieOpen.png");
+        // In-game menu
+        assetManager.loadTexture("img/backgrounds/menuShader.png");
+        assetManager.loadTexture("img/scenes/menuBackground.png");
     }
 }

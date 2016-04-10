@@ -22,14 +22,8 @@ public class GameScreen implements IScreen {
         this.input = game.getInput();
         System.out.println("GameScreen is initialized");
 
-        // Sets menuActive to false
-        menuActive = false;
-
-        menu = new MenuScene(game);
-
         // Create the scene manager
         sceneManager = new StateManager<>();
-
 
         //Initialize player
         PlayerFactory playerFactory = new PlayerFactory(game.getInput(), game.getRectangleFactory());
@@ -47,6 +41,11 @@ public class GameScreen implements IScreen {
 
         // Set starting scene
         sceneManager.set("test");
+
+        // Sets menuActive to false
+        menuActive = false;
+
+        menu = new MenuScene(input, cameraManager);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class GameScreen implements IScreen {
             menu.update(delta);
         } else {
             sceneManager.getState().update(delta);
-            cameraManager.update();
+            cameraManager.update(delta);
         }
     }
 
