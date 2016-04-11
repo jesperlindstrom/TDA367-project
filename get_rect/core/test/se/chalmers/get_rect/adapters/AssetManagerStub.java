@@ -25,4 +25,9 @@ public class AssetManagerStub implements IAssetManagerAdapter {
     public float getProgress() {
         return 0;
     }
+
+    @Override
+    public void dispose() {
+
+    }
 }

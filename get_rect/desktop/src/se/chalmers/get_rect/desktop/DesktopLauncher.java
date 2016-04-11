@@ -10,6 +10,7 @@ public class DesktopLauncher {
 		config.width = 1920;
 		config.height = 1080;
 		config.fullscreen = false;
+		config.title = "get_rect()";
 		new LwjglApplication(new LibGDXGameLoopAdapter(), config);
 	}
 }

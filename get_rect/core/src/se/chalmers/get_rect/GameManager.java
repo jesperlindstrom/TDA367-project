@@ -16,10 +16,13 @@ public class GameManager implements IGame {
     private ICameraAdapter camera;
 
     /**
-     * Create a new game manager
-     * @param graphics A graphics adapter
-     * @param input An input adapter
-     * @param assetManager An assetManager adapter
+     *
+     * @param graphics
+     * @param input
+     * @param assetManager
+     * @param camera
+     * @param gameLoop
+     * @param rectangleFactory
      */
     public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraAdapter camera, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
         // Store game engine adapters
