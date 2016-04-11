@@ -8,47 +8,65 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class CameraManager implements IGameComponent{
 
-    private Point lastPosition;
     private ICameraAdapter cameraAdapter;
     private PlayerController playerController;
+    private Point playerPos;
+    private Point cameraPos;
+    private Point velocityX;
+    private Point velocityY;
 
 
     public CameraManager(ICameraAdapter cameraAdapter, PlayerController playerController){
         this.cameraAdapter = cameraAdapter;
         this.playerController = playerController;
-        this.lastPosition = playerController.getPosition();
-        // Sets the camera position center to 300px above the player;
-        cameraAdapter.translate(0, 300);
-
+        cameraPos = new Point(0,300);
+        playerPos = playerController.getPosition();
+        velocityX = new Point(3,0);
+        velocityY = new Point(0,3);
+        //Fix cameras first position
+        cameraAdapter.translate(cameraPos);
     }
 
     @Override
     public void update(long delta) {
-        cameraAdapter.translate(calculateDelta());
-        lastPosition = playerController.getPosition();
+        playerPos = playerController.getPosition();
+        moveX();
+        moveY();
         cameraAdapter.update();
 
     }
 
+    private void moveX() {
+        move(cameraPos.deltaX(playerPos),350,velocityX);
+    }
+
+    private void moveY(){
+        if(playerPos.getX() != playerController.getPosition().getX() && !playerController.isJumping()){
+            move(cameraPos.deltaY(playerPos), 100, velocityY);
+        }
+    }
+
+    private void move(int delta, int span, Point velocity){
+        if(delta <= -span){
+            cameraAdapter.translate(velocity);
+            cameraPos = cameraPos.add(velocity);
+        } else if (delta >= span) {
+            cameraAdapter.translate(velocity.inverse());
+            cameraPos = cameraPos.subtract(velocity);
+        }
+    }
 
     public void draw(IGraphicsAdapter graphics) {
         cameraAdapter.draw(graphics);
     }
 
-    /**
-     * calculates the distance the camera needs to move.
-     * @return a point with the distance the player have moved
-     */
-    private Point calculateDelta() {
-        return playerController.getPosition().subtract(lastPosition);
-    }
 
     //method needed for in-game menu
     public Point getCenterPosition() {
-        return lastPosition;
+        return cameraPos;
     }
 
     public Point getPosition() {
-        return lastPosition.subtract(1920/2, 1080/2 - 300);
+        return cameraPos.subtract(1920/2, 1080/2 - 300);
     }
 }

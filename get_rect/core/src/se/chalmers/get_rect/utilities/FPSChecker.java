@@ -35,7 +35,6 @@ public class FPSChecker {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                System.out.println(name + " | Updates = " + FPS);
                 AVG = FPS*2;
                 FPS = 0;
 

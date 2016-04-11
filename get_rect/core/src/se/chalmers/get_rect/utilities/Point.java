@@ -1,8 +1,6 @@
 package se.chalmers.get_rect.utilities;
 
-/**
- * Created by simsund on 2016-04-06.
- */
+
 public class Point {
     private int xCoodrinate;
     private int yCoordinate;
@@ -17,23 +15,23 @@ public class Point {
     }
 
     public Point(Point point) {
-        this.yCoordinate = point.getyCoordinate();
-        this.xCoodrinate = point.getxCoodrinate();
+        this.yCoordinate = point.getY();
+        this.xCoodrinate = point.getX();
     }
 
-    public int getxCoodrinate() {
+    public int getX() {
         return xCoodrinate;
     }
 
-    public int getyCoordinate() {
+    public int getY() {
         return yCoordinate;
     }
 
-    public Point setxCoodrinate(int xCoodrinate) {
+    public Point setX(int xCoodrinate) {
         return new Point(xCoodrinate, this.yCoordinate);
     }
 
-    public Point setyCoordinate(int yCoordinate) {
+    public Point setY(int yCoordinate) {
         return new Point(this.xCoodrinate, yCoordinate);
     }
 
@@ -46,15 +44,15 @@ public class Point {
     }
 
     public Point add(Point p2) {
-        return new Point(this.getxCoodrinate() + p2.getxCoodrinate(), this.getyCoordinate() + p2.getyCoordinate());
+        return new Point(this.getX() + p2.getX(), this.getY() + p2.getY());
     }
 
     public Point subtract(Point p2) {
-        return new Point(this.getxCoodrinate() - p2.getxCoodrinate(), this.getyCoordinate() - p2.getyCoordinate());
+        return new Point(this.getX() - p2.getX(), this.getY() - p2.getY());
     }
 
     public Point subtract(int x, int y) {
-        return new Point(this.getxCoodrinate() - x, this.getyCoordinate() - y);
+        return new Point(this.getX() - x, this.getY() - y);
     }
 
     public Point setPosition(int x, int y) {
@@ -63,6 +61,22 @@ public class Point {
 
     public Point setPosition(Point point) {
         return new Point(point);
+    }
+
+    public int deltaX(Point point){
+        return new Point(this.subtract(point)).getX();
+    }
+
+    public int deltaY(Point point){
+        return new Point(this.subtract(point)).getY();
+    }
+
+    public Point inverse(){
+        return new Point(-this.getX(),-this.getY());
+    }
+
+    public String toString(){
+        return ("X = " + getX() + " Y = " + getY());
     }
 
 }

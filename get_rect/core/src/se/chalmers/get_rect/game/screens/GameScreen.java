@@ -29,7 +29,7 @@ public class GameScreen implements IScreen {
         sceneManager = new StateManager<>();
 
         //Initialize player
-        PlayerFactory playerFactory = new PlayerFactory(game.getInput(), game.getRectangleFactory());
+        PlayerFactory playerFactory = new PlayerFactory(game);
         PlayerController playerController = playerFactory.make(0,0);
 
         // Create the CameraManager

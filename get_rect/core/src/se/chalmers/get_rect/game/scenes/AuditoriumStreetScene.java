@@ -35,4 +35,9 @@ public class AuditoriumStreetScene implements IScene {
     public void leavingState(String nextStateName) {
 
     }
+
+    @Override
+    public void addEntity(layer layer, IController controller) {
+
+    }
 }

@@ -5,6 +5,7 @@ import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -19,6 +20,7 @@ public class PlayerController implements IPhysicsController {
     private int ground;
     private int timeSinceJump = 0;
     private float deltaInSec;
+    private IScene scene;
 
     public PlayerController(Player player, IView view, IInputAdapter input) {
         this.player = player;
@@ -44,7 +46,7 @@ public class PlayerController implements IPhysicsController {
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
             setData(delta);
-            ground = getPosition().getyCoordinate();
+            ground = getPosition().getY();
         }
         if(player.getJumping()){
             jump();
@@ -64,12 +66,12 @@ public class PlayerController implements IPhysicsController {
 
     @Override
     public void onCollision(ISolidObject otherObject) {
-        // System.out.println("Player collided with " + otherObject.getClass());
+
     }
 
     private void setData(long delta){
         deltaInSec = (float)(delta / 10000000);
-        ground = getPosition().getyCoordinate();
+        ground = getPosition().getY();
         yCoord = ground + 1;
         speedY = 25;
 
@@ -82,7 +84,7 @@ public class PlayerController implements IPhysicsController {
         player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
         // And test that the character is not on the ground again.
 
-        if (getPosition().getyCoordinate() <= ground)
+        if (getPosition().getY() <= ground)
         {
             player.setY(ground);
             timeSinceJump = 0;
@@ -102,4 +104,13 @@ public class PlayerController implements IPhysicsController {
     public Point getPosition(){
         return player.getPosition();
     }
+
+    public boolean isJumping(){
+        return player.getJumping();
+    }
+
+    public void setScene(IScene scene) {
+        this.scene = scene;
+    }
+
 }

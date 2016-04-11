@@ -24,8 +24,8 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
     }
 
     @Override
-    public void translate(Point position) {
-        camera.translate(position.getxCoodrinate(), position.getyCoordinate(), 0);
+    public void translate(Point point) {
+        translate(point.getX(), point.getY());
     }
 
     @Override
@@ -38,5 +38,9 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
             LibGDXGraphicsAdapter graphics = (LibGDXGraphicsAdapter) g;
             graphics.setMatrix(camera.combined);
         }
+    }
+    @Override
+    public Point getPosition(){
+        return new Point((int)camera.position.x, (int)camera.position.y);
     }
 }

@@ -22,7 +22,7 @@ public class Zombie implements IModel {
 
     public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory){
         this.position = point;
-        this.boundingBox = rectangleFactory.make(position.getxCoodrinate(), position.getyCoordinate(), WIDTH, HEIGHT);
+        this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
         damage = 2;
         health = 5; //temp values
     }
@@ -33,23 +33,24 @@ public class Zombie implements IModel {
     }
 
     public int getX() {
-        return position.getxCoodrinate();
+        return position.getX();
     }
 
     public int getY() {
-        return position.getyCoordinate();
+        return position.getY();
     }
 
 
     public void setX(int x) {
-        position = position.setxCoodrinate(x);
+        position = position.setX(x);
         boundingBox.setPosition(position);
     }
 
     public void setY(int y) {
-        position = position.setyCoordinate(y);
+        position = position.setY(y);
         boundingBox.setPosition(position);
     }
+
 
     public void setPosition(int x, int y) {
         position = position.setPosition(x, y);

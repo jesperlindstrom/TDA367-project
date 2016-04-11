@@ -5,7 +5,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public interface ICameraAdapter {
     void translate(float x, float y);
-    void translate(Point position);
+    void translate(Point point);
     void update();
     void draw(IGraphicsAdapter g);
+    Point getPosition();
 }

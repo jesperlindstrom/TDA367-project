@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
-import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -46,23 +45,27 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         offsetY = texture.getHeight() - offsetY - height;
         TextureRegion region = new TextureRegion(texture, (int)offsetX, (int)offsetY, (int)width, (int)height);
 
-        System.out.println("Cut texture to " + width + "x" + height + " at (" + offsetX + ", " + offsetY + ")");
         batch.draw(region, x, y, width, height);
     }
 
     @Override
+    public void draw(String img, Point point, float width, float height, Point offsetPoint) {
+        draw(img, point.getX(), point.getY(), width, height, offsetPoint.getX(), offsetPoint.getY());
+    }
+
+    @Override
     public void draw(String img, Point point) {
-        draw(img, point.getxCoodrinate(), point.getyCoordinate());
+        draw(img, point.getX(), point.getY());
     }
 
     @Override
     public void draw(String img, Point point, float width, float height) {
-        draw(img, point.getxCoodrinate(), point.getyCoordinate(), width, height);
+        draw(img, point.getX(), point.getY(), width, height);
     }
 
     @Override
     public void drawText(String text, Point point) {
-        font.draw(batch, text, point.getxCoodrinate(), point.getyCoordinate());
+        font.draw(batch, text, point.getX(), point.getY());
     }
 
     @Override
