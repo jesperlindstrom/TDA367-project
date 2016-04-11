@@ -42,11 +42,13 @@ class Player implements IModel {
      */
     public void setPosition(int xCoordinate, int yCoordinate){
         position = position.setPosition(xCoordinate, yCoordinate);
+        boundingBox.setPosition(position);
     }
 
     @Override
     public void setPosition(Point point) {
         position = new Point(point);
+        boundingBox.setPosition(position);
     }
 
     @Override
@@ -60,6 +62,7 @@ class Player implements IModel {
      */
     public void setX(int xCoordinate) {
         position = position.setxCoodrinate(xCoordinate);
+        boundingBox.setPosition(position);
     }
 
     /**
@@ -68,6 +71,7 @@ class Player implements IModel {
      */
     public void setY(int yCoordinate) {
         position = position.setyCoordinate(yCoordinate);
+        boundingBox.setPosition(position);
     }
 
     /**
