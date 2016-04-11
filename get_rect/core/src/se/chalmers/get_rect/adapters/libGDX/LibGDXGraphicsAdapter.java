@@ -45,7 +45,6 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         offsetY = texture.getHeight() - offsetY - height;
         TextureRegion region = new TextureRegion(texture, (int)offsetX, (int)offsetY, (int)width, (int)height);
 
-       // System.out.println("Cut texture to " + width + "x" + height + " at (" + offsetX + ", " + offsetY + ")");
         batch.draw(region, x, y, width, height);
     }
 

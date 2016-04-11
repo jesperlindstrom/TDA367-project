@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 public class StudentUnionHouseScene implements IScene {
@@ -28,6 +29,11 @@ public class StudentUnionHouseScene implements IScene {
 
     @Override
     public void leavingState(String nextStateName) {
+
+    }
+
+    @Override
+    public void addEntity(layer layer, IController controller) {
 
     }
 }
