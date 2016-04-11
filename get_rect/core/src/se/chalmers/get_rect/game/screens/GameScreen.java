@@ -9,6 +9,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.menu.MenuScene;
 import se.chalmers.get_rect.states.StateManager;
+import se.chalmers.get_rect.utilities.FPSChecker;
 
 
 public class GameScreen implements IScreen {
@@ -17,6 +18,7 @@ public class GameScreen implements IScreen {
     private IInputAdapter input;
     private MenuScene menu;
     private boolean menuActive;
+    private FPSChecker fps = new FPSChecker("GameScreen");
 
     public GameScreen(IGame game) {
         this.input = game.getInput();
@@ -87,6 +89,7 @@ public class GameScreen implements IScreen {
         if (menuActive) {
             menu.draw(graphics);
         }
+        fps.update(graphics, cameraManager);
     }
 
 }

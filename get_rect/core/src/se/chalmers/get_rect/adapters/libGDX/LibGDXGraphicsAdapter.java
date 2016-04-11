@@ -2,6 +2,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
@@ -10,6 +11,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private SpriteBatch batch;
+    private BitmapFont font;
     private LibGDXAssetManagerAdapter assetManager;
     private GL20 graphics;
 
@@ -17,6 +19,7 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         this.batch = batch;
         this.graphics = graphics;
         this.assetManager = assetManager;
+        font = new BitmapFont();
     }
 
     /**
@@ -46,6 +49,16 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         draw(img, point.getxCoodrinate(), point.getyCoordinate(), width, height);
     }
 
+    @Override
+    public void drawText(String text, Point point) {
+        font.draw(batch, text, point.getxCoodrinate(), point.getyCoordinate());
+    }
+
+    @Override
+    public void drawText(String text, int x, int y) {
+        drawText(text, new Point(x, y));
+    }
+
     /**
      * Starts the collections of sprites.
      */
@@ -73,5 +86,8 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     public void setMatrix(Matrix4 cameraMatrix) {
         batch.setProjectionMatrix(cameraMatrix);
+
     }
+
+
 }
