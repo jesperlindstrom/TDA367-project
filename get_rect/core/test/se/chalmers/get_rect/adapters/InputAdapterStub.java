@@ -7,7 +7,12 @@ public class InputAdapterStub implements IInputAdapter {
     }
 
     @Override
-    public boolean isTranslateable(Keys key) {
+    public boolean isKeyJustPressed(Keys key) {
+        return false;
+    }
+
+    @Override
+    public boolean isTranslatable(Keys key) {
         return false;
     }
 }
