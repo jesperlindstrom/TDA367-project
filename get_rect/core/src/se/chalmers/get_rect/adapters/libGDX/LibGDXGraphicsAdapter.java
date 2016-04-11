@@ -49,6 +49,11 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     }
 
     @Override
+    public void draw(String img, Point point, float width, float height, Point offsetPoint) {
+        draw(img, point.getX(), point.getY(), width, height, offsetPoint.getX(), offsetPoint.getY());
+    }
+
+    @Override
     public void draw(String img, Point point) {
         draw(img, point.getX(), point.getY());
     }

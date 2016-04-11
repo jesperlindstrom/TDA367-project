@@ -47,6 +47,11 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
     }
 
     @Override
+    public Point getPosition() {
+        return new Point((int)rectangle.getX(), (int)rectangle.getY());
+    }
+
+    @Override
     public void setPosition(Point newPoint) {
         rectangle.setX(newPoint.getX());
         rectangle.setY(newPoint.getY());

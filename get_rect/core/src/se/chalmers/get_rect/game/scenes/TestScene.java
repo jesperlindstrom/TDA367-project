@@ -6,6 +6,7 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
+import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.FrostbiteEngine;
@@ -39,11 +40,7 @@ public class TestScene implements IScene {
     @Override
     public void draw(IGraphicsAdapter graphics) {
 
-        // todo: move to some background thing
-        // graphics.draw("img/backgrounds/background.png", 0, 0);
-        float x = camera.getPosition().getX();
-        float y = camera.getPosition().getY();
-        graphics.draw("img/backgrounds/background.png", x, y, 1920, 1080, x, y);
+        graphics.draw("img/backgrounds/background.png", camera.getPosition(), 1920, 1080, camera.getPosition());
 
         entityManagerMap.get(layer.BACKGROUND).draw(graphics);
         entityManagerMap.get(layer.FOREGROUND).draw(graphics);
@@ -67,6 +64,8 @@ public class TestScene implements IScene {
         }
 
         playerController.setPosition(200, 90);
+        NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
+        entityManagerMap.get(layer.FOREGROUND).add(sawmillFactory.make(1700, 50));
 
         entityManagerMap.get(layer.FOREGROUND).add(playerController);
 
