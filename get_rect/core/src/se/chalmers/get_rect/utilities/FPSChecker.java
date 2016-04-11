@@ -1,5 +1,8 @@
 package se.chalmers.get_rect.utilities;
 
+import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.CameraManager;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +22,7 @@ import java.util.TimerTask;
  */
 public class FPSChecker {
     private int FPS;
+    private int AVG;
     private String name;
 
     public FPSChecker(String name) {
@@ -31,14 +35,35 @@ public class FPSChecker {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                System.out.println(name + " | FPS = " + FPS);
+                System.out.println(name + " | Updates = " + FPS);
+                AVG = FPS*2;
                 FPS = 0;
+
                 timer();
             }
-        }, 1000);
+        }, 500);
     }
 
     public void update() {
         FPS++;
+    }
+
+    public void update(IGraphicsAdapter graphicsAdapter) {
+        FPS++;
+        draw(graphicsAdapter);
+    }
+
+    public void update(IGraphicsAdapter graphicsAdapter, CameraManager camera) {
+        FPS++;
+        draw(graphicsAdapter, camera.getLastPosition().add(new Point(-500, 700)));
+    }
+
+
+    private void draw(IGraphicsAdapter graphics) {
+        graphics.drawText("FPS = " + AVG, 500, 500);
+    }
+
+    private void draw(IGraphicsAdapter graphics, Point point) {
+        graphics.drawText("FPS = " + AVG, point);
     }
 }
