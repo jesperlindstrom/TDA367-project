@@ -91,6 +91,7 @@ public class GameScreen implements IScreen {
         if (menuActive) {
             menu.draw(graphics);
         }
+
         fps.update(graphics, cameraManager);
     }
 
