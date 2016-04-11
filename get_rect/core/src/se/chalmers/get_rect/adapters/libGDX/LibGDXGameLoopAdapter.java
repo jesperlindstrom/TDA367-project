@@ -1,8 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -18,13 +16,13 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
      */
     @Override
     public void create() {
-        LibGDXICameraAdapter cameraAdapter = new LibGDXICameraAdapter();
+        LibGDXCameraFactoryAdapter cameraAdapterFactory = new LibGDXCameraFactoryAdapter();
         LibGDXAssetManagerAdapter assetManagerAdapter = new LibGDXAssetManagerAdapter();
         LibGDXGraphicsAdapter graphicsAdapter = new LibGDXGraphicsAdapter(new SpriteBatch(), Gdx.gl20, assetManagerAdapter);
         LibGDXInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
         LibGDXRectangleFactoryAdapter rectangleFactoryAdapter = new LibGDXRectangleFactoryAdapter();
 
-        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapter, this, rectangleFactoryAdapter);
+        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapterFactory, this, rectangleFactoryAdapter);
     }
 
     /**

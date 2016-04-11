@@ -2,24 +2,31 @@ package se.chalmers.get_rect.game.screens;
 
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 public class SplashScreen implements IScreen {
     private IAssetManagerAdapter assetManager;
     private StateManager<IScreen> screenManager;
+    private ICameraAdapter camera;
+    private boolean addedAssets = false;
+    private double progressValue = 0.0;
 
     public SplashScreen(IGame game) {
         System.out.println("SplashScreen is initialized");
 
         assetManager = game.getAssetManager();
         screenManager = game.getScreenManager();
+        camera = game.getCameraFactory().make(1920, 1080);
+        camera.translate(1920/2, 1080/2);
     }
 
     @Override
     public void enteringState(String previousStateName) {
         System.out.println("Entering SplashScreen");
-        loadTextures();
+        assetManager.loadTexture("img/splash/splash_bg.jpg");
+        assetManager.loadTexture("img/splash/loading_fill.png");
     }
 
     @Override
@@ -29,18 +36,38 @@ public class SplashScreen implements IScreen {
 
     @Override
     public void update(long delta) {
-        if (assetManager.update()) {
-            System.out.println("ASSETS LOADED!");
-            screenManager.set("game");
+        if (assetManager.update() && !addedAssets) {
+            addedAssets = true;
+            loadTextures();
         }
 
-        float progress = assetManager.getProgress();
-        System.out.println("Loading progress: " + progress);
+        if (progressValue < 1.0) {
+            progressValue = assetManager.getProgress();
+        } else if (progressValue >= 4.35) {
+            screenManager.set("game");
+        } else if (progressValue >= 1.0) {
+            progressValue += 0.015;
+        }
+
+        camera.update();
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+        camera.draw(graphics);
 
+        if (addedAssets) {
+            System.out.println("called");
+            graphics.draw("img/splash/splash_bg.jpg", 0, 0, 1920, 1080);
+            int progressWidth = (int)(578 * progressValue);
+            graphics.draw("img/splash/loading_fill.png", 768, 128, progressWidth, 60);
+
+            System.out.println(progressValue);
+            if (progressValue > 2.3) {
+                int secondProgressWidth = (int)(300 * (progressValue - 2.3));
+                graphics.draw("img/splash/loading_fill.png", 0, 128, secondProgressWidth, 60);
+            }
+        }
     }
 
     /**
