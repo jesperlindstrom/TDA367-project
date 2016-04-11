@@ -24,7 +24,7 @@ public class NpcFactory {
     }
 
     public SawmillController make(Point point) {
-        IModel model = new SawmillExpress(point, rectangleFactory);
+        SawmillExpress model = new SawmillExpress(point, rectangleFactory);
         IView view = new SawmillView(model);
 
         return new SawmillController(view, model);

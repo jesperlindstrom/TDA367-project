@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -65,6 +66,7 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     @Override
     public void drawText(String text, Point point) {
+        font.setColor(Color.RED);
         font.draw(batch, text, point.getX(), point.getY());
     }
 
