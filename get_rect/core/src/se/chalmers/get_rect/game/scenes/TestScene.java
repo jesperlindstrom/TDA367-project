@@ -39,7 +39,6 @@ public class TestScene implements IScene {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-
         graphics.draw("img/backgrounds/background.png", camera.getPosition(), 1920, 1080, camera.getPosition());
 
         entityManagerMap.get(layer.BACKGROUND).draw(graphics);

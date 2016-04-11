@@ -67,6 +67,6 @@ public class CameraManager implements IGameComponent{
     }
 
     public Point getPosition() {
-        return cameraPos.subtract(1920/2, 1080/2 - 300);
+        return cameraPos.subtract(1920/2, 1080/2);
     }
 }

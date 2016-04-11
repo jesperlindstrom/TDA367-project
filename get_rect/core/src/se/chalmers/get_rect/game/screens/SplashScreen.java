@@ -57,12 +57,10 @@ public class SplashScreen implements IScreen {
         camera.draw(graphics);
 
         if (addedAssets) {
-            System.out.println("called");
             graphics.draw("img/splash/splash_bg.jpg", 0, 0, 1920, 1080);
             int progressWidth = (int)(578 * progressValue);
             graphics.draw("img/splash/loading_fill.png", 768, 128, progressWidth, 60);
 
-            System.out.println(progressValue);
             if (progressValue > 2.3) {
                 int secondProgressWidth = (int)(300 * (progressValue - 2.3));
                 graphics.draw("img/splash/loading_fill.png", 0, 128, secondProgressWidth, 60);
@@ -74,16 +72,20 @@ public class SplashScreen implements IScreen {
      * Method for loading textures
      */
     private void loadTextures() {
-        //TestScene
+        // TestScene
         assetManager.loadTexture("img/backgrounds/background.png");
-        //Player
+
+        // Player
         assetManager.loadTexture("img/entities/player/playerTwoLeg.png");
         assetManager.loadTexture("img/entities/player/playerOneLeg.png");
-        //Zombie
+
+        // Enemies
         assetManager.loadTexture("img/entities/zombies/zombie.png");
         assetManager.loadTexture("img/entities/zombies/zombieOpen.png");
-        // Sawmill
+
+        // NPCs
         assetManager.loadTexture("img/entities/sawmill/sawmill-express.png");
+
         // In-game menu
         assetManager.loadTexture("img/backgrounds/menuShader.png");
         assetManager.loadTexture("img/scenes/menuBackground.png");
