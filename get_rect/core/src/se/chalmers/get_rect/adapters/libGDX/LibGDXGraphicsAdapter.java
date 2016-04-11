@@ -2,13 +2,16 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private SpriteBatch batch;
+    private BitmapFont font;
     private LibGDXAssetManagerAdapter assetManager;
     private GL20 graphics;
 
@@ -16,6 +19,7 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         this.batch = batch;
         this.graphics = graphics;
         this.assetManager = assetManager;
+        font = new BitmapFont();
     }
 
     /**
@@ -36,6 +40,16 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     }
 
     @Override
+    public void draw(String img, float x, float y, float width, float height, float offsetX, float offsetY) {
+        Texture texture = assetManager.getTexture(img);
+        offsetY = texture.getHeight() - offsetY - height;
+        TextureRegion region = new TextureRegion(texture, (int)offsetX, (int)offsetY, (int)width, (int)height);
+
+       // System.out.println("Cut texture to " + width + "x" + height + " at (" + offsetX + ", " + offsetY + ")");
+        batch.draw(region, x, y, width, height);
+    }
+
+    @Override
     public void draw(String img, Point point) {
         draw(img, point.getX(), point.getY());
     }
@@ -43,6 +57,16 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     @Override
     public void draw(String img, Point point, float width, float height) {
         draw(img, point.getX(), point.getY(), width, height);
+    }
+
+    @Override
+    public void drawText(String text, Point point) {
+        font.draw(batch, text, point.getX(), point.getY());
+    }
+
+    @Override
+    public void drawText(String text, int x, int y) {
+        drawText(text, new Point(x, y));
     }
 
     /**
@@ -72,5 +96,8 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     public void setMatrix(Matrix4 cameraMatrix) {
         batch.setProjectionMatrix(cameraMatrix);
+
     }
+
+
 }

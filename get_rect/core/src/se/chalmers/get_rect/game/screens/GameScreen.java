@@ -9,6 +9,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.menu.MenuScene;
 import se.chalmers.get_rect.states.StateManager;
+import se.chalmers.get_rect.utilities.FPSChecker;
 
 
 public class GameScreen implements IScreen {
@@ -17,19 +18,14 @@ public class GameScreen implements IScreen {
     private IInputAdapter input;
     private MenuScene menu;
     private boolean menuActive;
+    private FPSChecker fps = new FPSChecker("GameScreen");
 
     public GameScreen(IGame game) {
         this.input = game.getInput();
         System.out.println("GameScreen is initialized");
 
-        // Sets menuActive to false
-        menuActive = false;
-
-        menu = new MenuScene(game);
-
         // Create the scene manager
         sceneManager = new StateManager<>();
-
 
         //Initialize player
         PlayerFactory playerFactory = new PlayerFactory(game.getInput(), game.getRectangleFactory());
@@ -42,11 +38,16 @@ public class GameScreen implements IScreen {
         sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
         sceneManager.add("EDIT", new EDITScene(playerController));
         sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
-        sceneManager.add("test", new TestScene(playerController, game.getRectangleFactory()));
+        sceneManager.add("test", new TestScene(playerController, game.getRectangleFactory(), cameraManager));
 
 
         // Set starting scene
         sceneManager.set("test");
+
+        // Sets menuActive to false
+        menuActive = false;
+
+        menu = new MenuScene(input, cameraManager);
     }
 
     @Override
@@ -76,7 +77,7 @@ public class GameScreen implements IScreen {
             menu.update(delta);
         } else {
             sceneManager.getState().update(delta);
-            cameraManager.update();
+            cameraManager.update(delta);
         }
     }
 
@@ -88,6 +89,7 @@ public class GameScreen implements IScreen {
         if (menuActive) {
             menu.draw(graphics);
         }
+        fps.update(graphics, cameraManager);
     }
 
 }

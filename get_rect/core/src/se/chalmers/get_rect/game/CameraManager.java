@@ -6,14 +6,15 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.utilities.Point;
 
-public class CameraManager {
+public class CameraManager implements IGameComponent{
+
+    private ICameraAdapter cameraAdapter;
+    private PlayerController playerController;
     private Point playerPos;
     private Point cameraPos;
     private Point velocityX;
     private Point velocityY;
 
-    private ICameraAdapter cameraAdapter;
-    private PlayerController playerController;
 
     public CameraManager(ICameraAdapter cameraAdapter, PlayerController playerController){
         this.cameraAdapter = cameraAdapter;
@@ -24,11 +25,10 @@ public class CameraManager {
         velocityY = new Point(0,3);
         //Fix cameras first position
         cameraAdapter.translate(cameraPos);
-
-
     }
 
-    public void update() {
+    @Override
+    public void update(long delta) {
         playerPos = playerController.getPosition();
         moveX();
         moveY();
@@ -60,4 +60,13 @@ public class CameraManager {
         cameraAdapter.draw(graphics);
     }
 
+
+    //method needed for in-game menu
+    public Point getCenterPosition() {
+        return cameraPos;
+    }
+
+    public Point getPosition() {
+        return cameraPos.subtract(1920/2, 1080/2 - 300);
+    }
 }

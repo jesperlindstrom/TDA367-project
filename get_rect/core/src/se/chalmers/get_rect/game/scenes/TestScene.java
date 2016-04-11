@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
@@ -18,10 +19,12 @@ public class TestScene implements IScene {
     private EntityManager background;
     private EntityManager foreground;
     private IPhysicsEngine physics;
+    private CameraManager camera;
 
-    public TestScene(PlayerController playerController, IRectangleFactoryAdapter rectangleFactory) {
+    public TestScene(PlayerController playerController, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
         this.playerController = playerController;
         this.rectangleFactory = rectangleFactory;
+        this.camera = camera;
     }
 
     @Override
@@ -35,7 +38,11 @@ public class TestScene implements IScene {
     public void draw(IGraphicsAdapter graphics) {
 
         // todo: move to some background thing
-        graphics.draw("img/backgrounds/background.png", 0, 0);
+        // graphics.draw("img/backgrounds/background.png", 0, 0);
+        float x = camera.getPosition().getX();
+        float y = camera.getPosition().getY();
+        System.out.println("Camera offset (" + x + ", " + y + ")");
+        graphics.draw("img/backgrounds/background.png", x, y, 1920, 1080, x, y);
 
         background.draw(graphics);
         foreground.draw(graphics);
@@ -47,9 +54,8 @@ public class TestScene implements IScene {
         background = new EntityManager();
         foreground = new EntityManager();
         physics = new FrostbiteEngine();
-
-        physics.add(playerController);
         foreground.add(playerController);
+        physics.add(playerController);
 
         SceneLoader loader = new SceneLoader("test", playerController, rectangleFactory);
 

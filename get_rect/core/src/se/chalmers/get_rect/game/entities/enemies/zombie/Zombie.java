@@ -43,19 +43,24 @@ public class Zombie implements IModel {
 
     public void setX(int x) {
         position = position.setX(x);
+        boundingBox.setPosition(position);
     }
 
     public void setY(int y) {
         position = position.setY(y);
+        boundingBox.setPosition(position);
     }
+
 
     public void setPosition(int x, int y) {
         position = position.setPosition(x, y);
+        boundingBox.setPosition(position);
     }
 
     @Override
     public void setPosition(Point point) {
         position = new Point(point);
+        boundingBox.setPosition(position);
     }
 
     public Point getPosition() {
