@@ -44,7 +44,7 @@ public class PlayerController implements IPhysicsController {
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
             setData(delta);
-            ground = getPosition().getyCoordinate();
+            ground = getPosition().getY();
         }
         if(player.getJumping()){
             jump();
@@ -64,12 +64,12 @@ public class PlayerController implements IPhysicsController {
 
     @Override
     public void onCollision(ISolidObject otherObject) {
-        System.out.println("Player collided with " + otherObject.getClass());
+       // System.out.println("Player collided with " + otherObject.getClass());
     }
 
     private void setData(long delta){
         deltaInSec = (float)(delta / 10000000);
-        ground = getPosition().getyCoordinate();
+        ground = getPosition().getY();
         yCoord = ground + 1;
         speedY = 25;
 
@@ -82,7 +82,7 @@ public class PlayerController implements IPhysicsController {
         player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
         // And test that the character is not on the ground again.
 
-        if (getPosition().getyCoordinate() <= ground)
+        if (getPosition().getY() <= ground)
         {
             player.setY(ground);
             timeSinceJump = 0;
@@ -101,5 +101,9 @@ public class PlayerController implements IPhysicsController {
 
     public Point getPosition(){
         return player.getPosition();
+    }
+
+    public boolean isJumping(){
+        return player.getJumping();
     }
 }

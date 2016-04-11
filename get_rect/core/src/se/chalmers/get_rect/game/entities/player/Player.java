@@ -23,7 +23,7 @@ class Player implements IModel {
      */
     public Player(Point position, IRectangleFactoryAdapter rectangleFactory) {
         this.position = position;
-        this.boundingBox = rectangleFactory.make(position.getxCoodrinate(), position.getyCoordinate(), WIDTH, HEIGHT);
+        this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
         this.maxHealth = 10;
         this.currentHealth = maxHealth;
         this.level = 1;
@@ -59,7 +59,7 @@ class Player implements IModel {
      * @param xCoordinate
      */
     public void setX(int xCoordinate) {
-        position = position.setxCoodrinate(xCoordinate);
+        position = position.setX(xCoordinate);
     }
 
     /**
@@ -67,7 +67,7 @@ class Player implements IModel {
      * @param yCoordinate
      */
     public void setY(int yCoordinate) {
-        position = position.setyCoordinate(yCoordinate);
+        position = position.setY(yCoordinate);
     }
 
     /**

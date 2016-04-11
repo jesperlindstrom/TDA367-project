@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
-import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -38,12 +37,12 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     @Override
     public void draw(String img, Point point) {
-        draw(img, point.getxCoodrinate(), point.getyCoordinate());
+        draw(img, point.getX(), point.getY());
     }
 
     @Override
     public void draw(String img, Point point, float width, float height) {
-        draw(img, point.getxCoodrinate(), point.getyCoordinate(), width, height);
+        draw(img, point.getX(), point.getY(), width, height);
     }
 
     /**

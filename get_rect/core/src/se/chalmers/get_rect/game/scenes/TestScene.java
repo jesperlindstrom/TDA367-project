@@ -60,7 +60,6 @@ public class TestScene implements IScene {
         }
 
         playerController.setPosition(200, 90);
-        foreground.add(playerController);
     }
 
     private void loadZombies(SceneLoader loader) throws FileNotFoundException {

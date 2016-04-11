@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.utilities.Point;
 
 public class LibGDXICameraAdapter implements ICameraAdapter {
 
@@ -25,6 +26,11 @@ public class LibGDXICameraAdapter implements ICameraAdapter {
     }
 
     @Override
+    public void translate(Point point){
+        translate(point.getX(), point.getY());
+    }
+
+    @Override
     public void update() {
         camera.update();
     }
@@ -35,5 +41,11 @@ public class LibGDXICameraAdapter implements ICameraAdapter {
             graphics.setMatrix(camera.combined);
         }
     }
+
+    @Override
+    public Point getPosition(){
+        return new Point((int)camera.position.x, (int)camera.position.y);
+    }
+
 
 }
