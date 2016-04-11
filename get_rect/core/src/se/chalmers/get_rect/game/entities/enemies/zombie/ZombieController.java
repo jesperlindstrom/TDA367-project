@@ -54,6 +54,6 @@ public class ZombieController implements IPhysicsController {
 
     @Override
     public void onCollision(ISolidObject otherObject) {
-        System.out.println("Zombie collided with " + otherObject.getClass());
+        // System.out.println("Zombie collided with " + otherObject.getClass());
     }
 }

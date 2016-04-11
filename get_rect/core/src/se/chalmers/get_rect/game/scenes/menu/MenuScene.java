@@ -19,14 +19,14 @@ public class MenuScene implements IGameComponent {
     public MenuScene(IInputAdapter input, CameraManager camera) {
         this.input = input;
         this.camera = camera;
-        position = camera.getLastPosition();
+        position = camera.getCenterPosition();
         relativePosition = new HashMap<String, Point>();
         addPositions();
     }
 
     @Override
     public void update(long delta) {
-        position = camera.getLastPosition();
+        position = camera.getCenterPosition();
     }
 
     @Override

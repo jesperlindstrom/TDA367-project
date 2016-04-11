@@ -53,6 +53,10 @@ public class Point {
         return new Point(this.getxCoodrinate() - p2.getxCoodrinate(), this.getyCoordinate() - p2.getyCoordinate());
     }
 
+    public Point subtract(int x, int y) {
+        return new Point(this.getxCoodrinate() - x, this.getyCoordinate() - y);
+    }
+
     public Point setPosition(int x, int y) {
         return new Point(x, y);
     }

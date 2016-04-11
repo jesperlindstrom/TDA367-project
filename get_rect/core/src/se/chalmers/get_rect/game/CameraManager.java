@@ -44,7 +44,11 @@ public class CameraManager implements IGameComponent{
     }
 
     //method needed for in-game menu
-    public Point getLastPosition() {
+    public Point getCenterPosition() {
         return lastPosition;
+    }
+
+    public Point getPosition() {
+        return lastPosition.subtract(1920/2, 1080/2 - 300);
     }
 }

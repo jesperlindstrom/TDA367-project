@@ -36,7 +36,7 @@ public class GameScreen implements IScreen {
         sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
         sceneManager.add("EDIT", new EDITScene(playerController));
         sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
-        sceneManager.add("test", new TestScene(playerController, game.getRectangleFactory()));
+        sceneManager.add("test", new TestScene(playerController, game.getRectangleFactory(), cameraManager));
 
 
         // Set starting scene

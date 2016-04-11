@@ -64,7 +64,7 @@ public class PlayerController implements IPhysicsController {
 
     @Override
     public void onCollision(ISolidObject otherObject) {
-        System.out.println("Player collided with " + otherObject.getClass());
+        // System.out.println("Player collided with " + otherObject.getClass());
     }
 
     private void setData(long delta){
