@@ -59,7 +59,7 @@ public class GameManager implements IGame {
      */
     public void update(long delta) {
         if(input.isKeyPressed(IInputAdapter.Keys.S)) {
-            System.exit(1);
+            exit();
         }
         screenManager.getState().update(delta);
     }
