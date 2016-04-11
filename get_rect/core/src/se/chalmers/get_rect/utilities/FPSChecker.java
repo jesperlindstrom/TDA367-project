@@ -55,7 +55,7 @@ public class FPSChecker {
 
     public void update(IGraphicsAdapter graphicsAdapter, CameraManager camera) {
         FPS++;
-        draw(graphicsAdapter, camera.getLastPosition().add(new Point(-500, 700)));
+        draw(graphicsAdapter, camera.getCenterPosition().add(new Point(-500, 700)));
     }
 
 
