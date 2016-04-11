@@ -5,6 +5,7 @@ import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -19,6 +20,7 @@ public class PlayerController implements IPhysicsController {
     private int ground;
     private int timeSinceJump = 0;
     private float deltaInSec;
+    private IScene scene;
 
     public PlayerController(Player player, IView view, IInputAdapter input) {
         this.player = player;
@@ -102,4 +104,9 @@ public class PlayerController implements IPhysicsController {
     public Point getPosition(){
         return player.getPosition();
     }
+
+    public void setScene(IScene scene) {
+        this.scene = scene;
+    }
+
 }

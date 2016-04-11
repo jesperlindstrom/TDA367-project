@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IView;
@@ -10,11 +11,12 @@ public class PlayerFactory {
     private IRectangleFactoryAdapter rectangleFactory;
     /**
      * Initialize a new player factory.
-     * @param input
+     * @param game
      */
-    public PlayerFactory(IInputAdapter input, IRectangleFactoryAdapter rectangleFactory){
-        this.input = input;
-        this.rectangleFactory = rectangleFactory;
+    public PlayerFactory(IGame game){
+        this.input = game.getInput();
+        this.rectangleFactory = game.getRectangleFactory();
+
     }
 
     /**

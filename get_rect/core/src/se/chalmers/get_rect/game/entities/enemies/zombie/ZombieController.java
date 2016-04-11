@@ -6,6 +6,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -55,5 +56,10 @@ public class ZombieController implements IPhysicsController {
     @Override
     public void onCollision(ISolidObject otherObject) {
         // System.out.println("Zombie collided with " + otherObject.getClass());
+    }
+
+    @Override
+    public void setScene(IScene scene) {
+        
     }
 }
