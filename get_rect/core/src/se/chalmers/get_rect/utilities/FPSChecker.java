@@ -21,48 +21,54 @@ import java.util.TimerTask;
  *
  */
 public class FPSChecker {
+    private int currentFPS;
     private int FPS;
-    private int AVG;
+    private int lowestFPS = 1000;
+    private static final int graphicsUpdatePerSecond = 4;
+    private double updatesInTime;
     private String name;
+    private boolean show;
+    private boolean showLowest;
 
     public FPSChecker(String name) {
-        timer();
         this.name = name;
-    }
-
-    private void timer() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                AVG = FPS*2;
-                FPS = 0;
-
-                timer();
-            }
-        }, 500);
-    }
-
-    public void update() {
-        FPS++;
-    }
-
-    public void update(IGraphicsAdapter graphicsAdapter) {
-        FPS++;
-        draw(graphicsAdapter);
-    }
-
-    public void update(IGraphicsAdapter graphicsAdapter, CameraManager camera) {
-        FPS++;
-        draw(graphicsAdapter, camera.getPosition().add(new Point(0, 1070)));
+        showLowest = true;
     }
 
 
-    private void draw(IGraphicsAdapter graphics) {
-        graphics.drawText("FPS = " + AVG, 500, 500);
+    public void update(double delta) {
+        currentFPS = (int)(10/delta);
+        updatesInTime += delta/10;
+
+
+        if (currentFPS < lowestFPS) {
+            lowestFPS = currentFPS;
+        }
+
+        if (updatesInTime > 0.5) {
+            FPS = currentFPS;
+            updatesInTime = 0;
+        }
+
     }
 
-    private void draw(IGraphicsAdapter graphics, Point point) {
-        graphics.drawText("FPS = " + AVG, point);
+    public void update(double delta, CameraManager camera) {
+        update(delta);
+    }
+
+
+    public void draw(IGraphicsAdapter graphics) {
+        draw(graphics, new Point(0, 0));
+    }
+
+    public void draw(IGraphicsAdapter graphics, Point point) {
+        point = point.addY(1070);
+        graphics.drawText("= " + FPS, point.addX(30));
+        graphics.drawText("FPS ", point);
+        if (showLowest) {
+            point = point.addY(-40);
+            graphics.drawText("= " + lowestFPS, point.addX(80));
+            graphics.drawText("lowestFPS ", point);
+        }
     }
 }

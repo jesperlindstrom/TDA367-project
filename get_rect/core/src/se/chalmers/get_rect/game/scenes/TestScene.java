@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.scenes;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
@@ -40,7 +41,7 @@ public class TestScene implements IScene {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/backgrounds/background.png", camera.getPosition(), 1920, 1080, camera.getPosition());
+        graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
 
         entityManagerMap.get(layer.BACKGROUND).draw(graphics);
         entityManagerMap.get(layer.FOREGROUND).draw(graphics);
@@ -65,9 +66,11 @@ public class TestScene implements IScene {
 
         playerController.setPosition(200, 90);
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
-        SawmillController sm = sawmillFactory.make(1700, 50);
-        entityManagerMap.get(layer.FOREGROUND).add(sm);
-        physics.add(sm);
+        for (int i = 1; i < 100; i++) {
+            SawmillController sm = sawmillFactory.make(1100+i*10, 50);
+            entityManagerMap.get(layer.FOREGROUND).add(sm);
+            physics.add(sm);
+        }
         entityManagerMap.get(layer.FOREGROUND).add(playerController);
 
     }

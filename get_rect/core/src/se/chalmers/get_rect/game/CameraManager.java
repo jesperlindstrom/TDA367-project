@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game;
 
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
@@ -68,6 +69,6 @@ public class CameraManager implements IGameComponent{
     }
 
     public Point getPosition() {
-        return cameraPos.subtract(1920/2, 1080/2);
+        return cameraPos.subtract(GameConfig.SCREEN_WIDTH/2, GameConfig.SCREEN_HEIGHT/2);
     }
 }
