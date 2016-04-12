@@ -28,6 +28,7 @@ public class PlayerController implements IPhysicsController {
     private float deltaInSec;
     private IScene scene;
     private ProjectileFactory projectileFactory;
+    private boolean isLeft;
 
     public PlayerController(Player player, IView view, IInputAdapter input, ProjectileFactory projectileFactory) {
         this.player = player;
@@ -60,10 +61,12 @@ public class PlayerController implements IPhysicsController {
             jump();
         }
         if(input.isKeyPressed(IInputAdapter.Keys.RIGHTKEY)){
-            shootProjectile(player);
+            isLeft = false;
+            shootProjectile(player, isLeft);
         }
         if(input.isKeyPressed(IInputAdapter.Keys.LEFTKEY)){
-            shootProjectile(player);
+            isLeft = true;
+            shootProjectile(player, isLeft );
         }
     }
 
@@ -122,8 +125,9 @@ public class PlayerController implements IPhysicsController {
         this.scene = scene;
     }
 
-    private void shootProjectile(Player player) {
+    private void shootProjectile(Player player, boolean isLeft) {
         ProjectileController projectile = projectileFactory.make(player.getPosition().getxCoordinate(), player.getPosition().getyCoordinate()+30);
         scene.addEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
+        projectile.setAngle(isLeft);
     }
 }
