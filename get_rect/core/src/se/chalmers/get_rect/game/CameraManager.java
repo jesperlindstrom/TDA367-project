@@ -12,8 +12,6 @@ public class CameraManager implements IGameComponent{
     private PlayerController playerController;
     private Point playerPos;
     private Point cameraPos;
-    private Point velocityX;
-    private Point velocityY;
 
 
     public CameraManager(ICameraAdapter cameraAdapter, PlayerController playerController){
@@ -21,8 +19,6 @@ public class CameraManager implements IGameComponent{
         this.playerController = playerController;
         cameraPos = new Point(0,300);
         playerPos = playerController.getPosition();
-        velocityX = new Point(3,0);
-        velocityY = new Point(0,3);
         //Fix cameras first position
         cameraAdapter.translate(cameraPos);
     }
@@ -30,20 +26,26 @@ public class CameraManager implements IGameComponent{
     @Override
     public void update(long delta) {
         playerPos = playerController.getPosition();
-        moveX();
+        moveX(delta);
         moveY();
         cameraAdapter.update();
 
     }
 
-    private void moveX() {
-        move(cameraPos.deltaX(playerPos),350,velocityX);
+    private void moveX(long delta) {
+        move(cameraPos.deltaX(playerPos),350,deltaToVelocityX(delta));
     }
 
     private void moveY(){
+        //TODO can't implement because we do not have any platforms to jump on
         if(playerPos.getX() != playerController.getPosition().getX() && !playerController.isJumping()){
-            move(cameraPos.deltaY(playerPos), 100, velocityY);
+            move(cameraPos.deltaY(playerPos), 100, new Point(0,3));
         }
+    }
+
+    private Point deltaToVelocityX(long delta){
+        int velocity = (int)(PlayerController.MOVEMENT_SPEED * (delta/1000000));
+        return new Point(velocity,0);
     }
 
     private void move(int delta, int span, Point velocity){
