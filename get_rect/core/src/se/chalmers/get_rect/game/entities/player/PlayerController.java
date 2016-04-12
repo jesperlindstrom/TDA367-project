@@ -75,13 +75,13 @@ public class PlayerController implements IPhysicsController {
     private void setData(){
         ground = getPosition().getY();
         yCoord = ground + 1;
-        speedY = 25;
+        speedY = 50;
 
     }
 
     private void jump(double delta){
         double g = .04;
-        speedY -= 1;
+        speedY -= 1*delta*10;
         timeSinceJump += delta * 10; //delta to second
         player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
         // And test that the character is not on the ground again.
