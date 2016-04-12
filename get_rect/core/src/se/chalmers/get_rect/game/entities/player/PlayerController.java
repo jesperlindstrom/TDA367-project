@@ -11,6 +11,7 @@ import se.chalmers.get_rect.game.entities.projectile.Projectile;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileController;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.scenes.TestScene;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -119,8 +120,8 @@ public class PlayerController implements IPhysicsController {
     }
 
     private void shootProjectile() {
+
         ProjectileController projectile = projectileFactory.make(100, 100);
         scene.addEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
     }
-
 }

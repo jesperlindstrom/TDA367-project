@@ -16,11 +16,11 @@ public class ProjectileController implements IPhysicsController {
     private int damage;
     private IScene scene;
 
-    public ProjectileController(Projectile projectile, IView view, int speed, int damage){
+    public ProjectileController(Projectile projectile, IView view){
         this.projectile = projectile;
         this.view = view;
-        this.speed = speed;
-        this.damage = damage;
+        //this.speed = speed;
+        //this.damage = damage;
     }
 
     @Override

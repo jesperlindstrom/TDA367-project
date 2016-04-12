@@ -13,11 +13,11 @@ public class Projectile implements IModel {
     private static final int WIDTH = 50;//Ändra width och height beroende på projektil?
     private static final int HEIGHT = 50;
 
-    public Projectile(Point position, int damage, int speed, IRectangleFactoryAdapter rectangleFactory){
+    public Projectile(Point position, IRectangleFactoryAdapter rectangleFactory){
         this.position = position;
-        this.damage = damage;
-        this.speed = speed;
-        this.boundingBox = rectangleFactory.make(position.getxCoodrinate(), position.getyCoordinate(), WIDTH, HEIGHT);
+        //this.damage = damage;
+        //this.speed = speed;
+        this.boundingBox = rectangleFactory.make(position.getxCoordinate(), position.getyCoordinate(), WIDTH, HEIGHT);
 
     }
     public IRectangleAdapter getBoundingBox() {return boundingBox;}

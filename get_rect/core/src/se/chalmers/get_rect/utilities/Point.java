@@ -18,10 +18,10 @@ public class Point {
 
     public Point(Point point) {
         this.yCoordinate = point.getyCoordinate();
-        this.xCoodrinate = point.getxCoodrinate();
+        this.xCoodrinate = point.getxCoordinate();
     }
 
-    public int getxCoodrinate() {
+    public int getxCoordinate() {
         return xCoodrinate;
     }
 
@@ -46,15 +46,15 @@ public class Point {
     }
 
     public Point add(Point p2) {
-        return new Point(this.getxCoodrinate() + p2.getxCoodrinate(), this.getyCoordinate() + p2.getyCoordinate());
+        return new Point(this.getxCoordinate() + p2.getxCoordinate(), this.getyCoordinate() + p2.getyCoordinate());
     }
 
     public Point subtract(Point p2) {
-        return new Point(this.getxCoodrinate() - p2.getxCoodrinate(), this.getyCoordinate() - p2.getyCoordinate());
+        return new Point(this.getxCoordinate() - p2.getxCoordinate(), this.getyCoordinate() - p2.getyCoordinate());
     }
 
     public Point subtract(int x, int y) {
-        return new Point(this.getxCoodrinate() - x, this.getyCoordinate() - y);
+        return new Point(this.getxCoordinate() - x, this.getyCoordinate() - y);
     }
 
     public Point setPosition(int x, int y) {

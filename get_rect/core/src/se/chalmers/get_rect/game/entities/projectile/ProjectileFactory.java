@@ -14,10 +14,11 @@ public class ProjectileFactory {
     public ProjectileFactory(IRectangleFactoryAdapter rectangleFactory){
         this.rectangleFactory = rectangleFactory;
     }
+
     public ProjectileController make(int x, int y){
-        Projectile model = new Projectile(new Point(x, y), damage, speed, rectangleFactory);
+        Projectile model = new Projectile(new Point(x, y), rectangleFactory);
         IView view = new ProjectileView(model);
 
-        return new ProjectileController(model, view, damage, speed);
+        return new ProjectileController(model, view);
     }
 }

@@ -27,7 +27,7 @@ public class LibGDXICameraAdapter implements ICameraAdapter {
 
     @Override
     public void translate(Point position) {
-        camera.translate(position.getxCoodrinate(), position.getyCoordinate(), 0);
+        camera.translate(position.getxCoordinate(), position.getyCoordinate(), 0);
     }
 
     @Override

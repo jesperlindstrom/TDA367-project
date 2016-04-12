@@ -25,10 +25,10 @@ public class ZombieController implements IPhysicsController {
     @Override
     public void update(long delta) {
         Point modelPosition = model.getPosition();
-        int x = modelPosition.getxCoodrinate();
+        int x = modelPosition.getxCoordinate();
         int y = modelPosition.getyCoordinate();
 
-        if (x-playerController.getPosition().getxCoodrinate()+40 < 0) {
+        if (x-playerController.getPosition().getxCoordinate()+40 < 0) {
             x = x + pace;
         } else {
             x = x - pace;

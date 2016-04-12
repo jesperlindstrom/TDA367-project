@@ -23,7 +23,7 @@ class Player implements IModel {
      */
     public Player(Point position, IRectangleFactoryAdapter rectangleFactory) {
         this.position = position;
-        this.boundingBox = rectangleFactory.make(position.getxCoodrinate(), position.getyCoordinate(), WIDTH, HEIGHT);
+        this.boundingBox = rectangleFactory.make(position.getxCoordinate(), position.getyCoordinate(), WIDTH, HEIGHT);
         this.maxHealth = 10;
         this.currentHealth = maxHealth;
         this.level = 1;
