@@ -14,7 +14,7 @@ public class GameManagerTest {
     private IAssetManagerAdapter assetManager;
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
-    private ICameraAdapter camera;
+    private ICameraFactoryAdapter cameraFactory;
     private IGameLoopAdapter gameLoop;
     private IRectangleFactoryAdapter rectangleFactory;
 
@@ -23,11 +23,11 @@ public class GameManagerTest {
         assetManager = new AssetManagerStub();
         graphics = mock(GraphicsAdapterStub.class);
         input = new InputAdapterStub();
-        camera = new CameraAdapterStub();
+        cameraFactory = new CameraFactoryAdapterStub();
         gameLoop = new GameLoopAdapterStub();
         rectangleFactory = new RectangleFactoryAdapterStub();
 
-        gameManager = new GameManager(graphics, input, assetManager, camera, gameLoop, rectangleFactory);
+        gameManager = new GameManager(graphics, input, assetManager, cameraFactory, gameLoop, rectangleFactory);
     }
 
     @Test
