@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.screens;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
@@ -7,7 +8,6 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 public class SplashScreen implements IScreen {
-    private static final boolean TROLL = false;
     private IAssetManagerAdapter assetManager;
     private StateManager<IScreen> screenManager;
     private ICameraAdapter camera;
@@ -22,8 +22,8 @@ public class SplashScreen implements IScreen {
 
         assetManager = game.getAssetManager();
         screenManager = game.getScreenManager();
-        camera = game.getCameraFactory().make(1920, 1080);
-        camera.translate(1920/2, 1080/2);
+        camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
+        camera.translate(GameConfig.SCREEN_WIDTH/2, GameConfig.SCREEN_HEIGHT/2);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class SplashScreen implements IScreen {
             progressValue += 0.015;
             stop = false;
         } else if (progressValue >= 1.0 && !didStop) {
-            if (!TROLL) {
+            if (!GameConfig.SPLASH_SCREEN_TROLL) {
                 screenManager.set("game");
                 return;
             }
@@ -75,7 +75,7 @@ public class SplashScreen implements IScreen {
         camera.draw(graphics);
 
         if (addedAssets) {
-            graphics.draw("img/splash/splash_bg.jpg", 0, 0, 1920, 1080);
+            graphics.draw("img/splash/splash_bg.jpg", 0, 0, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
             int progressWidth;
 
             if (stop) {

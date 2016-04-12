@@ -2,6 +2,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
@@ -11,7 +12,7 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
     private Camera camera;
 
     public LibGDXCameraAdapter(){
-        this(1920,1080);
+        this(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
     }
 
     public LibGDXCameraAdapter(float width, float height){

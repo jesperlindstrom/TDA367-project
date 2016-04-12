@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.screens;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
@@ -33,7 +34,7 @@ public class GameScreen implements IScreen {
         PlayerController playerController = playerFactory.make(0,0);
 
         // Create the CameraManager
-        ICameraAdapter camera = game.getCameraFactory().make(1920, 1080);
+        ICameraAdapter camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         cameraManager = new CameraManager(camera, playerController);
 
         // Register scenes
