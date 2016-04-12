@@ -7,11 +7,15 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 public class SplashScreen implements IScreen {
+    private static final boolean TROLL = false;
     private IAssetManagerAdapter assetManager;
     private StateManager<IScreen> screenManager;
     private ICameraAdapter camera;
     private boolean addedAssets = false;
     private double progressValue = 0.0;
+    private boolean stop = false;
+    private boolean didStop = false;
+    private int stopTimer = 0;
 
     public SplashScreen(IGame game) {
         System.out.println("SplashScreen is initialized");
@@ -45,8 +49,22 @@ public class SplashScreen implements IScreen {
             progressValue = assetManager.getProgress();
         } else if (progressValue >= 4.35) {
             screenManager.set("game");
-        } else if (progressValue >= 1.0) {
+        } else if (progressValue >= 1.0 && didStop) {
             progressValue += 0.015;
+            stop = false;
+        } else if (progressValue >= 1.0 && !didStop) {
+            if (!TROLL) {
+                screenManager.set("game");
+                return;
+            }
+
+            stop = true;
+            stopTimer++;
+
+            if (stopTimer == 100) {
+                stop = false;
+                didStop = true;
+            }
         }
 
         camera.update(delta);
@@ -58,8 +76,19 @@ public class SplashScreen implements IScreen {
 
         if (addedAssets) {
             graphics.draw("img/splash/splash_bg.jpg", 0, 0, 1920, 1080);
-            int progressWidth = (int)(578 * progressValue);
+            int progressWidth;
+
+            if (stop) {
+                progressWidth = 578;
+            } else {
+                progressWidth = (int) (578 * progressValue);
+            }
+
             graphics.draw("img/splash/loading_fill.png", 768, 128, progressWidth, 60);
+
+            if (didStop) {
+                graphics.drawText("LOL JK xD", 1300, 200);
+            }
 
             if (progressValue > 2.3) {
                 int secondProgressWidth = (int)(300 * (progressValue - 2.3));

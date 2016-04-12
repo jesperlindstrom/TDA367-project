@@ -19,7 +19,7 @@ public class MenuScene implements IGameComponent {
     public MenuScene(IInputAdapter input, CameraManager camera) {
         this.input = input;
         this.camera = camera;
-        position = camera.getCenterPosition();
+        position = camera.getPosition();
         relativePosition = new HashMap<String, Point>();
         addPositions();
     }
@@ -27,6 +27,7 @@ public class MenuScene implements IGameComponent {
     @Override
     public void update(double delta) {
         position = camera.getCenterPosition();
+
     }
 
     @Override
@@ -41,10 +42,10 @@ public class MenuScene implements IGameComponent {
      * fills the map with values
      */
     private void addPositions() {
-        relativePosition.put("shader", new Point(-960, -240));
-        relativePosition.put("background", new Point(-300, -100));
-        relativePosition.put("exit", new Point(-225, 100));
-        relativePosition.put("continue", new Point(-225, 400));
+        relativePosition.put("shader", new Point(0, 0));
+        relativePosition.put("background", new Point(660, 140));
+        relativePosition.put("exit", new Point(735, 650));
+        relativePosition.put("continue", new Point(735, 400));
     }
 
     /**
