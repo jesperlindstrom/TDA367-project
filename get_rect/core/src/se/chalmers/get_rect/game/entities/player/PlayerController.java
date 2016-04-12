@@ -55,7 +55,6 @@ public class PlayerController implements IPhysicsController {
 
     private Point deltaToVelocityX(long delta){
         int velocity = (int)(MOVEMENT_SPEED * (delta/1000000));
-        System.out.println(velocity);
         return new Point(velocity,0);
     }
 
