@@ -47,6 +47,10 @@ public class Point {
         return new Point(this.getX() + p2.getX(), this.getY() + p2.getY());
     }
 
+    public Point add(int x, int y) {
+        return new Point(this.getX() + x, this.getY() + y);
+    }
+
     public Point subtract(Point p2) {
         return new Point(this.getX() - p2.getX(), this.getY() - p2.getY());
     }

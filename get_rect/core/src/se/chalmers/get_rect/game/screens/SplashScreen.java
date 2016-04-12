@@ -7,6 +7,7 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 public class SplashScreen implements IScreen {
+    private static final boolean TROLL = false;
     private IAssetManagerAdapter assetManager;
     private StateManager<IScreen> screenManager;
     private ICameraAdapter camera;
@@ -52,6 +53,11 @@ public class SplashScreen implements IScreen {
             progressValue += 0.015;
             stop = false;
         } else if (progressValue >= 1.0 && !didStop) {
+            if (!TROLL) {
+                screenManager.set("game");
+                return;
+            }
+
             stop = true;
             stopTimer++;
 
