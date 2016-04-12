@@ -16,19 +16,23 @@ import java.util.TimerTask;
  * private FPSChecker fps = new FPSChecker("[name of file]");
  *
  * and then add
- * fps.update();
+ * fps.update(delta);
+ * fps.draw(saker)
+ *
  * to the draw or update in the file.
  *
  */
 public class FPSChecker {
     private int currentFPS;
     private int FPS;
+    private int updates;
     private int lowestFPS = 1000;
     private static final int graphicsUpdatePerSecond = 4;
     private double updatesInTime;
     private String name;
     private boolean show;
     private boolean showLowest;
+    private double delta;
 
     public FPSChecker(String name) {
         this.name = name;
@@ -37,8 +41,11 @@ public class FPSChecker {
 
 
     public void update(double delta) {
+        this.delta = delta;
         currentFPS = (int)(10/delta);
         updatesInTime += delta/10;
+        updates++;
+
 
 
         if (currentFPS < lowestFPS) {
@@ -46,8 +53,10 @@ public class FPSChecker {
         }
 
         if (updatesInTime > 0.5) {
-            FPS = currentFPS;
+            FPS = (int)(updates/updatesInTime);
+            updates = 0;
             updatesInTime = 0;
+
         }
 
     }
@@ -70,5 +79,9 @@ public class FPSChecker {
             graphics.drawText("= " + lowestFPS, point.addX(80));
             graphics.drawText("lowestFPS ", point);
         }
+        point = point.addY(-40);
+        graphics.drawText("= " + delta, point.addX(50));
+        graphics.drawText("delta ", point);
+
     }
 }
