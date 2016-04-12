@@ -44,7 +44,7 @@ public class CameraManager implements IGameComponent{
     }
 
     private Point deltaToVelocityX(long delta){
-        int velocity = (int)(PlayerController.MOVEMENT_SPEED * (delta/1000000));
+        int velocity = (int)(PlayerController.MOVEMENT_SPEED * delta);
         return new Point(velocity,0);
     }
 

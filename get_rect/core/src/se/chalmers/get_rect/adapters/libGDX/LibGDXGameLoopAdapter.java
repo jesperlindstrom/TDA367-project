@@ -33,7 +33,7 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
         long delta = 0;
 
         if (lastTime != 0) {
-            delta = TimeUtils.timeSinceNanos(lastTime);
+            delta = TimeUtils.timeSinceNanos(lastTime)/10000000;
         }
 
         gameManager.draw();

@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 
 public class PlayerController implements IPhysicsController {
-    public static final double MOVEMENT_SPEED = 0.3;
+    public static final double MOVEMENT_SPEED = 5;
     private Player player;
     private IView view;
     private IInputAdapter input;
@@ -54,8 +54,10 @@ public class PlayerController implements IPhysicsController {
     }
 
     private Point deltaToVelocityX(long delta){
-        int velocity = (int)(MOVEMENT_SPEED * (delta/1000000));
-        return new Point(velocity,0);
+        double velocity = (int)(MOVEMENT_SPEED * delta);
+        System.out.println("Delta in use: " + delta);
+        System.out.println("Player velocity: " + velocity);
+        return new Point((int)velocity,0);
     }
 
     @Override
