@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.utilities;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -64,14 +63,15 @@ public class PointTest {
         assertFalse(result.equals(p));
         assertTrue(result.getX() == p.getX() + 3);
         assertTrue(result.getY() == p.getY() + 1);
+
     }
 
     @Test
     public void testAddPoints() throws Exception {
         result = p.add(p);
         assertFalse(result.equals(p));
-        assertTrue(result.getX() == p.getX() + 1);
-        assertTrue(result.getY() == p.getY() + 2);
+        assertEquals(result.getX(), p.getX() + 1);
+        assertEquals(result.getY(), p.getY() + 2);
     }
 
     @Test
