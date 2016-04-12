@@ -14,6 +14,7 @@ public class SawmillExpress implements IModel {
     private final float width = 219;
     private final float height = 276;
     private boolean wäääh;
+    private int velocity = 3;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
         this.position = point;
@@ -62,5 +63,9 @@ public class SawmillExpress implements IModel {
 
     public boolean isWäääh() {
         return wäääh;
+    }
+
+    public Point getVelocity(){
+        return new Point(0,velocity);
     }
 }

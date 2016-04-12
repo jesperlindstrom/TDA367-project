@@ -29,17 +29,8 @@ public class PlayerController implements IPhysicsController {
 
     @Override
     public void update(double delta) {
-        Point velocity = deltaToVelocityX(delta);
         //Section for player walking function
-        if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            player.setPosition(getPosition().subtract(velocity));
-            player.setWalking(true);
-        }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
-            player.setPosition(getPosition().add(velocity));
-            player.setWalking(true);
-        }else{
-            player.setWalking(false);
-        }
+        player.move(input);
         //Section for player jump function
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
@@ -50,11 +41,6 @@ public class PlayerController implements IPhysicsController {
             jump(delta);
 
         }
-    }
-
-    private Point deltaToVelocityX(double delta){
-        double velocity = (MOVEMENT_SPEED * delta);
-        return new Point((int)velocity,0);
     }
 
     @Override
@@ -113,6 +99,10 @@ public class PlayerController implements IPhysicsController {
 
     public void setScene(IScene scene) {
         this.scene = scene;
+    }
+
+    public Point getVelocity(){
+        return player.getMoveVelocity();
     }
 
 }

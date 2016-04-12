@@ -23,9 +23,11 @@ public class SawmillController implements IPhysicsController {
 
     @Override
     public void update(double delta) {
+        /*
         if(model.isWäääh()) {
             model.setPosition(model.getPosition().add(new Point(0, 3)));
         }
+        */
     }
 
     @Override
@@ -49,6 +51,24 @@ public class SawmillController implements IPhysicsController {
             model.setWäääh(true);
         }
 
+    }
+
+    @Override
+    public Point getPosition() {
+        return model.getPosition();
+    }
+
+    @Override
+    public Point getVelocity() {
+        if(model.isWäääh()) {
+            return model.getVelocity();
+        }
+        return new Point(0,0);
+    }
+
+    @Override
+    public void setPosition(Point position) {
+        model.setPosition(position);
     }
 
 }

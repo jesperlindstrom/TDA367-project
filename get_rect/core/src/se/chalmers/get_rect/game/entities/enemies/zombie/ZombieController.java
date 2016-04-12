@@ -24,16 +24,17 @@ public class ZombieController implements IPhysicsController {
     }
     @Override
     public void update(double delta) {
+
         Point modelPosition = model.getPosition();
         int x = modelPosition.getX();
         int y = modelPosition.getY();
 
         if (x-playerController.getPosition().getX()+40 < 0) {
-            x = x + pace;
+            model.setVelocity(x + pace);
         } else {
-            x = x - pace;
+            model.setVelocity(x - pace);
         }
-
+        /*
         if(y-playerController.getPosition().getY() < 0) {
             y = y + pace;
         } else {
@@ -41,6 +42,7 @@ public class ZombieController implements IPhysicsController {
         }
 
         model.setPosition(x, y);
+        */
         //implement AI
 
     }
@@ -55,6 +57,22 @@ public class ZombieController implements IPhysicsController {
 
     @Override
     public void onCollision(ISolidObject otherObject) {
+
+    }
+
+    @Override
+    public Point getPosition() {
+        return model.getPosition();
+    }
+
+    @Override
+    public Point getVelocity() {
+       return model.getVelocity();
+    }
+
+    @Override
+    public void setPosition(Point position) {
+        model.setPosition(position);
 
     }
 

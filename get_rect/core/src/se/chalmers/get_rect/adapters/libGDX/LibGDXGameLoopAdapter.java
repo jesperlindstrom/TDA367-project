@@ -33,7 +33,6 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
 
         float delta = Gdx.graphics.getDeltaTime();
         delta = Math.min(delta*10, (float)1/3);
-        System.out.println(Gdx.graphics.getFramesPerSecond());
         gameManager.draw();
         gameManager.update(delta);
 

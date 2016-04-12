@@ -87,6 +87,10 @@ public class Point {
         return p.subtract(this);
     }
 
+    public Point multiply(double factor){
+        return new Point((int)(xCoodrinate * factor),(int)(yCoordinate * factor));
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass().equals(obj.getClass())) {

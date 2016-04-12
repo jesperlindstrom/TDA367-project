@@ -1,8 +1,10 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
 class Player implements IModel {
@@ -15,6 +17,8 @@ class Player implements IModel {
     private int level;
     private boolean isWalking;
     private boolean isJumping;
+    private int moveVelocity;
+    private int jumpVelocity;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -29,6 +33,8 @@ class Player implements IModel {
         this.level = 1;
         this.isWalking = false;
         this.isJumping = false;
+        this.moveVelocity = 30;
+        this.jumpVelocity = 50;
     }
 
     public IRectangleAdapter getBoundingBox() {
@@ -58,19 +64,19 @@ class Player implements IModel {
 
     /**
      * Setter for player xCoordinate
-     * @param xCoordinate
+     * @param x
      */
-    public void setX(int xCoordinate) {
-        position = position.setX(xCoordinate);
+    public void setX(int x) {
+        position = position.setX(x);
         boundingBox.setPosition(position);
     }
 
     /**
      * Setter for player yCoordinate
-     * @param yCoordinate
+     * @param y
      */
-    public void setY(int yCoordinate) {
-        position = position.setY(yCoordinate);
+    public void setY(int y) {
+        position = position.setY(y);
         boundingBox.setPosition(position);
     }
 
@@ -154,4 +160,35 @@ class Player implements IModel {
     public boolean getJumping(){
         return isJumping;
     }
+
+    /**
+     * Getter for player velocity
+     * @return
+     */
+    public Point getMoveVelocity() {
+        return new Point(moveVelocity, 0);
+    }
+
+    /**
+     * Getter for player jump velocity
+     * @return
+     */
+    public double getJumpVelocity() {
+        return jumpVelocity;
+    }
+
+    /**
+     * This method sets the player's movement speed and direction from user input.
+     * @param input
+     */
+    public void move(IInputAdapter input){
+        if(input.isKeyPressed(IInputAdapter.Keys.A)){
+            moveVelocity = -30;
+        } else if (input.isKeyPressed(IInputAdapter.Keys.D)){
+            moveVelocity = 30;
+        } else {
+            moveVelocity = 0;
+        }
+    }
 }
+
