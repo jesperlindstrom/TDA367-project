@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.scenes;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
@@ -40,7 +41,7 @@ public class TestScene implements IScene {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/backgrounds/background.png", camera.getPosition(), 1920, 1080, camera.getPosition());
+        graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
 
         entityManagerMap.get(layer.BACKGROUND).draw(graphics);
         entityManagerMap.get(layer.FOREGROUND).draw(graphics);
