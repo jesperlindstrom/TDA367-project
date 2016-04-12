@@ -69,7 +69,7 @@ public class GameScreen implements IScreen {
      */
     @Override
     public void update(double delta) {
-
+        fps.update(delta);
         if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
             menuActive = !menuActive;
         }
@@ -92,7 +92,7 @@ public class GameScreen implements IScreen {
             menu.draw(graphics);
         }
 
-        fps.update(graphics, cameraManager);
+        fps.draw(graphics, cameraManager.getPosition());
     }
 
 }

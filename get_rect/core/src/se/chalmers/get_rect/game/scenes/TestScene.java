@@ -65,9 +65,11 @@ public class TestScene implements IScene {
 
         playerController.setPosition(200, 90);
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
-        SawmillController sm = sawmillFactory.make(1700, 50);
-        entityManagerMap.get(layer.FOREGROUND).add(sm);
-        physics.add(sm);
+        for (int i = 1; i < 100; i++) {
+            SawmillController sm = sawmillFactory.make(1100+i*10, 50);
+            entityManagerMap.get(layer.FOREGROUND).add(sm);
+            physics.add(sm);
+        }
         entityManagerMap.get(layer.FOREGROUND).add(playerController);
 
     }
