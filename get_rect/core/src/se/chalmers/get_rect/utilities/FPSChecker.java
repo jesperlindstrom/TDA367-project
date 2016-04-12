@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.utilities;
 
+import com.badlogic.gdx.Game;
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 
@@ -33,6 +35,7 @@ public class FPSChecker {
     private boolean show;
     private boolean showLowest;
     private double delta;
+    private double timeForLowest;
 
     public FPSChecker(String name) {
         this.name = name;
@@ -44,12 +47,14 @@ public class FPSChecker {
         this.delta = delta;
         currentFPS = (int)(10/delta);
         updatesInTime += delta/10;
+        timeForLowest += delta/10;
         updates++;
 
 
 
-        if (currentFPS < lowestFPS) {
+        if (currentFPS < lowestFPS || timeForLowest > 10) {
             lowestFPS = currentFPS;
+            timeForLowest = 0;
         }
 
         if (updatesInTime > 0.5) {
@@ -71,17 +76,24 @@ public class FPSChecker {
     }
 
     public void draw(IGraphicsAdapter graphics, Point point) {
-        point = point.addY(1070);
-        graphics.drawText("= " + FPS, point.addX(30));
-        graphics.drawText("FPS ", point);
-        if (showLowest) {
-            point = point.addY(-40);
+        point = point.addY(1095);
+
+        if (GameConfig.SHOW_FPS) {
+            point = point.addY(-20);
+            graphics.drawText("= " + FPS, point.addX(30));
+            graphics.drawText("FPS ", point);
+        }
+
+        if (GameConfig.SHOW_LOWESTFPS) {
+            point = point.addY(-20);
             graphics.drawText("= " + lowestFPS, point.addX(80));
             graphics.drawText("lowestFPS ", point);
         }
-        point = point.addY(-40);
-        graphics.drawText("= " + delta, point.addX(50));
-        graphics.drawText("delta ", point);
+        if (GameConfig.SHOW_DELTA) {
+            point = point.addY(-20);
+            graphics.drawText("= " + delta, point.addX(50));
+            graphics.drawText("delta ", point);
+        }
 
     }
 }
