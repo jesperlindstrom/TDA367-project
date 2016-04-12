@@ -35,7 +35,7 @@ public class SplashScreen implements IScreen {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         if (assetManager.update() && !addedAssets) {
             addedAssets = true;
             loadTextures();
@@ -49,7 +49,7 @@ public class SplashScreen implements IScreen {
             progressValue += 0.015;
         }
 
-        camera.update();
+        camera.update(delta);
     }
 
     @Override

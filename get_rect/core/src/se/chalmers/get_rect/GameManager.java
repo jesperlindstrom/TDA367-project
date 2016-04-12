@@ -60,7 +60,7 @@ public class GameManager implements IGame {
      * Tell current state to update
      * @param delta Time since last draw
      */
-    public void update(long delta) {
+    public void update(double delta) {
         if(input.isKeyPressed(IInputAdapter.Keys.S)) {
             exit();
         }

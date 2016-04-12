@@ -32,7 +32,7 @@ public class TestScene implements IScene {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         entityManagerMap.get(layer.BACKGROUND).update(delta);
         entityManagerMap.get(layer.FOREGROUND).update(delta);
         physics.update(delta);

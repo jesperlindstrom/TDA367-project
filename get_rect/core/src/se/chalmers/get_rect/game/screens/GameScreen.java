@@ -68,7 +68,7 @@ public class GameScreen implements IScreen {
      * @param delta time since last draw.
      */
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
 
         if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
             menuActive = !menuActive;

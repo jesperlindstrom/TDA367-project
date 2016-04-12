@@ -29,7 +29,7 @@ public class PlayerController implements IPhysicsController {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         Point velocity = deltaToVelocityX(delta);
         //Section for player walking function
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
@@ -53,8 +53,8 @@ public class PlayerController implements IPhysicsController {
         }
     }
 
-    private Point deltaToVelocityX(long delta){
-        double velocity = (int)(MOVEMENT_SPEED * delta);
+    private Point deltaToVelocityX(double delta){
+        double velocity = (MOVEMENT_SPEED * delta);
         System.out.println("Delta in use: " + delta);
         System.out.println("Player velocity: " + velocity);
         return new Point((int)velocity,0);
@@ -75,7 +75,7 @@ public class PlayerController implements IPhysicsController {
 
     }
 
-    private void setData(long delta){
+    private void setData(double delta){
         deltaInSec = (float)(delta / 10000000);
         ground = getPosition().getY();
         yCoord = ground + 1;

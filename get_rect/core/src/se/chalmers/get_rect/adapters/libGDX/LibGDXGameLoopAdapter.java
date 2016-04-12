@@ -30,8 +30,7 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
      */
     @Override
     public void render() {
-        long delta = 0;
-
+        double delta = 0;
         if (lastTime != 0) {
             delta = TimeUtils.timeSinceNanos(lastTime)/10000000;
         }

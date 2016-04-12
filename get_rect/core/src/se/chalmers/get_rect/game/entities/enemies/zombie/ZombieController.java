@@ -23,7 +23,7 @@ public class ZombieController implements IPhysicsController {
         pace = (int)(Math.random()*5 + 1)-2;
     }
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         Point modelPosition = model.getPosition();
         int x = modelPosition.getX();
         int y = modelPosition.getY();

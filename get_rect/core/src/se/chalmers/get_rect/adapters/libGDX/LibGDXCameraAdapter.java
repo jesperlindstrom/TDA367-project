@@ -29,7 +29,7 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         camera.update();
     }
 

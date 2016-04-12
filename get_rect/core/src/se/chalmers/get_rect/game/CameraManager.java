@@ -24,31 +24,31 @@ public class CameraManager implements IGameComponent{
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         playerPos = playerController.getPosition();
         moveX(delta);
-        moveY();
-        cameraAdapter.update();
+        moveY(delta);
+        cameraAdapter.update(delta);
 
     }
 
-    private void moveX(long delta) {
+    private void moveX(double delta) {
         move(cameraPos.deltaX(playerPos),350,deltaToVelocityX(delta));
     }
 
-    private void moveY(){
+    private void moveY(double delta){
         //TODO can't implement because we do not have any platforms to jump on
         if(playerPos.getX() != playerController.getPosition().getX() && !playerController.isJumping()){
             move(cameraPos.deltaY(playerPos), 100, new Point(0,3));
         }
     }
 
-    private Point deltaToVelocityX(long delta){
+    private Point deltaToVelocityX(double delta){
         int velocity = (int)(PlayerController.MOVEMENT_SPEED * delta);
         return new Point(velocity,0);
     }
 
-    private void move(int delta, int span, Point velocity){
+    private void move(double delta, int span, Point velocity){
         if(delta <= -span){
             cameraAdapter.translate(velocity);
             cameraPos = cameraPos.add(velocity);

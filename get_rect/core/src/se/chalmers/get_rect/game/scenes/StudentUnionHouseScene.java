@@ -13,7 +13,7 @@ public class StudentUnionHouseScene implements IScene {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
 
     }
 
