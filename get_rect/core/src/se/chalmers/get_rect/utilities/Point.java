@@ -39,8 +39,8 @@ public class Point {
         return new Point(xCoodrinate + x, yCoordinate);
     }
 
-    public Point addY(int x) {
-        return new Point(xCoodrinate + x, yCoordinate);
+    public Point addY(int y) {
+        return new Point(xCoodrinate, yCoordinate + y);
     }
 
     public Point add(Point p2) {
@@ -83,4 +83,18 @@ public class Point {
         return ("X = " + getX() + " Y = " + getY());
     }
 
+    public Point vector(Point p) {
+        return p.subtract(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && this.getClass().equals(obj.getClass())) {
+            Point p2 = (Point)obj;
+            if (this.getX() == p2.getX() && this.getY() == p2.getY()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
