@@ -23,19 +23,28 @@ import java.util.TimerTask;
 public class FPSChecker {
     private int currentFPS;
     private int FPS;
+    private int lowestFPS = 1000;
     private static final int graphicsUpdatePerSecond = 4;
     private double updatesInTime;
     private String name;
     private boolean show;
+    private boolean showLowest;
 
     public FPSChecker(String name) {
         this.name = name;
+        showLowest = true;
     }
 
 
     public void update(double delta) {
         currentFPS = (int)(10/delta);
         updatesInTime += delta/10;
+
+
+        if (currentFPS < lowestFPS) {
+            lowestFPS = currentFPS;
+        }
+
         if (updatesInTime > 0.5) {
             FPS = currentFPS;
             updatesInTime = 0;
@@ -56,5 +65,10 @@ public class FPSChecker {
         point = point.addY(1070);
         graphics.drawText("= " + FPS, point.addX(30));
         graphics.drawText("FPS ", point);
+        if (showLowest) {
+            point = point.addY(-40);
+            graphics.drawText("= " + lowestFPS, point.addX(80));
+            graphics.drawText("lowestFPS ", point);
+        }
     }
 }
