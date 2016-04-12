@@ -37,7 +37,6 @@ public class CameraManager implements IGameComponent{
     }
 
     private void moveY(double delta){
-        //TODO can't implement because we do not have any platforms to jump on
         if(playerPos.getX() != playerController.getPosition().getX() && !playerController.isJumping()){
             move(cameraPos.deltaY(playerPos), 100, new Point(0,3));
         }

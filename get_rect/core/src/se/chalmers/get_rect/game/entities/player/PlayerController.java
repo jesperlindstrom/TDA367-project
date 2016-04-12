@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 
 public class PlayerController implements IPhysicsController {
-    public static final double MOVEMENT_SPEED = 5;
+    public static final double MOVEMENT_SPEED = 30;
     private Player player;
     private IView view;
     private IInputAdapter input;
@@ -19,7 +19,6 @@ public class PlayerController implements IPhysicsController {
     private int speedY;
     private int ground;
     private int timeSinceJump = 0;
-    private float deltaInSec;
     private IScene scene;
 
     public PlayerController(Player player, IView view, IInputAdapter input) {
@@ -44,19 +43,17 @@ public class PlayerController implements IPhysicsController {
         //Section for player jump function
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
-            setData(delta);
+            setData();
             ground = getPosition().getY();
         }
         if(player.getJumping()){
-            jump();
+            jump(delta);
 
         }
     }
 
     private Point deltaToVelocityX(double delta){
         double velocity = (MOVEMENT_SPEED * delta);
-        System.out.println("Delta in use: " + delta);
-        System.out.println("Player velocity: " + velocity);
         return new Point((int)velocity,0);
     }
 
@@ -75,18 +72,17 @@ public class PlayerController implements IPhysicsController {
 
     }
 
-    private void setData(double delta){
-        deltaInSec = (float)(delta / 10000000);
+    private void setData(){
         ground = getPosition().getY();
         yCoord = ground + 1;
         speedY = 25;
 
     }
 
-    private void jump(){
+    private void jump(double delta){
         double g = .04;
         speedY -= 1;
-        timeSinceJump += deltaInSec;
+        timeSinceJump += delta * 10; //delta to second
         player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
         // And test that the character is not on the ground again.
 
