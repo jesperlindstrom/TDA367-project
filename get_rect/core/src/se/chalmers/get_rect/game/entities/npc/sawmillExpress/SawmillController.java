@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities.npc.sawmillExpress;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
-import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
@@ -13,18 +12,18 @@ import se.chalmers.get_rect.utilities.Point;
 public class SawmillController implements IPhysicsController {
     private SawmillExpress model;
     private IView view;
-    private boolean waaah;
+    private boolean wäääh;
 
 
     public SawmillController(IView view, SawmillExpress model) {
         this.view = view;
         this.model = model;
-        this.waaah = false;
+        this.wäääh = false;
     }
 
     @Override
     public void update(double delta) {
-        if(model.isWaaah()) {
+        if(model.isWäääh()) {
             model.setPosition(model.getPosition().add(new Point(0, 3)));
         }
     }
@@ -47,7 +46,7 @@ public class SawmillController implements IPhysicsController {
     @Override
     public void onCollision(ISolidObject otherObject) {
         if(otherObject.getClass().equals(PlayerController.class)) {
-            model.setWaaah(true);
+            model.setWäääh(true);
         }
 
     }

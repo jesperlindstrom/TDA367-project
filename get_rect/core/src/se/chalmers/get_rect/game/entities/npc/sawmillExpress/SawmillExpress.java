@@ -13,12 +13,12 @@ public class SawmillExpress implements IModel {
     private IRectangleAdapter boundingBox;
     private final float width = 219;
     private final float height = 276;
-    private boolean waaah;
+    private boolean wäääh;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
         this.position = point;
         this.boundingBox = rectangleFactory.make(position, width, height);
-        waaah = false;
+        wäääh = false;
 
     }
 
@@ -56,11 +56,11 @@ public class SawmillExpress implements IModel {
         return boundingBox;
     }
 
-    public void setWaaah(boolean waaah) {
-        this.waaah = waaah;
+    public void setWäääh(boolean wäääh) {
+        this.wäääh = wäääh;
     }
 
-    public boolean isWaaah() {
-        return waaah;
+    public boolean isWäääh() {
+        return wäääh;
     }
 }
