@@ -86,7 +86,7 @@ public class TestScene implements IScene {
 
 
     @Override
-    public void addEntity(layer layer, IController controller) {
-        entityManagerMap.get(layer).add(controller);
+    public void addEntity(layer layer, IPhysicsController physicsController) {
+        entityManagerMap.get(layer).add(physicsController);
     }
 }

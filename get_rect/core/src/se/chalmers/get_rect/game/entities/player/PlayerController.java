@@ -1,10 +1,15 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.projectile.Projectile;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileController;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
@@ -21,12 +26,14 @@ public class PlayerController implements IPhysicsController {
     private int timeSinceJump = 0;
     private float deltaInSec;
     private IScene scene;
+    private ProjectileFactory projectileFactory;
 
-    public PlayerController(Player player, IView view, IInputAdapter input) {
+    public PlayerController(Player player, IView view, IInputAdapter input, ProjectileFactory projectileFactory) {
         this.player = player;
         this.view = view;
         this.input = input;
         this.MOVEMENT_SPEED = new Point(3,0);
+        this.projectileFactory = projectileFactory;
     }
 
     @Override
@@ -50,7 +57,9 @@ public class PlayerController implements IPhysicsController {
         }
         if(player.getJumping()){
             jump();
-
+        }
+        if(input.isKeyPressed(IInputAdapter.Keys.RIGHTKEY)){
+            shootProjectile();
         }
     }
 
@@ -107,6 +116,11 @@ public class PlayerController implements IPhysicsController {
 
     public void setScene(IScene scene) {
         this.scene = scene;
+    }
+
+    private void shootProjectile() {
+        ProjectileController projectile = projectileFactory.make(100, 100);
+        scene.addEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
     }
 
 }

@@ -6,6 +6,7 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.menu.MenuScene;
 import se.chalmers.get_rect.states.StateManager;
@@ -27,8 +28,10 @@ public class GameScreen implements IScreen {
         // Create the scene manager
         sceneManager = new StateManager<>();
 
+        //
+        ProjectileFactory projectileFactory = new ProjectileFactory(game.getRectangleFactory());
         //Initialize player
-        PlayerFactory playerFactory = new PlayerFactory(game);
+        PlayerFactory playerFactory = new PlayerFactory(game, projectileFactory);
         PlayerController playerController = playerFactory.make(0,0);
 
         //Create the CameraManager
