@@ -9,7 +9,7 @@ public class ProjectileView implements IView{
 
     public ProjectileView(Projectile projectile){
         this.projectile = projectile;
-        this.currentImagePath = "data/bullet.png";
+        this.currentImagePath = "img/entities/projectiles/bullet.png";
     }
     @Override
     public void draw(IGraphicsAdapter graphics) {

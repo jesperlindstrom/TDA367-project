@@ -52,7 +52,9 @@ public class SplashScreen implements IScreen {
         //Player
         assetManager.loadTexture("img/entities/player/playerTwoLeg.png");
         assetManager.loadTexture("img/entities/player/playerOneLeg.png");
-        //Zombie
+        //Projectiles
+        assetManager.loadTexture("img/entities/projectiles/bullet.png");
+        //Zombies
         assetManager.loadTexture("img/entities/zombies/zombie.png");
         assetManager.loadTexture("img/entities/zombies/zombieOpen.png");
         // In-game menu
