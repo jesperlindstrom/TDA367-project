@@ -61,7 +61,7 @@ class Player implements IModel {
      * @param xCoordinate
      */
     public void setX(int xCoordinate) {
-        position = position.setxCoodrinate(xCoordinate);
+        position = position.setxCoordinate(xCoordinate);
         boundingBox.setPosition(position);
     }
 

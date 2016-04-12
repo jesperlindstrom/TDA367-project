@@ -30,7 +30,11 @@ public class ProjectileController implements IPhysicsController {
 
     @Override
     public void update(long delta) {
-
+        Point modelPosition = projectile.getPosition();
+        int x = modelPosition.getxCoordinate();
+        int y = modelPosition.getyCoordinate();
+        x = x + 10;
+        projectile.setPosition(x, y);
     }
 
     @Override

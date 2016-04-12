@@ -60,7 +60,10 @@ public class PlayerController implements IPhysicsController {
             jump();
         }
         if(input.isKeyPressed(IInputAdapter.Keys.RIGHTKEY)){
-            shootProjectile();
+            shootProjectile(player);
+        }
+        if(input.isKeyPressed(IInputAdapter.Keys.LEFTKEY)){
+            shootProjectile(player);
         }
     }
 
@@ -119,9 +122,8 @@ public class PlayerController implements IPhysicsController {
         this.scene = scene;
     }
 
-    private void shootProjectile() {
-
-        ProjectileController projectile = projectileFactory.make(100, 100);
+    private void shootProjectile(Player player) {
+        ProjectileController projectile = projectileFactory.make(player.getPosition().getxCoordinate(), player.getPosition().getyCoordinate()+30);
         scene.addEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
     }
 }

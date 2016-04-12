@@ -29,7 +29,7 @@ public class Point {
         return yCoordinate;
     }
 
-    public Point setxCoodrinate(int xCoodrinate) {
+    public Point setxCoordinate(int xCoodrinate) {
         return new Point(xCoodrinate, this.yCoordinate);
     }
 

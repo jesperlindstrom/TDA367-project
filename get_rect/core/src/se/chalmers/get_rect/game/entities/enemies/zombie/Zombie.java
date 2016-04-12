@@ -42,7 +42,7 @@ public class Zombie implements IModel {
 
 
     public void setX(int x) {
-        position = position.setxCoodrinate(x);
+        position = position.setxCoordinate(x);
         boundingBox.setPosition(position);
     }
 
