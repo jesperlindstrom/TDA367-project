@@ -27,7 +27,6 @@ public class MenuScene implements IGameComponent {
     @Override
     public void update(double delta) {
         position = camera.getPosition();
-
     }
 
     @Override
