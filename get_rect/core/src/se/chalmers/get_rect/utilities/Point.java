@@ -1,10 +1,8 @@
 package se.chalmers.get_rect.utilities;
 
-/**
- * Created by simsund on 2016-04-06.
- */
+
 public class Point {
-    private int xCoodrinate;
+    private int xCoordinate;
     private int yCoordinate;
 
     public Point() {
@@ -12,49 +10,60 @@ public class Point {
     }
 
     public Point(int x, int y) {
-        this.xCoodrinate = x;
+        this.xCoordinate = x;
         this.yCoordinate = y;
     }
 
     public Point(Point point) {
-        this.yCoordinate = point.getyCoordinate();
-        this.xCoodrinate = point.getxCoordinate();
+        this.yCoordinate = point.getY();
+        this.xCoordinate = point.getX();
     }
 
-    public int getxCoordinate() {
-        return xCoodrinate;
+
+    public int getX() {
+        return xCoordinate;
     }
 
-    public int getyCoordinate() {
+    public int getY() {
         return yCoordinate;
     }
+    /*
 
     public Point setxCoordinate(int xCoodrinate) {
-        return new Point(xCoodrinate, this.yCoordinate);
+*/
+    public Point setX(int xCoordinate) {
+
+        return new Point(xCoordinate, this.yCoordinate);
     }
 
-    public Point setyCoordinate(int yCoordinate) {
-        return new Point(this.xCoodrinate, yCoordinate);
+    public Point setY(int yCoordinate) {
+        return new Point(this.xCoordinate, yCoordinate);
     }
 
     public Point addX(int x) {
-        return new Point(xCoodrinate + x, yCoordinate);
+        return new Point(xCoordinate + x, yCoordinate);
     }
 
-    public Point addY(int x) {
-        return new Point(xCoodrinate + x, yCoordinate);
+    public Point addY(int y) {
+        return new Point(xCoordinate, yCoordinate + y);
     }
 
     public Point add(Point p2) {
-        return new Point(this.getxCoordinate() + p2.getxCoordinate(), this.getyCoordinate() + p2.getyCoordinate());
+
+        return new Point(this.getX() + p2.getX(), this.getY() + p2.getY());
+    }
+
+    public Point add(int x, int y) {
+        return new Point(this.getX() + x, this.getY() + y);
     }
 
     public Point subtract(Point p2) {
-        return new Point(this.getxCoordinate() - p2.getxCoordinate(), this.getyCoordinate() - p2.getyCoordinate());
+        return new Point(this.getX() - p2.getX(), this.getY() - p2.getY());
     }
 
     public Point subtract(int x, int y) {
-        return new Point(this.getxCoordinate() - x, this.getyCoordinate() - y);
+
+        return new Point(this.getX() - x, this.getY() - y);
     }
 
     public Point setPosition(int x, int y) {
@@ -65,4 +74,34 @@ public class Point {
         return new Point(point);
     }
 
+    public int deltaX(Point point){
+        return new Point(this.subtract(point)).getX();
+    }
+
+    public int deltaY(Point point){
+        return new Point(this.subtract(point)).getY();
+    }
+
+    public Point inverse(){
+        return new Point(-this.getX(),-this.getY());
+    }
+
+    public String toString(){
+        return ("X = " + getX() + " Y = " + getY());
+    }
+
+    public Point vector(Point p) {
+        return p.subtract(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && this.getClass().equals(obj.getClass())) {
+            Point p2 = (Point)obj;
+            if (this.getX() == p2.getX() && this.getY() == p2.getY()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

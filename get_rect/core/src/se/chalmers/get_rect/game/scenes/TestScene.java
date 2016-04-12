@@ -1,10 +1,13 @@
 package se.chalmers.get_rect.game.scenes;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
+import se.chalmers.get_rect.game.entities.npc.NpcFactory;
+import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.FrostbiteEngine;
@@ -29,7 +32,7 @@ public class TestScene implements IScene {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         entityManagerMap.get(layer.BACKGROUND).update(delta);
         entityManagerMap.get(layer.FOREGROUND).update(delta);
         entityManagerMap.get(layer.FOREGROUND_EFFECTS).update(delta);
@@ -39,12 +42,7 @@ public class TestScene implements IScene {
     @Override
     public void draw(IGraphicsAdapter graphics) {
 
-        // todo: move to some background thing
-        // graphics.draw("img/backgrounds/background.png", 0, 0);
-        float x = camera.getPosition().getxCoordinate();
-        float y = camera.getPosition().getyCoordinate();
-        System.out.println("Camera offset (" + x + ", " + y + ")");
-        graphics.draw("img/backgrounds/background.png", x, y, 1920, 1080, x, y);
+        graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
 
         entityManagerMap.get(layer.BACKGROUND).draw(graphics);
         entityManagerMap.get(layer.FOREGROUND).draw(graphics);
@@ -59,7 +57,6 @@ public class TestScene implements IScene {
         entityManagerMap.put(layer.FOREGROUND, new EntityManager());
         entityManagerMap.put(layer.FOREGROUND_EFFECTS, new EntityManager());
         physics = new FrostbiteEngine();
-
         physics.add(playerController);
 
         SceneLoader loader = new SceneLoader("test", playerController, rectangleFactory);
@@ -71,8 +68,13 @@ public class TestScene implements IScene {
         }
 
         playerController.setPosition(200, 90);
+        NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
+        for (int i = 1; i < 100; i++) {
+            SawmillController sm = sawmillFactory.make(1100+i*100, 50);
+            entityManagerMap.get(layer.FOREGROUND).add(sm);
+            physics.add(sm);
+        }
         entityManagerMap.get(layer.FOREGROUND).add(playerController);
-        playerController.setScene(this);
     }
 
     private void loadZombies(SceneLoader loader) throws FileNotFoundException {

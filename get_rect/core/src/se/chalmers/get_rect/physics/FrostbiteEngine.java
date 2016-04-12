@@ -24,7 +24,7 @@ public class FrostbiteEngine implements IPhysicsEngine {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         for (ISolidObject entity1 : entities) {
             for(ISolidObject entity2 : entities) {
                 if (!entity1.equals(entity2) && entity1.getBoundingBox().intersects(entity2.getBoundingBox())) {

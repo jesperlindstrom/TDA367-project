@@ -8,5 +8,6 @@ public interface IRectangleAdapter {
     float getHeight();
     float getX();
     float getY();
+    Point getPosition();
     void setPosition(Point newPoint);
 }

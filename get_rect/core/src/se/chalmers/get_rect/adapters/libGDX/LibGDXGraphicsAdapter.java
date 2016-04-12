@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -45,23 +46,28 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         offsetY = texture.getHeight() - offsetY - height;
         TextureRegion region = new TextureRegion(texture, (int)offsetX, (int)offsetY, (int)width, (int)height);
 
-        System.out.println("Cut texture to " + width + "x" + height + " at (" + offsetX + ", " + offsetY + ")");
         batch.draw(region, x, y, width, height);
     }
 
     @Override
+    public void draw(String img, Point point, float width, float height, Point offsetPoint) {
+        draw(img, point.getX(), point.getY(), width, height, offsetPoint.getX(), offsetPoint.getY());
+    }
+
+    @Override
     public void draw(String img, Point point) {
-        draw(img, point.getxCoordinate(), point.getyCoordinate());
+        draw(img, point.getX(), point.getY());
     }
 
     @Override
     public void draw(String img, Point point, float width, float height) {
-        draw(img, point.getxCoordinate(), point.getyCoordinate(), width, height);
+        draw(img, point.getX(), point.getY(), width, height);
     }
 
     @Override
     public void drawText(String text, Point point) {
-        font.draw(batch, text, point.getxCoordinate(), point.getyCoordinate());
+        font.setColor(Color.RED);
+        font.draw(batch, text, point.getX(), point.getY());
     }
 
     @Override

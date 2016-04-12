@@ -17,7 +17,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 
 public class PlayerController implements IPhysicsController {
-    private final Point MOVEMENT_SPEED;
+    public static final double MOVEMENT_SPEED = 30;
     private Player player;
     private IView view;
     private IInputAdapter input;
@@ -25,7 +25,6 @@ public class PlayerController implements IPhysicsController {
     private int speedY;
     private int ground;
     private int timeSinceJump = 0;
-    private float deltaInSec;
     private IScene scene;
     private ProjectileFactory projectileFactory;
     private boolean isLeft;
@@ -34,19 +33,17 @@ public class PlayerController implements IPhysicsController {
         this.player = player;
         this.view = view;
         this.input = input;
-        this.MOVEMENT_SPEED = new Point(3,0);
-        this.projectileFactory = projectileFactory;
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
+        Point velocity = deltaToVelocityX(delta);
         //Section for player walking function
-        //// TODO: 2016-04-06 Fix walking such as delta is in use.
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            player.setPosition(getPosition().subtract(MOVEMENT_SPEED));
+            player.setPosition(getPosition().subtract(velocity));
             player.setWalking(true);
         }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
-            player.setPosition(getPosition().add(MOVEMENT_SPEED));
+            player.setPosition(getPosition().add(velocity));
             player.setWalking(true);
         }else{
             player.setWalking(false);
@@ -54,11 +51,11 @@ public class PlayerController implements IPhysicsController {
         //Section for player jump function
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
-            setData(delta);
-            ground = getPosition().getyCoordinate();
+            setData();
+            ground = getPosition().getY();
         }
         if(player.getJumping()){
-            jump();
+            jump(delta);
         }
         if(input.isKeyPressed(IInputAdapter.Keys.RIGHTKEY)){
             isLeft = false;
@@ -66,8 +63,17 @@ public class PlayerController implements IPhysicsController {
         }
         if(input.isKeyPressed(IInputAdapter.Keys.LEFTKEY)){
             isLeft = true;
-            shootProjectile(player, isLeft );
+            shootProjectile(player, isLeft);
+
+            jump(delta);
+
+
         }
+    }
+
+    private Point deltaToVelocityX(double delta){
+        double velocity = (MOVEMENT_SPEED * delta);
+        return new Point((int)velocity,0);
     }
 
     @Override
@@ -82,25 +88,24 @@ public class PlayerController implements IPhysicsController {
 
     @Override
     public void onCollision(ISolidObject otherObject) {
-        // System.out.println("Player collided with " + otherObject.getClass());
+
     }
 
-    private void setData(long delta){
-        deltaInSec = (float)(delta / 10000000);
-        ground = getPosition().getyCoordinate();
+    private void setData(){
+        ground = getPosition().getY();
         yCoord = ground + 1;
-        speedY = 25;
+        speedY = 50;
 
     }
 
-    private void jump(){
+    private void jump(double delta){
         double g = .04;
-        speedY -= 1;
-        timeSinceJump += deltaInSec;
+        speedY -= 1*delta*10;
+        timeSinceJump += delta * 10; //delta to second
         player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
         // And test that the character is not on the ground again.
 
-        if (getPosition().getyCoordinate() <= ground)
+        if (getPosition().getY() <= ground)
         {
             player.setY(ground);
             timeSinceJump = 0;
@@ -121,12 +126,17 @@ public class PlayerController implements IPhysicsController {
         return player.getPosition();
     }
 
+    public boolean isJumping(){
+        return player.getJumping();
+    }
+
     public void setScene(IScene scene) {
         this.scene = scene;
     }
 
     private void shootProjectile(Player player, boolean isLeft) {
-        ProjectileController projectile = projectileFactory.make(player.getPosition().getxCoordinate(), player.getPosition().getyCoordinate()+30);
+        System.out.println("Player position " + player.getPosition());
+        ProjectileController projectile = projectileFactory.make(player.getPosition());
         scene.addEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
         projectile.setAngle(isLeft);
     }

@@ -23,18 +23,19 @@ public class ZombieController implements IPhysicsController {
         pace = (int)(Math.random()*5 + 1)-2;
     }
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         Point modelPosition = model.getPosition();
-        int x = modelPosition.getxCoordinate();
-        int y = modelPosition.getyCoordinate();
 
-        if (x-playerController.getPosition().getxCoordinate()+40 < 0) {
+        int x = modelPosition.getX();
+        int y = modelPosition.getY();
+
+        if (x-playerController.getPosition().getX()+40 < 0) {
             x = x + pace;
         } else {
             x = x - pace;
         }
 
-        if(y-playerController.getPosition().getyCoordinate() < 0) {
+        if(y-playerController.getPosition().getY() < 0) {
             y = y + pace;
         } else {
             y = y - pace;
@@ -55,7 +56,7 @@ public class ZombieController implements IPhysicsController {
 
     @Override
     public void onCollision(ISolidObject otherObject) {
-        // System.out.println("Zombie collided with " + otherObject.getClass());
+
     }
 
     @Override

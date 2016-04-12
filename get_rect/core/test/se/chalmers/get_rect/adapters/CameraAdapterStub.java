@@ -22,4 +22,9 @@ public class CameraAdapterStub implements ICameraAdapter {
     public void draw(IGraphicsAdapter g) {
 
     }
+
+    @Override
+    public Point getPosition() {
+        return null;
+    }
 }

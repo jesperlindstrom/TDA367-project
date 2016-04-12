@@ -13,23 +13,23 @@ public class GameManager implements IGame {
     private IRectangleFactoryAdapter rectangleFactory;
     private GameLog gameLog;
     private StateManager<IScreen> screenManager;
-    private ICameraAdapter camera;
+    private ICameraFactoryAdapter cameraFactory;
 
     /**
      *
      * @param graphics
      * @param input
      * @param assetManager
-     * @param camera
+     * @param cameraFactory
      * @param gameLoop
      * @param rectangleFactory
      */
-    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraAdapter camera, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
+    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;
         this.assetManager = assetManager;
-        this.camera = camera;
+        this.cameraFactory = cameraFactory;
         this.gameLoop = gameLoop;
         this.rectangleFactory = rectangleFactory;
 
@@ -60,7 +60,7 @@ public class GameManager implements IGame {
      * Tell current state to update
      * @param delta Time since last draw
      */
-    public void update(long delta) {
+    public void update(double delta) {
         if(input.isKeyPressed(IInputAdapter.Keys.S)) {
             exit();
         }
@@ -104,8 +104,8 @@ public class GameManager implements IGame {
     }
 
     @Override
-    public ICameraAdapter getCamera() {
-        return camera;
+    public ICameraFactoryAdapter getCameraFactory() {
+        return cameraFactory;
     }
 
     @Override

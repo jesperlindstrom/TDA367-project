@@ -5,5 +5,5 @@ import java.util.List;
 public interface IPhysicsEngine {
     void add(ISolidObject entity);
     void addAll(List<ISolidObject> entities);
-    void update(long delta);
+    void update(double delta);
 }

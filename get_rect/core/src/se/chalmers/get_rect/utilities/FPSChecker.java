@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.utilities;
 
+import com.badlogic.gdx.Game;
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 
@@ -16,54 +18,82 @@ import java.util.TimerTask;
  * private FPSChecker fps = new FPSChecker("[name of file]");
  *
  * and then add
- * fps.update();
+ * fps.update(delta);
+ * fps.draw(saker)
+ *
  * to the draw or update in the file.
  *
  */
 public class FPSChecker {
+    private int currentFPS;
     private int FPS;
-    private int AVG;
+    private int updates;
+    private int lowestFPS = 1000;
+    private static final int graphicsUpdatePerSecond = 4;
+    private double updatesInTime;
     private String name;
+    private boolean show;
+    private boolean showLowest;
+    private double delta;
+    private double timeForLowest;
 
     public FPSChecker(String name) {
-        timer();
         this.name = name;
-    }
-
-    private void timer() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println(name + " | Updates = " + FPS);
-                AVG = FPS*2;
-                FPS = 0;
-
-                timer();
-            }
-        }, 500);
-    }
-
-    public void update() {
-        FPS++;
-    }
-
-    public void update(IGraphicsAdapter graphicsAdapter) {
-        FPS++;
-        draw(graphicsAdapter);
-    }
-
-    public void update(IGraphicsAdapter graphicsAdapter, CameraManager camera) {
-        FPS++;
-        draw(graphicsAdapter, camera.getCenterPosition().add(new Point(-500, 700)));
+        showLowest = true;
     }
 
 
-    private void draw(IGraphicsAdapter graphics) {
-        graphics.drawText("FPS = " + AVG, 500, 500);
+    public void update(double delta) {
+        this.delta = delta;
+        currentFPS = (int)(10/delta);
+        updatesInTime += delta/10;
+        timeForLowest += delta/10;
+        updates++;
+
+
+
+        if (currentFPS < lowestFPS || timeForLowest > 10) {
+            lowestFPS = currentFPS;
+            timeForLowest = 0;
+        }
+
+        if (updatesInTime > 0.5) {
+            FPS = (int)(updates/updatesInTime);
+            updates = 0;
+            updatesInTime = 0;
+
+        }
+
     }
 
-    private void draw(IGraphicsAdapter graphics, Point point) {
-        graphics.drawText("FPS = " + AVG, point);
+    public void update(double delta, CameraManager camera) {
+        update(delta);
+    }
+
+
+    public void draw(IGraphicsAdapter graphics) {
+        draw(graphics, new Point(0, 0));
+    }
+
+    public void draw(IGraphicsAdapter graphics, Point point) {
+        point = point.addY(1095);
+
+        if (GameConfig.SHOW_FPS) {
+            point = point.addY(-20);
+            graphics.drawText("= " + FPS, point.addX(30));
+            graphics.drawText("FPS ", point);
+        }
+
+        if (GameConfig.SHOW_LOWESTFPS) {
+            point = point.addY(-20);
+            graphics.drawText("= " + lowestFPS, point.addX(80));
+            graphics.drawText("lowestFPS ", point);
+        }
+        if (GameConfig.SHOW_DELTA) {
+            point = point.addY(-20);
+            graphics.drawText("= " + delta, point.addX(50));
+            graphics.drawText("delta ", point);
+        }
+
     }
 }

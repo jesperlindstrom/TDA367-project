@@ -24,7 +24,7 @@ public class EntityManager {
         list.addAll(entities);
     }
 
-    public void update(long delta) {
+    public void update(double delta) {
         for (IController entity : list) {
             entity.update(delta);
         }

@@ -17,7 +17,7 @@ public class Projectile implements IModel {
         this.position = position;
         //this.damage = damage;
         //this.speed = speed;
-        this.boundingBox = rectangleFactory.make(position.getxCoordinate(), position.getyCoordinate(), WIDTH, HEIGHT);
+        this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
 
     }
     public IRectangleAdapter getBoundingBox() {return boundingBox;}

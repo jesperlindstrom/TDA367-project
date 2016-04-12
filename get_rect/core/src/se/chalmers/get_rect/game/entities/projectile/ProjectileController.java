@@ -15,7 +15,7 @@ public class ProjectileController implements IPhysicsController {
     private int speed;
     private int damage;
     private IScene scene;
-    private int q;
+    private int direction;
 
     public ProjectileController(Projectile projectile, IView view){
         this.projectile = projectile;
@@ -30,11 +30,11 @@ public class ProjectileController implements IPhysicsController {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(double delta) {
         Point modelPosition = projectile.getPosition();
-        int x = modelPosition.getxCoordinate();
-        int y = modelPosition.getyCoordinate();
-        x = x + q;
+        int x = modelPosition.getX();
+        int y = modelPosition.getY();
+        x = x + direction;
         projectile.setPosition(x, y);
     }
 
@@ -54,10 +54,10 @@ public class ProjectileController implements IPhysicsController {
     }
     public void setAngle(boolean isLeft){
         if (isLeft){
-            q = -10;
+            direction = -10;
         }
         else {
-            q = 10;
+            direction = 10;
         }
     }
 }

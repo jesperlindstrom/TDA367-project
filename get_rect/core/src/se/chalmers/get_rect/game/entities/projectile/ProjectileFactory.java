@@ -16,7 +16,11 @@ public class ProjectileFactory {
     }
 
     public ProjectileController make(int x, int y){
-        Projectile model = new Projectile(new Point(x, y), rectangleFactory);
+        Point point = new Point(x, y);
+        return make(point);
+    }
+    public ProjectileController make(Point point){
+        Projectile model = new Projectile(point, rectangleFactory);
         IView view = new ProjectileView(model);
 
         return new ProjectileController(model, view);
