@@ -3,6 +3,10 @@ package se.chalmers.get_rect.adapters;
 import se.chalmers.get_rect.utilities.Point;
 
 public class RectangleAdapterStub implements IRectangleAdapter {
+    public RectangleAdapterStub(float x, float y, float width, float height) {
+
+    }
+
     @Override
     public boolean intersects(IRectangleAdapter otherRectangle) {
         return false;
@@ -26,6 +30,11 @@ public class RectangleAdapterStub implements IRectangleAdapter {
     @Override
     public float getY() {
         return 0;
+    }
+
+    @Override
+    public Point getPosition() {
+        return null;
     }
 
     @Override
