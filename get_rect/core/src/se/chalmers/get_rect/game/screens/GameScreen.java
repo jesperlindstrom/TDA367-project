@@ -12,7 +12,7 @@ import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.menu.MenuScene;
 import se.chalmers.get_rect.states.StateManager;
-import se.chalmers.get_rect.utilities.FPSChecker;
+import se.chalmers.get_rect.utilities.sunnyDebugFeatures;
 
 
 public class GameScreen implements IScreen {
@@ -21,7 +21,7 @@ public class GameScreen implements IScreen {
     private IInputAdapter input;
     private MenuScene menu;
     private boolean menuActive;
-    private FPSChecker fps;
+    private sunnyDebugFeatures debugFeatures;
 
     public GameScreen(IGame game) {
         this.input = game.getInput();
@@ -55,7 +55,7 @@ public class GameScreen implements IScreen {
 
         menu = new MenuScene(input, cameraManager);
 
-        fps = new FPSChecker("GameScreen", playerController);
+        debugFeatures = new sunnyDebugFeatures(playerController);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class GameScreen implements IScreen {
      */
     @Override
     public void update(double delta) {
-        fps.update(delta);
+        debugFeatures.update(delta);
         if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
             menuActive = !menuActive;
         }
@@ -98,7 +98,7 @@ public class GameScreen implements IScreen {
             menu.draw(graphics);
         }
 
-        fps.draw(graphics, cameraManager.getPosition());
+        debugFeatures.draw(graphics, cameraManager.getPosition());
     }
 
 }
