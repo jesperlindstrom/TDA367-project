@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.math.Rectangle;
-import org.w3c.dom.css.Rect;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -53,6 +52,7 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
 
     @Override
     public void setPosition(Point newPoint) {
+
         rectangle.setX(newPoint.getX());
         rectangle.setY(newPoint.getY());
     }

@@ -33,7 +33,9 @@ public class Zombie implements IModel {
     }
 
     public int getX() {
+
         return position.getX();
+
     }
 
     public int getY() {

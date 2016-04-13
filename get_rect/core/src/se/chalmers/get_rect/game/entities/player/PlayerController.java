@@ -1,11 +1,17 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.projectile.Projectile;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileController;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.scenes.TestScene;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -20,11 +26,15 @@ public class PlayerController implements IPhysicsController {
     private int ground;
     private int timeSinceJump = 0;
     private IScene scene;
+    private ProjectileFactory projectileFactory;
+    private boolean isLeft;
 
-    public PlayerController(Player player, IView view, IInputAdapter input) {
+    public PlayerController(Player player, IView view, IInputAdapter input, ProjectileFactory projectileFactory) {
         this.player = player;
         this.view = view;
         this.input = input;
+        this.projectileFactory = projectileFactory;
+        this.scene = scene;
     }
 
     @Override
@@ -48,6 +58,17 @@ public class PlayerController implements IPhysicsController {
         }
         if(player.getJumping()){
             jump(delta);
+        }
+        if(input.isKeyPressed(IInputAdapter.Keys.RIGHTKEY)){
+            isLeft = false;
+            shootProjectile(player, isLeft);
+        }
+        if(input.isKeyPressed(IInputAdapter.Keys.LEFTKEY)){
+            isLeft = true;
+            shootProjectile(player, isLeft);
+
+            jump(delta);
+
 
         }
     }
@@ -115,4 +136,9 @@ public class PlayerController implements IPhysicsController {
         this.scene = scene;
     }
 
+    private void shootProjectile(Player player, boolean isLeft) {
+        ProjectileController projectile = projectileFactory.make(player.getPosition());
+        scene.addEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
+        projectile.setAngle(isLeft);
+    }
 }
