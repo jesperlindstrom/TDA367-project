@@ -2,7 +2,7 @@ package se.chalmers.get_rect.utilities;
 
 
 public class Point {
-    private int xCoodrinate;
+    private int xCoordinate;
     private int yCoordinate;
 
     public Point() {
@@ -10,40 +10,46 @@ public class Point {
     }
 
     public Point(int x, int y) {
-        this.xCoodrinate = x;
+        this.xCoordinate = x;
         this.yCoordinate = y;
     }
 
     public Point(Point point) {
         this.yCoordinate = point.getY();
-        this.xCoodrinate = point.getX();
+        this.xCoordinate = point.getX();
     }
 
+
     public int getX() {
-        return xCoodrinate;
+        return xCoordinate;
     }
 
     public int getY() {
         return yCoordinate;
     }
+    /*
 
-    public Point setX(int xCoodrinate) {
-        return new Point(xCoodrinate, this.yCoordinate);
+    public Point setxCoordinate(int xCoodrinate) {
+*/
+    public Point setX(int xCoordinate) {
+
+        return new Point(xCoordinate, this.yCoordinate);
     }
 
     public Point setY(int yCoordinate) {
-        return new Point(this.xCoodrinate, yCoordinate);
+        return new Point(this.xCoordinate, yCoordinate);
     }
 
     public Point addX(int x) {
-        return new Point(xCoodrinate + x, yCoordinate);
+        return new Point(xCoordinate + x, yCoordinate);
     }
 
     public Point addY(int y) {
-        return new Point(xCoodrinate, yCoordinate + y);
+        return new Point(xCoordinate, yCoordinate + y);
     }
 
     public Point add(Point p2) {
+
         return new Point(this.getX() + p2.getX(), this.getY() + p2.getY());
     }
 
@@ -56,6 +62,7 @@ public class Point {
     }
 
     public Point subtract(int x, int y) {
+
         return new Point(this.getX() - x, this.getY() - y);
     }
 

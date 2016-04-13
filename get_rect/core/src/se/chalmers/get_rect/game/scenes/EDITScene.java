@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IController;
+import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 public class EDITScene implements IScene {
@@ -33,7 +34,7 @@ public class EDITScene implements IScene {
     }
 
     @Override
-    public void addEntity(layer layer, IController controller) {
+    public void addEntity(layer layer, IPhysicsController physicsController) {
 
     }
 }

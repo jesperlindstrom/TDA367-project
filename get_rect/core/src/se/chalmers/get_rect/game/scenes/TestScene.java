@@ -5,7 +5,6 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
-import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
@@ -35,15 +34,18 @@ public class TestScene implements IScene {
     public void update(double delta) {
         entityManagerMap.get(layer.BACKGROUND).update(delta);
         entityManagerMap.get(layer.FOREGROUND).update(delta);
+        entityManagerMap.get(layer.FOREGROUND_EFFECTS).update(delta);
         physics.update(delta);
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+
         graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
 
         entityManagerMap.get(layer.BACKGROUND).draw(graphics);
         entityManagerMap.get(layer.FOREGROUND).draw(graphics);
+        entityManagerMap.get(layer.FOREGROUND_EFFECTS).draw(graphics);
 
     }
 
@@ -52,6 +54,7 @@ public class TestScene implements IScene {
         entityManagerMap = new HashMap<>();
         entityManagerMap.put(layer.BACKGROUND, new EntityManager());
         entityManagerMap.put(layer.FOREGROUND, new EntityManager());
+        entityManagerMap.put(layer.FOREGROUND_EFFECTS, new EntityManager());
         physics = new FrostbiteEngine();
         physics.add(playerController);
 
@@ -64,6 +67,7 @@ public class TestScene implements IScene {
         }
 
         playerController.setPosition(200, 90);
+        playerController.setScene(this);
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
 
         for (int i = 1; i < 2; i++) {
@@ -72,7 +76,6 @@ public class TestScene implements IScene {
             physics.add(sm);
         }
         entityManagerMap.get(layer.FOREGROUND).add(playerController);
-
     }
 
     private void loadZombies(SceneLoader loader) throws FileNotFoundException {
@@ -89,7 +92,7 @@ public class TestScene implements IScene {
 
 
     @Override
-    public void addEntity(layer layer, IController controller) {
-        entityManagerMap.get(layer).add(controller);
+    public void addEntity(layer layer, IPhysicsController physicsController) {;
+        entityManagerMap.get(layer).add(physicsController);
     }
 }

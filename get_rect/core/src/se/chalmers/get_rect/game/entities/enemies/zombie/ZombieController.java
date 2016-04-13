@@ -25,6 +25,7 @@ public class ZombieController implements IPhysicsController {
     @Override
     public void update(double delta) {
         Point modelPosition = model.getPosition();
+
         int x = modelPosition.getX();
         int y = modelPosition.getY();
 
