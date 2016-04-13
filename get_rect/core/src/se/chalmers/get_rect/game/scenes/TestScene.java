@@ -68,6 +68,7 @@ public class TestScene implements IScene {
         }
 
         playerController.setPosition(200, 90);
+        playerController.setScene(this);
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
         for (int i = 1; i < 100; i++) {
             SawmillController sm = sawmillFactory.make(1100+i*100, 50);

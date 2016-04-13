@@ -33,6 +33,8 @@ public class PlayerController implements IPhysicsController {
         this.player = player;
         this.view = view;
         this.input = input;
+        this.projectileFactory = projectileFactory;
+        this.scene = scene;
     }
 
     @Override
@@ -135,7 +137,6 @@ public class PlayerController implements IPhysicsController {
     }
 
     private void shootProjectile(Player player, boolean isLeft) {
-        System.out.println("Player position " + player.getPosition());
         ProjectileController projectile = projectileFactory.make(player.getPosition());
         scene.addEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
         projectile.setAngle(isLeft);
