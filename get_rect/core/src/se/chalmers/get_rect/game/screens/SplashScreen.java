@@ -42,7 +42,7 @@ public class SplashScreen implements IScreen {
     public void update(double delta) {
         if (assetManager.update() && !addedAssets) {
             addedAssets = true;
-            loadTextures();
+            loadAssets();
         }
 
         if (progressValue < 1.0) {
@@ -98,30 +98,11 @@ public class SplashScreen implements IScreen {
     }
 
     /**
-     * Method for loading textures
+     * Method for loading assets
      */
-    private void loadTextures() {
-        // TestScene
-        assetManager.loadTexture("img/backgrounds/background.png");
+    private void loadAssets() {
+        assetManager.loadTextureDir("img");
+        assetManager.loadSoundsDir("sounds");
 
-        // Player
-        assetManager.loadTexture("img/entities/player/playerTwoLeg.png");
-        assetManager.loadTexture("img/entities/player/playerOneLeg.png");
-
-        //Projectiles
-        assetManager.loadTexture("img/entities/projectiles/bullet.png");
-
-        // Enemies
-        assetManager.loadTexture("img/entities/zombies/zombie.png");
-        assetManager.loadTexture("img/entities/zombies/zombieOpen.png");
-
-        // NPCs
-        assetManager.loadTexture("img/entities/sawmill/sawmill-express.png");
-
-        // In-game menu
-        assetManager.loadTexture("img/backgrounds/menuShader.png");
-        assetManager.loadTexture("img/scenes/menuBackground.png");
-        assetManager.loadTexture("img/scenes/exitButton.png");
-        assetManager.loadTexture("img/scenes/continueButton.png");
     }
 }
