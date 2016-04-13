@@ -7,4 +7,7 @@ public interface IAssetManagerAdapter {
     boolean update();
     float getProgress();
     void dispose();
+    void loadTextureDir(String path);
+    void loadSoundsDir(String path);
+
 }
