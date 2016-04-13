@@ -11,12 +11,12 @@ import static org.junit.Assert.*;
 public class PointTest {
 
     private Point p;
-    private Point result;
+    private Point p2;
 
     @Before
     public void setup() {
         p = new Point(1, 2);
-        result = null;
+        p2 = null;
     }
 
     @Test
@@ -31,47 +31,47 @@ public class PointTest {
 
     @Test
     public void testSetX() throws Exception {
-        result = p.setX(3);
-        assertFalse(result.equals(p));
-        assertTrue(result.getX() == 3);
+        p2 = p.setX(3);
+        assertFalse(p2.equals(p));
+        assertTrue(p2.getX() == 3);
     }
 
     @Test
     public void testSetY() throws Exception {
-        result = p.setY(3);
-        assertFalse(result.equals(p));
-        assertTrue(result.getY() == 3);
+        p2 = p.setY(3);
+        assertFalse(p2.equals(p));
+        assertTrue(p2.getY() == 3);
     }
 
     @Test
     public void testAddX() throws Exception {
-        result = p.addX(3);
-        assertFalse(result.equals(p));
-        assertTrue(result.getX() == 4);
+        p2 = p.addX(3);
+        assertFalse(p2.equals(p));
+        assertTrue(p2.getX() == 4);
     }
 
     @Test
     public void testAddY() throws Exception {
-        result = p.addY(3);
-        assertFalse(result.equals(p));
-        assertTrue(result.getY() == 5);
+        p2 = p.addY(3);
+        assertFalse(p2.equals(p));
+        assertTrue(p2.getY() == 5);
     }
 
     @Test
     public void testAddInts() throws Exception {
-        result = p.add(3, 1);
-        assertFalse(result.equals(p));
-        assertTrue(result.getX() == p.getX() + 3);
-        assertTrue(result.getY() == p.getY() + 1);
+        p2 = p.add(3, 1);
+        assertFalse(p2.equals(p));
+        assertTrue(p2.getX() == p.getX() + 3);
+        assertTrue(p2.getY() == p.getY() + 1);
 
     }
 
     @Test
     public void testAddPoints() throws Exception {
-        result = p.add(p);
-        assertFalse(result.equals(p));
-        assertEquals(result.getX(), p.getX() + 1);
-        assertEquals(result.getY(), p.getY() + 2);
+        p2 = p.add(p);
+        assertFalse(p2.equals(p));
+        assertEquals(p2.getX(), p.getX() + 1);
+        assertEquals(p2.getY(), p.getY() + 2);
     }
 
     @Test
@@ -110,16 +110,30 @@ public class PointTest {
     }
 
     @Test
+    public void testDistanceTo() throws Exception {
+        p2 = new Point(1, 2);
+        assertEquals(p.distanceTo(p2), 0);
+
+        p2 = new Point(3, 4);
+        assertEquals(p.distanceTo(p2), 8);
+        assertEquals(p.distanceTo(p2), p2.distanceTo(p));
+
+        p2 = new Point(-4, 6);
+        assertEquals(p.distanceTo(p2), 41);
+        assertEquals(p2.distanceTo(p), 41);
+    }
+
+    @Test
     public void testToString() throws Exception {
 
     }
 
     @Test
     public void testEquals() throws Exception {
-        result = new Point(p);
-        assertTrue(result.equals(p));
-        result = result.addY(5);
-        assertFalse(result.equals(p));
+        p2 = new Point(p);
+        assertTrue(p2.equals(p));
+        p2 = p2.addY(5);
+        assertFalse(p2.equals(p));
     }
 
 }

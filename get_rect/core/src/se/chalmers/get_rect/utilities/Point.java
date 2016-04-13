@@ -94,6 +94,13 @@ public class Point {
         return p.subtract(this);
     }
 
+    public int distanceTo(Point p) {
+        int xSide = this.getX() - p.getX();
+        int ySide = this.getY() - p.getY();
+
+        return (xSide*xSide) + (ySide * ySide);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass().equals(obj.getClass())) {
@@ -104,4 +111,6 @@ public class Point {
         }
         return false;
     }
+
+
 }

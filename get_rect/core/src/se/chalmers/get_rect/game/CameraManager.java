@@ -21,16 +21,37 @@ public class CameraManager implements IGameComponent{
         cameraPos = new Point(500,300);
         playerPos = playerController.getPosition();
         //Fix cameras first position
-        cameraAdapter.translate(cameraPos);
+        cameraAdapter.translate(playerPos.add(cameraPos));
     }
 
     @Override
     public void update(double delta) {
         playerPos = playerController.getPosition();
-        moveX(delta);
-        moveY(delta);
+        changeCameraPosition(delta);
         cameraAdapter.update(delta);
 
+    }
+
+    private void changeCameraPosition(double delta) {
+        System.out.println("player pos = " + playerPos);
+        System.out.println("cameraPos = " + cameraPos);
+        System.out.println("distance = " + cameraPos.distanceTo(playerPos));
+
+        if(cameraPos.distanceTo(playerPos) > 300000) { //this distance is just outside the edge of the camera
+            focusOnPlayer();
+        } else {
+            moveX(delta);
+            moveY(delta);
+        }
+
+    }
+
+    /**
+     * this will instantly put the cameras centre at the player
+     */
+    private void focusOnPlayer() { // TODO: 16-04-13 Find a better name for this
+        cameraAdapter.translate(playerPos.subtract(cameraPos).addY(210));
+        cameraPos = cameraPos.add(playerPos.subtract(cameraPos).addY(210));
     }
 
     private void moveX(double delta) {
@@ -62,8 +83,6 @@ public class CameraManager implements IGameComponent{
         cameraAdapter.draw(graphics);
     }
 
-
-    //method needed for in-game menu
     public Point getCenterPosition() {
         return cameraPos;
     }

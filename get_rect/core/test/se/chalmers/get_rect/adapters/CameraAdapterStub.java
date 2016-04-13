@@ -14,9 +14,10 @@ public class CameraAdapterStub implements ICameraAdapter {
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
 
     }
+
 
     @Override
     public void draw(IGraphicsAdapter g) {

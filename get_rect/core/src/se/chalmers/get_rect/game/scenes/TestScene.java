@@ -51,6 +51,9 @@ public class TestScene implements IScene {
 
     @Override
     public void enteringState(String previousStateName) {
+        playerController.setPosition(1900, 110);
+        playerController.setScene(this);
+
         entityManagerMap = new HashMap<>();
         entityManagerMap.put(layer.BACKGROUND, new EntityManager());
         entityManagerMap.put(layer.FOREGROUND, new EntityManager());
@@ -65,9 +68,6 @@ public class TestScene implements IScene {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
-        playerController.setPosition(200, 90);
-        playerController.setScene(this);
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
 
         for (int i = 1; i < 2; i++) {

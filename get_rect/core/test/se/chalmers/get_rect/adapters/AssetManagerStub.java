@@ -30,4 +30,14 @@ public class AssetManagerStub implements IAssetManagerAdapter {
     public void dispose() {
 
     }
+
+    @Override
+    public void loadTextureDir(String path) {
+
+    }
+
+    @Override
+    public void loadSoundsDir(String path) {
+
+    }
 }
