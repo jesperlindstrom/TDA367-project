@@ -30,24 +30,28 @@ public class sunnyDebugFeatures {
 
 
     public void update(double delta) {
-        this.delta = delta;
         currentFPS = (int)(10/delta);
-        updatesInTime += delta/10;
-        timeForLowest += delta/10;
-        updates++;
+        this.delta = delta;
 
-        if (currentFPS < lowestFPS || timeForLowest > 10) {
-            lowestFPS = currentFPS;
-            timeForLowest = 0;
+        if (GameConfig.SHOW_FPS) {
+            updates++;
+            updatesInTime += delta/10;
+
+            if (updatesInTime > 0.5) {
+                FPS = (int)(updates/updatesInTime);
+                updates = 0;
+                updatesInTime = 0;
+            }
         }
 
-        if (updatesInTime > 0.5) {
-            FPS = (int)(updates/updatesInTime);
-            updates = 0;
-            updatesInTime = 0;
+        if (GameConfig.SHOW_LOWESTFPS) {
+            timeForLowest += delta/10;
 
+            if (currentFPS < lowestFPS || timeForLowest > 10) {
+                lowestFPS = currentFPS;
+                timeForLowest = 0;
+            }
         }
-
     }
 
     public void draw(IGraphicsAdapter graphics, Point point) {
@@ -73,7 +77,5 @@ public class sunnyDebugFeatures {
             point = point.addY(textOffset);
             graphics.drawText(playerController.getPosition().toString(), point);
         }
-
-
     }
 }
