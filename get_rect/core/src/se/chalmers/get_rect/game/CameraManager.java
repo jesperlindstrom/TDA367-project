@@ -33,15 +33,15 @@ public class CameraManager implements IGameComponent{
     }
 
     private void changeCameraPosition(double delta) {
-        System.out.println("player pos = " + playerPos);
-        System.out.println("cameraPos = " + cameraPos);
-        System.out.println("distance = " + cameraPos.distanceTo(playerPos));
-
         if(cameraPos.distanceTo(playerPos) > 300000) { //this distance is just outside the edge of the camera
+
             focusOnPlayer();
+
         } else {
+
             moveX(delta);
             moveY(delta);
+
         }
 
     }
