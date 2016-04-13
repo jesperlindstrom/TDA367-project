@@ -52,7 +52,7 @@ public class GameScreen implements IScreen {
 
         menu = new MenuScene(input, cameraManager);
 
-        fps = new FPSChecker("GameScreen", game);
+        fps = new FPSChecker("GameScreen", playerController);
     }
 
     @Override

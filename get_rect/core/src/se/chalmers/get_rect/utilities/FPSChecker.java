@@ -1,13 +1,10 @@
 package se.chalmers.get_rect.utilities;
 
-import com.badlogic.gdx.Game;
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 /**
  * This will print your updates or draws per second.
@@ -26,7 +23,8 @@ import java.util.TimerTask;
  *
  */
 public class FPSChecker {
-    private IGame game;
+
+    private PlayerController playerController;
     private int currentFPS;
     private int FPS;
     private int updates;
@@ -37,9 +35,9 @@ public class FPSChecker {
     private double delta;
     private double timeForLowest;
 
-    public FPSChecker(String name, IGame game) {
+    public FPSChecker(String name, PlayerController playerController) {
         this.name = name;
-        this.game = game;
+        this.playerController = playerController;
     }
 
 
@@ -96,9 +94,9 @@ public class FPSChecker {
             graphics.drawText("delta ", point);
         }
         // TODO: 2016-04-13 where is player pos? o.0
-        if (false) {
+        if (true) {
             point = point.addY(-20);
-            graphics.drawText("NO", point.addY(10));
+            graphics.drawText(playerController.getPosition().toString(), point.addY(10));
         }
 
 
