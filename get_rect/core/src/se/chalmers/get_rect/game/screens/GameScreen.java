@@ -20,7 +20,7 @@ public class GameScreen implements IScreen {
     private IInputAdapter input;
     private MenuScene menu;
     private boolean menuActive;
-    private FPSChecker fps = new FPSChecker("GameScreen");
+    private FPSChecker fps;
 
     public GameScreen(IGame game) {
         this.input = game.getInput();
@@ -51,6 +51,8 @@ public class GameScreen implements IScreen {
         menuActive = false;
 
         menu = new MenuScene(input, cameraManager);
+
+        fps = new FPSChecker("GameScreen", game);
     }
 
     @Override

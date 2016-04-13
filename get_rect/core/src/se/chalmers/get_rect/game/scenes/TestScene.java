@@ -8,7 +8,6 @@ import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
-import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.FrostbiteEngine;
@@ -66,8 +65,9 @@ public class TestScene implements IScene {
 
         playerController.setPosition(200, 90);
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
-        for (int i = 1; i < 100; i++) {
-            SawmillController sm = sawmillFactory.make(1100+i*100, 50);
+
+        for (int i = 1; i < 2; i++) {
+            IPhysicsController sm = sawmillFactory.make(1100+i*100, 50);
             entityManagerMap.get(layer.FOREGROUND).add(sm);
             physics.add(sm);
         }

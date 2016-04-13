@@ -18,7 +18,7 @@ public class CameraManager implements IGameComponent{
     public CameraManager(ICameraAdapter cameraAdapter, PlayerController playerController){
         this.cameraAdapter = cameraAdapter;
         this.playerController = playerController;
-        cameraPos = new Point(0,300);
+        cameraPos = new Point(500,300);
         playerPos = playerController.getPosition();
         //Fix cameras first position
         cameraAdapter.translate(cameraPos);
