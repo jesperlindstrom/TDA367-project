@@ -34,7 +34,7 @@ class Player implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, Side side) {
+    public void onCollision(IPhysicsObject otherObject, Side side, boolean isSolid) {
         // if otherObject is solid && side is bottom
             // canJump = true;
     }
@@ -80,6 +80,11 @@ class Player implements IPhysicsModel {
     @Override
     public Point getVelocity() {
         return velocity;
+    }
+
+    @Override
+    public boolean isSolid() {
+        return false;
     }
 
     public boolean isWalking(){

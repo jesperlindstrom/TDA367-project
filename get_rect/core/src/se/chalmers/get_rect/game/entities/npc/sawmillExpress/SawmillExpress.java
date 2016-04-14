@@ -32,7 +32,7 @@ public class SawmillExpress implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, Side collisionSide) {
+    public void onCollision(IPhysicsObject otherObject, Side collisionSide, boolean isSolid) {
 
     }
 
@@ -60,5 +60,10 @@ public class SawmillExpress implements IPhysicsModel {
 
     public Point getVelocity(){
         return new Point(0,velocity);
+    }
+
+    @Override
+    public boolean isSolid() {
+        return false;
     }
 }

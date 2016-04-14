@@ -21,7 +21,7 @@ public class FrostbiteEngine implements IPhysicsEngine {
     @Override
     public void update(double delta) {
         for (IPhysicsObject entity : entities) {
-            handleCollision(entity);
+            SolidCollision collision = checkCollision(entity);
             handleMovement(entity, delta);
             handleGravity(entity);
         }
@@ -31,12 +31,16 @@ public class FrostbiteEngine implements IPhysicsEngine {
      * Handle collision check between solid objects
      * @param entity
      */
-    private void handleCollision(IPhysicsObject entity) {
+    private SolidCollision checkCollision(IPhysicsObject entity) {
+        SolidCollision collision = new SolidCollision();
+
         for(IPhysicsObject otherEntity : entities) {
             if (!entity.equals(otherEntity)) {
-                checkCollision(entity, otherEntity);
+                checkCollision(entity, otherEntity, collision);
             }
         }
+
+        return collision;
     }
 
     /**
@@ -44,15 +48,23 @@ public class FrostbiteEngine implements IPhysicsEngine {
      * @param entity
      * @param otherEntity
      */
-    private void checkCollision(IPhysicsObject entity, IPhysicsObject otherEntity) {
+    private void checkCollision(IPhysicsObject entity, IPhysicsObject otherEntity, SolidCollision collision) {
         IRectangleAdapter rect1 = entity.getBoundingBox();
         IRectangleAdapter rect2 = otherEntity.getBoundingBox();
         Side side = rect1.intersects(rect2);
 
-        if (side != null) {
-            // Tell the entity it has collided with something
-            // and let the entity itself decide what to do.
-            entity.onCollision(otherEntity, side);
+        // We didn't collide with anything - do nothing.
+        if (side == null)
+            return;
+
+        boolean isSolid = otherEntity.isSolid();
+
+        // Tell the entity it has collided with another
+        entity.onCollision(otherEntity, side, isSolid);
+
+        // Register the collision if solid
+        if (isSolid) {
+            collision.set(side);
         }
     }
 
