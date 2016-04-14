@@ -8,4 +8,5 @@ public interface IModel {
     void setPosition(int x, int y);
     void setPosition(Point point);
     Point getPosition();
+    void update();
 }
