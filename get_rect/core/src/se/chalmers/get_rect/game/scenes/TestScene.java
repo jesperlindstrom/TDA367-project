@@ -6,9 +6,8 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
-import se.chalmers.get_rect.physics.FrostbiteEngine;
+import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -50,7 +49,7 @@ public class TestScene implements IScene {
         entityManagerMap = new HashMap<>();
         entityManagerMap.put(layer.BACKGROUND, new EntityManager());
         entityManagerMap.put(layer.FOREGROUND, new EntityManager());
-        physics = new FrostbiteEngine();
+        physics = new PhysicsEngine();
         physics.add(playerEntity.getModel());
 
         SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
