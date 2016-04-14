@@ -1,9 +1,7 @@
 package se.chalmers.get_rect.game.entities.npc;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillController;
 import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillExpress;
 import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillView;
 import se.chalmers.get_rect.utilities.Point;

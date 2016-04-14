@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.loaders;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieController;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieDataStore;
 import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieFactory;
 import se.chalmers.get_rect.game.entities.player.PlayerController;

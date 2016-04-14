@@ -3,15 +3,13 @@ package se.chalmers.get_rect.game.entities.player;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
-import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.entities.IPhysicsController;
+import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.ISolidObject;
-import se.chalmers.get_rect.utilities.Point;
 
 
-public class PlayerController implements IPhysicsController {
+public class PlayerController implements IController {
     private Player player;
     private IView view;
     private IInputAdapter input;
@@ -28,7 +26,7 @@ public class PlayerController implements IPhysicsController {
     }
 
     @Override
-    public void update(double delta) {
+    public void update() {
         //Section for player walking function
         player.move(input);
         //Section for player jump function
@@ -38,7 +36,7 @@ public class PlayerController implements IPhysicsController {
             ground = getPosition().getY();
         }
         if(player.getJumping()){
-            jump(delta);
+            jump();
 
         }
     }

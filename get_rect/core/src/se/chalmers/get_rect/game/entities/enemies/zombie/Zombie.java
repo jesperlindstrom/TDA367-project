@@ -3,10 +3,10 @@ package se.chalmers.get_rect.game.entities.enemies.zombie;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Zombie implements IModel {
+public class Zombie implements IPhysicsModel {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 100;
     private Point position;
