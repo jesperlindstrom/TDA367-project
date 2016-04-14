@@ -2,9 +2,9 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.PhysicsEntity;
-import se.chalmers.get_rect.utilities.Point;
 
 public class PlayerFactory {
     private PlayerController playerController;
@@ -23,8 +23,8 @@ public class PlayerFactory {
      * Maker for a new player.
      * @return
      */
-    public PhysicsEntity make(Point position) {
-        Player model = new Player(new Point(position), rectangleFactory);
+    public PhysicsEntity make() {
+        Player model = new Player(rectangleFactory);
         IView view = new PlayerView(model);
         playerController.setPlayer(model);
 

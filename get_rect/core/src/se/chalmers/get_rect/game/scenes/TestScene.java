@@ -17,13 +17,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestScene implements IScene {
-    private PhysicsEntity playerEntity;
+    private IPhysicsEntity playerEntity;
     private IRectangleFactoryAdapter rectangleFactory;
     private IPhysicsEngine physics;
     private CameraManager camera;
     private Map<layer, EntityManager> entityManagerMap;
 
-    public TestScene(PhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
+    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
@@ -62,6 +62,7 @@ public class TestScene implements IScene {
         }
 
         playerEntity.getModel().setPosition(new Point(200, 90));
+
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
 
         for (int i = 1; i < 100; i++) {

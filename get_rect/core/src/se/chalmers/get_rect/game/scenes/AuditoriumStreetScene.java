@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieFactory;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 
-
+/*
 public class AuditoriumStreetScene implements IScene {
     private PlayerController player;
 
@@ -41,3 +41,4 @@ public class AuditoriumStreetScene implements IScene {
 
     }
 }
+*/

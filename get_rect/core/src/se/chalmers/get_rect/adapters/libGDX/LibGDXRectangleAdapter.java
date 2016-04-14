@@ -78,7 +78,7 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
             return COLLISION_SIDE.LEFT;
         }
 
-        return COLLISION_SIDE.NO_COLLISION
+        return COLLISION_SIDE.NO_COLLISION;
     }
 
 }

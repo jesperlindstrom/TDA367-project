@@ -7,13 +7,9 @@ import se.chalmers.get_rect.game.scenes.IScene;
 
 public class PlayerController implements IController {
     private Player player;
-    private IView view;
     private IInputAdapter input;
-    private IScene scene;
 
-    public PlayerController(Player player, IView view, IInputAdapter input) {
-        this.player = player;
-        this.view = view;
+    public PlayerController(IInputAdapter input) {
         this.input = input;
     }
 
@@ -21,11 +17,6 @@ public class PlayerController implements IController {
     public void update() {
         //Section for player walking function
         player.move(input);
-    }
-
-
-    public void setScene(IScene scene) {
-        this.scene = scene;
     }
 
     public void setPlayer(Player player){

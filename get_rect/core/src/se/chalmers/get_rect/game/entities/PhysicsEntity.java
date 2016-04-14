@@ -5,6 +5,7 @@ public class PhysicsEntity extends Entity implements IPhysicsEntity {
 
     public PhysicsEntity(IPhysicsModel model, IView view) {
         super(model, view);
+        this.model = model;
     }
 
     @Override
