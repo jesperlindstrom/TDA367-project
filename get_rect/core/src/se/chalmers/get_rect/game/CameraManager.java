@@ -5,28 +5,29 @@ import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 
 public class CameraManager implements IGameComponent{
 
     private ICameraAdapter cameraAdapter;
-    private IModel player;
+    private IPhysicsModel model;
     private Point playerPos;
     private Point cameraPos;
 
 
-    public CameraManager(ICameraAdapter cameraAdapter, IModel player){
+    public CameraManager(ICameraAdapter cameraAdapter, IPhysicsModel model){
         this.cameraAdapter = cameraAdapter;
-        this.player = player;
+        this.model = model;
         cameraPos = new Point(0,300);
-        playerPos = player.getPosition();
+        playerPos = model.getPosition();
+        //Fix cameras first position
         cameraAdapter.translate(cameraPos);
     }
 
     @Override
     public void update(double delta) {
-        playerPos = player.getPosition();
+        playerPos = model.getPosition();
         moveX(delta);
         moveY(delta);
         cameraAdapter.update(delta);
@@ -38,13 +39,13 @@ public class CameraManager implements IGameComponent{
     }
 
     private void moveY(double delta){
-        if(playerPos.getX() != player.getPosition().getX()){
+        if(playerPos.getY() != model.getPosition().getY()){
             move(cameraPos.deltaY(playerPos), 100, new Point(0,3));
         }
     }
 
     private Point deltaToVelocityX(double delta){
-        int velocity = (int)(-30 * delta);
+        int velocity = (int)(model.getVelocity().getX() * delta);
         return new Point(velocity,0);
     }
 
