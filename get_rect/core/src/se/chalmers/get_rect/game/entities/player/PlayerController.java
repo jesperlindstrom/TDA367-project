@@ -7,11 +7,9 @@ import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.ISolidObject;
-import se.chalmers.get_rect.utilities.Point;
 
 
-public class PlayerController implements IController, ISolidObject {
-    public static final double MOVEMENT_SPEED = 30;
+public class PlayerController implements IController {
     private Player player;
     private IView view;
     private IInputAdapter input;
@@ -28,7 +26,7 @@ public class PlayerController implements IController, ISolidObject {
     }
 
     @Override
-    public void update(double delta) {
+    public void update() {
         //Section for player walking function
         player.move(input);
         //Section for player jump function
@@ -38,7 +36,7 @@ public class PlayerController implements IController, ISolidObject {
             ground = getPosition().getY();
         }
         if(player.getJumping()){
-            jump(delta);
+            jump();
 
         }
     }
@@ -81,28 +79,12 @@ public class PlayerController implements IController, ISolidObject {
     }
 
 
-    public void setPosition(int x, int y){
-        player.setPosition(x, y);
-    }
-
-    public void setPosition(Point position){
-        player.setPosition(position);
-    }
-
-    public Point getPosition(){
-        return player.getPosition();
-    }
-
-    public boolean isJumping(){
-        return player.getJumping();
+    public IModel getModel(){
+        return player;
     }
 
     public void setScene(IScene scene) {
         this.scene = scene;
-    }
-
-    public Point getVelocity(){
-        return player.getMoveVelocity();
     }
 
 }
