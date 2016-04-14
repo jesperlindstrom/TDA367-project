@@ -54,7 +54,7 @@ public class TestScene implements IScene {
         entityManagerMap.put(layer.BACKGROUND, new EntityManager());
         entityManagerMap.put(layer.FOREGROUND, new EntityManager());
         physics = new FrostbiteEngine();
-        physics.add(playerController);
+        physics.add(playerController.getModel());
 
         SceneLoader loader = new SceneLoader("test", playerController, rectangleFactory);
 
