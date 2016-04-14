@@ -4,6 +4,7 @@ package se.chalmers.get_rect.game.entities.enemies.zombie;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Zombie implements IPhysicsModel {
@@ -31,6 +32,11 @@ public class Zombie implements IPhysicsModel {
 
     public IRectangleAdapter getBoundingBox() {
         return boundingBox;
+    }
+
+    @Override
+    public void onCollision(ISolidObject otherObject) {
+
     }
 
     public int getX() {
@@ -68,27 +74,18 @@ public class Zombie implements IPhysicsModel {
         return position;
     }
 
-    public int getDamage(){
-        return damage;
+    @Override
+    public void setVelocity(Point velocity) {
+
     }
 
-    public int getHealth(){
-        return health;
-    }
+    @Override
+    public void update() {
 
-    public int getCurrentHealth(){
-        return currentHealth;
-    }
-
-    public boolean isWalking() {
-        return walking;
     }
 
     public Point getVelocity(){
         return new Point((int)velocity, 0);
     }
 
-    public void setVelocity(double velocity) {
-        this.velocity = velocity;
-    }
 }
