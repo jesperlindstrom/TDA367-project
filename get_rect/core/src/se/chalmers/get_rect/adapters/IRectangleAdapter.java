@@ -1,17 +1,14 @@
 package se.chalmers.get_rect.adapters;
 
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 
 public interface IRectangleAdapter {
-    enum COLLISION_SIDE { BOTTOM, LEFT, RIGHT, TOP, NO_COLLISION
-    }
-
-    boolean intersects(IRectangleAdapter otherRectangle);
     float getWidth();
     float getHeight();
     float getX();
     float getY();
     Point getPosition();
     void setPosition(Point newPoint);
-    COLLISION_SIDE getCollisionSide(IRectangleAdapter rectangle);
+    Side intersects(IRectangleAdapter rectangle);
 }

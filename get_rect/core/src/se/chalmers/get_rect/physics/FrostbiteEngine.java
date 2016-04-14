@@ -1,57 +1,82 @@
 package se.chalmers.get_rect.physics;
 
+import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FrostbiteEngine implements IPhysicsEngine {
-    private List<ISolidObject> entities;
+    private List<IPhysicsObject> entities;
 
     public FrostbiteEngine() {
         entities = new ArrayList<>();
     }
 
-    public FrostbiteEngine(List<ISolidObject> entities){
-        this.entities = entities;
-    }
-
-    public void add(ISolidObject entity) {
+    public void add(IPhysicsObject entity) {
         entities.add(entity);
     }
 
     @Override
     public void update(double delta) {
-        for (ISolidObject entity1 : entities) {
-            for(ISolidObject entity2 : entities) {
-                if (!entity1.equals(entity2) && entity1.getBoundingBox().intersects(entity2.getBoundingBox())) {
-                    entity1.onCollision(entity2);
-                }
-            }
-
-            entity1.setPosition(move(delta, entity1.getPosition(), entity1.getVelocity()));
+        for (IPhysicsObject entity : entities) {
+            handleCollision(entity);
+            handleMovement(entity, delta);
+            handleGravity(entity);
         }
     }
 
     /**
-     * Method to calculate new position when entity moves
-     * @param delta
-     * @param position
-     * @param velocity
-     * @return
+     * Handle collision check between solid objects
+     * @param entity
      */
-    @Override
-    public Point move(double delta, Point position, Point velocity){
-        return position.add(deltaToVelocity(delta, velocity));
+    private void handleCollision(IPhysicsObject entity) {
+        for(IPhysicsObject otherEntity : entities) {
+            if (!entity.equals(otherEntity)) {
+                checkCollision(entity, otherEntity);
+            }
+        }
     }
 
     /**
-     * Calculate the actual movement if FPS drop
-     * @param delta
-     * @param velocity
-     * @return
+     * Check if an entity collides with another and tell the first entity.
+     * @param entity
+     * @param otherEntity
      */
-    private Point deltaToVelocity(double delta, Point velocity){
-        return velocity.multiply(delta);
+    private void checkCollision(IPhysicsObject entity, IPhysicsObject otherEntity) {
+        IRectangleAdapter rect1 = entity.getBoundingBox();
+        IRectangleAdapter rect2 = otherEntity.getBoundingBox();
+        Side side = rect1.intersects(rect2);
+
+        if (side != null) {
+            // Tell the entity it has collided with something
+            // and let the entity itself decide what to do.
+            entity.onCollision(otherEntity, side);
+        }
+    }
+
+    /**
+     * Move the entity if nothing is in the way
+     * @param entity
+     * @param delta
+     */
+    private void handleMovement(IPhysicsObject entity, double delta) {
+        // Get velocity
+        Point velocity = entity.getVelocity().multiply(delta);
+
+        // Calculate the new position
+        Point newPosition = entity.getPosition().add(velocity);
+
+        // Set the position
+        entity.setPosition(newPosition);
+    }
+
+    /**
+     * Apply gravity to the entity velocity
+     * @param entity
+     */
+    private void handleGravity(IPhysicsObject entity) {
+
     }
 }

@@ -1,21 +1,19 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-import org.w3c.dom.css.Rect;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 
 public class LibGDXRectangleAdapter implements IRectangleAdapter {
     private Rectangle rectangle;
 
     public LibGDXRectangleAdapter(float x, float y, float width, float height) {
         rectangle = new Rectangle(x, y, width, height);
-
     }
 
-    @Override
-    public boolean intersects(IRectangleAdapter rect) {
+    private Rectangle getRealRectangle(IRectangleAdapter rect) {
         Rectangle otherRectangle;
 
         // Only create new rectangles if there isn't one already
@@ -25,7 +23,33 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
             otherRectangle = new Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
         }
 
-        return rectangle.overlaps(otherRectangle);
+        return otherRectangle;
+    }
+
+    /**
+     * Check whether this rectangle intersects another
+     * @param rect Another rectangle
+     * @return The side of the intersection, or null the rectangles don't overlap.
+     */
+    @Override
+    public Side intersects(IRectangleAdapter rect) {
+        Rectangle otherRectangle = getRealRectangle(rect);
+        Rectangle intersection = new Rectangle();
+        Intersector.intersectRectangles(rectangle, otherRectangle, intersection);
+
+        if (intersection.x > rectangle.x)
+            return Side.RIGHT;
+
+        if (intersection.y > rectangle.y)
+            return Side.TOP;
+
+        if (intersection.x + intersection.width < rectangle.x + rectangle.width)
+            return Side.LEFT;
+
+        if (intersection.y + intersection.height < intersection.y + intersection.height)
+            return Side.BOTTOM;
+
+        return null;
     }
 
     @Override
@@ -63,22 +87,4 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
     public Rectangle getRectangle() {
         return rectangle;
     }
-
-    public COLLISION_SIDE getCollisionSide(IRectangleAdapter rectangle) {
-        if (this.getY() + this.getHeight() == rectangle.getY()) {
-            return COLLISION_SIDE.TOP;
-        }
-        if (this.getY() == rectangle.getY() + rectangle.getHeight()) {
-            return COLLISION_SIDE.BOTTOM;
-        }
-        if (this.getX() + this.getWidth() == rectangle.getX()) {
-            return COLLISION_SIDE.RIGHT;
-        }
-        if (this.getX() == rectangle.getX() + rectangle.getWidth()) {
-            return COLLISION_SIDE.LEFT;
-        }
-
-        return COLLISION_SIDE.NO_COLLISION
-    }
-
 }
