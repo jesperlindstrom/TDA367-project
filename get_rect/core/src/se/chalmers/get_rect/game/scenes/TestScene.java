@@ -4,36 +4,35 @@ import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
-import se.chalmers.get_rect.game.entities.EntityManager;
-import se.chalmers.get_rect.game.entities.IController;
+import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.FrostbiteEngine;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
+import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestScene implements IScene {
-
-    private PlayerController playerController;
+    private PhysicsEntity playerEntity;
     private IRectangleFactoryAdapter rectangleFactory;
     private IPhysicsEngine physics;
     private CameraManager camera;
     private Map<layer, EntityManager> entityManagerMap;
 
-    public TestScene(PlayerController playerController, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
-        this.playerController = playerController;
+    public TestScene(PhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
+        this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
     }
 
     @Override
     public void update(double delta) {
-        entityManagerMap.get(layer.BACKGROUND).update(delta);
-        entityManagerMap.get(layer.FOREGROUND).update(delta);
+        entityManagerMap.get(layer.BACKGROUND).update();
+        entityManagerMap.get(layer.FOREGROUND).update();
         physics.update(delta);
     }
 
@@ -52,9 +51,9 @@ public class TestScene implements IScene {
         entityManagerMap.put(layer.BACKGROUND, new EntityManager());
         entityManagerMap.put(layer.FOREGROUND, new EntityManager());
         physics = new FrostbiteEngine();
-        physics.add(playerController.getModel());
+        physics.add(playerEntity.getModel());
 
-        SceneLoader loader = new SceneLoader("test", playerController, rectangleFactory);
+        SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
 
         try {
             loadZombies(loader);
@@ -62,21 +61,22 @@ public class TestScene implements IScene {
             System.out.println(e.getMessage());
         }
 
-        playerController.setPosition(200, 90);
+        playerEntity.getModel().setPosition(new Point(200, 90));
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
-        for (int i = 1; i < 100; i++) {
-            SawmillController sm = sawmillFactory.make(1100+i*100, 50);
-            entityManagerMap.get(layer.FOREGROUND).add(sm);
-            physics.add(sm);
-        }
-        entityManagerMap.get(layer.FOREGROUND).add(playerController);
 
+        for (int i = 1; i < 100; i++) {
+            PhysicsEntity sm = sawmillFactory.make(1100+i*100, 50);
+            entityManagerMap.get(layer.FOREGROUND).add(sm);
+            physics.add(sm.getModel());
+        }
+
+        entityManagerMap.get(layer.FOREGROUND).add(playerEntity);
     }
 
     private void loadZombies(SceneLoader loader) throws FileNotFoundException {
-        for (IPhysicsController entity : loader.getZombies()) {
+        for (PhysicsEntity entity : loader.getZombies()) {
             entityManagerMap.get(layer.FOREGROUND).add(entity);
-            physics.add(entity);
+            physics.add(entity.getModel());
         }
     }
 
@@ -87,7 +87,13 @@ public class TestScene implements IScene {
 
 
     @Override
-    public void addEntity(layer layer, IController controller) {
-        entityManagerMap.get(layer).add(controller);
+    public void addEntity(layer layer, IEntity entity) {
+        entityManagerMap.get(layer).add(entity);
+    }
+
+    @Override
+    public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
+        entityManagerMap.get(layer).add(entity);
+        physics.add(entity.getModel());
     }
 }
