@@ -1,13 +1,13 @@
-package se.chalmers.get_rect.game.entities.enemies.zombie;
+package se.chalmers.get_rect.game.entities.npc;
 
 import se.chalmers.get_rect.utilities.Point;
 
-public class ZombieDataStore {
-
+public class NpcDataStore {
     private int x;
     private int y;
 
     public Point getPosition() {
         return new Point(x ,y);
     }
+
 }

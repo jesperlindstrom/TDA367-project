@@ -17,7 +17,7 @@ public class NpcFactory {
 
     }
     public IPhysicsEntity make(NpcDataStore dataStore) {
-        return make();
+        return make(dataStore.getPosition());
     }
 
     public IPhysicsEntity make(Point point) {

@@ -61,4 +61,8 @@ public class PlayerController implements IController {
         this.scene = scene;
     }
 
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+
 }
