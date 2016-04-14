@@ -10,5 +10,4 @@ public interface ISolidObject {
     Point getPosition();
     void setVelocity(Point velocity);
     Point getVelocity();
-
 }
