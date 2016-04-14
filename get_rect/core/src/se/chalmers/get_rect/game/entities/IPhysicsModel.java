@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.entities;
 
-import se.chalmers.get_rect.physics.ISolidObject;
+import se.chalmers.get_rect.physics.IPhysicsObject;
 
-public interface IPhysicsModel extends ISolidObject, IModel {
+public interface IPhysicsModel extends IPhysicsObject, IModel {
 }

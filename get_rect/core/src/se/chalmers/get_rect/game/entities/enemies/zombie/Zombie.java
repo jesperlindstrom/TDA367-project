@@ -5,7 +5,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.physics.ISolidObject;
+import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Zombie implements IPhysicsModel {
@@ -34,7 +34,7 @@ public class Zombie implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(ISolidObject otherObject) {
+    public void onCollision(IPhysicsObject otherObject) {
 
     }
 

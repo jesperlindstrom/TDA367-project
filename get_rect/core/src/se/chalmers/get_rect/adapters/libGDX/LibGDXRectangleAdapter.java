@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 
 public class LibGDXRectangleAdapter implements IRectangleAdapter {
     private Rectangle rectangle;
@@ -31,22 +32,22 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
      * @return The side of the intersection, or null the rectangles don't overlap.
      */
     @Override
-    public IntersectionSide intersects(IRectangleAdapter rect) {
+    public Side intersects(IRectangleAdapter rect) {
         Rectangle otherRectangle = getRealRectangle(rect);
         Rectangle intersection = new Rectangle();
         Intersector.intersectRectangles(rectangle, otherRectangle, intersection);
 
         if (intersection.x > rectangle.x)
-            return IntersectionSide.RIGHT;
+            return Side.RIGHT;
 
         if (intersection.y > rectangle.y)
-            return IntersectionSide.TOP;
+            return Side.TOP;
 
         if (intersection.x + intersection.width < rectangle.x + rectangle.width)
-            return IntersectionSide.LEFT;
+            return Side.LEFT;
 
         if (intersection.y + intersection.height < intersection.y + intersection.height)
-            return IntersectionSide.BOTTOM;
+            return Side.BOTTOM;
 
         return null;
     }

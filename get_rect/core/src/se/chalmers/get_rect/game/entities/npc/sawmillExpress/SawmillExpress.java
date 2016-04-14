@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.npc.sawmillExpress;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.physics.ISolidObject;
+import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SawmillExpress implements IPhysicsModel {
@@ -31,7 +31,7 @@ public class SawmillExpress implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(ISolidObject otherObject) {
+    public void onCollision(IPhysicsObject otherObject) {
 
     }
 

@@ -3,10 +3,10 @@ package se.chalmers.get_rect.physics;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.RectangleAdapterStub;
 
-public class SolidObjectMock implements ISolidObject {
+public class PhysicsObjectMock implements IPhysicsObject {
     private IRectangleAdapter boundingBox;
 
-    public SolidObjectMock() {
+    public PhysicsObjectMock() {
 
     }
 
@@ -20,7 +20,7 @@ public class SolidObjectMock implements ISolidObject {
     }
 
     @Override
-    public void onCollision(ISolidObject otherObject) {
+    public void onCollision(IPhysicsObject otherObject) {
 
     }
 }

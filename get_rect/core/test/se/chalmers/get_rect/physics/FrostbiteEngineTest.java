@@ -7,8 +7,6 @@ import se.chalmers.get_rect.adapters.RectangleAdapterStub;
 
 import static org.mockito.Mockito.*;
 
-import static org.junit.Assert.*;
-
 public class FrostbiteEngineTest {
     private IPhysicsEngine engine;
 
@@ -19,8 +17,8 @@ public class FrostbiteEngineTest {
 
     @Test
     public void testSuccessfulCollision() {
-        SolidObjectMock object1 = mock(SolidObjectMock.class);
-        SolidObjectMock object2 = mock(SolidObjectMock.class);
+        PhysicsObjectMock object1 = mock(PhysicsObjectMock.class);
+        PhysicsObjectMock object2 = mock(PhysicsObjectMock.class);
 
         RectangleAdapterStub rect1 = mock(RectangleAdapterStub.class);
         RectangleAdapterStub rect2 = mock(RectangleAdapterStub.class);
@@ -46,8 +44,8 @@ public class FrostbiteEngineTest {
 
     @Test
     public void testFailedCollision() {
-        SolidObjectMock object1 = mock(SolidObjectMock.class);
-        SolidObjectMock object2 = mock(SolidObjectMock.class);
+        PhysicsObjectMock object1 = mock(PhysicsObjectMock.class);
+        PhysicsObjectMock object2 = mock(PhysicsObjectMock.class);
 
         RectangleAdapterStub rect1 = mock(RectangleAdapterStub.class);
         RectangleAdapterStub rect2 = mock(RectangleAdapterStub.class);
