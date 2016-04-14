@@ -3,14 +3,14 @@ package se.chalmers.get_rect.game.entities.player;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
-import se.chalmers.get_rect.game.entities.IPhysicsController;
+import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
 
-public class PlayerController implements IPhysicsController {
+public class PlayerController implements IController, ISolidObject {
     public static final double MOVEMENT_SPEED = 30;
     private Player player;
     private IView view;
