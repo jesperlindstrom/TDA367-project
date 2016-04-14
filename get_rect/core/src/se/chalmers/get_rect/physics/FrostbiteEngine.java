@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.physics;
 
-import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.ArrayList;
@@ -8,8 +7,7 @@ import java.util.List;
 
 public class FrostbiteEngine implements IPhysicsEngine {
     private List<ISolidObject> entities;
-    private int tmpCount = 0;
-    private int getTmpCount = 0;
+
 
     public FrostbiteEngine() {
         entities = new ArrayList<>();
