@@ -19,24 +19,31 @@ public class FrostbiteEngine implements IPhysicsEngine {
 
     @Override
     public void update(double delta) {
-        for (ISolidObject entity1 : entities) {
-            for(ISolidObject entity2 : entities) {
-                handleCollision(entity1, entity2);
-            }
-
-            handleMovement(entity1, delta);
-            handleGravity(entity1);
+        for (ISolidObject entity : entities) {
+            handleCollision(entity);
+            handleMovement(entity, delta);
+            handleGravity(entity);
         }
     }
 
     /**
-     *
+     * Handle collision check between solid objects
+     * @param entity 
+     */
+    private void handleCollision(ISolidObject entity) {
+        for(ISolidObject otherEntity : entities) {
+            if (!entity.equals(otherEntity)) {
+                checkCollision(entity, otherEntity);
+            }
+        }
+    }
+
+    /**
+     * Check if an entity collides with another and tell the first entity.
      * @param entity
      * @param otherEntity
      */
-    private void handleCollision(ISolidObject entity, ISolidObject otherEntity) {
-        if (entity.equals(otherEntity)) return;
-
+    private void checkCollision(ISolidObject entity, ISolidObject otherEntity) {
         IRectangleAdapter rect1 = entity.getBoundingBox();
         IRectangleAdapter rect2 = otherEntity.getBoundingBox();
         IRectangleAdapter.IntersectionSide side = rect1.intersects(rect2);
@@ -48,6 +55,11 @@ public class FrostbiteEngine implements IPhysicsEngine {
         }
     }
 
+    /**
+     * Move the entity if nothing is in the way
+     * @param entity
+     * @param delta
+     */
     private void handleMovement(ISolidObject entity, double delta) {
         // Get velocity
         Point velocity = entity.getVelocity().multiply(delta);
@@ -59,19 +71,11 @@ public class FrostbiteEngine implements IPhysicsEngine {
         entity.setPosition(newPosition);
     }
 
-    private void handleGravity(ISolidObject entity1) {
-
-    }
-
     /**
-     * Method to calculate new position when entity moves
-     * @param delta
-     * @param position
-     * @param velocity
-     * @return
+     * Apply gravity to the entity velocity
+     * @param entity
      */
-    @Override
-    public Point move(double delta, Point position, Point velocity){
-        return position.add(deltaToVelocity(delta, velocity));
+    private void handleGravity(ISolidObject entity) {
+
     }
 }
