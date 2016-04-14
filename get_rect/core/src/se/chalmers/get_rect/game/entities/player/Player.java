@@ -4,10 +4,11 @@ import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
-class Player implements IModel {
+class Player implements IPhysicsModel {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 100;
     private Point position;
@@ -17,8 +18,7 @@ class Player implements IModel {
     private int level;
     private boolean isWalking;
     private boolean isJumping;
-    private int moveVelocity;
-    private int jumpVelocity;
+    private Point velocity;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -33,22 +33,16 @@ class Player implements IModel {
         this.level = 1;
         this.isWalking = false;
         this.isJumping = false;
-        this.moveVelocity = 30;
-        this.jumpVelocity = 50;
+        this.velocity = new Point(0,0);
     }
 
     public IRectangleAdapter getBoundingBox() {
         return boundingBox;
     }
 
-    /**
-     * Setter for player x & y coordinates
-     * @param xCoordinate
-     * @param yCoordinate
-     */
-    public void setPosition(int xCoordinate, int yCoordinate){
-        position = position.setPosition(xCoordinate, yCoordinate);
-        boundingBox.setPosition(position);
+    @Override
+    public void onCollision(ISolidObject otherObject) {
+
     }
 
     @Override
@@ -62,22 +56,19 @@ class Player implements IModel {
         return position;
     }
 
-    /**
-     * Setter for player xCoordinate
-     * @param x
-     */
-    public void setX(int x) {
-        position = position.setX(x);
-        boundingBox.setPosition(position);
+    @Override
+    public void setVelocity(Point velocity) {
+        this.velocity = velocity;
     }
 
-    /**
-     * Setter for player yCoordinate
-     * @param y
-     */
-    public void setY(int y) {
-        position = position.setY(y);
-        boundingBox.setPosition(position);
+    @Override
+    public Point getVelocity() {
+        return velocity;
+    }
+
+    @Override
+    public void update() {
+
     }
 
     /**
@@ -161,21 +152,6 @@ class Player implements IModel {
         return isJumping;
     }
 
-    /**
-     * Getter for player velocity
-     * @return
-     */
-    public Point getMoveVelocity() {
-        return new Point(moveVelocity, 0);
-    }
-
-    /**
-     * Getter for player jump velocity
-     * @return
-     */
-    public double getJumpVelocity() {
-        return jumpVelocity;
-    }
 
     /**
      * This method sets the player's movement speed and direction from user input.
@@ -183,11 +159,11 @@ class Player implements IModel {
      */
     public void move(IInputAdapter input){
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            moveVelocity = -30;
+            velocity = new Point(-30,velocity.getY());
         } else if (input.isKeyPressed(IInputAdapter.Keys.D)){
-            moveVelocity = 30;
+            velocity = new Point(30, velocity.getY());
         } else {
-            moveVelocity = 0;
+            velocity = new Point(0, velocity.getY());
         }
     }
 }
