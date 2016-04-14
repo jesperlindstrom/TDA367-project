@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.player;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.scenes.IScene;
@@ -11,7 +12,6 @@ import se.chalmers.get_rect.utilities.Point;
 
 
 public class PlayerController implements IPhysicsController {
-    public static final double MOVEMENT_SPEED = 30;
     private Player player;
     private IView view;
     private IInputAdapter input;
@@ -81,28 +81,12 @@ public class PlayerController implements IPhysicsController {
     }
 
 
-    public void setPosition(int x, int y){
-        player.setPosition(x, y);
-    }
-
-    public void setPosition(Point position){
-        player.setPosition(position);
-    }
-
-    public Point getPosition(){
-        return player.getPosition();
-    }
-
-    public boolean isJumping(){
-        return player.getJumping();
+    public IModel getModel(){
+        return player;
     }
 
     public void setScene(IScene scene) {
         this.scene = scene;
-    }
-
-    public Point getVelocity(){
-        return player.getMoveVelocity();
     }
 
 }

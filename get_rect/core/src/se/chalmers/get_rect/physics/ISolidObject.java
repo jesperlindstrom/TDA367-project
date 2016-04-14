@@ -6,7 +6,9 @@ import se.chalmers.get_rect.utilities.Point;
 public interface ISolidObject {
     IRectangleAdapter getBoundingBox();
     void onCollision(ISolidObject otherObject);
-    Point getPosition();
-    Point getVelocity();
     void setPosition(Point position);
+    Point getPosition();
+    void setVelocity(Point velocity);
+    Point getVelocity();
+
 }
