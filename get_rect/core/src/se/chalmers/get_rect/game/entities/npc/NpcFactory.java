@@ -16,6 +16,10 @@ public class NpcFactory {
         this.rectangleFactory = rectangleFactory;
 
     }
+    public IPhysicsEntity make(NpcDataStore dataStore) {
+        return make();
+    }
+
     public IPhysicsEntity make(Point point) {
         SawmillExpress model = new SawmillExpress(point, rectangleFactory);
         IView view = new SawmillView(model);

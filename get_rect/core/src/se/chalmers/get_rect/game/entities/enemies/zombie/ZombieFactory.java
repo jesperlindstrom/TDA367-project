@@ -18,19 +18,14 @@ public class ZombieFactory {
         this.rectangleFactory = rectangleFactory;
     }
 
-    public IPhysicsEntity make() {
-        return make(0, 0);
-    }
-
     public IPhysicsEntity make(ZombieDataStore data) {
-        return make(data.getX(), data.getY());
+        return make(data.getPosition());
     }
 
-    public IPhysicsEntity make(int x, int y) {
+    public IPhysicsEntity make() {
         Zombie model = new Zombie(new Point(x, y), rectangleFactory, player);
         IView view = new ZombieView(model);
 
-        return new PhysicsEntity(model, view) {
-        };
+        return new PhysicsEntity(model, view);
     }
 }

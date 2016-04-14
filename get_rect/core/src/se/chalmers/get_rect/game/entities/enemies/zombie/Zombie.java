@@ -5,7 +5,6 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
