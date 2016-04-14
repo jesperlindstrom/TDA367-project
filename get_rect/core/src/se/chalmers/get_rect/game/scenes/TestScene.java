@@ -65,7 +65,7 @@ public class TestScene implements IScene {
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
 
         for (int i = 1; i < 100; i++) {
-            PhysicsEntity sm = sawmillFactory.make(1100+i*100, 50);
+            IPhysicsEntity sm = sawmillFactory.make(new Point(1100+i*100, 50));
             entityManagerMap.get(layer.FOREGROUND).add(sm);
             physics.add(sm.getModel());
         }
@@ -74,7 +74,7 @@ public class TestScene implements IScene {
     }
 
     private void loadZombies(SceneLoader loader) throws FileNotFoundException {
-        for (PhysicsEntity entity : loader.getZombies()) {
+        for (IPhysicsEntity entity : loader.getZombies()) {
             entityManagerMap.get(layer.FOREGROUND).add(entity);
             physics.add(entity.getModel());
         }
