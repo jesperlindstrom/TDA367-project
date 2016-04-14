@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.physics;
 
-import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.ArrayList;
@@ -13,30 +13,54 @@ public class FrostbiteEngine implements IPhysicsEngine {
         entities = new ArrayList<>();
     }
 
-    public FrostbiteEngine(List<ISolidObject> entities){
-        this.entities = entities;
-    }
-
     public void add(ISolidObject entity) {
         entities.add(entity);
-    }
-
-    @Override
-    public void addAll(List<ISolidObject> newEntities) {
-        entities.addAll(newEntities);
     }
 
     @Override
     public void update(double delta) {
         for (ISolidObject entity1 : entities) {
             for(ISolidObject entity2 : entities) {
-                if (!entity1.equals(entity2) && entity1.getBoundingBox().intersects(entity2.getBoundingBox())) {
-                    entity1.onCollision(entity2);
-                }
+                handleCollision(entity1, entity2);
             }
 
-            entity1.setPosition(move(delta, entity1.getPosition(), entity1.getVelocity()));
+            handleMovement(entity1, delta);
+            handleGravity(entity1);
         }
+    }
+
+    /**
+     *
+     * @param entity
+     * @param otherEntity
+     */
+    private void handleCollision(ISolidObject entity, ISolidObject otherEntity) {
+        if (entity.equals(otherEntity)) return;
+
+        IRectangleAdapter rect1 = entity.getBoundingBox();
+        IRectangleAdapter rect2 = otherEntity.getBoundingBox();
+        IRectangleAdapter.IntersectionSide side = rect1.intersects(rect2);
+
+        if (side != null) {
+            // Tell the entity it has collided with something
+            // and let the entity itself decide what to do.
+            entity.onCollision(otherEntity, side);
+        }
+    }
+
+    private void handleMovement(ISolidObject entity, double delta) {
+        // Get velocity
+        Point velocity = entity.getVelocity().multiply(delta);
+
+        // Calculate the new position
+        Point newPosition = entity.getPosition().add(velocity);
+
+        // Set the position
+        entity.setPosition(newPosition);
+    }
+
+    private void handleGravity(ISolidObject entity1) {
+
     }
 
     /**
@@ -49,15 +73,5 @@ public class FrostbiteEngine implements IPhysicsEngine {
     @Override
     public Point move(double delta, Point position, Point velocity){
         return position.add(deltaToVelocity(delta, velocity));
-    }
-
-    /**
-     * Calculate the actual movement if FPS drop
-     * @param delta
-     * @param velocity
-     * @return
-     */
-    private Point deltaToVelocity(double delta, Point velocity){
-        return velocity.multiply(delta);
     }
 }
