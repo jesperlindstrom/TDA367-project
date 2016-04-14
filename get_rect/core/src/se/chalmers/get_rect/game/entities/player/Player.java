@@ -7,7 +7,7 @@ import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
-class Player implements IModel {
+class Player implements IPhysicsModel {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 100;
     private Point position;

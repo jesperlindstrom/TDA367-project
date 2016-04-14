@@ -1,22 +1,14 @@
 package se.chalmers.get_rect.game.entities.player;
-
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.scenes.IScene;
-import se.chalmers.get_rect.physics.ISolidObject;
 
 
 public class PlayerController implements IController {
     private Player player;
     private IView view;
     private IInputAdapter input;
-    private int yCoord;
-    private int speedY;
-    private int ground;
-    private int timeSinceJump = 0;
     private IScene scene;
 
     public PlayerController(Player player, IView view, IInputAdapter input) {
@@ -41,20 +33,6 @@ public class PlayerController implements IController {
         }
     }
 
-    @Override
-    public void draw(IGraphicsAdapter graphics) {
-        view.draw(graphics);
-    }
-
-    @Override
-    public IRectangleAdapter getBoundingBox() {
-        return player.getBoundingBox();
-    }
-
-    @Override
-    public void onCollision(ISolidObject otherObject) {
-
-    }
 
     private void setData(){
         ground = getPosition().getY();
@@ -77,11 +55,7 @@ public class PlayerController implements IController {
             player.setJumping(false);
         }
     }
-
-
-    public IModel getModel(){
-        return player;
-    }
+    
 
     public void setScene(IScene scene) {
         this.scene = scene;
