@@ -3,12 +3,13 @@ package se.chalmers.get_rect.game.entities.npc.sawmillExpress;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 
 /**
  * Created by simsund on 2016-04-11.
  */
-public class SawmillExpress implements IModel {
+public class SawmillExpress implements IPhysicsModel {
     private Point position;
     private IRectangleAdapter boundingBox;
     private final float width = 219;
