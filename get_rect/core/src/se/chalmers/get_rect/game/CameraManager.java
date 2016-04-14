@@ -12,12 +12,12 @@ import se.chalmers.get_rect.utilities.Point;
 public class CameraManager implements IGameComponent{
 
     private ICameraAdapter cameraAdapter;
-    private IModel model;
+    private IPhysicsModel model;
     private Point playerPos;
     private Point cameraPos;
 
 
-    public CameraManager(ICameraAdapter cameraAdapter, IModel model){
+    public CameraManager(ICameraAdapter cameraAdapter, IPhysicsModel model){
         this.cameraAdapter = cameraAdapter;
         this.model = model;
         cameraPos = new Point(0,300);
@@ -40,13 +40,13 @@ public class CameraManager implements IGameComponent{
     }
 
     private void moveY(double delta){
-        if(playerPos.getX() != model.getPosition().getX()){
+        if(playerPos.getY() != model.getPosition().getY()){
             move(cameraPos.deltaY(playerPos), 100, new Point(0,3));
         }
     }
 
     private Point deltaToVelocityX(double delta){
-        int velocity = (int)( delta);
+        int velocity = (int)(model.getVelocity().getX() * delta);
         return new Point(velocity,0);
     }
 
