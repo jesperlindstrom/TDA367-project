@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import org.w3c.dom.css.Rect;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
@@ -10,6 +11,7 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
 
     public LibGDXRectangleAdapter(float x, float y, float width, float height) {
         rectangle = new Rectangle(x, y, width, height);
+
     }
 
     @Override
@@ -55,9 +57,28 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
     public void setPosition(Point newPoint) {
         rectangle.setX(newPoint.getX());
         rectangle.setY(newPoint.getY());
+
     }
 
     public Rectangle getRectangle() {
         return rectangle;
     }
+
+    public COLLISION_SIDE getCollisionSide(IRectangleAdapter rectangle) {
+        if (this.getY() + this.getHeight() == rectangle.getY()) {
+            return COLLISION_SIDE.TOP;
+        }
+        if (this.getY() == rectangle.getY() + rectangle.getHeight()) {
+            return COLLISION_SIDE.BOTTOM;
+        }
+        if (this.getX() + this.getWidth() == rectangle.getX()) {
+            return COLLISION_SIDE.RIGHT;
+        }
+        if (this.getX() == rectangle.getX() + rectangle.getWidth()) {
+            return COLLISION_SIDE.LEFT;
+        }
+
+        return COLLISION_SIDE.NO_COLLISION
+    }
+
 }
