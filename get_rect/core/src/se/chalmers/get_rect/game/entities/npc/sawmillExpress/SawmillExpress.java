@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.physics.ISolidObject;
 import se.chalmers.get_rect.utilities.Point;
 
 /**
@@ -27,35 +28,46 @@ public class SawmillExpress implements IPhysicsModel {
 
     @Override
     public void setX(int x) {
-        position = position.setX(x);
-        boundingBox.setPosition(position);
+
     }
 
     @Override
     public void setY(int y) {
-        position = position.setY(y);
-        boundingBox.setPosition(position);
+
     }
 
     @Override
     public void setPosition(int x, int y) {
-        position.setPosition(x, y);
-        boundingBox.setPosition(position);
+
     }
 
     @Override
-    public void setPosition(Point point) {
-        position = new Point(point);
-        boundingBox.setPosition(position);
-    }
+    public void update() {
 
-    @Override
-    public Point getPosition() {
-        return position;
     }
 
     public IRectangleAdapter getBoundingBox() {
         return boundingBox;
+    }
+
+    @Override
+    public void onCollision(ISolidObject otherObject) {
+
+    }
+
+    @Override
+    public void setPosition(Point position) {
+
+    }
+
+    @Override
+    public Point getPosition() {
+        return null;
+    }
+
+    @Override
+    public void setVelocity(Point velocity) {
+
     }
 
     public void setWäääh(boolean wäääh) {
