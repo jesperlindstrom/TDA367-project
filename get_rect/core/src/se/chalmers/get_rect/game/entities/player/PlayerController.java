@@ -55,7 +55,7 @@ public class PlayerController implements IController {
             player.setJumping(false);
         }
     }
-    
+
 
     public void setScene(IScene scene) {
         this.scene = scene;
