@@ -7,6 +7,7 @@ import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 
 public class Zombie implements IPhysicsModel {
     private static final int WIDTH = 100;
@@ -30,11 +31,11 @@ public class Zombie implements IPhysicsModel {
 
     @Override
     public IRectangleAdapter getBoundingBox() {
-        return null;
+        return boundingBox;
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject) {
+    public void onCollision(IPhysicsObject otherObject, Side collisionSide) {
 
     }
 

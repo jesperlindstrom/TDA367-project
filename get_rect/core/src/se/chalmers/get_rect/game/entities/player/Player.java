@@ -6,6 +6,7 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 
 class Player implements IPhysicsModel {
     private static final int WIDTH = 100;
@@ -39,7 +40,7 @@ class Player implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject) {
+    public void onCollision(IPhysicsObject otherObject, Side collisionSide) {
 
     }
 
