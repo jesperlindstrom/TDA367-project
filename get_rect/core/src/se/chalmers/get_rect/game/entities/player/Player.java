@@ -159,11 +159,15 @@ class Player implements IPhysicsModel {
      */
     public void move(IInputAdapter input){
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            velocity = new Point(-30,velocity.getY());
+            velocity = velocity.setX(-30);
         } else if (input.isKeyPressed(IInputAdapter.Keys.D)){
-            velocity = new Point(30, velocity.getY());
+            velocity = velocity.setX(30);
         } else {
-            velocity = new Point(0, velocity.getY());
+            velocity = velocity.setX(0);
+        }
+        if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !isJumping){
+            setJumping(true);
+            velocity = velocity.setY(50);
         }
     }
 }

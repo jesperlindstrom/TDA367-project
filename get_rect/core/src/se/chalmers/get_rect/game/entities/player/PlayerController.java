@@ -21,7 +21,6 @@ public class PlayerController implements IController {
     public void update() {
         //Section for player walking function
         player.move(input);
-        //Section for player jump function
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
             player.setJumping(true);
             setData();
