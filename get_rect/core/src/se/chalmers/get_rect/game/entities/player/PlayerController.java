@@ -8,8 +8,7 @@ public class PlayerController implements IController {
     private Player player;
     private IInputAdapter input;
 
-    public PlayerController(Player player, IInputAdapter input) {
-        this.player = player;
+    public PlayerController(IInputAdapter input) {
         this.input = input;
     }
 

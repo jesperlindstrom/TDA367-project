@@ -21,6 +21,7 @@ public class Zombie implements IPhysicsModel {
         this.position = point;
         this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
         this.player = player;
+        this.velocity = new Point(0, 0);
     }
 
     @Override

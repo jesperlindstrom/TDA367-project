@@ -18,11 +18,10 @@ class Player implements IPhysicsModel {
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
-     * @param position
      * @param rectangleFactory
      */
-    public Player(Point position, IRectangleFactoryAdapter rectangleFactory) {
-        this.position = position;
+    public Player(IRectangleFactoryAdapter rectangleFactory) {
+        position = new Point(20, 30);
         this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
         this.isWalking = false;
         this.canJump = true;
