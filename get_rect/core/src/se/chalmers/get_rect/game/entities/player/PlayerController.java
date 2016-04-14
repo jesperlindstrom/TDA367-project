@@ -21,38 +21,6 @@ public class PlayerController implements IController {
     public void update() {
         //Section for player walking function
         player.move(input);
-        if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
-            player.setJumping(true);
-            setData();
-            ground = getPosition().getY();
-        }
-        if(player.getJumping()){
-            jump();
-
-        }
-    }
-
-
-    private void setData(){
-        ground = getPosition().getY();
-        yCoord = ground + 1;
-        speedY = 50;
-
-    }
-
-    private void jump(double delta){
-        double g = .04;
-        speedY -= 1*delta*10;
-        timeSinceJump += delta * 10; //delta to second
-        player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
-        // And test that the character is not on the ground again.
-
-        if (getPosition().getY() <= ground)
-        {
-            player.setY(ground);
-            timeSinceJump = 0;
-            player.setJumping(false);
-        }
     }
 
 
