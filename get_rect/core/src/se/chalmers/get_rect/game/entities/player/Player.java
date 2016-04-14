@@ -35,8 +35,12 @@ class Player implements IPhysicsModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, Side side) {
-        // if otherObject is solid && side is bottom
-            // canJump = true;
+        if (otherObject.isSolid() && side == Side.BOTTOM) {
+            canJump = true;
+        } else {
+            canJump = false;
+        }
+
     }
 
     public void jump() {
@@ -82,6 +86,11 @@ class Player implements IPhysicsModel {
         return velocity;
     }
 
+    @Override
+    public boolean isSolid() {
+        return false;
+    }
+
     public boolean isWalking(){
         return isWalking;
     }
@@ -92,6 +101,10 @@ class Player implements IPhysicsModel {
 
     public IRectangleAdapter getBoundingBox() {
         return boundingBox;
+    }
+
+    public void shoot(Point direction) {
+
     }
 }
 

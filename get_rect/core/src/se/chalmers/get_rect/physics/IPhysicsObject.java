@@ -11,4 +11,5 @@ public interface IPhysicsObject {
     Point getPosition();
     void setVelocity(Point velocity);
     Point getVelocity();
+    boolean isSolid();
 }

@@ -5,6 +5,7 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.entities.npc.Floor100;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
@@ -62,6 +63,12 @@ public class TestScene implements IScene {
         }
 
         playerEntity.getModel().setPosition(new Point(200, 90));
+
+        for (int i = 0; i < 100; i++) {
+            Floor100 floor = new Floor100(new Point(i * 100, 85), rectangleFactory);
+            physics.add(floor);
+            System.out.println(floor.getPosition());
+        }
 
         NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
 

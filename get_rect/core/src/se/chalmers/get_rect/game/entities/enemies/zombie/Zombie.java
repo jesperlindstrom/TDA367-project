@@ -57,4 +57,9 @@ public class Zombie implements IPhysicsModel {
     public Point getVelocity() {
         return new Point(velocity);
     }
+
+    @Override
+    public boolean isSolid() {
+        return false;
+    }
 }

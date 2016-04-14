@@ -78,5 +78,12 @@ public class FrostbiteEngine implements IPhysicsEngine {
      */
     private void handleGravity(IPhysicsObject entity) {
 
+
+
+        if (entity.getPosition().getY() < 90) {
+
+        } else {
+            entity.setVelocity(entity.getVelocity().addY(-5));
+        }
     }
 }
