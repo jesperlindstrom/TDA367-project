@@ -35,6 +35,9 @@ public class GameScreen implements IScreen {
         // Create the scene manager
         sceneManager = new StateManager<>();
 
+        // Create the CameraManager
+        ICameraAdapter camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
+        cameraManager = new CameraManager(camera, player.getModel());
 
         // Register scenes
 //        sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
@@ -46,9 +49,6 @@ public class GameScreen implements IScreen {
         // Set starting scene
         sceneManager.set("test");
 
-        // Create the CameraManager
-        ICameraAdapter camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
-        cameraManager = new CameraManager(camera, player.getModel());
 
         // Sets menuActive to false
         menuActive = false;
