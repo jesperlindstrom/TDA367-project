@@ -32,7 +32,7 @@ public class CollisionHandler {
     private void checkEntity(IPhysicsObject entity, IPhysicsObject otherEntity, SolidCollision collision) {
         IRectangleAdapter rect1 = entity.getBoundingBox();
         IRectangleAdapter rect2 = otherEntity.getBoundingBox();
-        Side side = rect1.intersects(rect2);
+        SolidCollision side = rect1.intersects(rect2);
 
         // We didn't collide with anything - do nothing.
         if (side == null)
@@ -45,7 +45,7 @@ public class CollisionHandler {
 
         // Register the collision if solid
         if (isSolid) {
-            collision.set(side);
+            collision.set(side, isSolid);
         }
     }
 }

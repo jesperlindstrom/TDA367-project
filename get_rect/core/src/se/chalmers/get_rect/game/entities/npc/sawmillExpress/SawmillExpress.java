@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
+import se.chalmers.get_rect.physics.SolidCollision;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
 
@@ -32,7 +33,7 @@ public class SawmillExpress implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, Side collisionSide, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, SolidCollision collisionSide, boolean isSolid) {
 
     }
 

@@ -6,7 +6,7 @@ import se.chalmers.get_rect.utilities.Side;
 
 public interface IPhysicsObject {
     IRectangleAdapter getBoundingBox();
-    void onCollision(IPhysicsObject otherObject, Side collisionSide, boolean isSolid);
+    void onCollision(IPhysicsObject otherObject, SolidCollision collisionSide, boolean isSolid);
     void setPosition(Point position);
     Point getPosition();
     void setVelocity(Point velocity);

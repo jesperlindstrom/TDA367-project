@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
+import se.chalmers.get_rect.physics.SolidCollision;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
 
@@ -30,12 +31,12 @@ class Player implements IPhysicsModel {
 
     @Override
     public void update() {
-
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, Side side, boolean isSolid) {
-        if (isSolid && side == Side.BOTTOM) {
+    public void onCollision(IPhysicsObject otherObject, SolidCollision side, boolean isSolid) {
+        
+        if (isSolid && side.bottom()) {
             canJump = true;
         } else {
             canJump = false;

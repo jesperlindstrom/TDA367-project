@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters;
 
+import se.chalmers.get_rect.physics.SolidCollision;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
 
@@ -10,5 +11,5 @@ public interface IRectangleAdapter {
     float getY();
     Point getPosition();
     void setPosition(Point newPoint);
-    Side intersects(IRectangleAdapter rectangle);
+    SolidCollision intersects(IRectangleAdapter rectangle);
 }

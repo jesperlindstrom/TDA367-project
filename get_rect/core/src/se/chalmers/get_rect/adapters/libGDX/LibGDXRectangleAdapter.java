@@ -3,6 +3,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.physics.SolidCollision;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
 
@@ -32,24 +33,29 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
      * @return The side of the intersection, or null the rectangles don't overlap.
      */
     @Override
-    public Side intersects(IRectangleAdapter rect) {
+    public SolidCollision intersects(IRectangleAdapter rect) {
         Rectangle otherRectangle = getRealRectangle(rect);
         Rectangle intersection = new Rectangle();
         Intersector.intersectRectangles(rectangle, otherRectangle, intersection);
 
-        if (intersection.x > rectangle.x)
-            return Side.RIGHT;
+        SolidCollision solidCollision = new SolidCollision();
 
-        if (intersection.y > rectangle.y)
-            return Side.TOP;
+        if (this.getX() + this.getWidth() >= otherRectangle.getX()) {
+            solidCollision.set(Side.RIGHT);
+        }
 
-        if (intersection.x + intersection.width < rectangle.x + rectangle.width)
-            return Side.LEFT;
+        if (this.getY() + this.getHeight() >= otherRectangle.getY()) {
+            solidCollision.set(Side.TOP);
+        }
 
-        if (intersection.y + intersection.height < intersection.y + intersection.height)
-            return Side.BOTTOM;
+        if (this.getX() <= otherRectangle.getX() + otherRectangle.getWidth()) {
+            solidCollision.set(Side.LEFT);
+        }
 
-        return null;
+        if (this.getY() <= otherRectangle.getY() + otherRectangle.getHeight()) {
+           solidCollision.set(Side.BOTTOM);
+        }
+        return solidCollision;
     }
 
     @Override
