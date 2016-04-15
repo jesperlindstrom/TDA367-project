@@ -34,20 +34,17 @@ class Player implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, Side side) {
-        if (otherObject.isSolid() && side == Side.BOTTOM) {
+    public void onCollision(IPhysicsObject otherObject, Side side, boolean isSolid) {
+        if (isSolid && side == Side.BOTTOM) {
             canJump = true;
         } else {
             canJump = false;
         }
-
     }
 
     public void jump() {
         if (!canJump) return;
-
         velocity = velocity.setY(30);
-        canJump = false;
     }
 
     public void moveLeft() {

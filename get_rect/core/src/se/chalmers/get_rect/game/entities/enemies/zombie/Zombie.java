@@ -30,7 +30,7 @@ public class Zombie implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, Side side) {
+    public void onCollision(IPhysicsObject otherObject, Side side, boolean isSolid) {
 
     }
 
@@ -51,7 +51,7 @@ public class Zombie implements IPhysicsModel {
 
     @Override
     public void update() {
-
+        velocity.add(player.getPosition().subtract(position));
     }
 
     public Point getVelocity() {
