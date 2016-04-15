@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.Side;
 class Player implements IPhysicsModel {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 100;
-    private static final int JUMPSPEED = 60;
+    private static final int JUMPSPEED = 90;
     private static final int MOVMENTSPEED = 30;
     private IRectangleAdapter boundingBox;
     private Point position;
@@ -37,6 +37,7 @@ class Player implements IPhysicsModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
+
         if (side.bottom() && isSolid) {
             canJump = true;
         } else {

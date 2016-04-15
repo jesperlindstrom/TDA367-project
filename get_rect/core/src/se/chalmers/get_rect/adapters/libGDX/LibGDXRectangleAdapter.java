@@ -57,8 +57,9 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
             if (intersection.y + intersection.height < rectangle.y + rectangle.height) {
                 sideData.set(Side.BOTTOM);
             }
+            return sideData;
         }
-        return sideData;
+        return null;
     }
 
     @Override
