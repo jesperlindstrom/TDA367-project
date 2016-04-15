@@ -6,7 +6,6 @@ public class SideData {
     private boolean left;
     private boolean right;
     private boolean bottom;
-    private boolean isSolid;
 
     public void set(Side side) {
         switch (side) {
@@ -38,10 +37,6 @@ public class SideData {
 
     public boolean bottom() {
         return bottom;
-    }
-
-    public boolean isSolid() {
-        return isSolid;
     }
 
 }
