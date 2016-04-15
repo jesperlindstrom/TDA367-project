@@ -4,29 +4,30 @@ package se.chalmers.get_rect.game;
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 
 public class CameraManager implements IGameComponent{
 
     private ICameraAdapter cameraAdapter;
-    private PlayerController playerController;
+    private IPhysicsModel model;
     private Point playerPos;
     private Point cameraPos;
 
 
-    public CameraManager(ICameraAdapter cameraAdapter, PlayerController playerController){
+    public CameraManager(ICameraAdapter cameraAdapter, IPhysicsModel model){
         this.cameraAdapter = cameraAdapter;
-        this.playerController = playerController;
-        cameraPos = new Point(500,300);
-        playerPos = playerController.getPosition();
+        this.model = model;
+        cameraPos = new Point(0,300);
+        playerPos = model.getPosition();
         //Fix cameras first position
         cameraAdapter.translate(playerPos.add(cameraPos));
     }
 
     @Override
     public void update(double delta) {
-        playerPos = playerController.getPosition();
+        playerPos = model.getPosition();
         changeCameraPosition(delta);
         cameraAdapter.update(delta);
 
@@ -59,13 +60,13 @@ public class CameraManager implements IGameComponent{
     }
 
     private void moveY(double delta){
-        if(playerPos.getX() != playerController.getPosition().getX() && !playerController.isJumping()){
+        if(playerPos.getY() != model.getPosition().getY()){
             move(cameraPos.deltaY(playerPos), 100, new Point(0,3));
         }
     }
 
     private Point deltaToVelocityX(double delta){
-        int velocity = (int)(PlayerController.MOVEMENT_SPEED * delta);
+        int velocity = (int)(model.getVelocity().getX() * delta);
         return new Point(velocity,0);
     }
 

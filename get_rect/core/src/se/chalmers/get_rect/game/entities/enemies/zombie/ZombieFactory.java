@@ -1,32 +1,27 @@
 package se.chalmers.get_rect.game.entities.enemies.zombie;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.utilities.Point;
 
 public class ZombieFactory {
 
-    private PlayerController playerController;
+    private IPhysicsModel player;
     private IRectangleFactoryAdapter rectangleFactory;
 
-    public ZombieFactory(PlayerController playerController, IRectangleFactoryAdapter rectangleFactory) {
-        this.playerController = playerController;
+    public ZombieFactory(IPhysicsModel player, IRectangleFactoryAdapter rectangleFactory) {
+        this.player = player;
         this.rectangleFactory = rectangleFactory;
     }
 
-    public ZombieController make() {
-        return make(0, 0);
+    public IPhysicsEntity make(ZombieDataStore data) {
+        return make(data.getPosition());
     }
 
-    public ZombieController make(ZombieDataStore data) {
-        return make(data.getX(), data.getY());
-    }
-
-    public ZombieController make(int x, int y) {
-        Zombie model = new Zombie(new Point(x, y), rectangleFactory);
+    public IPhysicsEntity make(Point position) {
+        Zombie model = new Zombie(position, rectangleFactory, player);
         IView view = new ZombieView(model);
 
-        return new ZombieController(model, view, playerController);
+        return new PhysicsEntity(model, view);
     }
 }

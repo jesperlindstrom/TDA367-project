@@ -1,24 +1,24 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.IGame;
-import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.game.entities.PhysicsEntity;
 
 public class PlayerFactory {
-    private IInputAdapter input;
+    private PlayerController playerController;
     private IRectangleFactoryAdapter rectangleFactory;
     private ProjectileFactory projectileFactory;
     /**
      * Initialize a new player factory.
      * @param game
      */
-    public PlayerFactory(IGame game, ProjectileFactory projectileFactory){
-        this.input = game.getInput();
+
+    public PlayerFactory(PlayerController playerController, IGame game, ProjectileFactory projectilFactory){
         this.rectangleFactory = game.getRectangleFactory();
-        this.projectileFactory = projectileFactory;
+        this.playerController = playerController;
+        this.projectileFactory = projectilFactory;
 
     }
 
@@ -26,11 +26,10 @@ public class PlayerFactory {
      * Maker for a new player.
      * @return
      */
-    public PlayerController make(int x, int y) {
-        Player model = new Player(new Point(x, y), rectangleFactory);
+    public PhysicsEntity make() {
+        Player model = new Player(rectangleFactory);
         IView view = new PlayerView(model);
-
-
-        return new PlayerController(model, view, input, projectileFactory);
+        playerController.setPlayer(model);
+        return new PhysicsEntity(model,view);
     }
 }

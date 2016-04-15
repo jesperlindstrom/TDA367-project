@@ -2,47 +2,66 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.physics.IPhysicsObject;
+import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 
-class Player implements IModel {
+class Player implements IPhysicsModel {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 100;
-    private Point position;
+    private static final int JUMPSPEED = 90;
+    private static final int MOVMENTSPEED = 30;
     private IRectangleAdapter boundingBox;
-    private int currentHealth;
-    private int maxHealth;
-    private int level;
+    private Point position;
+    private Point velocity;
     private boolean isWalking;
-    private boolean isJumping;
+    private boolean canJump;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
-     * @param position
      * @param rectangleFactory
      */
-    public Player(Point position, IRectangleFactoryAdapter rectangleFactory) {
-        this.position = position;
+    public Player(IRectangleFactoryAdapter rectangleFactory) {
+        position = new Point(20, 30);
         this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
-        this.maxHealth = 10;
-        this.currentHealth = maxHealth;
-        this.level = 1;
         this.isWalking = false;
-        this.isJumping = false;
+        this.canJump = true;
+        this.velocity = new Point(0, 0);
     }
 
-    public IRectangleAdapter getBoundingBox() {
-        return boundingBox;
+    @Override
+    public void update() {
     }
 
-    /**
-     * Setter for player x & y coordinates
-     * @param xCoordinate
-     * @param yCoordinate
-     */
-    public void setPosition(int xCoordinate, int yCoordinate){
-        position = position.setPosition(xCoordinate, yCoordinate);
-        boundingBox.setPosition(position);
+    @Override
+    public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
+        if (isSolid && side.bottom()) {
+            canJump = true;
+        }
+    }
+
+    public void jump() {
+        if (canJump) {
+            velocity = velocity.setY(JUMPSPEED);
+            canJump = false;
+        }
+    }
+
+    public void moveLeft() {
+        velocity = velocity.setX(-MOVMENTSPEED);
+        isWalking = true;
+    }
+
+    public void moveRight() {
+        velocity = velocity.setX(MOVMENTSPEED);
+        isWalking = true;
+    }
+
+    public void stopMoving() {
+        velocity = velocity.addX(-velocity.getX()/6);
+        isWalking = false;
     }
 
     @Override
@@ -56,102 +75,35 @@ class Player implements IModel {
         return position;
     }
 
-    /**
-     * Setter for player xCoordinate
-     * @param xCoordinate
-     */
-    public void setX(int xCoordinate) {
-        position = position.setX(xCoordinate);
-        boundingBox.setPosition(position);
+    @Override
+    public void setVelocity(Point velocity) {
+        this.velocity = velocity;
     }
 
-    /**
-     * Setter for player yCoordinate
-     * @param yCoordinate
-     */
-    public void setY(int yCoordinate) {
-        position = position.setY(yCoordinate);
-        boundingBox.setPosition(position);
+    @Override
+    public Point getVelocity() {
+        return velocity;
     }
 
-    /**
-     * Setter for player current health
-     * @param health
-     */
-    public void setCurrentHealth(int health) {
-        this.currentHealth = health;
+    @Override
+    public boolean isSolid() {
+        return false;
     }
 
-    /**
-     * Getter for player current health
-     * @return
-     */
-    public int getCurrentHealth() {
-        return currentHealth;
-    }
-
-    /**
-     * Setter for player maxHealth
-     * @param maxHealth
-     */
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
-    /**
-     * Getter for player max health
-     * @return
-     */
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
-    /**
-     * Setter for player level.
-     * @param level
-     */
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    /**
-     * Getter for player level..
-     * @return
-     */
-    public int getLevel() {
-        return level;
-    }
-
-
-    /**
-     * Setter for "player is walking".
-     * @param Walking
-     */
-    public void setWalking(boolean Walking){
-        this.isWalking = Walking;
-    }
-
-    /**
-     * Geter to check if player walks.
-     * @return
-     */
-    public boolean getWalking(){
+    public boolean isWalking(){
         return isWalking;
     }
 
-    /**
-     * Setter to change player jumping state
-     * @param jumping
-     */
-    public void setJumping(boolean jumping) {
-        isJumping = jumping;
+    public boolean canJump() {
+        return canJump;
     }
 
-    /**
-     * Getter to check if player jumps
-     * @return
-     */
-    public boolean getJumping(){
-        return isJumping;
+    public IRectangleAdapter getBoundingBox() {
+        return boundingBox;
+    }
+
+    public void shoot(Point direction) {
+
     }
 }
+

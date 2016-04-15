@@ -6,6 +6,7 @@ import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
@@ -22,30 +23,32 @@ public class GameScreen implements IScreen {
     private MenuScene menu;
     private boolean menuActive;
     private sunnyDebugFeatures debugFeatures;
+    private PlayerController playerController;
 
     public GameScreen(IGame game) {
-        this.input = game.getInput();
         System.out.println("GameScreen is initialized");
+
+        input = game.getInput();
+
+        // Initialize player
+        playerController = new PlayerController(input);
+        ProjectileFactory projectileFactory = new ProjectileFactory(game.getRectangleFactory());
+        PlayerFactory playerFactory = new PlayerFactory(playerController, game, projectileFactory);
+        IPhysicsEntity player = playerFactory.make();
 
         // Create the scene manager
         sceneManager = new StateManager<>();
 
-        //
-        ProjectileFactory projectileFactory = new ProjectileFactory(game.getRectangleFactory());
-        //Initialize player
-        PlayerFactory playerFactory = new PlayerFactory(game, projectileFactory);
-        PlayerController playerController = playerFactory.make(0,0);
 
         // Create the CameraManager
         ICameraAdapter camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
-        cameraManager = new CameraManager(camera, playerController);
+        cameraManager = new CameraManager(camera, player.getModel());
 
         // Register scenes
-        sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
-        sceneManager.add("EDIT", new EDITScene(playerController));
-        sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
-        sceneManager.add("test", new TestScene(playerController, game.getRectangleFactory(), cameraManager));
-
+//        sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
+//        sceneManager.add("EDIT", new EDITScene(playerController));
+//        sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
+        sceneManager.add("test", new TestScene(player, game.getRectangleFactory(), cameraManager));
 
         // Set starting scene
         sceneManager.set("test");
@@ -55,7 +58,7 @@ public class GameScreen implements IScreen {
 
         menu = new MenuScene(input, cameraManager);
 
-        debugFeatures = new sunnyDebugFeatures(playerController);
+        debugFeatures = new sunnyDebugFeatures(player.getModel());
     }
 
     @Override
@@ -76,6 +79,7 @@ public class GameScreen implements IScreen {
     @Override
     public void update(double delta) {
         debugFeatures.update(delta);
+
         if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
             menuActive = !menuActive;
         }
@@ -84,6 +88,7 @@ public class GameScreen implements IScreen {
         if (menuActive) {
             menu.update(delta);
         } else {
+            playerController.update();
             sceneManager.getState().update(delta);
             cameraManager.update(delta);
         }

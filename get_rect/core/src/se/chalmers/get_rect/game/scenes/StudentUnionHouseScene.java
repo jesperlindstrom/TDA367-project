@@ -2,9 +2,8 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IController;
-import se.chalmers.get_rect.game.entities.IPhysicsController;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
-
+/*
 public class StudentUnionHouseScene implements IScene {
 
     private PlayerController playerController;
@@ -38,3 +37,4 @@ public class StudentUnionHouseScene implements IScene {
 
     }
 }
+*/

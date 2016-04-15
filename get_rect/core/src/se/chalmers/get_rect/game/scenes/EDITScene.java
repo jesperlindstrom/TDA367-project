@@ -1,10 +1,7 @@
 package se.chalmers.get_rect.game.scenes;
 
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.IController;
-import se.chalmers.get_rect.game.entities.IPhysicsController;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
 
+/*
 public class EDITScene implements IScene {
 
     private PlayerController playerController;
@@ -34,7 +31,17 @@ public class EDITScene implements IScene {
     }
 
     @Override
+<<<<<<< HEAD
     public void addEntity(layer layer, IPhysicsController physicsController) {
+=======
+    public void addEntity(layer layer, IEntity entity) {
+
+    }
+
+    @Override
+    public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
+>>>>>>> feature-frostbite-2
 
     }
 }
+*/

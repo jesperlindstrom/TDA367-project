@@ -94,11 +94,17 @@ public class Point {
         return p.subtract(this);
     }
 
+
     public int distanceTo(Point p) {
         int xSide = this.getX() - p.getX();
         int ySide = this.getY() - p.getY();
 
-        return (xSide*xSide) + (ySide * ySide);
+        return (xSide * xSide) + (ySide * ySide);
+    }
+
+    public Point multiply(double factor){
+        return new Point((int)(xCoordinate * factor),(int)(yCoordinate * factor));
+
     }
 
     @Override

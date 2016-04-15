@@ -3,7 +3,9 @@ package se.chalmers.get_rect.game.entities.projectile;
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.PhysicsEntity;
 import se.chalmers.get_rect.utilities.Point;
 
 public class ProjectileFactory {
@@ -15,14 +17,14 @@ public class ProjectileFactory {
         this.rectangleFactory = rectangleFactory;
     }
 
-    public ProjectileController make(int x, int y){
+    public IPhysicsEntity make(int x, int y){
         Point point = new Point(x, y);
         return make(point);
     }
-    public ProjectileController make(Point point){
+    public IPhysicsEntity make(Point point){
         Projectile model = new Projectile(point, rectangleFactory);
         IView view = new ProjectileView(model);
 
-        return new ProjectileController(model, view);
+        return new PhysicsEntity(model, view);
     }
 }

@@ -4,6 +4,7 @@ import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 /**
@@ -15,7 +16,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerController;
 
 public class sunnyDebugFeatures {
 
-    private PlayerController playerController;
+    private IPhysicsModel playerController;
     private int currentFPS;
     private int FPS;
     private int updates;
@@ -24,7 +25,7 @@ public class sunnyDebugFeatures {
     private double delta;
     private double timeForLowest;
 
-    public sunnyDebugFeatures(PlayerController playerController) {
+    public sunnyDebugFeatures(IPhysicsModel playerController) {
         this.playerController = playerController;
     }
 

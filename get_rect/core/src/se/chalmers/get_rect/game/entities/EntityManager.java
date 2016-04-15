@@ -6,32 +6,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityManager {
-    private List<IController> list;
+    private List<IEntity> list;
 
+    /**
+     * Create a new entity manager
+     */
     public EntityManager() {
         list = new ArrayList<>();
     }
 
-    public EntityManager(List<IController> list) {
-        this.list = list;
+    /**
+     * Add an entity to the list
+     * @param entity
+     */
+    public void add(IEntity entity) {
+        list.add(entity);
     }
 
-    public void add(IController c) {
-        list.add(c);
-    }
-
-    public void addAll(List<IController> entities) {
-        list.addAll(entities);
-    }
-
-    public void update(double delta) {
-        for (IController entity : list) {
-            entity.update(delta);
+    /**
+     * Update all entities
+     */
+    public void update() {
+        for (IEntity entity : list) {
+            entity.update();
         }
     }
-    public void draw(IGraphicsAdapter g) {
-        for (IController entity : list) {
-            entity.draw(g);
+
+    /**
+     * Draw all entities
+     * @param graphics
+     */
+    public void draw(IGraphicsAdapter graphics) {
+        for (IEntity entity : list) {
+            entity.draw(graphics);
         }
     }
 }
