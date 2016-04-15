@@ -40,20 +40,22 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
 
         SolidCollision solidCollision = new SolidCollision();
 
-        if (this.getX() + this.getWidth() >= otherRectangle.getX()) {
-            solidCollision.set(Side.RIGHT, isSolid);
-        }
+        if(rectangle.overlaps(otherRectangle)) {
+            if (intersection.x > rectangle.x) {
+                solidCollision.set(Side.RIGHT, isSolid);
+            }
 
-        if (this.getY() + this.getHeight() >= otherRectangle.getY()) {
-            solidCollision.set(Side.TOP, isSolid);
-        }
+            if (intersection.y > rectangle.y) {
+                solidCollision.set(Side.TOP, isSolid);
+            }
 
-        if (this.getX() <= otherRectangle.getX() + otherRectangle.getWidth()) {
-            solidCollision.set(Side.LEFT, isSolid);
-        }
+            if (intersection.x + intersection.width < rectangle.x + rectangle.width) {
+                solidCollision.set(Side.LEFT, isSolid);
+            }
 
-        if (this.getY() <= otherRectangle.getY() + otherRectangle.getHeight()) {
-           solidCollision.set(Side.BOTTOM, isSolid);
+            if (intersection.y + intersection.height < rectangle.y + rectangle.height) {
+                solidCollision.set(Side.BOTTOM, isSolid);
+            }
         }
         return solidCollision;
     }
