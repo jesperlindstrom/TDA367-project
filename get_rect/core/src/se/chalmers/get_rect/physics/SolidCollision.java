@@ -2,15 +2,22 @@ package se.chalmers.get_rect.physics;
 
 import se.chalmers.get_rect.utilities.Side;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SolidCollision {
     private boolean top;
     private boolean left;
     private boolean right;
     private boolean bottom;
+    private List<Side> solidEdge = new ArrayList<>();
 
-    public void set(Side side) {
+    public void set(Side side, boolean isSolid) {
+        if(isSolid) {
+            solidEdge.add(side);
+        }
         switch (side) {
-            case TOP: top = true; break;
+            case TOP: top = true;break;
             case LEFT: left = true; break;
             case RIGHT: right = true; break;
             case BOTTOM: bottom = true; break;
@@ -31,5 +38,9 @@ public class SolidCollision {
 
     public boolean bottom() {
         return bottom;
+    }
+
+    public List<Side> getSolidEdge() {
+        return solidEdge;
     }
 }

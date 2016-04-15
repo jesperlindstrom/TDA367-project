@@ -45,7 +45,7 @@ public class CollisionHandler {
 
         // Register the collision if solid
         if (isSolid) {
-            collision.set(side);
+            collision.set(side, isSolid);
         }
     }
 }
