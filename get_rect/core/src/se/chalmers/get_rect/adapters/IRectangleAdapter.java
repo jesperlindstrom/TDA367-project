@@ -10,5 +10,5 @@ public interface IRectangleAdapter {
     float getY();
     Point getPosition();
     void setPosition(Point newPoint);
-    SideData intersects(IRectangleAdapter rectangle, boolean isSolid);
+    SideData intersects(IRectangleAdapter rectangle);
 }

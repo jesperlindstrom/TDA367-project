@@ -1,19 +1,14 @@
 package se.chalmers.get_rect.utilities;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class SideData {
     private boolean top;
     private boolean left;
     private boolean right;
     private boolean bottom;
-    private List<Side> solidEdge = new ArrayList<>();
+    private boolean isSolid;
 
-    public void set(Side side, boolean isSolid) {
-        if(isSolid) {
-            solidEdge.add(side);
-        }
+    public void set(Side side) {
         switch (side) {
             case TOP: top = true;break;
             case LEFT: left = true; break;
@@ -38,7 +33,8 @@ public class SideData {
         return bottom;
     }
 
-    public List<Side> getSolidEdge() {
-        return solidEdge;
+    public boolean isSolid() {
+        return isSolid;
     }
+
 }

@@ -34,13 +34,14 @@ public class CollisionHandler {
         IRectangleAdapter rect2 = otherEntity.getBoundingBox();
         boolean isSolid = otherEntity.isSolid();
 
-        collision = rect1.intersects(rect2,isSolid);
+        collision = rect1.intersects(rect2);
 
         // We didn't collide with anything - do nothing.
         if (collision == null) {
             return;
         }
 
+        if (isSolid) {
 
         // Tell the entity it has collided with another
         entity.onCollision(otherEntity, collision, isSolid);

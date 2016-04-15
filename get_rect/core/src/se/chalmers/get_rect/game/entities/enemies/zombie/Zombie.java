@@ -51,7 +51,7 @@ public class Zombie implements IPhysicsModel {
 
     @Override
     public void update() {
-        velocity.add(player.getPosition().subtract(position));
+        setVelocity(player.getPosition().subtract(position));
     }
 
     public Point getVelocity() {
