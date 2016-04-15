@@ -42,7 +42,7 @@ public class PlayerController implements IController {
             player.shoot(direction);
         }
 
-        if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && player.canJump()){
+        if(input.isKeyPressed(IInputAdapter.Keys.SPACE)){
             player.jump();
         }
     }
