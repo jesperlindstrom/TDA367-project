@@ -51,7 +51,7 @@ public class Zombie implements IPhysicsModel {
 
     @Override
     public void update() {
-        setVelocity(player.getPosition().subtract(position));
+//        setVelocity(player.getPosition().subtract(position));
     }
 
     public Point getVelocity() {
@@ -60,6 +60,6 @@ public class Zombie implements IPhysicsModel {
 
     @Override
     public boolean isSolid() {
-        return false;
+        return true;
     }
 }

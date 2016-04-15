@@ -17,6 +17,13 @@ public class SideData {
         }
     }
 
+    public void set(SideData data) {
+        if (data.top) top = true;
+        if (data.left) left = true;
+        if (data.right) right = true;
+        if (data.bottom) bottom = true;
+    }
+
     public boolean top() {
         return top;
     }
