@@ -64,7 +64,7 @@ public class TestScene implements IScene {
         playerEntity.getModel().setPosition(new Point(200, 95));
         Floor100 floor100 = new Floor100(new Point(150,90),rectangleFactory);
         physics.add(floor100);
-    /*
+/*
         for (int i = 0; i < 100; i++) {
             Floor100 floor = new Floor100(new Point(i * 100, 90), rectangleFactory);
             physics.add(floor);

@@ -6,7 +6,6 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.SolidCollision;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.Side;
 
 public class Floor100 implements IPhysicsModel {
 
@@ -16,7 +15,7 @@ public class Floor100 implements IPhysicsModel {
 
     public Floor100(Point position, IRectangleFactoryAdapter factory) {
         this.position = position;
-        boundingBox = factory.make(position, 100, 2);
+        boundingBox = factory.make(position, 1000, 2);
         velocity = new Point(0 ,0);
     }
 
