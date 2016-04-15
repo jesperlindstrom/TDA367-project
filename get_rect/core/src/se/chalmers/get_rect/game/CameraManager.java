@@ -7,87 +7,115 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 
-public class CameraManager implements IGameComponent{
-
+public class CameraManager implements IGameComponent {
+    private static final int FOLLOW_SPEED = 50;
+    private static final int SPAN_X = 350;
+    private static final int SPAN_Y = 300;
     private ICameraAdapter cameraAdapter;
     private IPhysicsModel model;
-    private Point playerPos;
     private Point cameraPos;
-
 
     public CameraManager(ICameraAdapter cameraAdapter, IPhysicsModel model){
         this.cameraAdapter = cameraAdapter;
         this.model = model;
-        cameraPos = new Point(0,0);
-        playerPos = model.getPosition();
-        //Fix cameras first position
-        cameraAdapter.translate(playerPos.add(cameraPos));
+        cameraPos = new Point(0, 0);
     }
 
     @Override
     public void update(double delta) {
-        playerPos = model.getPosition();
-        changeCameraPosition(delta);
-        cameraAdapter.update(delta);
+        Point entityPosition = model.getPosition().addY(400);
+        Point entityVelocity = model.getVelocity();
 
-    }
-
-    private void changeCameraPosition(double delta) {
-        if(cameraPos.distanceTo(playerPos) > 300000) { //this distance is just outside the edge of the camera
-
-            focusOnPlayer();
-
+        if (isOutOfBounds(entityPosition)) {
+            snapToPosition(entityPosition);
         } else {
-
-            moveX(delta);
-            moveY(delta);
-
+            easeToPosition(entityPosition, entityVelocity, delta);
         }
 
+        cameraAdapter.update(delta);
+    }
+
+    private boolean isOutOfBounds(Point pos) {
+        if (Math.abs(cameraPos.deltaX(pos)) > cameraAdapter.getWidth())
+            return true;
+
+        if (Math.abs(cameraPos.deltaY(pos)) > cameraAdapter.getHeight())
+            return true;
+
+        return false;
     }
 
     /**
-     * this will instantly put the cameras centre at the player
+     * Smoothly follow the position
+     * @param pos
+     * @param vel
+     * @param delta
      */
-    private void focusOnPlayer() { // TODO: 16-04-13 Find a better name for this
-        cameraAdapter.translate(playerPos.subtract(cameraPos).addY(210));
-        cameraPos = cameraPos.add(playerPos.subtract(cameraPos).addY(210));
+    private void easeToPosition(Point pos, Point vel, double delta) {
+        int cameraVelX = velocityToDelta(vel.getX(), delta);
+        move(cameraPos.deltaX(pos), SPAN_X, new Point(cameraVelX, 0));
+
+        int cameraVelY = velocityToDelta(vel.getY(), delta);
+        move(cameraPos.deltaY(pos), SPAN_Y, new Point(0, cameraVelY));
     }
 
-    private void moveX(double delta) {
-        move(cameraPos.deltaX(playerPos),350,deltaToVelocityX(delta));
+    /**
+     * This will instantly put the camera at the position
+     * @param newPosition
+     */
+    public void snapToPosition(Point newPosition) {
+        Point difference = newPosition.subtract(cameraPos).addY(300);
+        cameraAdapter.translate(difference);
+        cameraPos = cameraPos.add(difference);
     }
 
-    private void moveY(double delta){
-        if(playerPos.getY() != model.getPosition().getY()){
-            move(cameraPos.deltaY(playerPos), 100, new Point(0,3));
+    /**
+     * Calculate the velocity based on the delta
+     * @param velocity
+     * @param delta
+     * @return
+     */
+    private int velocityToDelta(int velocity, double delta) {
+        return (int)(getFollowSpeed(velocity) * delta);
+    }
+
+    /**
+     * Use the Entity velocity if any, or fall back to the camera speed
+     * @param velocity Entity velocity
+     * @return Velocity
+     */
+    private int getFollowSpeed(int velocity) {
+        if (velocity != 0) {
+            return Math.abs(velocity);
         }
+
+        return FOLLOW_SPEED;
     }
 
-    private Point deltaToVelocityX(double delta){
-        int velocity = (int)(model.getVelocity().getX() * delta);
-        return new Point(velocity,0);
-    }
+    /**
+     * Move if the the difference is larger than the max difference
+     * @param difference
+     * @param maxDifference
+     * @param velocity
+     */
+    private void move(double difference, int maxDifference, Point velocity) {
+        // Only move if the difference is with in the span
+        if (Math.abs(difference) < maxDifference) return;
 
-    private void move(double delta, int span, Point velocity){
-        if(delta <= -span){
-            cameraAdapter.translate(velocity);
-            cameraPos = cameraPos.add(velocity);
-        } else if (delta >= span) {
-            cameraAdapter.translate(velocity);
-            cameraPos = cameraPos.add(velocity);
+        // If we're moving in the opposite direction
+        if (difference >= -maxDifference) {
+            velocity = velocity.multiply(-1);
         }
+
+        cameraAdapter.translate(velocity);
+        cameraPos = cameraPos.add(velocity);
     }
 
     public void draw(IGraphicsAdapter graphics) {
         cameraAdapter.draw(graphics);
     }
 
-    public Point getCenterPosition() {
-        return cameraPos;
-    }
-
     public Point getPosition() {
-        return cameraPos.subtract(GameConfig.SCREEN_WIDTH/2, GameConfig.SCREEN_HEIGHT/2);
+        return cameraPos.subtract((int)cameraAdapter.getWidth() / 2, (int)cameraAdapter.getHeight() / 2);
     }
 }

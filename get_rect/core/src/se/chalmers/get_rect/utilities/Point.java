@@ -94,12 +94,12 @@ public class Point {
         return p.subtract(this);
     }
 
-
     public int distanceTo(Point p) {
-        int xSide = this.getX() - p.getX();
-        int ySide = this.getY() - p.getY();
+        int xSide = Math.abs(this.getX() - p.getX());
+        int ySide = Math.abs(this.getY() - p.getY());
 
-        return (xSide * xSide) + (ySide * ySide);
+        // Pythagoras, c = sqrt(a^2+b^2)
+        return (int)Math.sqrt((xSide * xSide) + (ySide * ySide));
     }
 
     public Point multiply(double factor){

@@ -9,4 +9,6 @@ public interface ICameraAdapter {
     void update(double delta);
     void draw(IGraphicsAdapter g);
     Point getPosition();
+    float getWidth();
+    float getHeight();
 }
