@@ -14,6 +14,7 @@ public class MovementHandler {
         // Get velocity
         Point velocity = entity.getVelocity().multiply(delta);
 
+        // TODO: 2016-04-15 Calc where the player is allowed to go
         // Calculate the new position
         Point newPosition = entity.getPosition().add(velocity);
 
