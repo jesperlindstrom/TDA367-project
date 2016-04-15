@@ -28,24 +28,22 @@ public class CollisionHandler {
      * Check if an entity collides with another and tell the first entity.
      * @param entity
      * @param otherEntity
+     * @param collision
      */
     private void checkEntity(IPhysicsObject entity, IPhysicsObject otherEntity, SolidCollision collision) {
         IRectangleAdapter rect1 = entity.getBoundingBox();
         IRectangleAdapter rect2 = otherEntity.getBoundingBox();
-        SolidCollision side = rect1.intersects(rect2);
-
-        // We didn't collide with anything - do nothing.
-        if (side == null)
-            return;
-
         boolean isSolid = otherEntity.isSolid();
 
-        // Tell the entity it has collided with another
-        entity.onCollision(otherEntity, side, isSolid);
+        SolidCollision solidCollision = rect1.intersects(rect2,isSolid);
 
-        // Register the collision if solid
-        if (isSolid) {
-            collision.set(side, isSolid);
-        }
+        // We didn't collide with anything - do nothing.
+        if (solidCollision == null)
+            return;
+
+
+        // Tell the entity it has collided with another
+        entity.onCollision(otherEntity, solidCollision, isSolid);
+
     }
 }

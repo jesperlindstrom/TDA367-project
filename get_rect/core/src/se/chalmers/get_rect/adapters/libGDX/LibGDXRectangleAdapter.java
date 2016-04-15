@@ -33,7 +33,7 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
      * @return The side of the intersection, or null the rectangles don't overlap.
      */
     @Override
-    public SolidCollision intersects(IRectangleAdapter rect) {
+    public SolidCollision intersects(IRectangleAdapter rect, boolean isSolid) {
         Rectangle otherRectangle = getRealRectangle(rect);
         Rectangle intersection = new Rectangle();
         Intersector.intersectRectangles(rectangle, otherRectangle, intersection);
@@ -41,19 +41,19 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
         SolidCollision solidCollision = new SolidCollision();
 
         if (this.getX() + this.getWidth() >= otherRectangle.getX()) {
-            solidCollision.set(Side.RIGHT);
+            solidCollision.set(Side.RIGHT, isSolid);
         }
 
         if (this.getY() + this.getHeight() >= otherRectangle.getY()) {
-            solidCollision.set(Side.TOP);
+            solidCollision.set(Side.TOP, isSolid);
         }
 
         if (this.getX() <= otherRectangle.getX() + otherRectangle.getWidth()) {
-            solidCollision.set(Side.LEFT);
+            solidCollision.set(Side.LEFT, isSolid);
         }
 
         if (this.getY() <= otherRectangle.getY() + otherRectangle.getHeight()) {
-           solidCollision.set(Side.BOTTOM);
+           solidCollision.set(Side.BOTTOM, isSolid);
         }
         return solidCollision;
     }

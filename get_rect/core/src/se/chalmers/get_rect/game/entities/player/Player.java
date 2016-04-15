@@ -35,8 +35,8 @@ class Player implements IPhysicsModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, SolidCollision side, boolean isSolid) {
-        
-        if (isSolid && side.bottom()) {
+
+        if (side.bottom() && side.getSolidEdge().contains(Side.BOTTOM)) {
             canJump = true;
         } else {
             canJump = false;

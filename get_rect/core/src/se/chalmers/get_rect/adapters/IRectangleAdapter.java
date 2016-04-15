@@ -11,5 +11,5 @@ public interface IRectangleAdapter {
     float getY();
     Point getPosition();
     void setPosition(Point newPoint);
-    SolidCollision intersects(IRectangleAdapter rectangle);
+    SolidCollision intersects(IRectangleAdapter rectangle, boolean isSolid);
 }
