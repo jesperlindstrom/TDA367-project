@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.physics.frostbite;
 
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.physics.SolidCollision;
+import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
 public class MovementHandler {
@@ -10,7 +10,7 @@ public class MovementHandler {
      * @param entity
      * @param delta
      */
-    public void move(IPhysicsObject entity, SolidCollision collision, double delta) {
+    public void move(IPhysicsObject entity, SideData collision, double delta) {
         // Get velocity
         Point velocity = entity.getVelocity().multiply(delta);
 

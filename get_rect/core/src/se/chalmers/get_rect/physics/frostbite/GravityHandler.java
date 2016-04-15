@@ -1,17 +1,17 @@
 package se.chalmers.get_rect.physics.frostbite;
 
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.physics.SolidCollision;
+import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
 public class GravityHandler {
-    private static final int GRAVITY = -1;
+    private static final int GRAVITY = -3;
 
     /**
      * Apply gravity to the entity velocity
      * @param entity
      */
-    public void apply(IPhysicsObject entity, SolidCollision collision) {
+    public void apply(IPhysicsObject entity, SideData collision) {
         Point velocity = entity.getVelocity();
 
         // Collides with ground

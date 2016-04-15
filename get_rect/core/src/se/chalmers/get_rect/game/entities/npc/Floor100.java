@@ -4,7 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.physics.SolidCollision;
+import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Floor100 implements IPhysicsModel {
@@ -13,9 +13,10 @@ public class Floor100 implements IPhysicsModel {
     private IRectangleAdapter boundingBox;
     private Point velocity;
 
-    public Floor100(Point position, IRectangleFactoryAdapter factory) {
-        this.position = position;
-        boundingBox = factory.make(position, 1000, 2);
+    public Floor100(Point position, int size, IRectangleFactoryAdapter factory) {
+        this.position = position.addY(-100);
+        System.out.println(this.position);
+        boundingBox = factory.make(this.position, size, 100);
         velocity = new Point(0 ,0);
     }
 
@@ -29,7 +30,7 @@ public class Floor100 implements IPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SolidCollision collisionSide, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
 
     }
 

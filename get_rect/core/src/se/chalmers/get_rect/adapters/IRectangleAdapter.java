@@ -1,8 +1,7 @@
 package se.chalmers.get_rect.adapters;
 
-import se.chalmers.get_rect.physics.SolidCollision;
+import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.Side;
 
 public interface IRectangleAdapter {
     float getWidth();
@@ -11,5 +10,5 @@ public interface IRectangleAdapter {
     float getY();
     Point getPosition();
     void setPosition(Point newPoint);
-    SolidCollision intersects(IRectangleAdapter rectangle, boolean isSolid);
+    SideData intersects(IRectangleAdapter rectangle, boolean isSolid);
 }

@@ -1,11 +1,9 @@
-package se.chalmers.get_rect.physics;
-
-import se.chalmers.get_rect.utilities.Side;
+package se.chalmers.get_rect.utilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolidCollision {
+public class SideData {
     private boolean top;
     private boolean left;
     private boolean right;

@@ -54,31 +54,26 @@ public class TestScene implements IScene {
         physics.add(playerEntity.getModel());
 
         SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
-/*
+
         try {
             loadZombies(loader);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        */
-        playerEntity.getModel().setPosition(new Point(200, 95));
-        Floor100 floor100 = new Floor100(new Point(150,90),rectangleFactory);
-        physics.add(floor100);
-/*
-        for (int i = 0; i < 100; i++) {
-            Floor100 floor = new Floor100(new Point(i * 100, 90), rectangleFactory);
-            physics.add(floor);
-        }
-    /*
-        NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
 
-        for (int i = 1; i < 100; i++) {
-            IPhysicsEntity sm = sawmillFactory.make(new Point(1100+i*100, 50));
+        playerEntity.getModel().setPosition(new Point(200, 95));
+        Floor100 floor100 = new Floor100(new Point(0,90), 10000, rectangleFactory);
+        physics.add(floor100);
+
+        NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
+/*
+        for (int i = 1; i < 2; i++) {
+            IPhysicsEntity sm = sawmillFactory.make(new Point(1100+i*100, 95));
             entityManagerMap.get(layer.FOREGROUND).add(sm);
             physics.add(sm.getModel());
-        }*/
-
-        entityManagerMap.get(layer.FOREGROUND).add(playerEntity);
+        }
+*/
+       entityManagerMap.get(layer.FOREGROUND).add(playerEntity);
     }
 
     private void loadZombies(SceneLoader loader) throws FileNotFoundException {
