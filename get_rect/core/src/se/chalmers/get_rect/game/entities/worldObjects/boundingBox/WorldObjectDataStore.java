@@ -1,15 +1,14 @@
-package se.chalmers.get_rect.game.entities.worldObjects.floor;
+package se.chalmers.get_rect.game.entities.worldObjects.boundingBox;
 
 import se.chalmers.get_rect.game.entities.IDataStore;
 import se.chalmers.get_rect.utilities.Point;
 
 public class WorldObjectDataStore implements IDataStore {
-
     private int x;
     private int y;
     private int width;
     private int height;
-    private String path;
+    private String type;
 
     @Override
     public Point getPosition() {
@@ -18,5 +17,13 @@ public class WorldObjectDataStore implements IDataStore {
 
     public int getWidth() {
         return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getType() {
+        return type;
     }
 }

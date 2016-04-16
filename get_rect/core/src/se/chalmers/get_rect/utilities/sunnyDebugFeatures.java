@@ -4,6 +4,7 @@ import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 
@@ -28,7 +29,6 @@ public class sunnyDebugFeatures {
     public sunnyDebugFeatures(IPhysicsModel playerController) {
         this.playerController = playerController;
     }
-
 
     public void update(double delta) {
         currentFPS = (int)(10/delta);

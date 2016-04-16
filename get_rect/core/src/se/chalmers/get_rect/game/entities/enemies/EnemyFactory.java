@@ -18,10 +18,10 @@ public class EnemyFactory {
     }
 
     public IPhysicsEntity make(EnemyDataStore data) {
-        return make(data.getPosition(), data.getType());
+        return make(data.getType(), data.getPosition());
     }
 
-    public IPhysicsEntity make(Point position, String enemyType) {
+    public IPhysicsEntity make(String enemyType, Point position) {
         if (enemyType.equals("zombie"))
             return makeZombie(position);
 

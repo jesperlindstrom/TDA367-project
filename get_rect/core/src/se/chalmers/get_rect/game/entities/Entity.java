@@ -13,12 +13,16 @@ public class Entity implements IEntity {
 
     @Override
     public void update() {
-        model.update();
+        if (model != null) {
+            model.update();
+        }
     }
 
     @Override
     public void draw(IGraphicsAdapter g) {
-        view.draw(g);
+        if (view != null) {
+            view.draw(g);
+        }
     }
 
     @Override

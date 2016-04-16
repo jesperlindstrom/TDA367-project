@@ -24,6 +24,10 @@ public class PhysicsEngine implements IPhysicsEngine {
         entities.add(entity);
     }
 
+    public List<IPhysicsObject> getEntities() {
+        return entities;
+    }
+
     @Override
     public void update(double delta) {
         for (IPhysicsObject entity : entities) {

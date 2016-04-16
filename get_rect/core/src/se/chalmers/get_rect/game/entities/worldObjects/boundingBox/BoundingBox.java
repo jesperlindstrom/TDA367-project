@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.worldObjects.floor;
+package se.chalmers.get_rect.game.entities.worldObjects.boundingBox;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
@@ -7,28 +7,25 @@ import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Floor implements IPhysicsModel {
-
+public class BoundingBox implements IPhysicsModel {
     private Point position;
     private IRectangleAdapter boundingBox;
-    private Point velocity;
-
 
     /**
-     * This will place a floor
-     *
-     * @param position the upper left corner of the floor will be at this position
-     * @param width this is how wide the floor will be
-     * @param factory factory needed to create a boundingBox for the floor
+     * This will place a solid bounding box
+     * @param position The lower left corner of the boundingBox
+     * @param width The boundingBox width
+     * @param height The boundingBox height
+     * @param factory Factory needed to create a boundingBox for the boundingBox
      */
-    public Floor(Point position, int width, IRectangleFactoryAdapter factory) {
-        this.position = position.addY(-100);
-        boundingBox = factory.make(this.position, width, 100);
-        velocity = new Point(0 ,0);
+    public BoundingBox(Point position, int width, int height, IRectangleFactoryAdapter factory) {
+        this.position = position;
+        boundingBox = factory.make(position, width, height);
     }
 
     @Override
     public void update() {
+
     }
 
     @Override
@@ -44,6 +41,7 @@ public class Floor implements IPhysicsModel {
     @Override
     public void setPosition(Point position) {
         this.position.setPosition(position);
+        boundingBox.setPosition(position);
     }
 
     @Override
@@ -53,11 +51,12 @@ public class Floor implements IPhysicsModel {
 
     @Override
     public void setVelocity(Point velocity) {
+
     }
 
     @Override
     public Point getVelocity() {
-        return velocity;
+        return null;
     }
 
     @Override

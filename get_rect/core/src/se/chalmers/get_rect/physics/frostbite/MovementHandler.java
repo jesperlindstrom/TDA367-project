@@ -12,7 +12,12 @@ public class MovementHandler {
      */
     public void move(IPhysicsObject entity, SideData collision, double delta) {
         // Get velocity
-        Point velocity = entity.getVelocity().multiply(delta);
+        Point velocity = entity.getVelocity();
+
+        if (velocity == null) return;
+
+        // Frame-rate dependent distance
+        velocity = velocity.multiply(delta);
 
         // TODO: 2016-04-15 Calc where the player is allowed to go
         // Calculate the new position
