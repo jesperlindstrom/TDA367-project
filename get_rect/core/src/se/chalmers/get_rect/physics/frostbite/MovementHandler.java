@@ -19,7 +19,17 @@ public class MovementHandler {
         // Frame-rate dependent distance
         velocity = velocity.multiply(delta);
 
-        // TODO: 2016-04-15 Calc where the player is allowed to go
+        int x = velocity.getX();
+        int y = velocity.getY();
+
+        if ((x > 0 && collision.right()) || (x < 0 && collision.left())) {
+            velocity = velocity.setX(0);
+        }
+
+        if ((y > 0 && collision.top()) || (y < 0 && collision.bottom())) {
+            velocity = velocity.setY(0);
+        }
+
         // Calculate the new position
         Point newPosition = entity.getPosition().add(velocity);
 

@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
@@ -14,6 +15,7 @@ public class Trampoline implements IPhysicsModel {
     private Point position;
     private Point velocity;
     private IRectangleAdapter boundingBox;
+    private boolean fly = false;
 
     public Trampoline(Point position, IRectangleFactoryAdapter rectangleFactory) {
         this.position = position;
@@ -27,13 +29,18 @@ public class Trampoline implements IPhysicsModel {
     }
 
     @Override
+    public void setScene(IScene scene) {
+
+    }
+
+    @Override
     public IRectangleAdapter getBoundingBox() {
         return boundingBox;
     }
 
     @Override
     public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
-        if (otherObject.getClass().equals(Player.class) && collisionSide.top()) {
+        if (collisionSide.top()) {
             otherObject.setVelocity(otherObject.getVelocity().setY(150));
         }
     }

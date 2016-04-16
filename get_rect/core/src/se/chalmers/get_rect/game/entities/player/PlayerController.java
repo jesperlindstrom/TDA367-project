@@ -17,6 +17,12 @@ public class PlayerController implements IController {
 
     @Override
     public void update() {
+        handleMovement();
+        handleShooting();
+        handleJumping();
+    }
+
+    private void handleMovement() {
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
             player.moveLeft();
         } else if (input.isKeyPressed(IInputAdapter.Keys.D)){
@@ -24,24 +30,30 @@ public class PlayerController implements IController {
         } else {
             player.stopMoving();
         }
+    }
 
+    private void handleShooting() {
         Point direction = new Point(0, 0);
+
         if (input.isKeyJustPressed(IInputAdapter.Keys.LEFTKEY)) {
-            direction.addX(-1);
+            direction = direction.addX(-1);
         }
         if (input.isKeyJustPressed(IInputAdapter.Keys.UPKEY)) {
-            direction.addY(1);
+            direction = direction.addY(1);
         }
         if (input.isKeyJustPressed(IInputAdapter.Keys.RIGHTKEY)) {
-            direction.addX(1);
+            direction = direction.addX(1);
         }
         if (input.isKeyJustPressed(IInputAdapter.Keys.DOWNKEY)) {
-            direction.addY(-1);
+            direction = direction.addY(-1);
         }
+
         if (!direction.equals(new Point(0, 0))) {
             player.shoot(direction);
         }
+    }
 
+    private void handleJumping() {
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE)){
             player.jump();
         }

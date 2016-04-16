@@ -7,10 +7,10 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
-import se.chalmers.get_rect.physics.PhysicsDebugger;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.debug.Debugger;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -20,15 +20,15 @@ public class TestScene implements IScene {
     private IPhysicsEntity playerEntity;
     private IRectangleFactoryAdapter rectangleFactory;
     private IPhysicsEngine physics;
-    private PhysicsDebugger physicsDebugger;
     private CameraManager camera;
     private Map<layer, EntityManager> layers;
+    private Debugger debugger;
 
-    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
+    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera, Debugger debugger) {
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
-        layers = new HashMap<>();
+        this.debugger = debugger;
     }
 
     @Override
@@ -41,17 +41,13 @@ public class TestScene implements IScene {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
         layers.forEach((k, v) -> v.draw(graphics));
-
-        if (GameConfig.DRAW_BOUNDING_BOXES) {
-            physicsDebugger.draw(graphics);
-        }
     }
 
     @Override
     public void enteringState(String previousStateName) {
         createLayers();
         physics = new PhysicsEngine();
-        physicsDebugger = new PhysicsDebugger(physics);
+        debugger.setPhysicsEngine(physics);
 
         SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
 
@@ -66,7 +62,7 @@ public class TestScene implements IScene {
     }
 
     private void createLayers() {
-        layers.clear();
+        layers = new HashMap<>();
         layers.put(layer.BACKGROUND, new EntityManager());
         layers.put(layer.FOREGROUND, new EntityManager());
         layers.put(layer.FOREGROUND_EFFECTS, new EntityManager());
@@ -98,11 +94,15 @@ public class TestScene implements IScene {
     @Override
     public void addEntity(layer layer, IEntity entity) {
         layers.get(layer).add(entity);
+        IModel model = entity.getModel();
+        model.setScene(this);
     }
 
     @Override
     public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
         layers.get(layer).add(entity);
-        physics.add(entity.getModel());
+        IPhysicsModel model = entity.getModel();
+        model.setScene(this);
+        physics.add(model);
     }
 }

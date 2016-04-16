@@ -18,8 +18,14 @@ public class SawmillView implements IView{
         if (model.isWäääh()) {
             graphics.drawText("Wäääh", model.getPosition().add(new Point(50, 60)));
         }
-        if (model.isWäääh() && bla%2 == 1) {
-            graphics.draw("img/entities/sawmill/sawmill-express.png", model.getPosition().addX(5));
+        if (model.isWäääh()) {
+            Point pos = model.getPosition();
+
+            if (bla % 2 == 1) {
+                pos = pos.addX(5);
+            }
+
+            graphics.draw("img/entities/sawmill/sawmill-express-waaah.png", model.getPosition().addX(5));
         } else {
             graphics.draw("img/entities/sawmill/sawmill-express.png", model.getPosition());
         }

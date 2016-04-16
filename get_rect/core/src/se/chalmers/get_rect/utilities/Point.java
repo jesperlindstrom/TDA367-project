@@ -109,14 +109,14 @@ public class Point {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj != null && this.getClass().equals(obj.getClass())) {
-            Point p2 = (Point)obj;
-            if (this.getX() == p2.getX() && this.getY() == p2.getY()) {
-                return true;
-            }
-        }
-        return false;
+        if (obj == null)
+            return false;
+
+        if (!obj.getClass().equals(getClass()))
+            return false;
+
+        Point p2 = (Point)obj;
+
+        return getX() == p2.getX() && getY() == p2.getY();
     }
-
-
 }
