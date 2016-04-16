@@ -50,5 +50,11 @@
     "type": "trampoline",
     "x": 1500,
     "y": 50
+  },
+
+  {
+    "type": "trampoline",
+    "x": 160,
+    "y": 300
   }
 ]
