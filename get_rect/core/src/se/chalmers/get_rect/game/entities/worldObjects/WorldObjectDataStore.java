@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.worldObjects.boundingBox;
+package se.chalmers.get_rect.game.entities.worldObjects;
 
 import se.chalmers.get_rect.game.entities.IDataStore;
 import se.chalmers.get_rect.utilities.Point;

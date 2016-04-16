@@ -7,7 +7,7 @@ import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
-class Player implements IPhysicsModel {
+public class Player implements IPhysicsModel {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 80;
     private static final int JUMPSPEED = 90;
