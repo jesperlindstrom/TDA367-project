@@ -15,17 +15,17 @@ public class SawmillView implements IView{
     @Override
     public void draw(IGraphicsAdapter graphics) {
         bla++;
-        if (model.isWäääh()) {
-            graphics.drawText("Wäääh", model.getPosition().add(new Point(50, 60)));
-        }
-        if (model.isWäääh()) {
-            Point pos = model.getPosition();
 
+        Point pos = model.getPosition();
+
+        if (model.isWäääh()) {
+
+            graphics.drawText("Wäääh", model.getPosition().add(new Point(50, 60)));
             if (bla % 2 == 1) {
                 pos = pos.addX(5);
             }
 
-            graphics.draw("img/entities/sawmill/sawmill-express-waaah.png", model.getPosition().addX(5));
+            graphics.draw("img/entities/sawmill/sawmill-express-waaah.png", pos);
         } else {
             graphics.draw("img/entities/sawmill/sawmill-express.png", model.getPosition());
         }
