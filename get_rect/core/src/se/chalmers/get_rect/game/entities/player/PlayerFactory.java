@@ -15,8 +15,8 @@ public class PlayerFactory {
      * @param game
      */
 
-    public PlayerFactory(PlayerController playerController, IGame game, ProjectileFactory projectilFactory){
-        this.rectangleFactory = game.getRectangleFactory();
+    public PlayerFactory(PlayerController playerController, IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectilFactory){
+        this.rectangleFactory = rectangleFactory;
         this.playerController = playerController;
         this.projectileFactory = projectilFactory;
 
