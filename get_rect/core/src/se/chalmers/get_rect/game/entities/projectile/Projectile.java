@@ -43,7 +43,10 @@ public class Projectile implements IPhysicsModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
-
+        if (isSolid && collisionSide.bottom()) {
+            int friction = velocity.getX() > 0 ? -1 : 1;
+            velocity = velocity.addX(friction);
+        }
     }
 
     @Override
@@ -79,7 +82,7 @@ public class Projectile implements IPhysicsModel {
 
     @Override
     public void update() {
-        if (velocity.getX() == 0 && velocity.getY() == 0) {
+        if (Math.abs(velocity.getX()) <= 10 && Math.abs(velocity.getY()) <= 10) {
             shouldBeRemoved = true;
 
             if (cluster) {
