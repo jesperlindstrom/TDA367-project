@@ -3,7 +3,7 @@ package se.chalmers.get_rect;
 import org.junit.Before;
 import org.junit.Test;
 import se.chalmers.get_rect.adapters.*;
-import se.chalmers.get_rect.log.GameLog;
+import se.chalmers.get_rect.game.log.GameLog;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
