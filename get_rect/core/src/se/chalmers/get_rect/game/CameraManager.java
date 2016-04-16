@@ -9,7 +9,7 @@ import se.chalmers.get_rect.utilities.Point;
 public class CameraManager implements IGameComponent {
     private static final int FOLLOW_SPEED = 50;
     private static final int SPAN_X = 350;
-    private static final int SPAN_Y = 300;
+    private static final int SPAN_Y = 200;
     private ICameraAdapter cameraAdapter;
     private IPhysicsModel model;
     private Point cameraPos;
@@ -22,7 +22,7 @@ public class CameraManager implements IGameComponent {
 
     @Override
     public void update(double delta) {
-        Point entityPosition = model.getPosition().addY(300);
+        Point entityPosition = model.getPosition().addY(200);
         Point entityVelocity = model.getVelocity();
 
         if (isOutOfBounds(entityPosition)) {
