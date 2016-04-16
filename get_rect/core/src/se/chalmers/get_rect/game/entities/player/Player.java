@@ -2,7 +2,10 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
@@ -18,6 +21,8 @@ public class Player implements IPhysicsModel {
     private boolean isWalking;
     private boolean canJump;
     private boolean secondJump;
+    private ProjectileFactory projectileFactory;
+    private IScene scene;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -30,10 +35,16 @@ public class Player implements IPhysicsModel {
         this.canJump = true;
         this.secondJump = false;
         this.velocity = new Point(0, 0);
+        this.projectileFactory = new ProjectileFactory(rectangleFactory);
     }
 
     @Override
     public void update() {
+    }
+
+    @Override
+    public void setScene(IScene scene) {
+        this.scene = scene;
     }
 
     @Override
@@ -108,7 +119,9 @@ public class Player implements IPhysicsModel {
     }
 
     public void shoot(Point direction) {
-
+        int BULLET_SPEED = 200;
+        IPhysicsEntity projectile = projectileFactory.make(position.addY(HEIGHT), direction.multiply(BULLET_SPEED));
+        scene.addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
     }
 }
 

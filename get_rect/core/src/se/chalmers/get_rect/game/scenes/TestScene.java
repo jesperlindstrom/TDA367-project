@@ -94,11 +94,15 @@ public class TestScene implements IScene {
     @Override
     public void addEntity(layer layer, IEntity entity) {
         layers.get(layer).add(entity);
+        IModel model = entity.getModel();
+        model.setScene(this);
     }
 
     @Override
     public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
         layers.get(layer).add(entity);
-        physics.add(entity.getModel());
+        IPhysicsModel model = entity.getModel();
+        model.setScene(this);
+        physics.add(model);
     }
 }
