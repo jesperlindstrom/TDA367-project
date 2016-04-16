@@ -5,7 +5,7 @@ import se.chalmers.get_rect.game.screens.*;
 import se.chalmers.get_rect.log.GameLog;
 import se.chalmers.get_rect.states.*;
 
-public class GameManager implements IGame {
+public class Game implements IGame {
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
     private IAssetManagerAdapter assetManager;
@@ -24,7 +24,7 @@ public class GameManager implements IGame {
      * @param gameLoop
      * @param rectangleFactory
      */
-    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
+    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;

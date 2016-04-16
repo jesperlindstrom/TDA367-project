@@ -4,11 +4,11 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
-import se.chalmers.get_rect.GameManager;
+import se.chalmers.get_rect.Game;
 import se.chalmers.get_rect.adapters.IGameLoopAdapter;
 
 public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLoopAdapter {
-    private GameManager gameManager;
+    private Game gameManager;
     private long lastTime = 0;
 
     /**
@@ -22,7 +22,7 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
         LibGDXInputAdapter inputAdapter = new LibGDXInputAdapter(Gdx.input);
         LibGDXRectangleFactoryAdapter rectangleFactoryAdapter = new LibGDXRectangleFactoryAdapter();
 
-        gameManager = new GameManager(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapterFactory, this, rectangleFactoryAdapter);
+        gameManager = new Game(graphicsAdapter, inputAdapter, assetManagerAdapter, cameraAdapterFactory, this, rectangleFactoryAdapter);
     }
 
     /**
