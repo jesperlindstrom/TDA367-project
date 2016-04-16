@@ -32,51 +32,48 @@ public class TestScene implements IScene {
 
     @Override
     public void update(double delta) {
-        for (Map.Entry<layer, EntityManager> entry : layers.entrySet()) {
-            entry.getValue().update();
-        }
-
+        layers.forEach((k, v) -> v.update());
         physics.update(delta);
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
-
-        for (Map.Entry<layer, EntityManager> entry : layers.entrySet()) {
-            entry.getValue().draw(graphics);
-        }
+        layers.forEach((k, v) -> v.draw(graphics));
     }
 
     @Override
     public void enteringState(String previousStateName) {
-        layers.clear();
-        layers.put(layer.BACKGROUND, new EntityManager());
-        layers.put(layer.FOREGROUND, new EntityManager());
-        layers.put(layer.FOREGROUND_EFFECTS, new EntityManager());
-
+        createLayers();
         physics = new PhysicsEngine();
-        physics.add(playerEntity.getModel());
-
         SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
 
         try {
+            loadBackground(loader);
             loadForeground(loader);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
 
+        addPlayerAtPosition(1500, 150);
+    }
 
-        playerEntity.getModel().setPosition(new Point(1500, 150));
+    private void createLayers() {
+        layers.clear();
+        layers.put(layer.BACKGROUND, new EntityManager());
+        layers.put(layer.FOREGROUND, new EntityManager());
+        layers.put(layer.FOREGROUND_EFFECTS, new EntityManager());
+    }
 
-        WorldObjectFactory solidFactory = new WorldObjectFactory(rectangleFactory);
-        for (int i = 0; i < 2; i++) {
-            IPhysicsEntity entity = solidFactory.make(new Point(i*1000, 120), 1000);
-            layers.get(layer.FOREGROUND).add(entity);
-            physics.add(entity.getModel());
+    private void addPlayerAtPosition(int x, int y) {
+        playerEntity.getModel().setPosition(new Point(x, y));
+        addPhysicsEntity(layer.FOREGROUND, playerEntity);
+    }
+
+    private void loadBackground(SceneLoader loader) throws FileNotFoundException {
+        for (IPhysicsEntity entity : loader.getBackground()) {
+            addPhysicsEntity(layer.BACKGROUND, entity);
         }
-
-       layers.get(layer.FOREGROUND).add(playerEntity);
     }
 
     private void loadForeground(SceneLoader loader) throws FileNotFoundException {
