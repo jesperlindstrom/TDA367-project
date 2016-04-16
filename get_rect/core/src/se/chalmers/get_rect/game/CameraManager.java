@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game;
 
 
-import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
@@ -23,7 +22,7 @@ public class CameraManager implements IGameComponent {
 
     @Override
     public void update(double delta) {
-        Point entityPosition = model.getPosition().addY(400);
+        Point entityPosition = model.getPosition().addY(300);
         Point entityVelocity = model.getVelocity();
 
         if (isOutOfBounds(entityPosition)) {
@@ -36,10 +35,10 @@ public class CameraManager implements IGameComponent {
     }
 
     private boolean isOutOfBounds(Point pos) {
-        if (Math.abs(cameraPos.deltaX(pos)) > cameraAdapter.getWidth())
+        if (Math.abs(cameraPos.deltaX(pos)) > cameraAdapter.getWidth()/2)
             return true;
 
-        if (Math.abs(cameraPos.deltaY(pos)) > cameraAdapter.getHeight())
+        if (Math.abs(cameraPos.deltaY(pos)) > cameraAdapter.getHeight()/2)
             return true;
 
         return false;
@@ -64,7 +63,7 @@ public class CameraManager implements IGameComponent {
      * @param newPosition
      */
     public void snapToPosition(Point newPosition) {
-        Point difference = newPosition.subtract(cameraPos).addY(300);
+        Point difference = newPosition.subtract(cameraPos);
         cameraAdapter.translate(difference);
         cameraPos = cameraPos.add(difference);
     }

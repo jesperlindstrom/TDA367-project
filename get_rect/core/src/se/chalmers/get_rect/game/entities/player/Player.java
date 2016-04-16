@@ -6,7 +6,6 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.Side;
 
 class Player implements IPhysicsModel {
     private static final int WIDTH = 100;
