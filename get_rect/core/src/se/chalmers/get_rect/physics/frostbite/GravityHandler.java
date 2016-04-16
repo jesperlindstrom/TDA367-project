@@ -12,6 +12,7 @@ public class GravityHandler {
      * @param entity
      */
     public void apply(IPhysicsObject entity, SideData collision) {
+
         Point velocity = entity.getVelocity();
 
         // Collides with ground
