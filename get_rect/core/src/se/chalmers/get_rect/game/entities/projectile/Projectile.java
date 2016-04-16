@@ -82,7 +82,7 @@ public class Projectile implements IPhysicsModel {
 
     @Override
     public void update() {
-        if (Math.abs(velocity.getX()) <= 10 && Math.abs(velocity.getY()) <= 10) {
+        if (velocity.getX() == 0 && velocity.getY() == 0) {
             shouldBeRemoved = true;
 
             if (cluster) {
@@ -98,14 +98,6 @@ public class Projectile implements IPhysicsModel {
             int velX = rand.nextInt(100) - 50;
             int velY = rand.nextInt(300) - 20;
             Point vel = new Point(velX, velY);
-
-            if (Math.abs(velX) < 50) {
-                velX *= 10;
-            }
-
-            if (Math.abs(velY) < 50) {
-                velY *= 10;
-            }
 
             IPhysicsEntity projectile = projectileFactory.make("normal", position.addY(100), vel);
             scene.addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
