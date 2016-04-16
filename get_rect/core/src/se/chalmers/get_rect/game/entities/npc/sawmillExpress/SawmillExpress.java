@@ -4,7 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.scenes.IEntityHolder;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
@@ -33,7 +33,7 @@ public class SawmillExpress implements IPhysicsModel {
     }
 
     @Override
-    public void setScene(IScene scene) {
+    public void setScene(IEntityHolder scene) {
 
     }
 
@@ -78,6 +78,11 @@ public class SawmillExpress implements IPhysicsModel {
 
     @Override
     public boolean isSolid() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldBeRemoved() {
         return false;
     }
 }

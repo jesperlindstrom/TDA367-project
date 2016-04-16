@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.physics.frostbite;
 
+import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
@@ -9,12 +10,14 @@ import java.util.List;
 
 public class PhysicsEngine implements IPhysicsEngine {
     private List<IPhysicsObject> entities;
+    private List<IPhysicsObject> removalQueue;
     private CollisionHandler collision;
     private MovementHandler movement;
     private GravityHandler gravity;
 
     public PhysicsEngine() {
         entities = new ArrayList<>();
+        removalQueue = new ArrayList<>();
         collision = new CollisionHandler();
         movement = new MovementHandler();
         gravity = new GravityHandler();
@@ -32,6 +35,8 @@ public class PhysicsEngine implements IPhysicsEngine {
 
     @Override
     public void update(double delta) {
+        removalQueue.clear();
+
         for (IPhysicsObject entity : entities) {
             // Check for collision
             SideData entityCollision = collision.check(entity, entities);
@@ -41,6 +46,14 @@ public class PhysicsEngine implements IPhysicsEngine {
 
             // Apply gravity if entity is in the air
             gravity.apply(entity, entityCollision);
+
+            if (entity.shouldBeRemoved()) {
+                removalQueue.add(entity);
+            }
+        }
+
+        for (IPhysicsObject entity : removalQueue) {
+            entities.remove(entity);
         }
     }
 }

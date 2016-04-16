@@ -12,4 +12,5 @@ public interface IPhysicsObject {
     void setVelocity(Point velocity);
     Point getVelocity();
     boolean isSolid();
+    boolean shouldBeRemoved();
 }
