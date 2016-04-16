@@ -82,7 +82,7 @@ public class Projectile implements IPhysicsModel {
 
     @Override
     public void update() {
-        if (Math.abs(velocity.getX()) <= 10 && Math.abs(velocity.getY()) <= 10) {
+        if (velocity.getX() == 0 && velocity.getY() == 0) {
             shouldBeRemoved = true;
 
             if (cluster) {
