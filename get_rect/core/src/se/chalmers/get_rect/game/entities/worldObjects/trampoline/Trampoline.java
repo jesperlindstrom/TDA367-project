@@ -33,7 +33,7 @@ public class Trampoline implements IPhysicsModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
-        if (otherObject.getClass().equals(Player.class) && collisionSide.top()) {
+        if (collisionSide.top()) {
             otherObject.setVelocity(otherObject.getVelocity().setY(150));
         }
     }
