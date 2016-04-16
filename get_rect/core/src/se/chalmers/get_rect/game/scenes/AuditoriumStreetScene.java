@@ -1,11 +1,5 @@
 package se.chalmers.get_rect.game.scenes;
 
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.IController;
-import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieFactory;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
-import se.chalmers.get_rect.game.entities.player.PlayerFactory;
-
 /*
 public class AuditoriumStreetScene implements IScene {
     private PlayerController player;

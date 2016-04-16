@@ -5,7 +5,6 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
-import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.worldObjects.floor.WorldObjectFactory;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
@@ -22,41 +21,39 @@ public class TestScene implements IScene {
     private IRectangleFactoryAdapter rectangleFactory;
     private IPhysicsEngine physics;
     private CameraManager camera;
-    private Map<layer, EntityManager> entityManagerMap;
+    private Map<layer, EntityManager> layers;
 
     public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
+        layers = new HashMap<>();
     }
 
     @Override
     public void update(double delta) {
-
-        entityManagerMap.get(layer.FOREGROUND_EFFECTS).update();
-        entityManagerMap.get(layer.BACKGROUND).update();
-        entityManagerMap.get(layer.FOREGROUND).update();
+        for (Map.Entry<layer, EntityManager> entry : layers.entrySet()) {
+            entry.getValue().update();
+        }
 
         physics.update(delta);
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-
         graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
 
-        entityManagerMap.get(layer.BACKGROUND).draw(graphics);
-        entityManagerMap.get(layer.FOREGROUND).draw(graphics);
-        entityManagerMap.get(layer.FOREGROUND_EFFECTS).draw(graphics);
-
+        for (Map.Entry<layer, EntityManager> entry : layers.entrySet()) {
+            entry.getValue().draw(graphics);
+        }
     }
 
     @Override
     public void enteringState(String previousStateName) {
-        entityManagerMap = new HashMap<>();
-        entityManagerMap.put(layer.BACKGROUND, new EntityManager());
-        entityManagerMap.put(layer.FOREGROUND, new EntityManager());
-        entityManagerMap.put(layer.FOREGROUND_EFFECTS, new EntityManager());
+        layers.clear();
+        layers.put(layer.BACKGROUND, new EntityManager());
+        layers.put(layer.FOREGROUND, new EntityManager());
+        layers.put(layer.FOREGROUND_EFFECTS, new EntityManager());
 
         physics = new PhysicsEngine();
         physics.add(playerEntity.getModel());
@@ -64,7 +61,7 @@ public class TestScene implements IScene {
         SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
 
         try {
-            loadZombies(loader);
+            loadForeground(loader);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -75,29 +72,16 @@ public class TestScene implements IScene {
         WorldObjectFactory solidFactory = new WorldObjectFactory(rectangleFactory);
         for (int i = 0; i < 2; i++) {
             IPhysicsEntity entity = solidFactory.make(new Point(i*1000, 120), 1000);
-            entityManagerMap.get(layer.FOREGROUND).add(entity);
+            layers.get(layer.FOREGROUND).add(entity);
             physics.add(entity.getModel());
         }
 
-        NpcFactory sawmillFactory = new NpcFactory(rectangleFactory);
-/*
-        for (int i = 1; i < 2; i++) {
-            IPhysicsEntity sm = sawmillFactory.make(new Point(1100+i*100, 95));
->>>>>>> feature-frostbite-2
-            entityManagerMap.get(layer.FOREGROUND).add(sm);
-            physics.add(sm.getModel());
-        }
-<<<<<<< HEAD
-        entityManagerMap.get(layer.FOREGROUND).add(playerController);
-=======
-*/
-       entityManagerMap.get(layer.FOREGROUND).add(playerEntity);
+       layers.get(layer.FOREGROUND).add(playerEntity);
     }
 
-    private void loadZombies(SceneLoader loader) throws FileNotFoundException {
-        for (IPhysicsEntity entity : loader.getZombies()) {
-            entityManagerMap.get(layer.FOREGROUND).add(entity);
-            physics.add(entity.getModel());
+    private void loadForeground(SceneLoader loader) throws FileNotFoundException {
+        for (IPhysicsEntity entity : loader.getForeground()) {
+            addPhysicsEntity(layer.FOREGROUND, entity);
         }
     }
 
@@ -109,13 +93,12 @@ public class TestScene implements IScene {
 
     @Override
     public void addEntity(layer layer, IEntity entity) {
-        entityManagerMap.get(layer).add(entity);
+        layers.get(layer).add(entity);
     }
 
     @Override
     public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
-        entityManagerMap.get(layer).add(entity);
+        layers.get(layer).add(entity);
         physics.add(entity.getModel());
-
     }
 }

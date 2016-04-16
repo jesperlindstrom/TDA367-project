@@ -1,25 +1,30 @@
 [
   {
+    "type": "zombie",
     "x": 900,
     "y": 100
   },
 
   {
+    "type": "zombie",
     "x": 850,
     "y": 250
   },
 
   {
+    "type": "zombie",
     "x": 800,
     "y": 400
   },
 
   {
+    "type": "zombie",
     "x": 750,
     "y": 550
   },
 
   {
+    "type": "zombie",
     "x": 700,
     "y": 600
   }
