@@ -8,8 +8,8 @@ import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
 class Player implements IPhysicsModel {
-    private static final int WIDTH = 100;
-    private static final int HEIGHT = 100;
+    private static final int WIDTH = 40;
+    private static final int HEIGHT = 80;
     private static final int JUMPSPEED = 90;
     private static final int MOVMENTSPEED = 30;
     private IRectangleAdapter boundingBox;
