@@ -14,15 +14,21 @@ public class SawmillView implements IView{
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        bla++;
 
         Point pos = model.getPosition();
 
         if (model.isWäääh()) {
+            bla++;
 
-            graphics.drawText("Wäääh", model.getPosition().add(new Point(50, 60)));
+            if (bla > 40) {
+                graphics.drawText("Wäääh", model.getPosition().add(new Point(50, 60)));
+            }
             if (bla % 2 == 1) {
                 pos = pos.addX(5);
+            }
+
+            if (bla%5 > bla %4) {
+                graphics.drawText("PARTY HARD", model.getPosition().add(-100, 150));
             }
 
             graphics.draw("img/entities/sawmill/sawmill-express-waaah.png", pos);
