@@ -7,6 +7,7 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
+import se.chalmers.get_rect.physics.PhysicsDebugger;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
@@ -19,6 +20,7 @@ public class TestScene implements IScene {
     private IPhysicsEntity playerEntity;
     private IRectangleFactoryAdapter rectangleFactory;
     private IPhysicsEngine physics;
+    private PhysicsDebugger physicsDebugger;
     private CameraManager camera;
     private Map<layer, EntityManager> layers;
 
@@ -39,12 +41,18 @@ public class TestScene implements IScene {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
         layers.forEach((k, v) -> v.draw(graphics));
+
+        if (GameConfig.DRAW_BOUNDING_BOXES) {
+            physicsDebugger.draw(graphics);
+        }
     }
 
     @Override
     public void enteringState(String previousStateName) {
         createLayers();
         physics = new PhysicsEngine();
+        physicsDebugger = new PhysicsDebugger(physics);
+
         SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
 
         try {

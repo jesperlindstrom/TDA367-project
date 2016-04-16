@@ -20,10 +20,12 @@ public class PhysicsEngine implements IPhysicsEngine {
         gravity = new GravityHandler();
     }
 
+    @Override
     public void add(IPhysicsObject entity) {
         entities.add(entity);
     }
 
+    @Override
     public List<IPhysicsObject> getEntities() {
         return entities;
     }
