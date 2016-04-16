@@ -43,7 +43,7 @@ class FpsHandler {
 
         if (GameConfig.SHOW_FPS) {
             point = point.addY(textOffset);
-            graphics.drawText("FpsHandler = " + FPS, point);
+            graphics.drawText("FPS = " + FPS, point);
         }
 
         if (GameConfig.SHOW_LOWESTFPS) {
