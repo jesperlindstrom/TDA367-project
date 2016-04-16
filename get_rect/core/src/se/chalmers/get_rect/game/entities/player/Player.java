@@ -17,6 +17,7 @@ class Player implements IPhysicsModel {
     private Point velocity;
     private boolean isWalking;
     private boolean canJump;
+    private boolean secondJump;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -27,6 +28,7 @@ class Player implements IPhysicsModel {
         this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
         this.isWalking = false;
         this.canJump = true;
+        this.secondJump = false;
         this.velocity = new Point(0, 0);
     }
 
@@ -45,6 +47,10 @@ class Player implements IPhysicsModel {
         if (canJump) {
             velocity = velocity.setY(JUMPSPEED);
             canJump = false;
+            secondJump = true;
+        } else if (secondJump) {
+            velocity = velocity.setY(JUMPSPEED);
+            secondJump = false;
         }
     }
 
