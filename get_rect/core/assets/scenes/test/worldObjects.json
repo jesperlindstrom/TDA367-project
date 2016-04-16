@@ -9,9 +9,41 @@
 
   {
     "type": "boundingBox",
-    "x": 1100,
-    "y": 450,
-    "width": "100",
+    "x": 170,
+    "y": 270,
+    "width": "150",
+    "height": "200"
+  },
+
+  {
+    "type": "boundingBox",
+    "x": 380,
+    "y": 270,
+    "width": "150",
+    "height": "200"
+  },
+
+  {
+  "type": "boundingBox",
+  "x": 610,
+  "y": 270,
+  "width": "150",
+  "height": "200"
+},
+
+  {
+    "type": "boundingBox",
+    "x": 2130,
+    "y": 270,
+    "width": "150",
+    "height": "200"
+  },
+
+  {
+    "type": "boundingBox",
+    "x": 2315,
+    "y": 270,
+    "width": "150",
     "height": "200"
   }
 ]
