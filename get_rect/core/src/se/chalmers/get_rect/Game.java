@@ -11,7 +11,6 @@ public class Game implements IGame {
     private IAssetManagerAdapter assetManager;
     private IGameLoopAdapter gameLoop;
     private IRectangleFactoryAdapter rectangleFactory;
-    private GameLog gameLog;
     private StateManager<IScreen> screenManager;
     private ICameraFactoryAdapter cameraFactory;
 
@@ -34,7 +33,6 @@ public class Game implements IGame {
         this.rectangleFactory = rectangleFactory;
 
         // Initialize components
-        gameLog = new GameLog();
         screenManager = new StateManager<>();
 
         // Add screens
@@ -112,14 +110,5 @@ public class Game implements IGame {
     public void exit() {
         assetManager.dispose();
         gameLoop.exit();
-    }
-
-    /**
-     * Get the log instance
-     * @return Game log
-     */
-    @Override
-    public GameLog getGameLog() {
-        return gameLog;
     }
 }
