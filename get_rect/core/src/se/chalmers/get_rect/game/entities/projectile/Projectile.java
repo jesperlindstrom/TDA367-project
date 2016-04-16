@@ -99,14 +99,6 @@ public class Projectile implements IPhysicsModel {
             int velY = rand.nextInt(300) - 20;
             Point vel = new Point(velX, velY);
 
-            if (Math.abs(velX) < 50) {
-                velX *= 10;
-            }
-
-            if (Math.abs(velY) < 50) {
-                velY *= 10;
-            }
-
             IPhysicsEntity projectile = projectileFactory.make("normal", position.addY(100), vel);
             scene.addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
         }
