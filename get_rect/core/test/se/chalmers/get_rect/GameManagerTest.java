@@ -3,14 +3,14 @@ package se.chalmers.get_rect;
 import org.junit.Before;
 import org.junit.Test;
 import se.chalmers.get_rect.adapters.*;
-import se.chalmers.get_rect.log.GameLog;
+import se.chalmers.get_rect.game.log.GameLog;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 public class GameManagerTest {
-    private GameManager gameManager;
+    private Game gameManager;
     private IAssetManagerAdapter assetManager;
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
@@ -27,7 +27,7 @@ public class GameManagerTest {
         gameLoop = new GameLoopAdapterStub();
         rectangleFactory = new RectangleFactoryAdapterStub();
 
-        gameManager = new GameManager(graphics, input, assetManager, cameraFactory, gameLoop, rectangleFactory);
+        gameManager = new Game(graphics, input, assetManager, cameraFactory, gameLoop, rectangleFactory);
     }
 
     @Test

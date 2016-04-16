@@ -13,7 +13,7 @@ import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.menu.MenuScene;
 import se.chalmers.get_rect.states.StateManager;
-import se.chalmers.get_rect.utilities.sunnyDebugFeatures;
+import se.chalmers.get_rect.utilities.debug.sunnyDebugFeatures;
 
 
 public class GameScreen implements IScreen {

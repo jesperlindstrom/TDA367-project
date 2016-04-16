@@ -2,16 +2,14 @@ package se.chalmers.get_rect;
 
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.screens.*;
-import se.chalmers.get_rect.log.GameLog;
 import se.chalmers.get_rect.states.*;
 
-public class GameManager implements IGame {
+public class Game implements IGame {
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
     private IAssetManagerAdapter assetManager;
     private IGameLoopAdapter gameLoop;
     private IRectangleFactoryAdapter rectangleFactory;
-    private GameLog gameLog;
     private StateManager<IScreen> screenManager;
     private ICameraFactoryAdapter cameraFactory;
 
@@ -24,7 +22,7 @@ public class GameManager implements IGame {
      * @param gameLoop
      * @param rectangleFactory
      */
-    public GameManager(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
+    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;
@@ -34,7 +32,6 @@ public class GameManager implements IGame {
         this.rectangleFactory = rectangleFactory;
 
         // Initialize components
-        gameLog = new GameLog();
         screenManager = new StateManager<>();
 
         // Add screens
@@ -112,14 +109,5 @@ public class GameManager implements IGame {
     public void exit() {
         assetManager.dispose();
         gameLoop.exit();
-    }
-
-    /**
-     * Get the log instance
-     * @return Game log
-     */
-    @Override
-    public GameLog getGameLog() {
-        return gameLog;
     }
 }

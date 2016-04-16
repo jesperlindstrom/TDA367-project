@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.log;
+package se.chalmers.get_rect.game.log;
 
 public class GameLogEvent {
     // todo: implement
