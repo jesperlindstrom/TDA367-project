@@ -2,9 +2,11 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.scenes.IEntityHolder;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
@@ -22,7 +24,7 @@ public class Player implements IPhysicsModel {
     private boolean canJump;
     private boolean secondJump;
     private ProjectileFactory projectileFactory;
-    private IScene scene;
+    private IEntityHolder scene;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -43,7 +45,7 @@ public class Player implements IPhysicsModel {
     }
 
     @Override
-    public void setScene(IScene scene) {
+    public void setScene(IEntityHolder scene) {
         this.scene = scene;
     }
 
@@ -106,6 +108,11 @@ public class Player implements IPhysicsModel {
         return false;
     }
 
+    @Override
+    public boolean shouldBeRemoved() {
+        return false;
+    }
+
     public boolean isWalking(){
         return isWalking;
     }
@@ -120,7 +127,7 @@ public class Player implements IPhysicsModel {
 
     public void shoot(Point direction) {
         int BULLET_SPEED = 200;
-        IPhysicsEntity projectile = projectileFactory.make(position.addY(HEIGHT), direction.multiply(BULLET_SPEED));
+        IPhysicsEntity projectile = projectileFactory.make("cluster", position.addY(HEIGHT), direction.multiply(BULLET_SPEED));
         scene.addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
     }
 }

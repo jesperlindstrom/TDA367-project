@@ -16,9 +16,6 @@ public class MovementHandler {
 
         if (velocity == null) return;
 
-        // Frame-rate dependent distance
-        velocity = velocity.multiply(delta);
-
         int x = velocity.getX();
         int y = velocity.getY();
 
@@ -29,6 +26,11 @@ public class MovementHandler {
         if ((y > 0 && collision.top()) || (y < 0 && collision.bottom())) {
             velocity = velocity.setY(0);
         }
+
+        entity.setVelocity(velocity);
+
+        // Frame-rate dependent distance
+        velocity = velocity.multiply(delta);
 
         // Calculate the new position
         Point newPosition = entity.getPosition().add(velocity);
