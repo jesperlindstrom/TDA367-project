@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.solidStuff.floor;
+package se.chalmers.get_rect.game.entities.worldObjects.floor;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;

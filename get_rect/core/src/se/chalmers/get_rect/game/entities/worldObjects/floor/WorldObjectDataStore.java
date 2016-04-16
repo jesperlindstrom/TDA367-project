@@ -1,12 +1,9 @@
-package se.chalmers.get_rect.game.entities.solidStuff.floor;
+package se.chalmers.get_rect.game.entities.worldObjects.floor;
 
 import se.chalmers.get_rect.game.entities.IDataStore;
 import se.chalmers.get_rect.utilities.Point;
 
-/**
- * Created by Simon on 16-04-16.
- */
-public class SolidsDataStore implements IDataStore {
+public class WorldObjectDataStore implements IDataStore {
 
     private int x;
     private int y;

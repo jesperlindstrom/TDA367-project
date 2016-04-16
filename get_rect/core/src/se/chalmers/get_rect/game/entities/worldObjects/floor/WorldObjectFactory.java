@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.solidStuff.floor;
+package se.chalmers.get_rect.game.entities.worldObjects.floor;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
@@ -7,19 +7,16 @@ import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.PhysicsEntity;
 import se.chalmers.get_rect.utilities.Point;
 
-/**
- * Created by Simon on 16-04-16.
- */
-public class SolidFactory {
+public class WorldObjectFactory {
 
     private IRectangleFactoryAdapter rectangleFactory;
 
-    public SolidFactory(IRectangleFactoryAdapter rectangleFactory) {
+    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory) {
         this.rectangleFactory = rectangleFactory;
 
     }
 
-    public IPhysicsEntity make(SolidsDataStore dataStore) {
+    public IPhysicsEntity make(WorldObjectDataStore dataStore) {
         return make(dataStore.getPosition(), dataStore.getWidth());
     }
 

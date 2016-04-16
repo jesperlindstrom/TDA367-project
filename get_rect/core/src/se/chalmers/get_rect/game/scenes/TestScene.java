@@ -7,8 +7,7 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.solidStuff.floor.Floor;
-import se.chalmers.get_rect.game.entities.solidStuff.floor.SolidFactory;
+import se.chalmers.get_rect.game.entities.worldObjects.floor.WorldObjectFactory;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
@@ -73,7 +72,7 @@ public class TestScene implements IScene {
 
         playerEntity.getModel().setPosition(new Point(1500, 150));
 
-        SolidFactory solidFactory = new SolidFactory(rectangleFactory);
+        WorldObjectFactory solidFactory = new WorldObjectFactory(rectangleFactory);
         for (int i = 0; i < 2; i++) {
             IPhysicsEntity entity = solidFactory.make(new Point(i*1000, 120), 1000);
             entityManagerMap.get(layer.FOREGROUND).add(entity);
