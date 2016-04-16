@@ -19,8 +19,8 @@ public class BoundingBox implements IPhysicsModel {
      * @param factory Factory needed to create a boundingBox for the boundingBox
      */
     public BoundingBox(Point position, int width, int height, IRectangleFactoryAdapter factory) {
-        this.position = position;
-        boundingBox = factory.make(position, width, height);
+        this.position = position.addY((-height));
+        boundingBox = factory.make(this.position, width, height);
     }
 
     @Override
