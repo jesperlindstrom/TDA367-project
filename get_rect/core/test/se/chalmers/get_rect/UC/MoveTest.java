@@ -2,22 +2,13 @@ package se.chalmers.get_rect.UC;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
+
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.adapters.RectangleAdapterStub;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.physics.IPhysicsEngine;
-import se.chalmers.get_rect.physics.PhysicsObjectMock;
-import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.SideData;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 // Use case 1: Move
 public class MoveTest {
@@ -58,6 +49,7 @@ public class MoveTest {
     // Alternate flow of events: enemy in the way
     @Test
     public void testEnemyInTheWay() {
-        // todo: fix this.
+        // todo: add test when combat is implemented.
+        assertTrue("Player should be hurt when moving into an enemy", false);
     }
 }
