@@ -1,51 +1,38 @@
 package se.chalmers.get_rect.game.entities.player;
 
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
-import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.scenes.IEntityHolder;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Player implements IPhysicsModel {
+public class Player extends AbstractPhysicsModel {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 80;
     private static final int JUMP_SPEED = 90;
     private static final int MOVE_SPEED = 30;
-    private IRectangleAdapter boundingBox;
-    private Point position;
-    private Point velocity;
-    private boolean isWalking;
-    private boolean canJump;
-    private boolean secondJump;
+    private boolean isWalking = false;
+    private boolean secondJump = false;
+    private boolean canJump = true;
     private ProjectileFactory projectileFactory;
-    private IEntityHolder scene;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
      * @param rectangleFactory
      */
     public Player(IRectangleFactoryAdapter rectangleFactory) {
-        position = new Point(20, 30);
-        this.boundingBox = rectangleFactory.make(position.getX(), position.getY(), WIDTH, HEIGHT);
-        this.isWalking = false;
-        this.canJump = true;
-        this.secondJump = false;
-        this.velocity = new Point(0, 0);
-        this.projectileFactory = new ProjectileFactory(rectangleFactory);
+        super(new Point(0, 0), new Point(0, 0), false, rectangleFactory);
+        setBoundingBox(getPosition(), WIDTH, HEIGHT);
+
+        projectileFactory = new ProjectileFactory(rectangleFactory);
     }
 
     @Override
     public void update() {
-    }
 
-    @Override
-    public void setScene(IEntityHolder scene) {
-        this.scene = scene;
     }
 
     @Override
@@ -57,59 +44,34 @@ public class Player implements IPhysicsModel {
 
     public void jump() {
         if (canJump) {
-            velocity = velocity.setY(JUMP_SPEED);
+            setVelocity(getVelocity().setY(JUMP_SPEED));
             canJump = false;
             secondJump = true;
         } else if (secondJump) {
-            velocity = velocity.setY(JUMP_SPEED);
+            setVelocity(getVelocity().setY(JUMP_SPEED));
             secondJump = false;
         }
     }
 
+    public void shoot(Point direction) {
+        int BULLET_SPEED = 200; // todo: belongs in a weapon
+        IPhysicsEntity projectile = projectileFactory.make("cluster", getPosition().addY(HEIGHT), direction.multiply(BULLET_SPEED));
+        getScene().addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
+    }
+
     public void moveLeft() {
-        velocity = velocity.setX(-MOVE_SPEED);
+        setVelocity(getVelocity().setX(-MOVE_SPEED));
         isWalking = true;
     }
 
     public void moveRight() {
-        velocity = velocity.setX(MOVE_SPEED);
+        setVelocity(getVelocity().setX(MOVE_SPEED));
         isWalking = true;
     }
 
     public void stopMoving() {
-        velocity = velocity.addX(-velocity.getX()/6);
+        setVelocity(getVelocity().addX(-getVelocity().getX()/6));
         isWalking = false;
-    }
-
-    @Override
-    public void setPosition(Point point) {
-        position = new Point(point);
-        boundingBox.setPosition(position);
-    }
-
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setVelocity(Point velocity) {
-        this.velocity = velocity;
-    }
-
-    @Override
-    public Point getVelocity() {
-        return velocity;
-    }
-
-    @Override
-    public boolean isSolid() {
-        return false;
-    }
-
-    @Override
-    public boolean shouldBeRemoved() {
-        return false;
     }
 
     public boolean isWalking(){
@@ -119,19 +81,4 @@ public class Player implements IPhysicsModel {
     public boolean canJump() {
         return canJump;
     }
-
-    public void setBoundingBox(IRectangleAdapter boundingBox) {
-        this.boundingBox = boundingBox;
-    }
-
-    public IRectangleAdapter getBoundingBox() {
-        return boundingBox;
-    }
-
-    public void shoot(Point direction) {
-        int BULLET_SPEED = 200;
-        IPhysicsEntity projectile = projectileFactory.make("cluster", position.addY(HEIGHT), direction.multiply(BULLET_SPEED));
-        scene.addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
-    }
 }
-

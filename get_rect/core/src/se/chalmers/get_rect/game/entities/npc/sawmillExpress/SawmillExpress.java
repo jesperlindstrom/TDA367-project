@@ -1,44 +1,28 @@
 package se.chalmers.get_rect.game.entities.npc.sawmillExpress;
 
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.scenes.IEntityHolder;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
-public class SawmillExpress implements IPhysicsModel {
+public class SawmillExpress extends AbstractPhysicsModel {
     private static final int SPEED = 50;
-    private Point position;
-    private Point velocity;
-    private IRectangleAdapter boundingBox;
-    private final float width = 219;
-    private final float height = 276;
-    private boolean wäääh;
+    private static final int WIDTH = 219;
+    private static final int HEIGHT = 276;
+    private boolean wäääh = false;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
-        this.position = point;
-        this.velocity = new Point(0, 0);
-        this.boundingBox = rectangleFactory.make(position, width, height);
-        wäääh = false;
+        super(point, new Point(0, 0), false, rectangleFactory);
+        setBoundingBox(getPosition(), WIDTH, HEIGHT);
     }
 
     @Override
     public void update() {
         if (wäääh) {
-            velocity = new Point(0, SPEED);
+            setVelocity(new Point(0, SPEED));
         }
-    }
-
-    @Override
-    public void setScene(IEntityHolder scene) {
-
-    }
-
-    public IRectangleAdapter getBoundingBox() {
-        return boundingBox;
     }
 
     @Override
@@ -48,41 +32,7 @@ public class SawmillExpress implements IPhysicsModel {
         }
     }
 
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-        this.boundingBox.setPosition(position);
-    }
-
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setVelocity(Point velocity) {
-        this.velocity = velocity;
-    }
-
-    public void setWäääh(boolean wäääh) {
-        this.wäääh = wäääh;
-    }
-
     public boolean isWäääh() {
         return wäääh;
-    }
-
-    public Point getVelocity(){
-        return velocity;
-    }
-
-    @Override
-    public boolean isSolid() {
-        return false;
-    }
-
-    @Override
-    public boolean shouldBeRemoved() {
-        return false;
     }
 }
