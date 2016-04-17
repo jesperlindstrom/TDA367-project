@@ -2,7 +2,9 @@ package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.SideData;
 
 public abstract class AbstractPhysicsModel extends AbstractModel implements IPhysicsModel {
     private IRectangleFactoryAdapter rectangleFactory;
@@ -59,5 +61,10 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
     @Override
     public boolean isSolid() {
         return solid;
+    }
+
+    @Override
+    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
+        // Default: do nothing
     }
 }

@@ -40,5 +40,7 @@ public abstract class AbstractModel implements IModel {
     }
 
     @Override
-    public void update() { }
+    public void update() {
+        // Default: do nothing
+    }
 }
