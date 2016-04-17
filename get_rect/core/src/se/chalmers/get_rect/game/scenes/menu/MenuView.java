@@ -19,7 +19,8 @@ public class MenuView implements IView {
         Point cameraPos = model.getPosition();
 
         graphics.draw(IMG_PATH + "menuShader.png", cameraPos);
-        graphics.draw(IMG_PATH + "pause_menu_bg.png", cameraPos.add(new Point(660, 140)));
+        graphics.draw(IMG_PATH + "buttons/pause_menu_bg.png", cameraPos.add(new Point(360, 140)));
+        graphics.draw(IMG_PATH + "inventory/inventory_bg.png", cameraPos.add(new Point(960, 240)));
 
     }
 

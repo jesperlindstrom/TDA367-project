@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.IView;
 
 public class ButtonView implements IView {
 
-    private static final String STANDARD_IMG_PATH = "img/pauseMenu/";
+    private static final String STANDARD_IMG_PATH = "img/pauseMenu/buttons/";
     private String imgPath;
     private IButton button;
     private CameraManager camera;

@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.scenes.menu.menuEntities.buttons;
 
-import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.game.scenes.menu.menuEntities.IButton;
 import se.chalmers.get_rect.game.screens.GameScreen;
 import se.chalmers.get_rect.utilities.Point;

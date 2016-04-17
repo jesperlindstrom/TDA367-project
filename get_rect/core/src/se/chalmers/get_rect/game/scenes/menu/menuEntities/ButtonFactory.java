@@ -14,8 +14,8 @@ public class ButtonFactory {
         this.camera = camera;
     }
 
-    public ButtonEntity make(ButtonDataStore data) {
-        return make(data.getType(), data.getPosition());
+    public ButtonEntity make(String type, int x, int y) {
+        return make(type, new Point(x ,y));
     }
 
     public ButtonEntity make(String type, Point position) {

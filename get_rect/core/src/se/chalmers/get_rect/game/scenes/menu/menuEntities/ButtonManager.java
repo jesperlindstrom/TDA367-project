@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.scenes.menu.menuEntities;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.screens.GameScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +24,7 @@ public class ButtonManager {
         }
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    private IButton getCurrentButton() {
+    public IButton getCurrentButton() {
         return buttons.get(index).getButton();
     }
 
@@ -51,10 +46,6 @@ public class ButtonManager {
             index--;
         }
         getCurrentButton().setActive(true);
-    }
-
-    public void pressButton(GameScreen game) {
-        getCurrentButton().pressButton(game);
     }
 
     public void setIndex(int index) {

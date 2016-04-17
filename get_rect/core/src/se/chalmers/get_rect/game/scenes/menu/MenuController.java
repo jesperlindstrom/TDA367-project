@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.scenes.menu;
 
-import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.CameraManager;
@@ -28,7 +27,6 @@ public class MenuController implements IController {
 
         if (input.isKeyJustPressed(IInputAdapter.Keys.ENTER)) {
             model.pressCurrentButton(game);
-
         }
         if (input.isKeyJustPressed(IInputAdapter.Keys.UPKEY)) {
             model.moveMenuMarkerUp();
