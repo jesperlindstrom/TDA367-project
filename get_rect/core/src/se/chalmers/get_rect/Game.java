@@ -10,17 +10,17 @@ public class Game implements IGame {
     private IAssetManagerAdapter assetManager;
     private IGameLoopAdapter gameLoop;
     private IRectangleFactoryAdapter rectangleFactory;
-    private StateManager<IScreen> screenManager;
+    private StateManager<IScreen> screens;
     private ICameraFactoryAdapter cameraFactory;
 
     /**
-     *
-     * @param graphics
-     * @param input
-     * @param assetManager
-     * @param cameraFactory
-     * @param gameLoop
-     * @param rectangleFactory
+     * Initialize a new RPG game
+     * @param graphics Graphics adapter
+     * @param input Input adapter
+     * @param assetManager AssetManager adapter
+     * @param cameraFactory CameraFactory adapter
+     * @param gameLoop GameLoop adapter
+     * @param rectangleFactory RectangleFactory adapter
      */
     public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
         // Store game engine adapters
@@ -32,15 +32,15 @@ public class Game implements IGame {
         this.rectangleFactory = rectangleFactory;
 
         // Initialize components
-        screenManager = new StateManager<>();
+        screens = new StateManager<>();
 
         // Add screens
-        screenManager.add("splash", new SplashScreen(this));
-        screenManager.add("startMenu", new StartMenuScreen(this));
-        screenManager.add("game", new GameScreen(this));
+        screens.add("splash", new SplashScreen(this));
+        screens.add("startMenu", new StartMenuScreen(this));
+        screens.add("game", new GameScreen(this));
 
         // Set the active state
-        screenManager.set("splash");
+        screens.set("splash");
     }
 
     /**
@@ -49,7 +49,7 @@ public class Game implements IGame {
     public void draw() {
         graphics.clear();
         graphics.start();
-        screenManager.getState().draw(graphics);
+        screens.getState().draw(graphics);
         graphics.end();
     }
 
@@ -58,7 +58,7 @@ public class Game implements IGame {
      * @param delta Time since last draw
      */
     public void update(double delta) {
-        screenManager.getState().update(delta);
+        screens.getState().update(delta);
     }
 
     /**
@@ -92,9 +92,8 @@ public class Game implements IGame {
      * Get the state manager instance
      * @return State manager
      */
-    @Override
-    public StateManager<IScreen> getScreenManager() {
-        return screenManager;
+    public StateManager<IScreen> getScreens() {
+        return screens;
     }
 
     @Override

@@ -8,8 +8,14 @@ import com.badlogic.gdx.graphics.Texture;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
 
+import java.io.FileNotFoundException;
+
 public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
     private AssetManager manager;
+
+    private interface FileLoader {
+        void load(String path);
+    }
 
     public LibGDXAssetManagerAdapter() {
         manager = new AssetManager();
@@ -27,7 +33,6 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
 
     @Override
     public ISoundAdapter getSound(String path) {
-        // todo: move this to some hashmap or something, or we'll be creating too many instances
         return new LibGDXSoundAdapter(manager.get(path, Sound.class));
     }
 
@@ -52,50 +57,44 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
 
     /**
      * Loads all .png files in directory path and its subdirectories.
-     * @param DirectoryPath path to the directory
+     * @param path path to the directory
      */
     @Override
-    public void loadTextureDir(String DirectoryPath) {
-        FileHandle dir = Gdx.files.internal(DirectoryPath);
-
-        if (!dir.isDirectory()) {
-            System.out.println("Not a Directory");
-            return;
-        }
-        FileHandle[] fileList = dir.list();
-
-        for (FileHandle file : fileList) {
-            if (file.isDirectory()) {
-                loadTextureDir(file.path());
-            } else if (file.name().contains(".png")){
-                loadTexture(file.path());
-            }
-        }
-
+    public void loadTextureDir(String path) throws FileNotFoundException {
+        readDirectory(path, ".png", this::loadTexture);
     }
+
     /**
      * Loads all .mp3 files in directory path and its subdirectories.
-     * @param DirectoryPath path to the directory to load
+     * @param path path to the directory to load
      */
     @Override
-    public void loadSoundsDir(String DirectoryPath) {
-        FileHandle dir = Gdx.files.internal(DirectoryPath);
+    public void loadSoundsDir(String path) throws FileNotFoundException {
+        readDirectory(path, ".mp3", this::loadSound);
+    }
+
+    /**
+     * Recursively read all assets of a certain extension in a directory
+     * @param path The directory path
+     * @param extension The extension, starting with .
+     * @param loader A FileLoader
+     * @throws FileNotFoundException
+     */
+    private void readDirectory(String path, String extension, FileLoader loader) throws FileNotFoundException {
+        FileHandle dir = Gdx.files.internal(path);
 
         if (!dir.isDirectory()) {
-            System.out.println("Not a Directory");
-            return;
+            throw new FileNotFoundException("Directory not found");
         }
+
         FileHandle[] fileList = dir.list();
 
         for (FileHandle file : fileList) {
             if (file.isDirectory()) {
-                loadSound(file.path());
-            } else if (file.name().contains(".mp3")){
-                loadSound(file.path());
+                readDirectory(file.path(), extension, loader);
+            } else if (file.name().contains(extension)){
+                loader.load(file.path());
             }
         }
-
     }
-
-
 }

@@ -28,4 +28,14 @@ public class CameraAdapterStub implements ICameraAdapter {
     public Point getPosition() {
         return null;
     }
+
+    @Override
+    public float getWidth() {
+        return 0;
+    }
+
+    @Override
+    public float getHeight() {
+        return 0;
+    }
 }

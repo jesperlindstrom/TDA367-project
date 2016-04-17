@@ -7,6 +7,8 @@ import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
+import java.io.FileNotFoundException;
+
 public class SplashScreen implements IScreen {
     private IAssetManagerAdapter assetManager;
     private StateManager<IScreen> screenManager;
@@ -21,7 +23,7 @@ public class SplashScreen implements IScreen {
         System.out.println("SplashScreen is initialized");
 
         assetManager = game.getAssetManager();
-        screenManager = game.getScreenManager();
+        screenManager = game.getScreens();
         camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         camera.translate(GameConfig.SCREEN_WIDTH/2, GameConfig.SCREEN_HEIGHT/2);
     }
@@ -101,8 +103,12 @@ public class SplashScreen implements IScreen {
      * Method for loading assets
      */
     private void loadAssets() {
-        assetManager.loadTextureDir("img");
-        assetManager.loadSoundsDir("sounds");
-
+        try {
+            assetManager.loadTextureDir("img");
+            assetManager.loadSoundsDir("sounds");
+        } catch (FileNotFoundException e) {
+            // todo: show an actual error
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -2,7 +2,6 @@ package se.chalmers.get_rect.physics.frostbite;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
 
 import java.util.List;

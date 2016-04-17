@@ -1,19 +1,10 @@
 package se.chalmers.get_rect.game.entities.worldObjects.boundingBox;
 
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IEntity;
-import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.scenes.IEntityHolder;
-import se.chalmers.get_rect.game.scenes.IScene;
-import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 
-public class BoundingBox implements IPhysicsModel {
-    private Point position;
-    private IRectangleAdapter boundingBox;
-
+public class BoundingBox extends AbstractPhysicsModel {
     /**
      * This will place a solid bounding box
      * @param position The lower left corner of the boundingBox
@@ -22,58 +13,12 @@ public class BoundingBox implements IPhysicsModel {
      * @param factory Factory needed to create a boundingBox for the boundingBox
      */
     public BoundingBox(Point position, int width, int height, IRectangleFactoryAdapter factory) {
-        this.position = position.addY((-height));
-        boundingBox = factory.make(this.position, width, height);
+        super(position.addY((-height)), new Point(0, 0), true, factory);
+        setBoundingBox(getPosition(), width, height);
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void setScene(IEntityHolder scene) {
-
-    }
-
-    @Override
-    public IRectangleAdapter getBoundingBox() {
-        return boundingBox;
-    }
-
-    @Override
-    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
-
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position.setPosition(position);
-        boundingBox.setPosition(position);
-    }
-
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setVelocity(Point velocity) {
-
-    }
-
-    @Override
-    public Point getVelocity() {
-        return null;
-    }
-
-    @Override
-    public boolean isSolid() {
-        return true;
-    }
-
-    @Override
-    public boolean shouldBeRemoved() {
-        return false;
+    public void setVelocity(Point vel) {
+        // Do nothing. We don't want gravity applied to this object.
     }
 }

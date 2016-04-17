@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by simsund on 2016-04-12.
- */
 public class PointTest {
 
     private Point p;
@@ -115,12 +112,14 @@ public class PointTest {
         assertEquals(p.distanceTo(p2), 0);
 
         p2 = new Point(3, 4);
-        assertEquals(p.distanceTo(p2), 8);
+
+        assertEquals(p.distanceTo(p2), 2);
         assertEquals(p.distanceTo(p2), p2.distanceTo(p));
 
+        // (1,2) to (-4, 6) should be sqrt(5^2+4^2), but we round off to Integers.
         p2 = new Point(-4, 6);
-        assertEquals(p.distanceTo(p2), 41);
-        assertEquals(p2.distanceTo(p), 41);
+        assertEquals(p.distanceTo(p2), (int)Math.sqrt(41));
+        assertEquals(p2.distanceTo(p), (int)Math.sqrt(41));
     }
 
     @Test

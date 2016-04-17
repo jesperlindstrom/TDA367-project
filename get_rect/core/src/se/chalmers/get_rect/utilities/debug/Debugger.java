@@ -1,18 +1,11 @@
 package se.chalmers.get_rect.utilities.debug;
 
-import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 
-/**
- *  class for debugging stats
- *  set booleans in GameConfig
- *  and it will print values in
- *  the top left corner
- */
 public class Debugger {
     private CameraManager camera;
     private FpsHandler fps;

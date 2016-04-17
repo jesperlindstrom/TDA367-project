@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.physics.frostbite;
 
-import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
