@@ -1,14 +1,12 @@
-package se.chalmers.get_rect.game.scenes;
+package se.chalmers.get_rect.game.scenes.unusedscenes;
 
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.IController;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
+
 /*
-public class StudentUnionHouseScene implements IScene {
+public class EDITScene implements IScene {
 
     private PlayerController playerController;
 
-    public StudentUnionHouseScene(PlayerController playerController) {
+    public EDITScene(PlayerController playerController) {
         this.playerController = playerController;
     }
 
@@ -33,7 +31,16 @@ public class StudentUnionHouseScene implements IScene {
     }
 
     @Override
+<<<<<<< HEAD
     public void addEntity(layer layer, IPhysicsController physicsController) {
+=======
+    public void addEntity(layer layer, IEntity entity) {
+
+    }
+
+    @Override
+    public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
+>>>>>>> feature-frostbite-2
 
     }
 }

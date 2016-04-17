@@ -58,9 +58,6 @@ public class Game implements IGame {
      * @param delta Time since last draw
      */
     public void update(double delta) {
-        if(input.isKeyPressed(IInputAdapter.Keys.S)) {
-            exit();
-        }
         screenManager.getState().update(delta);
     }
 

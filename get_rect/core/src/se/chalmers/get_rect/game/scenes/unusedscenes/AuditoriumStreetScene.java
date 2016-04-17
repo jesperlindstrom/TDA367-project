@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.scenes;
+package se.chalmers.get_rect.game.scenes.unusedscenes;
 
 /*
 public class AuditoriumStreetScene implements IScene {

@@ -10,7 +10,8 @@ import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.*;
-import se.chalmers.get_rect.game.scenes.menu.MenuScene;
+import se.chalmers.get_rect.game.scenes.menu.MenuController;
+import se.chalmers.get_rect.game.scenes.menu.MenuModel;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.debug.Debugger;
 
@@ -19,13 +20,17 @@ public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
     private CameraManager cameraManager;
     private IInputAdapter input;
-    private MenuScene menu;
+    private MenuController menu;
     private boolean menuActive;
     private Debugger debugger;
     private PlayerController playerController;
+    private IGame game;
 
     public GameScreen(IGame game) {
         System.out.println("GameScreen is initialized");
+
+        // get reference to game
+        this.game = game;
 
         input = game.getInput();
         sceneManager = new StateManager<>();
@@ -44,7 +49,10 @@ public class GameScreen implements IScreen {
 
         // Sets menuActive to false
         menuActive = false;
-        menu = new MenuScene(input, cameraManager);
+
+        // Creates menu
+        menu = new MenuController(this, input, cameraManager);
+
     }
 
     private CameraManager createCamera(ICameraFactoryAdapter cameraFactory, IPhysicsModel entity) {
@@ -62,9 +70,6 @@ public class GameScreen implements IScreen {
 
     private void addScenes(IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, Debugger debugger) {
         // Register scenes
-//        sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
-//        sceneManager.add("EDIT", new EDITScene(playerController));
-//        sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
         sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager, debugger));
 
         // Set starting scene
@@ -94,7 +99,7 @@ public class GameScreen implements IScreen {
 
         // Will update the menu if it is active and pause the current scene.
         if (menuActive) {
-            menu.update(delta);
+            menu.update();
         } else {
             playerController.update();
             sceneManager.getState().update(delta);
@@ -114,6 +119,14 @@ public class GameScreen implements IScreen {
         }
 
         debugger.draw(graphics);
+    }
+
+    public void exit() {
+        game.exit();
+    }
+
+    public void setMenuActive(boolean value) {
+        menuActive = value;
     }
 
 }
