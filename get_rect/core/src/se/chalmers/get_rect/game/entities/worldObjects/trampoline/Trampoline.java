@@ -1,39 +1,18 @@
 package se.chalmers.get_rect.game.entities.worldObjects.trampoline;
 
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.scenes.IEntityHolder;
+import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
 
-public class Trampoline implements IPhysicsModel {
+public class Trampoline extends AbstractPhysicsModel {
     private static final int WIDTH = 270;
     private static final int HEIGHT = 75;
-    private Point position;
-    private Point velocity;
-    private IRectangleAdapter boundingBox;
 
     public Trampoline(Point position, IRectangleFactoryAdapter rectangleFactory) {
-        this.position = position;
-        this.velocity = new Point(0, 0);
-        boundingBox = rectangleFactory.make(position.add(70, 20), WIDTH, HEIGHT);
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void setScene(IEntityHolder scene) {
-
-    }
-
-    @Override
-    public IRectangleAdapter getBoundingBox() {
-        return boundingBox;
+        super(position, new Point(0, 0), false, rectangleFactory);
+        setBoundingBox(getPosition().add(70, 20), WIDTH, HEIGHT);
     }
 
     @Override
@@ -41,36 +20,5 @@ public class Trampoline implements IPhysicsModel {
         if (collisionSide.top()) {
             otherObject.setVelocity(otherObject.getVelocity().setY(150));
         }
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = new Point(position);
-        boundingBox.setPosition(position.add(70, 20));
-    }
-
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setVelocity(Point velocity) {
-        this.velocity = new Point(velocity);
-    }
-
-    @Override
-    public Point getVelocity() {
-        return velocity;
-    }
-
-    @Override
-    public boolean isSolid() {
-        return false;
-    }
-
-    @Override
-    public boolean shouldBeRemoved() {
-        return false;
     }
 }
