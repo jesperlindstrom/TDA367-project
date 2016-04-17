@@ -52,12 +52,12 @@ public class MoveTest {
     // Alternate flow of events: path obstructed
     @Test
     public void testPathObstructed() {
-
+        // Not necessary. Tested in physics tests
     }
 
     // Alternate flow of events: enemy in the way
     @Test
     public void testEnemyInTheWay() {
-
+        // todo: fix this.
     }
 }
