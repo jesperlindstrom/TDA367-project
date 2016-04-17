@@ -6,6 +6,7 @@ import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
 import se.chalmers.get_rect.game.scenes.IEntityHolder;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
@@ -46,6 +47,11 @@ public class Projectile implements IPhysicsModel {
         if (isSolid && collisionSide.bottom()) {
             int friction = velocity.getX() > 0 ? -1 : 1;
             velocity = velocity.addX(friction);
+        }
+
+        if (otherObject.getClass().equals(Zombie.class) && cluster) {
+            shouldBeRemoved = true;
+            otherObject.setVelocity(velocity.setY(150));
         }
     }
 

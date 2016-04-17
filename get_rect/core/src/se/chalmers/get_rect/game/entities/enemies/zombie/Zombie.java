@@ -66,6 +66,8 @@ public class Zombie implements IPhysicsModel
         int playerX = player.getPosition().getX();
         int zombieX = position.getX();
 
+        if (velocity.getX() != 0 && Math.abs(velocity.getX()) != speed) return;
+
         if (playerX > zombieX) {
             velocity = velocity.setX(speed);
         } else if (playerX < zombieX) {

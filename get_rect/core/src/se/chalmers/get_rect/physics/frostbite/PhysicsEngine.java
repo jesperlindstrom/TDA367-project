@@ -11,13 +11,16 @@ import java.util.List;
 public class PhysicsEngine implements IPhysicsEngine {
     private List<IPhysicsObject> entities;
     private List<IPhysicsObject> removalQueue;
+    private List<IPhysicsObject> addQueue;
     private CollisionHandler collision;
     private MovementHandler movement;
     private GravityHandler gravity;
+    private boolean inLoop = false;
 
     public PhysicsEngine() {
         entities = new ArrayList<>();
         removalQueue = new ArrayList<>();
+        addQueue = new ArrayList<>();
         collision = new CollisionHandler();
         movement = new MovementHandler();
         gravity = new GravityHandler();
@@ -25,7 +28,11 @@ public class PhysicsEngine implements IPhysicsEngine {
 
     @Override
     public void add(IPhysicsObject entity) {
-        entities.add(entity);
+        if (inLoop) {
+            addQueue.add(entity);
+        } else {
+            entities.add(entity);
+        }
     }
 
     @Override
@@ -36,6 +43,10 @@ public class PhysicsEngine implements IPhysicsEngine {
     @Override
     public void update(double delta) {
         removalQueue.clear();
+
+        processAdditions();
+
+        inLoop = true;
 
         for (IPhysicsObject entity : entities) {
             // Check for collision
@@ -52,8 +63,24 @@ public class PhysicsEngine implements IPhysicsEngine {
             }
         }
 
+        inLoop = false;
+
+        processRemovals();
+    }
+
+    private void processAdditions() {
+        for (IPhysicsObject entity : addQueue) {
+            entities.add(entity);
+        }
+
+        addQueue.clear();
+    }
+
+    private void processRemovals() {
         for (IPhysicsObject entity : removalQueue) {
             entities.remove(entity);
         }
+
+        removalQueue.clear();
     }
 }
