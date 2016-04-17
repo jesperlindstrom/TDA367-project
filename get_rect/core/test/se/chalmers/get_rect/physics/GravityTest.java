@@ -78,9 +78,6 @@ public class GravityTest {
         // Simulate falling
         entity.setVelocity(new Point(0, -30));
 
-        System.out.println(ground.getPosition());
-        System.out.println(entity.getPosition());
-
         engine.add(entity);
         engine.add(ground);
 

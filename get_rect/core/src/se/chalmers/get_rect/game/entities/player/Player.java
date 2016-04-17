@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
@@ -15,8 +14,8 @@ import se.chalmers.get_rect.utilities.Point;
 public class Player implements IPhysicsModel {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 80;
-    private static final int JUMPSPEED = 90;
-    private static final int MOVMENTSPEED = 30;
+    private static final int JUMP_SPEED = 90;
+    private static final int MOVE_SPEED = 30;
     private IRectangleAdapter boundingBox;
     private Point position;
     private Point velocity;
@@ -58,22 +57,22 @@ public class Player implements IPhysicsModel {
 
     public void jump() {
         if (canJump) {
-            velocity = velocity.setY(JUMPSPEED);
+            velocity = velocity.setY(JUMP_SPEED);
             canJump = false;
             secondJump = true;
         } else if (secondJump) {
-            velocity = velocity.setY(JUMPSPEED);
+            velocity = velocity.setY(JUMP_SPEED);
             secondJump = false;
         }
     }
 
     public void moveLeft() {
-        velocity = velocity.setX(-MOVMENTSPEED);
+        velocity = velocity.setX(-MOVE_SPEED);
         isWalking = true;
     }
 
     public void moveRight() {
-        velocity = velocity.setX(MOVMENTSPEED);
+        velocity = velocity.setX(MOVE_SPEED);
         isWalking = true;
     }
 
@@ -119,6 +118,10 @@ public class Player implements IPhysicsModel {
 
     public boolean canJump() {
         return canJump;
+    }
+
+    public void setBoundingBox(IRectangleAdapter boundingBox) {
+        this.boundingBox = boundingBox;
     }
 
     public IRectangleAdapter getBoundingBox() {

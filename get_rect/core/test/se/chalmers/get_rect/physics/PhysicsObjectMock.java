@@ -55,7 +55,7 @@ public class PhysicsObjectMock implements IPhysicsObject {
         return false;
     }
 
-    public void setBoundingBox(RectangleAdapterStub rect) {
+    public void setBoundingBox(IRectangleAdapter rect) {
         boundingBox = rect;
     }
 }
