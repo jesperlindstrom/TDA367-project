@@ -38,4 +38,7 @@ public abstract class AbstractModel implements IModel {
     public boolean shouldBeRemoved() {
         return shouldBeRemoved;
     }
+
+    @Override
+    public void update() { }
 }

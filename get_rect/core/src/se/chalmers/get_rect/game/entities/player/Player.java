@@ -15,7 +15,6 @@ public class Player extends AbstractPhysicsModel {
     private static final int JUMP_SPEED = 90;
     private static final int MOVE_SPEED = 30;
     private boolean isWalking = false;
-    private boolean secondJump = false;
     private boolean canJump = true;
     private ProjectileFactory projectileFactory;
 
@@ -31,11 +30,6 @@ public class Player extends AbstractPhysicsModel {
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
     public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
         if (isSolid && side.bottom()) {
             canJump = true;
@@ -46,10 +40,6 @@ public class Player extends AbstractPhysicsModel {
         if (canJump) {
             setVelocity(getVelocity().setY(JUMP_SPEED));
             canJump = false;
-            secondJump = true;
-        } else if (secondJump) {
-            setVelocity(getVelocity().setY(JUMP_SPEED));
-            secondJump = false;
         }
     }
 
