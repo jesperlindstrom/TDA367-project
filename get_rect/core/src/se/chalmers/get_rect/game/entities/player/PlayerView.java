@@ -1,49 +1,43 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.animation.AnimationCoordinator;
+import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 
-class PlayerView implements IView {
+class PlayerView extends AbstractAnimatedView {
+    private static final int STAND_STILL = 0;
+    private static final int WALKING = 1;
+    private static final int JUMPING = 2;
 
     private Player player;
-    private String oneLegImagePath;
-    private String twoLegImagePath;
-    private String currentImagePath;
-    private int imageWalkCount;
 
-    public PlayerView(Player player){
-
+    public PlayerView(Player player) {
+        super(player, STAND_STILL);
         this.player = player;
-        this.oneLegImagePath = "img/entities/player/playerOneLeg.png";
-        this.twoLegImagePath = "img/entities/player/playerTwoLeg.png";
-        this.currentImagePath = twoLegImagePath;
-        this.imageWalkCount = 0;
+
+        addAnimationFrame(STAND_STILL, "img/entities/player/playerTwoLeg.png");
+        addAnimationFrame(JUMPING, "img/entities/player/playerTwoLeg.png");
+        addAnimationFrame(WALKING, "img/entities/player/playerOneLeg.png", 5);
+        addAnimationFrame(WALKING, "img/entities/player/playerTwoLeg.png", 5);
+    }
+
+    private int getSequence() {
+        if (!player.canJump()) {
+            return JUMPING;
+        }
+
+        if (player.isWalking()) {
+            return WALKING;
+        }
+
+        return STAND_STILL;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(currentImagePath, player.getPosition());
-        if(player.isWalking()) {
-            imageWalkCount++;
-            setImagePath();
-        }
+        playSequence(getSequence());
 
+        // Tell abstract parent to draw the animation
+        super.draw(graphics);
     }
-
-    /**
-     * Sets the player image to get an animation when the player is moving.
-     */
-    private void setImagePath() {
-        //// TODO: 2016-04-06 Might need some better values! this is to hard (coded), even for Lisch...
-        if (imageWalkCount <= 10) {
-
-            currentImagePath = twoLegImagePath;
-        } else {
-            if (imageWalkCount == 20) {
-                imageWalkCount = 0;
-            }
-            currentImagePath = oneLegImagePath;
-        }
-    }
-
 }
