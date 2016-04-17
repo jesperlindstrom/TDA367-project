@@ -5,10 +5,12 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import se.chalmers.get_rect.adapters.RectangleAdapterStub;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
+import se.chalmers.get_rect.utilities.Side;
+import se.chalmers.get_rect.utilities.SideData;
 
 import static org.mockito.Mockito.*;
 
-public class FrostbiteEngineTest {
+public class CollisionTest {
     private IPhysicsEngine engine;
 
     @Before
@@ -23,8 +25,12 @@ public class FrostbiteEngineTest {
 
         RectangleAdapterStub rect1 = mock(RectangleAdapterStub.class);
         RectangleAdapterStub rect2 = mock(RectangleAdapterStub.class);
-        when(rect1.intersects(rect2)).thenReturn(true);
-        when(rect2.intersects(rect1)).thenReturn(true);
+        SideData rectCollision1 = new SideData();
+        SideData rectCollision2 = new SideData();
+        rectCollision1.set(Side.TOP);
+        rectCollision2.set(Side.BOTTOM);
+        when(rect1.intersects(rect2)).thenReturn(rectCollision1);
+        when(rect2.intersects(rect1)).thenReturn(rectCollision2);
 
         when(object1.getBoundingBox()).thenCallRealMethod();
         when(object2.getBoundingBox()).thenCallRealMethod();
@@ -39,8 +45,8 @@ public class FrostbiteEngineTest {
 
         engine.update(0);
 
-        verify(object1, times(1)).onCollision(object2);
-        verify(object2, times(1)).onCollision(object1);
+        verify(object1, times(1)).onCollision(object2, rectCollision1, false);
+        verify(object2, times(1)).onCollision(object1, rectCollision2, false);
     }
 
     @Test
@@ -50,8 +56,8 @@ public class FrostbiteEngineTest {
 
         RectangleAdapterStub rect1 = mock(RectangleAdapterStub.class);
         RectangleAdapterStub rect2 = mock(RectangleAdapterStub.class);
-        when(rect1.intersects(rect2)).thenReturn(false);
-        when(rect2.intersects(rect1)).thenReturn(false);
+        when(rect1.intersects(rect2)).thenReturn(null);
+        when(rect2.intersects(rect1)).thenReturn(null);
 
         when(object1.getBoundingBox()).thenCallRealMethod();
         when(object2.getBoundingBox()).thenCallRealMethod();
@@ -66,7 +72,7 @@ public class FrostbiteEngineTest {
 
         engine.update(0);
 
-        verify(object1, times(0)).onCollision(object2);
-        verify(object2, times(0)).onCollision(object1);
+        verify(object1, times(0)).onCollision(object2, null, false);
+        verify(object2, times(0)).onCollision(object1, null, false);
     }
 }
