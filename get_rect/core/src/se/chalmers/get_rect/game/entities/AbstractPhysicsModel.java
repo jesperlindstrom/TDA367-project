@@ -14,7 +14,6 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
 
     protected AbstractPhysicsModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory) {
         super(position);
-
         this.velocity = velocity;
         this.rectangleFactory = rectangleFactory;
         this.boundingBox = rectangleFactory.make(position, 0, 0);

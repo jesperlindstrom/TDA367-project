@@ -16,4 +16,9 @@ public class BoundingBox extends AbstractPhysicsModel {
         super(position.addY((-height)), new Point(0, 0), true, factory);
         setBoundingBox(getPosition(), width, height);
     }
+
+    @Override
+    public void setVelocity(Point vel) {
+        // Do nothing. We don't want gravity applied to this object.
+    }
 }
