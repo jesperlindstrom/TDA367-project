@@ -51,6 +51,8 @@ public class Projectile implements IPhysicsModel {
 
         if (otherObject.getClass().equals(Zombie.class) && cluster) {
             shouldBeRemoved = true;
+            launchCluster();
+            otherObject.setPosition(otherObject.getPosition().addY(50));
             otherObject.setVelocity(velocity.setY(150));
         }
     }
