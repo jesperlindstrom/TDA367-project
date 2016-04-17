@@ -102,7 +102,7 @@ public class Projectile implements IPhysicsModel {
     private void launchCluster() {
         Random rand = new Random();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             int velX = rand.nextInt(100) - 50;
             int velY = rand.nextInt(300) - 20;
             Point vel = new Point(velX, velY);
