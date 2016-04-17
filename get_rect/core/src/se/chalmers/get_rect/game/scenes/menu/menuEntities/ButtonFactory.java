@@ -18,6 +18,10 @@ public class ButtonFactory {
         return make(data.getType(), data.getPosition());
     }
 
+    public ButtonEntity make(String type, int x, int y) {
+        return make(type, new Point(x ,y));
+    }
+
     public ButtonEntity make(String type, Point position) {
         if (type.equals("continue")) {
             return makeContinue(position);

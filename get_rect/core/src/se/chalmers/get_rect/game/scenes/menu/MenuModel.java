@@ -47,19 +47,13 @@ public class MenuModel {
     }
 
     private void loadButtons() throws FileNotFoundException {
-
-        IOFacade<ButtonDataStore> buttonData  = new IOFacade<>("scenes/menu/buttons.json", ButtonDataStore.class);
-        List<ButtonDataStore> buttonDataList = buttonData.load();
-
         ButtonFactory buttonFactory = new ButtonFactory(camera);
 
-        if (buttonDataList != null) {
-            for (ButtonDataStore data : buttonDataList) {
-                System.out.println(data.getType() + " to be loaded");
-                buttons.add(buttonFactory.make(data));
-                buttons.setIndex(0);
-            }
-        }
+        buttons.add(buttonFactory.make("continue", 730 , 390));
+        buttons.add(buttonFactory.make("exit", 730 , 240));
+
+        buttons.setIndex(0);
+        
     }
 
     public void draw(IGraphicsAdapter graphics) {
