@@ -8,7 +8,7 @@ public interface IGame {
     IInputAdapter getInput();
     IAssetManagerAdapter getAssetManager();
     IRectangleFactoryAdapter getRectangleFactory();
-    StateManager<IScreen> getScreenManager();
+    StateManager<IScreen> getScreens();
     ICameraFactoryAdapter getCameraFactory();
     void exit();
 }
