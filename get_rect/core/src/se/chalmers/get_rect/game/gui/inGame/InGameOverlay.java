@@ -4,7 +4,6 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.gui.IOverlay;
 
 public class InGameOverlay implements IOverlay{
-
     @Override
     public void update(double delta) {
 

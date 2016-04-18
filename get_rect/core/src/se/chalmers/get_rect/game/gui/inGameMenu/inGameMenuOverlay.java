@@ -8,7 +8,6 @@ import se.chalmers.get_rect.game.screens.GameScreen;
 import se.chalmers.get_rect.utilities.Point;
 
 public class inGameMenuOverlay extends AbstractGridOverlay {
-
     private inGameMenu model;
 
     public inGameMenuOverlay(GameScreen game, IInputAdapter input, CameraManager camera) {

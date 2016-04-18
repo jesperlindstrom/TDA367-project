@@ -20,6 +20,7 @@ public class SawmillExpress extends AbstractNPCModel {
     @Override
     public void update() {
         super.update();
+
         if (isFlying) {
             setVelocity(new Point(0, SPEED));
         }
@@ -27,12 +28,8 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     public QuestState getQuestState() {
-        if (isFlying)
-            return QuestState.UNAVAILABLE;
-
-        return QuestState.AVAILABLE;
+        return isFlying ? QuestState.UNAVAILABLE : QuestState.AVAILABLE;
     }
-
 
     @Override
     public void onInteract(IModel model) {

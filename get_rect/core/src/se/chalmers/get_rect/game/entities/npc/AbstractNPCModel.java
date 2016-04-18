@@ -10,7 +10,6 @@ import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
 
 public abstract class AbstractNPCModel extends AbstractPhysicsModel implements INpcModel {
-
     private IModel model;
     private static final int DISTANCE = 200;
     private boolean showDialog;
@@ -34,7 +33,6 @@ public abstract class AbstractNPCModel extends AbstractPhysicsModel implements I
     public QuestState getQuestState() {
         return QuestState.UNAVAILABLE;
     }
-
 
     @Override
     public void showDialog(String message) {
@@ -60,11 +58,10 @@ public abstract class AbstractNPCModel extends AbstractPhysicsModel implements I
 
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData data, boolean isSolid){
+    public void onCollision(IPhysicsObject otherObject, SideData data, boolean isSolid) {
         if (otherObject instanceof Player) {
             model = (IModel) otherObject;
             showInteractionHint = true;
         }
     }
-
 }

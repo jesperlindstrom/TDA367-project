@@ -5,7 +5,6 @@ import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 
 public class AbstractGridOverlay implements IOverlay {
-
     private IController controller;
     private IView view;
 
@@ -20,12 +19,14 @@ public class AbstractGridOverlay implements IOverlay {
     @Override
     public void update(double delta) {
         if (controller == null) return;
+
         controller.update();
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         if (view == null) return;
+
         view.draw(graphics);
     }
 

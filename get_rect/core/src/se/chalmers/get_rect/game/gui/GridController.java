@@ -1,11 +1,9 @@
 package se.chalmers.get_rect.game.gui;
 
 import se.chalmers.get_rect.adapters.IInputAdapter;
-import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.IController;
 
 public class GridController implements IController {
-
     private IInputAdapter input;
     private AbstractGridModel model;
 
@@ -16,17 +14,16 @@ public class GridController implements IController {
 
     @Override
     public void update() {
-
         if (input.isKeyJustPressed(IInputAdapter.Keys.ENTER)) {
             model.getCurrentlyMarkedButton().executeAction();
         }
+
         if (input.isKeyJustPressed(IInputAdapter.Keys.UPKEY)) {
             model.moveMarkUp();
         }
+
         if (input.isKeyJustPressed(IInputAdapter.Keys.DOWNKEY)) {
             model.moveMarkDown();
         }
-
-
     }
 }

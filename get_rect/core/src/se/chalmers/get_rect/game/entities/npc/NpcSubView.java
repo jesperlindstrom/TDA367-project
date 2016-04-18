@@ -15,16 +15,18 @@ public class NpcSubView implements IView {
     private String getQuestStateImage() {
         if (model.getQuestState() == QuestState.IN_PROGRESS)
             return "img/interact/quest_in_progress.png";
+
         if (model.getQuestState() == QuestState.AVAILABLE)
             return "img/interact/quest_available.png";
+
         if (model.getQuestState() == QuestState.COMPLETABLE)
             return "img/interact/quest_completable.png";
+
         return null;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-
         String questStateImage = getQuestStateImage();
 
         if (questStateImage != null) {

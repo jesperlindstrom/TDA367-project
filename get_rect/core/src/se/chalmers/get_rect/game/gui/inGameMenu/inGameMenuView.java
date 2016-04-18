@@ -10,7 +10,6 @@ public class inGameMenuView implements IView {
     private static final Point CONTINUE = new Point(0 ,0);
     private static final Point EXIT = new Point(0 ,1);
     private static final String IMG_PATH = "img/pauseMenu/";
-
     private CameraManager camera;
     private AbstractGridModel model;
 
@@ -18,7 +17,6 @@ public class inGameMenuView implements IView {
         this.camera = camera;
         this.model = model;
     }
-
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
@@ -33,22 +31,16 @@ public class inGameMenuView implements IView {
         graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(CONTINUE));
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(EXIT));
 
-
         graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(model.getCurrentButton()));
-
     }
 
     public Point getRealPosition(Point gridPosition) {
-
-        if (gridPosition.equals(CONTINUE)) {
+        if (gridPosition.equals(CONTINUE))
             return camera.getPosition().add(430, 390);
-        }
 
-        if (gridPosition.equals(EXIT)) {
+        if (gridPosition.equals(EXIT))
             return camera.getPosition().add(430, 240);
-        }
 
         return null;
     }
-
 }

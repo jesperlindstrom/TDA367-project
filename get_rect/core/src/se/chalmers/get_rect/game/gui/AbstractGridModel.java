@@ -6,29 +6,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class AbstractGridModel {
-
-
-    public interface IActionEvent {
+    public interface IActionHandler {
         void executeAction();
     }
 
     private Point currentButton;
-    private Map<Point, IActionEvent> itemMap;
+    private Map<Point, IActionHandler> itemMap;
 
     public AbstractGridModel() {
         itemMap = new HashMap<>();
         currentButton = new Point(0, 0);
     }
 
-    protected void addToMap(Point point, IActionEvent item) {
+    protected void addToMap(Point point, IActionHandler item) {
         itemMap.put(point, item);
     }
 
-    protected void addToMap(int x, int y, IActionEvent item) {
+    protected void addToMap(int x, int y, IActionHandler item) {
         addToMap(new Point(x, y), item);
     }
 
-    public IActionEvent getCurrentlyMarkedButton() {
+    public IActionHandler getCurrentlyMarkedButton() {
         return itemMap.get(currentButton);
     }
 
@@ -66,9 +64,5 @@ public abstract class AbstractGridModel {
 
     public Point getCurrentButton() {
         return currentButton;
-    }
-
-    public Map<Point, IActionEvent> getItemMap() {
-        return itemMap;
     }
 }
