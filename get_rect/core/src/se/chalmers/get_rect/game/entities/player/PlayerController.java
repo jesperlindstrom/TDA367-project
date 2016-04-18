@@ -37,6 +37,9 @@ public class PlayerController implements IController {
         } else {
             player.stopMoving();
         }
+        if (input.isKeyJustPressed(IInputAdapter.Keys.Q)) {
+            player.flyHome();
+        }
     }
 
     private void handleShooting() {

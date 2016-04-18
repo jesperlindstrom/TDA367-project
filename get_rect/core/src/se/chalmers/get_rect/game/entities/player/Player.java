@@ -85,4 +85,8 @@ public class Player extends AbstractPhysicsModel {
             interactableNPC.onInteract(this);
         }
     }
+
+    public void flyHome() {
+        setPosition(new Point(1900, 170));
+    }
 }
