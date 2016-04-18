@@ -14,5 +14,6 @@ public interface IGame {
     void load();
     void save();
     void startNew();
+    boolean loadAvailable();
 
 }

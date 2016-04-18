@@ -11,8 +11,14 @@ public class mainMenu extends AbstractGridModel {
     public mainMenu(IGame game) {
         Point startPoint = new Point(0 ,0);
 
-        addToMap(0, 0, () -> game.load());
-        addToMap(0, 1, () -> game.exit());
+        if (game.loadAvailable()) {
+            startPoint = new Point(startPoint.addY(1));
+            addToMap(startPoint, () -> game.load());
+            continueAvailable = true;
+        }
+
+        addToMap(startPoint, () -> game.startNew());
+        addToMap(startPoint.addY(1), () -> game.exit());
     }
 
     public boolean getContinueAvailable() {

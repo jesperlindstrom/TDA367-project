@@ -122,5 +122,10 @@ public class Game implements IGame {
 
     }
 
+    @Override
+    public boolean loadAvailable() {
+        return false;
+    }
+
 
 }
