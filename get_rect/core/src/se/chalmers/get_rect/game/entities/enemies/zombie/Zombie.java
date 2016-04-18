@@ -1,74 +1,56 @@
 package se.chalmers.get_rect.game.entities.enemies.zombie;
 
-
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.physics.IPhysicsObject;
+import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Zombie implements IModel {
+import java.util.Random;
+
+public class Zombie extends AbstractPhysicsModel {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 100;
-    private Point position;
-    private IRectangleAdapter boundingBox;
-    private int health;
-    private int damage;
-    private int currentHealth;
+    private int speed;
+    private IModel player;
 
-    public Zombie(IRectangleFactoryAdapter rectangleFactory){
-        this(new Point(0 ,0), rectangleFactory);
+    public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
+        super(point, new Point(0, 0), false, rectangleFactory);
+        setBoundingBox(getPosition(), WIDTH, HEIGHT);
+
+        this.player = player;
+
+        Random rand = new Random();
+        speed = rand.nextInt(20) + 5;
     }
 
-    public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory){
-        this.position = point;
-        this.boundingBox = rectangleFactory.make(position.getxCoodrinate(), position.getyCoordinate(), WIDTH, HEIGHT);
-        damage = 2;
-        health = 5; //temp values
-    }
 
-    public IRectangleAdapter getBoundingBox() {
-        return boundingBox;
-    }
-
-    public int getX() {
-        return position.getxCoodrinate();
-    }
-
-    public int getY() {
-        return position.getyCoordinate();
-    }
-
-    public void setX(int x) {
-        position = position.setxCoodrinate(x);
-    }
-
-    public void setY(int y) {
-        position = position.setyCoordinate(y);
-    }
-
-    public void setPosition(int x, int y) {
-        position = position.setPosition(x, y);
+    @Override
+    public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
+        // Jump, to simulate a lethal broccoli ninja attack.
+        if (otherObject.equals(player) && getVelocity().getY() == 0) {
+            setVelocity(getVelocity().setY(50));
+        }
     }
 
     @Override
-    public void setPosition(Point point) {
-        position = new Point(point);
-    }
+    public void update() {
+        // Amazing AI
+        int playerX = player.getPosition().getX();
+        int zombieX = getPosition().getX();
 
-    public Point getPosition() {
-        return position;
-    }
+        if (getVelocity().getX() != 0 && Math.abs(getVelocity().getX()) != speed)
+            return;
 
-    public int getDamage(){
-        return damage;
-    }
+        int velX = 0;
 
-    public int getHealth(){
-        return health;
-    }
+        if (playerX > zombieX) {
+            velX = speed;
+        } else if (playerX < zombieX) {
+            velX = -speed;
+        }
 
-    public int getCurrentHealth(){
-        return currentHealth;
+        setVelocity(getVelocity().setX(velX));
     }
-
 }

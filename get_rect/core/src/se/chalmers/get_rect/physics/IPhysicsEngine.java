@@ -3,7 +3,7 @@ package se.chalmers.get_rect.physics;
 import java.util.List;
 
 public interface IPhysicsEngine {
-    void add(ISolidObject entity);
-    void addAll(List<ISolidObject> entities);
-    void update(long delta);
+    void add(IPhysicsObject entity);
+    List<IPhysicsObject> getEntities();
+    void update(double delta);
 }

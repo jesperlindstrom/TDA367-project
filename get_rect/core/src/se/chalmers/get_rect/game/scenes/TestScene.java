@@ -1,77 +1,108 @@
 package se.chalmers.get_rect.game.scenes;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.EntityManager;
-import se.chalmers.get_rect.game.entities.IPhysicsController;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
-import se.chalmers.get_rect.physics.FrostbiteEngine;
+import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
+import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.debug.Debugger;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestScene implements IScene {
-
-    private PlayerController playerController;
+    private IPhysicsEntity playerEntity;
     private IRectangleFactoryAdapter rectangleFactory;
-    private EntityManager background;
-    private EntityManager foreground;
     private IPhysicsEngine physics;
+    private CameraManager camera;
+    private Map<layer, EntityManager> layers;
+    private Debugger debugger;
 
-    public TestScene(PlayerController playerController, IRectangleFactoryAdapter rectangleFactory) {
-        this.playerController = playerController;
+    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera, Debugger debugger) {
+        this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
+        this.camera = camera;
+        this.debugger = debugger;
     }
 
     @Override
-    public void update(long delta) {
-        background.update(delta);
-        foreground.update(delta);
+    public void update(double delta) {
+        layers.forEach((k, v) -> v.update());
         physics.update(delta);
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-
-        // todo: move to some background thing
-        graphics.draw("data/background.png", 0, 0);
-
-        background.draw(graphics);
-        foreground.draw(graphics);
-
+        graphics.draw("img/backgrounds/background.png", camera.getPosition(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, camera.getPosition());
+        layers.forEach((k, v) -> v.draw(graphics));
     }
 
     @Override
     public void enteringState(String previousStateName) {
-        background = new EntityManager();
-        foreground = new EntityManager();
-        physics = new FrostbiteEngine();
+        createLayers();
+        physics = new PhysicsEngine();
+        debugger.setPhysicsEngine(physics);
 
-        physics.add(playerController);
-        foreground.add(playerController);
-
-        SceneLoader loader = new SceneLoader("test", playerController, rectangleFactory);
+        SceneLoader loader = new SceneLoader("test", playerEntity, rectangleFactory);
 
         try {
-            loadZombies(loader);
+            loadBackground(loader);
+            loadForeground(loader);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
 
-        playerController.setPosition(200, 90);
-        foreground.add(playerController);
+        addPlayerAtPosition(1500, 150);
     }
 
-    private void loadZombies(SceneLoader loader) throws FileNotFoundException {
-        for (IPhysicsController entity : loader.getZombies()) {
-            foreground.add(entity);
-            physics.add(entity);
+    private void createLayers() {
+        layers = new HashMap<>();
+        layers.put(layer.BACKGROUND, new EntityManager());
+        layers.put(layer.FOREGROUND, new EntityManager());
+        layers.put(layer.FOREGROUND_EFFECTS, new EntityManager());
+    }
+
+    private void addPlayerAtPosition(int x, int y) {
+        playerEntity.getModel().setPosition(new Point(x, y));
+        addPhysicsEntity(layer.FOREGROUND, playerEntity);
+    }
+
+    private void loadBackground(SceneLoader loader) throws FileNotFoundException {
+        for (IPhysicsEntity entity : loader.getBackground()) {
+            addPhysicsEntity(layer.BACKGROUND, entity);
+        }
+    }
+
+    private void loadForeground(SceneLoader loader) throws FileNotFoundException {
+        for (IPhysicsEntity entity : loader.getForeground()) {
+            addPhysicsEntity(layer.FOREGROUND, entity);
         }
     }
 
     @Override
     public void leavingState(String nextStateName) {
 
+    }
+
+
+    @Override
+    public void addEntity(layer layer, IEntity entity) {
+        layers.get(layer).add(entity);
+        IModel model = entity.getModel();
+        model.setScene(this);
+    }
+
+    @Override
+    public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
+        layers.get(layer).add(entity);
+        IPhysicsModel model = entity.getModel();
+        model.setScene(this);
+        physics.add(model);
     }
 }

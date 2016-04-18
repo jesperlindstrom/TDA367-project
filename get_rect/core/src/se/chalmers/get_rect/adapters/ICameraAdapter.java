@@ -1,9 +1,14 @@
 package se.chalmers.get_rect.adapters;
 
 
-public interface ICameraAdapter {
+import se.chalmers.get_rect.utilities.Point;
 
+public interface ICameraAdapter {
     void translate(float x, float y);
-    void update();
+    void translate(Point point);
+    void update(double delta);
     void draw(IGraphicsAdapter g);
+    Point getPosition();
+    float getWidth();
+    float getHeight();
 }

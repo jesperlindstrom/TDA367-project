@@ -1,49 +1,76 @@
 package se.chalmers.get_rect.game.screens;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.IGame;
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.CameraManager;
-import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.game.entities.IPhysicsEntity;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.*;
-import se.chalmers.get_rect.game.scenes.menu.MenuScene;
+import se.chalmers.get_rect.game.scenes.menu.MenuController;
+import se.chalmers.get_rect.game.scenes.menu.MenuModel;
 import se.chalmers.get_rect.states.StateManager;
+import se.chalmers.get_rect.utilities.debug.Debugger;
 
 
 public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
     private CameraManager cameraManager;
     private IInputAdapter input;
-    private MenuScene menu;
+    private MenuController menu;
     private boolean menuActive;
+    private Debugger debugger;
+    private PlayerController playerController;
+    private IGame game;
 
     public GameScreen(IGame game) {
-        this.input = game.getInput();
         System.out.println("GameScreen is initialized");
+
+        // get reference to game
+        this.game = game;
+
+        input = game.getInput();
+        sceneManager = new StateManager<>();
+
+        // Initialize player
+        IPhysicsEntity player = createPlayer(game.getRectangleFactory());
+
+        // Create the CameraManager
+        cameraManager = createCamera(game.getCameraFactory(), player.getModel());
+
+        // Initialize debugger
+        debugger = new Debugger(player.getModel(), cameraManager);
+
+        // Add all scenes
+        addScenes(player, game.getRectangleFactory(), debugger);
 
         // Sets menuActive to false
         menuActive = false;
 
-        menu = new MenuScene(game);
+        // Creates menu
+        menu = new MenuController(this, input, cameraManager);
 
-        // Create the scene manager
-        sceneManager = new StateManager<>();
+    }
 
+    private CameraManager createCamera(ICameraFactoryAdapter cameraFactory, IPhysicsModel entity) {
+        ICameraAdapter camera = cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
+        return new CameraManager(camera, entity);
+    }
 
-        //Initialize player
-        PlayerFactory playerFactory = new PlayerFactory(game.getInput(), game.getRectangleFactory());
-        PlayerController playerController = playerFactory.make(0,0);
+    private IPhysicsEntity createPlayer(IRectangleFactoryAdapter rectangleFactory) {
+        playerController = new PlayerController(input);
+        ProjectileFactory projectileFactory = new ProjectileFactory(rectangleFactory);
+        PlayerFactory playerFactory = new PlayerFactory(playerController, rectangleFactory, projectileFactory);
 
-        //Create the CameraManager
-        cameraManager = new CameraManager(game.getCamera(), playerController);
+        return playerFactory.make();
+    }
 
+    private void addScenes(IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, Debugger debugger) {
         // Register scenes
-        sceneManager.add("auditoriumStreet", new AuditoriumStreetScene(playerController));
-        sceneManager.add("EDIT", new EDITScene(playerController));
-        sceneManager.add("studentUnionHouse", new StudentUnionHouseScene(playerController));
-        sceneManager.add("test", new TestScene(playerController, game.getRectangleFactory()));
-
+        sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager, debugger));
 
         // Set starting scene
         sceneManager.set("test");
@@ -65,19 +92,21 @@ public class GameScreen implements IScreen {
      * @param delta time since last draw.
      */
     @Override
-    public void update(long delta) {
-
+    public void update(double delta) {
         if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
             menuActive = !menuActive;
         }
 
         // Will update the menu if it is active and pause the current scene.
         if (menuActive) {
-            menu.update(delta);
+            menu.update();
         } else {
+            playerController.update();
             sceneManager.getState().update(delta);
-            cameraManager.update();
+            cameraManager.update(delta);
         }
+
+        debugger.update(delta);
     }
 
     @Override
@@ -88,6 +117,16 @@ public class GameScreen implements IScreen {
         if (menuActive) {
             menu.draw(graphics);
         }
+
+        debugger.draw(graphics);
+    }
+
+    public void exit() {
+        game.exit();
+    }
+
+    public void setMenuActive(boolean value) {
+        menuActive = value;
     }
 
 }

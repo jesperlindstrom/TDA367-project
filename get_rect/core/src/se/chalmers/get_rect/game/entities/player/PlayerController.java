@@ -1,102 +1,66 @@
 package se.chalmers.get_rect.game.entities.player;
 
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+
 import se.chalmers.get_rect.adapters.IInputAdapter;
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
-import se.chalmers.get_rect.game.entities.IPhysicsController;
-import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.physics.ISolidObject;
+import se.chalmers.get_rect.game.entities.IController;
+import se.chalmers.get_rect.utilities.Point;
 
 
-public class PlayerController implements IPhysicsController {
+public class PlayerController implements IController {
     private Player player;
-    private IView view;
     private IInputAdapter input;
-    private int yCoord;
-    private int speedY;
-    private int ground;
-    private int timeSinceJump = 0;
-    private float deltaInSec;
 
-    public PlayerController(Player player, IView view, IInputAdapter input) {
-        this.player = player;
-        this.view = view;
+
+    public PlayerController(IInputAdapter input) {
         this.input = input;
     }
 
     @Override
-    public void update(long delta) {
-        //Section for player walking function
-        //// TODO: 2016-04-06 Fix walking such as delta is in use.
+    public void update() {
+        handleMovement();
+        handleShooting();
+        handleJumping();
+    }
+
+    private void handleMovement() {
         if(input.isKeyPressed(IInputAdapter.Keys.A)){
-            player.setX(player.getX() - 3);
-            player.setWalking(true);
-        }else if(input.isKeyPressed(IInputAdapter.Keys.D)){
-            player.setX(player.getX() + 3);
-            player.setWalking(true);
-        }else{
-            player.setWalking(false);
-        }
-        //Section for player jump function
-        if(input.isKeyPressed(IInputAdapter.Keys.SPACE) && !player.getJumping()){
-            player.setJumping(true);
-            setData(delta);
-            ground = player.getY();
-        }
-        if(player.getJumping()){
-            jump();
-
+            player.moveLeft();
+        } else if (input.isKeyPressed(IInputAdapter.Keys.D)){
+            player.moveRight();
+        } else {
+            player.stopMoving();
         }
     }
 
-    @Override
-    public void draw(IGraphicsAdapter graphics) {
-        view.draw(graphics);
-    }
+    private void handleShooting() {
+        Point direction = new Point(0, 0);
 
-    @Override
-    public IRectangleAdapter getBoundingBox() {
-        return player.getBoundingBox();
-    }
+        if (input.isKeyJustPressed(IInputAdapter.Keys.LEFTKEY)) {
+            direction = direction.addX(-1);
+        }
+        if (input.isKeyJustPressed(IInputAdapter.Keys.UPKEY)) {
+            direction = direction.addY(1);
+        }
+        if (input.isKeyJustPressed(IInputAdapter.Keys.RIGHTKEY)) {
+            direction = direction.addX(1);
+        }
+        if (input.isKeyJustPressed(IInputAdapter.Keys.DOWNKEY)) {
+            direction = direction.addY(-1);
+        }
 
-    @Override
-    public void onCollision(ISolidObject otherObject) {
-        System.out.println("Player collided with " + otherObject.getClass());
-    }
-
-    private void setData(long delta){
-        deltaInSec = (float)(delta / 10000000);
-        ground = player.getY();
-        yCoord = ground + 1;
-        speedY = 25;
-
-    }
-
-    private void jump(){
-        double g = .04;
-        speedY -= 1;
-        timeSinceJump += deltaInSec;
-        player.setY((int)(yCoord + speedY*timeSinceJump - g*timeSinceJump*timeSinceJump));
-        // And test that the character is not on the ground again.
-
-        if (player.getY() <= ground)
-        {
-            player.setY(ground);
-            timeSinceJump = 0;
-            player.setJumping(false);
+        if (!direction.equals(new Point(0, 0))) {
+            player.shoot(direction);
         }
     }
 
-
-    public void setPosition(int x, int y){
-        player.setPosition(x, y);
+    private void handleJumping() {
+        if(input.isKeyPressed(IInputAdapter.Keys.SPACE)){
+            player.jump();
+        }
     }
 
-    public int getxCoord() {
-        return player.getX();
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
-    public int getyCoord() {
-        return player.getY();
-    }
 }
