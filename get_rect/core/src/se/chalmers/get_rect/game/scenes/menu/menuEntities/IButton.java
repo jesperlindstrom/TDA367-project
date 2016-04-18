@@ -5,7 +5,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public interface IButton {
     void pressButton(GameScreen game);
+    String getImgPath();
     Point getPosition();
-    boolean isActive();
-    void setActive(boolean value);
+
+    // TODO: Hur gör vi med draw o.s.v.
 }

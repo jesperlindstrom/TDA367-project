@@ -7,7 +7,6 @@ import se.chalmers.get_rect.utilities.Point;
 public class ExitButton implements IButton {
 
     private Point position;
-    private boolean active;
 
     public ExitButton(Point position) {
         this.position = position;
@@ -19,17 +18,12 @@ public class ExitButton implements IButton {
     }
 
     @Override
+    public String getImgPath() {
+        return "img/pauseMenu/buttons/exit_button.png";
+    }
+
+    @Override
     public Point getPosition() {
         return position;
-    }
-
-    @Override
-    public boolean isActive() {
-        return active;
-    }
-
-    @Override
-    public void setActive(boolean value) {
-        active = value;
     }
 }

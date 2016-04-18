@@ -11,7 +11,6 @@ import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.menu.MenuController;
-import se.chalmers.get_rect.game.scenes.menu.MenuModel;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.debug.Debugger;
 

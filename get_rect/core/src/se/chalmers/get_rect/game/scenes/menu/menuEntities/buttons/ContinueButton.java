@@ -6,9 +6,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class ContinueButton implements IButton {
 
-
     private Point position;
-    private boolean active;
 
     public ContinueButton(Point position) {
         this.position = position;
@@ -20,19 +18,13 @@ public class ContinueButton implements IButton {
     }
 
     @Override
+    public String getImgPath() {
+        return "img/pauseMenu/buttons/continue_button.png";
+    }
+
+    @Override
     public Point getPosition() {
         return position;
     }
-
-    @Override
-    public boolean isActive() {
-        return active;
-    }
-
-    @Override
-    public void setActive(boolean value) {
-        active = value;
-    }
-
 
 }

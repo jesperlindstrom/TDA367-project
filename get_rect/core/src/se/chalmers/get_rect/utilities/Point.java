@@ -27,10 +27,7 @@ public class Point {
     public int getY() {
         return yCoordinate;
     }
-    /*
 
-    public Point setxCoordinate(int xCoodrinate) {
-*/
     public Point setX(int xCoordinate) {
 
         return new Point(xCoordinate, this.yCoordinate);
@@ -118,5 +115,10 @@ public class Point {
         Point p2 = (Point)obj;
 
         return getX() == p2.getX() && getY() == p2.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return xCoordinate*233 + yCoordinate*311;
     }
 }
