@@ -27,10 +27,7 @@ public class Point {
     public int getY() {
         return yCoordinate;
     }
-    /*
 
-    public Point setxCoordinate(int xCoodrinate) {
-*/
     public Point setX(int xCoordinate) {
 
         return new Point(xCoordinate, this.yCoordinate);
@@ -119,4 +116,9 @@ public class Point {
 
         return getX() == p2.getX() && getY() == p2.getY();
     }
+
+    @Override
+    public int hashCode() {
+        return xCoordinate*35729 + yCoordinate*36571;
+    } // If we get a background that is larger than 35729 we need to change these values
 }

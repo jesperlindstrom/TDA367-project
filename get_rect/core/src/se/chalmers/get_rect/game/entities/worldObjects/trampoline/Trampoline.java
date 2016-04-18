@@ -9,6 +9,7 @@ import se.chalmers.get_rect.utilities.SideData;
 public class Trampoline extends AbstractPhysicsModel {
     private static final int WIDTH = 270;
     private static final int HEIGHT = 75;
+    private boolean gotHit;
 
     public Trampoline(Point position, IRectangleFactoryAdapter rectangleFactory) {
         super(position, new Point(0, 0), false, rectangleFactory);
@@ -19,6 +20,18 @@ public class Trampoline extends AbstractPhysicsModel {
     public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
         if (collisionSide.top()) {
             otherObject.setVelocity(otherObject.getVelocity().setY(150));
+            gotHit = true;
         }
     }
+
+    @Override
+    public void update() {
+        super.update();
+        gotHit = false;
+    }
+
+    public boolean isGotHit() {
+        return gotHit;
+    }
+
 }

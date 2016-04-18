@@ -58,7 +58,7 @@ public class TestScene implements IScene {
             System.out.println(e.getMessage());
         }
 
-        addPlayerAtPosition(1500, 150);
+        addPlayerAtPosition(1200, 150);
     }
 
     private void createLayers() {
