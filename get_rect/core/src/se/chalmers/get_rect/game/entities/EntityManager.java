@@ -1,11 +1,12 @@
 package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.IGameComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityManager {
+public class EntityManager implements IGameComponent {
     private List<IEntity> list;
     private List<IEntity> addQueue;
     private List<IEntity> removalQueue;
@@ -35,7 +36,8 @@ public class EntityManager {
     /**
      * Update all entities
      */
-    public void update() {
+    @Override
+    public void update(double delta) {
         processAdditions();
 
         inLoop = true;
@@ -48,6 +50,17 @@ public class EntityManager {
         inLoop = false;
 
         processRemovals();
+    }
+
+    /**
+     * Draw all entities
+     * @param graphics
+     */
+    @Override
+    public void draw(IGraphicsAdapter graphics) {
+        for (IEntity entity : list) {
+            entity.draw(graphics);
+        }
     }
 
     private void checkRemoval(IEntity entity) {
@@ -72,15 +85,5 @@ public class EntityManager {
         }
 
         removalQueue.clear();
-    }
-
-    /**
-     * Draw all entities
-     * @param graphics
-     */
-    public void draw(IGraphicsAdapter graphics) {
-        for (IEntity entity : list) {
-            entity.draw(graphics);
-        }
     }
 }

@@ -10,7 +10,7 @@ class PhysicsHandler {
     private static final String BOUNDING_BOX_IMAGE = "img/entities/physics_debug.png";
     private IPhysicsEngine engine;
 
-    public void setPhysicsEngine(IPhysicsEngine engine) {
+    public PhysicsHandler(IPhysicsEngine engine) {
         this.engine = engine;
     }
 

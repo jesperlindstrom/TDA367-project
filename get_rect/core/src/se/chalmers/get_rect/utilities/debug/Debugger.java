@@ -2,21 +2,22 @@ package se.chalmers.get_rect.utilities.debug;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Debugger {
+public class Debugger implements IGameComponent {
     private CameraManager camera;
     private FpsHandler fps;
     private PlayerHandler player;
     private PhysicsHandler physics;
 
-    public Debugger(IPhysicsModel player, CameraManager camera) {
+    public Debugger(IPhysicsModel player, CameraManager camera, IPhysicsEngine physics) {
         this.camera = camera;
         this.fps = new FpsHandler();
         this.player = new PlayerHandler(player);
-        this.physics = new PhysicsHandler();
+        this.physics = new PhysicsHandler(physics);
     }
 
     public void update(double delta) {
@@ -31,9 +32,5 @@ public class Debugger {
 
         // Draw physics bounding boxes
         physics.draw(graphics);
-    }
-
-    public void setPhysicsEngine(IPhysicsEngine engine) {
-        physics.setPhysicsEngine(engine);
     }
 }

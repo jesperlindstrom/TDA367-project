@@ -14,7 +14,6 @@ import se.chalmers.get_rect.game.gui.inGame.InGameOverlay;
 import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuOverlay;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.states.StateManager;
-import se.chalmers.get_rect.utilities.debug.Debugger;
 
 
 public class GameScreen implements IScreen {
@@ -22,7 +21,6 @@ public class GameScreen implements IScreen {
     private StateManager<IOverlay> overlayManager;
     private CameraManager cameraManager;
     private IInputAdapter input;
-    private Debugger debugger;
     private PlayerController playerController;
     private IGame game;
     private boolean pause;
@@ -42,11 +40,8 @@ public class GameScreen implements IScreen {
         // Create the CameraManager
         cameraManager = createCamera(game.getCameraFactory(), player.getModel());
 
-        // Initialize debugger
-        debugger = new Debugger(player.getModel(), cameraManager);
-
         // Add all scenes
-        addScenes(player, game.getRectangleFactory(), debugger);
+        addScenes(player, game.getRectangleFactory());
 
         // Sets pause to false
         pause = false;
@@ -71,9 +66,9 @@ public class GameScreen implements IScreen {
         return playerFactory.make();
     }
 
-    private void addScenes(IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, Debugger debugger) {
+    private void addScenes(IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory) {
         // Register scenes
-        sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager, debugger));
+        sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager));
 
         // Set starting scene
         sceneManager.set("test");
@@ -119,8 +114,6 @@ public class GameScreen implements IScreen {
             sceneManager.getState().update(delta);
             cameraManager.update(delta);
         }
-
-        debugger.update(delta);
     }
 
     @Override
@@ -128,7 +121,6 @@ public class GameScreen implements IScreen {
         cameraManager.draw(graphics);
         sceneManager.getState().draw(graphics);
         overlayManager.getState().draw(graphics);
-        debugger.draw(graphics);
     }
 
     public void exit() {
