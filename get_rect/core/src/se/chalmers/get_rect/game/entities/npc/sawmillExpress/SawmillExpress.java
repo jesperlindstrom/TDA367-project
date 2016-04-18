@@ -27,6 +27,9 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     public QuestState getQuestState() {
+        if (isFlying)
+            return QuestState.UNAVAILABLE;
+
         return QuestState.AVAILABLE;
     }
 
@@ -34,7 +37,7 @@ public class SawmillExpress extends AbstractNPCModel {
     @Override
     public void onInteract(IModel model) {
         isFlying = true;
-        showDialog("wäääh");
+        showDialog("Wäääh!");
     }
 
     public boolean isFlying() {

@@ -35,9 +35,9 @@ public abstract class AbstractNPCModel extends AbstractPhysicsModel implements I
         return QuestState.UNAVAILABLE;
     }
 
+
     @Override
     public void showDialog(String message) {
-        System.out.println("showDialog");
         dialog = message;
         showDialog = true;
     }
