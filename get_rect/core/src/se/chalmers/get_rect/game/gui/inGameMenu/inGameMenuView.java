@@ -30,7 +30,7 @@ public class inGameMenuView implements IView {
         graphics.draw(IMG_PATH + "inventory/inventory_bg.png", cameraPos.add(960, 240));
 
         //Buttons
-        graphics.draw(IMG_PATH + "buttons/continue.png", getRealPosition(CONTINUE));
+        graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(CONTINUE));
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(EXIT));
 
 

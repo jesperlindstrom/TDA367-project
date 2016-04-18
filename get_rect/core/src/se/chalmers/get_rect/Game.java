@@ -109,7 +109,7 @@ public class Game implements IGame {
 
     @Override
     public void load() {
-
+        screens.set("game");
     }
 
     @Override
@@ -119,12 +119,12 @@ public class Game implements IGame {
 
     @Override
     public void startNew() {
-
+        screens.set("game");
     }
 
     @Override
     public boolean loadAvailable() {
-        return false;
+        return true;
     }
 
 
