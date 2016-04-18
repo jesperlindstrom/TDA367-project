@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.gui.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
 
-public class InGameMenuView implements IView {
+public class inGameMenuView implements IView {
     private static final Point CONTINUE = new Point(0 ,0);
     private static final Point EXIT = new Point(0 ,1);
     private static final String IMG_PATH = "img/pauseMenu/";
@@ -14,7 +14,7 @@ public class InGameMenuView implements IView {
     private CameraManager camera;
     private AbstractGridModel model;
 
-    public InGameMenuView(CameraManager camera, AbstractGridModel model) {
+    public inGameMenuView(CameraManager camera, AbstractGridModel model) {
         this.camera = camera;
         this.model = model;
     }

@@ -1,11 +1,21 @@
 package se.chalmers.get_rect.game.screens;
 
+import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.IGame;
+import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.gui.IOverlay;
+import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuOverlay;
 
 public class StartMenuScreen implements IScreen {
+
+    private IOverlay gameMenu;
+    private ICameraAdapter camera;
+
     public StartMenuScreen(IGame game) {
         System.out.println("StartMenuScreen is initialized");
+        camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
+        gameMenu = new inGameMenuOverlay(game, camera);
     }
 
     @Override
