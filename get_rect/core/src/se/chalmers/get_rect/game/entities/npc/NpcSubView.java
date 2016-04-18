@@ -30,7 +30,7 @@ public class NpcSubView implements IView {
         if (questStateImage != null) {
             graphics.draw(questStateImage, new Point(model.getPosition().add(75,300)));
         }
-        
+
         if(model.showInteractionHint()){
             graphics.draw("img/interact/e.png",new Point(model.getPosition().add(20,300)));
         }
