@@ -119,6 +119,6 @@ public class Point {
 
     @Override
     public int hashCode() {
-        return xCoordinate*233 + yCoordinate*311;
-    }
+        return xCoordinate*35729 + yCoordinate*36571;
+    } // If we get a background that is larger than 35729 we need to change these values
 }
