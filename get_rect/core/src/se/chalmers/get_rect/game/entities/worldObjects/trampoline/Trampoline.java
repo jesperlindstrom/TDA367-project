@@ -13,7 +13,17 @@ public class Trampoline extends AbstractPhysicsModel {
 
     public Trampoline(Point position, IRectangleFactoryAdapter rectangleFactory) {
         super(position, new Point(0, 0), false, rectangleFactory);
+        setBoundingBox();
+    }
+
+    private void setBoundingBox() {
         setBoundingBox(getPosition().add(70, 20), WIDTH, HEIGHT);
+    }
+
+    @Override
+    public void setPosition(Point position) {
+        super.setPosition(position);
+        setBoundingBox();
     }
 
     @Override
