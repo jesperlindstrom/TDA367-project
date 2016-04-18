@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.gui.inGameMenu;
 
-import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.game.gui.AbstractGridModel;
 import se.chalmers.get_rect.game.screens.GameScreen;
 

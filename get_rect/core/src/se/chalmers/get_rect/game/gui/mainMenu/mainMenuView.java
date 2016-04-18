@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.gui.mainMenu;
 
+import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.gui.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
@@ -12,8 +12,13 @@ public class mainMenuView implements IView {
     private static final Point EXIT = new Point(0, 1);
     private static final String IMG_PATH = "img/pauseMenu/";
 
-    private CameraManager camera;
+    private ICameraAdapter camera;
     private AbstractGridModel model;
+
+    public mainMenuView(AbstractGridModel model, ICameraAdapter camera) {
+        this.camera = camera;
+        this.model = model;
+    }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {

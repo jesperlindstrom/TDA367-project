@@ -14,10 +14,12 @@ public class mainMenu extends AbstractGridModel {
         if (game.loadAvailable()) {
             startPoint = new Point(startPoint.addY(1));
             addToMap(startPoint, () -> game.load());
+
             continueAvailable = true;
         }
 
         addToMap(startPoint, () -> game.startNew());
+
         addToMap(startPoint.addY(1), () -> game.exit());
     }
 
