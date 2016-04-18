@@ -13,6 +13,7 @@ import se.chalmers.get_rect.game.gui.IOverlay;
 import se.chalmers.get_rect.game.gui.inGame.InGameOverlay;
 import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuOverlay;
 import se.chalmers.get_rect.game.scenes.*;
+import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.states.StateManager;
 
 

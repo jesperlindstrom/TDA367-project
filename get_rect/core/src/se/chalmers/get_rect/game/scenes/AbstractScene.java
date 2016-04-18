@@ -26,7 +26,6 @@ public abstract class AbstractScene implements IScene {
     private IPhysicsEngine physics;
     private Map<layer, EntityManager> layers;
     private List<IGameComponent> overlays;
-    private String backgroundImage;
 
     /**
      * Create a new scene
@@ -56,14 +55,6 @@ public abstract class AbstractScene implements IScene {
      */
     protected CameraManager getCamera() {
         return camera;
-    }
-
-    /**
-     * Set the scene background image
-     * @param backgroundImage Image path
-     */
-    protected void setBackgroundImage(String backgroundImage) {
-        this.backgroundImage = backgroundImage;
     }
 
     /**
@@ -101,7 +92,10 @@ public abstract class AbstractScene implements IScene {
     public void addEntity(layer layer, IEntity entity) {
         layers.get(layer).add(entity);
         IModel model = entity.getModel();
-        model.setScene(this);
+
+        if (model != null) {
+            model.setScene(this);
+        }
     }
 
     /**
@@ -134,13 +128,10 @@ public abstract class AbstractScene implements IScene {
      */
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        // todo: view code in model'ish. This doesn't belong here.
-        if (backgroundImage != null) {
-            Point pos = camera.getPosition();
-            graphics.draw(backgroundImage, pos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, pos);
-        }
-
-        layers.forEach((k, v) -> v.draw(graphics));
+        layers.get(layer.BACKGROUND).draw(graphics);
+        layers.get(layer.BACKGROUND_EFFECTS).draw(graphics);
+        layers.get(layer.FOREGROUND).draw(graphics);
+        layers.get(layer.FOREGROUND_EFFECTS).draw(graphics);
         overlays.forEach((v) -> v.draw(graphics));
     }
 
@@ -153,7 +144,6 @@ public abstract class AbstractScene implements IScene {
         setupEntityLayers();
         setupPhysics();
         setupOverlays();
-        loadEntities();
     }
 
     /**
@@ -165,7 +155,10 @@ public abstract class AbstractScene implements IScene {
 
     }
 
-    private void loadEntities() {
+    /**
+     * Load all entities from JSON data
+     */
+    protected void loadEntities() {
         SceneLoader loader = new SceneLoader(name, playerEntity, rectangleFactory);
 
         try {

@@ -7,19 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityManager implements IGameComponent {
-    private List<IEntity> list;
-    private List<IEntity> addQueue;
-    private List<IEntity> removalQueue;
-    private boolean inLoop;
-
-    /**
-     * Create a new entity manager
-     */
-    public EntityManager() {
-        list = new ArrayList<>();
-        addQueue = new ArrayList<>();
-        removalQueue = new ArrayList<>();
-    }
+    private List<IEntity> list = new ArrayList<>();
+    private List<IEntity> addQueue = new ArrayList<>();
+    private List<IEntity> removalQueue = new ArrayList<>();
+    private boolean inLoop = false;
 
     /**
      * Add an entity to the list
@@ -44,7 +35,10 @@ public class EntityManager implements IGameComponent {
 
         for (IEntity entity : list) {
             entity.update();
-            checkRemoval(entity);
+
+            if (entity.getModel() != null) {
+                checkRemoval(entity);
+            }
         }
 
         inLoop = false;
