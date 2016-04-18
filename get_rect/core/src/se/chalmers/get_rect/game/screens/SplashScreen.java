@@ -56,7 +56,7 @@ public class SplashScreen implements IScreen {
             stop = false;
         } else if (progressValue >= 1.0 && !didStop) {
             if (!GameConfig.SPLASH_SCREEN_TROLL) {
-                screenManager.set("game");
+                screenManager.set("startMenu");
                 return;
             }
 

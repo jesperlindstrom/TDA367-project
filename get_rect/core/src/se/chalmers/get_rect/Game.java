@@ -106,4 +106,26 @@ public class Game implements IGame {
         assetManager.dispose();
         gameLoop.exit();
     }
+
+    @Override
+    public void load() {
+        screens.set("game");
+    }
+
+    @Override
+    public void save() {
+
+    }
+
+    @Override
+    public void startNew() {
+        screens.set("game");
+    }
+
+    @Override
+    public boolean loadAvailable() {
+        return true;
+    }
+
+
 }
