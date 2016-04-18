@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.player;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
+import se.chalmers.get_rect.game.entities.npc.INpcModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
@@ -17,6 +18,7 @@ public class Player extends AbstractPhysicsModel {
     private boolean isWalking = false;
     private boolean canJump = true;
     private ProjectileFactory projectileFactory;
+    private INpcModel interactableNPC;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -33,6 +35,12 @@ public class Player extends AbstractPhysicsModel {
     public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
         if (isSolid && side.bottom()) {
             canJump = true;
+        }
+
+        if (otherObject instanceof INpcModel){
+            interactableNPC = (INpcModel) otherObject;
+        } else {
+            interactableNPC = null;
         }
     }
 
@@ -70,5 +78,11 @@ public class Player extends AbstractPhysicsModel {
 
     public boolean canJump() {
         return canJump;
+    }
+
+    public void interact(){
+        if(interactableNPC != null){
+            interactableNPC.onInteract(this);
+        }
     }
 }

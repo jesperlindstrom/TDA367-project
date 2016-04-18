@@ -8,4 +8,5 @@ public interface IModel {
     void update();
     void setScene(IEntityHolder scene);
     boolean shouldBeRemoved();
+
 }

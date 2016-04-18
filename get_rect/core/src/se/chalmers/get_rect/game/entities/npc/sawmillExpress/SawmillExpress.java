@@ -1,17 +1,17 @@
 package se.chalmers.get_rect.game.entities.npc.sawmillExpress;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
-import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.npc.AbstractNPCModel;
+import se.chalmers.get_rect.game.quests.QuestState;
+import se.chalmers.get_rect.game.quests.data.IQuest;
 import se.chalmers.get_rect.utilities.Point;
 
-public class SawmillExpress extends AbstractPhysicsModel {
+public class SawmillExpress extends AbstractNPCModel {
     private static final int SPEED = 50;
     private static final int WIDTH = 219;
     private static final int HEIGHT = 276;
-    private boolean wäääh = false;
+    private boolean isFlying = false;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
         super(point, new Point(0, 0), false, rectangleFactory);
@@ -20,19 +20,26 @@ public class SawmillExpress extends AbstractPhysicsModel {
 
     @Override
     public void update() {
-        if (wäääh) {
+        super.update();
+        if (isFlying) {
             setVelocity(new Point(0, SPEED));
         }
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
-        if (otherObject.getClass().equals(Player.class)) {
-            wäääh = true;
-        }
+    public QuestState getQuestState() {
+        return QuestState.AVAILABLE;
     }
 
-    public boolean isWäääh() {
-        return wäääh;
+
+    @Override
+    public void onInteract(IModel model) {
+        isFlying = true;
+        showDialog("wäääh");
     }
+
+    public boolean isFlying() {
+        return isFlying;
+    }
+
 }
