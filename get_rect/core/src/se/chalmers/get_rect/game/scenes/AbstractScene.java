@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.scenes;
 
-import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;

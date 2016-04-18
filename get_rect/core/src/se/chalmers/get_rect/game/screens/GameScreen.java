@@ -10,7 +10,6 @@ import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.gui.IOverlay;
-import se.chalmers.get_rect.game.gui.inGame.InGameOverlay;
 import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuOverlay;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
@@ -18,13 +17,13 @@ import se.chalmers.get_rect.states.StateManager;
 
 
 public class GameScreen implements IScreen {
-    private StateManager<IScene> sceneManager;
-    private StateManager<IOverlay> overlayManager;
+    private StateManager<IScene> sceneManager = new StateManager<>();
+    private StateManager<IOverlay> overlayManager = new StateManager<>();
     private CameraManager cameraManager;
     private IInputAdapter input;
     private PlayerController playerController;
     private IGame game;
-    private boolean pause;
+    private boolean pause = false;
 
     public GameScreen(IGame game) {
         System.out.println("GameScreen is initialized");
@@ -33,7 +32,6 @@ public class GameScreen implements IScreen {
         this.game = game;
 
         input = game.getInput();
-        sceneManager = new StateManager<>();
 
         // Initialize player
         IPhysicsEntity player = createPlayer(game.getRectangleFactory());
@@ -44,14 +42,8 @@ public class GameScreen implements IScreen {
         // Add all scenes
         addScenes(player, game.getRectangleFactory());
 
-        // Sets pause to false
-        pause = false;
-
-        // Creates Overlay handler
-        overlayManager = new StateManager<>();
-
-        addOverlays();
-
+        // Add GUI windows
+        addWindows();
     }
 
     private CameraManager createCamera(ICameraFactoryAdapter cameraFactory, IPhysicsModel entity) {
@@ -75,11 +67,8 @@ public class GameScreen implements IScreen {
         sceneManager.set("test");
     }
 
-    private void addOverlays() {
+    private void addWindows() {
         overlayManager.add("inGameMenu", new inGameMenuOverlay(this, input, cameraManager));
-        overlayManager.add("default", new InGameOverlay());
-
-        overlayManager.set("default");
     }
 
     @Override
@@ -99,18 +88,12 @@ public class GameScreen implements IScreen {
      */
     @Override
     public void update(double delta) {
-        if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
-            if (pause) {
-                resume();
-            } else {
-                pause();
-                overlayManager.set("inGameMenu");
-            }
-        }
+        handleInput();
 
         // Will update the menu if it is active and pause the current scene.
-        overlayManager.getState().update(delta);
-        if (!pause) {
+        if (pause) {
+            overlayManager.getState().update(delta);
+        } else {
             playerController.update();
             sceneManager.getState().update(delta);
             cameraManager.update(delta);
@@ -121,7 +104,25 @@ public class GameScreen implements IScreen {
     public void draw(IGraphicsAdapter graphics) {
         cameraManager.draw(graphics);
         sceneManager.getState().draw(graphics);
-        overlayManager.getState().draw(graphics);
+
+        if (pause) {
+            overlayManager.getState().draw(graphics);
+        }
+    }
+
+    private void handleInput() {
+        if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
+            if (pause) {
+                resume();
+            } else {
+                openWindow("inGameMenu");
+            }
+        }
+    }
+
+    public void openWindow(String name) {
+        overlayManager.set(name);
+        pause();
     }
 
     public void exit() {
@@ -134,7 +135,5 @@ public class GameScreen implements IScreen {
 
     public void resume() {
         pause = false;
-        overlayManager.set("default");
     }
-
 }
