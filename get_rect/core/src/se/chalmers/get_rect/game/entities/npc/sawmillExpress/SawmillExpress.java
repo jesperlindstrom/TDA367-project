@@ -4,7 +4,6 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.npc.AbstractNPCModel;
 import se.chalmers.get_rect.game.quests.QuestState;
-import se.chalmers.get_rect.game.quests.data.IQuest;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SawmillExpress extends AbstractNPCModel {
