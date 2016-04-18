@@ -22,7 +22,7 @@ public class CameraManager implements IGameComponent {
 
     @Override
     public void update(double delta) {
-        Point entityPosition = model.getPosition().addY(200);
+        Point entityPosition = model.getPosition().addY(100);
         Point entityVelocity = model.getVelocity();
 
         if (isOutOfBounds(entityPosition)) {

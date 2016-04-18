@@ -12,15 +12,25 @@ public class NpcSubView implements IView {
         this.model = model;
     }
 
+    private String getQuestStateImage() {
+        if (model.getQuestState() == QuestState.IN_PROGRESS)
+            return "img/interact/quest_in_progress.png";
+        if (model.getQuestState() == QuestState.AVAILABLE)
+            return "img/interact/quest_available.png";
+        if (model.getQuestState() == QuestState.COMPLETABLE)
+            return "img/interact/quest_completable.png";
+        return null;
+    }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if (model.getQuestState() == QuestState.AVAILABLE){
-            graphics.draw("img/interact/exclamation.png", new Point(model.getPosition().add(75,300)));
+
+        String questStateImage = getQuestStateImage();
+
+        if (questStateImage != null) {
+            graphics.draw(questStateImage, new Point(model.getPosition().add(75,300)));
         }
-        if (model.isDialogVisible()) {
-            graphics.drawText(model.getDialog(), model.getPosition().add(new Point(50, 60)));
-        }
+
         if(model.showInteractionHint()){
             graphics.draw("img/interact/e.png",new Point(model.getPosition().add(20,300)));
         }
