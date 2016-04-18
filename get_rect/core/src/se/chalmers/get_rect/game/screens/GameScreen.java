@@ -9,7 +9,9 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.gui.inGameMenu.InGameMenuOverlay;
+import se.chalmers.get_rect.game.gui.IOverlay;
+import se.chalmers.get_rect.game.gui.inGame.InGameOverlay;
+import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuOverlay;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.debug.Debugger;
@@ -17,13 +19,13 @@ import se.chalmers.get_rect.utilities.debug.Debugger;
 
 public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
+    private StateManager<IOverlay> overlayManager;
     private CameraManager cameraManager;
     private IInputAdapter input;
-    private InGameMenuOverlay menu;
-    private boolean menuActive;
     private Debugger debugger;
     private PlayerController playerController;
     private IGame game;
+    private boolean pause;
 
     public GameScreen(IGame game) {
         System.out.println("GameScreen is initialized");
@@ -46,11 +48,13 @@ public class GameScreen implements IScreen {
         // Add all scenes
         addScenes(player, game.getRectangleFactory(), debugger);
 
-        // Sets menuActive to false
-        menuActive = false;
+        // Sets pause to false
+        pause = false;
 
-        // Creates menu
-        menu = new InGameMenuOverlay(this, input, cameraManager);
+        // Creates Overlay handler
+        overlayManager = new StateManager<>();
+
+        addOverlays();
 
     }
 
@@ -75,6 +79,13 @@ public class GameScreen implements IScreen {
         sceneManager.set("test");
     }
 
+    private void addOverlays() {
+        overlayManager.add("inGameMenu", new inGameMenuOverlay(this, input, cameraManager));
+        overlayManager.add("default", new InGameOverlay());
+
+        overlayManager.set("default");
+    }
+
     @Override
     public void enteringState(String previousStateName) {
         System.out.println("Entering GameScreen");
@@ -93,13 +104,17 @@ public class GameScreen implements IScreen {
     @Override
     public void update(double delta) {
         if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
-            menuActive = !menuActive;
+            if (pause) {
+                resume();
+            } else {
+                pause();
+                overlayManager.set("inGameMenu");
+            }
         }
 
         // Will update the menu if it is active and pause the current scene.
-        if (menuActive) {
-            menu.update(delta);
-        } else {
+        overlayManager.getState().update(delta);
+        if (!pause) {
             playerController.update();
             sceneManager.getState().update(delta);
             cameraManager.update(delta);
@@ -112,11 +127,7 @@ public class GameScreen implements IScreen {
     public void draw(IGraphicsAdapter graphics) {
         cameraManager.draw(graphics);
         sceneManager.getState().draw(graphics);
-
-        if (menuActive) {
-            menu.draw(graphics);
-        }
-
+        overlayManager.getState().draw(graphics);
         debugger.draw(graphics);
     }
 
@@ -124,8 +135,13 @@ public class GameScreen implements IScreen {
         game.exit();
     }
 
+    public void pause() {
+        pause = true;
+    }
+
     public void resume() {
-        menuActive = false;
+        pause = false;
+        overlayManager.set("default");
     }
 
 }

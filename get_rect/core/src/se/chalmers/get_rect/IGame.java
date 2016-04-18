@@ -11,4 +11,9 @@ public interface IGame {
     StateManager<IScreen> getScreens();
     ICameraFactoryAdapter getCameraFactory();
     void exit();
+    void load();
+    void save();
+    void startNew();
+    boolean loadAvailable();
+
 }
