@@ -57,6 +57,10 @@ public class EntityManager implements IGameComponent {
         }
     }
 
+    public List<IEntity> getAll() {
+        return list;
+    }
+
     private void checkRemoval(IEntity entity) {
         if (entity.getModel().shouldBeRemoved()) {
             removalQueue.add(entity);

@@ -6,6 +6,7 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
+import se.chalmers.get_rect.game.overlays.quests.QuestMarkerOverlay;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
@@ -171,6 +172,7 @@ public abstract class AbstractScene implements IScene {
 
     private void setupOverlays() {
         overlays = new ArrayList<>();
+        overlays.add(new QuestMarkerOverlay(layers.get(layer.FOREGROUND).getAll()));
         overlays.add(new Debugger(playerEntity.getModel(), camera, physics));
     }
 
