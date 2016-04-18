@@ -9,8 +9,8 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.gui.inGameMenu.InGameMenuOverlay;
 import se.chalmers.get_rect.game.scenes.*;
-import se.chalmers.get_rect.game.scenes.menu.MenuController;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.debug.Debugger;
 
@@ -19,7 +19,7 @@ public class GameScreen implements IScreen {
     private StateManager<IScene> sceneManager;
     private CameraManager cameraManager;
     private IInputAdapter input;
-    private MenuController menu;
+    private InGameMenuOverlay menu;
     private boolean menuActive;
     private Debugger debugger;
     private PlayerController playerController;
@@ -50,7 +50,7 @@ public class GameScreen implements IScreen {
         menuActive = false;
 
         // Creates menu
-        menu = new MenuController(this, input, cameraManager);
+        menu = new InGameMenuOverlay(this, input, cameraManager);
 
     }
 
@@ -98,7 +98,7 @@ public class GameScreen implements IScreen {
 
         // Will update the menu if it is active and pause the current scene.
         if (menuActive) {
-            menu.update();
+            menu.update(delta);
         } else {
             playerController.update();
             sceneManager.getState().update(delta);
@@ -124,8 +124,8 @@ public class GameScreen implements IScreen {
         game.exit();
     }
 
-    public void setMenuActive(boolean value) {
-        menuActive = value;
+    public void resume() {
+        menuActive = false;
     }
 
 }
