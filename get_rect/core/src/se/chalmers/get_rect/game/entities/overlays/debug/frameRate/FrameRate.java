@@ -1,10 +1,8 @@
-package se.chalmers.get_rect.utilities.debug;
+package se.chalmers.get_rect.game.entities.overlays.debug.frameRate;
 
 import se.chalmers.get_rect.GameConfig;
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.utilities.Point;
 
-class FpsHandler {
+public class FrameRate {
     private int currentFPS;
     private int FPS;
     private int updates;
@@ -14,6 +12,7 @@ class FpsHandler {
     private double timeForLowest;
 
     public void update(double delta) {
+        System.out.println("called");
         currentFPS = (int)(10/delta);
         this.delta = delta;
 
@@ -38,24 +37,15 @@ class FpsHandler {
         }
     }
 
-    public Point draw(IGraphicsAdapter graphics, Point point) {
-        int textOffset = -20;
+    public int getFps() {
+        return FPS;
+    }
 
-        if (GameConfig.SHOW_FPS) {
-            point = point.addY(textOffset);
-            graphics.drawText("FPS = " + FPS, point);
-        }
+    public int getLowestFps() {
+        return lowestFPS;
+    }
 
-        if (GameConfig.SHOW_LOWESTFPS) {
-            point = point.addY(textOffset);
-            graphics.drawText("lowestFPS(10sec) = " + lowestFPS, point);
-        }
-
-        if (GameConfig.SHOW_DELTA) {
-            point = point.addY(textOffset);
-            graphics.drawText("delta = " + delta, point);
-        }
-
-        return point;
+    public double getDelta() {
+        return delta;
     }
 }

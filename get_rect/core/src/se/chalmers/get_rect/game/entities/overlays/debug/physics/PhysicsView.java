@@ -1,16 +1,17 @@
-package se.chalmers.get_rect.utilities.debug;
+package se.chalmers.get_rect.game.entities.overlays.debug.physics;
 
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 
-class PhysicsHandler {
+public class PhysicsView implements IView {
     private static final String BOUNDING_BOX_IMAGE = "img/entities/physics_debug.png";
     private IPhysicsEngine engine;
 
-    public PhysicsHandler(IPhysicsEngine engine) {
+    public PhysicsView(IPhysicsEngine engine) {
         this.engine = engine;
     }
 

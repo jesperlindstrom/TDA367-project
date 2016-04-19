@@ -3,19 +3,15 @@ package se.chalmers.get_rect.game.scenes;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
-import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.entities.overlays.OverlayFactory;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
-import se.chalmers.get_rect.game.overlays.quests.QuestMarkerOverlay;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.debug.Debugger;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractScene implements IScene {
@@ -25,7 +21,6 @@ public abstract class AbstractScene implements IScene {
     private CameraManager camera;
     private IPhysicsEngine physics;
     private Map<layer, EntityManager> layers;
-    private List<IGameComponent> overlays;
 
     /**
      * Create a new scene
@@ -39,14 +34,6 @@ public abstract class AbstractScene implements IScene {
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
-    }
-
-    /**
-     * Get the scene name
-     * @return The scene name
-     */
-    protected String getName() {
-        return name;
     }
 
     /**
@@ -118,7 +105,6 @@ public abstract class AbstractScene implements IScene {
     @Override
     public void update(double delta) {
         layers.forEach((k, v) -> v.update(delta));
-        overlays.forEach((v) -> v.update(delta));
         physics.update(delta);
     }
 
@@ -132,7 +118,7 @@ public abstract class AbstractScene implements IScene {
         layers.get(layer.BACKGROUND_EFFECTS).draw(graphics);
         layers.get(layer.FOREGROUND).draw(graphics);
         layers.get(layer.FOREGROUND_EFFECTS).draw(graphics);
-        overlays.forEach((v) -> v.draw(graphics));
+        layers.get(layer.OVERLAY_UI).draw(graphics);
     }
 
     /**
@@ -171,9 +157,10 @@ public abstract class AbstractScene implements IScene {
     }
 
     private void setupOverlays() {
-        overlays = new ArrayList<>();
-        overlays.add(new QuestMarkerOverlay(layers.get(layer.FOREGROUND).getAll()));
-        overlays.add(new Debugger(playerEntity.getModel(), camera, physics));
+        OverlayFactory overlay = new OverlayFactory(layers.get(layer.FOREGROUND), playerEntity.getModel(), camera, physics);
+
+        addEntity(layer.OVERLAY_UI, overlay.make("questMarkers"));
+        addEntity(layer.OVERLAY_UI, overlay.make("debug"));
     }
 
     private void setupPhysics() {
@@ -182,10 +169,12 @@ public abstract class AbstractScene implements IScene {
 
     private void setupEntityLayers() {
         layers = new HashMap<>();
+
         layers.put(layer.BACKGROUND, new EntityManager());
         layers.put(layer.BACKGROUND_EFFECTS, new EntityManager());
         layers.put(layer.FOREGROUND, new EntityManager());
         layers.put(layer.FOREGROUND_EFFECTS, new EntityManager());
+        layers.put(layer.OVERLAY_UI, new EntityManager());
     }
 
     private void loadBackground(SceneLoader loader) throws FileNotFoundException {
