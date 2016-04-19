@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.utilities.debug;
+package se.chalmers.get_rect.game.entities.overlays.debug;
 
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;

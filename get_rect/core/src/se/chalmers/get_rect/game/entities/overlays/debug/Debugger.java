@@ -1,19 +1,24 @@
-package se.chalmers.get_rect.utilities.debug;
+package se.chalmers.get_rect.game.entities.overlays.debug;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.IGameComponent;
+import se.chalmers.get_rect.game.entities.AbstractModel;
+import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Debugger implements IGameComponent {
+// todo: model and view in same, derp
+public class Debugger extends AbstractModel implements IView {
     private CameraManager camera;
     private FpsHandler fps;
     private PlayerHandler player;
     private PhysicsHandler physics;
 
     public Debugger(IPhysicsModel player, CameraManager camera, IPhysicsEngine physics) {
+        super(new Point(0, 0));
         this.camera = camera;
         this.fps = new FpsHandler();
         this.player = new PlayerHandler(player);
