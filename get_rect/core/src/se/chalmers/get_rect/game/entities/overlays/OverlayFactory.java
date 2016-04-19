@@ -2,7 +2,8 @@ package se.chalmers.get_rect.game.entities.overlays;
 
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.overlays.debug.Debugger;
+import se.chalmers.get_rect.game.entities.overlays.debug.Debug;
+import se.chalmers.get_rect.game.entities.overlays.debug.DebugView;
 import se.chalmers.get_rect.game.entities.overlays.quests.NpcList;
 import se.chalmers.get_rect.game.entities.overlays.quests.QuestMarkersView;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
@@ -38,9 +39,9 @@ public class OverlayFactory {
     }
 
     private IEntity makeDebug() {
-        Debugger model = new Debugger(player, camera, physics);
+        Debug model = new Debug(player, camera, physics);
+        IView view = new DebugView(model);
 
-        // todo: using model for view is not good.
-        return new Entity(model, model);
+        return new Entity(model, view);
     }
 }
