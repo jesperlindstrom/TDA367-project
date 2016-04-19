@@ -2,6 +2,8 @@ package se.chalmers.get_rect.game.entities.overlays;
 
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.entities.overlays.combat.CombatList;
+import se.chalmers.get_rect.game.entities.overlays.combat.HealthbarView;
 import se.chalmers.get_rect.game.entities.overlays.debug.Debug;
 import se.chalmers.get_rect.game.entities.overlays.debug.DebugView;
 import se.chalmers.get_rect.game.entities.overlays.interactable.InteractableList;
@@ -33,6 +35,10 @@ public class OverlayFactory {
         if (type.equals("debug"))
             return makeDebug();
 
+        if(type.equals("healthbar")){
+            return makeHealthbar();
+        }
+
         throw new EntityNotFoundException("overlay", type);
     }
 
@@ -54,6 +60,12 @@ public class OverlayFactory {
         Debug model = new Debug(player, camera, physics);
         IView view = new DebugView(model);
 
+        return new Entity(model, view);
+    }
+
+    private IEntity makeHealthbar(){
+        CombatList model = new CombatList(foreground);
+        IView view = new HealthbarView(model);
         return new Entity(model, view);
     }
 }

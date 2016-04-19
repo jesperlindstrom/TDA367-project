@@ -23,4 +23,5 @@ public class InteractableList extends AbstractModel {
                 .filter((e) -> e.getModel() instanceof IInteractableModel)
                 .collect(Collectors.toList());
     }
+
 }
