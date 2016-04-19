@@ -4,6 +4,8 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.debug.Debug;
 import se.chalmers.get_rect.game.entities.overlays.debug.DebugView;
+import se.chalmers.get_rect.game.entities.overlays.interactable.InteractableList;
+import se.chalmers.get_rect.game.entities.overlays.interactable.InteractionHintsView;
 import se.chalmers.get_rect.game.entities.overlays.quests.NpcList;
 import se.chalmers.get_rect.game.entities.overlays.quests.QuestMarkersView;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
@@ -25,10 +27,20 @@ public class OverlayFactory {
         if (type.equals("questMarkers"))
             return makeQuestMarkers();
 
+        if (type.equals("interactionHints"))
+            return makeInteractionHints();
+
         if (type.equals("debug"))
             return makeDebug();
 
         throw new EntityNotFoundException("overlay", type);
+    }
+
+    private IEntity makeInteractionHints() {
+        InteractableList model = new InteractableList(foreground);
+        IView view = new InteractionHintsView(model);
+
+        return new Entity(model, view);
     }
 
     private IEntity makeQuestMarkers() {
