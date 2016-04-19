@@ -34,7 +34,7 @@ public class EntityManager implements IGameComponent {
         inLoop = true;
 
         for (IEntity entity : list) {
-            entity.update();
+            entity.update(delta);
 
             if (entity.getModel() != null) {
                 checkRemoval(entity);

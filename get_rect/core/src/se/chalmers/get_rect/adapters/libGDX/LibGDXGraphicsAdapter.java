@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -102,8 +103,5 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     public void setMatrix(Matrix4 cameraMatrix) {
         batch.setProjectionMatrix(cameraMatrix);
-
     }
-
-
 }

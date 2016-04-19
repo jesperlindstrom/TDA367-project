@@ -4,6 +4,6 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 
 public interface IEntity {
     IModel getModel();
-    void update();
+    void update(double delta);
     void draw(IGraphicsAdapter g);
 }

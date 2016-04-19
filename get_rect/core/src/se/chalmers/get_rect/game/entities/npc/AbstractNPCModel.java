@@ -21,7 +21,7 @@ public abstract class AbstractNPCModel extends AbstractPhysicsModel implements I
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         if(model != null && model.getPosition().distanceTo(getPosition()) > DISTANCE){
             showInteractionHint = false;
             showDialog = false;

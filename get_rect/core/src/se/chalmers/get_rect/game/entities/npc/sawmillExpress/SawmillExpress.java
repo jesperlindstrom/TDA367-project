@@ -18,8 +18,8 @@ public class SawmillExpress extends AbstractNPCModel {
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void update(double delta) {
+        super.update(delta);
 
         if (isFlying) {
             setVelocity(new Point(0, SPEED));

@@ -43,7 +43,7 @@ public class Projectile extends AbstractPhysicsModel {
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         if (getVelocity().getX() == 0 && getVelocity().getY() == 0) {
             setShouldBeRemoved();
 

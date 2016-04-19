@@ -12,9 +12,9 @@ public class Entity implements IEntity {
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         if (model != null) {
-            model.update();
+            model.update(delta);
         }
     }
 

@@ -12,7 +12,6 @@ public class FrameRate {
     private double timeForLowest;
 
     public void update(double delta) {
-        System.out.println("called");
         currentFPS = (int)(10/delta);
         this.delta = delta;
 

@@ -35,7 +35,7 @@ public class Zombie extends AbstractPhysicsModel {
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         // Amazing AI
         int playerX = player.getPosition().getX();
         int zombieX = getPosition().getX();

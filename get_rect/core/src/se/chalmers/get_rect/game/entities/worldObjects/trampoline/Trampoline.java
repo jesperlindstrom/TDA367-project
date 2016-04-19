@@ -35,8 +35,8 @@ public class Trampoline extends AbstractPhysicsModel {
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void update(double delta) {
+        super.update(delta);
         gotHit = false;
     }
 

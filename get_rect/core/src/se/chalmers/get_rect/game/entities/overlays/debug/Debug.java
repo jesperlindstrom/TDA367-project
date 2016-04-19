@@ -34,9 +34,8 @@ public class Debug extends AbstractModel {
     }
 
     @Override
-    public void update() {
-        // todo: fixa.
-        fps.update(0);
+    public void update(double delta) {
+        fps.update(delta);
     }
 
     public Point getCameraPosition() {

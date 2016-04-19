@@ -5,8 +5,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public interface IModel {
     Point getPosition();
-    void update();
+    void update(double delta);
     void setScene(IEntityHolder scene);
     boolean shouldBeRemoved();
-
 }

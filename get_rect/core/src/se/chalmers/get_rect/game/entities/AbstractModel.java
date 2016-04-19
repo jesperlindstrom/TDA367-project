@@ -40,7 +40,7 @@ public abstract class AbstractModel implements IModel {
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         // Default: do nothing
     }
 }
