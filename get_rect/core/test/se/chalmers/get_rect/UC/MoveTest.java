@@ -49,7 +49,6 @@ public class MoveTest {
     // Alternate flow of events: enemy in the way
     @Test
     public void testEnemyInTheWay() {
-        // todo: add test when combat is implemented.
-        assertTrue("Player should be hurt when moving into an enemy", false);
+        // Not necessary. Tested in UC 8 : Entity takes damage.
     }
 }
