@@ -15,6 +15,7 @@ public class Projectile extends AbstractPhysicsModel {
     private static final int HEIGHT = 50;
     private ProjectileFactory projectileFactory;
     private boolean cluster = false;
+    private int dmg = 10;
 
     public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory){
         this(position, velocity, rectangleFactory);
@@ -37,8 +38,9 @@ public class Projectile extends AbstractPhysicsModel {
         if (otherObject.getClass().equals(Zombie.class) && cluster) {
             setShouldBeRemoved();
             launchCluster();
-            otherObject.setPosition(otherObject.getPosition().addY(50));
-            otherObject.setVelocity(getVelocity().setY(150));
+            otherObject.setPosition(otherObject.getPosition().addY(10));
+            otherObject.setVelocity(getVelocity().setY(10));
+            otherObject.takeDamage(dmg);
         }
     }
 

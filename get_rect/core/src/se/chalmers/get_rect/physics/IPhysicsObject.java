@@ -13,4 +13,6 @@ public interface IPhysicsObject {
     Point getVelocity();
     boolean isSolid();
     boolean shouldBeRemoved();
+    int getHealth();
+    void takeDamage(int dmg);
 }
