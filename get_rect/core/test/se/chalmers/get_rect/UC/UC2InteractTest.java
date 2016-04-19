@@ -49,7 +49,7 @@ public class UC2InteractTest {
     public void testInteraction(){
         player.onCollision(sawmillExpress,playerSide,false);
         sawmillExpress.onCollision(player, otherSide,false);
-        assertTrue("Should not be flying", !sawmillExpress.isFlying());
+        assertFalse("Should not be flying", sawmillExpress.isFlying());
         player.interact();
         assertTrue("Should be flying", sawmillExpress.isFlying());
     }
@@ -65,5 +65,19 @@ public class UC2InteractTest {
         zombie.onCollision(player,zombieSideData,false);
         player.onCollision(zombie, playerSide, false);
         assertNull("Should be null", player.getCurrentNpc());
+    }
+
+    /**
+     * Test if dialog with sawmill works
+     */
+    @Test
+    public void testDialog(){
+        player.onCollision(sawmillExpress,playerSide,false);
+        sawmillExpress.onCollision(player,otherSide,false);
+        assertFalse("Should be false", sawmillExpress.isDialogVisible());
+        assertNull("Should be null", sawmillExpress.getDialog());
+        player.interact();
+        assertTrue("Should be true", sawmillExpress.isDialogVisible());
+        assertEquals("Should be equal", sawmillExpress.getDialog(), "Wäääh!");
     }
 }
