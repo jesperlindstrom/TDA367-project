@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.projectile;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
@@ -35,12 +36,12 @@ public class Projectile extends AbstractPhysicsModel {
             setVelocity(getVelocity().addX(friction));
         }
 
-        if (otherObject.getClass().equals(Zombie.class) && cluster) {
+        if (otherObject instanceof ICombatModel && !(otherObject instanceof Player) && cluster) {
             setShouldBeRemoved();
             launchCluster();
-            otherObject.setPosition(otherObject.getPosition().addY(10));
-            otherObject.setVelocity(getVelocity().setY(10));
-            otherObject.takeDamage(dmg);
+            otherObject.setPosition(otherObject.getPosition().addY(30));
+            otherObject.setVelocity(getVelocity().multiply(0.1));
+            ((ICombatModel)otherObject).takeDamage(dmg);
         }
     }
 
