@@ -5,5 +5,4 @@ public interface ICombatModel extends IPhysicsModel {
     int getcurrentHealth();
     void takeDamage(int dmg);
     int getMaxHealth();
-
 }
