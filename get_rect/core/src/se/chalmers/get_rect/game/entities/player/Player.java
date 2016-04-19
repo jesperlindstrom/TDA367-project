@@ -95,4 +95,8 @@ public class Player extends AbstractCombatModel {
     protected void die(){
         System.out.println("Player died!");
     }
+
+    public INpcModel getCurrentNpc(){
+        return interactableNPC;
+    }
 }
