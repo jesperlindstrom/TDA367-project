@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.Point;
 import static org.junit.Assert.*;
 
 // Use case 1: Move
-public class MoveTest {
+public class UC1MoveTest {
     private Player player;
 
     @Before
@@ -49,6 +49,6 @@ public class MoveTest {
     // Alternate flow of events: enemy in the way
     @Test
     public void testEnemyInTheWay() {
-        // Not necessary. Tested in UC 8 : Entity takes damage.
+        // Not necessary. Tested in UC
     }
 }
