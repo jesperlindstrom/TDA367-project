@@ -158,10 +158,10 @@ public abstract class AbstractScene implements IScene {
 
     private void setupOverlays() {
         OverlayFactory overlay = new OverlayFactory(layers.get(layer.FOREGROUND), playerEntity.getModel(), camera, physics);
-
         addEntity(layer.OVERLAY_UI, overlay.make("questMarkers"));
         addEntity(layer.OVERLAY_UI, overlay.make("interactionHints"));
         addEntity(layer.OVERLAY_UI, overlay.make("debug"));
+        addEntity(layer.OVERLAY_UI, overlay.make("healthbar"));
     }
 
     private void setupPhysics() {
