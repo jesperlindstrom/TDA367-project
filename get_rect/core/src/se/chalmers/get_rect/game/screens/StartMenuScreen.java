@@ -5,7 +5,7 @@ import se.chalmers.get_rect.IGame;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.gui.IWindow;
-import se.chalmers.get_rect.game.gui.mainMenu.mainMenuOverlay;
+import se.chalmers.get_rect.game.gui.mainMenu.mainMenuWindow;
 
 public class StartMenuScreen implements IScreen {
 
@@ -15,7 +15,7 @@ public class StartMenuScreen implements IScreen {
     public StartMenuScreen(IGame game) {
         System.out.println("StartMenuScreen is initialized");
         camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
-        gameMenu = new mainMenuOverlay(game, camera);
+        gameMenu = new mainMenuWindow(game, camera);
     }
 
     @Override

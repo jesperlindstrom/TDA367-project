@@ -10,7 +10,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.gui.IWindow;
-import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuOverlay;
+import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuWindow;
 import se.chalmers.get_rect.game.scenes.*;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.states.StateManager;
@@ -68,7 +68,7 @@ public class GameScreen implements IScreen {
     }
 
     private void addWindows() {
-        overlayManager.add("inGameMenu", new inGameMenuOverlay(this, input, cameraManager));
+        overlayManager.add("inGameMenu", new inGameMenuWindow(this, input, cameraManager));
     }
 
     @Override
