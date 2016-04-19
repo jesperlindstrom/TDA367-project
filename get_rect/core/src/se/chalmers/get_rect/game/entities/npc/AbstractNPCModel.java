@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.SideData;
 
 public abstract class AbstractNPCModel extends AbstractPhysicsModel implements INpcModel {
     private IModel model;
-    private static final int DISTANCE = 200;
+    private static final int DISTANCE = 150;
     private boolean showDialog;
     private boolean showInteractionHint;
     private String dialog;
