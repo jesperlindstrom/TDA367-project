@@ -68,17 +68,4 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
     public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
         // Default: do nothing
     }
-
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override
-    public void takeDamage(int dmg) {
-        health = health - dmg;
-        if (health <= 0){
-            setShouldBeRemoved();
-        }
-    }
 }

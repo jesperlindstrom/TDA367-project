@@ -34,13 +34,14 @@ public class Projectile extends AbstractPhysicsModel {
             int friction = getVelocity().getX() > 0 ? -1 : 1;
             setVelocity(getVelocity().addX(friction));
         }
-
-        if (otherObject.getClass().equals(Zombie.class) && cluster) {
+        
+        if (otherObject instanceof ICombatModel && cluster) {
             setShouldBeRemoved();
             launchCluster();
             otherObject.setPosition(otherObject.getPosition().addY(10));
             otherObject.setVelocity(getVelocity().setY(10));
-            otherObject.takeDamage(dmg);
+            System.out.println("take dmg!!");
+            ((ICombatModel)otherObject).takeDamage(dmg);
         }
     }
 
