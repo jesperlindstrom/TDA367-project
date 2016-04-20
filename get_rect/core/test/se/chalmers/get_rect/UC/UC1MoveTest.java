@@ -33,7 +33,7 @@ public class UC1MoveTest {
         assertTrue("Should have a negative X velocity", player.getVelocity().getX() < 0);
     }
 
-    // Normal flow of events: left
+    // Normal flow of events: right
     @Test
     public void testMoveRight() {
         player.moveRight();
