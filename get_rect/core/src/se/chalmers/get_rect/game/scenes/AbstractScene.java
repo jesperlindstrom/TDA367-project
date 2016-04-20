@@ -5,6 +5,7 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.OverlayFactory;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
@@ -157,11 +158,14 @@ public abstract class AbstractScene implements IScene {
     }
 
     private void setupOverlays() {
-        OverlayFactory overlay = new OverlayFactory(layers.get(layer.FOREGROUND), playerEntity.getModel(), camera, physics);
-        addEntity(layer.OVERLAY_UI, overlay.make("questMarkers"));
-        addEntity(layer.OVERLAY_UI, overlay.make("interactionHints"));
-        addEntity(layer.OVERLAY_UI, overlay.make("debug"));
-        addEntity(layer.OVERLAY_UI, overlay.make("healthbar"));
+        if(playerEntity.getModel() instanceof Player) {
+            Player model = (Player) playerEntity.getModel();
+            OverlayFactory overlay = new OverlayFactory(layers.get(layer.FOREGROUND), model, camera, physics);
+            addEntity(layer.OVERLAY_UI, overlay.make("questMarkers"));
+            addEntity(layer.OVERLAY_UI, overlay.make("interactionHints"));
+            addEntity(layer.OVERLAY_UI, overlay.make("debug"));
+            addEntity(layer.OVERLAY_UI, overlay.make("healthbar"));
+        }
     }
 
     private void setupPhysics() {

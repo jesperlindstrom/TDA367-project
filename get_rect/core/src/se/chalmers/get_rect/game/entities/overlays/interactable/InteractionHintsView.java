@@ -4,26 +4,21 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IInteractableModel;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 
 public class InteractionHintsView implements IView {
-    private InteractableList interactableList;
+    private Player player;
 
-    public InteractionHintsView(InteractableList interactableList) {
-        this.interactableList = interactableList;
+    public InteractionHintsView(Player player) {
+        this.player = player;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        for (IEntity entity : interactableList.get()) {
-            IInteractableModel interactable = (IInteractableModel) entity.getModel();
-            drawInteractionHint(graphics, interactable);
-        }
-    }
-
-    public void drawInteractionHint(IGraphicsAdapter graphics, IInteractableModel model) {
-        if (model.showInteractionHint()){
-            graphics.draw("img/interact/e.png",new Point(model.getPosition().add(20,300)));
+        if(player.getCurrentNpc() == null) return;
+        if (player.getCurrentNpc().showInteractionHint()){
+            graphics.draw("img/interact/e.png",new Point(player.getCurrentNpc().getPosition().add(20,300)));
         }
     }
 }

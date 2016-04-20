@@ -6,19 +6,19 @@ import se.chalmers.get_rect.game.entities.overlays.combat.CombatList;
 import se.chalmers.get_rect.game.entities.overlays.combat.HealthbarView;
 import se.chalmers.get_rect.game.entities.overlays.debug.Debug;
 import se.chalmers.get_rect.game.entities.overlays.debug.DebugView;
-import se.chalmers.get_rect.game.entities.overlays.interactable.InteractableList;
 import se.chalmers.get_rect.game.entities.overlays.interactable.InteractionHintsView;
 import se.chalmers.get_rect.game.entities.overlays.quests.NpcList;
 import se.chalmers.get_rect.game.entities.overlays.quests.QuestMarkersView;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 
 public class OverlayFactory {
     private EntityManager foreground;
-    private IPhysicsModel player;
+    private Player player;
     private CameraManager camera;
     private IPhysicsEngine physics;
 
-    public OverlayFactory(EntityManager foreground, IPhysicsModel player, CameraManager camera, IPhysicsEngine physics) {
+    public OverlayFactory(EntityManager foreground, Player player, CameraManager camera, IPhysicsEngine physics) {
         this.foreground = foreground;
         this.player = player;
         this.camera = camera;
@@ -43,10 +43,9 @@ public class OverlayFactory {
     }
 
     private IEntity makeInteractionHints() {
-        InteractableList model = new InteractableList(foreground);
-        IView view = new InteractionHintsView(model);
+        IView view = new InteractionHintsView(player);
 
-        return new Entity(model, view);
+        return new Entity(null, view);
     }
 
     private IEntity makeQuestMarkers() {
