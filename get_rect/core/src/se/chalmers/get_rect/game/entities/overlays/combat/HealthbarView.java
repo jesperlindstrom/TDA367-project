@@ -17,14 +17,17 @@ public class HealthbarView implements IView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         for (IEntity entity : combatList.get()) {
-            ICombatModel interactable = (ICombatModel) entity.getModel();
-            drawHealthbar(graphics, interactable);
+            ICombatModel combatModel = (ICombatModel) entity.getModel();
+            drawHealthbar(graphics, combatModel);
         }
     }
 
     public void drawHealthbar(IGraphicsAdapter graphics, ICombatModel model) {
-        if (model.getcurrentHealth() < 100){
-            graphics.draw("img/interact/e.png",new Point(model.getPosition().add(20,300)));
+        if (model.getcurrentHealth() < model.getMaxHealth()){
+            float dmgTaken = (float)(100*((model.getcurrentHealth())/(double)model.getMaxHealth()));
+            graphics.draw("img/entities/health/dmg.png",new Point(model.getPosition().add(5,150)));
+            graphics.draw("img/entities/health/hp.png", new Point(model.getPosition().add(5,150)), dmgTaken, 10);
+            graphics.draw("img/entities/health/healthbar.png",new Point(model.getPosition().add(5,150)));
         }
     }
 }

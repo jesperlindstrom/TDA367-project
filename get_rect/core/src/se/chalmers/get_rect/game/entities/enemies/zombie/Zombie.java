@@ -17,7 +17,7 @@ public class Zombie extends AbstractCombatModel {
     private IModel player;
 
     public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
-        super(point, new Point(0, 0), false, rectangleFactory, 100);
+        super(point, new Point(0, 0), false, rectangleFactory, 30);
         setBoundingBox(getPosition(), WIDTH, HEIGHT);
 
         this.player = player;
