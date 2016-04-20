@@ -25,8 +25,8 @@ public class HealthbarView implements IView {
     public void drawHealthbar(IGraphicsAdapter graphics, ICombatModel model) {
         if (model.getcurrentHealth() < model.getMaxHealth()){
             float dmgTaken = (float)(100*((model.getcurrentHealth())/(double)model.getMaxHealth()));
-            graphics.draw("img/entities/health/dmg.png",new Point(model.getPosition().add(5,150)));
-            graphics.draw("img/entities/health/hp.png", new Point(model.getPosition().add(5,150)), dmgTaken, 10);
+            graphics.draw("img/entities/health/dmg.png",new Point(model.getPosition().add(7,150)), 100,12);
+            graphics.draw("img/entities/health/hp.png", new Point(model.getPosition().add(6,150)), dmgTaken, 12);
             graphics.draw("img/entities/health/healthbar.png",new Point(model.getPosition().add(5,150)));
         }
     }
