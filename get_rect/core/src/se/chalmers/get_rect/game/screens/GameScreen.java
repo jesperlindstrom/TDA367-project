@@ -12,6 +12,7 @@ import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.gui.IWindow;
 import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuWindow;
 import se.chalmers.get_rect.game.scenes.*;
+import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.states.StateManager;
 
@@ -62,9 +63,10 @@ public class GameScreen implements IScreen {
     private void addScenes(IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory) {
         // Register scenes
         sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager));
+        sceneManager.add("horsalsvagen", new HorsalsvagenScene(player, rectangleFactory, cameraManager));
 
         // Set starting scene
-        sceneManager.set("test");
+        sceneManager.set("horsalsvagen");
     }
 
     private void addWindows() {

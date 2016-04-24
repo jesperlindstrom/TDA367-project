@@ -8,16 +8,28 @@ import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractBackgroundView implements IView {
     private CameraManager camera;
-    private String imagePath;
+    private String sceneImage;
+    private String skyboxImage;
 
-    protected AbstractBackgroundView(CameraManager camera, String imagePath) {
+    protected AbstractBackgroundView(CameraManager camera, String sceneImage) {
         this.camera = camera;
-        this.imagePath = imagePath;
+        this.sceneImage = sceneImage;
+    }
+
+    protected AbstractBackgroundView(CameraManager camera, String sceneImage, String skyboxImage) {
+        this.camera = camera;
+        this.sceneImage = sceneImage;
+        this.skyboxImage = skyboxImage;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         Point pos = camera.getPosition();
-        graphics.draw(imagePath, pos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, pos);
+
+        if (skyboxImage != null) {
+            graphics.draw(skyboxImage, pos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, pos);
+        }
+
+        graphics.draw(sceneImage, pos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, pos);
     }
 }

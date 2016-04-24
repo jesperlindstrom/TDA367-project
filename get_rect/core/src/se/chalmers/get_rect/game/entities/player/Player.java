@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractCombatModel;
-import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.npc.INpcModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
@@ -15,7 +14,7 @@ public class Player extends AbstractCombatModel {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 80;
     private static final int JUMP_SPEED = 90;
-    private static final int MOVE_SPEED = 30;
+    private static final int MOVE_SPEED = 40;
     private boolean isWalking = false;
     private boolean canJump = true;
     private ProjectileFactory projectileFactory;
