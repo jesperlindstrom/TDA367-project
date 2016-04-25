@@ -9,12 +9,22 @@ import se.chalmers.get_rect.utilities.Point;
 public class SawmillExpress extends AbstractNPCModel {
     private static final int SPEED = 50;
     private static final int WIDTH = 219;
-    private static final int HEIGHT = 276;
+    private static final int HEIGHT = 200;
     private boolean isFlying = false;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
         super(point, new Point(0, 0), false, rectangleFactory);
-        setBoundingBox(getPosition(), WIDTH, HEIGHT);
+        setBoundingBox();
+    }
+
+    private void setBoundingBox() {
+        setBoundingBox(getPosition().addY(100), WIDTH, HEIGHT);
+    }
+
+    @Override
+    public void setPosition(Point position) {
+        super.setPosition(position);
+        setBoundingBox();
     }
 
     @Override
