@@ -87,7 +87,7 @@ public class Player extends AbstractCombatModel {
     }
 
     public void flyHome() {
-        setPosition(new Point(1900, 170));
+        setPosition(new Point(3420, 600));
     }
 
     @Override
