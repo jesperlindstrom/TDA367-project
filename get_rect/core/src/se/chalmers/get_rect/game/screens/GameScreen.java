@@ -10,6 +10,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.gui.IGameStatus;
 import se.chalmers.get_rect.game.gui.IWindow;
 import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuWindow;
 import se.chalmers.get_rect.game.scenes.*;
@@ -18,7 +19,7 @@ import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.states.StateManager;
 
 
-public class GameScreen implements IScreen {
+public class GameScreen implements IScreen, IGameStatus {
     private StateManager<IScene> sceneManager = new StateManager<>();
     private StateManager<IWindow> overlayManager = new StateManager<>();
     private CameraManager cameraManager;

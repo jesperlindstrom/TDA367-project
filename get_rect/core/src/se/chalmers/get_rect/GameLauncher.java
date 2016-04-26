@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.adapters.libGDX;
+package se.chalmers.get_rect;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,8 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
 import se.chalmers.get_rect.Game;
 import se.chalmers.get_rect.adapters.IGameLoopAdapter;
+import se.chalmers.get_rect.adapters.libGDX.*;
 
-public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLoopAdapter {
+public class GameLauncher extends ApplicationAdapter implements IGameLoopAdapter {
     private Game gameManager;
     private long lastTime = 0;
 

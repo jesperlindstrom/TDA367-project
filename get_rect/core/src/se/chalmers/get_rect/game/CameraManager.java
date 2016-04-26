@@ -3,10 +3,12 @@ package se.chalmers.get_rect.game;
 
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+
+import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 
-public class CameraManager implements IGameComponent {
+public class CameraManager implements IGameComponent, ICamera {
     private static final int FOLLOW_SPEED = 50;
     private static final int SPAN_X = 350;
     private static final int SPAN_Y = 200;
