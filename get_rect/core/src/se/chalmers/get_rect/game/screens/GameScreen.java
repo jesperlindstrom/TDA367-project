@@ -1,9 +1,10 @@
 package se.chalmers.get_rect.game.screens;
 
 import se.chalmers.get_rect.GameConfig;
-import se.chalmers.get_rect.IGame;
+import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.IScreen;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
@@ -138,4 +139,6 @@ public class GameScreen implements IScreen {
     public void resume() {
         pause = false;
     }
+
+
 }

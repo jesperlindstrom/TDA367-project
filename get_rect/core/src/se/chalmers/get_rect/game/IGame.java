@@ -1,7 +1,6 @@
-package se.chalmers.get_rect;
+package se.chalmers.get_rect.game;
 
 import se.chalmers.get_rect.adapters.*;
-import se.chalmers.get_rect.game.screens.IScreen;
 import se.chalmers.get_rect.states.StateManager;
 
 public interface IGame {

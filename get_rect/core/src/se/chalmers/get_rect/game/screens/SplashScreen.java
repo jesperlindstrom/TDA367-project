@@ -1,10 +1,11 @@
 package se.chalmers.get_rect.game.screens;
 
 import se.chalmers.get_rect.GameConfig;
-import se.chalmers.get_rect.IGame;
+import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.IScreen;
 import se.chalmers.get_rect.states.StateManager;
 
 import java.io.FileNotFoundException;

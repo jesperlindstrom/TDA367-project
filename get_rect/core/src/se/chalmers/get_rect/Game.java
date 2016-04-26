@@ -1,6 +1,8 @@
 package se.chalmers.get_rect;
 
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.game.IGame;
+import se.chalmers.get_rect.game.IScreen;
 import se.chalmers.get_rect.game.screens.*;
 import se.chalmers.get_rect.states.*;
 
