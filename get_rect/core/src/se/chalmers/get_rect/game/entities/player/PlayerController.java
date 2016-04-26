@@ -20,6 +20,13 @@ public class PlayerController implements IController {
         handleMovement();
         handleShooting();
         handleJumping();
+        handleInteract();
+    }
+
+    private void handleInteract(){
+        if(input.isKeyJustPressed(IInputAdapter.Keys.E)){
+            player.interact();
+        }
     }
 
     private void handleMovement() {
@@ -29,6 +36,9 @@ public class PlayerController implements IController {
             player.moveRight();
         } else {
             player.stopMoving();
+        }
+        if (input.isKeyJustPressed(IInputAdapter.Keys.Q)) {
+            player.flyHome();
         }
     }
 
@@ -47,6 +57,7 @@ public class PlayerController implements IController {
         if (input.isKeyJustPressed(IInputAdapter.Keys.DOWNKEY)) {
             direction = direction.addY(-1);
         }
+
 
         if (!direction.equals(new Point(0, 0))) {
             player.shoot(direction);

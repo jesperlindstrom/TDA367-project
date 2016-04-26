@@ -2,7 +2,7 @@ package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 
-public class AbstractStaticView implements IView {
+public abstract class AbstractStaticView implements IView {
     private IModel model;
     private String image;
 

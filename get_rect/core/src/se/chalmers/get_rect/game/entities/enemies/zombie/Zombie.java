@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game.entities.enemies.zombie;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
@@ -9,14 +10,14 @@ import se.chalmers.get_rect.utilities.Point;
 
 import java.util.Random;
 
-public class Zombie extends AbstractPhysicsModel {
+public class Zombie extends AbstractCombatModel {
     private static final int WIDTH = 100;
     private static final int HEIGHT = 100;
     private int speed;
     private IModel player;
 
     public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
-        super(point, new Point(0, 0), false, rectangleFactory);
+        super(point, new Point(0, 0), false, rectangleFactory, 30);
         setBoundingBox(getPosition(), WIDTH, HEIGHT);
 
         this.player = player;
@@ -35,7 +36,7 @@ public class Zombie extends AbstractPhysicsModel {
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         // Amazing AI
         int playerX = player.getPosition().getX();
         int zombieX = getPosition().getX();

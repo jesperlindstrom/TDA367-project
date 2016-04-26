@@ -1,24 +1,16 @@
 package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.IGameComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityManager {
-    private List<IEntity> list;
-    private List<IEntity> addQueue;
-    private List<IEntity> removalQueue;
-    private boolean inLoop;
-
-    /**
-     * Create a new entity manager
-     */
-    public EntityManager() {
-        list = new ArrayList<>();
-        addQueue = new ArrayList<>();
-        removalQueue = new ArrayList<>();
-    }
+public class EntityManager implements IGameComponent {
+    private List<IEntity> list = new ArrayList<>();
+    private List<IEntity> addQueue = new ArrayList<>();
+    private List<IEntity> removalQueue = new ArrayList<>();
+    private boolean inLoop = false;
 
     /**
      * Add an entity to the list
@@ -35,19 +27,38 @@ public class EntityManager {
     /**
      * Update all entities
      */
-    public void update() {
+    @Override
+    public void update(double delta) {
         processAdditions();
 
         inLoop = true;
 
         for (IEntity entity : list) {
-            entity.update();
-            checkRemoval(entity);
+            entity.update(delta);
+
+            if (entity.getModel() != null) {
+                checkRemoval(entity);
+            }
         }
 
         inLoop = false;
 
         processRemovals();
+    }
+
+    /**
+     * Draw all entities
+     * @param graphics
+     */
+    @Override
+    public void draw(IGraphicsAdapter graphics) {
+        for (IEntity entity : list) {
+            entity.draw(graphics);
+        }
+    }
+
+    public List<IEntity> getAll() {
+        return list;
     }
 
     private void checkRemoval(IEntity entity) {
@@ -72,15 +83,5 @@ public class EntityManager {
         }
 
         removalQueue.clear();
-    }
-
-    /**
-     * Draw all entities
-     * @param graphics
-     */
-    public void draw(IGraphicsAdapter graphics) {
-        for (IEntity entity : list) {
-            entity.draw(graphics);
-        }
     }
 }

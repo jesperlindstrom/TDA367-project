@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -88,7 +89,7 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
      */
     @Override
     public void clear() {
-        graphics.glClearColor(1, 0, 0, 1);
+        graphics.glClearColor(0, 0, 0, 1);
         graphics.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
     }
 
@@ -102,8 +103,5 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     public void setMatrix(Matrix4 cameraMatrix) {
         batch.setProjectionMatrix(cameraMatrix);
-
     }
-
-
 }

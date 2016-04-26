@@ -30,7 +30,6 @@ public class LibGDXGameLoopAdapter extends ApplicationAdapter implements IGameLo
      */
     @Override
     public void render() {
-
         float delta = Gdx.graphics.getDeltaTime();
         delta = Math.min(delta*10, (float)1/3);
         gameManager.draw();

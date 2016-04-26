@@ -5,7 +5,7 @@ import se.chalmers.get_rect.animation.AnimationCoordinator;
 import se.chalmers.get_rect.animation.Frame;
 import se.chalmers.get_rect.animation.FrameSequence;
 
-public class AbstractAnimatedView implements IView {
+public abstract class AbstractAnimatedView implements IView {
     private AnimationCoordinator animation;
     private IModel model;
 

@@ -1,29 +1,31 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
+import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
+import se.chalmers.get_rect.game.entities.npc.INpcModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Player extends AbstractPhysicsModel {
+public class Player extends AbstractCombatModel {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 80;
     private static final int JUMP_SPEED = 90;
-    private static final int MOVE_SPEED = 30;
+    private static final int MOVE_SPEED = 40;
     private boolean isWalking = false;
     private boolean canJump = true;
     private ProjectileFactory projectileFactory;
+    private INpcModel interactableNPC;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
      * @param rectangleFactory
      */
     public Player(IRectangleFactoryAdapter rectangleFactory) {
-        super(new Point(0, 0), new Point(0, 0), false, rectangleFactory);
+        super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
         setBoundingBox(getPosition(), WIDTH, HEIGHT);
 
         projectileFactory = new ProjectileFactory(rectangleFactory);
@@ -33,6 +35,12 @@ public class Player extends AbstractPhysicsModel {
     public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
         if (isSolid && side.bottom()) {
             canJump = true;
+        }
+
+        if (otherObject instanceof INpcModel){
+            interactableNPC = (INpcModel) otherObject;
+        } else {
+            interactableNPC = null;
         }
     }
 
@@ -70,5 +78,24 @@ public class Player extends AbstractPhysicsModel {
 
     public boolean canJump() {
         return canJump;
+    }
+
+    public void interact(){
+        if(interactableNPC != null){
+            interactableNPC.onInteract(this);
+        }
+    }
+
+    public void flyHome() {
+        setPosition(new Point(3420, 600));
+    }
+
+    @Override
+    protected void die(){
+        System.out.println("Player died!");
+    }
+
+    public INpcModel getCurrentNpc(){
+        return interactableNPC;
     }
 }

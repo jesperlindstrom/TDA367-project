@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.projectile;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
@@ -15,6 +16,7 @@ public class Projectile extends AbstractPhysicsModel {
     private static final int HEIGHT = 50;
     private ProjectileFactory projectileFactory;
     private boolean cluster = false;
+    private int dmg = 10;
 
     public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory){
         this(position, velocity, rectangleFactory);
@@ -34,16 +36,17 @@ public class Projectile extends AbstractPhysicsModel {
             setVelocity(getVelocity().addX(friction));
         }
 
-        if (otherObject.getClass().equals(Zombie.class) && cluster) {
+        if (otherObject instanceof ICombatModel && !(otherObject instanceof Player) && cluster) {
             setShouldBeRemoved();
             launchCluster();
-            otherObject.setPosition(otherObject.getPosition().addY(50));
-            otherObject.setVelocity(getVelocity().setY(150));
+            otherObject.setPosition(otherObject.getPosition().addY(30));
+            otherObject.setVelocity(getVelocity().multiply(0.1));
+            ((ICombatModel)otherObject).takeDamage(dmg);
         }
     }
 
     @Override
-    public void update() {
+    public void update(double delta) {
         if (getVelocity().getX() == 0 && getVelocity().getY() == 0) {
             setShouldBeRemoved();
 

@@ -9,7 +9,6 @@ import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillExpress;
 import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillView;
 import se.chalmers.get_rect.utilities.Point;
 
-
 public class NpcFactory {
     private IRectangleFactoryAdapter rectangleFactory;
 
