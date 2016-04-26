@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities.projectile;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
@@ -12,8 +11,8 @@ import se.chalmers.get_rect.utilities.SideData;
 import java.util.Random;
 
 public class Projectile extends AbstractPhysicsModel {
-    private static final int WIDTH = 50;
-    private static final int HEIGHT = 50;
+    private int width = 50;
+    private int height = 50;
     private ProjectileFactory projectileFactory;
     private boolean cluster = false;
     private int dmg = 10;
@@ -26,7 +25,7 @@ public class Projectile extends AbstractPhysicsModel {
 
     public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory){
         super(position, velocity, false, rectangleFactory);
-        setBoundingBox(getPosition(), WIDTH, HEIGHT);
+        setBoundingBox(getPosition(), width, height);
     }
 
     @Override
