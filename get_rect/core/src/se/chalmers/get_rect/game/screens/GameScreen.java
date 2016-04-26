@@ -64,8 +64,8 @@ public class GameScreen implements IScreen, IGameStatus {
 
     private void addScenes(IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory) {
         // Register scenes
-        sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager));
-        sceneManager.add("horsalsvagen", new HorsalsvagenScene(player, rectangleFactory, cameraManager));
+        sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add("horsalsvagen", new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
 
         // Set starting scene
         sceneManager.set("horsalsvagen");

@@ -10,7 +10,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     private IModel model;
     private static final int DISTANCE = 150;
     private boolean showDialog;
-    private boolean showInteractionHint;
     private String dialog;
 
     protected AbstractInteractableModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory) {
@@ -20,7 +19,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     @Override
     public void update(double delta) {
         if(model != null && model.getPosition().distanceTo(getPosition()) > DISTANCE){
-            showInteractionHint = false;
             showDialog = false;
             dialog = "";
         }
@@ -39,11 +37,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
 
 
     @Override
-    public boolean showInteractionHint() {
-        return showInteractionHint;
-    }
-
-    @Override
     public String getDialog() {
         return dialog;
     }
@@ -52,7 +45,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     public void onCollision(IPhysicsObject otherObject, SideData data, boolean isSolid) {
         if (otherObject instanceof Player) {
             model = (IModel) otherObject;
-            showInteractionHint = true;
         }
     }
 }
