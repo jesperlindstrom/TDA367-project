@@ -101,9 +101,9 @@ public class Player extends AbstractCombatModel {
     }
 
     public void switchWeapon() {
-        if (bulletSpeed == 200){
-            bulletSpeed = 20;
+        if (bulletSpeed != 200){
+            bulletSpeed = 200;
         }
-        else bulletSpeed = 200;
+        else bulletSpeed = 20;
     }
 }
