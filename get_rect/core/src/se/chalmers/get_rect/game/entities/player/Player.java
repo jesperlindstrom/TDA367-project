@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractCombatModel;
+import se.chalmers.get_rect.game.entities.IInteractableModel;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.npc.INpcModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
@@ -18,7 +19,7 @@ public class Player extends AbstractCombatModel {
     private boolean isWalking = false;
     private boolean canJump = true;
     private ProjectileFactory projectileFactory;
-    private INpcModel interactableNPC;
+    private IInteractableModel interactableNPC;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -37,8 +38,8 @@ public class Player extends AbstractCombatModel {
             canJump = true;
         }
 
-        if (otherObject instanceof INpcModel){
-            interactableNPC = (INpcModel) otherObject;
+        if (otherObject instanceof IInteractableModel){
+            interactableNPC = (IInteractableModel) otherObject;
         } else {
             interactableNPC = null;
         }
@@ -95,7 +96,7 @@ public class Player extends AbstractCombatModel {
         System.out.println("Player died!");
     }
 
-    public INpcModel getCurrentNpc(){
+    public IInteractableModel getCurrentNpc(){
         return interactableNPC;
     }
 }

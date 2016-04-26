@@ -16,9 +16,7 @@ public class InteractionHintsView implements IView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if(player.getCurrentNpc() == null) return;
-        if (player.getCurrentNpc().showInteractionHint()){
-            graphics.draw("img/interact/e.png",new Point(player.getCurrentNpc().getPosition().add(20,300)));
-        }
+        if (player.getCurrentNpc() == null)return;
+        graphics.draw("img/interact/e.png", new Point(player.getCurrentNpc().getPosition().add(20, 300)));
     }
 }
