@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.gui.mainMenu;
 
-import se.chalmers.get_rect.IGame;
+import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.game.gui.AbstractGridWindow;
 import se.chalmers.get_rect.game.gui.GridController;

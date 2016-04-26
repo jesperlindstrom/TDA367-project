@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.gui.mainMenu;
 
-import se.chalmers.get_rect.IGame;
+import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.game.gui.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
 
