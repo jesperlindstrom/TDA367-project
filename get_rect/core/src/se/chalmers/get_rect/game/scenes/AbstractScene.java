@@ -9,6 +9,7 @@ import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
+import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
@@ -22,6 +23,7 @@ public abstract class AbstractScene implements IScene {
     private CameraManager camera;
     private IPhysicsEngine physics;
     private Map<layer, EntityManager> layers;
+    private StateManager<IScene> sceneManager;
 
     /**
      * Create a new scene
@@ -30,11 +32,12 @@ public abstract class AbstractScene implements IScene {
      * @param rectangleFactory A rectangle factory
      * @param camera A camera manager
      */
-    protected AbstractScene(String name, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
+    protected AbstractScene(String name, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera, StateManager<IScene> sceneManager) {
         this.name = name;
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
+        this.sceneManager = sceneManager;
     }
 
     /**
@@ -146,7 +149,7 @@ public abstract class AbstractScene implements IScene {
      * Load all entities from JSON data
      */
     protected void loadEntities() {
-        SceneLoader loader = new SceneLoader(name, playerEntity, rectangleFactory);
+        SceneLoader loader = new SceneLoader(name, playerEntity, rectangleFactory, sceneManager);
 
         try {
             loadBackground(loader);

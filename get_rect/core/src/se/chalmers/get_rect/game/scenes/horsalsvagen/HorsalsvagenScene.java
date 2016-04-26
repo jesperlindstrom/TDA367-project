@@ -6,10 +6,12 @@ import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.scenes.AbstractScene;
+import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.states.StateManager;
 
 public class HorsalsvagenScene extends AbstractScene {
-    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera) {
-        super("horsalsvagen", playerEntity, rectangleFactory, camera);
+    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera, StateManager<IScene>  sceneManager) {
+        super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneManager);
     }
 
     @Override

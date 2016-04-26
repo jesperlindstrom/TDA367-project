@@ -7,14 +7,18 @@ import se.chalmers.get_rect.game.entities.worldObjects.boundingBox.BoundingBox;
 import se.chalmers.get_rect.game.entities.worldObjects.door.Door;
 import se.chalmers.get_rect.game.entities.worldObjects.trampoline.Trampoline;
 import se.chalmers.get_rect.game.entities.worldObjects.trampoline.TrampolineView;
+import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 public class WorldObjectFactory {
 
     private IRectangleFactoryAdapter rectangleFactory;
+    private StateManager<IScene> sceneManager;
 
-    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory) {
+    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> sceneManager) {
         this.rectangleFactory = rectangleFactory;
+        this.sceneManager = sceneManager;
     }
 
     public IPhysicsEntity make(WorldObjectDataStore dataStore) {
@@ -53,7 +57,7 @@ public class WorldObjectFactory {
     }
 
     private IPhysicsEntity makeDoor(Point point, int width, int height){
-        IPhysicsModel model = new Door(point,width,height, rectangleFactory);
+        IPhysicsModel model = new Door(point,width,height, rectangleFactory, sceneManager);
         return new PhysicsEntity(model, null);
     }
 }

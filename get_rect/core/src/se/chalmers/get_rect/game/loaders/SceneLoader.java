@@ -9,7 +9,10 @@ import se.chalmers.get_rect.game.entities.npc.NpcDataStore;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectDataStore;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectFactory;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.io.IOFacade;
+import se.chalmers.get_rect.states.StateManager;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +21,13 @@ public class SceneLoader {
     private String sceneName;
     private IPhysicsModel player;
     private IRectangleFactoryAdapter rectangleFactory;
+    private StateManager<IScene> stateManager;
 
-    public SceneLoader(String sceneName, IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory) {
+    public SceneLoader(String sceneName, IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> stateManager) {
         this.sceneName = sceneName;
         this.player = player.getModel();
         this.rectangleFactory = rectangleFactory;
+        this.stateManager = stateManager;
     }
 
     /**
@@ -61,7 +66,7 @@ public class SceneLoader {
         IOFacade<WorldObjectDataStore> worldObjectData  = new IOFacade<>("scenes/" + sceneName + "/worldObjects.json", WorldObjectDataStore.class);
         List<WorldObjectDataStore> worldObjectDataList = worldObjectData.load();
 
-        WorldObjectFactory worldObject = new WorldObjectFactory(rectangleFactory);
+        WorldObjectFactory worldObject = new WorldObjectFactory(rectangleFactory, stateManager);
 
         if (worldObjectDataList != null) {
             for (WorldObjectDataStore data : worldObjectDataList) {
