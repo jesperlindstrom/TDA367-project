@@ -30,5 +30,10 @@
     "width": 178,
     "height": 300,
     "path": "test"
+  },
+  {
+    "type": "sandCastle",
+    "x":4300,
+    "y":500
   }
 ]
