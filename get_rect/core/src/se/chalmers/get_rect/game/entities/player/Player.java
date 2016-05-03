@@ -53,7 +53,6 @@ public class Player extends AbstractCombatModel {
     }
 
     public void shoot(Point direction) {
-        // todo: bulletSpeed belongs in a weapon
         IPhysicsEntity projectile = projectileFactory.make(clusterBoolean, getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
         getScene().add(projectile);
     }
