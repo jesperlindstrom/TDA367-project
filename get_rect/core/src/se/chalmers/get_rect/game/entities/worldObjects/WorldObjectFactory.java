@@ -2,11 +2,10 @@ package se.chalmers.get_rect.game.entities.worldObjects;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectDataStore;
-import se.chalmers.get_rect.game.entities.worldObjects.boundingBox.BoundingBox;
-import se.chalmers.get_rect.game.entities.worldObjects.door.Door;
-import se.chalmers.get_rect.game.entities.worldObjects.trampoline.Trampoline;
-import se.chalmers.get_rect.game.entities.worldObjects.trampoline.TrampolineView;
+import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
+import se.chalmers.get_rect.game.entities.worldObjects.model.Door;
+import se.chalmers.get_rect.game.entities.worldObjects.model.Trampoline;
+import se.chalmers.get_rect.game.entities.worldObjects.view.TrampolineView;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;

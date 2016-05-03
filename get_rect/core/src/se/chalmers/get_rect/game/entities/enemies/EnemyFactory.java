@@ -2,9 +2,8 @@ package se.chalmers.get_rect.game.entities.enemies;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.enemies.EnemyDataStore;
-import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
-import se.chalmers.get_rect.game.entities.enemies.zombie.ZombieView;
+import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
+import se.chalmers.get_rect.game.entities.enemies.view.ZombieView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class EnemyFactory {
