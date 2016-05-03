@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.physics;
 
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
 

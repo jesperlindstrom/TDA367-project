@@ -16,6 +16,7 @@ import se.chalmers.get_rect.game.gui.IWindow;
 import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuWindow;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 

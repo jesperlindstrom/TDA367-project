@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.entities.player;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.entities.PhysicsEntity;

@@ -1,14 +1,11 @@
 package se.chalmers.get_rect.game.entities.projectile.model;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
-
-import java.util.Random;
 
 public class Projectile extends AbstractPhysicsModel {
     private int width = 50;

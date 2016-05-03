@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.adapters;
+package se.chalmers.get_rect.physics;
 
 import se.chalmers.get_rect.utilities.Point;
 

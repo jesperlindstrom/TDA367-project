@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.adapters;
 
+import se.chalmers.get_rect.physics.IRectangleAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 public class RectangleFactoryAdapterStub implements IRectangleFactoryAdapter {
