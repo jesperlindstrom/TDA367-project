@@ -19,7 +19,7 @@ public class Player extends AbstractCombatModel {
     private ProjectileFactory projectileFactory;
     private int bulletSpeed = 200;//should be in projectile/weapon
     private IInteractableModel interactableNPC;
-    private String clusterBoolean = "normal";
+    private boolean isPrimaryWeapon = false;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -53,7 +53,13 @@ public class Player extends AbstractCombatModel {
     }
 
     public void shoot(Point direction) {
-        IPhysicsEntity projectile = projectileFactory.make(clusterBoolean, getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
+        // todo: bulletSpeed belongs in a weapon
+        IPhysicsEntity projectile;
+        if(isPrimaryWeapon){
+            projectile = projectileFactory.make("melee", getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
+        }else {
+            projectile = projectileFactory.make("normal", getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
+        }
         getScene().add(projectile);
     }
 
@@ -101,13 +107,17 @@ public class Player extends AbstractCombatModel {
 
     public void switchWeapon() {
 
-        if (bulletSpeed != 200){
+        if (isPrimaryWeapon){
             bulletSpeed = 200;
-            clusterBoolean = "normal";
+            isPrimaryWeapon = false;
         } else {
             bulletSpeed = 20;
-            clusterBoolean = "melee";
+            isPrimaryWeapon = true;
         }
+    }
+
+    public boolean isPrimaryWeapon(){
+        return isPrimaryWeapon;
     }
 
 }
