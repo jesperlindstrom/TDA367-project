@@ -42,7 +42,6 @@ public class Projectile extends AbstractPhysicsModel {
 
     @Override
     public void update(double delta) {
-        System.out.println("Pos = " + owner.getPosition().distanceTo(getPosition()));
         if (getVelocity().getX() == 0 && getVelocity().getY() == 0) {
             setShouldBeRemoved();
         }
