@@ -3,15 +3,18 @@ package se.chalmers.get_rect.game.scenes;
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.utilities.Point;
 
-public abstract class AbstractBackgroundView implements IView {
+public abstract class AbstractBackgroundView extends AbstractView {
     private CameraManager camera;
     private String sceneImage;
     private String skyboxImage;
+    private static final int DRAW_PRIORITY = -1;
 
     protected AbstractBackgroundView(CameraManager camera, String sceneImage) {
+        super();
         this.camera = camera;
         this.sceneImage = sceneImage;
     }
@@ -20,6 +23,11 @@ public abstract class AbstractBackgroundView implements IView {
         this.camera = camera;
         this.sceneImage = sceneImage;
         this.skyboxImage = skyboxImage;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 
     @Override

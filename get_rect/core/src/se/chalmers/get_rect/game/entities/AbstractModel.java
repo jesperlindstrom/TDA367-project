@@ -1,11 +1,11 @@
 package se.chalmers.get_rect.game.entities;
 
-import se.chalmers.get_rect.game.scenes.IEntityHolder;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractModel implements IModel {
     private Point position;
-    private IEntityHolder scene;
+    private IScene scene;
     private boolean shouldBeRemoved = false;
 
     protected AbstractModel(Point position) {
@@ -16,7 +16,7 @@ public abstract class AbstractModel implements IModel {
         shouldBeRemoved = true;
     }
 
-    protected IEntityHolder getScene() {
+    protected IScene getScene() {
         return scene;
     }
 
@@ -30,7 +30,7 @@ public abstract class AbstractModel implements IModel {
     }
 
     @Override
-    public void setScene(IEntityHolder scene) {
+    public void setScene(IScene scene) {
         this.scene = scene;
     }
 

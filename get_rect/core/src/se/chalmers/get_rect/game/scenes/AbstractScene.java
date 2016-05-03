@@ -3,18 +3,22 @@ package se.chalmers.get_rect.game.scenes;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.OverlayFactory;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
+import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public abstract class AbstractScene implements IScene {
     private String name;
@@ -22,8 +26,11 @@ public abstract class AbstractScene implements IScene {
     private IRectangleFactoryAdapter rectangleFactory;
     private CameraManager camera;
     private IPhysicsEngine physics;
-    private Map<layer, EntityManager> layers;
     private StateManager<IScene> sceneManager;
+    private ArrayList<IView> views;
+    private ArrayList<IModel> models;
+    private boolean setupDone;
+    private Queue<IEntity> additions;
 
     /**
      * Create a new scene
@@ -71,35 +78,7 @@ public abstract class AbstractScene implements IScene {
      */
     protected void addPlayerAtPosition(int x, int y) {
         playerEntity.getModel().setPosition(new Point(x, y));
-        addPhysicsEntity(layer.FOREGROUND, playerEntity);
-    }
-
-    /**
-     * Add an entity to the scene
-     * @param layer Which layer to add to
-     * @param entity The entity to add
-     */
-    @Override
-    public void addEntity(layer layer, IEntity entity) {
-        layers.get(layer).add(entity);
-        IModel model = entity.getModel();
-
-        if (model != null) {
-            model.setScene(this);
-        }
-    }
-
-    /**
-     * Add a physics entity to the scene and physics
-     * @param layer Which layer to add to
-     * @param entity The physics entity to add
-     */
-    @Override
-    public void addPhysicsEntity(layer layer, IPhysicsEntity entity) {
-        layers.get(layer).add(entity);
-        IPhysicsModel model = entity.getModel();
-        model.setScene(this);
-        physics.add(model);
+        addEntity(playerEntity);
     }
 
     /**
@@ -108,8 +87,11 @@ public abstract class AbstractScene implements IScene {
      */
     @Override
     public void update(double delta) {
-        layers.forEach((k, v) -> v.update(delta));
+        processAdditions();
+        models.removeIf(IModel::shouldBeRemoved);
+        models.forEach(m -> m.update(delta));
         physics.update(delta);
+
     }
 
     /**
@@ -118,11 +100,8 @@ public abstract class AbstractScene implements IScene {
      */
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        layers.get(layer.BACKGROUND).draw(graphics);
-        layers.get(layer.BACKGROUND_EFFECTS).draw(graphics);
-        layers.get(layer.FOREGROUND).draw(graphics);
-        layers.get(layer.FOREGROUND_EFFECTS).draw(graphics);
-        layers.get(layer.OVERLAY_UI).draw(graphics);
+        views.removeIf(IView::shouldBeRemoved);
+        views.forEach(v -> v.draw(graphics));
     }
 
     /**
@@ -131,9 +110,14 @@ public abstract class AbstractScene implements IScene {
      */
     @Override
     public void enteringState(String previousStateName) {
-        setupEntityLayers();
+        setupDone = false;
+        setupEntities();
         setupPhysics();
         setupOverlays();
+        views.sort(Comparator.comparing(IView::getDrawPriority));
+        additions = new LinkedList<>();
+        setupDone = true;
+
     }
 
     /**
@@ -152,22 +136,26 @@ public abstract class AbstractScene implements IScene {
         SceneLoader loader = new SceneLoader(name, playerEntity, rectangleFactory, sceneManager);
 
         try {
-            loadBackground(loader);
-            loadForeground(loader);
+            loadEntities(loader);
         } catch (FileNotFoundException e) {
             // todo: handle error
             System.out.println(e.getMessage());
         }
     }
 
+    private void setupEntities() {
+        views = new ArrayList<>();
+        models = new ArrayList<>();
+    }
+
     private void setupOverlays() {
         if(playerEntity.getModel() instanceof Player) {
-            Player model = (Player) playerEntity.getModel();
-            OverlayFactory overlay = new OverlayFactory(layers.get(layer.FOREGROUND), model, camera, physics);
-            addEntity(layer.OVERLAY_UI, overlay.make("questMarkers"));
-            addEntity(layer.OVERLAY_UI, overlay.make("interactionHints"));
-            addEntity(layer.OVERLAY_UI, overlay.make("debug"));
-            addEntity(layer.OVERLAY_UI, overlay.make("healthbar"));
+            Player player = (Player) playerEntity.getModel();
+            OverlayFactory overlay = new OverlayFactory(models, player, camera, physics);
+            addEntity(overlay.make("questMarkers"));
+            addEntity(overlay.make("interactionHints"));
+            addEntity(overlay.make("debug"));
+            addEntity(overlay.make("healthbar"));
         }
     }
 
@@ -175,25 +163,41 @@ public abstract class AbstractScene implements IScene {
         physics = new PhysicsEngine();
     }
 
-    private void setupEntityLayers() {
-        layers = new HashMap<>();
 
-        layers.put(layer.BACKGROUND, new EntityManager());
-        layers.put(layer.BACKGROUND_EFFECTS, new EntityManager());
-        layers.put(layer.FOREGROUND, new EntityManager());
-        layers.put(layer.FOREGROUND_EFFECTS, new EntityManager());
-        layers.put(layer.OVERLAY_UI, new EntityManager());
+    private void loadEntities(SceneLoader loader) throws FileNotFoundException {
+        loader.getAllEntities().forEach(this::addEntity);
     }
 
-    private void loadBackground(SceneLoader loader) throws FileNotFoundException {
-        for (IPhysicsEntity entity : loader.getBackground()) {
-            addPhysicsEntity(layer.BACKGROUND, entity);
+    public void add(IEntity entity) {
+        additions.add(entity);
+    }
+
+    private void processAdditions() {
+        while (additions.size() > 0) {
+            addEntity(additions.poll());
         }
     }
 
-    private void loadForeground(SceneLoader loader) throws FileNotFoundException {
-        for (IPhysicsEntity entity : loader.getForeground()) {
-            addPhysicsEntity(layer.FOREGROUND, entity);
+
+    protected void addEntity(IEntity entity) {
+        IModel model = entity.getModel();
+        IView view = entity.getView();
+
+        if (model != null) {
+            models.add(model);
+            model.setScene(this);
+
+            if (model instanceof IPhysicsObject) {
+                physics.add((IPhysicsObject) model);
+            }
+        }
+
+        if (view != null) {
+            views.add(view);
+        }
+
+        if (setupDone) {
+            views.sort(Comparator.comparing(IView::getDrawPriority));
         }
     }
 }

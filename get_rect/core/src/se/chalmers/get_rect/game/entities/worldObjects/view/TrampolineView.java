@@ -7,10 +7,15 @@ import se.chalmers.get_rect.game.entities.worldObjects.model.Trampoline;
 
 public class TrampolineView extends AbstractStaticView {
     private Trampoline model;
-
+    private static final int DRAW_PRIORITY = 5;
     public TrampolineView(IModel model) {
         super(model, "img/entities/trampoline/trampoline.png");
         this.model = (Trampoline)model;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 
     @Override

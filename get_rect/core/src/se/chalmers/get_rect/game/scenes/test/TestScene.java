@@ -4,7 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.scenes.AbstractScene;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.states.StateManager;
 
 public class TestScene extends AbstractScene {
@@ -17,7 +17,7 @@ public class TestScene extends AbstractScene {
         super.enteringState(previousState);
 
         // Add background image
-        addEntity(layer.BACKGROUND, getBackgroundView());
+        addEntity(getBackgroundView());
 
         // Load all entities from the JSON data
         loadEntities();

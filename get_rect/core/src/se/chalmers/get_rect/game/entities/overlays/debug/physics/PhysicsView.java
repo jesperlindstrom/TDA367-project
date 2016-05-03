@@ -3,16 +3,22 @@ package se.chalmers.get_rect.game.entities.overlays.debug.physics;
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IRectangleAdapter;
-import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 
-public class PhysicsView implements IView {
+public class PhysicsView extends AbstractView {
     private static final String BOUNDING_BOX_IMAGE = "img/entities/physics_debug.png";
     private IPhysicsEngine engine;
+    private static final int DRAW_PRIORITY = 5;
 
     public PhysicsView(IPhysicsEngine engine) {
         this.engine = engine;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 
     public void draw(IGraphicsAdapter graphics) {

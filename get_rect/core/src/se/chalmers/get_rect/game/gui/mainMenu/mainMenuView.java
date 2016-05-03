@@ -2,15 +2,17 @@ package se.chalmers.get_rect.game.gui.mainMenu;
 
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.gui.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
 
-public class mainMenuView implements IView {
+public class mainMenuView extends AbstractView {
     private static final Point CONTINUE = new Point(0, 0);
     private static final Point NEW_GAME = new Point(0, 1);
     private static final Point EXIT = new Point(0, 2);
     private static final String IMG_PATH = "img/pauseMenu/";
+    private static final int DRAW_PRIORITY = 7;
 
     private ICameraAdapter camera;
     private AbstractGridModel model;
@@ -18,6 +20,16 @@ public class mainMenuView implements IView {
     public mainMenuView(mainMenu model, ICameraAdapter camera) {
         this.camera = camera;
         this.model = model;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
+    }
+
+    @Override
+    public boolean shouldBeRemoved() {
+        return false;
     }
 
     @Override

@@ -2,14 +2,16 @@ package se.chalmers.get_rect.game.entities.overlays.debug.player;
 
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.utilities.Point;
 
-public class PlayerView implements IView {
+public class PlayerView extends AbstractView {
     private IPhysicsModel player;
-
+    private static final int DRAW_PRIORITY = 5;
     public PlayerView(IPhysicsModel player) {
+        super();
         this.player = player;
     }
 
@@ -20,6 +22,11 @@ public class PlayerView implements IView {
         }
 
         return position;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 
     @Override

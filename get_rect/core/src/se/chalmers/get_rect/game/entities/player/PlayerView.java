@@ -8,6 +8,7 @@ class PlayerView extends AbstractAnimatedView {
     private static final int STAND_STILL = 0;
     private static final int WALKING = 1;
     private static final int JUMPING = 2;
+    private static final int DRAW_PRIORITY = 5;
 
     private Player player;
 
@@ -31,6 +32,11 @@ class PlayerView extends AbstractAnimatedView {
         }
 
         return STAND_STILL;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 
     @Override

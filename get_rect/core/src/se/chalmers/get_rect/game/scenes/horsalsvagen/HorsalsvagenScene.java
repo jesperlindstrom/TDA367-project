@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.scenes.AbstractScene;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.states.StateManager;
 
 public class HorsalsvagenScene extends AbstractScene {
@@ -19,7 +19,7 @@ public class HorsalsvagenScene extends AbstractScene {
         super.enteringState(previousState);
 
         // Add background image
-        addEntity(layer.BACKGROUND, getBackgroundView());
+        addEntity(getBackgroundView());
 
         // Load all entities from the JSON data
         loadEntities();

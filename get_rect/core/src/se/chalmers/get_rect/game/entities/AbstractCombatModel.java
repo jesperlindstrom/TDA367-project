@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities;
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
-public class AbstractCombatModel extends AbstractPhysicsModel implements ICombatModel {
+public abstract class AbstractCombatModel extends AbstractPhysicsModel implements ICombatModel {
 
     private int currentHealth;
     private int maxHealth;
@@ -24,7 +24,7 @@ public class AbstractCombatModel extends AbstractPhysicsModel implements ICombat
     }
 
     @Override
-    public int getcurrentHealth() {
+    public int getCurrentHealth() {
         return currentHealth;
     }
 

@@ -2,16 +2,14 @@ package se.chalmers.get_rect.UC;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.worldObjects.door.Door;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.states.StateManager;
-import se.chalmers.get_rect.states.StateStub;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
 import se.chalmers.get_rect.utilities.SideData;

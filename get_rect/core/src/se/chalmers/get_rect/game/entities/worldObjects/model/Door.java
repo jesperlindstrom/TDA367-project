@@ -4,7 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IInteractableModel;
 import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 

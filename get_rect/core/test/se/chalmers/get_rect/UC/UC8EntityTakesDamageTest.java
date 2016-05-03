@@ -11,7 +11,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 import se.chalmers.get_rect.game.entities.projectile.model.Projectile;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
@@ -43,8 +43,8 @@ public class UC8EntityTakesDamageTest {
     // An effected entity should take damage
     @Test
     public void testNormalFlow() {
-        assertEquals("Entity's health should be max", target.getcurrentHealth(), target.getcurrentHealth());
+        assertEquals("Entity's health should be max", target.getCurrentHealth(), target.getCurrentHealth());
         projectile.onCollision(target, collision, false);
-        assertNotEquals("Entity's health should have been lowered", target.getcurrentHealth(), target.getMaxHealth());
+        assertNotEquals("Entity's health should have been lowered", target.getCurrentHealth(), target.getMaxHealth());
     }
 }

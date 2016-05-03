@@ -9,7 +9,7 @@ import se.chalmers.get_rect.game.entities.npc.NpcDataStore;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectDataStore;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectFactory;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.io.IOFacade;
 import se.chalmers.get_rect.states.StateManager;
 
@@ -35,23 +35,11 @@ public class SceneLoader {
      * @return NPCs and zombies
      * @throws FileNotFoundException
      */
-    public List<IPhysicsEntity> getForeground() throws FileNotFoundException {
+    public List<IPhysicsEntity> getAllEntities() throws FileNotFoundException {
         List<IPhysicsEntity> entities = new ArrayList<>();
 
         loadEnemies(entities);
         loadNpcs(entities);
-
-        return entities;
-    }
-
-    /**
-     * Get all background entities
-     * @return NPCs and zombies
-     * @throws FileNotFoundException
-     */
-    public List<IPhysicsEntity> getBackground() throws FileNotFoundException {
-        List<IPhysicsEntity> entities = new ArrayList<>();
-
         loadWorldObjects(entities);
 
         return entities;

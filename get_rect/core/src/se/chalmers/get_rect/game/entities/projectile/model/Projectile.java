@@ -4,7 +4,6 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
@@ -65,7 +64,7 @@ public class Projectile extends AbstractPhysicsModel {
             Point vel = new Point(velX, velY);
 
             IPhysicsEntity projectile = projectileFactory.make("normal", getPosition().addY(100), vel);
-            getScene().addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
+            getScene().add(projectile);
         }
     }
 }
