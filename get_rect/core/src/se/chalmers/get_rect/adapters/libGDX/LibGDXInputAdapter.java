@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import java.util.HashMap;
@@ -11,8 +12,8 @@ public class LibGDXInputAdapter implements IInputAdapter {
 
     private Map<Keys, Integer> keyMap;
 
-    public LibGDXInputAdapter(Input input) {
-        this.input = input;
+    public LibGDXInputAdapter() {
+        this.input = Gdx.input;
         initKeyMap();
 
     }

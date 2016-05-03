@@ -1,5 +1,6 @@
 package se.chalmers.get_rect;
 
+import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.game.IScreen;
@@ -25,7 +26,8 @@ public class Game implements IGame {
      * @param gameLoop GameLoop adapter
      * @param rectangleFactory RectangleFactory adapter
      */
-    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IGameLoopAdapter gameLoop, IRectangleFactoryAdapter rectangleFactory) {
+    @Inject
+    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IRectangleFactoryAdapter rectangleFactory) {
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;

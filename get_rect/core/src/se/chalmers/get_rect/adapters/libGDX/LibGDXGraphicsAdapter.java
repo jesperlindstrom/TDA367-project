@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
+import com.google.inject.Inject;
+import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -17,11 +19,17 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private LibGDXAssetManagerAdapter assetManager;
     private GL20 graphics;
 
-    public LibGDXGraphicsAdapter(SpriteBatch batch, GL20 graphics, LibGDXAssetManagerAdapter assetManager) {
-        this.batch = batch;
-        this.graphics = graphics;
-        this.assetManager = assetManager;
+    @Inject
+    public LibGDXGraphicsAdapter(IAssetManagerAdapter assetManager) {
+        batch = new SpriteBatch();
+        graphics = Gdx.gl20;
         font = new BitmapFont();
+
+        if (!(assetManager instanceof LibGDXAssetManagerAdapter)) {
+            throw new RuntimeException("LibGDXGraphics only works with LibGDXAssetManager");
+        }
+
+        this.assetManager = (LibGDXAssetManagerAdapter) assetManager;
     }
 
     /**

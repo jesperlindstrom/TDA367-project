@@ -57,9 +57,10 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        compile "com.google.inject:guice:4.0"
+        compile "com.google.code.gson:gson:2.6.2"
         testCompile "junit:junit:4.12"
         testCompile "org.mockito:mockito-core:1.+"
-        compile "com.google.code.gson:gson:2.6.2"
     }
 
     jacocoTestReport{
