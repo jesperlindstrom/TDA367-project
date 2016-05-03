@@ -34,6 +34,7 @@ public class mainMenuView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+
         Point cameraPos = camera.getPosition();
 
         //Backgrounds

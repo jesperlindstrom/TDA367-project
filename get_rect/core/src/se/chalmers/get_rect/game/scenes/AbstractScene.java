@@ -174,6 +174,11 @@ public abstract class AbstractScene implements IScene {
         additions.add(entity);
     }
 
+    @Override
+    public void sortDrawList() {
+        views.sort(Comparator.comparing(IView::getDrawPriority));
+    }
+
     private void processAdditions() {
         while (additions.size() > 0) {
             addEntity(additions.poll());

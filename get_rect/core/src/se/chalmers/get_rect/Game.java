@@ -33,8 +33,10 @@ public class Game implements IGame {
     private static final int MAIN_MENU = 12;
     private static final int GAME = 13;
 
+    private static final int NULL = 20;
     private static final int HORSALSLANGAN = 21;
     private static final int TEST = 22;
+
 
     private static final int INGAME_MENU = 31;
 
@@ -70,11 +72,13 @@ public class Game implements IGame {
     public void draw() {
         graphics.clear();
         graphics.start();
-        if (paused) {
-            windowManager.getState().draw(graphics);
-        } else {
+        if (sceneManager.getState() != null) {
             sceneManager.getState().draw(graphics);
         }
+        if (paused) {
+            windowManager.getState().draw(graphics);
+        }
+        cameraManager.draw(graphics);
         graphics.end();
     }
 
@@ -90,6 +94,7 @@ public class Game implements IGame {
         // Register scenes
         sceneManager.add(TEST, new TestScene(player, rectangleFactory, cameraManager, sceneManager));
         sceneManager.add(HORSALSLANGAN, new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add(NULL, null);
 
         windowManager.add(SPLASH, new SplashWindow(this));
         windowManager.add(MAIN_MENU, new mainMenuWindow(this, cameraManager));
@@ -116,9 +121,11 @@ public class Game implements IGame {
             windowManager.getState().update(delta);
         } else {
             playerController.update();
-            sceneManager.getState().update(delta);
-            cameraManager.update(delta);
+            if (sceneManager.getState() != null) {
+                sceneManager.getState().update(delta);
+            }
         }
+        cameraManager.update(delta);
     }
 
     private void handleInput() {
@@ -127,6 +134,7 @@ public class Game implements IGame {
                 resume();
             } else {
                 windowManager.set(INGAME_MENU);
+                paused = true;
             }
         }
     }
@@ -169,9 +177,15 @@ public class Game implements IGame {
         gameLoop.exit();
     }
 
+    public void exitToMainMenu() {
+        sceneManager.set(NULL);
+        windowManager.set(MAIN_MENU);
+    }
+
     @Override
     public void load() {
         sceneManager.set(HORSALSLANGAN);
+        resume();
     }
 
     @Override
@@ -187,6 +201,7 @@ public class Game implements IGame {
     @Override
     public void startNew() {
         sceneManager.set(HORSALSLANGAN);
+        resume();
     }
 
     @Override

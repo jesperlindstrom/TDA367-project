@@ -1,33 +1,25 @@
 package se.chalmers.get_rect.game.window.window;
 
-import se.chalmers.get_rect.GameConfig;
-import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.IScreen;
 import se.chalmers.get_rect.game.window.IWindow;
-import se.chalmers.get_rect.states.StateManager;
-
-import java.io.FileNotFoundException;
+import se.chalmers.get_rect.game.window.model.SplashModel;
+import se.chalmers.get_rect.game.window.view.SplashView;
 
 public class SplashWindow implements IWindow {
+
+    private SplashModel model;
+    private SplashView view;
     private IAssetManagerAdapter assetManager;
-    private StateManager<IWindow> windowManager;
-    private CameraManager camera;
-    private boolean addedAssets = false;
-    private double progressValue = 0.0;
-    private boolean stop = false;
-    private boolean didStop = false;
-    private int stopTimer = 0;
 
     public SplashWindow(IGame game) {
         System.out.println("SplashScreen is initialized");
+        this.assetManager = game.getAssetManager();
 
-        assetManager = game.getAssetManager();
-        windowManager = game.getWindowManager();
-        camera = game.getCameraManager();
+        this.model = new SplashModel(assetManager, game.getWindowManager());
+        this.view = new SplashView(model, game.getCameraManager());
+
     }
 
     @Override
@@ -42,75 +34,15 @@ public class SplashWindow implements IWindow {
         System.out.println("Leaving SplashScreen");
     }
 
+
     @Override
     public void update(double delta) {
-        if (assetManager.update() && !addedAssets) {
-            addedAssets = true;
-            loadAssets();
-        }
-
-        if (progressValue < 1.0) {
-            progressValue = assetManager.getProgress();
-        } else if (progressValue >= 4.35) {
-            windowManager.set(12);
-        } else if (progressValue >= 1.0 && didStop) {
-            progressValue += 0.015;
-            stop = false;
-        } else if (progressValue >= 1.0 && !didStop) {
-            if (!GameConfig.SPLASH_SCREEN_TROLL) {
-                windowManager.set(12);
-                return;
-            }
-
-            stop = true;
-            stopTimer++;
-
-            if (stopTimer == 100) {
-                stop = false;
-                didStop = true;
-            }
-        }
-
-        camera.update(delta);
+        model.update(delta);
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        camera.draw(graphics);
-
-        if (addedAssets) {
-            graphics.draw("img/splash/splash_bg.jpg", 0, 0, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
-            int progressWidth;
-
-            if (stop) {
-                progressWidth = 578;
-            } else {
-                progressWidth = (int) (578 * progressValue);
-            }
-
-            graphics.draw("img/splash/loading_fill.png", 768, 128, progressWidth, 60);
-
-            if (didStop) {
-                graphics.drawText("LOL JK xD", 1300, 200);
-            }
-
-            if (progressValue > 2.3) {
-                int secondProgressWidth = (int)(300 * (progressValue - 2.3));
-                graphics.draw("img/splash/loading_fill.png", 0, 128, secondProgressWidth, 60);
-            }
-        }
-    }
-
-    /**
-     * Method for loading assets
-     */
-    private void loadAssets() {
-        try {
-            assetManager.loadTextureDir("img");
-            assetManager.loadSoundsDir("sounds");
-        } catch (FileNotFoundException e) {
-            // todo: show an actual error
-            System.out.println(e.getMessage());
-        }
+        view.draw(graphics);
     }
 }
+

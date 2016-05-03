@@ -10,18 +10,12 @@ public class inGameMenuView extends AbstractView {
     private static final Point CONTINUE = new Point(0 ,0);
     private static final Point EXIT = new Point(0 ,1);
     private static final String IMG_PATH = "img/pauseMenu/";
-    private static final int DRAW_PRIORITY = 6;
     private CameraManager camera;
     private AbstractGridModel model;
 
     public inGameMenuView(CameraManager camera, AbstractGridModel model) {
         this.camera = camera;
         this.model = model;
-    }
-
-    @Override
-    public int getDrawPriority() {
-        return DRAW_PRIORITY;
     }
 
     @Override

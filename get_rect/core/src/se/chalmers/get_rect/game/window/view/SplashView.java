@@ -22,7 +22,7 @@ public class SplashView extends AbstractView {
     public void draw(IGraphicsAdapter graphics) {
 
         if (model.getAddedAssets()) {
-            graphics.draw("img/splash/splash_bg.jpg", 0, 0, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
+            graphics.draw("img/splash/splash_bg.jpg", cameraPos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
             int progressWidth;
 
             if (model.getStop()) {
@@ -31,7 +31,7 @@ public class SplashView extends AbstractView {
                 progressWidth = (int) (578 * model.getProgressValue());
             }
 
-            graphics.draw("img/splash/loading_fill.png", 768, 128, progressWidth, 60);
+            graphics.draw("img/splash/loading_fill.png", cameraPos.add(new Point(768, 128)), progressWidth, 60);
 
             if (model.getDidStop()) {
                 graphics.drawText("LOL JK xD", 1300, 200);

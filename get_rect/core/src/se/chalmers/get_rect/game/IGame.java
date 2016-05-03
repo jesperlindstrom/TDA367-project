@@ -13,6 +13,7 @@ public interface IGame {
     StateManager<IWindow> getWindowManager();
     StateManager<IScene> getSceneManager();
     void exit();
+    void exitToMainMenu();
     void load();
     void save();
     void resume();

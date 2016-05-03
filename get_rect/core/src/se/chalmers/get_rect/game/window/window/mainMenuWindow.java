@@ -12,6 +12,7 @@ public class mainMenuWindow extends AbstractGridWindow {
     private mainMenu model;
 
     public mainMenuWindow(IGame game, CameraManager camera) {
+        super();
         this.model = new mainMenu(game);
         setView(new mainMenuView(model, camera));
         setController(new GridController(model, game.getInput()));
