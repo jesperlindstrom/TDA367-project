@@ -67,6 +67,7 @@ public class LibGDXInputAdapter implements IInputAdapter {
         keyMap.put(Keys.S, Input.Keys.S);
         keyMap.put(Keys.D, Input.Keys.D);
         keyMap.put(Keys.X, Input.Keys.X);
+        keyMap.put(Keys.H,Input.Keys.H);
         keyMap.put(Keys.SPACE, Input.Keys.SPACE);
         keyMap.put(Keys.ENTER, Input.Keys.ENTER);
         keyMap.put(Keys.ESC, Input.Keys.ESCAPE);

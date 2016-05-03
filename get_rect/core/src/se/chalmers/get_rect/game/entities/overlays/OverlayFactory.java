@@ -3,13 +3,9 @@ package se.chalmers.get_rect.game.entities.overlays;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
-import se.chalmers.get_rect.game.entities.overlays.view.HealthbarView;
+import se.chalmers.get_rect.game.entities.overlays.view.*;
 import se.chalmers.get_rect.game.entities.overlays.model.Debug;
-import se.chalmers.get_rect.game.entities.overlays.view.DebugView;
-import se.chalmers.get_rect.game.entities.overlays.view.InteractionHintsView;
 import se.chalmers.get_rect.game.entities.overlays.model.NpcList;
-import se.chalmers.get_rect.game.entities.overlays.view.QuestMarkersView;
-import se.chalmers.get_rect.game.entities.overlays.view.PlayerHealthbarView;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 
@@ -44,8 +40,16 @@ public class OverlayFactory {
         if(type.equals("playerHealthbar")){
             return makePlayerHealthbar();
         }
+        if (type.equals("weaponSlots")){
+            return makePlayerWaeponSlot();
+        }
 
         throw new EntityNotFoundException("overlay", type);
+    }
+
+    private IEntity makePlayerWaeponSlot(){
+        IView view = new PlayerWeaponSlotsView(player,camera);
+        return new Entity(null, view);
     }
 
     private IEntity makePlayerHealthbar(){

@@ -38,7 +38,7 @@ public class PlayerController implements IController {
         } else {
             player.stopMoving();
         }
-        if (input.isKeyJustPressed(IInputAdapter.Keys.Q)) {
+        if (input.isKeyJustPressed(IInputAdapter.Keys.H)) {
             player.flyHome();
         }
     }
@@ -71,7 +71,7 @@ public class PlayerController implements IController {
         }
     }
     private void handleWeaponSwitch(){
-        if(input.isKeyPressed((IInputAdapter.Keys.X))){
+        if(input.isKeyJustPressed(IInputAdapter.Keys.Q)){
             player.switchWeapon();
         }
     }
