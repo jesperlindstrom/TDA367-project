@@ -27,7 +27,7 @@ public class Game implements IGame {
      * @param rectangleFactory RectangleFactory adapter
      */
     @Inject
-    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IRectangleFactoryAdapter rectangleFactory) {
+    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IRectangleFactoryAdapter rectangleFactory, IGameLoopAdapter gameLoop) {
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;
