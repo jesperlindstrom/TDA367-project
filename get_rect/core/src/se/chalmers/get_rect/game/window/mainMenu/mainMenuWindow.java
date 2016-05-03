@@ -1,9 +1,9 @@
-package se.chalmers.get_rect.game.gui.mainMenu;
+package se.chalmers.get_rect.game.window.mainMenu;
 
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
-import se.chalmers.get_rect.game.gui.AbstractGridWindow;
-import se.chalmers.get_rect.game.gui.GridController;
+import se.chalmers.get_rect.game.window.AbstractGridWindow;
+import se.chalmers.get_rect.game.window.GridController;
 
 
 public class mainMenuWindow extends AbstractGridWindow {
@@ -16,7 +16,7 @@ public class mainMenuWindow extends AbstractGridWindow {
     }
 
     @Override
-    public void enteringState(String previousStateName) {
+    public void enteringState(Integer previousStateName) {
         model.setup();
     }
 }

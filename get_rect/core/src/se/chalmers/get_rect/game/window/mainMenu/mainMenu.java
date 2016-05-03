@@ -1,7 +1,7 @@
-package se.chalmers.get_rect.game.gui.mainMenu;
+package se.chalmers.get_rect.game.window.mainMenu;
 
 import se.chalmers.get_rect.game.IGame;
-import se.chalmers.get_rect.game.gui.AbstractGridModel;
+import se.chalmers.get_rect.game.window.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
 
 public class mainMenu extends AbstractGridModel {

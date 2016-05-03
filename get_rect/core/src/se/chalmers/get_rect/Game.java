@@ -16,6 +16,10 @@ public class Game implements IGame {
     private StateManager<IScreen> screens;
     private ICameraFactoryAdapter cameraFactory;
 
+    private static final int SPLASH = 11;
+    private static final int MENU = 12;
+    private static final int GAME = 13;
+
     /**
      * Initialize a new RPG game
      * @param graphics Graphics adapter
@@ -38,12 +42,12 @@ public class Game implements IGame {
         screens = new StateManager<>();
 
         // Add screens
-        screens.add("splash", new SplashScreen(this));
-        screens.add("startMenu", new StartMenuScreen(this));
-        screens.add("game", new GameScreen(this));
+        screens.add(SPLASH, new SplashScreen(this));
+        screens.add(MENU, new StartMenuScreen(this));
+        screens.add(GAME, new GameScreen(this));
 
         // Set the active state
-        screens.set("splash");
+        screens.set(SPLASH);
     }
 
     /**
@@ -112,7 +116,7 @@ public class Game implements IGame {
 
     @Override
     public void load() {
-        screens.set("game");
+        screens.set(GAME);
     }
 
     @Override
@@ -122,7 +126,7 @@ public class Game implements IGame {
 
     @Override
     public void startNew() {
-        screens.set("game");
+        screens.set(GAME);
     }
 
     @Override

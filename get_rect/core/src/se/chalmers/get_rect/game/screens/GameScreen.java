@@ -11,9 +11,9 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.gui.IGameStatus;
-import se.chalmers.get_rect.game.gui.IWindow;
-import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuWindow;
+import se.chalmers.get_rect.game.window.IGameStatus;
+import se.chalmers.get_rect.game.window.IWindow;
+import se.chalmers.get_rect.game.window.inGameMenu.inGameMenuWindow;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
@@ -28,6 +28,13 @@ public class GameScreen implements IScreen, IGameStatus {
     private PlayerController playerController;
     private IGame game;
     private boolean pause = false;
+
+    private static final int HORSALSLANGAN = 1;
+    private static final int TEST = 2;
+
+    private static final int MAIN_MENU = 21;
+    private static final int INGAME_MENU = 22;
+
 
     public GameScreen(IGame game) {
         System.out.println("GameScreen is initialized");
@@ -65,24 +72,24 @@ public class GameScreen implements IScreen, IGameStatus {
 
     private void addScenes(IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory) {
         // Register scenes
-        sceneManager.add("test", new TestScene(player, rectangleFactory, cameraManager, sceneManager));
-        sceneManager.add("horsalsvagen", new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add(TEST, new TestScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add(HORSALSLANGAN, new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
 
         // Set starting scene
-        sceneManager.set("horsalsvagen");
+        sceneManager.set(HORSALSLANGAN);
     }
 
     private void addWindows() {
-        windowManager.add("inGameMenu", new inGameMenuWindow(this, input, cameraManager));
+        windowManager.add(22, new inGameMenuWindow(this, input, cameraManager));
     }
 
     @Override
-    public void enteringState(String previousStateName) {
+    public void enteringState(Integer previousStateName) {
         System.out.println("Entering GameScreen");
     }
 
     @Override
-    public void leavingState(String nextStateName) {
+    public void leavingState(Integer nextStateName) {
         System.out.println("Leaving GameScreen");
     }
 
@@ -120,12 +127,12 @@ public class GameScreen implements IScreen, IGameStatus {
             if (pause) {
                 resume();
             } else {
-                openWindow("inGameMenu");
+                openWindow(22);
             }
         }
     }
 
-    public void openWindow(String name) {
+    public void openWindow(Integer name) {
         windowManager.set(name);
         pause();
     }

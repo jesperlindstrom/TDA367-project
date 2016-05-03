@@ -30,14 +30,14 @@ public class SplashScreen implements IScreen {
     }
 
     @Override
-    public void enteringState(String previousStateName) {
+    public void enteringState(Integer previousStateName) {
         System.out.println("Entering SplashScreen");
         assetManager.loadTexture("img/splash/splash_bg.jpg");
         assetManager.loadTexture("img/splash/loading_fill.png");
     }
 
     @Override
-    public void leavingState(String nextStateName) {
+    public void leavingState(Integer nextStateName) {
         System.out.println("Leaving SplashScreen");
     }
 
@@ -51,13 +51,13 @@ public class SplashScreen implements IScreen {
         if (progressValue < 1.0) {
             progressValue = assetManager.getProgress();
         } else if (progressValue >= 4.35) {
-            screenManager.set("game");
+            screenManager.set(12);
         } else if (progressValue >= 1.0 && didStop) {
             progressValue += 0.015;
             stop = false;
         } else if (progressValue >= 1.0 && !didStop) {
             if (!GameConfig.SPLASH_SCREEN_TROLL) {
-                screenManager.set("startMenu");
+                screenManager.set(12);
                 return;
             }
 

@@ -1,10 +1,9 @@
-package se.chalmers.get_rect.game.gui.inGameMenu;
+package se.chalmers.get_rect.game.window.inGameMenu;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.gui.AbstractGridModel;
+import se.chalmers.get_rect.game.window.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
 
 public class inGameMenuView extends AbstractView {
