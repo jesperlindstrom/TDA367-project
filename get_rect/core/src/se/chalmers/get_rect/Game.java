@@ -70,6 +70,7 @@ public class Game implements IGame {
      * Tell current state to draw
      */
     public void draw() {
+        cameraManager.draw(graphics);
         graphics.clear();
         graphics.start();
         if (sceneManager.getState() != null) {
@@ -78,7 +79,6 @@ public class Game implements IGame {
         if (paused) {
             windowManager.getState().draw(graphics);
         }
-        cameraManager.draw(graphics);
         graphics.end();
     }
 
