@@ -5,6 +5,7 @@ import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 
 public class HealthbarView extends AbstractView {
@@ -26,7 +27,9 @@ public class HealthbarView extends AbstractView {
     public void draw(IGraphicsAdapter graphics) {
         for (IModel model : combatList.get()) {
             ICombatModel combatModel = (ICombatModel)model;
-            drawHealthbar(graphics, combatModel);
+            if (!(combatModel instanceof Player)) {
+                drawHealthbar(graphics, combatModel);
+            }
         }
     }
 

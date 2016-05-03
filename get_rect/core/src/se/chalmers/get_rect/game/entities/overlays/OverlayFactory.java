@@ -9,6 +9,7 @@ import se.chalmers.get_rect.game.entities.overlays.debug.DebugView;
 import se.chalmers.get_rect.game.entities.overlays.view.InteractionHintsView;
 import se.chalmers.get_rect.game.entities.overlays.model.NpcList;
 import se.chalmers.get_rect.game.entities.overlays.view.QuestMarkersView;
+import se.chalmers.get_rect.game.entities.overlays.hud.PlayerHealthbarView;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 
@@ -40,8 +41,16 @@ public class OverlayFactory {
         if(type.equals("healthbar")){
             return makeHealthbar();
         }
+        if(type.equals("playerHealthbar")){
+            return makePlayerHealthbar();
+        }
 
         throw new EntityNotFoundException("overlay", type);
+    }
+
+    private IEntity makePlayerHealthbar(){
+        IView view = new PlayerHealthbarView(player,camera);
+        return new Entity(null,view);
     }
 
     private IEntity makeInteractionHints() {
