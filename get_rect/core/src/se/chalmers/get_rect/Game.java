@@ -1,6 +1,6 @@
 package se.chalmers.get_rect;
 
-import com.google.inject.Inject;
+import com.google.inject.*;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.game.IScreen;
@@ -9,6 +9,8 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.*;
 
 public class Game implements IGame {
+    @Inject private static Injector injector;
+
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
     private IAssetManagerAdapter assetManager;
@@ -39,8 +41,15 @@ public class Game implements IGame {
         // Initialize components
         screens = new StateManager<>();
 
+        Injector gameInjector = injector.createChildInjector(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(new TypeLiteral<StateManager<IScreen>>() {}).toInstance(screens);
+            }
+        });
+
         // Add screens
-        screens.add("splash", new SplashScreen(this));
+        screens.add("splash", gameInjector.getInstance(SplashScreen.class));
         screens.add("startMenu", new StartMenuScreen(this));
         screens.add("game", new GameScreen(this));
 

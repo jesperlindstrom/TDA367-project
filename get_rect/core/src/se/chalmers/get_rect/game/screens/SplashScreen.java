@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.game.screens;
 
+import com.google.inject.Inject;
 import se.chalmers.get_rect.GameConfig;
+import se.chalmers.get_rect.adapters.ICameraFactoryAdapter;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
@@ -20,12 +22,13 @@ public class SplashScreen implements IScreen {
     private boolean didStop = false;
     private int stopTimer = 0;
 
-    public SplashScreen(IGame game) {
+    @Inject
+    public SplashScreen(IAssetManagerAdapter assetManager, StateManager<IScreen> screenManager, ICameraFactoryAdapter cameraFactory) {
         System.out.println("SplashScreen is initialized");
 
-        assetManager = game.getAssetManager();
-        screenManager = game.getScreens();
-        camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
+        this.assetManager = assetManager;
+        this.screenManager = screenManager;
+        camera = cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         camera.translate(GameConfig.SCREEN_WIDTH/2, GameConfig.SCREEN_HEIGHT/2);
     }
 

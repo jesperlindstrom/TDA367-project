@@ -12,7 +12,6 @@ import se.chalmers.get_rect.adapters.libGDX.*;
 
 public class GameLauncher extends ApplicationAdapter implements IGameLoopAdapter {
     private Game gameManager;
-    private long lastTime = 0;
 
     /**
      * Starts the program.
