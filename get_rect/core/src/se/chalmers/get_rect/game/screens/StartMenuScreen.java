@@ -5,8 +5,8 @@ import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.IScreen;
-import se.chalmers.get_rect.game.gui.IWindow;
-import se.chalmers.get_rect.game.gui.mainMenu.mainMenuWindow;
+import se.chalmers.get_rect.game.window.IWindow;
+import se.chalmers.get_rect.game.window.mainMenu.mainMenuWindow;
 
 public class StartMenuScreen implements IScreen {
 
@@ -20,13 +20,13 @@ public class StartMenuScreen implements IScreen {
     }
 
     @Override
-    public void enteringState(String previousStateName) {
+    public void enteringState(Integer previousStateName) {
         System.out.println("Entering StartMenuScreen");
         gameMenu.enteringState(previousStateName);
     }
 
     @Override
-    public void leavingState(String nextStateName) {
+    public void leavingState(Integer nextStateName) {
         System.out.println("Leaving StartMenuScreen");
     }
 

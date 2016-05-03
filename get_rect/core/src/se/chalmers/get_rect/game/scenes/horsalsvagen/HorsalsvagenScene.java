@@ -15,7 +15,7 @@ public class HorsalsvagenScene extends AbstractScene {
     }
 
     @Override
-    public void enteringState(String previousState) {
+    public void enteringState(Integer previousState) {
         super.enteringState(previousState);
 
         // Add background image

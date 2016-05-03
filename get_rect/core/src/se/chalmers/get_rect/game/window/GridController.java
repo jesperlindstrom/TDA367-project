@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.gui;
+package se.chalmers.get_rect.game.window;
 
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.IController;

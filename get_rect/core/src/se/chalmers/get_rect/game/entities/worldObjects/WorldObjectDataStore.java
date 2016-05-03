@@ -8,7 +8,7 @@ public class WorldObjectDataStore {
     private int width;
     private int height;
     private String type;
-    private String path;
+    private int path;
 
     public Point getPosition() {
         return new Point(x, y);
@@ -26,7 +26,7 @@ public class WorldObjectDataStore {
         return type;
     }
 
-    public String getPath(){return path;}
+    public int getPath(){return path;}
 
 
 }
