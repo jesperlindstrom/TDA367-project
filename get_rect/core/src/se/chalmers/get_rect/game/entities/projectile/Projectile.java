@@ -13,19 +13,15 @@ import java.util.Random;
 public class Projectile extends AbstractPhysicsModel {
     private int width = 50;
     private int height = 50;
-    private ProjectileFactory projectileFactory;
-    private boolean cluster = false;
     private int dmg = 10;
+    private IModel owner;
+    private boolean isMelee;
 
-    public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory){
-        this(position, velocity, rectangleFactory);
-        this.projectileFactory = projectileFactory;
-        cluster = true;
-    }
-
-    public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory){
+    public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory, IModel owner, boolean isMelee) {
         super(position, velocity, false, rectangleFactory);
         setBoundingBox(getPosition(), width, height);
+        this.owner = owner;
+        this.isMelee = isMelee;
     }
 
     @Override
@@ -35,36 +31,24 @@ public class Projectile extends AbstractPhysicsModel {
             setVelocity(getVelocity().addX(friction));
         }
 
-        if (otherObject instanceof ICombatModel && !(otherObject instanceof Player) && cluster) {
+        if (otherObject instanceof ICombatModel && !(otherObject instanceof Player)) {
             setShouldBeRemoved();
-            launchCluster();
             otherObject.setPosition(otherObject.getPosition().addY(30));
             otherObject.setVelocity(getVelocity().multiply(0.1));
-            ((ICombatModel)otherObject).takeDamage(dmg);
+            ((ICombatModel) otherObject).takeDamage(dmg);
         }
     }
 
     @Override
     public void update(double delta) {
+        System.out.println("Pos = " + owner.getPosition().distanceTo(getPosition()));
         if (getVelocity().getX() == 0 && getVelocity().getY() == 0) {
             setShouldBeRemoved();
-
-            if (cluster) {
-                launchCluster();
-            }
         }
-    }
-
-    private void launchCluster() {
-        Random rand = new Random();
-
-        for (int i = 0; i < 10; i++) {
-            int velX = rand.nextInt(100) - 50;
-            int velY = rand.nextInt(300) - 20;
-            Point vel = new Point(velX, velY);
-
-            IPhysicsEntity projectile = projectileFactory.make("normal", getPosition().addY(100), vel);
-            getScene().addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
+        if (isMelee) {
+            if (owner.getPosition().distanceTo(getPosition()) > 90) {
+                setShouldBeRemoved();
+            }
         }
     }
 }

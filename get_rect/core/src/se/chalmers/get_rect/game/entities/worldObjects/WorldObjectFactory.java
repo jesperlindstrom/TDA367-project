@@ -26,11 +26,12 @@ public class WorldObjectFactory {
         Point pos = dataStore.getPosition();
         int width = dataStore.getWidth();
         int height = dataStore.getHeight();
+        String path = dataStore.getPath();
 
-        return make(type, pos, width, height);
+        return make(type, pos, width, height, path);
     }
 
-    public IPhysicsEntity make(String type, Point point, int width, int height) {
+    public IPhysicsEntity make(String type, Point point, int width, int height, String path) {
         if (type.equals("boundingBox"))
             return makeBoundingBox(point, width, height);
 
@@ -38,7 +39,7 @@ public class WorldObjectFactory {
             return makeTrampoline(point);
 
         if (type.equals("door")){
-            return makeDoor(point,width,height);
+            return makeDoor(point,width,height, path);
         }
 
         throw new EntityNotFoundException("worldObject", type);
@@ -56,8 +57,8 @@ public class WorldObjectFactory {
         return new PhysicsEntity(model, view);
     }
 
-    private IPhysicsEntity makeDoor(Point point, int width, int height){
-        IPhysicsModel model = new Door(point,width,height, rectangleFactory, sceneManager);
+    private IPhysicsEntity makeDoor(Point point, int width, int height, String path){
+        IPhysicsModel model = new Door(point,width,height, rectangleFactory, sceneManager, path);
         return new PhysicsEntity(model, null);
     }
 }

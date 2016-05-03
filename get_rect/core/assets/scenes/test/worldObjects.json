@@ -56,5 +56,14 @@
     "type": "trampoline",
     "x": 160,
     "y": 300
+  },
+
+  {
+    "type": "door",
+    "x": 200,
+    "y": 1050,
+    "width":300,
+    "height":150,
+    "path": "horsalsvagen"
   }
 ]
