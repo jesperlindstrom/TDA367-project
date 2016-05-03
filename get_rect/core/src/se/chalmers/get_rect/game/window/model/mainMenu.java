@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.window.mainMenu;
+package se.chalmers.get_rect.game.window.model;
 
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.game.window.AbstractGridModel;

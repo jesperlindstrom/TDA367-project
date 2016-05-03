@@ -5,4 +5,5 @@ import se.chalmers.get_rect.states.IState;
 
 public interface IScene extends IGameComponent, IState{
     void add(IEntity entity);
+    void sortDrawList();
 }

@@ -14,11 +14,17 @@ public class PlayerWeaponSlotsView extends AbstractView {
     private final String pathItemPHPrimary = "img/pauseMenu/inventory/placeholder_primary.png";
     private final String pathItemPHSecondary = "img/pauseMenu/inventory/placeholder_secondary.png";
     private final String pathItemActive = "img/pauseMenu/inventory/item_active.png";
+    private static final int DRAW_PRIORITY = 60;
 
 
     public PlayerWeaponSlotsView(Player player, CameraManager camera){
         this.player = player;
         this.camera = camera;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 
     @Override
