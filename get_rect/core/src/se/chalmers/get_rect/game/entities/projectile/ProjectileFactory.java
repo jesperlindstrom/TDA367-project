@@ -5,6 +5,8 @@ import se.chalmers.get_rect.game.entities.EntityNotFoundException;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.PhysicsEntity;
+import se.chalmers.get_rect.game.entities.projectile.model.Projectile;
+import se.chalmers.get_rect.game.entities.projectile.view.ProjectileView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class ProjectileFactory {

@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.worldObjects.trampoline;
+package se.chalmers.get_rect.game.entities.worldObjects.model;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;

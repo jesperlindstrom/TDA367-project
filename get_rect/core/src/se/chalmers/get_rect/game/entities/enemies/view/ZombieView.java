@@ -1,8 +1,9 @@
-package se.chalmers.get_rect.game.entities.enemies.zombie;
+package se.chalmers.get_rect.game.entities.enemies.view;
 
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
+import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 
 public class ZombieView extends AbstractAnimatedView{
     private static final int WALKING = 1;

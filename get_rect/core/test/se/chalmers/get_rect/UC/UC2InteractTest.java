@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import org.mockito.Mockito;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
-import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
-import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillExpress;
+import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
+import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
@@ -30,16 +30,6 @@ public class UC2InteractTest {
         playerSide.set(Side.RIGHT);
         otherSide = new SideData();
         otherSide.set(Side.LEFT);
-    }
-
-    /**
-     * checks if entity can show it's indication
-     */
-    @Test
-    public void testIndication(){
-        player.onCollision(sawmillExpress,playerSide, false);
-        sawmillExpress.onCollision(player, otherSide, false);
-        assertTrue("Should show interaction hint", sawmillExpress.showInteractionHint());
     }
 
     /**

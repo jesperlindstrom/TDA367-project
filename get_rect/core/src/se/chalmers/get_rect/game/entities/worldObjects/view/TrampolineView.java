@@ -1,8 +1,9 @@
-package se.chalmers.get_rect.game.entities.worldObjects.trampoline;
+package se.chalmers.get_rect.game.entities.worldObjects.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractStaticView;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.worldObjects.model.Trampoline;
 
 public class TrampolineView extends AbstractStaticView {
     private Trampoline model;

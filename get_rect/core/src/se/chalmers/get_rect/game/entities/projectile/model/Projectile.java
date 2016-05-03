@@ -1,9 +1,9 @@
-package se.chalmers.get_rect.game.entities.projectile;
+package se.chalmers.get_rect.game.entities.projectile.model;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
