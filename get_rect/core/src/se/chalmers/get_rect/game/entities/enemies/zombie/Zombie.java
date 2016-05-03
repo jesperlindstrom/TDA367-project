@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
@@ -31,7 +32,8 @@ public class Zombie extends AbstractCombatModel {
     public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
         // Jump, to simulate a lethal broccoli ninja attack.
         if (otherObject.equals(player) && getVelocity().getY() == 0) {
-            setVelocity(getVelocity().setY(50));
+            Player player = (Player) otherObject;
+            player.takeDamage(1);
         }
     }
 

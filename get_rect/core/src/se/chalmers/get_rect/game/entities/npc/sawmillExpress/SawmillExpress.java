@@ -1,9 +1,12 @@
 package se.chalmers.get_rect.game.entities.npc.sawmillExpress;
 
 import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.npc.AbstractNPCModel;
 import se.chalmers.get_rect.game.quests.QuestState;
+import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SawmillExpress extends AbstractNPCModel {
@@ -45,6 +48,9 @@ public class SawmillExpress extends AbstractNPCModel {
     public void onInteract(IModel model) {
         isFlying = true;
         showDialog("Wäääh!");
+        if (model instanceof ICombatModel){
+            ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
+        }
     }
 
     public boolean isFlying() {
