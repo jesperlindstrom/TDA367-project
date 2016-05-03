@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.overlays.debug.frameRate;
+package se.chalmers.get_rect.game.entities.overlays.model;
 
 import se.chalmers.get_rect.GameConfig;
 

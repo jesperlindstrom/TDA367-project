@@ -1,9 +1,9 @@
-package se.chalmers.get_rect.game.entities.overlays.debug.frameRate;
+package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.overlays.model.FrameRate;
 import se.chalmers.get_rect.utilities.Point;
 
 public class FrameRateView extends AbstractView {

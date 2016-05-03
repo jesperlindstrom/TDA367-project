@@ -4,12 +4,12 @@ import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
 import se.chalmers.get_rect.game.entities.overlays.view.HealthbarView;
-import se.chalmers.get_rect.game.entities.overlays.debug.Debug;
-import se.chalmers.get_rect.game.entities.overlays.debug.DebugView;
+import se.chalmers.get_rect.game.entities.overlays.model.Debug;
+import se.chalmers.get_rect.game.entities.overlays.view.DebugView;
 import se.chalmers.get_rect.game.entities.overlays.view.InteractionHintsView;
 import se.chalmers.get_rect.game.entities.overlays.model.NpcList;
 import se.chalmers.get_rect.game.entities.overlays.view.QuestMarkersView;
-import se.chalmers.get_rect.game.entities.overlays.hud.PlayerHealthbarView;
+import se.chalmers.get_rect.game.entities.overlays.view.PlayerHealthbarView;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 

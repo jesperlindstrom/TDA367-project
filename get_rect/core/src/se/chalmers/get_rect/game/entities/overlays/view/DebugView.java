@@ -1,11 +1,8 @@
-package se.chalmers.get_rect.game.entities.overlays.debug;
+package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.entities.overlays.debug.frameRate.FrameRateView;
-import se.chalmers.get_rect.game.entities.overlays.debug.physics.PhysicsView;
-import se.chalmers.get_rect.game.entities.overlays.debug.player.PlayerView;
+import se.chalmers.get_rect.game.entities.overlays.model.Debug;
 import se.chalmers.get_rect.utilities.Point;
 
 public class DebugView extends AbstractView {

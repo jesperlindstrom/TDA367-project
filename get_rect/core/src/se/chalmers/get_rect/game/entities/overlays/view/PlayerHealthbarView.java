@@ -1,12 +1,12 @@
-package se.chalmers.get_rect.game.entities.overlays.hud;
+package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
-import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 
-public class PlayerHealthbarView implements IView{
+public class PlayerHealthbarView extends AbstractView{
 
     private Player player;
     private CameraManager camera;
@@ -21,7 +21,7 @@ public class PlayerHealthbarView implements IView{
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        float dmgTaken = (float)(150*((player.getcurrentHealth())/(double)player.getMaxHealth()));
+        float dmgTaken = (float)(150*((player.getCurrentHealth())/(double)player.getMaxHealth()));
         int x = camera.getPosition().getX() + 540 + 200;
         int y = camera.getPosition().getY();
         Point position = new Point(x,y);
