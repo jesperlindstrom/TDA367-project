@@ -2,7 +2,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;

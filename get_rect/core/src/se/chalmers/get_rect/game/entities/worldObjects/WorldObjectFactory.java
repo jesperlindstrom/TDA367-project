@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.entities.worldObjects;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
 import se.chalmers.get_rect.game.entities.worldObjects.model.Door;

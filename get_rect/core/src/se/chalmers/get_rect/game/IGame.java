@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game;
 
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 public interface IGame {
