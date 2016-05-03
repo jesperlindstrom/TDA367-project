@@ -9,6 +9,7 @@ import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.projectile.model.Projectile;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.IScene;
@@ -22,20 +23,22 @@ public class UC8EntityTakesDamageTest {
 
     private ICombatModel target;
     private IPhysicsModel projectile;
+    private IPhysicsModel melee;
     private SideData collision;
 
 
 
     @Before
     public void setup() {
-        IModel model = Mockito.mock(Zombie.class);
+        IModel target = Mockito.mock(Zombie.class);
+        IModel owner = Mockito.mock(Player.class);
         Point point = Mockito.mock(Point.class);
         collision = Mockito.mock(SideData.class);
-        ProjectileFactory projectileFactory = Mockito.mock(ProjectileFactory.class);
         IScene scene = Mockito.mock(TestScene.class);
         IRectangleFactoryAdapter rectangleFactoryAdapterStub = new RectangleFactoryAdapterStub();
-        target = new Zombie(point, rectangleFactoryAdapterStub, model);
-        projectile = new Projectile(point, point, rectangleFactoryAdapterStub, projectileFactory);
+        this.target = new Zombie(point, rectangleFactoryAdapterStub, target);
+        projectile = new Projectile(point, point, rectangleFactoryAdapterStub, owner, false);
+        melee = new Projectile(point, point, rectangleFactoryAdapterStub, owner, true);
         projectile.setScene(scene);
 
     }
@@ -45,6 +48,13 @@ public class UC8EntityTakesDamageTest {
     public void testNormalFlow() {
         assertEquals("Entity's health should be max", target.getCurrentHealth(), target.getCurrentHealth());
         projectile.onCollision(target, collision, false);
+        assertNotEquals("Entity's health should have been lowered", target.getCurrentHealth(), target.getMaxHealth());
+    }
+
+    @Test
+    public void testMeleeFlow() {
+        assertEquals("Entity's health should be max", target.getCurrentHealth(), target.getCurrentHealth());
+        melee.onCollision(target, collision, false);
         assertNotEquals("Entity's health should have been lowered", target.getCurrentHealth(), target.getMaxHealth());
     }
 }
