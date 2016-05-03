@@ -33,16 +33,6 @@ public class UC2InteractTest {
     }
 
     /**
-     * checks if entity can show it's indication
-     */
-    @Test
-    public void testIndication(){
-        player.onCollision(sawmillExpress,playerSide, false);
-        sawmillExpress.onCollision(player, otherSide, false);
-        assertTrue("Should show interaction hint", sawmillExpress.showInteractionHint());
-    }
-
-    /**
      * checks if player can interact with intractable entity
      */
     @Test
