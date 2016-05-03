@@ -1,39 +1,12 @@
+
 package se.chalmers.get_rect.game.screens;
 
-import se.chalmers.get_rect.GameConfig;
-import se.chalmers.get_rect.game.IGame;
-import se.chalmers.get_rect.adapters.*;
-import se.chalmers.get_rect.game.CameraManager;
-import se.chalmers.get_rect.game.IScene;
-import se.chalmers.get_rect.game.IScreen;
-import se.chalmers.get_rect.game.entities.IPhysicsEntity;
-import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.player.PlayerController;
-import se.chalmers.get_rect.game.entities.player.PlayerFactory;
-import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.window.IGameStatus;
-import se.chalmers.get_rect.game.window.IWindow;
-import se.chalmers.get_rect.game.window.inGameMenu.inGameMenuWindow;
-import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
-import se.chalmers.get_rect.game.scenes.test.TestScene;
-import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.states.StateManager;
 
-
-public class GameScreen implements IScreen, IGameStatus {
-    private StateManager<IScene> sceneManager = new StateManager<>();
-    private StateManager<IWindow> windowManager = new StateManager<>();
-    private CameraManager cameraManager;
+public class GameScreen /*implements IScreen, IGameStatus*/ {}/*    private CameraManager cameraManager;
     private IInputAdapter input;
     private PlayerController playerController;
     private IGame game;
     private boolean pause = false;
-
-    private static final int HORSALSLANGAN = 1;
-    private static final int TEST = 2;
-
-    private static final int MAIN_MENU = 21;
-    private static final int INGAME_MENU = 22;
 
 
     public GameScreen(IGame game) {
@@ -98,18 +71,9 @@ public class GameScreen implements IScreen, IGameStatus {
      * and check if the menu button is pressed
      * @param delta time since last draw.
      */
-    @Override
+/*    @Override
     public void update(double delta) {
         handleInput();
-
-        // Will update the menu if it is active and pause the current scene.
-        if (pause) {
-            windowManager.getState().update(delta);
-        } else {
-            playerController.update();
-            sceneManager.getState().update(delta);
-            cameraManager.update(delta);
-        }
     }
 
     @Override
@@ -151,3 +115,4 @@ public class GameScreen implements IScreen, IGameStatus {
 
 
 }
+*/

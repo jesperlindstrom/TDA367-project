@@ -1,32 +1,33 @@
-package se.chalmers.get_rect.game.screens;
+package se.chalmers.get_rect.game.window.window;
 
 import se.chalmers.get_rect.GameConfig;
+import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.IScreen;
+import se.chalmers.get_rect.game.window.IWindow;
 import se.chalmers.get_rect.states.StateManager;
 
 import java.io.FileNotFoundException;
 
-public class SplashScreen implements IScreen {
+public class SplashWindow implements IWindow {
     private IAssetManagerAdapter assetManager;
-    private StateManager<IScreen> screenManager;
-    private ICameraAdapter camera;
+    private StateManager<IWindow> windowManager;
+    private CameraManager camera;
     private boolean addedAssets = false;
     private double progressValue = 0.0;
     private boolean stop = false;
     private boolean didStop = false;
     private int stopTimer = 0;
 
-    public SplashScreen(IGame game) {
+    public SplashWindow(IGame game) {
         System.out.println("SplashScreen is initialized");
 
         assetManager = game.getAssetManager();
-        screenManager = game.getScreens();
-        camera = game.getCameraFactory().make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
-        camera.translate(GameConfig.SCREEN_WIDTH/2, GameConfig.SCREEN_HEIGHT/2);
+        windowManager = game.getWindowManager();
+        camera = game.getCameraManager();
     }
 
     @Override
@@ -51,13 +52,13 @@ public class SplashScreen implements IScreen {
         if (progressValue < 1.0) {
             progressValue = assetManager.getProgress();
         } else if (progressValue >= 4.35) {
-            screenManager.set(12);
+            windowManager.set(12);
         } else if (progressValue >= 1.0 && didStop) {
             progressValue += 0.015;
             stop = false;
         } else if (progressValue >= 1.0 && !didStop) {
             if (!GameConfig.SPLASH_SCREEN_TROLL) {
-                screenManager.set(12);
+                windowManager.set(12);
                 return;
             }
 

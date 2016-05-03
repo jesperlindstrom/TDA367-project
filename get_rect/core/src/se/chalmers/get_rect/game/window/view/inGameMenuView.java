@@ -1,22 +1,20 @@
-package se.chalmers.get_rect.game.window.mainMenu;
+package se.chalmers.get_rect.game.window.view;
 
-import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.window.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
 
-public class mainMenuView extends AbstractView {
-    private static final Point CONTINUE = new Point(0, 0);
-    private static final Point NEW_GAME = new Point(0, 1);
-    private static final Point EXIT = new Point(0, 2);
+public class inGameMenuView extends AbstractView {
+    private static final Point CONTINUE = new Point(0 ,0);
+    private static final Point EXIT = new Point(0 ,1);
     private static final String IMG_PATH = "img/pauseMenu/";
-    private static final int DRAW_PRIORITY = 7;
-
-    private ICameraAdapter camera;
+    private static final int DRAW_PRIORITY = 6;
+    private CameraManager camera;
     private AbstractGridModel model;
 
-    public mainMenuView(mainMenu model, ICameraAdapter camera) {
+    public inGameMenuView(CameraManager camera, AbstractGridModel model) {
         this.camera = camera;
         this.model = model;
     }
@@ -36,29 +34,24 @@ public class mainMenuView extends AbstractView {
         Point cameraPos = camera.getPosition();
 
         //Backgrounds
-        graphics.draw(IMG_PATH + "main_menu.png", cameraPos);
+        graphics.draw(IMG_PATH + "menuShader.png", cameraPos);
+        graphics.draw(IMG_PATH + "buttons/pause_menu_bg.png", cameraPos.add(360, 140));
+        graphics.draw(IMG_PATH + "inventory/inventory_bg.png", cameraPos.add(960, 240));
 
         //Buttons
-        graphics.draw(IMG_PATH + "buttons/continue.png", getRealPosition(CONTINUE));
-        graphics.draw(IMG_PATH + "buttons/new_game.png", getRealPosition(NEW_GAME));
+        graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(CONTINUE));
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(EXIT));
 
-        // Menu overlay
         graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(model.getCurrentButton()));
-
     }
 
     public Point getRealPosition(Point gridPosition) {
         if (gridPosition.equals(CONTINUE))
-            return camera.getPosition().add(735, 382);
-
-        if (gridPosition.equals(NEW_GAME))
-            return camera.getPosition().add(735, 241);
+            return camera.getPosition().add(430, 390);
 
         if (gridPosition.equals(EXIT))
-            return camera.getPosition().add(735, 100);
+            return camera.getPosition().add(430, 240);
 
         return null;
     }
 }
-
