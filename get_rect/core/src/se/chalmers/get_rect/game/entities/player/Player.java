@@ -93,7 +93,8 @@ public class Player extends AbstractCombatModel {
 
     @Override
     protected void die(){
-        System.out.println("Player died!");
+        System.out.println("you died");
+        addHealth(getMaxHealth());
     }
 
     public IInteractableModel getCurrentNpc(){
