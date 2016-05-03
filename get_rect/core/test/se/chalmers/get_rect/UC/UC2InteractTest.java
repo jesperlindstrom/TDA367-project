@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import org.mockito.Mockito;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
-import se.chalmers.get_rect.game.entities.enemies.zombie.Zombie;
-import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillExpress;
+import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
+import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
