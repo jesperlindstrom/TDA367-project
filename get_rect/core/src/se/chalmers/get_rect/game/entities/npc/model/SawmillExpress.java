@@ -1,12 +1,10 @@
 package se.chalmers.get_rect.game.entities.npc.model;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.npc.AbstractNPCModel;
 import se.chalmers.get_rect.game.quests.QuestState;
-import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SawmillExpress extends AbstractNPCModel {

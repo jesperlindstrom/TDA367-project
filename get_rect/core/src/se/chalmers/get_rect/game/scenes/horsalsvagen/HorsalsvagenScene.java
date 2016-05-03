@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.scenes.horsalsvagen;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IEntity;

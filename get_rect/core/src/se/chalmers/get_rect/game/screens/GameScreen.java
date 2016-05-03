@@ -16,12 +16,13 @@ import se.chalmers.get_rect.game.gui.IWindow;
 import se.chalmers.get_rect.game.gui.inGameMenu.inGameMenuWindow;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 
 public class GameScreen implements IScreen, IGameStatus {
     private StateManager<IScene> sceneManager = new StateManager<>();
-    private StateManager<IWindow> overlayManager = new StateManager<>();
+    private StateManager<IWindow> windowManager = new StateManager<>();
     private CameraManager cameraManager;
     private IInputAdapter input;
     private PlayerController playerController;
@@ -72,7 +73,7 @@ public class GameScreen implements IScreen, IGameStatus {
     }
 
     private void addWindows() {
-        overlayManager.add("inGameMenu", new inGameMenuWindow(this, input, cameraManager));
+        windowManager.add("inGameMenu", new inGameMenuWindow(this, input, cameraManager));
     }
 
     @Override
@@ -96,7 +97,7 @@ public class GameScreen implements IScreen, IGameStatus {
 
         // Will update the menu if it is active and pause the current scene.
         if (pause) {
-            overlayManager.getState().update(delta);
+            windowManager.getState().update(delta);
         } else {
             playerController.update();
             sceneManager.getState().update(delta);
@@ -110,7 +111,7 @@ public class GameScreen implements IScreen, IGameStatus {
         sceneManager.getState().draw(graphics);
 
         if (pause) {
-            overlayManager.getState().draw(graphics);
+            windowManager.getState().draw(graphics);
         }
     }
 
@@ -125,7 +126,7 @@ public class GameScreen implements IScreen, IGameStatus {
     }
 
     public void openWindow(String name) {
-        overlayManager.set(name);
+        windowManager.set(name);
         pause();
     }
 

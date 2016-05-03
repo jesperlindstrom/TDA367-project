@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.entities.npc;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractInteractableModel;
 import se.chalmers.get_rect.game.quests.QuestState;
 import se.chalmers.get_rect.utilities.Point;

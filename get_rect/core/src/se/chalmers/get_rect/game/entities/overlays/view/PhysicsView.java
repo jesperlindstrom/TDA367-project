@@ -2,7 +2,7 @@ package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
+import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
