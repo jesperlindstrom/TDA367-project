@@ -1,10 +1,22 @@
-package se.chalmers.get_rect;
+package se.chalmers.get_rect.game;
 
 public class GameConfig {
     // Game settings
     public static final int SCREEN_WIDTH = 1920;
     public static final int SCREEN_HEIGHT = 1080;
     public static final boolean FULLSCREEN = false;
+
+    // Game state IDs
+    public static final int SPLASH = 11;
+    public static final int MAIN_MENU = 12;
+
+    public static final int NULL = 20;
+    public static final int HORSALSVAGEN = 21;
+    public static final int TEST = 22;
+
+    public static final int INGAME_MENU = 31;
+
+
 
     // Debug booleans
     public static final boolean SHOW_FPS = true;

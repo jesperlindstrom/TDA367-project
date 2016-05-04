@@ -1,13 +1,14 @@
 package se.chalmers.get_rect.states;
 
 public class StateStub implements IState {
+
     @Override
-    public void enteringState(String previousStateName) {
+    public void enteringState(Integer previousStateName) {
 
     }
 
     @Override
-    public void leavingState(String nextStateName) {
+    public void leavingState(Integer nextStateName) {
 
     }
 }

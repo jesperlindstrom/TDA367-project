@@ -18,13 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SceneLoader {
-    private String sceneName;
+    private String folderName;
     private IPhysicsModel player;
     private IRectangleFactoryAdapter rectangleFactory;
     private StateManager<IScene> stateManager;
 
-    public SceneLoader(String sceneName, IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> stateManager) {
-        this.sceneName = sceneName;
+    public SceneLoader(String folderName, IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> stateManager) {
+        this.folderName = folderName;
         this.player = player.getModel();
         this.rectangleFactory = rectangleFactory;
         this.stateManager = stateManager;
@@ -51,7 +51,7 @@ public class SceneLoader {
      * @throws FileNotFoundException
      */
     private void loadWorldObjects(List<IPhysicsEntity> entities) throws FileNotFoundException {
-        IOFacade<WorldObjectDataStore> worldObjectData  = new IOFacade<>("scenes/" + sceneName + "/worldObjects.json", WorldObjectDataStore.class);
+        IOFacade<WorldObjectDataStore> worldObjectData  = new IOFacade<>("scenes/" + folderName + "/worldObjects.json", WorldObjectDataStore.class);
         List<WorldObjectDataStore> worldObjectDataList = worldObjectData.load();
 
         WorldObjectFactory worldObject = new WorldObjectFactory(rectangleFactory, stateManager);
@@ -69,7 +69,7 @@ public class SceneLoader {
      * @throws FileNotFoundException
      */
     private void loadNpcs(List<IPhysicsEntity> entities) throws FileNotFoundException {
-        IOFacade<NpcDataStore> npcData  = new IOFacade<>("scenes/" + sceneName + "/npcs.json", NpcDataStore.class);
+        IOFacade<NpcDataStore> npcData  = new IOFacade<>("scenes/" + folderName + "/npcs.json", NpcDataStore.class);
         List<NpcDataStore> npcDataList = npcData.load();
 
         NpcFactory npc = new NpcFactory(rectangleFactory);
@@ -87,7 +87,7 @@ public class SceneLoader {
      * @throws FileNotFoundException
      */
     private void loadEnemies(List<IPhysicsEntity> entities) throws FileNotFoundException {
-        IOFacade<EnemyDataStore> enemyData = new IOFacade<>("scenes/" + sceneName + "/enemies.json", EnemyDataStore.class);
+        IOFacade<EnemyDataStore> enemyData = new IOFacade<>("scenes/" + folderName + "/enemies.json", EnemyDataStore.class);
         List<EnemyDataStore> enemyDataList = enemyData.load();
 
         EnemyFactory enemy = new EnemyFactory(player, rectangleFactory);

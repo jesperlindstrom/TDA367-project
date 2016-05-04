@@ -1,10 +1,10 @@
-package se.chalmers.get_rect.game.gui;
+package se.chalmers.get_rect.game.window;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 
-public class AbstractGridWindow implements IWindow {
+public abstract class AbstractGridWindow implements IWindowController {
     private IController controller;
     private IView view;
 
@@ -31,12 +31,12 @@ public class AbstractGridWindow implements IWindow {
     }
 
     @Override
-    public void enteringState(String previousStateName) {
+    public void enteringState(Integer previousStateName) {
 
     }
 
     @Override
-    public void leavingState(String nextStateName) {
+    public void leavingState(Integer nextStateName) {
 
     }
 }

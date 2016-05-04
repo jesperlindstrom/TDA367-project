@@ -13,10 +13,16 @@ public class PlayerHealthbarView extends AbstractView{
     private final String pathbackOverlay1 = "img/player/player-health-background.png";
     private final String pathCenterOverlay3 = "img/player/player-center-overlay.png";
     private final String pathHealthOverlay2 = "img/player/player-health-fill.png";
+    private static final int DRAW_PRIORITY = 30;
 
     public PlayerHealthbarView(Player player, CameraManager camera){
         this.player = player;
         this.camera = camera;
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 
     @Override

@@ -1,10 +1,10 @@
-package se.chalmers.get_rect.game.gui.mainMenu;
+package se.chalmers.get_rect.game.window.view;
 
-import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.gui.AbstractGridModel;
+import se.chalmers.get_rect.game.window.AbstractGridModel;
+import se.chalmers.get_rect.game.window.model.mainMenu;
 import se.chalmers.get_rect.utilities.Point;
 
 public class mainMenuView extends AbstractView {
@@ -14,10 +14,10 @@ public class mainMenuView extends AbstractView {
     private static final String IMG_PATH = "img/pauseMenu/";
     private static final int DRAW_PRIORITY = 7;
 
-    private ICameraAdapter camera;
+    private CameraManager camera;
     private AbstractGridModel model;
 
-    public mainMenuView(mainMenu model, ICameraAdapter camera) {
+    public mainMenuView(mainMenu model, CameraManager camera) {
         this.camera = camera;
         this.model = model;
     }
@@ -34,6 +34,7 @@ public class mainMenuView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+
         Point cameraPos = camera.getPosition();
 
         //Backgrounds
