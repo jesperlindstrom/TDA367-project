@@ -3,11 +3,11 @@ package se.chalmers.get_rect.game.window.window;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.window.IWindow;
+import se.chalmers.get_rect.game.window.IWindowController;
 import se.chalmers.get_rect.game.window.model.SplashModel;
 import se.chalmers.get_rect.game.window.view.SplashView;
 
-public class SplashWindow implements IWindow {
+public class SplashWindow implements IWindowController {
 
     private SplashModel model;
     private SplashView view;

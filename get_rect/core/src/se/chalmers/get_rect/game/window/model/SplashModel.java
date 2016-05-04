@@ -1,9 +1,8 @@
 package se.chalmers.get_rect.game.window.model;
 
-import se.chalmers.get_rect.GameConfig;
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.game.IScene;
-import se.chalmers.get_rect.game.window.IWindow;
+import se.chalmers.get_rect.game.window.IWindowController;
 import se.chalmers.get_rect.states.StateManager;
 
 import java.io.FileNotFoundException;
@@ -11,7 +10,7 @@ import java.io.FileNotFoundException;
 public class SplashModel{
 
     private IAssetManagerAdapter assetManager;
-    private StateManager<IWindow> windowManager;
+    private StateManager<IWindowController> windowManager;
     private boolean addedAssets = false;
     private double progressValue = 0.0;
     private boolean stop = false;
@@ -19,7 +18,7 @@ public class SplashModel{
     private int stopTimer = 0;
 
 
-    public SplashModel(IAssetManagerAdapter assetManager, StateManager<IWindow> windowManager) {
+    public SplashModel(IAssetManagerAdapter assetManager, StateManager<IWindowController> windowManager) {
         this.assetManager = assetManager;
         this.windowManager = windowManager;
     }

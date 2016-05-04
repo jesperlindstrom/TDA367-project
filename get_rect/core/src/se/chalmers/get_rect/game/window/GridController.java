@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.window;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.IController;
 
-public class GridController implements IController {
+public class GridController extends AbstractGridWindow implements IController {
     private IInputAdapter input;
     private AbstractGridModel model;
 

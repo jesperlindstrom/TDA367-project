@@ -138,7 +138,7 @@ public abstract class AbstractScene implements IScene {
         try {
             loadEntities(loader);
         } catch (FileNotFoundException e) {
-            // todo: handle error
+            // todo: handle error, window?
             System.out.println(e.getMessage());
         }
     }

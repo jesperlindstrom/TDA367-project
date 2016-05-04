@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game;
 
 import se.chalmers.get_rect.adapters.*;
-import se.chalmers.get_rect.game.window.IWindow;
+import se.chalmers.get_rect.game.window.IWindowController;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
@@ -10,7 +10,7 @@ public interface IGame {
     IAssetManagerAdapter getAssetManager();
     IRectangleFactoryAdapter getRectangleFactory();
     CameraManager getCameraManager();
-    StateManager<IWindow> getWindowManager();
+    StateManager<IWindowController> getWindowManager();
     StateManager<IScene> getSceneManager();
     void exit();
     void exitToMainMenu();

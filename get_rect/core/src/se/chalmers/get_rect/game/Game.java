@@ -1,16 +1,13 @@
-package se.chalmers.get_rect;
+package se.chalmers.get_rect.game;
 
 import se.chalmers.get_rect.adapters.*;
-import se.chalmers.get_rect.game.CameraManager;
-import se.chalmers.get_rect.game.IGame;
-import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
-import se.chalmers.get_rect.game.window.IWindow;
+import se.chalmers.get_rect.game.window.IWindowController;
 import se.chalmers.get_rect.game.window.window.SplashWindow;
 import se.chalmers.get_rect.game.window.window.inGameMenuWindow;
 import se.chalmers.get_rect.game.window.window.mainMenuWindow;
@@ -18,27 +15,17 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.*;
 
 public class Game implements IGame {
+
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
     private IAssetManagerAdapter assetManager;
     private IGameLoopAdapter gameLoop;
     private IRectangleFactoryAdapter rectangleFactory;
     private StateManager<IScene> sceneManager = new StateManager<>();
-    private StateManager<IWindow> windowManager = new StateManager<>();
+    private StateManager<IWindowController> windowManager = new StateManager<>();
     private PlayerController playerController;
     private CameraManager cameraManager;
     private boolean paused = true;
-
-    private static final int SPLASH = 11;
-    private static final int MAIN_MENU = 12;
-    private static final int GAME = 13;
-
-    private static final int NULL = 20;
-    private static final int HORSALSLANGAN = 21;
-    private static final int TEST = 22;
-
-
-    private static final int INGAME_MENU = 31;
 
     /**
      * Initialize a new RPG game
@@ -62,8 +49,9 @@ public class Game implements IGame {
         this.cameraManager = new CameraManager(cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT), player.getModel());
 
         addComponents(player); //todo: find a better name
+
         // Set the active state
-        windowManager.set(SPLASH);
+        windowManager.set(GameConfig.SPLASH);
     }
 
     /**
@@ -92,16 +80,16 @@ public class Game implements IGame {
 
     private void addComponents(IPhysicsEntity player) {
         // Register scenes
-        sceneManager.add(TEST, new TestScene(player, rectangleFactory, cameraManager, sceneManager));
-        sceneManager.add(HORSALSLANGAN, new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
-        sceneManager.add(NULL, null);
+        sceneManager.add(GameConfig.TEST, new TestScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add(GameConfig.HORSALSVAGEN, new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add(GameConfig.NULL, null);
 
-        windowManager.add(SPLASH, new SplashWindow(this));
-        windowManager.add(MAIN_MENU, new mainMenuWindow(this, cameraManager));
-        windowManager.add(INGAME_MENU, new inGameMenuWindow(this, input, cameraManager));
+        windowManager.add(GameConfig.SPLASH, new SplashWindow(this));
+        windowManager.add(GameConfig.MAIN_MENU, new mainMenuWindow(this, cameraManager));
+        windowManager.add(GameConfig.INGAME_MENU, new inGameMenuWindow(this, input, cameraManager));
     }
 
-    public StateManager<IWindow> getWindowManager() {
+    public StateManager<IWindowController> getWindowManager() {
         return windowManager;
     }
 
@@ -133,7 +121,7 @@ public class Game implements IGame {
             if (paused) {
                 resume();
             } else {
-                windowManager.set(INGAME_MENU);
+                windowManager.set(GameConfig.INGAME_MENU);
                 paused = true;
             }
         }
@@ -178,13 +166,13 @@ public class Game implements IGame {
     }
 
     public void exitToMainMenu() {
-        sceneManager.set(NULL);
-        windowManager.set(MAIN_MENU);
+        sceneManager.set(GameConfig.NULL);
+        windowManager.set(GameConfig.MAIN_MENU);
     }
 
     @Override
     public void load() {
-        sceneManager.set(HORSALSLANGAN);
+        sceneManager.set(GameConfig.HORSALSVAGEN);
         resume();
     }
 
@@ -200,7 +188,7 @@ public class Game implements IGame {
 
     @Override
     public void startNew() {
-        sceneManager.set(HORSALSLANGAN);
+        sceneManager.set(GameConfig.HORSALSVAGEN);
         resume();
     }
 

@@ -34,7 +34,7 @@ public class StateManager<V extends IState> {
 
         // Tell the current state it's being replaced
         if (oldState != null) {
-            getState().leavingState(oldState);
+            getState().leavingState(stateName);
         }
 
         // Change to the new state
