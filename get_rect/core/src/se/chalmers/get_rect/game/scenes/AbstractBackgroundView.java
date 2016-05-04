@@ -1,10 +1,9 @@
 package se.chalmers.get_rect.game.scenes;
 
-import se.chalmers.get_rect.GameConfig;
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractBackgroundView extends AbstractView {

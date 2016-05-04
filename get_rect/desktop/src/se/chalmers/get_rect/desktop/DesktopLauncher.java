@@ -2,7 +2,7 @@ package se.chalmers.get_rect.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import se.chalmers.get_rect.GameConfig;
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.GameLauncher;
 
 public class DesktopLauncher {

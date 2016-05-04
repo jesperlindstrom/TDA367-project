@@ -4,7 +4,7 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
 
-public abstract class AbstractGridWindow implements IWindow {
+public abstract class AbstractGridWindow implements IWindowController {
     private IController controller;
     private IView view;
 
