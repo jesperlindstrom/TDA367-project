@@ -29,7 +29,7 @@ public class StateManager<V extends IState> {
             throw new StateNotFoundException("Could not find a state with ID:" + stateName);
         }
 
-        // Integereep a copy of the previous state name
+        // Keep a copy of the previous state name
         Integer oldState = currentState;
 
         // Tell the current state it's being replaced
