@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.projectile;
 
+import com.google.inject.Inject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.EntityNotFoundException;
@@ -13,6 +14,7 @@ import se.chalmers.get_rect.utilities.Point;
 public class ProjectileFactory {
     private IRectangleFactoryAdapter rectangleFactory;
 
+    @Inject
     public ProjectileFactory(IRectangleFactoryAdapter rectangleFactory){
         this.rectangleFactory = rectangleFactory;
     }

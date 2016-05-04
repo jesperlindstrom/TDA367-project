@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game;
 
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
@@ -16,7 +17,6 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.*;
 
 public class Game implements IGame {
-
     private IGraphicsAdapter graphics;
     private IInputAdapter input;
     private IAssetManagerAdapter assetManager;
@@ -38,7 +38,9 @@ public class Game implements IGame {
      * @param rectangleFactory RectangleFactory adapter
      */
     @Inject
-    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IRectangleFactoryAdapter rectangleFactory, IGameLoopAdapter gameLoop) {
+    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IRectangleFactoryAdapter rectangleFactory, IGameLoopAdapter gameLoop, Injector injector) {
+        Injector gameInjector = injector.createChildInjector(new GameModule());
+
         // Store game engine adapters
         this.graphics = graphics;
         this.input = input;
@@ -70,14 +72,6 @@ public class Game implements IGame {
             windowManager.getState().draw(graphics);
         }
         graphics.end();
-    }
-
-    private IPhysicsEntity createPlayer(IRectangleFactoryAdapter rectangleFactory) {
-        playerController = new PlayerController(input);
-        ProjectileFactory projectileFactory = new ProjectileFactory(rectangleFactory);
-        PlayerFactory playerFactory = new PlayerFactory(playerController, rectangleFactory, projectileFactory);
-
-        return playerFactory.make();
     }
 
     private void addComponents(IPhysicsEntity player) {

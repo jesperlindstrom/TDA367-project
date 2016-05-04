@@ -25,11 +25,11 @@ public class Player extends AbstractCombatModel {
      * Initialize a new player with fixed position and 10 hp and level 1.
      * @param rectangleFactory
      */
-    public Player(IRectangleFactoryAdapter rectangleFactory) {
+    public Player(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
         setBoundingBox(getPosition(), WIDTH, HEIGHT);
 
-        projectileFactory = new ProjectileFactory(rectangleFactory);
+        this.projectileFactory = projectileFactory;
     }
 
     @Override

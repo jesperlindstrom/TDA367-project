@@ -7,8 +7,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 
 public class PlayerController implements IController {
-    private Player player;
     private IInputAdapter input;
+    private Player player;
 
 
     public PlayerController(IInputAdapter input) {
@@ -76,8 +76,7 @@ public class PlayerController implements IController {
         }
     }
 
-    public void setPlayer(Player player){
+    public void setPlayer(Player player) {
         this.player = player;
     }
-
 }
