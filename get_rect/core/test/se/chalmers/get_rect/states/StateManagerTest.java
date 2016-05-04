@@ -19,11 +19,11 @@ public class StateManagerTest {
         StateStub state2 = mock(StateStub.class);
         StateStub state3 = mock(StateStub.class);
 
-        stateManager.add("state1", state1);
-        stateManager.add("state2", state2);
-        stateManager.add("state3", state3);
+        stateManager.add(11, state1);
+        stateManager.add(12, state2);
+        stateManager.add(13, state3);
 
-        stateManager.set("state1");
+        stateManager.set(11);
 
         verify(state1, times(1)).enteringState(null);
         verify(state1, never()).leavingState(null);
@@ -36,26 +36,26 @@ public class StateManagerTest {
         StateStub state1 = mock(StateStub.class);
         StateStub state2 = mock(StateStub.class);
 
-        stateManager.add("state1", state1);
-        stateManager.add("state2", state2);
+        stateManager.add(11, state1);
+        stateManager.add(12, state2);
 
         verify(state1, never()).enteringState(null);
         verify(state1, never()).leavingState(null);
         verify(state2, never()).enteringState(null);
         verify(state2, never()).leavingState(null);
 
-        stateManager.set("state1");
+        stateManager.set(11);
 
         verify(state1, times(1)).enteringState(null);
         verify(state1, never()).leavingState(null);
         verify(state2, never()).enteringState(null);
         verify(state2, never()).leavingState(null);
 
-        stateManager.set("state2");
+        stateManager.set(12);
 
         verify(state1, times(1)).enteringState(null);
-        verify(state1, times(1)).leavingState("state2");
-        verify(state2, times(1)).enteringState("state1");
+        verify(state1, times(1)).leavingState(12);
+        verify(state2, times(1)).enteringState(11);
         verify(state2, never()).leavingState(null);
     }
 

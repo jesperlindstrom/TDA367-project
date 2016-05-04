@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.states;
 
 public interface IState {
-    void enteringState(String previousStateName);
-    void leavingState(String nextStateName);
+    void enteringState(Integer previousStateName);
+    void leavingState(Integer nextStateName);
 }

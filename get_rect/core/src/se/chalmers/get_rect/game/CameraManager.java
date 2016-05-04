@@ -119,4 +119,9 @@ public class CameraManager implements IGameComponent, ICamera {
     public Point getPosition() {
         return cameraPos.subtract((int)cameraAdapter.getWidth() / 2, (int)cameraAdapter.getHeight() / 2);
     }
+
+    public Point getAdapterPosition() {
+        return cameraAdapter.getPosition();
+    }
+
 }

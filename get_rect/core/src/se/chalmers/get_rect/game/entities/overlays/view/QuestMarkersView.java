@@ -10,7 +10,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class QuestMarkersView extends AbstractView {
     private NpcList npcList;
-    private static final int DRAW_PRIORITY = 5;
+    private static final int DRAW_PRIORITY = 55;
 
     public QuestMarkersView(NpcList npcList) {
         super();

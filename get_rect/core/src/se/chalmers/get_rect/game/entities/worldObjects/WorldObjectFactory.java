@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.game.entities.worldObjects;
 
+import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
+import se.chalmers.get_rect.game.entities.worldObjects.view.SandCastleView;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
@@ -25,12 +27,12 @@ public class WorldObjectFactory {
         Point pos = dataStore.getPosition();
         int width = dataStore.getWidth();
         int height = dataStore.getHeight();
-        String path = dataStore.getPath();
+        int path = dataStore.getPath();
 
         return make(type, pos, width, height, path);
     }
 
-    public IPhysicsEntity make(String type, Point point, int width, int height, String path) {
+    public IPhysicsEntity make(String type, Point point, int width, int height, int path) {
         if (type.equals("boundingBox"))
             return makeBoundingBox(point, width, height);
 
@@ -39,6 +41,9 @@ public class WorldObjectFactory {
 
         if (type.equals("door")){
             return makeDoor(point,width,height, path);
+        }
+        if (type.equals("sandCastle")){
+            return makeSandCastle(point);
         }
 
         throw new EntityNotFoundException("worldObject", type);
@@ -56,8 +61,14 @@ public class WorldObjectFactory {
         return new PhysicsEntity(model, view);
     }
 
-    private IPhysicsEntity makeDoor(Point point, int width, int height, String path){
+    private IPhysicsEntity makeDoor(Point point, int width, int height, int path){
         IPhysicsModel model = new Door(point,width,height, rectangleFactory, sceneManager, path);
         return new PhysicsEntity(model, null);
+    }
+    private IPhysicsEntity makeSandCastle(Point point) {
+        IPhysicsModel model = new SandCastle(point, rectangleFactory);
+        IView view = new SandCastleView(model);
+
+        return new PhysicsEntity(model, view);
     }
 }

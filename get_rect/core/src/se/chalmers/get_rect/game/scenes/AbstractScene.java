@@ -21,7 +21,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public abstract class AbstractScene implements IScene {
-    private String name;
+    private String folderName;
     private IPhysicsEntity playerEntity;
     private IRectangleFactoryAdapter rectangleFactory;
     private CameraManager camera;
@@ -34,13 +34,13 @@ public abstract class AbstractScene implements IScene {
 
     /**
      * Create a new scene
-     * @param name The scene name
+     * @param folderName The scenes folder name
      * @param playerEntity The player entity
      * @param rectangleFactory A rectangle factory
      * @param camera A camera manager
      */
-    protected AbstractScene(String name, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera, StateManager<IScene> sceneManager) {
-        this.name = name;
+    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, CameraManager camera, StateManager<IScene> sceneManager) {
+        this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
@@ -109,7 +109,7 @@ public abstract class AbstractScene implements IScene {
      * @param previousStateName The state we're coming from
      */
     @Override
-    public void enteringState(String previousStateName) {
+    public void enteringState(Integer previousStateName) {
         setupDone = false;
         setupEntities();
         setupPhysics();
@@ -125,7 +125,7 @@ public abstract class AbstractScene implements IScene {
      * @param nextStateName The state we're going into
      */
     @Override
-    public void leavingState(String nextStateName) {
+    public void leavingState(Integer nextStateName) {
 
     }
 
@@ -133,12 +133,12 @@ public abstract class AbstractScene implements IScene {
      * Load all entities from JSON data
      */
     protected void loadEntities() {
-        SceneLoader loader = new SceneLoader(name, playerEntity, rectangleFactory, sceneManager);
+        SceneLoader loader = new SceneLoader(folderName, playerEntity, rectangleFactory, sceneManager);
 
         try {
             loadEntities(loader);
         } catch (FileNotFoundException e) {
-            // todo: handle error
+            // todo: handle error, window?
             System.out.println(e.getMessage());
         }
     }
@@ -172,6 +172,11 @@ public abstract class AbstractScene implements IScene {
 
     public void add(IEntity entity) {
         additions.add(entity);
+    }
+
+    @Override
+    public void sortDrawList() {
+        views.sort(Comparator.comparing(IView::getDrawPriority));
     }
 
     private void processAdditions() {

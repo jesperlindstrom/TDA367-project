@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.entities.overlays.model;
 
-import se.chalmers.get_rect.GameConfig;
+import se.chalmers.get_rect.game.GameConfig;
 
 public class FrameRate {
     private int currentFPS;
