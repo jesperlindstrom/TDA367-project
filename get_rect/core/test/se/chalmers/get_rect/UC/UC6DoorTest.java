@@ -31,11 +31,11 @@ public class UC6DoorTest {
     public void setup(){
         stateManager = new StateManager<>();
         testScene = Mockito.mock(TestScene.class);
-        stateManager.add("test", testScene);
-        stateManager.add("horsalsvagen", Mockito.mock(HorsalsvagenScene.class));
+        stateManager.add(22, testScene);
+        stateManager.add(21, Mockito.mock(HorsalsvagenScene.class));
 
         RectangleFactoryAdapterStub rectangleFactoryAdapterStub = new RectangleFactoryAdapterStub();
-        door = new Door(new Point(0,0),100,100, rectangleFactoryAdapterStub , stateManager , "test" );
+        door = new Door(new Point(0,0),100,100, rectangleFactoryAdapterStub , stateManager , 22 );
         player = new Player(rectangleFactoryAdapterStub);
         playerSideData = new SideData();
         playerSideData.set(Side.LEFT);
