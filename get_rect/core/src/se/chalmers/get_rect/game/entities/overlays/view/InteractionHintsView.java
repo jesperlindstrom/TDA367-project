@@ -6,6 +6,7 @@ import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IInteractableModel;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 public class InteractionHintsView extends AbstractView {
@@ -25,6 +26,13 @@ public class InteractionHintsView extends AbstractView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         if (player.getCurrentNpc() == null)return;
-        graphics.draw("img/interact/e.png", new Point(player.getCurrentNpc().getPosition().add(20, 300)));
+        graphics.draw("img/interact/e.png", getUpperLeftCorner());
+    }
+
+    private Point getUpperLeftCorner() {
+        IRectangleAdapter boundingBox = player.getCurrentNpc().getBoundingBox();
+        Point point = new Point(boundingBox.getPosition());
+        point = point.add((int)boundingBox.getWidth()/2 - 40, (int)boundingBox.getHeight()); // -40 due to e.png's size
+        return point;
     }
 }
