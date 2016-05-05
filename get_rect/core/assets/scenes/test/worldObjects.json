@@ -3,7 +3,7 @@
     "type": "boundingBox",
     "x": 0,
     "y": 120,
-    "width": "3000",
+    "width": "6000",
     "height": "200"
   },
 
@@ -56,5 +56,14 @@
     "type": "trampoline",
     "x": 160,
     "y": 300
+  },
+
+  {
+    "type": "door",
+    "x": 200,
+    "y": 1050,
+    "width":300,
+    "height":150,
+    "path": 21
   }
 ]

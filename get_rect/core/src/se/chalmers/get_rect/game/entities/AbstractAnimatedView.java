@@ -5,9 +5,8 @@ import se.chalmers.get_rect.animation.AnimationCoordinator;
 import se.chalmers.get_rect.animation.Frame;
 import se.chalmers.get_rect.animation.FrameSequence;
 
-public abstract class AbstractAnimatedView implements IView {
+public abstract class AbstractAnimatedView extends AbstractView {
     private AnimationCoordinator animation;
-    private IModel model;
 
     /**
      * Create a new animated view
@@ -15,7 +14,7 @@ public abstract class AbstractAnimatedView implements IView {
      * @param defaultSequence The default sequence ID
      */
     protected AbstractAnimatedView(IModel model, int defaultSequence) {
-        this.model = model;
+        super(model);
         animation = new AnimationCoordinator(defaultSequence);
     }
 
@@ -49,7 +48,7 @@ public abstract class AbstractAnimatedView implements IView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        animation.draw(graphics, model.getPosition());
+        animation.draw(graphics, getModel().getPosition());
     }
 
     private FrameSequence getOrCreateSequence(int sequence) {

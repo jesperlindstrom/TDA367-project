@@ -3,7 +3,6 @@ package se.chalmers.get_rect.physics;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import se.chalmers.get_rect.adapters.IRectangleAdapter;
 import se.chalmers.get_rect.adapters.RectangleAdapterStub;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;

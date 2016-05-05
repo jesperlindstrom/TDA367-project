@@ -2,17 +2,16 @@ package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 
-public abstract class AbstractStaticView implements IView {
-    private IModel model;
+public abstract class AbstractStaticView extends AbstractView {
     private String image;
 
     protected AbstractStaticView(IModel model, String image) {
-        this.model = model;
+        super(model);
         this.image = image;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(image, model.getPosition());
+        graphics.draw(image, getModel().getPosition());
     }
 }

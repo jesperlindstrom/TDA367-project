@@ -21,6 +21,7 @@ public class PlayerController implements IController {
         handleShooting();
         handleJumping();
         handleInteract();
+        handleWeaponSwitch();
     }
 
     private void handleInteract(){
@@ -37,7 +38,7 @@ public class PlayerController implements IController {
         } else {
             player.stopMoving();
         }
-        if (input.isKeyJustPressed(IInputAdapter.Keys.Q)) {
+        if (input.isKeyJustPressed(IInputAdapter.Keys.H)) {
             player.flyHome();
         }
     }
@@ -67,6 +68,11 @@ public class PlayerController implements IController {
     private void handleJumping() {
         if(input.isKeyPressed(IInputAdapter.Keys.SPACE)){
             player.jump();
+        }
+    }
+    private void handleWeaponSwitch(){
+        if(input.isKeyJustPressed(IInputAdapter.Keys.Q)){
+            player.switchWeapon();
         }
     }
 

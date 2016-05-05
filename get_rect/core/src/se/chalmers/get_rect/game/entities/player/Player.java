@@ -1,11 +1,10 @@
 package se.chalmers.get_rect.game.entities.player;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractCombatModel;
+import se.chalmers.get_rect.game.entities.IInteractableModel;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
-import se.chalmers.get_rect.game.entities.npc.INpcModel;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
@@ -18,7 +17,9 @@ public class Player extends AbstractCombatModel {
     private boolean isWalking = false;
     private boolean canJump = true;
     private ProjectileFactory projectileFactory;
-    private INpcModel interactableNPC;
+    private int bulletSpeed = 200;//should be in projectile/weapon
+    private IInteractableModel interactableNPC;
+    private boolean isPrimaryWeapon = false;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -37,8 +38,8 @@ public class Player extends AbstractCombatModel {
             canJump = true;
         }
 
-        if (otherObject instanceof INpcModel){
-            interactableNPC = (INpcModel) otherObject;
+        if (otherObject instanceof IInteractableModel){
+            interactableNPC = (IInteractableModel) otherObject;
         } else {
             interactableNPC = null;
         }
@@ -52,9 +53,14 @@ public class Player extends AbstractCombatModel {
     }
 
     public void shoot(Point direction) {
-        int BULLET_SPEED = 200; // todo: belongs in a weapon
-        IPhysicsEntity projectile = projectileFactory.make("cluster", getPosition().addY(HEIGHT), direction.multiply(BULLET_SPEED));
-        getScene().addPhysicsEntity(IScene.layer.FOREGROUND_EFFECTS, projectile);
+        // todo: bulletSpeed belongs in a weapon
+        IPhysicsEntity projectile;
+        if(isPrimaryWeapon){
+            projectile = projectileFactory.make("melee", getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
+        }else {
+            projectile = projectileFactory.make("normal", getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
+        }
+        getScene().add(projectile);
     }
 
     public void moveLeft() {
@@ -92,10 +98,26 @@ public class Player extends AbstractCombatModel {
 
     @Override
     protected void die(){
-        System.out.println("Player died!");
+        System.out.println("you died");
     }
 
-    public INpcModel getCurrentNpc(){
+    public IInteractableModel getCurrentNpc(){
         return interactableNPC;
     }
+
+    public void switchWeapon() {
+
+        if (isPrimaryWeapon){
+            bulletSpeed = 200;
+            isPrimaryWeapon = false;
+        } else {
+            bulletSpeed = 20;
+            isPrimaryWeapon = true;
+        }
+    }
+
+    public boolean isPrimaryWeapon(){
+        return isPrimaryWeapon;
+    }
+
 }

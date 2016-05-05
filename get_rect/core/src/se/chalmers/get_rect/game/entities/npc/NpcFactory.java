@@ -1,12 +1,12 @@
 package se.chalmers.get_rect.game.entities.npc;
 
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.EntityNotFoundException;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.PhysicsEntity;
-import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillExpress;
-import se.chalmers.get_rect.game.entities.npc.sawmillExpress.SawmillView;
+import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
+import se.chalmers.get_rect.game.entities.npc.view.SawmillView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class NpcFactory {

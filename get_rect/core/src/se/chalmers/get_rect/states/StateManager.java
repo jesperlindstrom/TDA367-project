@@ -3,9 +3,9 @@ package se.chalmers.get_rect.states;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StateManager<T extends IState> {
-    private Map<String, T> states;
-    private String currentState;
+public class StateManager<V extends IState> {
+    private Map<Integer, V> states;
+    private Integer currentState;
 
     public StateManager() {
         this.states = new HashMap<>();
@@ -16,7 +16,7 @@ public class StateManager<T extends IState> {
      * @param key The state name
      * @param state The state
      */
-    public void add(String key, T state) {
+    public void add(Integer key, V state) {
         states.put(key, state);
     }
 
@@ -24,13 +24,13 @@ public class StateManager<T extends IState> {
      * Switch to another state
      * @param stateName The state name
      */
-    public void set(String stateName) {
+    public void set(Integer stateName) {
         if (!states.containsKey(stateName)) {
-            throw new StateNotFoundException(stateName);
+            throw new StateNotFoundException("Could not find a state with ID:" + stateName);
         }
 
         // Keep a copy of the previous state name
-        String oldState = currentState;
+        Integer oldState = currentState;
 
         // Tell the current state it's being replaced
         if (oldState != null) {
@@ -48,7 +48,7 @@ public class StateManager<T extends IState> {
      * Get the current state
      * @return The currently active IState
      */
-    public T getState() {
+    public V getState() {
         return states.get(currentState);
     }
 }

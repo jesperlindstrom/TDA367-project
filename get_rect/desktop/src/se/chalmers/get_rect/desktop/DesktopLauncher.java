@@ -2,8 +2,8 @@ package se.chalmers.get_rect.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import se.chalmers.get_rect.GameConfig;
-import se.chalmers.get_rect.adapters.libGDX.LibGDXGameLoopAdapter;
+import se.chalmers.get_rect.game.GameConfig;
+import se.chalmers.get_rect.GameLauncher;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -12,6 +12,6 @@ public class DesktopLauncher {
 		config.height = GameConfig.SCREEN_HEIGHT;
 		config.fullscreen = GameConfig.FULLSCREEN;
 		config.title = "get_rect()";
-		new LwjglApplication(new LibGDXGameLoopAdapter(), config);
+		new LwjglApplication(new GameLauncher(), config);
 	}
 }

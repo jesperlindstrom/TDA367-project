@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.io;
 
-import se.chalmers.get_rect.io.json.JsonIOStrategy;
+import se.chalmers.get_rect.io.strategies.json.JsonIOStrategy;
+import se.chalmers.get_rect.io.strategies.IOStrategy;
 
 import java.io.FileNotFoundException;
 import java.util.List;

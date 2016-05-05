@@ -21,5 +21,19 @@
     "y": 1200,
     "width": 300,
     "height": 1000
+  },
+
+  {
+    "type": "door",
+    "x":3300,
+    "y":640,
+    "width": 178,
+    "height": 300,
+    "path": 22
+  },
+  {
+    "type": "sandCastle",
+    "x":4435,
+    "y":550
   }
 ]

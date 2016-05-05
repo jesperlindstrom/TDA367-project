@@ -3,7 +3,7 @@ package se.chalmers.get_rect.UC;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import se.chalmers.get_rect.adapters.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.player.Player;
 
