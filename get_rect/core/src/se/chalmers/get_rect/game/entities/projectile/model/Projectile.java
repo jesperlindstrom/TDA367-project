@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities.projectile.model;
 
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
@@ -28,7 +27,7 @@ public class Projectile extends AbstractPhysicsModel {
             setVelocity(getVelocity().addX(friction));
         }
 
-        if (otherObject instanceof ICombatModel && !(otherObject instanceof Player)) {
+        if (otherObject instanceof ICombatModel && !otherObject.equals(owner)) {
             setShouldBeRemoved();
             otherObject.setPosition(otherObject.getPosition().addY(30));
             otherObject.setVelocity(getVelocity().multiply(0.1));

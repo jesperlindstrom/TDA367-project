@@ -1,15 +1,15 @@
 package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractView;
+import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 
 public class PlayerWeaponSlotsView extends AbstractView {
 
     private Player player;
-    private CameraManager camera;
+    private ICamera camera;
     private final String pathItemSlot= "img/pauseMenu/inventory/item_slot.png";
     private final String pathItemPHPrimary = "img/pauseMenu/inventory/placeholder_primary.png";
     private final String pathItemPHSecondary = "img/pauseMenu/inventory/placeholder_secondary.png";
@@ -17,7 +17,7 @@ public class PlayerWeaponSlotsView extends AbstractView {
     private static final int DRAW_PRIORITY = 60;
 
 
-    public PlayerWeaponSlotsView(Player player, CameraManager camera){
+    public PlayerWeaponSlotsView(Player player, ICamera camera){
         this.player = player;
         this.camera = camera;
     }

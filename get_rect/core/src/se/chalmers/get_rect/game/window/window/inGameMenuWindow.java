@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.window.window;
 
 import se.chalmers.get_rect.adapters.IInputAdapter;
-import se.chalmers.get_rect.game.camera.CameraManager;
+import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.game.window.AbstractGridWindow;
 import se.chalmers.get_rect.game.window.GridController;
@@ -12,7 +12,7 @@ import se.chalmers.get_rect.utilities.Point;
 public class inGameMenuWindow extends AbstractGridWindow {
     private inGameMenu model;
 
-    public inGameMenuWindow(IGame game, IInputAdapter input, CameraManager camera) {
+    public inGameMenuWindow(IGame game, IInputAdapter input, EntityCamera camera) {
         super();
         this.model = new inGameMenu(game);
         setView(new inGameMenuView(camera, model));

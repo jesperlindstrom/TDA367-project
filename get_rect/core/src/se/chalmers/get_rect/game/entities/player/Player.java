@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import se.chalmers.get_rect.game.entities.IInteractorModel;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.IInteractableModel;
@@ -9,7 +10,7 @@ import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Player extends AbstractCombatModel {
+public class Player extends AbstractCombatModel implements IInteractorModel {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 80;
     private static final int JUMP_SPEED = 90;
@@ -86,6 +87,7 @@ public class Player extends AbstractCombatModel {
         return canJump;
     }
 
+    @Override
     public void interact(){
         if(interactableNPC != null){
             interactableNPC.onInteract(this);
