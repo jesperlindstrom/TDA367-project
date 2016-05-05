@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.EntityCamera;
+import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
@@ -32,7 +33,7 @@ public class Game implements IGame {
 
 
     @Inject
-    public Game(ICameraFactoryAdapter cameraFactory, IGraphicsAdapter graphics, Injector injector, StateManager<IScene> sceneManager, StateManager<IWindowController> windowManager, IInputAdapter input, IGameLoopAdapter gameLoop, IAssetManagerAdapter assetManager, IRectangleFactoryAdapter rectangleFactory) {
+    public Game(IGraphicsAdapter graphics, Injector rootInjector, StateManager<IScene> sceneManager, StateManager<IWindowController> windowManager, IInputAdapter input, IGameLoopAdapter gameLoop, IAssetManagerAdapter assetManager, IRectangleFactoryAdapter rectangleFactory) {
         this.gameLoop = gameLoop;
         this.graphics = graphics;
         this.sceneManager = sceneManager;
@@ -45,7 +46,8 @@ public class Game implements IGame {
         playerController = injector.getInstance(PlayerController.class);
         IPhysicsEntity player = playerFactory.make(playerController);
 
-        this.injector = injector.createChildInjector(new GameModule(player));
+        injector = rootInjector.createChildInjector(new GameModule(player));
+        cameraManager = (EntityCamera) injector.getInstance(ICamera.class);
 
         addComponents(); //todo: find a better name
 
