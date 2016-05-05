@@ -2,8 +2,7 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.CameraManager;
-import se.chalmers.get_rect.game.IScene;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.OverlayFactory;
 import se.chalmers.get_rect.game.entities.player.Player;
@@ -114,7 +113,7 @@ public abstract class AbstractScene implements IScene {
         setupEntities();
         setupPhysics();
         setupOverlays();
-        views.sort(Comparator.comparing(IView::getDrawPriority));
+        sortViewsByDrawOrder();
         additions = new LinkedList<>();
         setupDone = true;
 
@@ -174,8 +173,7 @@ public abstract class AbstractScene implements IScene {
         additions.add(entity);
     }
 
-    @Override
-    public void sortDrawList() {
+    private void sortViewsByDrawOrder() {
         views.sort(Comparator.comparing(IView::getDrawPriority));
     }
 
@@ -184,7 +182,6 @@ public abstract class AbstractScene implements IScene {
             addEntity(additions.poll());
         }
     }
-
 
     protected void addEntity(IEntity entity) {
         IModel model = entity.getModel();
@@ -204,7 +201,7 @@ public abstract class AbstractScene implements IScene {
         }
 
         if (setupDone) {
-            views.sort(Comparator.comparing(IView::getDrawPriority));
+            sortViewsByDrawOrder();
         }
     }
 }

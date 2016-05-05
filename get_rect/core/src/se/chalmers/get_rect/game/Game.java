@@ -1,10 +1,12 @@
 package se.chalmers.get_rect.game;
 
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.game.window.IWindowController;

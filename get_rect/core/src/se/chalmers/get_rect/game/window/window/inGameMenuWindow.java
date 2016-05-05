@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.window.window;
 
 import se.chalmers.get_rect.adapters.IInputAdapter;
-import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.game.window.AbstractGridWindow;
 import se.chalmers.get_rect.game.window.GridController;

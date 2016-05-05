@@ -1,10 +1,10 @@
 package se.chalmers.get_rect.game.scenes.test;
 
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.scenes.AbstractScene;
-import se.chalmers.get_rect.game.IScene;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.states.StateManager;
 
 public class TestScene extends AbstractScene {

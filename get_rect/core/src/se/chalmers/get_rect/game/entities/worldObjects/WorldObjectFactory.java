@@ -8,16 +8,17 @@ import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
 import se.chalmers.get_rect.game.entities.worldObjects.model.Door;
 import se.chalmers.get_rect.game.entities.worldObjects.model.Trampoline;
 import se.chalmers.get_rect.game.entities.worldObjects.view.TrampolineView;
-import se.chalmers.get_rect.game.IScene;
+import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.states.IState;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 public class WorldObjectFactory {
 
     private IRectangleFactoryAdapter rectangleFactory;
-    private StateManager<IScene> sceneManager;
+    private StateManager<? extends IState> sceneManager;
 
-    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> sceneManager) {
+    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory, StateManager<? extends IState> sceneManager) {
         this.rectangleFactory = rectangleFactory;
         this.sceneManager = sceneManager;
     }

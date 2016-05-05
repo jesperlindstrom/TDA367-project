@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.io;
+package se.chalmers.get_rect.io.strategies;
 
 import java.io.FileNotFoundException;
 import java.util.List;

@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.game.entities.overlays;
 
-import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
 import se.chalmers.get_rect.game.entities.overlays.view.*;

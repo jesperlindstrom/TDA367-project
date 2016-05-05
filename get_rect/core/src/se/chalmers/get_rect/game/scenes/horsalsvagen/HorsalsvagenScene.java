@@ -1,12 +1,12 @@
 package se.chalmers.get_rect.game.scenes.horsalsvagen;
 
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.scenes.AbstractScene;
-import se.chalmers.get_rect.game.IScene;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.states.StateManager;
 
 public class HorsalsvagenScene extends AbstractScene {

@@ -1,9 +1,8 @@
 package se.chalmers.get_rect.game.entities.overlays.model;
 
-import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.overlays.model.FrameRate;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 

@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.window.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.camera.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.window.AbstractGridModel;
 import se.chalmers.get_rect.game.window.model.mainMenu;
