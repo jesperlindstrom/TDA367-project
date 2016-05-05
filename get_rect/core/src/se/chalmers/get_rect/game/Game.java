@@ -2,6 +2,8 @@ package se.chalmers.get_rect.game;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.TypeLiteral;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.ICamera;
@@ -33,21 +35,24 @@ public class Game implements IGame {
 
 
     @Inject
-    public Game(IGraphicsAdapter graphics, Injector rootInjector, StateManager<IScene> sceneManager, StateManager<IWindowController> windowManager, IInputAdapter input, IGameLoopAdapter gameLoop, IAssetManagerAdapter assetManager, IRectangleFactoryAdapter rectangleFactory) {
+    public Game(Injector rootInjector, IGraphicsAdapter graphics, IInputAdapter input, IGameLoopAdapter gameLoop, IAssetManagerAdapter assetManager, IRectangleFactoryAdapter rectangleFactory, ICameraFactoryAdapter cameraFactory) {
         this.gameLoop = gameLoop;
         this.graphics = graphics;
-        this.sceneManager = sceneManager;
-        this.windowManager = windowManager;
         this.assetManager = assetManager;
         this.input = input;
         this.rectangleFactory = rectangleFactory;
 
-        PlayerFactory playerFactory = injector.getInstance(PlayerFactory.class);
-        playerController = injector.getInstance(PlayerController.class);
+        PlayerFactory playerFactory = rootInjector.getInstance(PlayerFactory.class);
+        playerController = rootInjector.getInstance(PlayerController.class);
         IPhysicsEntity player = playerFactory.make(playerController);
 
-        injector = rootInjector.createChildInjector(new GameModule(player));
-        cameraManager = (EntityCamera) injector.getInstance(ICamera.class);
+        cameraManager = new EntityCamera(cameraFactory, player.getModel());
+        injector = rootInjector.createChildInjector(new GameModule(player, cameraManager));
+
+        // StateManager<IScene> sceneManager, StateManager<IWindowController> windowManager
+        // todo: retrieve above via injector
+        sceneManager = injector.getInstance(Key.get(new TypeLiteral<StateManager<IScene>>() {}));
+        windowManager = injector.getInstance(Key.get(new TypeLiteral<StateManager<IWindowController>>() {}));
 
         addComponents(); //todo: find a better name
 

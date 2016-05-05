@@ -26,5 +26,5 @@ public class GameConfig {
     public static final boolean DRAW_BOUNDING_BOXES = false;
 
     // Misc.
-    public static final boolean SPLASH_SCREEN_TROLL = true;
+    public static final boolean SPLASH_SCREEN_TROLL = false;
 }

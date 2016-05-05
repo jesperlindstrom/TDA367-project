@@ -17,6 +17,7 @@ public class PlayerFactory {
     @Inject
     public PlayerFactory(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory) {
         this.rectangleFactory = rectangleFactory;
+        this.projectileFactory = projectileFactory;
     }
 
     /**

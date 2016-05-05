@@ -13,16 +13,18 @@ import se.chalmers.get_rect.states.StateManager;
 
 public class GameModule extends AbstractModule {
     private IPhysicsEntity playerEntity;
+    private ICamera camera;
 
-    public GameModule(IPhysicsEntity playerEntity) {
+    public GameModule(IPhysicsEntity playerEntity, ICamera camera) {
         this.playerEntity = playerEntity;
+        this.camera = camera;
     }
 
     @Override
     protected void configure() {
         bind(IPhysicsEntity.class).annotatedWith(Names.named("Player")).toInstance(playerEntity);
         bind(IPhysicsModel.class).annotatedWith(Names.named("Player")).toInstance(playerEntity.getModel());
-        bind(ICamera.class).to(EntityCamera.class);
+        bind(ICamera.class).toInstance(camera);
         bind(new TypeLiteral<StateManager<IScene>>() {}).toInstance(new StateManager<>());
         bind(new TypeLiteral<StateManager<IWindowController>>() {}).toInstance(new StateManager<>());
     }
