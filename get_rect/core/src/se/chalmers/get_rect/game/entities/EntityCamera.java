@@ -1,9 +1,13 @@
 package se.chalmers.get_rect.game.entities;
 
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
+import se.chalmers.get_rect.adapters.ICameraFactoryAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -15,8 +19,9 @@ public class EntityCamera implements IGameComponent, ICamera {
     private IPhysicsModel model;
     private Point cameraPos;
 
-    public EntityCamera(ICameraAdapter cameraAdapter, IPhysicsModel model){
-        this.cameraAdapter = cameraAdapter;
+    @Inject
+    public EntityCamera(ICameraFactoryAdapter cameraFactory, @Named("Player") IPhysicsModel model){
+        this.cameraAdapter = cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
         this.model = model;
         cameraPos = new Point(0, 0);
     }

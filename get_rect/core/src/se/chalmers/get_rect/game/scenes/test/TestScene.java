@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.game.scenes.test;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.*;
@@ -8,7 +10,8 @@ import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.states.StateManager;
 
 public class TestScene extends AbstractScene {
-    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, EntityCamera camera, StateManager<IScene> sceneManager) {
+    @Inject
+    public TestScene(@Named("Player") IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, EntityCamera camera, StateManager<IScene> sceneManager) {
         super("test", playerEntity, rectangleFactory, camera, sceneManager);
     }
 

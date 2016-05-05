@@ -7,7 +7,6 @@ import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
-import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
@@ -19,42 +18,36 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.*;
 
 public class Game implements IGame {
-    private IGraphicsAdapter graphics;
-    private IInputAdapter input;
-    private IAssetManagerAdapter assetManager;
-    private IGameLoopAdapter gameLoop;
-    private IRectangleFactoryAdapter rectangleFactory;
-    private StateManager<IScene> sceneManager = new StateManager<>();
-    private StateManager<IWindowController> windowManager = new StateManager<>();
+    private Injector injector;
+    private StateManager<IScene> sceneManager;
+    private StateManager<IWindowController> windowManager;
     private PlayerController playerController;
     private EntityCamera cameraManager;
+    private IGraphicsAdapter graphics;
+    private IInputAdapter input;
+    private IGameLoopAdapter gameLoop;
+    private IAssetManagerAdapter assetManager;
+    private IRectangleFactoryAdapter rectangleFactory;
     private boolean paused = true;
 
-    /**
-     * Initialize a new RPG game
-     * @param graphics Graphics adapter
-     * @param input Input adapter
-     * @param assetManager AssetManager adapter
-     * @param cameraFactory CameraFactory adapter
-     * @param gameLoop GameLoop adapter
-     * @param rectangleFactory RectangleFactory adapter
-     */
-    @Inject
-    public Game(IGraphicsAdapter graphics, IInputAdapter input, IAssetManagerAdapter assetManager, ICameraFactoryAdapter cameraFactory, IRectangleFactoryAdapter rectangleFactory, IGameLoopAdapter gameLoop, Injector injector) {
-        Injector gameInjector = injector.createChildInjector(new GameModule());
 
-        // Store game engine adapters
-        this.graphics = graphics;
-        this.input = input;
-        this.assetManager = assetManager;
+    @Inject
+    public Game(ICameraFactoryAdapter cameraFactory, IGraphicsAdapter graphics, Injector injector, StateManager<IScene> sceneManager, StateManager<IWindowController> windowManager, IInputAdapter input, IGameLoopAdapter gameLoop, IAssetManagerAdapter assetManager, IRectangleFactoryAdapter rectangleFactory) {
         this.gameLoop = gameLoop;
+        this.graphics = graphics;
+        this.sceneManager = sceneManager;
+        this.windowManager = windowManager;
+        this.assetManager = assetManager;
+        this.input = input;
         this.rectangleFactory = rectangleFactory;
 
-        IPhysicsEntity player = createPlayer(rectangleFactory);
+        PlayerFactory playerFactory = injector.getInstance(PlayerFactory.class);
+        playerController = injector.getInstance(PlayerController.class);
+        IPhysicsEntity player = playerFactory.make(playerController);
 
-        this.cameraManager = new EntityCamera(cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT), player.getModel());
+        this.injector = injector.createChildInjector(new GameModule(player));
 
-        addComponents(player); //todo: find a better name
+        addComponents(); //todo: find a better name
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
@@ -76,10 +69,11 @@ public class Game implements IGame {
         graphics.end();
     }
 
-    private void addComponents(IPhysicsEntity player) {
+    private void addComponents() {
         // Register scenes
-        sceneManager.add(GameConfig.TEST, new TestScene(player, rectangleFactory, cameraManager, sceneManager));
-        sceneManager.add(GameConfig.HORSALSVAGEN, new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add(GameConfig.TEST, injector.getInstance(TestScene.class));
+        sceneManager.add(GameConfig.HORSALSVAGEN, injector.getInstance(HorsalsvagenScene.class));
+        // todo: this is bad and Sune should feel bad
         sceneManager.add(GameConfig.NULL, null);
 
         windowManager.add(GameConfig.SPLASH, new SplashWindow(this));

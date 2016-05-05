@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.player;
 
+import com.google.inject.Inject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
@@ -13,9 +14,9 @@ public class PlayerFactory {
      * Initialize a new player factory.
      * @param game
      */
+    @Inject
     public PlayerFactory(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory) {
         this.rectangleFactory = rectangleFactory;
-        this.projectileFactory = projectileFactory;
     }
 
     /**
@@ -24,8 +25,9 @@ public class PlayerFactory {
      */
     public PhysicsEntity make(PlayerController controller) {
         Player model = new Player(rectangleFactory, projectileFactory);
-        controller.setPlayer(model);
         IView view = new PlayerView(model);
+
+        controller.setPlayer(model);
 
         return new PhysicsEntity(model,view);
     }
