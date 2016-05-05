@@ -9,8 +9,8 @@ import se.chalmers.get_rect.game.entities.npc.NpcDataStore;
 import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectDataStore;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectFactory;
-import se.chalmers.get_rect.game.IScene;
 import se.chalmers.get_rect.io.IOFacade;
+import se.chalmers.get_rect.states.IState;
 import se.chalmers.get_rect.states.StateManager;
 
 import java.io.FileNotFoundException;
@@ -21,9 +21,9 @@ public class SceneLoader {
     private String folderName;
     private IPhysicsModel player;
     private IRectangleFactoryAdapter rectangleFactory;
-    private StateManager<IScene> stateManager;
+    private StateManager<? extends IState> stateManager;
 
-    public SceneLoader(String folderName, IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> stateManager) {
+    public SceneLoader(String folderName, IPhysicsEntity player, IRectangleFactoryAdapter rectangleFactory, StateManager<? extends IState> stateManager) {
         this.folderName = folderName;
         this.player = player.getModel();
         this.rectangleFactory = rectangleFactory;

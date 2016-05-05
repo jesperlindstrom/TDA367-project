@@ -1,21 +1,20 @@
 package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.AbstractView;
+import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 
-public class PlayerHealthbarView extends AbstractView{
-
+public class PlayerHealthbarView extends AbstractView {
     private Player player;
-    private CameraManager camera;
+    private ICamera camera;
     private final String pathbackOverlay1 = "img/player/player-health-background.png";
     private final String pathCenterOverlay3 = "img/player/player-center-overlay.png";
     private final String pathHealthOverlay2 = "img/player/player-health-fill.png";
     private static final int DRAW_PRIORITY = 30;
 
-    public PlayerHealthbarView(Player player, CameraManager camera){
+    public PlayerHealthbarView(Player player, ICamera camera){
         this.player = player;
         this.camera = camera;
     }

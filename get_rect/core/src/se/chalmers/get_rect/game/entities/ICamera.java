@@ -4,4 +4,5 @@ import se.chalmers.get_rect.utilities.Point;
 
 public interface ICamera {
     Point getPosition();
+    void snapToPosition(Point pos);
 }

@@ -4,13 +4,13 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IInteractableModel;
 import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.IScene;
+import se.chalmers.get_rect.states.IState;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Door extends AbstractPhysicsModel implements IInteractableModel {
 
-    private StateManager<IScene> sceneManager;
+    private StateManager<? extends IState> sceneManager;
     private int doorPath;
 
     /**
@@ -20,7 +20,7 @@ public class Door extends AbstractPhysicsModel implements IInteractableModel {
      * @param height The boundingBox height
      * @param factory Factory needed to create a boundingBox for the boundingBox
      */
-    public Door(Point position, int width, int height, IRectangleFactoryAdapter factory, StateManager<IScene> sceneManager, int doorPath) {
+    public Door(Point position, int width, int height, IRectangleFactoryAdapter factory, StateManager<? extends IState> sceneManager, int doorPath) {
         super(position.addY((-height)), new Point(0, 0), true, factory);
         setBoundingBox(getPosition(), width, height);
         this.sceneManager = sceneManager;

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.IScene;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.worldObjects.model.Door;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;

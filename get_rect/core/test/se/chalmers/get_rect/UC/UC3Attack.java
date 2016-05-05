@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
-import se.chalmers.get_rect.game.IScene;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.scenes.test.TestScene;

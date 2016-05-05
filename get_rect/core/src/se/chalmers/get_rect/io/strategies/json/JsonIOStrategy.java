@@ -1,14 +1,9 @@
-package se.chalmers.get_rect.io.json;
+package se.chalmers.get_rect.io.strategies.json;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import se.chalmers.get_rect.io.IOStrategy;
+import se.chalmers.get_rect.io.strategies.IOStrategy;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 public class JsonIOStrategy<T> implements IOStrategy<T> {

@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.window.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.CameraManager;
+import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.window.AbstractGridModel;
 import se.chalmers.get_rect.game.window.model.mainMenu;
@@ -14,10 +14,10 @@ public class mainMenuView extends AbstractView {
     private static final String IMG_PATH = "img/pauseMenu/";
     private static final int DRAW_PRIORITY = 7;
 
-    private CameraManager camera;
+    private EntityCamera camera;
     private AbstractGridModel model;
 
-    public mainMenuView(mainMenu model, CameraManager camera) {
+    public mainMenuView(mainMenu model, EntityCamera camera) {
         this.camera = camera;
         this.model = model;
     }

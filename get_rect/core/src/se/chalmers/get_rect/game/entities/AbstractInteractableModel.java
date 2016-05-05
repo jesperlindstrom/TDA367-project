@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
@@ -43,7 +42,7 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
 
     @Override
     public void onCollision(IPhysicsObject otherObject, SideData data, boolean isSolid) {
-        if (otherObject instanceof Player) {
+        if (otherObject instanceof IInteractorModel) {
             model = (IModel) otherObject;
         }
     }

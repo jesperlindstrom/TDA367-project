@@ -3,10 +3,12 @@ package se.chalmers.get_rect.game;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.game.window.IWindowController;
@@ -25,7 +27,7 @@ public class Game implements IGame {
     private StateManager<IScene> sceneManager = new StateManager<>();
     private StateManager<IWindowController> windowManager = new StateManager<>();
     private PlayerController playerController;
-    private CameraManager cameraManager;
+    private EntityCamera cameraManager;
     private boolean paused = true;
 
     /**
@@ -50,7 +52,7 @@ public class Game implements IGame {
 
         IPhysicsEntity player = createPlayer(rectangleFactory);
 
-        this.cameraManager = new CameraManager(cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT), player.getModel());
+        this.cameraManager = new EntityCamera(cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT), player.getModel());
 
         addComponents(player); //todo: find a better name
 
@@ -151,7 +153,7 @@ public class Game implements IGame {
     }
 
     @Override
-    public CameraManager getCameraManager() {
+    public EntityCamera getCameraManager() {
         return cameraManager;
     }
 

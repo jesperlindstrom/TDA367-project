@@ -2,7 +2,7 @@ package se.chalmers.get_rect.game.entities.overlays.model;
 
 import se.chalmers.get_rect.game.entities.AbstractModel;
 import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.entities.npc.INpcModel;
+import se.chalmers.get_rect.game.entities.npc.model.INpcModel;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.List;

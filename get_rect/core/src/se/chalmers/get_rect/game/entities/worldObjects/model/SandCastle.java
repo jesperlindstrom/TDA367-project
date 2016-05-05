@@ -10,7 +10,7 @@ public class SandCastle extends AbstractInteractableModel {
 
     public SandCastle(Point position, IRectangleFactoryAdapter factory) {
         super(position, new Point(0,0), false, factory);
-        setBoundingBox(getPosition(), 100, 100);
+        setBoundingBox(getPosition().addX(40), 100, 100);
     }
 
     @Override

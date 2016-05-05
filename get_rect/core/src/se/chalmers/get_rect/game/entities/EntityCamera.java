@@ -1,14 +1,13 @@
-package se.chalmers.get_rect.game;
+package se.chalmers.get_rect.game.entities;
 
 
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 
-import se.chalmers.get_rect.game.entities.ICamera;
-import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.utilities.Point;
 
-public class CameraManager implements IGameComponent, ICamera {
+public class EntityCamera implements IGameComponent, ICamera {
     private static final int FOLLOW_SPEED = 50;
     private static final int SPAN_X = 350;
     private static final int SPAN_Y = 200;
@@ -16,10 +15,20 @@ public class CameraManager implements IGameComponent, ICamera {
     private IPhysicsModel model;
     private Point cameraPos;
 
-    public CameraManager(ICameraAdapter cameraAdapter, IPhysicsModel model){
+    public EntityCamera(ICameraAdapter cameraAdapter, IPhysicsModel model){
         this.cameraAdapter = cameraAdapter;
         this.model = model;
         cameraPos = new Point(0, 0);
+    }
+
+    @Override
+    public void draw(IGraphicsAdapter graphics) {
+        cameraAdapter.draw(graphics);
+    }
+
+    @Override
+    public Point getPosition() {
+        return cameraPos.subtract((int)cameraAdapter.getWidth() / 2, (int)cameraAdapter.getHeight() / 2);
     }
 
     @Override
@@ -34,6 +43,17 @@ public class CameraManager implements IGameComponent, ICamera {
         }
 
         cameraAdapter.update(delta);
+    }
+
+    /**
+     * This will instantly put the camera at the position
+     * @param newPosition
+     */
+    @Override
+    public void snapToPosition(Point newPosition) {
+        Point difference = newPosition.subtract(cameraPos);
+        cameraAdapter.translate(difference);
+        cameraPos = cameraPos.add(difference);
     }
 
     private boolean isOutOfBounds(Point pos) {
@@ -58,16 +78,6 @@ public class CameraManager implements IGameComponent, ICamera {
 
         int cameraVelY = velocityToDelta(vel.getY(), delta);
         move(cameraPos.deltaY(pos), SPAN_Y, new Point(0, cameraVelY));
-    }
-
-    /**
-     * This will instantly put the camera at the position
-     * @param newPosition
-     */
-    public void snapToPosition(Point newPosition) {
-        Point difference = newPosition.subtract(cameraPos);
-        cameraAdapter.translate(difference);
-        cameraPos = cameraPos.add(difference);
     }
 
     /**
@@ -111,17 +121,4 @@ public class CameraManager implements IGameComponent, ICamera {
         cameraAdapter.translate(velocity);
         cameraPos = cameraPos.add(velocity);
     }
-
-    public void draw(IGraphicsAdapter graphics) {
-        cameraAdapter.draw(graphics);
-    }
-
-    public Point getPosition() {
-        return cameraPos.subtract((int)cameraAdapter.getWidth() / 2, (int)cameraAdapter.getHeight() / 2);
-    }
-
-    public Point getAdapterPosition() {
-        return cameraAdapter.getPosition();
-    }
-
 }

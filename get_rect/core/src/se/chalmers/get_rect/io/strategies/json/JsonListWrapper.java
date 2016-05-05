@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.io.json;
+package se.chalmers.get_rect.io.strategies.json;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

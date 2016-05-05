@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.entities.overlays;
 
-import se.chalmers.get_rect.game.CameraManager;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
 import se.chalmers.get_rect.game.entities.overlays.view.*;
@@ -14,10 +13,10 @@ import java.util.List;
 public class OverlayFactory {
     private List<IModel> models;
     private Player player;
-    private CameraManager camera;
+    private ICamera camera;
     private IPhysicsEngine physics;
 
-    public OverlayFactory(List<IModel> models, Player player, CameraManager camera, IPhysicsEngine physics) {
+    public OverlayFactory(List<IModel> models, Player player, ICamera camera, IPhysicsEngine physics) {
         this.models = models;
         this.player = player;
         this.camera = camera;
