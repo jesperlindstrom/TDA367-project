@@ -16,8 +16,6 @@ public class GameConfig {
 
     public static final int INGAME_MENU = 31;
 
-
-
     // Debug booleans
     public static final boolean SHOW_FPS = true;
     public static final boolean SHOW_LOWESTFPS = true;

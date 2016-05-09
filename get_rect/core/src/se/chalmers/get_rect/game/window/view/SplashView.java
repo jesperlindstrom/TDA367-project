@@ -2,21 +2,19 @@ package se.chalmers.get_rect.game.window.view;
 
 import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.AbstractView;
+import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.window.model.SplashModel;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SplashView extends AbstractView {
-
     private Point cameraPos;
     private SplashModel model;
 
-    public SplashView(SplashModel model, EntityCamera camera) {
+    public SplashView(SplashModel model, ICamera camera) {
         this.model = model;
         this.cameraPos = camera.getPosition();
     }
-
 
     @Override
     public void draw(IGraphicsAdapter graphics) {

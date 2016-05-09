@@ -1,11 +1,14 @@
 package se.chalmers.get_rect.game.window.window;
 
+import com.google.inject.Inject;
 import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.window.IWindowController;
 import se.chalmers.get_rect.game.window.model.SplashModel;
 import se.chalmers.get_rect.game.window.view.SplashView;
+import se.chalmers.get_rect.states.StateManager;
 
 public class SplashWindow implements IWindowController {
 
@@ -13,20 +16,18 @@ public class SplashWindow implements IWindowController {
     private SplashView view;
     private IAssetManagerAdapter assetManager;
 
-    public SplashWindow(IGame game) {
+    @Inject
+    public SplashWindow(StateManager<IWindowController> windowManager, ICamera camera) {
         System.out.println("SplashScreen is initialized");
-        this.assetManager = game.getAssetManager();
 
-        this.model = new SplashModel(assetManager, game.getWindowManager());
-        this.view = new SplashView(model, game.getCameraManager());
+        this.model = new SplashModel(assetManager, windowManager);
+        this.view = new SplashView(model, camera);
 
     }
 
     @Override
     public void enteringState(Integer previousStateName) {
         System.out.println("Entering SplashScreen");
-        assetManager.loadTexture("img/splash/splash_bg.jpg");
-        assetManager.loadTexture("img/splash/loading_fill.png");
     }
 
     @Override
