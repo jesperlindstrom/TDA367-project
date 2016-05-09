@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
@@ -12,9 +14,11 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class LibGDXCameraAdapter implements ICameraAdapter {
     private Camera camera;
+    private Viewport viewport;
 
     public LibGDXCameraAdapter(float width, float height){
         camera = new OrthographicCamera(width,height);
+        viewport = new ScreenViewport(camera);
     }
 
     @Override
@@ -37,6 +41,7 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
     @Override
     public void update(double delta) {
         camera.update();
+        viewport.update((int)getWidth(), (int)getHeight());
     }
 
     public void draw(IGraphicsAdapter g) {
