@@ -6,7 +6,6 @@ import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.EntityCamera;
-import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
@@ -14,9 +13,7 @@ import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.game.window.IWindowController;
-import se.chalmers.get_rect.game.window.window.SplashWindow;
-import se.chalmers.get_rect.game.window.window.inGameMenuWindow;
-import se.chalmers.get_rect.game.window.window.mainMenuWindow;
+import se.chalmers.get_rect.game.window.WindowFactory;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.*;
 
@@ -47,10 +44,8 @@ public class Game implements IGame {
         IPhysicsEntity player = playerFactory.make(playerController);
 
         cameraManager = new EntityCamera(cameraFactory, player.getModel());
-        injector = rootInjector.createChildInjector(new GameModule(player, cameraManager));
+        injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this));
 
-        // StateManager<IScene> sceneManager, StateManager<IWindowController> windowManager
-        // todo: retrieve above via injector
         sceneManager = injector.getInstance(Key.get(new TypeLiteral<StateManager<IScene>>() {}));
         windowManager = injector.getInstance(Key.get(new TypeLiteral<StateManager<IWindowController>>() {}));
 
@@ -77,15 +72,18 @@ public class Game implements IGame {
     }
 
     private void addComponents() {
+        // todo: factory for scenes?
+
         // Register scenes
         sceneManager.add(GameConfig.TEST, injector.getInstance(TestScene.class));
         sceneManager.add(GameConfig.HORSALSVAGEN, injector.getInstance(HorsalsvagenScene.class));
         // todo: this is bad and Sune should feel bad
         sceneManager.add(GameConfig.NULL, null);
 
-        windowManager.add(GameConfig.SPLASH, new SplashWindow(this));
-        windowManager.add(GameConfig.MAIN_MENU, new mainMenuWindow(this, cameraManager));
-        windowManager.add(GameConfig.INGAME_MENU, new inGameMenuWindow(this, input, cameraManager));
+        WindowFactory window = injector.getInstance(WindowFactory.class);
+        windowManager.add(GameConfig.SPLASH, window.make("splash"));
+        windowManager.add(GameConfig.MAIN_MENU, window.make("mainMenu"));
+        windowManager.add(GameConfig.INGAME_MENU, window.make("inGameMenu"));
     }
 
     public StateManager<IWindowController> getWindowManager() {

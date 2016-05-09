@@ -3,21 +3,22 @@ package se.chalmers.get_rect.game.window.view;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.window.AbstractGridModel;
-import se.chalmers.get_rect.game.window.model.mainMenu;
+import se.chalmers.get_rect.game.entities.ICamera;
+import se.chalmers.get_rect.game.window.model.AbstractGridModel;
+import se.chalmers.get_rect.game.window.model.MainMenu;
 import se.chalmers.get_rect.utilities.Point;
 
-public class mainMenuView extends AbstractView {
+public class MainMenuView extends AbstractView {
     private static final Point CONTINUE = new Point(0, 0);
     private static final Point NEW_GAME = new Point(0, 1);
     private static final Point EXIT = new Point(0, 2);
     private static final String IMG_PATH = "img/pauseMenu/";
     private static final int DRAW_PRIORITY = 7;
 
-    private EntityCamera camera;
+    private ICamera camera;
     private AbstractGridModel model;
 
-    public mainMenuView(mainMenu model, EntityCamera camera) {
+    public MainMenuView(MainMenu model, ICamera camera) {
         this.camera = camera;
         this.model = model;
     }

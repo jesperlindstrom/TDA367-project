@@ -18,7 +18,6 @@ public class SplashView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-
         if (model.getAddedAssets()) {
             graphics.draw("img/splash/splash_bg.jpg", cameraPos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
             int progressWidth;

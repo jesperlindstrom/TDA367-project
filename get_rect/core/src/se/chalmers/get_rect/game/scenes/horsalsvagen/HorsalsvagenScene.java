@@ -26,8 +26,6 @@ public class HorsalsvagenScene extends AbstractScene {
 
         // Set the player position
         addPlayerAtPosition(1200, 500);
-
-
     }
 
     private IEntity getBackgroundView() {

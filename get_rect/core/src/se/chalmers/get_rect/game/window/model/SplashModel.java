@@ -7,8 +7,7 @@ import se.chalmers.get_rect.states.StateManager;
 
 import java.io.FileNotFoundException;
 
-public class SplashModel{
-
+public class SplashModel {
     private IAssetManagerAdapter assetManager;
     private StateManager<IWindowController> windowManager;
     private boolean addedAssets = false;
@@ -17,10 +16,14 @@ public class SplashModel{
     private boolean didStop = false;
     private int stopTimer = 0;
 
-
     public SplashModel(IAssetManagerAdapter assetManager, StateManager<IWindowController> windowManager) {
         this.assetManager = assetManager;
         this.windowManager = windowManager;
+    }
+
+    public void preload() {
+        assetManager.loadTexture("img/splash/splash_bg.jpg");
+        assetManager.loadTexture("img/splash/loading_fill.png");
     }
 
     private void loadAssets() {
@@ -34,7 +37,6 @@ public class SplashModel{
     }
 
     public void update(double delta) {
-
         if (assetManager.update() && !addedAssets) {
             addedAssets = true;
             loadAssets();

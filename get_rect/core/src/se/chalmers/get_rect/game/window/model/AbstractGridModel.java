@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.window;
+package se.chalmers.get_rect.game.window.model;
 
 import se.chalmers.get_rect.utilities.Point;
 
@@ -65,4 +65,6 @@ public abstract class AbstractGridModel {
     public Point getCurrentButton() {
         return currentButton;
     }
+
+    public abstract void reset();
 }
