@@ -28,7 +28,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
      */
     public Player(IRectangleFactoryAdapter rectangleFactory) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
-        setBoundingBox(getPosition(), WIDTH, HEIGHT);
+        setBoundingBox(WIDTH, HEIGHT);
 
         projectileFactory = new ProjectileFactory(rectangleFactory);
     }

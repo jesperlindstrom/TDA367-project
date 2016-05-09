@@ -28,8 +28,8 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
         this.boundingBox = boundingBox;
     }
 
-    protected void setBoundingBox(Point pos, int width, int height) {
-        setBoundingBox(rectangleFactory.make(pos, width, height));
+    protected void setBoundingBox(int width, int height) {
+        setBoundingBox(rectangleFactory.make(getPosition(), width, height));
     }
 
     @Override

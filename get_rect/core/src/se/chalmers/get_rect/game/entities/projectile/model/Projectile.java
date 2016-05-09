@@ -15,7 +15,7 @@ public class Projectile extends AbstractPhysicsModel {
 
     public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory, IModel owner, boolean isMelee) {
         super(position, velocity, false, rectangleFactory);
-        setBoundingBox(getPosition(), width, height);
+        setBoundingBox(width, height);
         this.owner = owner;
         this.isMelee = isMelee;
     }
