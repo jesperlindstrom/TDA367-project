@@ -7,18 +7,12 @@ import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 
-public class PhysicsView extends AbstractView {
+public class DebugPhysicsView {
     private static final String BOUNDING_BOX_IMAGE = "img/entities/physics_debug.png";
     private IPhysicsEngine engine;
-    private static final int DRAW_PRIORITY = 5;
 
-    public PhysicsView(IPhysicsEngine engine) {
+    public DebugPhysicsView(IPhysicsEngine engine) {
         this.engine = engine;
-    }
-
-    @Override
-    public int getDrawPriority() {
-        return DRAW_PRIORITY;
     }
 
     public void draw(IGraphicsAdapter graphics) {

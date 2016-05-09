@@ -2,6 +2,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
@@ -14,6 +15,13 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
 
     public LibGDXCameraAdapter(float width, float height){
         camera = new OrthographicCamera(width,height);
+    }
+
+    @Override
+    public Point getRelativePosition(Point point) {
+        Vector3 pos = camera.unproject(new Vector3(point.getX(), point.getY(), 0));
+
+        return new Point((int)pos.x, (int)pos.y);
     }
 
     @Override

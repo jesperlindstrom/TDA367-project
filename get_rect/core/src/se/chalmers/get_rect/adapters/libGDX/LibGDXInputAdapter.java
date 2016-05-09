@@ -2,6 +2,8 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.Input;
 import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.utilities.Point;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +17,11 @@ public class LibGDXInputAdapter implements IInputAdapter {
         this.input = input;
         initKeyMap();
 
+    }
+
+    @Override
+    public Point getMousePosition() {
+        return new Point(input.getX(),input.getY());
     }
 
     /**

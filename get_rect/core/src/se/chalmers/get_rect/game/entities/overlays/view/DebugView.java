@@ -7,17 +7,19 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class DebugView extends AbstractView {
     private Debug model;
-    private FrameRateView frameRateView;
-    private PhysicsView physicsView;
-    private PlayerView playerView;
+    private DebugFrameRateView debugFrameRateView;
+    private DebugPhysicsView debugPhysicsView;
+    private DebugPlayerView debugPlayerView;
+    private DebugMouseView debugMouseView;
     private static final int DRAW_PRIORITY = 15;
 
     public DebugView(Debug model) {
         super(model);
         this.model = model;
-        frameRateView = new FrameRateView(model.getFrameRate());
-        physicsView = new PhysicsView(model.getPhysics());
-        playerView = new PlayerView(model.getPlayer());
+        debugFrameRateView = new DebugFrameRateView(model.getFrameRate());
+        debugPhysicsView = new DebugPhysicsView(model.getPhysics());
+        debugPlayerView = new DebugPlayerView(model.getPlayer());
+        debugMouseView = new DebugMouseView(model.getInput(),model.getCamera());
     }
 
     @Override
@@ -29,9 +31,10 @@ public class DebugView extends AbstractView {
     public void draw(IGraphicsAdapter graphics) {
         // Draw top left stats
         Point point = model.getCameraPosition().addY(1095);
-        point = frameRateView.draw(graphics, point);
-        playerView.draw(graphics, point);
+        point = debugFrameRateView.draw(graphics, point);
+        point = debugPlayerView.draw(graphics, point);
+        point = debugMouseView.draw(graphics, point);
         //The point is changed depending on whether the information is visible or not.
-        physicsView.draw(graphics);
+        debugPhysicsView.draw(graphics);
     }
 }
