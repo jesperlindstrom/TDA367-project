@@ -2,15 +2,13 @@ package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.overlays.model.FrameRate;
 import se.chalmers.get_rect.utilities.Point;
 
-public class FrameRateView extends AbstractView {
+public class DebugFrameRateView {
     private FrameRate model;
-    private static final int DRAW_PRIORITY = 5;
 
-    public FrameRateView(FrameRate model) {
+    public DebugFrameRateView(FrameRate model) {
         this.model = model;
     }
 
@@ -33,15 +31,5 @@ public class FrameRateView extends AbstractView {
         }
 
         return point;
-    }
-
-    @Override
-    public int getDrawPriority() {
-        return DRAW_PRIORITY;
-    }
-
-    @Override
-    public void draw(IGraphicsAdapter graphics) {
-        draw(graphics, new Point(0, 0));
     }
 }

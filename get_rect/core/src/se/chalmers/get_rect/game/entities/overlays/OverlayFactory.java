@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.overlays;
 
+import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
 import se.chalmers.get_rect.game.entities.overlays.view.*;
@@ -15,12 +16,14 @@ public class OverlayFactory {
     private Player player;
     private ICamera camera;
     private IPhysicsEngine physics;
+    private IInputAdapter input;
 
-    public OverlayFactory(List<IModel> models, Player player, ICamera camera, IPhysicsEngine physics) {
+    public OverlayFactory(List<IModel> models, Player player, ICamera camera, IPhysicsEngine physics, IInputAdapter input) {
         this.models = models;
         this.player = player;
         this.camera = camera;
         this.physics = physics;
+        this.input = input;
     }
 
     public IEntity make(String type) {
@@ -70,7 +73,7 @@ public class OverlayFactory {
     }
 
     private IEntity makeDebug() {
-        Debug model = new Debug(player, camera, physics);
+        Debug model = new Debug(player, camera, input, physics);
         IView view = new DebugView(model);
 
         return new Entity(model, view);

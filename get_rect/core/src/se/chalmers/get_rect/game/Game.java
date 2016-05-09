@@ -82,8 +82,8 @@ public class Game implements IGame {
 
     private void addComponents(IPhysicsEntity player) {
         // Register scenes
-        sceneManager.add(GameConfig.TEST, new TestScene(player, rectangleFactory, cameraManager, sceneManager));
-        sceneManager.add(GameConfig.HORSALSVAGEN, new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager));
+        sceneManager.add(GameConfig.TEST, new TestScene(player, rectangleFactory, cameraManager, sceneManager, input));
+        sceneManager.add(GameConfig.HORSALSVAGEN, new HorsalsvagenScene(player, rectangleFactory, cameraManager, sceneManager, input));
         sceneManager.add(GameConfig.NULL, null);
 
         windowManager.add(GameConfig.SPLASH, new SplashWindow(this));
