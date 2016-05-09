@@ -41,8 +41,6 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
         if (otherObject instanceof IInteractableModel){
             interactableNPC = (IInteractableModel) otherObject;
-        } else {
-            interactableNPC = null;
         }
     }
 
@@ -50,6 +48,15 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
         if (canJump) {
             setVelocity(getVelocity().setY(JUMP_SPEED));
             canJump = false;
+        }
+    }
+
+    @Override
+    public void update(double delta) {
+        if (interactableNPC != null) {
+            if (getBoundingBox().intersects(interactableNPC.getBoundingBox()) == null) {
+                interactableNPC = null;
+            }
         }
     }
 
