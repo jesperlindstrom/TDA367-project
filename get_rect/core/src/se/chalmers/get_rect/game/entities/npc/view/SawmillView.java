@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.npc.view;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
+import se.chalmers.get_rect.utilities.Point;
 
 public class SawmillView extends AbstractAnimatedView {
     private static final int DEFAULT = 1;
@@ -12,7 +13,7 @@ public class SawmillView extends AbstractAnimatedView {
     public SawmillView(SawmillExpress model) {
         super(model, DEFAULT);
         this.model = model;
-
+        super.setDrawOffset(new Point(0, -100));
         addAnimationFrame(DEFAULT, "img/entities/sawmill/sawmill-express.png");
         addAnimationFrame(FLYING, "img/entities/sawmill/sawmill-express-waaah.png");
     }

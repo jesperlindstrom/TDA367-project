@@ -7,8 +7,8 @@ import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
 
 public class Projectile extends AbstractPhysicsModel {
-    private int width = 50;
-    private int height = 50;
+    private int width = 10;
+    private int height = 10;
     private int dmg = 10;
     private IModel owner;
     private boolean isMelee;

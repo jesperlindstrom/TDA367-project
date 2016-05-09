@@ -14,17 +14,7 @@ public class SawmillExpress extends AbstractNPCModel {
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
         super(point, new Point(0, 0), false, rectangleFactory);
-        setBoundingBox();
-    }
-
-    private void setBoundingBox() {
-        setBoundingBox(getPosition().addY(100), WIDTH, HEIGHT);
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        super.setPosition(position);
-        setBoundingBox();
+        setBoundingBox(point, WIDTH, HEIGHT);
     }
 
     @Override

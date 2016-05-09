@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
+import se.chalmers.get_rect.utilities.Point;
 
 public class SandCastleView extends AbstractAnimatedView {
     private static final int NONE = 0;
@@ -14,7 +15,6 @@ public class SandCastleView extends AbstractAnimatedView {
     public SandCastleView(IModel model) {
         super(model, NONE);
         this.model = (SandCastle)model;
-
         addAnimationFrame(NONE, "img/entities/sandcastle/no_sand_castle.png");
         addAnimationFrame(BUILT, "img/entities/sandcastle/sand_castle.png");
     }
