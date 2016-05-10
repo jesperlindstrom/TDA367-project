@@ -73,6 +73,13 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         draw(img, point.getX(), point.getY(), width, height);
     }
 
+    //todo den är jättebroken
+    public void draw(String img, Point position, Point origin, float scaleX, float scaleY, float rotation) { // int srcX, int srcY, int srcWidth, int srcHeight,
+        Texture texture = assetManager.getTexture(img);
+        TextureRegion textureRegion = new TextureRegion( texture, position.getX(), position.getY(), texture.getWidth(), texture.getHeight());
+        batch.draw(textureRegion, (float)position.getX(), (float)position.getY(), origin.getX(), origin.getY(), texture.getWidth(), texture.getHeight(), scaleX, scaleY, rotation);
+    }
+
     @Override
     public void drawText(String text, Point point) {
         font.setColor(Color.RED);
