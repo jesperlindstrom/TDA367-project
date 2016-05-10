@@ -20,6 +20,6 @@ public class ProjectileView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/entities/projectiles/bullet.png", model.getPosition());
+        graphics.draw("img/entities/projectiles/bullet.png", model.getPosition().add(-27, -17));
     }
 }
