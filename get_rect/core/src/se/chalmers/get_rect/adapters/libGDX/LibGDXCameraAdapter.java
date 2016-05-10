@@ -58,11 +58,11 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
 
     @Override
     public float getWidth() {
-        return Gdx.graphics.getWidth()/*camera.viewportWidth */;
+        return Gdx.graphics.getWidth();
     }
 
     @Override
     public float getHeight() {
-        return Gdx.graphics.getHeight()/*camera.viewportHeight*/;
+        return Gdx.graphics.getHeight();
     }
 }
