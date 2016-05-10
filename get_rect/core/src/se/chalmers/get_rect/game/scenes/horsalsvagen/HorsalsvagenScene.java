@@ -9,8 +9,7 @@ import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.states.StateManager;
 
 public class HorsalsvagenScene extends AbstractScene {
-    @Inject
-    public HorsalsvagenScene(@Named("Player") IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene>  sceneManager) {
+    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene>  sceneManager) {
         super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneManager);
     }
 

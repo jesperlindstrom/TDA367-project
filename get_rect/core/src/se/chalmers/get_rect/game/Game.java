@@ -10,8 +10,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.scenes.IScene;
-import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
-import se.chalmers.get_rect.game.scenes.test.TestScene;
+import se.chalmers.get_rect.game.scenes.SceneFactory;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.game.entities.window.WindowFactory;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
@@ -49,7 +48,7 @@ public class Game implements IGame {
         sceneManager = injector.getInstance(Key.get(new TypeLiteral<StateManager<IScene>>() {}));
         windowManager = injector.getInstance(Key.get(new TypeLiteral<StateManager<IWindowController>>() {}));
 
-        addComponents(); //todo: find a better name
+        addComponents();
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
@@ -72,11 +71,10 @@ public class Game implements IGame {
     }
 
     private void addComponents() {
-        // todo: factory for scenes?
+        SceneFactory scene = injector.getInstance(SceneFactory.class);
+        sceneManager.add(GameConfig.TEST, scene.make("test"));
+        sceneManager.add(GameConfig.HORSALSVAGEN, scene.make("horsalsvagen"));
 
-        // Register scenes
-        sceneManager.add(GameConfig.TEST, injector.getInstance(TestScene.class));
-        sceneManager.add(GameConfig.HORSALSVAGEN, injector.getInstance(HorsalsvagenScene.class));
         // todo: this is bad and Sune should feel bad
         sceneManager.add(GameConfig.NULL, null);
 
