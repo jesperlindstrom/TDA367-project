@@ -17,13 +17,12 @@ public class ProjectileFactory {
         this.rectangleFactory = rectangleFactory;
     }
 
-    public IPhysicsEntity make(String type, Point point, Point velocity, IModel owner){
-        if (type.equals("normal"))
-            return makeProjectile(point, velocity, owner);
-
+    public IPhysicsEntity make(String type, Point point, Point velocity, IPhysicsModel owner) {
+        if (type.equals("normal")) {
+            return makeProjectile(point, velocity.add(owner.getVelocity()), owner);
+        }
         if (type.equals("melee"))
-            return makeMeleeProjectile(point, velocity, owner);
-
+            return makeMeleeProjectile(point, velocity.add(owner.getVelocity()), owner);
         throw new EntityNotFoundException("Projectile", type);
     }
 

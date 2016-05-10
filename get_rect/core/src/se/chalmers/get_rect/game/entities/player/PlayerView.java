@@ -42,7 +42,6 @@ class PlayerView extends AbstractAnimatedView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         playSequence(getSequence());
-
         // Tell abstract parent to draw the animation
         super.draw(graphics);
     }

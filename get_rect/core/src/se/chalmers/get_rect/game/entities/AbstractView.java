@@ -9,10 +9,6 @@ public abstract class AbstractView implements IView{
         this.model = model;
     }
 
-    public IModel getModel() {
-        return model;
-    }
-
     @Override
     public boolean shouldBeRemoved() {
         return model != null && model.shouldBeRemoved();

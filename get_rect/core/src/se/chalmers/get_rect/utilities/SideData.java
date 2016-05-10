@@ -9,7 +9,7 @@ public class SideData {
 
     public void set(Side side) {
         switch (side) {
-            case TOP: top = true;break;
+            case TOP: top = true; break;
             case LEFT: left = true; break;
             case RIGHT: right = true; break;
             case BOTTOM: bottom = true; break;

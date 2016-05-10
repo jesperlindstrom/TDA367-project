@@ -14,7 +14,7 @@ public class BoundingBox extends AbstractPhysicsModel {
      */
     public BoundingBox(Point position, int width, int height, IRectangleFactoryAdapter factory) {
         super(position.addY((-height)), new Point(0, 0), true, factory);
-        setBoundingBox(getPosition(), width, height);
+        setBoundingBox(width, height);
     }
 
     @Override

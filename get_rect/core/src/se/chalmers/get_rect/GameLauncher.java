@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import se.chalmers.get_rect.game.Game;
 import se.chalmers.get_rect.adapters.IGameLoopAdapter;
 import se.chalmers.get_rect.adapters.libGDX.*;
@@ -11,6 +12,7 @@ import se.chalmers.get_rect.adapters.libGDX.*;
 public class GameLauncher extends ApplicationAdapter implements IGameLoopAdapter {
     private Game gameManager;
     private long lastTime = 0;
+    private ScreenViewport screenViewport;
 
     /**
      * Starts the program.

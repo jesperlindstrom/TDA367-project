@@ -4,9 +4,12 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.animation.AnimationCoordinator;
 import se.chalmers.get_rect.animation.Frame;
 import se.chalmers.get_rect.animation.FrameSequence;
+import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractAnimatedView extends AbstractView {
     private AnimationCoordinator animation;
+    private IModel model;
+    private Point offsetPoint;
 
     /**
      * Create a new animated view
@@ -16,6 +19,8 @@ public abstract class AbstractAnimatedView extends AbstractView {
     protected AbstractAnimatedView(IModel model, int defaultSequence) {
         super(model);
         animation = new AnimationCoordinator(defaultSequence);
+        this.model = model;
+        offsetPoint = new Point(0 ,0);
     }
 
     /**
@@ -38,6 +43,11 @@ public abstract class AbstractAnimatedView extends AbstractView {
         getOrCreateSequence(id).addFrame(newFrame);
     }
 
+
+    public void setDrawOffset(Point offsetPoint) {
+        this.offsetPoint = offsetPoint;
+    }
+
     /**
      * Play a frame sequence by name
      * @param id Sequence ID
@@ -48,7 +58,7 @@ public abstract class AbstractAnimatedView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        animation.draw(graphics, getModel().getPosition());
+        animation.draw(graphics, model.getPosition().add(offsetPoint));
     }
 
     private FrameSequence getOrCreateSequence(int sequence) {

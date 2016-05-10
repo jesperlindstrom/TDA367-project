@@ -17,7 +17,7 @@ public class Trampoline extends AbstractPhysicsModel {
     }
 
     private void setBoundingBox() {
-        setBoundingBox(getPosition().add(70, 20), WIDTH, HEIGHT);
+        setBoundingBox(WIDTH, HEIGHT);
     }
 
     @Override
