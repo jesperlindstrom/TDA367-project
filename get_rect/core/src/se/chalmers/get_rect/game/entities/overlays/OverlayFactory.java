@@ -45,8 +45,16 @@ public class OverlayFactory {
         if (type.equals("weaponSlots")){
             return makePlayerWaeponSlot();
         }
+        if (type.equals("dialog")){
+            return makeDialog(player);
+        }
 
         throw new EntityNotFoundException("overlay", type);
+    }
+
+    private IEntity makeDialog(Player player){
+        IView view = new DialogView(player);
+        return new Entity(null,view);
     }
 
     private IEntity makePlayerWaeponSlot(){

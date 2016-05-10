@@ -12,13 +12,12 @@ import se.chalmers.get_rect.utilities.StringWrapper;
 
 public class DialogView extends AbstractView {
     private Player player;
-    private StringWrapper wrapper;
     private static final int DRAW_PRIORITY = 9;
+
 
     public DialogView(Player player) {
         super(player);
         this.player = player;
-        this.wrapper = new StringWrapper();
     }
 
     @Override
@@ -28,11 +27,11 @@ public class DialogView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if (player.getCurrentNpc() == null && !player.getCurrentNpc().isDialogVisible())return;
-        String wrappedDialog = wrapper.wrap(player.getCurrentNpc().getDialog(), 100);
-
-        graphics.draw("img/interact/bubble.png", getUpperLeftCorner());
-        graphics.drawText(wrappedDialog, getUpperLeftCorner(), IGraphicsAdapter.Colors.BLACK);
+        if (player.getCurrentNpc() == null)return;
+        if (!player.getCurrentNpc().isDialogVisible())return;
+        Point position = new Point(getUpperLeftCorner().addX(100));
+        graphics.draw("img/interact/bubble.png", position);
+        graphics.drawText(player.getCurrentNpc().getDialog(), position.add(20,85), IGraphicsAdapter.Colors.BLACK);
     }
 
     private Point getUpperLeftCorner() {

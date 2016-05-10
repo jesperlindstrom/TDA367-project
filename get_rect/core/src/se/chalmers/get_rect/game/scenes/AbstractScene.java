@@ -159,6 +159,7 @@ public abstract class AbstractScene implements IScene {
             addEntity(overlay.make("healthbar"));
             addEntity(overlay.make("playerHealthbar"));
             addEntity(overlay.make("weaponSlots"));
+            addEntity(overlay.make("dialog"));
         }
     }
 

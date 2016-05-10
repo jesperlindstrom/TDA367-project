@@ -22,10 +22,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     private IInteractableModel interactableNPC;
     private boolean isPrimaryWeapon = false;
 
-    /**
-     * Initialize a new player with fixed position and 10 hp and level 1.
-     * @param rectangleFactory
-     */
+
     public Player(IRectangleFactoryAdapter rectangleFactory) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
         setBoundingBox(WIDTH, HEIGHT);

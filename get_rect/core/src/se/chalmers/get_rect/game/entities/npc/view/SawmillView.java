@@ -27,10 +27,6 @@ public class SawmillView extends AbstractAnimatedView {
         } else {
             playSequence(DEFAULT);
         }
-        if (model.isDialogVisible()) {
-            graphics.draw("img/interact/bubble.png", model.getPosition().addY(250));
-            graphics.drawText(model.getDialog(), model.getPosition().addY(100), IGraphicsAdapter.Colors.BLACK);
-        }
         super.draw(graphics);
     }
 

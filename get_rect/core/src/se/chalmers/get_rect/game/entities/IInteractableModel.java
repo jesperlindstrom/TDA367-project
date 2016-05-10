@@ -5,4 +5,5 @@ public interface IInteractableModel extends IPhysicsModel {
     void showDialog(String text);
     String getDialog();
     boolean isDialogVisible();
+    void nextDialog();
 }
