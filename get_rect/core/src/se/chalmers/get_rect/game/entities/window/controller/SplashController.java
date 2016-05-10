@@ -1,38 +1,31 @@
-package se.chalmers.get_rect.game.window;
+package se.chalmers.get_rect.game.entities.window.controller;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.window.model.SplashModel;
 
-public class GridWindow implements IWindowController {
-    private IController controller;
+public class SplashController implements IWindowController {
     private IView view;
+    private SplashModel model;
 
-    protected void setController(IController controller) {
-        this.controller = controller;
-    }
-
-    protected void setView(IView view) {
+    public SplashController(SplashModel model, IView view) {
+        this.model = model;
         this.view = view;
     }
 
     @Override
     public void update(double delta) {
-        if (controller == null) return;
-
-        controller.update();
+        model.update(delta);
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if (view == null) return;
-
         view.draw(graphics);
     }
 
     @Override
     public void enteringState(Integer previousStateName) {
-
+        model.preload();
     }
 
     @Override

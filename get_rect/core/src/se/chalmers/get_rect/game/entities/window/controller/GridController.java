@@ -1,11 +1,9 @@
-package se.chalmers.get_rect.game.window.controller;
+package se.chalmers.get_rect.game.entities.window.controller;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.window.IWindowController;
-import se.chalmers.get_rect.game.window.model.AbstractGridModel;
-import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.game.entities.window.model.AbstractGridModel;
 
 public class GridController implements IWindowController {
     private IInputAdapter input;

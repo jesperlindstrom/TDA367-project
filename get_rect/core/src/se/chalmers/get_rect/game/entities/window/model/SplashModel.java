@@ -1,8 +1,8 @@
-package se.chalmers.get_rect.game.window.model;
+package se.chalmers.get_rect.game.entities.window.model;
 
 import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.game.window.IWindowController;
+import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.states.StateManager;
 
 import java.io.FileNotFoundException;

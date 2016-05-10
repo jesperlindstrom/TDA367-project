@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.window.model;
+package se.chalmers.get_rect.game.entities.window.model;
 
 import se.chalmers.get_rect.utilities.Point;
 
