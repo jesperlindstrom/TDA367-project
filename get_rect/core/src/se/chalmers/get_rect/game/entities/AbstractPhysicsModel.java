@@ -11,7 +11,6 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
     private IRectangleAdapter boundingBox;
     private Point velocity;
     private boolean solid;
-    private int health;
 
     protected AbstractPhysicsModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory) {
         super(position);
@@ -19,7 +18,6 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
         this.rectangleFactory = rectangleFactory;
         this.boundingBox = rectangleFactory.make(position, 0, 0);
         this.solid = solid;
-        this.health = 100;
     }
 
     protected IRectangleFactoryAdapter getRectangleFactory() {
@@ -30,12 +28,8 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
         this.boundingBox = boundingBox;
     }
 
-    protected void setBoundingBox(Point pos, int width, int height) {
-        setBoundingBox(rectangleFactory.make(pos, width, height));
-    }
-
-    protected void setSolid(boolean solid) {
-        this.solid = solid;
+    protected void setBoundingBox(int width, int height) {
+        setBoundingBox(rectangleFactory.make(getPosition(), width, height));
     }
 
     @Override

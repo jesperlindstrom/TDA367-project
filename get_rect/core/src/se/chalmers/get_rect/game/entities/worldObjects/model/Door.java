@@ -22,7 +22,7 @@ public class Door extends AbstractPhysicsModel implements IInteractableModel {
      */
     public Door(Point position, int width, int height, IRectangleFactoryAdapter factory, StateManager<? extends IState> sceneManager, int doorPath) {
         super(position.addY((-height)), new Point(0, 0), true, factory);
-        setBoundingBox(getPosition(), width, height);
+        setBoundingBox(width, height);
         this.sceneManager = sceneManager;
         this.doorPath = doorPath;
     }
@@ -56,5 +56,10 @@ public class Door extends AbstractPhysicsModel implements IInteractableModel {
     @Override
     public boolean isDialogVisible() {
         return false;
+    }
+
+    @Override
+    public void nextDialog() {
+        //do nothing on standard
     }
 }

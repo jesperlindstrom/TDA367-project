@@ -29,7 +29,7 @@ public class PlayerWeaponSlotsView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        int x = camera.getPosition().getX() + 540 + 200;
+        int x = camera.getPosition().getX() + (int)camera.getAdapter().getWidth()/2 - 226;
         int y = camera.getPosition().getY();
         Point position = new Point(x,y);
         Point primaryPos= position.add(40,20);

@@ -7,15 +7,15 @@ import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
 
 public class Projectile extends AbstractPhysicsModel {
-    private int width = 50;
-    private int height = 50;
+    private int width = 10;
+    private int height = 10;
     private int dmg = 10;
     private IModel owner;
     private boolean isMelee;
 
     public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory, IModel owner, boolean isMelee) {
         super(position, velocity, false, rectangleFactory);
-        setBoundingBox(getPosition(), width, height);
+        setBoundingBox(width, height);
         this.owner = owner;
         this.isMelee = isMelee;
     }

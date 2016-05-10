@@ -13,11 +13,15 @@ import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
     private LibGDXAssetManagerAdapter assetManager;
     private GL20 graphics;
+    private Map<Colors,Color> colorsMap;
 
     @Inject
     public LibGDXGraphicsAdapter(IAssetManagerAdapter assetManager) {
@@ -30,6 +34,7 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
         }
 
         this.assetManager = (LibGDXAssetManagerAdapter) assetManager;
+        initColor();
     }
 
     /**
@@ -80,6 +85,13 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     }
 
     @Override
+    public void drawText(String text, Point point, Colors color) {
+        font.setColor(colorsMap.get(color));
+
+        font.draw(batch,text,point.getX(), point.getY());
+    }
+
+    @Override
     public void drawText(String text, int x, int y) {
         drawText(text, new Point(x, y));
     }
@@ -111,5 +123,12 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     public void setMatrix(Matrix4 cameraMatrix) {
         batch.setProjectionMatrix(cameraMatrix);
+    }
+
+    private void initColor(){
+        this.colorsMap = new HashMap<>();
+        colorsMap.put(Colors.WHITE, Color.WHITE);
+        colorsMap.put(Colors.BLACK, Color.BLACK);
+        colorsMap.put(Colors.RED, Color.RED);
     }
 }

@@ -61,6 +61,11 @@ public class EntityCamera implements IGameComponent, ICamera {
         cameraPos = cameraPos.add(difference);
     }
 
+    @Override
+    public ICameraAdapter getAdapter() {
+        return cameraAdapter;
+    }
+
     private boolean isOutOfBounds(Point pos) {
         if (Math.abs(cameraPos.deltaX(pos)) > cameraAdapter.getWidth()/2)
             return true;

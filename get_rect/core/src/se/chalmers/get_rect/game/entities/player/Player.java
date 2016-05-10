@@ -28,7 +28,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
      */
     public Player(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
-        setBoundingBox(getPosition(), WIDTH, HEIGHT);
+        setBoundingBox(WIDTH, HEIGHT);
 
         this.projectileFactory = projectileFactory;
     }
@@ -41,8 +41,6 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
         if (otherObject instanceof IInteractableModel){
             interactableNPC = (IInteractableModel) otherObject;
-        } else {
-            interactableNPC = null;
         }
     }
 
@@ -50,6 +48,15 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
         if (canJump) {
             setVelocity(getVelocity().setY(JUMP_SPEED));
             canJump = false;
+        }
+    }
+
+    @Override
+    public void update(double delta) {
+        if (interactableNPC != null) {
+            if (getBoundingBox().intersects(interactableNPC.getBoundingBox()) == null) {
+                interactableNPC = null;
+            }
         }
     }
 

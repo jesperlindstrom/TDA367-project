@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.game.entities.overlays.model;
 
+import se.chalmers.get_rect.adapters.ICameraAdapter;
+import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.AbstractModel;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
@@ -11,13 +13,15 @@ public class Debug extends AbstractModel {
     private FrameRate fps;
     private IPhysicsModel player;
     private IPhysicsEngine physics;
+    private IInputAdapter input;
 
-    public Debug(IPhysicsModel player, ICamera camera, IPhysicsEngine physics) {
+    public Debug(IPhysicsModel player, ICamera camera, IInputAdapter input, IPhysicsEngine physics) {
         super(new Point(0, 0));
         this.fps = new FrameRate();
         this.camera = camera;
         this.player = player;
         this.physics = physics;
+        this.input = input;
     }
 
     public FrameRate getFrameRate() {
@@ -30,6 +34,12 @@ public class Debug extends AbstractModel {
 
     public IPhysicsEngine getPhysics() {
         return physics;
+    }
+
+    public IInputAdapter getInput() {return input; }
+
+    public ICameraAdapter getCamera() {
+        return camera.getAdapter();
     }
 
     @Override

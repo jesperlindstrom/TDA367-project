@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.scenes;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
@@ -15,14 +16,16 @@ public class SceneFactory {
     private ICamera camera;
     private StateManager<IScene> sceneManager;
     private SceneEntityLoader sceneLoader;
+    private IInputAdapter input;
 
     @Inject
-    public SceneFactory(@Named("Player") IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager, SceneEntityLoader sceneLoader) {
+    public SceneFactory(@Named("Player") IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager, SceneEntityLoader sceneLoader, IInputAdapter input) {
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
         this.sceneManager = sceneManager;
         this.sceneLoader = sceneLoader;
+        this.input = input;
 
         System.out.println(camera);
     }
@@ -38,10 +41,10 @@ public class SceneFactory {
     }
 
     private IScene makeHorsalsvagen() {
-        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneManager, sceneLoader);
+        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneManager, sceneLoader, input);
     }
 
     private IScene makeTest() {
-        return new TestScene(playerEntity, rectangleFactory, camera, sceneManager, sceneLoader);
+        return new TestScene(playerEntity, rectangleFactory, camera, sceneManager, sceneLoader, input);
     }
 }
