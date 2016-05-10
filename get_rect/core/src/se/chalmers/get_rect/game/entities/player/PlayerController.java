@@ -6,14 +6,8 @@ import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.utilities.Point;
 
 public class PlayerController implements IController {
-    private IInputAdapter input;
-    private Player player;
-
-    @Inject
-    public PlayerController(Player player, IInputAdapter input) {
-        this.input = input;
-        this.player = player;
-    }
+    @Inject private IInputAdapter input;
+    @Inject private Player player;
 
     @Override
     public void update() {

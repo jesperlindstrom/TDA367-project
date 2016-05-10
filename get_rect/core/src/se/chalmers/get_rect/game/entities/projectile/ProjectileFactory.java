@@ -12,12 +12,7 @@ import se.chalmers.get_rect.game.entities.projectile.view.ProjectileView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class ProjectileFactory {
-    private IRectangleFactoryAdapter rectangleFactory;
-
-    @Inject
-    public ProjectileFactory(IRectangleFactoryAdapter rectangleFactory){
-        this.rectangleFactory = rectangleFactory;
-    }
+    @Inject private IRectangleFactoryAdapter rectangleFactory;
 
     public IPhysicsEntity make(String type, Point point, Point velocity, IPhysicsModel owner) {
         if (type.equals("normal")) {

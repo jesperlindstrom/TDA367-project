@@ -13,18 +13,11 @@ import se.chalmers.get_rect.physics.IPhysicsEngine;
 import java.util.List;
 
 public class OverlayFactory {
+    @Inject private Player player;
+    @Inject private ICamera camera;
+    @Inject private IInputAdapter input;
     private List<IModel> models;
-    private Player player;
-    private ICamera camera;
     private IPhysicsEngine physics;
-    private IInputAdapter input;
-
-    @Inject
-    public OverlayFactory(Player player, ICamera camera, IInputAdapter input) {
-        this.player = player;
-        this.camera = camera;
-        this.input = input;
-    }
 
     public void setModels(List<IModel> models) {
         this.models = models;

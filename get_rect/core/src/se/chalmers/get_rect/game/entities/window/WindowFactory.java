@@ -19,20 +19,11 @@ import se.chalmers.get_rect.game.entities.window.view.SplashView;
 import se.chalmers.get_rect.states.StateManager;
 
 public class WindowFactory {
-    private IAssetManagerAdapter assetManager;
-    private StateManager<IWindowController> windowManager;
-    private ICamera camera;
-    private IInputAdapter input;
-    private IGame game;
-
-    @Inject
-    public WindowFactory(IAssetManagerAdapter assetManager, StateManager<IWindowController> windowManager, ICamera camera, IInputAdapter input, IGame game) {
-        this.assetManager = assetManager;
-        this.windowManager = windowManager;
-        this.camera = camera;
-        this.input = input;
-        this.game = game;
-    }
+    @Inject private IAssetManagerAdapter assetManager;
+    @Inject private StateManager<IWindowController> windowManager;
+    @Inject private ICamera camera;
+    @Inject private IInputAdapter input;
+    @Inject private IGame game;
 
     public IWindowController make(String type) {
         if (type.equals("splash"))

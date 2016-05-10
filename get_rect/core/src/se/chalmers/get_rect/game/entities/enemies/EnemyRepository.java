@@ -5,12 +5,10 @@ import se.chalmers.get_rect.game.entities.AbstractRepository;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 
 public class EnemyRepository extends AbstractRepository<EnemyDataStore> {
-    private EnemyFactory factory;
+    @Inject private EnemyFactory factory;
 
-    @Inject
-    public EnemyRepository(EnemyFactory factory) {
+    public EnemyRepository() {
         super("enemies", EnemyDataStore.class);
-        this.factory = factory;
     }
 
     @Override

@@ -9,15 +9,8 @@ import se.chalmers.get_rect.game.entities.enemies.view.ZombieView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class EnemyFactory {
-
-    private IPhysicsModel player;
-    private IRectangleFactoryAdapter rectangleFactory;
-
-    @Inject
-    public EnemyFactory(@Named("Player") IPhysicsModel player, IRectangleFactoryAdapter rectangleFactory) {
-        this.player = player;
-        this.rectangleFactory = rectangleFactory;
-    }
+    @Inject @Named("Player") private IPhysicsModel player;
+    @Inject private IRectangleFactoryAdapter rectangleFactory;
 
     public IPhysicsEntity make(String enemyType, Point position) {
         if (enemyType.equals("zombie"))

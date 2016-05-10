@@ -11,12 +11,7 @@ import se.chalmers.get_rect.game.entities.npc.view.SawmillView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class NpcFactory {
-    private IRectangleFactoryAdapter rectangleFactory;
-
-    @Inject
-    public NpcFactory(IRectangleFactoryAdapter rectangleFactory) {
-        this.rectangleFactory = rectangleFactory;
-    }
+    @Inject private IRectangleFactoryAdapter rectangleFactory;
 
     public IPhysicsEntity make(String type, Point point) {
         if (type.equals("sawmillExpress"))

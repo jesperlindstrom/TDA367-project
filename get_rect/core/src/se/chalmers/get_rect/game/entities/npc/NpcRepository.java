@@ -5,12 +5,10 @@ import se.chalmers.get_rect.game.entities.AbstractRepository;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 
 public class NpcRepository extends AbstractRepository<NpcDataStore> {
-    private NpcFactory factory;
+    @Inject private NpcFactory factory;
 
-    @Inject
-    public NpcRepository(NpcFactory factory) {
+    public NpcRepository() {
         super("npcs", NpcDataStore.class);
-        this.factory = factory;
     }
 
     @Override

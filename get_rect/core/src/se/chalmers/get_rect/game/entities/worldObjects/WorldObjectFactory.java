@@ -15,14 +15,8 @@ import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 public class WorldObjectFactory {
-    private IRectangleFactoryAdapter rectangleFactory;
-    private StateManager<IScene> sceneManager;
-
-    @Inject
-    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> sceneManager) {
-        this.rectangleFactory = rectangleFactory;
-        this.sceneManager = sceneManager;
-    }
+    @Inject private IRectangleFactoryAdapter rectangleFactory;
+    @Inject private StateManager<IScene> sceneManager;
 
     public IPhysicsEntity make(String type, Point point, int width, int height, int path) {
         if (type.equals("boundingBox"))

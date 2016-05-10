@@ -5,12 +5,10 @@ import se.chalmers.get_rect.game.entities.AbstractRepository;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 
 public class WorldObjectRepository extends AbstractRepository<WorldObjectDataStore> {
-    private WorldObjectFactory factory;
+    @Inject private WorldObjectFactory factory;
 
-    @Inject
-    public WorldObjectRepository(WorldObjectFactory factory) {
+    public WorldObjectRepository() {
         super("worldObjects", WorldObjectDataStore.class);
-        this.factory = factory;
     }
 
     @Override

@@ -17,23 +17,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
+    @Inject private LibGDXAssetManagerAdapter assetManager;
     private SpriteBatch batch;
     private BitmapFont font;
-    private LibGDXAssetManagerAdapter assetManager;
     private GL20 graphics;
     private Map<Colors,Color> colorsMap;
 
     @Inject
-    public LibGDXGraphicsAdapter(IAssetManagerAdapter assetManager) {
+    public LibGDXGraphicsAdapter() {
         batch = new SpriteBatch();
         graphics = Gdx.gl20;
         font = new BitmapFont();
 
-        if (!(assetManager instanceof LibGDXAssetManagerAdapter)) {
-            throw new RuntimeException("LibGDXGraphics only works with LibGDXAssetManager");
-        }
-
-        this.assetManager = (LibGDXAssetManagerAdapter) assetManager;
         initColor();
     }
 
