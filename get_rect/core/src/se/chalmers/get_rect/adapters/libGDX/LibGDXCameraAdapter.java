@@ -1,15 +1,15 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Scaling;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+
 import se.chalmers.get_rect.utilities.Point;
 
 public class LibGDXCameraAdapter implements ICameraAdapter {
@@ -17,7 +17,7 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
     private Viewport viewport;
 
     public LibGDXCameraAdapter(float width, float height){
-        camera = new OrthographicCamera(width,height);
+        camera = new OrthographicCamera(width, height);
         viewport = new ScreenViewport(camera);
     }
 
@@ -42,6 +42,7 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
     public void update(double delta) {
         camera.update();
         viewport.update((int)getWidth(), (int)getHeight());
+
     }
 
     public void draw(IGraphicsAdapter g) {
@@ -57,11 +58,11 @@ public class LibGDXCameraAdapter implements ICameraAdapter {
 
     @Override
     public float getWidth() {
-        return camera.viewportWidth;
+        return Gdx.graphics.getWidth()/*camera.viewportWidth */;
     }
 
     @Override
     public float getHeight() {
-        return camera.viewportHeight;
+        return Gdx.graphics.getHeight()/*camera.viewportHeight*/;
     }
 }
