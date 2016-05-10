@@ -6,6 +6,10 @@ import com.google.inject.name.Names;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.game.entities.IRepository;
+import se.chalmers.get_rect.game.entities.enemies.EnemyRepository;
+import se.chalmers.get_rect.game.entities.npc.NpcRepository;
+import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectRepository;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.states.StateManager;
@@ -29,5 +33,10 @@ public class GameModule extends AbstractModule {
         bind(IGame.class).toInstance(game);
         bind(new TypeLiteral<StateManager<IScene>>() {}).toInstance(new StateManager<>());
         bind(new TypeLiteral<StateManager<IWindowController>>() {}).toInstance(new StateManager<>());
+
+        // Repositories
+        bind(IRepository.class).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
+        bind(IRepository.class).annotatedWith(Names.named("npc")).to(NpcRepository.class);
+        bind(IRepository.class).annotatedWith(Names.named("enemy")).to(EnemyRepository.class);
     }
 }

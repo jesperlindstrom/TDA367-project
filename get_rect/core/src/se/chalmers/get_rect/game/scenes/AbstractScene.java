@@ -5,7 +5,6 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.OverlayFactory;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.loaders.SceneLoader;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
@@ -29,24 +28,27 @@ public abstract class AbstractScene implements IScene {
     private ArrayList<IModel> models;
     private boolean setupDone;
     private Queue<IEntity> additions;
-
+    private SceneEntityLoader sceneLoader;
     /**
      * Create a new scene
-     * @param folderName The scenes folder name
-     * @param playerEntity The player entity
+     *
+     * @param folderName       The scenes folder name
+     * @param playerEntity     The player entity
      * @param rectangleFactory A rectangle factory
-     * @param camera A camera manager
+     * @param camera           A camera manager
      */
-    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager) {
+    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager, SceneEntityLoader sceneLoader) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
         this.sceneManager = sceneManager;
+        this.sceneLoader = sceneLoader;
     }
 
     /**
      * Get the camera manager
+     *
      * @return The camera manager
      */
     protected ICamera getCamera() {
@@ -55,6 +57,7 @@ public abstract class AbstractScene implements IScene {
 
     /**
      * Get the rectangle factory
+     *
      * @return Rectangle factory
      */
     protected IRectangleFactoryAdapter getRectangleFactory() {
@@ -63,6 +66,7 @@ public abstract class AbstractScene implements IScene {
 
     /**
      * Get the player entity
+     *
      * @return The player entity
      */
     protected IPhysicsEntity getPlayer() {
@@ -71,6 +75,7 @@ public abstract class AbstractScene implements IScene {
 
     /**
      * Add the player to the scene and physics, at a specified position
+     *
      * @param x X coordinate
      * @param y Y coordinate
      */
@@ -81,6 +86,7 @@ public abstract class AbstractScene implements IScene {
 
     /**
      * Update all components
+     *
      * @param delta Time since last update in tenths of second.
      */
     @Override
@@ -89,11 +95,11 @@ public abstract class AbstractScene implements IScene {
         models.removeIf(IModel::shouldBeRemoved);
         models.forEach(m -> m.update(delta));
         physics.update(delta);
-
     }
 
     /**
      * Draw all components
+     *
      * @param graphics The graphics adapter
      */
     @Override
@@ -104,6 +110,7 @@ public abstract class AbstractScene implements IScene {
 
     /**
      * Load entities, reset and setup all components
+     *
      * @param previousStateName The state we're coming from
      */
     @Override
@@ -115,11 +122,11 @@ public abstract class AbstractScene implements IScene {
         sortViewsByDrawOrder();
         additions = new LinkedList<>();
         setupDone = true;
-
     }
 
     /**
      * Unload or hide components before leaving the state
+     *
      * @param nextStateName The state we're going into
      */
     @Override
@@ -131,10 +138,8 @@ public abstract class AbstractScene implements IScene {
      * Load all entities from JSON data
      */
     protected void loadEntities() {
-        SceneLoader loader = new SceneLoader(folderName, playerEntity, rectangleFactory, sceneManager);
-
         try {
-            loadEntities(loader);
+            sceneLoader.getAllEntities(folderName).forEach(this::addEntity);
         } catch (FileNotFoundException e) {
             // todo: handle error, window?
             System.out.println(e.getMessage());
@@ -147,7 +152,7 @@ public abstract class AbstractScene implements IScene {
     }
 
     private void setupOverlays() {
-        if(playerEntity.getModel() instanceof Player) {
+        if (playerEntity.getModel() instanceof Player) {
             Player player = (Player) playerEntity.getModel();
             OverlayFactory overlay = new OverlayFactory(models, player, camera, physics);
             addEntity(overlay.make("questMarkers"));
@@ -161,11 +166,6 @@ public abstract class AbstractScene implements IScene {
 
     private void setupPhysics() {
         physics = new PhysicsEngine();
-    }
-
-
-    private void loadEntities(SceneLoader loader) throws FileNotFoundException {
-        loader.getAllEntities().forEach(this::addEntity);
     }
 
     public void add(IEntity entity) {
@@ -186,21 +186,28 @@ public abstract class AbstractScene implements IScene {
         IModel model = entity.getModel();
         IView view = entity.getView();
 
-        if (model != null) {
-            models.add(model);
-            model.setScene(this);
-
-            if (model instanceof IPhysicsObject) {
-                physics.add((IPhysicsObject) model);
-            }
-        }
-
-        if (view != null) {
-            views.add(view);
-        }
+        setupModel(model);
+        setupView(view);
 
         if (setupDone) {
             sortViewsByDrawOrder();
+        }
+    }
+
+    private void setupModel(IModel model) {
+        if (model == null) return;
+
+        models.add(model);
+        model.setScene(this);
+
+        if (model instanceof IPhysicsObject) {
+            physics.add((IPhysicsObject) model);
+        }
+    }
+
+    private void setupView(IView view) {
+        if (view != null) {
+            views.add(view);
         }
     }
 }

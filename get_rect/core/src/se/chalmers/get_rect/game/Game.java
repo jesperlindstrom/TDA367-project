@@ -191,6 +191,4 @@ public class Game implements IGame {
     public boolean loadAvailable() {
         return true;
     }
-
-
 }

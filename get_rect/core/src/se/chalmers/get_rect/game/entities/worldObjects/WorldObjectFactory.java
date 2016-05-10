@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.worldObjects;
 
+import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
 import se.chalmers.get_rect.game.entities.worldObjects.view.SandCastleView;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
@@ -14,23 +15,13 @@ import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 public class WorldObjectFactory {
-
     private IRectangleFactoryAdapter rectangleFactory;
-    private StateManager<? extends IState> sceneManager;
+    private StateManager<IScene> sceneManager;
 
-    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory, StateManager<? extends IState> sceneManager) {
+    @Inject
+    public WorldObjectFactory(IRectangleFactoryAdapter rectangleFactory, StateManager<IScene> sceneManager) {
         this.rectangleFactory = rectangleFactory;
         this.sceneManager = sceneManager;
-    }
-
-    public IPhysicsEntity make(WorldObjectDataStore dataStore) {
-        String type = dataStore.getType();
-        Point pos = dataStore.getPosition();
-        int width = dataStore.getWidth();
-        int height = dataStore.getHeight();
-        int path = dataStore.getPath();
-
-        return make(type, pos, width, height, path);
     }
 
     public IPhysicsEntity make(String type, Point point, int width, int height, int path) {

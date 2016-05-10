@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.game.entities.enemies;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
@@ -11,13 +13,10 @@ public class EnemyFactory {
     private IPhysicsModel player;
     private IRectangleFactoryAdapter rectangleFactory;
 
-    public EnemyFactory(IPhysicsModel player, IRectangleFactoryAdapter rectangleFactory) {
+    @Inject
+    public EnemyFactory(@Named("Player") IPhysicsModel player, IRectangleFactoryAdapter rectangleFactory) {
         this.player = player;
         this.rectangleFactory = rectangleFactory;
-    }
-
-    public IPhysicsEntity make(EnemyDataStore data) {
-        return make(data.getType(), data.getPosition());
     }
 
     public IPhysicsEntity make(String enemyType, Point position) {

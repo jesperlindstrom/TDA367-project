@@ -1,16 +1,15 @@
 package se.chalmers.get_rect.game.scenes.horsalsvagen;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.scenes.SceneEntityLoader;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.scenes.AbstractScene;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.states.StateManager;
 
 public class HorsalsvagenScene extends AbstractScene {
-    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene>  sceneManager) {
-        super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneManager);
+    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene>  sceneManager, SceneEntityLoader sceneLoader) {
+        super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneManager, sceneLoader);
     }
 
     @Override
