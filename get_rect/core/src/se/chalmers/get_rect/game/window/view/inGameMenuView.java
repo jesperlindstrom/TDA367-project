@@ -13,6 +13,7 @@ public class inGameMenuView extends AbstractView {
     private EntityCamera camera;
     private AbstractGridModel model;
 
+
     public inGameMenuView(EntityCamera camera, AbstractGridModel model) {
         this.camera = camera;
         this.model = model;
@@ -26,11 +27,14 @@ public class inGameMenuView extends AbstractView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         Point cameraPos = camera.getPosition();
+        double third = 3.3;
+        int cameraWidth = (int)(camera.getAdapter().getWidth()/third) + 10; //divided by three because the menu and inventory gets its own third of the screen
+        int cameraHeight = (int)camera.getAdapter().getHeight();
 
         //Backgrounds
         graphics.draw(IMG_PATH + "menuShader.png", cameraPos);
-        graphics.draw(IMG_PATH + "buttons/pause_menu_bg.png", cameraPos.add(360, 140));
-        graphics.draw(IMG_PATH + "inventory/inventory_bg.png", cameraPos.add(960, 240));
+        graphics.draw(IMG_PATH + "buttons/pause_menu_bg.png", cameraPos.add(cameraWidth - 300, cameraHeight/15));
+        graphics.draw(IMG_PATH + "inventory/inventory_bg.png", cameraPos.add(cameraWidth + 332, cameraHeight/6));
 
         //Buttons
         graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(CONTINUE));
@@ -40,11 +44,13 @@ public class inGameMenuView extends AbstractView {
     }
 
     public Point getRealPosition(Point gridPosition) {
+        double third = 3.3;
+        int cameraWidth = (int)(camera.getAdapter().getWidth()/third);
         if (gridPosition.equals(CONTINUE))
-            return camera.getPosition().add(430, 390);
+            return camera.getPosition().add(cameraWidth - 225, 390);
 
         if (gridPosition.equals(EXIT))
-            return camera.getPosition().add(430, 240);
+            return camera.getPosition().add(cameraWidth - 225, 240);
 
         return null;
     }

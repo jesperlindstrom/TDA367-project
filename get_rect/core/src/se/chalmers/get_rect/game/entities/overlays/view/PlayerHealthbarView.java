@@ -27,7 +27,7 @@ public class PlayerHealthbarView extends AbstractView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         float dmgTaken = (float)(150*((player.getCurrentHealth())/(double)player.getMaxHealth()));
-        int x = camera.getPosition().getX() + 540 + 200;
+        int x = camera.getPosition().getX() + (int)camera.getAdapter().getWidth()/2 - 226;
         int y = camera.getPosition().getY();
         Point position = new Point(x,y);
         graphics.draw(pathbackOverlay1,position.addX(120));

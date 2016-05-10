@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,17 +10,22 @@ import com.badlogic.gdx.math.Matrix4;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
     private LibGDXAssetManagerAdapter assetManager;
     private GL20 graphics;
+    private Map<Colors,Color> colorsMap;
 
     public LibGDXGraphicsAdapter(SpriteBatch batch, GL20 graphics, LibGDXAssetManagerAdapter assetManager) {
         this.batch = batch;
         this.graphics = graphics;
         this.assetManager = assetManager;
         font = new BitmapFont();
+        initColor();
     }
 
     /**
@@ -79,6 +83,13 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     }
 
     @Override
+    public void drawText(String text, Point point, Colors color) {
+        font.setColor(colorsMap.get(color));
+
+        font.draw(batch,text,point.getX(), point.getY());
+    }
+
+    @Override
     public void drawText(String text, int x, int y) {
         drawText(text, new Point(x, y));
     }
@@ -110,5 +121,13 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
 
     public void setMatrix(Matrix4 cameraMatrix) {
         batch.setProjectionMatrix(cameraMatrix);
+    }
+
+    private void initColor(){
+        this.colorsMap = new HashMap<>();
+        colorsMap.put(Colors.WHITE, Color.WHITE);
+        colorsMap.put(Colors.BLACK, Color.BLACK);
+        colorsMap.put(Colors.RED, Color.RED);
+
     }
 }

@@ -35,7 +35,8 @@ public class mainMenuView extends AbstractView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
 
-        Point cameraPos = camera.getPosition();
+        Point cameraPosPre = camera.getPosition();
+        Point cameraPos = new Point(-960,cameraPosPre.getY()+cameraPosPre.getY()/5);
 
         //Backgrounds
         graphics.draw(IMG_PATH + "main_menu.png", cameraPos);
@@ -51,14 +52,16 @@ public class mainMenuView extends AbstractView {
     }
 
     public Point getRealPosition(Point gridPosition) {
+        int buttonWidth = 225;
+
         if (gridPosition.equals(CONTINUE))
-            return camera.getPosition().add(735, 382);
+            return camera.getPosition().add((int)(camera.getAdapter().getWidth()/2) - buttonWidth, 382);
 
         if (gridPosition.equals(NEW_GAME))
-            return camera.getPosition().add(735, 241);
+            return camera.getPosition().add((int)(camera.getAdapter().getWidth()/2) - buttonWidth, 241);
 
         if (gridPosition.equals(EXIT))
-            return camera.getPosition().add(735, 100);
+            return camera.getPosition().add((int)(camera.getAdapter().getWidth()/2) - buttonWidth, 100);
 
         return null;
     }

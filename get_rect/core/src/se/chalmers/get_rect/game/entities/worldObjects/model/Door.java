@@ -57,4 +57,9 @@ public class Door extends AbstractPhysicsModel implements IInteractableModel {
     public boolean isDialogVisible() {
         return false;
     }
+
+    @Override
+    public void nextDialog() {
+        //do nothing on standard
+    }
 }

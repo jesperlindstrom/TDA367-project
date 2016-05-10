@@ -34,9 +34,9 @@ public abstract class AbstractBackgroundView extends AbstractView {
         Point pos = camera.getPosition();
 
         if (skyboxImage != null) {
-            graphics.draw(skyboxImage, pos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, pos);
+            graphics.draw(skyboxImage, pos, camera.getAdapter().getWidth(), camera.getAdapter().getHeight(), pos);
         }
 
-        graphics.draw(sceneImage, pos, GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, pos);
+        graphics.draw(sceneImage, pos, camera.getAdapter().getWidth(), camera.getAdapter().getHeight(), pos);
     }
 }

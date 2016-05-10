@@ -48,7 +48,8 @@ public class Game implements IGame {
 
         IPhysicsEntity player = createPlayer(rectangleFactory);
 
-        this.cameraManager = new EntityCamera(cameraFactory.make(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT), player.getModel());
+        this.cameraManager = new EntityCamera(cameraFactory.make(1920, 1080/*GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT*/), player.getModel());
+        
 
         addComponents(player); //todo: find a better name
 
