@@ -20,6 +20,7 @@ public class SawmillView extends AbstractAnimatedView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+
         if (model.isFlying()) {
             addAnimationFrame(0, "img/interact/exclamation.png");
             playSequence(FLYING);
@@ -28,4 +29,7 @@ public class SawmillView extends AbstractAnimatedView {
         }
         super.draw(graphics);
     }
+
+
+
 }

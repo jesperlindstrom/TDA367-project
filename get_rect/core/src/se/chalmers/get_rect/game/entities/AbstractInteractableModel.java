@@ -4,28 +4,39 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.StringWrapper;
 
 public abstract class AbstractInteractableModel extends AbstractPhysicsModel implements IInteractableModel {
     private IModel model;
     private static final int DISTANCE = 150;
     private boolean showDialog;
     private String dialog;
+    private String[] wrappedDialog;
+    private int dialogIndex;
+    private StringWrapper wrapper;
+
+
 
     protected AbstractInteractableModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory) {
         super(position, velocity, solid, rectangleFactory);
+        wrapper = new StringWrapper();
     }
 
     @Override
     public void update(double delta) {
         if(model != null && model.getPosition().distanceTo(getPosition()) > DISTANCE){
             showDialog = false;
-            dialog = "";
+            dialog = "Whääääää!";
         }
     }
 
     @Override
     public void showDialog(String message) {
         dialog = message;
+        if (!isDialogVisible()) {
+            wrappedDialog = wrapper.wrap(message);
+            dialogIndex = -1;
+        }
         showDialog = true;
     }
 
@@ -37,7 +48,16 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
 
     @Override
     public String getDialog() {
-        return dialog;
+        if (dialogIndex >= wrappedDialog.length){
+            showDialog = false;
+            dialogIndex = 0;
+        }
+        return wrappedDialog[dialogIndex];
+    }
+
+    @Override
+    public void nextDialog() {
+        dialogIndex++;
     }
 
     @Override

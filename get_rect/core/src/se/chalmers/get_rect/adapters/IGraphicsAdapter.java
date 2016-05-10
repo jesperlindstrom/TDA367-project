@@ -10,9 +10,15 @@ public interface IGraphicsAdapter {
     void draw(String img, Point point);
     void draw(String img, Point point, float width, float height);
     void draw(String img, Point point, float width, float height, Point offsetPoint);
+    void drawText(String text, Point point, Colors color);
     void drawText(String text, Point point);
     void drawText(String text, int x, int y);
     void start();
     void end();
     void clear();
+
+    enum Colors{
+        RED, WHITE, BLACK
+    }
+
 }
