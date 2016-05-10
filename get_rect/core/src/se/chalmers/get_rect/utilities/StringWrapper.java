@@ -11,15 +11,13 @@ public class StringWrapper {
     public String[] wrap(String string){
         StringBuilder sb = new StringBuilder(string);
         int i = 0;
-        int count = 0;
         while (i + 25 < sb.length() && (i = sb.lastIndexOf(" ", i + 25)) != -1) {
             sb.replace(i, i + 1, "\n");
-            count++;
         }
-        return trimString(sb, count);
+        return trimString(sb);
     }
 
-    private String[] trimString(StringBuilder sb, int count){
+    private String[] trimString(StringBuilder sb){
         String[] trimmedString = sb.toString().split("\n");
         String[] tmp = new String[1 + (trimmedString.length/4)];
         int index = 0;
