@@ -19,7 +19,7 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     public void update(double delta) {
         if(model != null && model.getPosition().distanceTo(getPosition()) > DISTANCE){
             showDialog = false;
-            dialog = "";
+            dialog = "This is now null";
         }
     }
 

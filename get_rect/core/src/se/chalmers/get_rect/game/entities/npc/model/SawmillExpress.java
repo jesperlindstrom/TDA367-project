@@ -43,8 +43,8 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     public void onInteract(IModel model) {
-        isFlying = true;
-        showDialog("Wäääh!");
+
+        showDialog("Hello, I am Sawmill! I live in this express because reasons. That is why it is called ''Sawmill Express''. But I have a problem, I can not start the express because I fucked up with the start button. It is on the outside.. Please press the start button! I can heal your broken soul!");
         if (model instanceof ICombatModel){
             ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
         }

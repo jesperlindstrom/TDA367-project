@@ -19,12 +19,20 @@ public class SawmillView extends AbstractAnimatedView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+
         if (model.isFlying()) {
             addAnimationFrame(0, "img/interact/exclamation.png");
             playSequence(FLYING);
         } else {
             playSequence(DEFAULT);
         }
+        if (model.isDialogVisible()) {
+            graphics.draw("img/interact/bubble.png", model.getPosition().addY(250));
+            graphics.drawText(model.getDialog(), model.getPosition().addY(100), IGraphicsAdapter.Colors.BLACK);
+        }
         super.draw(graphics);
     }
+
+
+
 }
