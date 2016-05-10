@@ -6,10 +6,10 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import se.chalmers.get_rect.adapters.IGameLoopAdapter;
 import se.chalmers.get_rect.adapters.libGDX.LibGDXModule;
-import se.chalmers.get_rect.game.Game;
+import se.chalmers.get_rect.game.GameLauncher;
 
-public class GameLauncher extends ApplicationAdapter implements IGameLoopAdapter {
-    private Game gameManager;
+public class LibGDXLauncher extends ApplicationAdapter implements IGameLoopAdapter {
+    private GameLauncher gameManager;
 
     /**
      * Starts the program.
@@ -18,7 +18,7 @@ public class GameLauncher extends ApplicationAdapter implements IGameLoopAdapter
     public void create() {
         Injector injector = Guice.createInjector(new LibGDXModule(this));
 
-        gameManager = injector.getInstance(Game.class);
+        gameManager = injector.getInstance(GameLauncher.class);
     }
 
     /**

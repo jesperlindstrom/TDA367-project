@@ -20,15 +20,9 @@ public class PlayerFactory {
         this.projectileFactory = projectileFactory;
     }
 
-    /**
-     * Maker for a new player.
-     * @return
-     */
-    public PhysicsEntity make(PlayerController controller) {
+    public PhysicsEntity make() {
         Player model = new Player(rectangleFactory, projectileFactory);
         IView view = new PlayerView(model);
-
-        controller.setPlayer(model);
 
         return new PhysicsEntity(model,view);
     }

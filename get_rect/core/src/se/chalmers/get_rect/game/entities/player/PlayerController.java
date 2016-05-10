@@ -1,19 +1,18 @@
 package se.chalmers.get_rect.game.entities.player;
 
-
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.utilities.Point;
-
 
 public class PlayerController implements IController {
     private IInputAdapter input;
     private Player player;
 
     @Inject
-    public PlayerController(IInputAdapter input) {
+    public PlayerController(Player player, IInputAdapter input) {
         this.input = input;
+        this.player = player;
     }
 
     @Override
@@ -75,9 +74,5 @@ public class PlayerController implements IController {
         if(input.isKeyJustPressed(IInputAdapter.Keys.Q)){
             player.switchWeapon();
         }
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
     }
 }

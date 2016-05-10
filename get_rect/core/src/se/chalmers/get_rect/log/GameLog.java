@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.log;
+package se.chalmers.get_rect.log;
 
 import java.util.Observable;
 
