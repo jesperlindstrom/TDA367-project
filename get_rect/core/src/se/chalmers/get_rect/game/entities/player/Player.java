@@ -1,26 +1,29 @@
 package se.chalmers.get_rect.game.entities.player;
 
-import se.chalmers.get_rect.game.entities.IInteractorModel;
+import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.entities.item.IMelee;
+import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.game.entities.AbstractCombatModel;
-import se.chalmers.get_rect.game.entities.IInteractableModel;
-import se.chalmers.get_rect.game.entities.IPhysicsEntity;
-import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
 import se.chalmers.get_rect.utilities.Point;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player extends AbstractCombatModel implements IInteractorModel {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 80;
     private static final int JUMP_SPEED = 90;
     private static final int MOVE_SPEED = 40;
+    private static final int MELEE = 1;
+    private static final int RANGED = 2;
     private boolean isWalking = false;
     private boolean canJump = true;
-    private ProjectileFactory projectileFactory;
-    private int bulletSpeed = 200;//should be in projectile/weapon
     private IInteractableModel interactableNPC;
-    private boolean isPrimaryWeapon = false;
+    private Map<Integer, IEntity> weapons;
+    private IEntity activeWeapon;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -29,8 +32,11 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     public Player(IRectangleFactoryAdapter rectangleFactory) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
         setBoundingBox(WIDTH, HEIGHT);
+        weapons = new HashMap<>();
 
-        projectileFactory = new ProjectileFactory(rectangleFactory);
+        // TODO fulhax fixthisplz
+        ItemFactory itemsPlz = new ItemFactory(getRectangleFactory());
+        addNewWeapon(itemsPlz.make("pistol", this));
     }
 
     @Override
@@ -61,14 +67,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void shoot(Point direction) {
-        // todo: bulletSpeed belongs in a weapon
-        IPhysicsEntity projectile;
-        if(isPrimaryWeapon){
-            projectile = projectileFactory.make("melee", getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
-        }else {
-            projectile = projectileFactory.make("normal", getPosition().addY(HEIGHT), direction.multiply(bulletSpeed), this);
-        }
-        getScene().add(projectile);
+        ((IWeapon)activeWeapon.getModel()).use(direction, getScene());
     }
 
     public void moveLeft() {
@@ -116,17 +115,38 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     public void switchWeapon() {
 
-        if (isPrimaryWeapon){
-            bulletSpeed = 200;
-            isPrimaryWeapon = false;
+        if (activeWeapon instanceof IMelee){
+            setWeapon(weapons.get(RANGED));
         } else {
-            bulletSpeed = 20;
-            isPrimaryWeapon = true;
+            setWeapon(weapons.get(MELEE));
         }
     }
 
-    public boolean isPrimaryWeapon(){
-        return isPrimaryWeapon;
+    public IWeapon getActiveWeapon(){
+        return (IWeapon)activeWeapon.getModel();
+    }
+
+    public void addNewWeapon(IEntity entity) {
+        if (entity.getModel() instanceof IWeapon) {
+            weapons.put(entity instanceof IMelee ? MELEE : RANGED, entity);
+            setWeapon(entity);
+        }
+    }
+
+    @Override
+    public void setScene(IEntityHolder scene) {
+        super.setScene(scene);
+        scene.add(activeWeapon);
+    }
+
+    private void setWeapon(IEntity weapon) {
+        if (activeWeapon != null ) {
+            ((IWeapon)activeWeapon.getModel()).remove();
+        }
+        activeWeapon = weapon;
+        if (getScene() != null) {
+            getScene().add(weapon);
+        }
     }
 
 }

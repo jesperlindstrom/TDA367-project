@@ -17,24 +17,8 @@ public class ProjectileFactory {
         this.rectangleFactory = rectangleFactory;
     }
 
-    public IPhysicsEntity make(String type, Point point, Point velocity, IPhysicsModel owner) {
-        if (type.equals("normal")) {
-            return makeProjectile(point, velocity.add(owner.getVelocity()), owner);
-        }
-        if (type.equals("melee"))
-            return makeMeleeProjectile(point, velocity.add(owner.getVelocity()), owner);
-        throw new EntityNotFoundException("Projectile", type);
-    }
-
-    private IPhysicsEntity makeProjectile(Point point, Point velocity, IModel owner) {
-        Projectile model = new Projectile(point, velocity, rectangleFactory, owner, false);
-        IView view = new ProjectileView(model);
-
-        return new PhysicsEntity(model, view);
-    }
-
-    private IPhysicsEntity makeMeleeProjectile(Point point, Point velocity, IModel owner){
-        Projectile model = new Projectile(point, velocity, rectangleFactory, owner, true);
+    public IPhysicsEntity make(Point point, Point velocity, int damage, IModel owner) {
+        Projectile model = new Projectile(point, velocity, damage, rectangleFactory, owner);
         IView view = new ProjectileView(model);
 
         return new PhysicsEntity(model, view);

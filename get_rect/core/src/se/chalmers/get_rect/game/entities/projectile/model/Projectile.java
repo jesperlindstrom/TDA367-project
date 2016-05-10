@@ -9,15 +9,14 @@ import se.chalmers.get_rect.utilities.SideData;
 public class Projectile extends AbstractPhysicsModel {
     private int width = 10;
     private int height = 10;
-    private int dmg = 10;
+    private int dmg;
     private IModel owner;
-    private boolean isMelee;
 
-    public Projectile(Point position, Point velocity, IRectangleFactoryAdapter rectangleFactory, IModel owner, boolean isMelee) {
+    public Projectile(Point position, Point velocity, int damage, IRectangleFactoryAdapter rectangleFactory, IModel owner) {
         super(position, velocity, false, rectangleFactory);
         setBoundingBox(width, height);
         this.owner = owner;
-        this.isMelee = isMelee;
+        this.dmg = damage;
     }
 
     @Override
@@ -39,12 +38,6 @@ public class Projectile extends AbstractPhysicsModel {
     public void update(double delta) {
         if (getVelocity().getX() == 0 && getVelocity().getY() == 0) {
             setShouldBeRemoved();
-        }
-
-        if (isMelee) {
-            if (owner.getPosition().distanceTo(getPosition()) > 90) {
-                setShouldBeRemoved();
-            }
         }
     }
 }
