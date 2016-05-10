@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.overlays;
 
+import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
@@ -18,12 +19,19 @@ public class OverlayFactory {
     private IPhysicsEngine physics;
     private IInputAdapter input;
 
-    public OverlayFactory(List<IModel> models, Player player, ICamera camera, IPhysicsEngine physics, IInputAdapter input) {
-        this.models = models;
+    @Inject
+    public OverlayFactory(Player player, ICamera camera, IInputAdapter input) {
         this.player = player;
         this.camera = camera;
-        this.physics = physics;
         this.input = input;
+    }
+
+    public void setModels(List<IModel> models) {
+        this.models = models;
+    }
+
+    public void setPhysics(IPhysicsEngine physics) {
+        this.physics = physics;
     }
 
     public IEntity make(String type) {
@@ -46,23 +54,23 @@ public class OverlayFactory {
             return makePlayerWaeponSlot();
         }
         if (type.equals("dialog")){
-            return makeDialog(player);
+            return makeDialog();
         }
 
         throw new EntityNotFoundException("overlay", type);
     }
 
-    private IEntity makeDialog(Player player){
+    private IEntity makeDialog() {
         IView view = new DialogView(player);
         return new Entity(null,view);
     }
 
-    private IEntity makePlayerWaeponSlot(){
+    private IEntity makePlayerWaeponSlot() {
         IView view = new PlayerWeaponSlotsView(player,camera);
         return new Entity(null, view);
     }
 
-    private IEntity makePlayerHealthbar(){
+    private IEntity makePlayerHealthbar() {
         IView view = new PlayerHealthbarView(player,camera);
         return new Entity(null,view);
     }
@@ -87,7 +95,7 @@ public class OverlayFactory {
         return new Entity(model, view);
     }
 
-    private IEntity makeHealthbar(){
+    private IEntity makeHealthbar() {
         CombatList model = new CombatList(models);
         IView view = new HealthbarView(model);
         return new Entity(model, view);

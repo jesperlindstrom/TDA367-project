@@ -14,20 +14,14 @@ public class SceneFactory {
     private IPhysicsEntity playerEntity;
     private IRectangleFactoryAdapter rectangleFactory;
     private ICamera camera;
-    private StateManager<IScene> sceneManager;
-    private SceneEntityLoader sceneLoader;
-    private IInputAdapter input;
+    private SceneLoader sceneLoader;
 
     @Inject
-    public SceneFactory(@Named("Player") IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager, SceneEntityLoader sceneLoader, IInputAdapter input) {
+    public SceneFactory(@Named("Player") IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager, SceneLoader sceneLoader, IInputAdapter input) {
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
-        this.sceneManager = sceneManager;
         this.sceneLoader = sceneLoader;
-        this.input = input;
-
-        System.out.println(camera);
     }
 
     public IScene make(String name) {
@@ -41,10 +35,10 @@ public class SceneFactory {
     }
 
     private IScene makeHorsalsvagen() {
-        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneManager, sceneLoader, input);
+        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneLoader);
     }
 
     private IScene makeTest() {
-        return new TestScene(playerEntity, rectangleFactory, camera, sceneManager, sceneLoader, input);
+        return new TestScene(playerEntity, rectangleFactory, camera, sceneLoader);
     }
 }

@@ -1,15 +1,11 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.overlays.OverlayFactory;
-import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
-import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
@@ -28,16 +24,13 @@ public abstract class AbstractScene implements IScene {
     private ArrayList<IModel> models;
     private boolean setupDone;
     private Queue<IEntity> additions;
-    private SceneEntityLoader sceneLoader;
-    private IInputAdapter input;
+    private SceneLoader sceneLoader;
 
-
-    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager, SceneEntityLoader sceneLoader, IInputAdapter input) {
+    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
-        this.input = input;
         this.sceneLoader = sceneLoader;
     }
 
@@ -134,7 +127,7 @@ public abstract class AbstractScene implements IScene {
      */
     protected void loadEntities() {
         try {
-            sceneLoader.getAllEntities(folderName).forEach(this::addEntity);
+            sceneLoader.getEntities(folderName).forEach(this::addEntity);
         } catch (FileNotFoundException e) {
             // todo: handle error, window?
             System.out.println(e.getMessage());
@@ -147,17 +140,7 @@ public abstract class AbstractScene implements IScene {
     }
 
     private void setupOverlays() {
-        if (playerEntity.getModel() instanceof Player) {
-            Player player = (Player) playerEntity.getModel();
-            OverlayFactory overlay = new OverlayFactory(models, player, camera, physics, input);
-            addEntity(overlay.make("questMarkers"));
-            addEntity(overlay.make("interactionHints"));
-            addEntity(overlay.make("debug"));
-            addEntity(overlay.make("healthbar"));
-            addEntity(overlay.make("playerHealthbar"));
-            addEntity(overlay.make("weaponSlots"));
-            addEntity(overlay.make("dialog"));
-        }
+        sceneLoader.getOverlays(models, physics).forEach(this::addEntity);
     }
 
     private void setupPhysics() {
