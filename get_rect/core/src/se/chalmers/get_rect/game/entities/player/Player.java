@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player extends AbstractCombatModel implements IInteractorModel {
-    private static final int WIDTH = 40;
-    private static final int HEIGHT = 80;
+    private static final int WIDTH = 68;
+    private static final int HEIGHT = 151;
     private static final int JUMP_SPEED = 90;
     private static final int MOVE_SPEED = 40;
     private static final int MELEE = 1;

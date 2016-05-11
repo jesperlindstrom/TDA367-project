@@ -16,10 +16,12 @@ class PlayerView extends AbstractAnimatedView {
         super(player, STAND_STILL);
         this.player = player;
 
-        addAnimationFrame(STAND_STILL, "img/entities/player/playerTwoLeg.png");
-        addAnimationFrame(JUMPING, "img/entities/player/playerTwoLeg.png");
-        addAnimationFrame(WALKING, "img/entities/player/playerOneLeg.png", 5);
-        addAnimationFrame(WALKING, "img/entities/player/playerTwoLeg.png", 5);
+        addAnimationFrame(STAND_STILL, "img/entities/player/player_still.png");
+        addAnimationFrame(JUMPING, "img/entities/player/player_still.png");
+        addAnimationFrame(WALKING, "img/entities/player/player_still.png", 5);
+        addAnimationFrame(WALKING, "img/entities/player/player_walking_1.png", 5);
+        addAnimationFrame(WALKING, "img/entities/player/player_walking_3.png", 5);
+        addAnimationFrame(WALKING, "img/entities/player/player_walking_2.png", 5);
     }
 
     private int getSequence() {
