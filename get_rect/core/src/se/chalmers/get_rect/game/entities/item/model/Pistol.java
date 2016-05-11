@@ -5,10 +5,9 @@ import se.chalmers.get_rect.game.entities.IEntityHolder;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.IRanged;
 import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Pistol extends AbstractModel implements IRanged {
+public class Pistol extends AbstractWeapon implements IRanged {
 
     private static final int SPEED = 200;
     private static final int DAMAGE = 10;

@@ -17,9 +17,6 @@ public class HorsalsvagenScene extends AbstractScene {
         // Add background image
         addEntity(getBackgroundView());
 
-        // Load all entities from the JSON data
-        loadEntities();
-
         // Set the player position
         addPlayerAtPosition(1200, 500);
     }
