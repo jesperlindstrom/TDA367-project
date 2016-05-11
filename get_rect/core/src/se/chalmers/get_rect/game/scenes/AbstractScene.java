@@ -104,8 +104,8 @@ public abstract class AbstractScene implements IScene {
     @Override
     public void enteringState(Integer previousStateName) {
         setupDone = false;
-        setupEntities();
         setupPhysics();
+        setupEntities();
         setupOverlays();
         sortViewsByDrawOrder();
         additions = new LinkedList<>();
@@ -122,21 +122,15 @@ public abstract class AbstractScene implements IScene {
 
     }
 
-    /**
-     * Load all entities from JSON data
-     */
-    protected void loadEntities() {
+    private void setupEntities() {
+        views = new ArrayList<>();
+        models = new ArrayList<>();
         try {
             sceneLoader.getEntities(folderName).forEach(this::addEntity);
         } catch (FileNotFoundException e) {
             // todo: handle error, window?
             System.out.println(e.getMessage());
         }
-    }
-
-    private void setupEntities() {
-        views = new ArrayList<>();
-        models = new ArrayList<>();
     }
 
     private void setupOverlays() {
