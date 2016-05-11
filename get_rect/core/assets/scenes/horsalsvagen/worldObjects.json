@@ -3,8 +3,8 @@
     "type": "boundingBox",
     "x": 0,
     "y": 370,
-    "width": 5000,
-    "height": 200
+  "width": 5000,
+  "height": 200
   },
 
   {
@@ -29,7 +29,7 @@
     "y":640,
     "width": 178,
     "height": 300,
-    "path": 22
+    "path": 23
   },
   {
     "type": "sandCastle",

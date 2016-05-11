@@ -36,6 +36,7 @@ public class Game {
     public void setup() {
         sceneManager.add(GameConfig.TEST, sceneFactory.make("test"));
         sceneManager.add(GameConfig.HORSALSVAGEN, sceneFactory.make("horsalsvagen"));
+        sceneManager.add(GameConfig.HUBBEN, sceneFactory.make("hubben"));
 
         // todo: this is bad and Sune should feel bad
         sceneManager.add(GameConfig.NULL, null);

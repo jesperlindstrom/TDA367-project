@@ -1,0 +1,17 @@
+[
+{
+  "type": "boundingBox",
+  "x": -3000,
+  "y": 370,
+  "width": 5000,
+  "height": 200
+},
+  {
+    "type": "door",
+    "x":1140,
+    "y":580,
+    "width": 260,
+    "height": 240,
+    "path": 22
+  }
+]
