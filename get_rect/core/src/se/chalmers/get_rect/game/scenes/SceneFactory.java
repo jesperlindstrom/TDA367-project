@@ -11,18 +11,10 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.StateManager;
 
 public class SceneFactory {
-    private IPhysicsEntity playerEntity;
-    private IRectangleFactoryAdapter rectangleFactory;
-    private ICamera camera;
-    private SceneLoader sceneLoader;
-
-    @Inject
-    public SceneFactory(@Named("Player") IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, StateManager<IScene> sceneManager, SceneLoader sceneLoader, IInputAdapter input) {
-        this.playerEntity = playerEntity;
-        this.rectangleFactory = rectangleFactory;
-        this.camera = camera;
-        this.sceneLoader = sceneLoader;
-    }
+    @Inject @Named("Player") private IPhysicsEntity playerEntity;
+    @Inject private IRectangleFactoryAdapter rectangleFactory;
+    @Inject private ICamera camera;
+    @Inject private SceneLoader sceneLoader;
 
     public IScene make(String name) {
         if (name.equals("horsalsvagen"))
