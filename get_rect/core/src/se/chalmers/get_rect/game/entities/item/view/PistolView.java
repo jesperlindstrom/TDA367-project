@@ -6,7 +6,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class PistolView extends AbstractWeaponView {
 
-    private static final float scale = 0.3f;
+    private static final float scale = 0.1f;
 
     public PistolView(IWeapon model) {
         super(model);
@@ -14,7 +14,7 @@ public class PistolView extends AbstractWeaponView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/items/potistol.png", getModel().getPosition().add(2, -18), new Point(0, 0), getXScale(scale), 0.3f, getRotation());
+        graphics.draw("img/items/potistol.png", getModel().getPosition().add(2, -18), new Point(0, 0), getXScale(scale), scale, getRotation());
     }
 
 }
