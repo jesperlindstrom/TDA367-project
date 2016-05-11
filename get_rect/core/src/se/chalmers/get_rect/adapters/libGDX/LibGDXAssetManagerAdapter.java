@@ -2,10 +2,12 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.IMusicAdapter;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
 
 import java.io.FileNotFoundException;
@@ -32,8 +34,18 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
     }
 
     @Override
+    public void loadMusic(String path) {
+        manager.load(path, Music.class);
+    }
+
+    @Override
     public ISoundAdapter getSound(String path) {
         return new LibGDXSoundAdapter(manager.get(path, Sound.class));
+    }
+
+    @Override
+    public IMusicAdapter getMusic(String path) {
+        return new LibGDXMusicAdapter(manager.get(path, Music.class));
     }
 
     @Override
@@ -71,6 +83,9 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
     @Override
     public void loadSoundsDir(String path) throws FileNotFoundException {
         readDirectory(path, ".mp3", this::loadSound);
+    }
+    public void loadMusicDir(String path) throws  FileNotFoundException {
+        readDirectory(path, ".mp3", this::loadMusic);
     }
 
     /**

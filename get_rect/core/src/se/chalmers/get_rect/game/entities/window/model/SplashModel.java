@@ -30,6 +30,7 @@ public class SplashModel {
         try {
             assetManager.loadTextureDir("img");
             assetManager.loadSoundsDir("sounds");
+            assetManager.loadMusicDir("music");
         } catch (FileNotFoundException e) {
             // todo: show an actual error
             System.out.println(e.getMessage());
