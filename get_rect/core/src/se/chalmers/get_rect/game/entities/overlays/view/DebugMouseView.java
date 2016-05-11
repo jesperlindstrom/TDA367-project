@@ -17,7 +17,7 @@ public class DebugMouseView {
     }
 
     public Point draw(IGraphicsAdapter graphics, Point position) {
-        if (GameConfig.SHOW_MOUSE_POS) {
+        if (GameConfig.SHOW_MOUSE_POS && !GameConfig.DISABLE_ALL) {
             position = position.addY(-20);
             Point mousePos = input.getMousePosition();
             Point relativeMousePos = camera.getRelativePosition(mousePos);

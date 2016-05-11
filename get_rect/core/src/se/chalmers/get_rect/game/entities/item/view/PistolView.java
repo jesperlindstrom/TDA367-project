@@ -6,7 +6,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class PistolView extends AbstractWeaponView {
 
-    private static final float scale = 0.1f;
+    private static final float scale = 0.2f;
+    private static final int DRAW_PRIO = 6;
 
     public PistolView(IWeapon model) {
         super(model);
@@ -20,7 +21,11 @@ public class PistolView extends AbstractWeaponView {
         } else {
             imgPath = "img/items/potistolPANG.png";
         }
-        graphics.draw(imgPath, getModel().getSpawnPoint().add(2, -18), new Point(0, 0), getXScale(scale), scale, getRotation());
+        graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(scale), getYScale(scale), getRotation());
     }
 
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIO;
+    }
 }

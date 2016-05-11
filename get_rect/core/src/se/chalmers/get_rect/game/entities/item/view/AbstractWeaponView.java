@@ -17,15 +17,24 @@ public abstract class AbstractWeaponView extends AbstractView {
     }
 
     protected int getRotation() {
-        Point direction = model.getDirection();
+        Point direction = model.getAimDirection();
         int tmp = (int)Math.toDegrees(Math.atan2(direction.getY(), Math.abs(direction.getX())));
         return direction.getX() < 0 ? -tmp : tmp;
     }
 
     protected float getXScale(float scale) {
-        if (model.getDirection().getX() != 0) {
-            return scale * model.getDirection().getX();
+        if (model.getAimDirection().getX() != 0) {
+            return scale * model.getAimDirection().getX();
         }
         return scale;
     }
+
+    protected float getYScale(float scale) {
+        if (model.getAimDirection().getY() != 0) {
+            return scale * model.getFacing();
+        }
+        return scale;
+
+    }
+
 }

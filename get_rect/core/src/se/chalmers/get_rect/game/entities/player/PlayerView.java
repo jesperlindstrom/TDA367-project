@@ -43,6 +43,7 @@ class PlayerView extends AbstractAnimatedView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+        setFlip(player.getVelocity().getX() < 0);
         playSequence(getSequence());
 
 

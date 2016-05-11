@@ -11,21 +11,19 @@ public class Pistol extends AbstractWeapon implements IRanged {
     private static final int SPEED = 200;
     private static final int DAMAGE = 10;
     private ProjectileFactory projectileFactory;
-    private IPhysicsModel model;
 
 
     public Pistol(IPhysicsModel user, ProjectileFactory projectileFactory) {
-        super(user.getPosition());
+        super(user.getPosition(), user);
         this.projectileFactory = projectileFactory;
-        this.model = user;
-        setDirection(user.getVelocity().normalize());
+        setAimDirection(user.getVelocity().normalize());
     }
 
     @Override
-    public void use(Point direction, IEntityHolder entityHolder) {
-        entityHolder.add(projectileFactory.make(getSpawnPoint(), direction.multiply(SPEED), DAMAGE, model));
-        setDirection(direction);
+    public void use(Point aimDirection, IEntityHolder entityHolder) {
+        setAimDirection(aimDirection);
         setUseFrames(5);
+        entityHolder.add(projectileFactory.make(getSpawnPoint(), getFireVelocity(SPEED), DAMAGE, getModel()));
     }
 
     @Override
@@ -33,9 +31,18 @@ public class Pistol extends AbstractWeapon implements IRanged {
         setShouldBeRemoved();
     }
 
-    @Override
     public Point getSpawnPoint() {
-        return new Point(model.getPosition().add(getDirection().getX() > 0 ? 30 : 5, 50));
+        Point offset = getHandPos();
+
+        if (getAimDirection().getX() != 0) {
+            offset = offset.addY(20);
+        }
+
+        if (getAimDirection().getY() != 0) {
+            offset = offset.addX(getAimDirection().getY() < 0 ? 25 : -25 * getFacing());
+        }
+
+        return new Point(offset.add(getAimDirection().multiply(50)));
     }
 
 }

@@ -16,7 +16,7 @@ public class DebugPhysicsView {
     }
 
     public void draw(IGraphicsAdapter graphics) {
-        if (!GameConfig.DRAW_BOUNDING_BOXES || engine == null) return;
+        if ((!GameConfig.DRAW_BOUNDING_BOXES || engine == null) || GameConfig.DISABLE_ALL) return;
 
         for (IPhysicsObject obj : engine.getEntities()) {
             IRectangleAdapter rectangle = obj.getBoundingBox();

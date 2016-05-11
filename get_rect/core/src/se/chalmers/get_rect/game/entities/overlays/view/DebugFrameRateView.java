@@ -15,17 +15,17 @@ public class DebugFrameRateView {
     public Point draw(IGraphicsAdapter graphics, Point point) {
         int textOffset = -20;
 
-        if (GameConfig.SHOW_FPS) {
+        if (GameConfig.SHOW_FPS && !GameConfig.DISABLE_ALL) {
             point = point.addY(textOffset);
             graphics.drawText("FPS = " + model.getFps(), point);
         }
 
-        if (GameConfig.SHOW_LOWESTFPS) {
+        if (GameConfig.SHOW_LOWESTFPS && !GameConfig.DISABLE_ALL) {
             point = point.addY(textOffset);
             graphics.drawText("lowestFPS(10sec) = " + model.getLowestFps(), point);
         }
 
-        if (GameConfig.SHOW_DELTA) {
+        if (GameConfig.SHOW_DELTA && !GameConfig.DISABLE_ALL) {
             point = point.addY(textOffset);
             graphics.drawText("delta = " + model.getDelta(), point);
         }

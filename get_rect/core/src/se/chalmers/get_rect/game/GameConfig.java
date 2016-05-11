@@ -18,11 +18,13 @@ public class GameConfig {
     public static final int INGAME_MENU = 31;
 
     // Debug booleans
+    public static final boolean DISABLE_ALL = true;
+
     public static final boolean SHOW_FPS = true;
     public static final boolean SHOW_LOWESTFPS = true;
     public static final boolean SHOW_DELTA = true;
     public static final boolean SHOW_POS = true;
-    public static final boolean DRAW_BOUNDING_BOXES = false;
+    public static final boolean DRAW_BOUNDING_BOXES = true;
     public static final boolean SHOW_MOUSE_POS = true;
 
     // Misc.

@@ -7,7 +7,9 @@ import se.chalmers.get_rect.utilities.Point;
 public interface IWeapon extends IModel {
     void use(Point direction, IEntityHolder scene);
     void remove();
-    Point getDirection();
-    Point getSpawnPoint();
+    Point getAimDirection();
+    Point getHandPos();
     int getUsedFrames();
+    int getFacing();
+
 }

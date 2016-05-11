@@ -15,7 +15,7 @@ public class FrameRate {
         currentFPS = (int)(10/delta);
         this.delta = delta;
 
-        if (GameConfig.SHOW_FPS) {
+        if (GameConfig.SHOW_FPS && !GameConfig.DISABLE_ALL) {
             updates++;
             updatesInTime += delta/10;
 
@@ -26,7 +26,7 @@ public class FrameRate {
             }
         }
 
-        if (GameConfig.SHOW_LOWESTFPS) {
+        if (GameConfig.SHOW_LOWESTFPS && !GameConfig.DISABLE_ALL) {
             timeForLowest += delta/10;
 
             if (currentFPS < lowestFPS || timeForLowest > 10) {
