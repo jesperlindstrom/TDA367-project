@@ -21,11 +21,8 @@ public class HubbenScene extends AbstractScene {
         // Add background image
         addEntity(getBackgroundView());
 
-        // Load all entities from the JSON data
-        loadEntities();
-
         // Set the player position
-        addPlayerAtPosition(1200, 500);
+        addPlayerAtPosition(22, 500);
     }
 
     private IEntity getBackgroundView() {
