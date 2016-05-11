@@ -23,8 +23,9 @@ public class Pistol extends AbstractWeapon implements IRanged {
 
     @Override
     public void use(Point direction, IEntityHolder entityHolder) {
-        entityHolder.add(projectileFactory.make(getPosition(), direction.multiply(SPEED), DAMAGE, model));
+        entityHolder.add(projectileFactory.make(getSpawnPoint(), direction.multiply(SPEED), DAMAGE, model));
         setDirection(direction);
+        setUseFrames(5);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class Pistol extends AbstractWeapon implements IRanged {
     }
 
     @Override
-    public Point getPosition() {
+    public Point getSpawnPoint() {
         return new Point(model.getPosition().add(getDirection().getX() > 0 ? 30 : 5, 50));
     }
 

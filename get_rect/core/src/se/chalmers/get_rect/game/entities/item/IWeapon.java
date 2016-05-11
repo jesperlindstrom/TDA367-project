@@ -8,4 +8,6 @@ public interface IWeapon extends IModel {
     void use(Point direction, IEntityHolder scene);
     void remove();
     Point getDirection();
+    Point getSpawnPoint();
+    int getUsedFrames();
 }

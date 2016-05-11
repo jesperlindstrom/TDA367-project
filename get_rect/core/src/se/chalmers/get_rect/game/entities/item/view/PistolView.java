@@ -14,7 +14,13 @@ public class PistolView extends AbstractWeaponView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/items/potistol.png", getModel().getPosition().add(2, -18), new Point(0, 0), getXScale(scale), scale, getRotation());
+        String imgPath;
+        if (getModel().getUsedFrames() == 0) {
+            imgPath = "img/items/potistol.png";
+        } else {
+            imgPath = "img/items/potistolPANG.png";
+        }
+        graphics.draw(imgPath, getModel().getSpawnPoint().add(2, -18), new Point(0, 0), getXScale(scale), scale, getRotation());
     }
 
 }
