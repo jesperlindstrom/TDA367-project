@@ -1,13 +1,17 @@
 package se.chalmers.get_rect.game.scenes.horsalsvagen;
 
+import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.scenes.SceneLoader;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.scenes.AbstractScene;
 
 public class HorsalsvagenScene extends AbstractScene {
-    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader) {
+    private IAssetManagerAdapter assetManager;
+
+    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, IAssetManagerAdapter assetManager) {
         super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneLoader);
+        this.assetManager = assetManager;
     }
 
     @Override
@@ -22,6 +26,6 @@ public class HorsalsvagenScene extends AbstractScene {
     }
 
     private IEntity getBackgroundView() {
-        return new Entity(null, new HorsalsvagenSceneView(getCamera()));
+        return new Entity(null, new HorsalsvagenSceneView(getCamera(), assetManager));
     }
 }
