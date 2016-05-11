@@ -58,4 +58,14 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
     protected Point getFireVelocity(int speed) {
         return aimDirection.multiply(speed).add(model.getVelocity());
     }
+
+    @Override
+    public void remove() {
+        setShouldBeRemoved();
+    }
+
+    @Override
+    public void setActive() {
+        setShouldNotBeRemoved();
+    }
 }

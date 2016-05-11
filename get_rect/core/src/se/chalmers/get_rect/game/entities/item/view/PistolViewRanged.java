@@ -4,12 +4,12 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.item.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
-public class PistolView extends AbstractWeaponView {
+public class PistolViewRanged extends AbstractRangedWeaponView {
 
     private static final float scale = 0.2f;
     private static final int DRAW_PRIO = 6;
 
-    public PistolView(IWeapon model) {
+    public PistolViewRanged(IWeapon model) {
         super(model);
     }
 
@@ -22,6 +22,7 @@ public class PistolView extends AbstractWeaponView {
             imgPath = "img/items/potistolPANG.png";
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(scale), getYScale(scale), getRotation());
+        super.draw(graphics);
     }
 
     @Override

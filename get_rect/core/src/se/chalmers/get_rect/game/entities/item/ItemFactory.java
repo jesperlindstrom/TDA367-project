@@ -2,13 +2,16 @@ package se.chalmers.get_rect.game.entities.item;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.entities.item.damageBoxes.SwingFactory;
+import se.chalmers.get_rect.game.entities.item.model.OpSwordNEtt;
 import se.chalmers.get_rect.game.entities.item.model.Pistol;
-import se.chalmers.get_rect.game.entities.item.view.PistolView;
-import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
-import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.game.entities.item.view.OpSwordNEttView;
+import se.chalmers.get_rect.game.entities.item.view.PistolViewRanged;
+import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
 
 public class ItemFactory {
     @Inject private ProjectileFactory projectileFactory;
+    @Inject private SwingFactory swingFactory;
 
     public IEntity make(String type, IPhysicsModel model) {
         IModel tmpModel;
@@ -16,11 +19,15 @@ public class ItemFactory {
         switch (type) {
             case "pistol" :
                 tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolView((IWeapon)tmpModel);
+                tmpView = new PistolViewRanged((IWeapon)tmpModel);
+                break;
+            case "opswordnett" :
+                tmpModel = new OpSwordNEtt(model, swingFactory);
+                tmpView = new OpSwordNEttView((IWeapon)tmpModel);
                 break;
             default:
                 tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolView((IWeapon)tmpModel);
+                tmpView = new PistolViewRanged((IWeapon)tmpModel);
         }
         return new Entity(tmpModel, tmpView);
     }

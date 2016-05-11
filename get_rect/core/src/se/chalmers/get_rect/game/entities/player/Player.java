@@ -4,7 +4,7 @@ import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.IMelee;
 import se.chalmers.get_rect.game.entities.item.IWeapon;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
-import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
@@ -26,6 +26,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     private Map<Integer, IEntity> weapons;
     private IEntity activeWeapon;
     private ProjectileFactory projectileFactory;
+    private ItemFactory itemFactory;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -37,9 +38,11 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
         weapons = new HashMap<>();
 
         this.projectileFactory = projectileFactory;
-
+        this.itemFactory = itemFactory;
         // TODO fulhax fixthisplz
+
         addNewWeapon(itemFactory.make("pistol", this));
+        addNewWeapon(itemFactory.make("opswordnett", this));
     }
 
     @Override
@@ -117,8 +120,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void switchWeapon() {
-
-        if (activeWeapon instanceof IMelee){
+        if (activeWeapon.getModel() instanceof IMelee){
             setWeapon(weapons.get(RANGED));
         } else {
             setWeapon(weapons.get(MELEE));
@@ -131,7 +133,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     public void addNewWeapon(IEntity entity) {
         if (entity.getModel() instanceof IWeapon) {
-            weapons.put(entity instanceof IMelee ? MELEE : RANGED, entity);
+            weapons.put(entity.getModel() instanceof IMelee ? MELEE : RANGED, entity);
             setWeapon(entity);
         }
     }
@@ -147,6 +149,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
             ((IWeapon)activeWeapon.getModel()).remove();
         }
         activeWeapon = weapon;
+        ((IWeapon)activeWeapon.getModel()).setActive();
         if (getScene() != null) {
             getScene().add(weapon);
         }

@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.item.model;
 import se.chalmers.get_rect.game.entities.IEntityHolder;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.IRanged;
-import se.chalmers.get_rect.game.entities.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Pistol extends AbstractWeapon implements IRanged {
@@ -24,11 +24,6 @@ public class Pistol extends AbstractWeapon implements IRanged {
         setAimDirection(aimDirection);
         setUseFrames(5);
         entityHolder.add(projectileFactory.make(getSpawnPoint(), getFireVelocity(SPEED), DAMAGE, getModel()));
-    }
-
-    @Override
-    public void remove() {
-        setShouldBeRemoved();
     }
 
     public Point getSpawnPoint() {
