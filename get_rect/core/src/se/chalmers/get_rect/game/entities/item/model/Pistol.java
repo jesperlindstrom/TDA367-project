@@ -19,11 +19,13 @@ public class Pistol extends AbstractWeapon implements IRanged {
         super(user.getPosition());
         this.projectileFactory = projectileFactory;
         this.model = user;
+        setDirection(user.getVelocity().normalize());
     }
 
     @Override
     public void use(Point direction, IEntityHolder entityHolder) {
         entityHolder.add(projectileFactory.make(getPosition(), direction.multiply(SPEED), DAMAGE, model));
+        setDirection(direction);
     }
 
     @Override

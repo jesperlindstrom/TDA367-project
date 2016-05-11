@@ -104,6 +104,13 @@ public class Point {
 
     }
 
+    public Point normalize() {
+        int x = xCoordinate < 0 ? -1 : xCoordinate == 0 ? 0 : 1;
+        int y = yCoordinate < 0 ? -1 : yCoordinate == 0 ? 0 : 1;
+
+        return new Point(x, y);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null)

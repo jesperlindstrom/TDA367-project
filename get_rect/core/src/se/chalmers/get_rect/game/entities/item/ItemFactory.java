@@ -16,11 +16,11 @@ public class ItemFactory {
         switch (type) {
             case "pistol" :
                 tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolView(tmpModel);
+                tmpView = new PistolView((IWeapon)tmpModel);
                 break;
             default:
                 tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolView(tmpModel);
+                tmpView = new PistolView((IWeapon)tmpModel);
         }
         return new Entity(tmpModel, tmpView);
     }
