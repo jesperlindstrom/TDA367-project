@@ -6,23 +6,23 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractRepository<T> implements IRepository {
+public abstract class AbstractRepository<D, T> implements IRepository<T> {
     private String fileName;
-    private Class<T> className;
+    private Class<D> className;
 
-    protected AbstractRepository(String fileName, Class<T> className) {
+    protected AbstractRepository(String fileName, Class<D> className) {
         this.fileName = fileName;
         this.className = className;
     }
 
-    public List<IPhysicsEntity> get(String sceneName) throws FileNotFoundException {
-        List<IPhysicsEntity> entities = new ArrayList<>();
+    public List<T> get(String folderName) throws FileNotFoundException {
+        List<T> entities = new ArrayList<>();
 
-        IOFacade<T> dataLoader = new IOFacade<>("scenes/" + sceneName + "/" + fileName + ".json", className);
-        List<T> dataList = dataLoader.load();
+        IOFacade<D> dataLoader = new IOFacade<>("data/" + folderName + "/" + fileName + ".json", className);
+        List<D> dataList = dataLoader.load();
 
         if (dataList != null) {
-            for (T data : dataList) {
+            for (D data : dataList) {
                 entities.add(makeFromDataStore(data));
             }
         }
@@ -30,5 +30,7 @@ public abstract class AbstractRepository<T> implements IRepository {
         return entities;
     }
 
-    abstract protected IPhysicsEntity makeFromDataStore(T data);
+
+
+    abstract protected T makeFromDataStore(D data);
 }

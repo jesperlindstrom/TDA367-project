@@ -4,7 +4,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public interface IInputAdapter {
     enum Keys{
-        Q, W, E, A, S, D, X, H, SPACE, MOUSELEFT, MOUSERIGHT, LEFTKEY, RIGHTKEY, UPKEY, DOWNKEY, ENTER, ESC
+        Q, W, E, A, S, D, X, H, M, SPACE, MOUSELEFT, MOUSERIGHT, LEFTKEY, RIGHTKEY, UPKEY, DOWNKEY, ENTER, ESC
     }
     Point getMousePosition();
 

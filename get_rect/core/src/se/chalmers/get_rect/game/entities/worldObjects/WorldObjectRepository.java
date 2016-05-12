@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.AbstractRepository;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 
-public class WorldObjectRepository extends AbstractRepository<WorldObjectDataStore> {
+public class WorldObjectRepository extends AbstractRepository<WorldObjectDataStore, IPhysicsEntity> {
     @Inject private WorldObjectFactory factory;
 
     public WorldObjectRepository() {

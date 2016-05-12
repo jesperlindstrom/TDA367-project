@@ -16,7 +16,6 @@ public class HorsalsvagenSceneView extends AbstractBackgroundView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         super.draw(graphics);
-
         //backgroundSound.play();
     }
 }
