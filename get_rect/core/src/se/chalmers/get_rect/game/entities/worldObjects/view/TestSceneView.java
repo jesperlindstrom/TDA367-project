@@ -1,7 +1,6 @@
-package se.chalmers.get_rect.game.scenes.test;
+package se.chalmers.get_rect.game.entities.worldObjects.view;
 
 import se.chalmers.get_rect.game.entities.ICamera;
-import se.chalmers.get_rect.game.scenes.AbstractBackgroundView;
 
 public class TestSceneView extends AbstractBackgroundView {
     public TestSceneView(ICamera camera) {

@@ -7,7 +7,7 @@ import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.scenes.test.TestScene;
+import se.chalmers.get_rect.game.scenes.TestScene;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 

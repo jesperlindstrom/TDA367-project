@@ -1,10 +1,10 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.item.IMelee;
-import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.game.entities.item.model.IMelee;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
+import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;

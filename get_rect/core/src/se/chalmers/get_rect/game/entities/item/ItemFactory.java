@@ -3,12 +3,11 @@ package se.chalmers.get_rect.game.entities.item;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.SwingFactory;
-import se.chalmers.get_rect.game.entities.item.model.OpSwordNEtt;
-import se.chalmers.get_rect.game.entities.item.model.Pistol;
+import se.chalmers.get_rect.game.entities.item.model.*;
+import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
+import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
 import se.chalmers.get_rect.game.entities.item.view.OpSwordNEttView;
 import se.chalmers.get_rect.game.entities.item.view.PistolView;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
 
 public class ItemFactory {
     @Inject private ProjectileFactory projectileFactory;

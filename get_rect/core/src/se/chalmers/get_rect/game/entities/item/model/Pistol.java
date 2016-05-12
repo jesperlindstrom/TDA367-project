@@ -2,8 +2,7 @@ package se.chalmers.get_rect.game.entities.item.model;
 
 import se.chalmers.get_rect.game.entities.IEntityHolder;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.item.IRanged;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
+import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Pistol extends AbstractRangedWeapon implements IRanged {

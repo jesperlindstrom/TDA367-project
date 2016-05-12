@@ -1,4 +1,11 @@
 [
+
+  {
+    "type": "testBg",
+    "x": 0,
+    "y": 0
+  },
+
   {
     "type": "boundingBox",
     "x": 0,

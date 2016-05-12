@@ -2,21 +2,21 @@ package se.chalmers.get_rect.game.entities.window.model;
 
 import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
+import se.chalmers.get_rect.states.IState;
 import se.chalmers.get_rect.states.StateManager;
 
 import java.io.FileNotFoundException;
 
 public class SplashModel {
     private IAssetManagerAdapter assetManager;
-    private StateManager<IWindowController> windowManager;
+    private StateManager<? extends IState> windowManager;
     private boolean addedAssets = false;
     private double progressValue = 0.0;
     private boolean stop = false;
     private boolean didStop = false;
     private int stopTimer = 0;
 
-    public SplashModel(IAssetManagerAdapter assetManager, StateManager<IWindowController> windowManager) {
+    public SplashModel(IAssetManagerAdapter assetManager, StateManager<? extends IState> windowManager) {
         this.assetManager = assetManager;
         this.windowManager = windowManager;
     }

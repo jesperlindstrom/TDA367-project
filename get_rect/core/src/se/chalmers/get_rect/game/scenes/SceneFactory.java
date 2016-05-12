@@ -5,9 +5,6 @@ import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
-import se.chalmers.get_rect.game.scenes.horsalsvagen.HorsalsvagenScene;
-import se.chalmers.get_rect.game.scenes.hubben.HubbenScene;
-import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 
 public class SceneFactory {
@@ -23,6 +20,7 @@ public class SceneFactory {
 
         if (name.equals("test"))
             return makeTest();
+
         if (name.equals("hubben"))
             return makeHubben();
 
@@ -36,6 +34,7 @@ public class SceneFactory {
     private IScene makeTest() {
         return new TestScene(playerEntity, rectangleFactory, camera, sceneLoader);
     }
-
-    private IScene makeHubben(){return new HubbenScene(playerEntity, rectangleFactory, camera, sceneLoader);}
+    private IScene makeHubben(){
+        return new HubbenScene(playerEntity,rectangleFactory,camera,sceneLoader);
+    }
 }
