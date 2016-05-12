@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.item.IRanged;
 import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Pistol extends AbstractWeapon implements IRanged {
+public class Pistol extends AbstractRangedWeapon implements IRanged {
 
     private static final int SPEED = 200;
     private static final int DAMAGE = 10;
@@ -14,16 +14,15 @@ public class Pistol extends AbstractWeapon implements IRanged {
 
 
     public Pistol(IPhysicsModel user, ProjectileFactory projectileFactory) {
-        super(user.getPosition(), user);
+        super(user);
         this.projectileFactory = projectileFactory;
-        setAimDirection(user.getVelocity().normalize());
     }
 
     @Override
     public void use(Point aimDirection, IEntityHolder entityHolder) {
         setAimDirection(aimDirection);
         setUseFrames(5);
-        entityHolder.add(projectileFactory.make(getSpawnPoint(), getFireVelocity(SPEED), DAMAGE, getModel()));
+        entityHolder.add(projectileFactory.make(getSpawnPoint(), getFireVelocity(SPEED), DAMAGE, getUser()));
     }
 
     public Point getSpawnPoint() {

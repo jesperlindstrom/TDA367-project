@@ -51,4 +51,8 @@ public class StateManager<V extends IState> {
     public V getState() {
         return states.get(currentState);
     }
+
+    public V getState(int key) {
+        return states.get(key);
+    }
 }

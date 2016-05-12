@@ -37,5 +37,5 @@ public class SceneFactory {
         return new TestScene(playerEntity, rectangleFactory, camera, sceneLoader);
     }
 
-    private IScene makeHubben(){return new HubbenScene(playerEntity,rectangleFactory,camera,sceneLoader);}
+    private IScene makeHubben(){return new HubbenScene(playerEntity, rectangleFactory, camera, sceneLoader);}
 }

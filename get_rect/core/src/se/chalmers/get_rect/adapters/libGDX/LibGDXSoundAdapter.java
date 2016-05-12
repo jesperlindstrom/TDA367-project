@@ -12,6 +12,6 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
 
     @Override
     public void play() {
-        sound.play();
+            sound.play();
     }
 }

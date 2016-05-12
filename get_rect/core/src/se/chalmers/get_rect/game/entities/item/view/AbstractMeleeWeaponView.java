@@ -31,7 +31,7 @@ public class AbstractMeleeWeaponView extends AbstractView {
     }
 
     protected float getXScale(float scale) {
-        return model.getAimDirection().getX() < 0 ? -scale : scale;
+        return model.getFacing() < 0 ? -scale : scale;
     }
 
     private void updateTilt() {

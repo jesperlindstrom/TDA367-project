@@ -1,16 +1,22 @@
 package se.chalmers.get_rect.game.entities.item.view;
 
+import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.adapters.ISoundAdapter;
+import se.chalmers.get_rect.game.entities.item.IRanged;
 import se.chalmers.get_rect.utilities.Point;
 
-public class PistolViewRanged extends AbstractRangedWeaponView {
+public class PistolView extends AbstractRangedWeaponView {
 
     private static final float scale = 0.2f;
     private static final int DRAW_PRIO = 6;
+    private ISoundAdapter bulletSound;
 
-    public PistolViewRanged(IWeapon model) {
+
+    public PistolView(IRanged model, IAssetManagerAdapter assetManager) {
         super(model);
+        //bulletSound = assetManager.getSound("music/bulletSound.mp3");
+
     }
 
     @Override
@@ -23,6 +29,7 @@ public class PistolViewRanged extends AbstractRangedWeaponView {
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(scale), getYScale(scale), getRotation());
         super.draw(graphics);
+        //bulletSound.play();
     }
 
     @Override
