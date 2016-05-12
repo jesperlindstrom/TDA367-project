@@ -2,6 +2,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.audio.Sound;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
+import se.chalmers.get_rect.game.GameConfig;
 
 public class LibGDXSoundAdapter implements ISoundAdapter {
     private Sound sound;
@@ -12,6 +13,6 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
 
     @Override
     public void play() {
-        sound.play();
+            sound.play();
     }
 }

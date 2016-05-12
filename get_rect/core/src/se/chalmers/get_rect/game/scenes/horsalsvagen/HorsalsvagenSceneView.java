@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.scenes.horsalsvagen;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.IMusicAdapter;
-import se.chalmers.get_rect.adapters.ISoundAdapter;
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.scenes.AbstractBackgroundView;
 
@@ -18,7 +18,6 @@ public class HorsalsvagenSceneView extends AbstractBackgroundView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         super.draw(graphics);
-
         backgroundSound.play();
     }
 }

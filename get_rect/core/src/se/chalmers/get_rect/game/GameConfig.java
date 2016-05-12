@@ -22,9 +22,12 @@ public class GameConfig {
     public static final boolean SHOW_LOWESTFPS = true;
     public static final boolean SHOW_DELTA = true;
     public static final boolean SHOW_POS = true;
-    public static final boolean DRAW_BOUNDING_BOXES = true;
+    public static final boolean DRAW_BOUNDING_BOXES = false;
     public static final boolean SHOW_MOUSE_POS = true;
 
     // Misc.
     public static final boolean SPLASH_SCREEN_TROLL = false;
+
+    //Sound
+    public static final boolean MUSIC_ON = false;
 }
