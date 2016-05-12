@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.item.damageBoxes.view;
+package se.chalmers.get_rect.game.entities.item.projectile;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;

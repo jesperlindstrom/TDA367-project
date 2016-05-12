@@ -1,9 +1,9 @@
-package se.chalmers.get_rect.game.entities.item.damageBoxes.model;
+package se.chalmers.get_rect.game.entities.item.swing;
 
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.SideData;
 
 public class Swing extends AbstractPhysicsModel{
     private IPhysicsModel owner;
-    private IWeapon weapon;
+    private ISwinger weapon;
     private int originalSwingFrames;
     private int swingFrames;
     private int damage;
@@ -20,7 +20,7 @@ public class Swing extends AbstractPhysicsModel{
     private int deltaX;
     private int deltaY;
 
-    public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, IWeapon weapon) {
+    public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon) {
         super(owner.getPosition(), null, false, rectangleFactory);
         this.damage = damage;
         this.owner = owner;
