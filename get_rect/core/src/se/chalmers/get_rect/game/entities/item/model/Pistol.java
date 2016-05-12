@@ -8,21 +8,26 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class Pistol extends AbstractRangedWeapon implements IRanged {
 
-    private static final int SPEED = 200;
-    private static final int DAMAGE = 10;
+    private final int speed;
+    private final int damage;
     private ProjectileFactory projectileFactory;
 
 
-    public Pistol(IPhysicsModel user, ProjectileFactory projectileFactory) {
+    public Pistol(IPhysicsModel user, ProjectileFactory projectileFactory, int speed, int damage) {
         super(user);
         this.projectileFactory = projectileFactory;
+        this.speed = speed;
+        this.damage = damage;
+    }
+    public Pistol(IPhysicsModel user, ProjectileFactory projectileFactory) {
+        this(user, projectileFactory, 200, 10);
     }
 
     @Override
     public void use(Point aimDirection, IEntityHolder entityHolder) {
         setAimDirection(aimDirection);
         setUseFrames(5);
-        entityHolder.add(projectileFactory.make(getSpawnPoint(), getFireVelocity(SPEED), DAMAGE, getUser()));
+        entityHolder.add(projectileFactory.make(getSpawnPoint(), getFireVelocity(speed), damage, getUser()));
     }
 
     public Point getSpawnPoint() {

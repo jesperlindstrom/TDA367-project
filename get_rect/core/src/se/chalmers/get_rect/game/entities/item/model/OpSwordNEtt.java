@@ -8,25 +8,32 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class OpSwordNEtt extends AbstractMeleeWeapon implements IMelee {
 
-    private static final int FRAMES = 30;
-    private static final int WIDTH = 175;
-    private static final int HEIGHT = 150;
-    private static final int DAMAGE = 2;
+    private final int frames;
+    private final int width;
+    private final int height;
+    private final int damage;
     private SwingFactory swingFactory;
     private boolean usable;
 
-    public OpSwordNEtt(IPhysicsModel owner, SwingFactory swingFactory) {
+    public OpSwordNEtt(IPhysicsModel owner, SwingFactory swingFactory, int frames, int width, int height, int damage) {
         super(owner);
         this.swingFactory = swingFactory;
+        this.frames = frames;
+        this.width = width;
+        this.height = height;
+        this.damage = damage;
         usable = true;
+    }
+    public OpSwordNEtt(IPhysicsModel owner, SwingFactory swingFactory){
+        this(owner, swingFactory, 30, 175, 150, 2);
     }
 
     @Override
     public void use(Point aimDirection, IEntityHolder entityHolder) {
         if (usable) {
             usable = false;
-            setUseFrames(FRAMES);
-            entityHolder.add(swingFactory.make(DAMAGE, WIDTH, HEIGHT, FRAMES, getUser(), this));
+            setUseFrames(frames);
+            entityHolder.add(swingFactory.make(damage, width, height, frames, getUser(), this));
         }
     }
 
@@ -40,6 +47,6 @@ public class OpSwordNEtt extends AbstractMeleeWeapon implements IMelee {
 
     @Override
     public int getSwingFrames() {
-        return FRAMES;
+        return frames;
     }
 }

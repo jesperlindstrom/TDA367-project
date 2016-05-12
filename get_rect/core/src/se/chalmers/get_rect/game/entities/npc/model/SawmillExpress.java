@@ -7,22 +7,28 @@ import se.chalmers.get_rect.game.quests.QuestState;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SawmillExpress extends AbstractNPCModel {
-    private static final int SPEED = 50;
-    private static final int WIDTH = 219;
-    private static final int HEIGHT = 200;
+    private final int speed;
+    private final int width;
+    private final int height;
     private boolean isFlying = false;
 
-    public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
+    public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, int speed, int width, int height) {
         super(point, new Point(0, 0), false, rectangleFactory);
-        setBoundingBox(WIDTH, HEIGHT);
-    }
+        this.speed = speed;
+        this.width = width;
+        this.height = height;
 
+        setBoundingBox(this.width, this.height);
+    }
+    public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory) {
+        this(point, rectangleFactory, 50, 219, 200);
+    }
     @Override
     public void update(double delta) {
         super.update(delta);
 
         if (isFlying) {
-            setVelocity(new Point(0, SPEED));
+            setVelocity(new Point(0, speed));
         }
     }
 
