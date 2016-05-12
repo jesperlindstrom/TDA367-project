@@ -3,7 +3,6 @@ package se.chalmers.get_rect.game;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
-import se.chalmers.get_rect.game.entities.window.model.SplashModel;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.SceneFactory;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;

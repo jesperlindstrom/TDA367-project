@@ -1,10 +1,9 @@
-package se.chalmers.get_rect.game.scenes.hubben;
+package se.chalmers.get_rect.game.entities.worldObjects.view;
 
 import se.chalmers.get_rect.game.entities.ICamera;
-import se.chalmers.get_rect.game.scenes.AbstractBackgroundView;
 
 public class HubbenSceneView extends AbstractBackgroundView{
-    protected HubbenSceneView(ICamera camera) {
+    public HubbenSceneView(ICamera camera) {
         super(camera, "img/backgrounds/hubben.png");
     }
 }

@@ -32,6 +32,7 @@ public abstract class AbstractScene implements IScene {
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
         this.sceneLoader = sceneLoader;
+        additions = new LinkedList<>();
     }
 
     /**
@@ -108,8 +109,9 @@ public abstract class AbstractScene implements IScene {
         setupEntities();
         setupOverlays();
         sortViewsByDrawOrder();
-        additions = new LinkedList<>();
         setupDone = true;
+        processAdditions();
+        additions.clear();
     }
 
     /**

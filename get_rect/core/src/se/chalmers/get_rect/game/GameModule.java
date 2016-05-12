@@ -10,6 +10,7 @@ import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectRepository;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
+import se.chalmers.get_rect.states.IState;
 import se.chalmers.get_rect.states.StateManager;
 
 public class GameModule extends AbstractModule {
@@ -35,8 +36,10 @@ public class GameModule extends AbstractModule {
         bind(IGame.class).toInstance(game);
 
         // SceneManager and WindowManager
-        bind(new TypeLiteral<StateManager<IScene>>() {}).toInstance(new StateManager<>());
+        StateManager<IScene> sceneManager = new StateManager<>();
+        bind(new TypeLiteral<StateManager<IScene>>() {}).toInstance(sceneManager);
         bind(new TypeLiteral<StateManager<IWindowController>>() {}).toInstance(new StateManager<>());
+        bind(StateManager.class).annotatedWith(Names.named("Scene")).toInstance(sceneManager);
 
         // Repositories
         bind(IRepository.class).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
