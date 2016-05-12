@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.AbstractRepository;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 
-public class NpcRepository extends AbstractRepository<NpcDataStore> {
+public class NpcRepository extends AbstractRepository<NpcDataStore, IPhysicsEntity> {
     @Inject private NpcFactory factory;
 
     public NpcRepository() {
