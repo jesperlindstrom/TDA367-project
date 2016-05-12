@@ -14,20 +14,20 @@ public class ItemFactory {
     @Inject private SwingFactory swingFactory;
 
     public IEntity make(String type, IPhysicsModel model) {
-        IModel tmpModel;
+        IWeapon tmpModel;
         IView tmpView;
         switch (type) {
             case "pistol" :
                 tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolViewRanged((IWeapon)tmpModel);
+                tmpView = new PistolViewRanged((IRanged) tmpModel);
                 break;
             case "opswordnett" :
                 tmpModel = new OpSwordNEtt(model, swingFactory);
-                tmpView = new OpSwordNEttView((IWeapon)tmpModel);
+                tmpView = new OpSwordNEttView((IMelee)tmpModel);
                 break;
             default:
                 tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolViewRanged((IWeapon)tmpModel);
+                tmpView = new PistolViewRanged((IRanged) tmpModel);
         }
         return new Entity(tmpModel, tmpView);
     }

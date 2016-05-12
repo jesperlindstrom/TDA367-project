@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.entities.item.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.game.entities.item.IRanged;
 import se.chalmers.get_rect.utilities.Point;
 
 public class PistolViewRanged extends AbstractRangedWeaponView {
@@ -9,7 +9,7 @@ public class PistolViewRanged extends AbstractRangedWeaponView {
     private static final float scale = 0.2f;
     private static final int DRAW_PRIO = 6;
 
-    public PistolViewRanged(IWeapon model) {
+    public PistolViewRanged(IRanged model) {
         super(model);
     }
 

@@ -2,14 +2,15 @@ package se.chalmers.get_rect.game.entities.item.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
+import se.chalmers.get_rect.game.entities.item.IRanged;
 import se.chalmers.get_rect.game.entities.item.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractRangedWeaponView extends AbstractView {
 
-    private IWeapon model;
+    private IRanged model;
 
-    protected AbstractRangedWeaponView(IWeapon model) {
+    protected AbstractRangedWeaponView(IRanged model) {
         super(model);
         this.model = model;
     }

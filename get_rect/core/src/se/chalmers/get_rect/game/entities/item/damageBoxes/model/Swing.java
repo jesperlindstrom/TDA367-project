@@ -37,7 +37,7 @@ public class Swing extends AbstractPhysicsModel{
     @Override
     public void update(double delta) {
         super.update(delta);
-        setPosition(weapon.getHandPos().addX(weapon.getAimDirection().getX() < 0 ? -width : 0));
+        setPosition(weapon.getHandPos().addX(weapon.getFacing() < 0 ? -width : 0));
         setNewHitBox();
         swingFrames--;
         if (swingFrames == 0) {
