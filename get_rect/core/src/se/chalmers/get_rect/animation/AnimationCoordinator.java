@@ -56,9 +56,9 @@ public class AnimationCoordinator {
      * @param graphics Graphics adapter
      * @param position The position to draw at
      */
-    public void draw(IGraphicsAdapter graphics, Point position) {
+    public void draw(IGraphicsAdapter graphics, Point position, boolean flip) {
         if (activeSequence != null) {
-            sequences.get(activeSequence).draw(graphics, position);
+            sequences.get(activeSequence).draw(graphics, position, flip);
         }
     }
 }

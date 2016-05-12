@@ -3,18 +3,21 @@ package se.chalmers.get_rect.game.entities.item.view;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
-import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.game.entities.item.IRanged;
 import se.chalmers.get_rect.utilities.Point;
 
-public class PistolView extends AbstractWeaponView {
+public class PistolView extends AbstractRangedWeaponView {
 
+    private static final float scale = 0.2f;
+    private static final int DRAW_PRIO = 6;
     private ISoundAdapter bulletSound;
-    private static final float scale = 0.1f;
 
-    public PistolView(IWeapon model, IAssetManagerAdapter assetManager) {
+
+    public PistolView(IRanged model, IAssetManagerAdapter assetManager) {
         super(model);
         //bulletSound = assetManager.getSound("music/bulletSound.mp3");
-        }
+
+    }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
@@ -24,8 +27,13 @@ public class PistolView extends AbstractWeaponView {
         } else {
             imgPath = "img/items/potistolPANG.png";
         }
-        graphics.draw(imgPath, getModel().getSpawnPoint().add(2, -18), new Point(0, 0), getXScale(scale), scale, getRotation());
+        graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(scale), getYScale(scale), getRotation());
+        super.draw(graphics);
         //bulletSound.play();
     }
 
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIO;
+    }
 }

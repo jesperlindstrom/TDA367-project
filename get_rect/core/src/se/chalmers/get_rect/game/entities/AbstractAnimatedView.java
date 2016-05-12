@@ -10,6 +10,7 @@ public abstract class AbstractAnimatedView extends AbstractView {
     private AnimationCoordinator animation;
     private IModel model;
     private Point offsetPoint;
+    private boolean flip = false;
 
     /**
      * Create a new animated view
@@ -58,7 +59,7 @@ public abstract class AbstractAnimatedView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        animation.draw(graphics, model.getPosition().add(offsetPoint));
+        animation.draw(graphics, model.getPosition().add(offsetPoint), flip);
     }
 
     private FrameSequence getOrCreateSequence(int sequence) {
@@ -70,5 +71,9 @@ public abstract class AbstractAnimatedView extends AbstractView {
         }
 
         return frameSequence;
+    }
+
+    public void setFlip(boolean flip) {
+        this.flip = flip;
     }
 }

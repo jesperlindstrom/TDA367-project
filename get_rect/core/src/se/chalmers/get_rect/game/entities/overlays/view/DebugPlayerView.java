@@ -14,7 +14,7 @@ public class DebugPlayerView {
     }
 
     public Point draw(IGraphicsAdapter graphics, Point position) {
-        if (GameConfig.SHOW_POS) {
+        if (GameConfig.SHOW_POS && !GameConfig.DISABLE_ALL) {
             position = position.addY(-20);
             graphics.drawText(player.getPosition().toString(), position);
         }

@@ -29,7 +29,4 @@ public class SawmillView extends AbstractAnimatedView {
         }
         super.draw(graphics);
     }
-
-
-
 }

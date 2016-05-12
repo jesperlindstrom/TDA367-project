@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.projectile.model;
+package se.chalmers.get_rect.game.entities.item.damageBoxes.model;
 
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;

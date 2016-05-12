@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.game.entities.window.model.SplashModel;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.SceneFactory;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
@@ -54,7 +55,9 @@ public class Game {
      * @param delta Time since last draw
      */
     public void update(double delta) {
-        handleInput();
+        if (!windowManager.getState().equals(windowManager.getState(GameConfig.SPLASH))) {
+            handleInput();
+        }
 
         // Will update the menu if it is active and pause the current scene.
         if (paused) {

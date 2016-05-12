@@ -10,7 +10,7 @@ import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.entities.projectile.model.Projectile;
+import se.chalmers.get_rect.game.entities.item.damageBoxes.model.Projectile;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.test.TestScene;
 import se.chalmers.get_rect.utilities.Point;
