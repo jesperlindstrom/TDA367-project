@@ -11,19 +11,24 @@ import se.chalmers.get_rect.utilities.Point;
 import java.util.Random;
 
 public class Zombie extends AbstractCombatModel {
-    private static final int WIDTH = 100;
-    private static final int HEIGHT = 100;
+    private final int width;
+    private final int height;
     private int speed;
     private IModel player;
 
-    public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
+    public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
         super(point, new Point(0, 0), false, rectangleFactory, 30);
-        setBoundingBox(WIDTH, HEIGHT);
+        this.width = width;
+        this.height = height;
+        setBoundingBox(width, height);
 
         this.player = player;
 
         Random rand = new Random();
         speed = rand.nextInt(20) + 5;
+    }
+    public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
+        this(point, rectangleFactory, player, 100, 100);
     }
 
 

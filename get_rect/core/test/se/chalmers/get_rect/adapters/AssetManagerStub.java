@@ -1,5 +1,7 @@
 package se.chalmers.get_rect.adapters;
 
+import java.io.FileNotFoundException;
+
 public class AssetManagerStub implements IAssetManagerAdapter {
     @Override
     public void loadTexture(String path) {
@@ -12,7 +14,17 @@ public class AssetManagerStub implements IAssetManagerAdapter {
     }
 
     @Override
+    public void loadMusic(String path) {
+
+    }
+
+    @Override
     public ISoundAdapter getSound(String path) {
+        return null;
+    }
+
+    @Override
+    public IMusicAdapter getMusic(String path) {
         return null;
     }
 
@@ -38,6 +50,11 @@ public class AssetManagerStub implements IAssetManagerAdapter {
 
     @Override
     public void loadSoundsDir(String path) {
+
+    }
+
+    @Override
+    public void loadMusicDir(String path) throws FileNotFoundException {
 
     }
 }

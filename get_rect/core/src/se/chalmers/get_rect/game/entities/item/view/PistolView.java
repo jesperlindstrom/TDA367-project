@@ -12,10 +12,9 @@ public class PistolView extends AbstractRangedWeaponView {
     private static final int DRAW_PRIO = 6;
     private ISoundAdapter bulletSound;
 
-
     public PistolView(IRanged model, IAssetManagerAdapter assetManager) {
         super(model);
-        //bulletSound = assetManager.getSound("music/bulletSound.mp3");
+        //bulletSound = assetManager.getSound("sounds/bulletSound.mp3");
 
     }
 
