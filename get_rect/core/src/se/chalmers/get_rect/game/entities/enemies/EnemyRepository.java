@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.AbstractRepository;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 
-public class EnemyRepository extends AbstractRepository<EnemyDataStore> {
+public class EnemyRepository extends AbstractRepository<EnemyDataStore, IPhysicsEntity> {
     @Inject private EnemyFactory factory;
 
     public EnemyRepository() {
