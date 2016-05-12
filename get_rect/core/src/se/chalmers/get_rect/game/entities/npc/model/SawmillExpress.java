@@ -8,6 +8,8 @@ import se.chalmers.get_rect.game.quests.QuestState;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class SawmillExpress extends AbstractNPCModel {
@@ -16,11 +18,21 @@ public class SawmillExpress extends AbstractNPCModel {
     private static final int HEIGHT = 200;
     private boolean isFlying = false;
     private IRepository<String> dialogRepository;
+    private List<String> dialogList;
+    private Random r;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
         super(point, new Point(0, 0), false, rectangleFactory);
         setBoundingBox(WIDTH, HEIGHT);
         this.dialogRepository = dialogRepository;
+        r = new Random();
+        dialogList = new ArrayList<>();
+        try {
+            dialogList = dialogRepository.get("dialogs");
+        } catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
 
     }
 
@@ -40,12 +52,12 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     public void onInteract(IModel model) {
-        try {
-            showDialog(dialogRepository.get("dialogs").get(0));
-        }catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
+        if (!isDialogVisible()) {
+            int rando = (r.nextInt(dialogList.size()));
+            showDialog(dialogList.get(rando));
+        } else {
+            nextDialog();
         }
-        nextDialog();
         if (model instanceof ICombatModel){
             ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
         }
