@@ -52,6 +52,8 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     public void onInteract(IModel model) {
+        triggerEvent("sawmillExpress", "interacted");
+
         if (!isDialogVisible()) {
             int rando = (r.nextInt(dialogList.size()));
             showDialog(dialogList.get(rando));

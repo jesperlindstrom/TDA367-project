@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.event.IEventSource;
+import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
@@ -20,6 +22,7 @@ public abstract class AbstractScene implements IScene {
     private IRectangleFactoryAdapter rectangleFactory;
     private ICamera camera;
     private IPhysicsEngine physics;
+    private QuestManager quests;
     private ArrayList<IView> views;
     private ArrayList<IModel> models;
     private boolean setupDone;
@@ -106,6 +109,7 @@ public abstract class AbstractScene implements IScene {
     public void enteringState(Integer previousStateName) {
         setupDone = false;
         setupPhysics();
+        setupQuests();
         setupEntities();
         setupOverlays();
         sortViewsByDrawOrder();
@@ -143,6 +147,10 @@ public abstract class AbstractScene implements IScene {
         physics = new PhysicsEngine();
     }
 
+    private void setupQuests() {
+        quests = new QuestManager();
+    }
+
     public void add(IEntity entity) {
         additions.add(entity);
     }
@@ -177,6 +185,10 @@ public abstract class AbstractScene implements IScene {
 
         if (model instanceof IPhysicsObject) {
             physics.add((IPhysicsObject) model);
+        }
+
+        if (model instanceof IEventSource) {
+            ((IEventSource) model).addListener(quests);
         }
     }
 

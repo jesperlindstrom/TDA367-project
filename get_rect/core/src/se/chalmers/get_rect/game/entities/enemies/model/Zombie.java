@@ -55,4 +55,10 @@ public class Zombie extends AbstractCombatModel {
 
         setVelocity(getVelocity().setX(velX));
     }
+
+    @Override
+    protected void die() {
+        super.die();
+        triggerEvent("zombie", "died");
+    }
 }
