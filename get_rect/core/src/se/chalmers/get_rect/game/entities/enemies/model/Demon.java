@@ -15,34 +15,61 @@ public class Demon extends AbstractCombatModel {
     private final int height;
     private int speed;
     private IModel player;
+    private int randHeight;
+    private int randFlap;
+
+    /**
+     * Creates a demon
+     * randHeight is the approximate Y coordinate of the demon set to be reachable for the player
+     * randFlap is set to a reasonable amount of flap
+     * Both are random and set in the constructor to be different for all demons
+     * @param point
+     * @param rectangleFactory
+     * @param player
+     * @param width
+     * @param height
+     */
 
     public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
         super(point, new Point(0, 0), false, rectangleFactory, 30);
         this.width = width;
         this.height = height;
         setBoundingBox(width, height);
-
+        Random rand = new Random();
+        randHeight = rand.nextInt(200) + 500;
+        randFlap = rand.nextInt(50) + 30;
+        speed = rand.nextInt(10) + 15;
         this.player = player;
 
-        Random rand = new Random();
-        speed = rand.nextInt(5) + 15;
     }
+
+    /**
+     * 300, 300 is the size of the hitbox for this image
+     * @param point
+     * @param rectangleFactory
+     * @param player
+     */
     public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
         this(point, rectangleFactory, player, 300, 300);
     }
 
     @Override
     public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
-        // Jump, to simulate a lethal broccoli ninja attack.
         if (otherObject.equals(player)) {
             Player player = (Player) otherObject;
             player.takeDamage(1);
         }
     }
 
+    /**
+     * Controls the movement of the demon
+     * follows the player in the air until it's above its target, then attacks it straight down
+     * demonX is manually set to X plus half the size of the picture to be in the middle
+     * @param delta
+     */
+
     @Override
     public void update(double delta) {
-        // Amazing AI
         int playerX = player.getPosition().getX();
         int playerY = player.getPosition().getY();
         int demonX = getPosition().getX()+(300/2);
@@ -58,15 +85,18 @@ public class Demon extends AbstractCombatModel {
         } else if (playerX < demonX) {
             velX = -speed;
         }
-        Random rand = new Random();
-        if (demonY < rand.nextInt(50)+550 && playerX != demonX) {
-            setVelocity(getVelocity().setY(rand.nextInt(20)+30));
+
+        if (demonY < randHeight && playerX != demonX) {
+            setVelocity(getVelocity().setY(randFlap));
         }
         if (playerX == demonX) {
             setVelocity(getVelocity().setY(-playerY));
         }
 
         setVelocity(getVelocity().setX(velX));
+    }
+    public int getRandFlap() {
+        return randFlap;
     }
 
 }
