@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities.item.damageBoxes;
+package se.chalmers.get_rect.game.entities.item.projectile;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
@@ -6,8 +6,6 @@ import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.PhysicsEntity;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.model.Projectile;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.view.ProjectileView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class ProjectileFactory {

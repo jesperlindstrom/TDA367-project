@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.ProjectileFactory;
+import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.entities.PhysicsEntity;
 
 public class PlayerFactory {

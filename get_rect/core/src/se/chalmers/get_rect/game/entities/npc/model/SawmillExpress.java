@@ -8,6 +8,8 @@ import se.chalmers.get_rect.game.quests.QuestState;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class SawmillExpress extends AbstractNPCModel {
@@ -16,6 +18,8 @@ public class SawmillExpress extends AbstractNPCModel {
     private final int height;
     private boolean isFlying = false;
     private IRepository<String> dialogRepository;
+    private List<String> dialogList;
+    private Random r;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository, int speed, int width, int height) {
         super(point, new Point(0, 0), false, rectangleFactory);
@@ -24,6 +28,15 @@ public class SawmillExpress extends AbstractNPCModel {
         this.height = height;
         setBoundingBox(this.width, this.height);
         this.dialogRepository = dialogRepository;
+
+        r = new Random();
+        dialogList = new ArrayList<>();
+
+        try {
+            dialogList = dialogRepository.get("dialogs");
+        } catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
     }
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
         this(point, rectangleFactory, dialogRepository, 50, 219, 200);
@@ -44,12 +57,12 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     public void onInteract(IModel model) {
-        try {
-            showDialog(dialogRepository.get("dialogs").get(0));
-        }catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
+        if (!isDialogVisible()) {
+            int rando = (r.nextInt(dialogList.size()));
+            showDialog(dialogList.get(rando));
+        } else {
+            nextDialog();
         }
-        nextDialog();
         if (model instanceof ICombatModel){
             ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
         }

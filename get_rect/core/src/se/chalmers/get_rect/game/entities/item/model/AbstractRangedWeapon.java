@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.entities.item.model;
 
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.item.IRanged;
 import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRanged {

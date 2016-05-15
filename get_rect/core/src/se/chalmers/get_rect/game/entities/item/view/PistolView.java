@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.item.view;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
-import se.chalmers.get_rect.game.entities.item.IRanged;
+import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.utilities.Point;
 
 public class PistolView extends AbstractRangedWeaponView {
