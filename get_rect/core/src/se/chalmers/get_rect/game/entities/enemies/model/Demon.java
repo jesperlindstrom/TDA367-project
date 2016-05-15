@@ -25,10 +25,10 @@ public class Demon extends AbstractCombatModel {
         this.player = player;
 
         Random rand = new Random();
-        speed = rand.nextInt(15) + 10;
+        speed = rand.nextInt(5) + 15;
     }
     public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
-        this(point, rectangleFactory, player, 100, 100);
+        this(point, rectangleFactory, player, 300, 300);
     }
 
     @Override
@@ -44,17 +44,25 @@ public class Demon extends AbstractCombatModel {
     public void update(double delta) {
         // Amazing AI
         int playerX = player.getPosition().getX();
-        int zombieX = getPosition().getX();
+        int playerY = player.getPosition().getY();
+        int demonX = getPosition().getX();
+        int demonY = getPosition().getY();
 
         if (getVelocity().getX() != 0 && Math.abs(getVelocity().getX()) != speed)
             return;
 
         int velX = 0;
 
-        if (playerX > zombieX) {
+        if (playerX > demonX) {
             velX = speed;
-        } else if (playerX < zombieX) {
+        } else if (playerX < demonX) {
             velX = -speed;
+        }
+        if (demonY < 600 && playerX != demonX) {
+            setVelocity(getVelocity().setY(50));
+        }
+        if (playerX == demonX) {
+            setVelocity(getVelocity().setY(-playerY));
         }
 
         setVelocity(getVelocity().setX(velX));
