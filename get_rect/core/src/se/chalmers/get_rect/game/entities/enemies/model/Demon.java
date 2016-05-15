@@ -34,7 +34,7 @@ public class Demon extends AbstractCombatModel {
     @Override
     public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
         // Jump, to simulate a lethal broccoli ninja attack.
-        if (otherObject.equals(player) && getVelocity().getY() == 0) {
+        if (otherObject.equals(player)) {
             Player player = (Player) otherObject;
             player.takeDamage(1);
         }
@@ -45,7 +45,7 @@ public class Demon extends AbstractCombatModel {
         // Amazing AI
         int playerX = player.getPosition().getX();
         int playerY = player.getPosition().getY();
-        int demonX = getPosition().getX();
+        int demonX = getPosition().getX()+(300/2);
         int demonY = getPosition().getY();
 
         if (getVelocity().getX() != 0 && Math.abs(getVelocity().getX()) != speed)
