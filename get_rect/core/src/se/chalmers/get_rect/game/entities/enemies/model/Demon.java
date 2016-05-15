@@ -1,22 +1,22 @@
 package se.chalmers.get_rect.game.entities.enemies.model;
 
-import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.SideData;
 
 import java.util.Random;
 
-public class Zombie extends AbstractCombatModel {
+public class Demon extends AbstractCombatModel {
     private final int width;
     private final int height;
     private int speed;
     private IModel player;
 
-    public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
+    public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
         super(point, new Point(0, 0), false, rectangleFactory, 30);
         this.width = width;
         this.height = height;
@@ -25,9 +25,9 @@ public class Zombie extends AbstractCombatModel {
         this.player = player;
 
         Random rand = new Random();
-        speed = rand.nextInt(20) + 5;
+        speed = rand.nextInt(15) + 10;
     }
-    public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
+    public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
         this(point, rectangleFactory, player, 100, 100);
     }
 
@@ -59,4 +59,5 @@ public class Zombie extends AbstractCombatModel {
 
         setVelocity(getVelocity().setX(velX));
     }
+
 }
