@@ -2,8 +2,8 @@ package se.chalmers.get_rect.game.entities.item.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.item.IRanged;
-import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.game.entities.item.model.IRanged;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractRangedWeaponView extends AbstractView {
@@ -43,6 +43,6 @@ public abstract class AbstractRangedWeaponView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), getXScale(1), getYScale(1), getRotation());
+        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0),getModel().getFacing() < 0 ? -1:1 , (1), getRotation());
     }
 }

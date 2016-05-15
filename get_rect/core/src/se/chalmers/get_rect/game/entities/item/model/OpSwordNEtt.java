@@ -2,8 +2,7 @@ package se.chalmers.get_rect.game.entities.item.model;
 
 import se.chalmers.get_rect.game.entities.IEntityHolder;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.item.IMelee;
-import se.chalmers.get_rect.game.entities.item.damageBoxes.SwingFactory;
+import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
 import se.chalmers.get_rect.utilities.Point;
 
 public class OpSwordNEtt extends AbstractMeleeWeapon implements IMelee {

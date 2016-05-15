@@ -2,8 +2,8 @@ package se.chalmers.get_rect.game.entities.item.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.item.IMelee;
-import se.chalmers.get_rect.game.entities.item.IWeapon;
+import se.chalmers.get_rect.game.entities.item.model.IMelee;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
 public class AbstractMeleeWeaponView extends AbstractView {
