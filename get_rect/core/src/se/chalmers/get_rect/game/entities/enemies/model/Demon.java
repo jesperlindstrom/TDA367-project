@@ -58,8 +58,9 @@ public class Demon extends AbstractCombatModel {
         } else if (playerX < demonX) {
             velX = -speed;
         }
-        if (demonY < 600 && playerX != demonX) {
-            setVelocity(getVelocity().setY(50));
+        Random rand = new Random();
+        if (demonY < rand.nextInt(50)+550 && playerX != demonX) {
+            setVelocity(getVelocity().setY(rand.nextInt(20)+30));
         }
         if (playerX == demonX) {
             setVelocity(getVelocity().setY(-playerY));
