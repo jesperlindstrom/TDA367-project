@@ -25,8 +25,6 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     private IInteractableModel interactableNPC;
     private Map<Integer, IEntity> weapons;
     private IEntity activeWeapon;
-    private ProjectileFactory projectileFactory;
-    private ItemFactory itemFactory;
 
     /**
      * Initialize a new player with fixed position and 10 hp and level 1.
@@ -42,12 +40,10 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
         setBoundingBox(this.width, this.height);
         weapons = new HashMap<>();
 
-        this.projectileFactory = projectileFactory;
-        this.itemFactory = itemFactory;
         // TODO fulhax fixthisplz
 
         addNewWeapon(itemFactory.make("pistol", this));
-        addNewWeapon(itemFactory.make("opswordnett", this));
+        addNewWeapon(itemFactory.make("opaxe", this));
     }
 
     /**
