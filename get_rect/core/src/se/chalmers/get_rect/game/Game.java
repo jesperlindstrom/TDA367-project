@@ -20,9 +20,7 @@ public class Game {
 
     private boolean paused = true;
 
-    /**
-     * Tell current state to draw
-     */
+
     public void draw() {
         if (sceneManager.getState() != null) {
             sceneManager.getState().draw(graphics);

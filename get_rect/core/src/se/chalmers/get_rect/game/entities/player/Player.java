@@ -21,10 +21,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     private IRanged rangedWeapon;
     private IWeapon activeWeapon;
 
-    /**
-     * Initialize a new player with fixed position and 10 hp and level 1.
-     * @param rectangleFactory
-     */
+
     public Player(IRectangleFactoryAdapter rectangleFactory, int width, int height, int jumpSpeed, int moveSpeed) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
         this.width = width;
@@ -35,11 +32,6 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
         setBoundingBox(this.width, this.height);
     }
 
-    /**
-     *
-     * @param rectangleFactory
-     * default int values of width, height, jumpSpeed and moveSpeed
-     */
 
     public Player(IRectangleFactoryAdapter rectangleFactory) {
         this(rectangleFactory, 68, 151, 90, 40);
@@ -113,7 +105,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     @Override
     protected void die(){
-        System.out.println("you died");
+
     }
 
     public IInteractableModel getCurrentNpc(){
