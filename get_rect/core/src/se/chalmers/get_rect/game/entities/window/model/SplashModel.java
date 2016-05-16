@@ -46,13 +46,13 @@ public class SplashModel {
         if (progressValue < 1.0) {
             progressValue = assetManager.getProgress();
         } else if (progressValue >= 4.35) {
-            windowManager.set(12);
+            //windowManager.set(12);
         } else if (progressValue >= 1.0 && didStop) {
             progressValue += 0.015;
             stop = false;
         } else if (progressValue >= 1.0 && !didStop) {
             if (!GameConfig.SPLASH_SCREEN_TROLL) {
-                windowManager.set(12);
+                //windowManager.set(12);
                 return;
             }
 
