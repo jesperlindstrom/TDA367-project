@@ -18,7 +18,6 @@ public class Game {
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
 
-    private boolean paused = true;
 
     /**
      * Tell current state to draw
@@ -28,7 +27,7 @@ public class Game {
             sceneManager.getState().draw(graphics);
         }
 
-        if (paused) {
+        if (windowManager.getState() != null) {
             windowManager.getState().draw(graphics);
         }
     }
@@ -38,12 +37,10 @@ public class Game {
         sceneManager.add(GameConfig.HORSALSVAGEN, sceneFactory.make("horsalsvagen"));
         sceneManager.add(GameConfig.HUBBEN, sceneFactory.make("hubben"));
 
-        // todo: this is bad and Sune should feel bad
-        sceneManager.add(GameConfig.NULL, null);
-
         windowManager.add(GameConfig.SPLASH, windowFactory.make("splash"));
         windowManager.add(GameConfig.MAIN_MENU, windowFactory.make("mainMenu"));
         windowManager.add(GameConfig.INGAME_MENU, windowFactory.make("inGameMenu"));
+        windowManager.add(GameConfig.INVENTORY, windowFactory.make("inventory"));
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
@@ -54,12 +51,11 @@ public class Game {
      * @param delta Time since last draw
      */
     public void update(double delta) {
-        if (!windowManager.getState().equals(windowManager.getState(GameConfig.SPLASH))) {
-            handleInput();
-        }
+
+        handleInput();
 
         // Will update the menu if it is active and pause the current scene.
-        if (paused) {
+        if (windowManager.getState() != null) {
             windowManager.getState().update(delta);
         } else {
             playerController.update();
@@ -71,18 +67,17 @@ public class Game {
     }
 
     private void handleInput() {
-        if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
-            if (paused) {
-                resume();
-            } else {
+        if (input.isKeyJustPressed(IInputAdapter.Keys.ESC) && windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
+            if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
-                paused = true;
+            } else {
+                resume();
             }
         }
     }
 
     public void load() {
-        sceneManager.set(GameConfig.HORSALSVAGEN);
+        sceneManager.set(GameConfig.HUBBEN);
         resume();
     }
 
@@ -91,11 +86,11 @@ public class Game {
     }
 
     public void resume() {
-        paused = false;
+        windowManager.clearState();
     }
 
     public void startNew() {
-        sceneManager.set(GameConfig.HORSALSVAGEN);
+        sceneManager.set(GameConfig.HUBBEN);
         resume();
     }
 

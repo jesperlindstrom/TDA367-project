@@ -16,6 +16,7 @@ public class GameConfig {
     public static final int HUBBEN = 23;
 
     public static final int INGAME_MENU = 31;
+    public static final int INVENTORY = 32;
 
     // Debug booleans
     public static final boolean DISABLE_ALL = true;

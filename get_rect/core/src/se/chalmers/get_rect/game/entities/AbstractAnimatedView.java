@@ -81,4 +81,8 @@ public abstract class AbstractAnimatedView extends AbstractView {
         setDrawOffset(offset);
         setFlip(flip);
     }
+
+    protected IModel getModel() {
+        return model;
+    }
 }
