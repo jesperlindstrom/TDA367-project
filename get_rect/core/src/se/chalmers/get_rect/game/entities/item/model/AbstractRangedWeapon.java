@@ -6,9 +6,12 @@ import se.chalmers.get_rect.utilities.Point;
 public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRanged {
 
     private Point aimDirection;
-
-    protected AbstractRangedWeapon(IPhysicsModel user) {
-        super(user);
+    private final int damage;
+    private final int speed;
+    protected AbstractRangedWeapon(IPhysicsModel user, String type, int damage, int speed) {
+        super(user, type);
+        this.damage = damage;
+        this.speed = speed;
         setAimDirection(user.getVelocity().normalize());
     }
 
@@ -24,5 +27,13 @@ public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRa
 
     protected Point getFireVelocity(int speed) {
         return aimDirection.multiply(speed).add(getUser().getVelocity());
+    }
+
+    protected int getSpeed() {
+        return speed;
+    }
+
+    protected int getDamage() {
+        return damage;
     }
 }

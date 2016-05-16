@@ -3,7 +3,6 @@ package se.chalmers.get_rect.game.entities.npc.view;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.npc.model.Rekoil;
-import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.utilities.Point;
 
 public class RekoilView extends AbstractAnimatedView {
@@ -21,7 +20,6 @@ public class RekoilView extends AbstractAnimatedView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-
         if (model.isFlying()) {
             addAnimationFrame(0, "img/interact/exclamation.png");
             playSequence(FLYING);

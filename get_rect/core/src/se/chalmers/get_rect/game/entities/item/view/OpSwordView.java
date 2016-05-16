@@ -1,17 +1,17 @@
 package se.chalmers.get_rect.game.entities.item.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.entities.item.model.IMelee;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
-public class OpSwordNEttView extends AbstractMeleeWeaponView {
+public class OpSwordView extends AbstractMeleeWeaponView {
 
-    private static final String imgPath = "img/items/opswordnett.png";
-    private static final float SCALE = 0.4f;
+    private static final String imgPath = "img/items/opsword.png";
+    private static final float SCALE = 1;
     private static final float tilt = 30;
 
 
-    public OpSwordNEttView(IMelee model) {
+    public OpSwordView(IWeapon model) {
         super(model, tilt);
     }
 

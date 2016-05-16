@@ -27,7 +27,7 @@ public class UC3Attack {
 
     @Test
     public void testAttack(){
-        player.shoot(new Point(1, 0));
+        player.use(new Point(1, 0));
         verify(scene, times(1)).add(any(IEntity.class));
     }
 }
