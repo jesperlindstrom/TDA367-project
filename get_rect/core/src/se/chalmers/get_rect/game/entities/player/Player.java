@@ -112,7 +112,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     @Override
     protected void die(){
-        System.out.println("you died");
+        triggerEvent("player", "died");
     }
 
     public IInteractableModel getCurrentNpc(){
@@ -154,5 +154,4 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
             getScene().add(weapon);
         }
     }
-
 }

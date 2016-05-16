@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.SceneFactory;
@@ -15,6 +16,7 @@ public class Game {
     @Inject private StateManager<IScene> sceneManager;
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private PlayerController playerController;
+    @Inject private Player player;
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
 
@@ -47,6 +49,14 @@ public class Game {
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
+
+        player.addListener((e) -> {
+            System.out.println(e);
+            if (e.getAction().equals("died")) {
+                sceneManager.set(GameConfig.HUBBEN);
+                player.refillHealth();
+            }
+        });
     }
 
     /**

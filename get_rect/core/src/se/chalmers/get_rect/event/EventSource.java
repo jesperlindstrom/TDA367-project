@@ -1,10 +1,10 @@
 package se.chalmers.get_rect.event;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class EventSource implements IEventSource {
-    private Set<IEventListener> listeners = new HashSet<>();
+    private Set<IEventListener> listeners = new CopyOnWriteArraySet<>();
 
     public void triggerEvent(String type, String message, Object data) {
         Event event = new Event(type, message, data);

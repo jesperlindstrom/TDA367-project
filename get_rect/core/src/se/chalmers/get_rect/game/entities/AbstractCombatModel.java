@@ -65,4 +65,8 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
     protected void triggerEvent(String type, String action, Object data) {
         eventSource.triggerEvent(type, action, data);
     }
+
+    public void refillHealth(){
+     this.currentHealth = maxHealth;
+    }
 }
