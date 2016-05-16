@@ -10,31 +10,18 @@ import se.chalmers.get_rect.game.entities.item.view.OpAxeView;
 import se.chalmers.get_rect.game.entities.item.view.OpSwordNEttView;
 import se.chalmers.get_rect.game.entities.item.view.PistolView;
 
+import java.io.FileNotFoundException;
+
 public class ItemFactory {
     @Inject private ProjectileFactory projectileFactory;
-    @Inject private IAssetManagerAdapter assetManager;
     @Inject private SwingFactory swingFactory;
 
-    public IEntity make(String type, IPhysicsModel model) {
-        IWeapon tmpModel;
-        IView tmpView;
+    public IWeapon make(String type, IPhysicsModel model, int width, int height, int damage, int frames, int speed) {
         switch (type) {
-            case "pistol" :
-                tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolView((IRanged) tmpModel, assetManager);
-                break;
-            case "opswordnett" :
-                tmpModel = new OpSwordNEtt(model, swingFactory);
-                tmpView = new OpSwordNEttView((IMelee)tmpModel);
-                break;
-            case "opaxe" :
-                tmpModel = new OpAxe(model, swingFactory);
-                tmpView = new OpAxeView((IMelee)tmpModel);
-                break;
-            default:
-                tmpModel = new Pistol(model, projectileFactory);
-                tmpView = new PistolView((IRanged) tmpModel, assetManager);
+            case "pistol" : return new Pistol(model, projectileFactory, damage, speed);
+            case "opswordnett" : return new MeleeWeapon(model, "opswordnett", swingFactory, width, height, damage, frames);
+            case "opaxe" : return new MeleeWeapon(model, "opaxe", swingFactory, width, height, damage, frames);
         }
-        return new Entity(tmpModel, tmpView);
+        throw new EntityNotFoundException("item", type);
     }
 }

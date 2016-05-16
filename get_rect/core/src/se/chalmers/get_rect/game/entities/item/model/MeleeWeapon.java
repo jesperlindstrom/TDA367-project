@@ -5,8 +5,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
 import se.chalmers.get_rect.utilities.Point;
 
-public abstract class AbstractMeleeWeapon extends AbstractWeapon implements IMelee {
-
+public class MeleeWeapon extends AbstractWeapon implements IMelee {
 
     private final int width;
     private final int height;
@@ -15,8 +14,8 @@ public abstract class AbstractMeleeWeapon extends AbstractWeapon implements IMel
     private SwingFactory swingFactory;
     private boolean usable;
 
-    protected AbstractMeleeWeapon(IPhysicsModel user, SwingFactory swingFactory, int width, int height, int damage, int frames) {
-        super(user);
+    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int frames) {
+        super(user, type);
         this.width = width;
         this.height = height;
         this.damage = damage;

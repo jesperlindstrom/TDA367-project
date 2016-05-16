@@ -10,9 +10,13 @@ public abstract class AbstractRangedWeaponView extends AbstractView {
 
     private IRanged model;
 
-    protected AbstractRangedWeaponView(IRanged model) {
+    protected AbstractRangedWeaponView(IWeapon model) {
         super(model);
-        this.model = model;
+        if (model instanceof IRanged) {
+            this.model = (IRanged)model;
+        } else {
+            throw new RuntimeException("Model was not IRanged");
+        }
     }
 
     protected IWeapon getModel() {
@@ -38,11 +42,5 @@ public abstract class AbstractRangedWeaponView extends AbstractView {
         }
         return scale;
 
-    }
-
-
-    @Override
-    public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0),getModel().getFacing() < 0 ? -1:1 , (1), getRotation());
     }
 }
