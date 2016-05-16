@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.game.quests.data;
 
 
-public interface IQuest {
+import se.chalmers.get_rect.event.IEventListener;
 
+public interface IQuest extends IEventListener {
+    QuestState getState();
 }
