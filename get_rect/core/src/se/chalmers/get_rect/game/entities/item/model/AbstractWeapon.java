@@ -50,10 +50,12 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
     }
 
     public int getUsedFrames() {
-        if (usedFrames == 0) {
-            return 0;
-        }
-        usedFrames = usedFrames -1;
-        return usedFrames+1;
+        return usedFrames;
+    }
+
+    @Override
+    public void update(double delta) {
+        super.update(delta);
+        if (usedFrames != 0) usedFrames--;
     }
 }

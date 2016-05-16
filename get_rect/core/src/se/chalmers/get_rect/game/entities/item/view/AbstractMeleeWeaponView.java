@@ -12,13 +12,15 @@ public class AbstractMeleeWeaponView extends AbstractView {
     private float tilt;
     private int swingFrames;
     private float degreesPerFrame;
+    private final float originalTilt;
 
     protected AbstractMeleeWeaponView(IWeapon model, float tilt) {
         super(model);
         this.model = model;
         this.tilt = tilt;
+        this.originalTilt = tilt;
         swingFrames = ((IMelee)model).getSwingFrames();
-        degreesPerFrame = 450 / swingFrames ;
+        degreesPerFrame = 180f / swingFrames ;
 
     }
 
@@ -35,7 +37,10 @@ public class AbstractMeleeWeaponView extends AbstractView {
     }
 
     private void updateTilt() {
-        if (model.getUsedFrames() == 0) return;
+        if (model.getUsedFrames() == 0) {
+            tilt = originalTilt;
+            return;
+        }
         if (model.getUsedFrames() < swingFrames/2) {
             tilt = tilt - degreesPerFrame;
         } else {
@@ -45,7 +50,7 @@ public class AbstractMeleeWeaponView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        updateTilt();
         graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), 1, 1, getRotation());
+        updateTilt();
     }
 }
