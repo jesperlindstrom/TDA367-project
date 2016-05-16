@@ -3,5 +3,10 @@
     "type": "sawmillExpress",
     "x": 2700,
     "y": 700
+  },
+  {
+    "type": "rekoil",
+    "x": 3200,
+    "y": 100
   }
 ]

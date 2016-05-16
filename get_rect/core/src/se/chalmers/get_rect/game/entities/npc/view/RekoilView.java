@@ -1,0 +1,32 @@
+package se.chalmers.get_rect.game.entities.npc.view;
+
+import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
+import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
+import se.chalmers.get_rect.utilities.Point;
+
+public class RekoilView extends AbstractAnimatedView {
+    private static final int DEFAULT = 1;
+    private static final int FLYING = 2;
+    private SawmillExpress model;
+
+    public RekoilView(SawmillExpress model) {
+        super(model, DEFAULT);
+        this.model = model;
+        super.setDrawOffset(new Point(0, -100));
+        addAnimationFrame(DEFAULT, "img/entities/rekoil/rekoil1.png");
+        addAnimationFrame(FLYING, "img/entities/rekoil/rekoil2.png");
+    }
+
+    @Override
+    public void draw(IGraphicsAdapter graphics) {
+
+        if (model.isFlying()) {
+            addAnimationFrame(0, "img/interact/exclamation.png");
+            playSequence(FLYING);
+        } else {
+            playSequence(DEFAULT);
+        }
+        super.draw(graphics);
+    }
+}
