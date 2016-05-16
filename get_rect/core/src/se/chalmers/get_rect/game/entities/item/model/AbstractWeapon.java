@@ -6,13 +6,14 @@ import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
 
-
+    private final String type;
     private int facing;
     private int usedFrames;
     private IPhysicsModel user;
 
-    protected AbstractWeapon(IPhysicsModel user) {
+    protected AbstractWeapon(IPhysicsModel user, String type) {
         super(user.getPosition());
+        this.type = type;
         this.user = user;
 
     }
@@ -37,8 +38,8 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
     }
 
     @Override
-    public void setActive() {
-        setShouldNotBeRemoved();
+    public String getType() {
+        return type;
     }
 
     protected IPhysicsModel getUser() {

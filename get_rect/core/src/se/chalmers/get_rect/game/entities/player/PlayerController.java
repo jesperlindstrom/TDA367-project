@@ -55,7 +55,7 @@ public class PlayerController implements IController {
 
 
         if (!direction.equals(new Point(0, 0))) {
-            player.shoot(direction);
+            player.use(direction);
         }
     }
 

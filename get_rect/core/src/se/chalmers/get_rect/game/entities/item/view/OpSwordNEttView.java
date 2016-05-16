@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.entities.item.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
 public class OpSwordNEttView extends AbstractMeleeWeaponView {
@@ -11,7 +12,7 @@ public class OpSwordNEttView extends AbstractMeleeWeaponView {
     private static final float tilt = 30;
 
 
-    public OpSwordNEttView(IMelee model) {
+    public OpSwordNEttView(IWeapon model) {
         super(model, tilt);
     }
 

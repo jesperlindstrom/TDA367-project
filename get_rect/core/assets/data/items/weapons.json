@@ -1,0 +1,23 @@
+[
+  {
+    "type": "opswordnett",
+    "width": 175,
+    "height": 150,
+    "damage": 2,
+    "frames": 30
+  },
+
+  {
+    "type": "opaxe",
+    "width": 200,
+    "height": 200,
+    "damage": 6,
+    "frames": 30
+  },
+
+  {
+    "type" : "pistol",
+    "damage" : 20,
+    "speed" : 600
+  }
+]
