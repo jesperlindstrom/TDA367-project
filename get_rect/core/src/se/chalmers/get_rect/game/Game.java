@@ -19,9 +19,7 @@ public class Game {
     @Inject private WindowFactory windowFactory;
 
 
-    /**
-     * Tell current state to draw
-     */
+
     public void draw() {
         if (sceneManager.getState() != null) {
             sceneManager.getState().draw(graphics);
