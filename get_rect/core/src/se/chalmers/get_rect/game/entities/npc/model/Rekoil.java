@@ -57,7 +57,6 @@ public class Rekoil extends AbstractNPCModel {
         } else {
             nextDialog();
             isShowingArch = true;
-            setVelocity(new Point(0, 150));
         }
 
         if (model instanceof ICombatModel){
