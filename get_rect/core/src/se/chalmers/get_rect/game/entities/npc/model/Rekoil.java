@@ -36,7 +36,7 @@ public class Rekoil extends AbstractNPCModel {
         }
     }
     public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
-        this(point, rectangleFactory, dialogRepository, 50, 219, 200);
+        this(point, rectangleFactory, dialogRepository, 50, 200, 360);
     }
     @Override
     public void update(double delta) {
@@ -52,7 +52,8 @@ public class Rekoil extends AbstractNPCModel {
     public void onInteract(IModel model) {
 
         if (!isDialogVisible()) {
-            showDialog(dialogList.get(0));
+            showDialog(dialogList.get(dialogNr));
+            dialogNr =+ 1;
         } else {
             nextDialog();
             isShowingArch = true;

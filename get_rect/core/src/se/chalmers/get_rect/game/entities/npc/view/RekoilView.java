@@ -13,7 +13,7 @@ public class RekoilView extends AbstractAnimatedView {
     public RekoilView(Rekoil model) {
         super(model, DEFAULT);
         this.model = model;
-        super.setDrawOffset(new Point(0, -100));
+        super.setDrawOffset(new Point(0, 0));
         addAnimationFrame(DEFAULT, "img/entities/rekoil/rekoil1.png");
         addAnimationFrame(SHOW_ARCH, "img/entities/rekoil/rekoil2.png");
     }
