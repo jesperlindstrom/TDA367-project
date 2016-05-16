@@ -5,14 +5,13 @@ import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
 
 public class OpSwordNEtt extends AbstractMeleeWeapon {
 
-    private static final int WIDTH = 175;
-    private static final int HEIGHT = 150;
-    private static final int DAMAGE = 2;
-    private static final int FRAMES = 30;
 
-    public OpSwordNEtt(IPhysicsModel owner, SwingFactory swingFactory) {
-        super(owner, swingFactory, WIDTH, HEIGHT, DAMAGE, FRAMES);
+    public OpSwordNEtt(IPhysicsModel owner, SwingFactory swingFactory, int frames, int width, int height, int damage) {
+        super(owner, swingFactory, frames, width, height, damage);
         setUsable(true);
-    }
 
+    }
+    public OpSwordNEtt(IPhysicsModel owner, SwingFactory swingFactory){
+        this(owner, swingFactory, 30, 175, 150, 2);
+    }
 }

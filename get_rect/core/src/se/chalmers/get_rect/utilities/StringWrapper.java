@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.utilities;
 
-
 public class StringWrapper {
 
 
@@ -17,19 +16,26 @@ public class StringWrapper {
         return trimString(sb);
     }
 
-    private String[] trimString(StringBuilder sb){
+
+    private String[] trimString(StringBuilder sb) {
         String[] trimmedString = sb.toString().split("\n");
-        String[] tmp = new String[1 + (trimmedString.length/4)];
+        String[] returnMe = new String[trimmedString.length/4 + 1];
         int index = 0;
-        for (int i = 0; i < tmp.length;i++){
-            tmp[i] = "";
+        int count = 0;
+
+
+        for (int i = 0; i < returnMe.length; i ++){
+            returnMe[i] = "";
         }
-        for (int i = 0; i < trimmedString.length;i++){
-            tmp[index] += trimmedString[i] + "\n";
-            if (i % 4 == 0){
+
+        for (String s : trimmedString){
+            returnMe[index] += trimmedString[count] + "\n";
+            if (count % 4 == 0){
                 index++;
             }
+            count++;
         }
-        return tmp;
+        return returnMe;
     }
+
 }

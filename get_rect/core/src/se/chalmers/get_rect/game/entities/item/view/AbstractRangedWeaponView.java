@@ -43,6 +43,6 @@ public abstract class AbstractRangedWeaponView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), getXScale(1), getYScale(1), getRotation());
+        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0),getModel().getFacing() < 0 ? -1:1 , (1), getRotation());
     }
 }

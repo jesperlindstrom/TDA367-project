@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player extends AbstractCombatModel implements IInteractorModel {
-    private static final int WIDTH = 68;
-    private static final int HEIGHT = 151;
-    private static final int JUMP_SPEED = 90;
-    private static final int MOVE_SPEED = 40;
+    private final int width;
+    private final int height;
+    private final int jumpSpeed;
+    private final int moveSpeed;
     private static final int MELEE = 1;
     private static final int RANGED = 2;
     private boolean isWalking = false;
@@ -30,15 +30,32 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
      * Initialize a new player with fixed position and 10 hp and level 1.
      * @param rectangleFactory
      */
-    public Player(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory, ItemFactory itemFactory) {
+    public Player(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory, ItemFactory itemFactory, int width, int height, int jumpSpeed, int moveSpeed) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
-        setBoundingBox(WIDTH, HEIGHT);
+        this.width = width;
+        this.height = height;
+        this.jumpSpeed = jumpSpeed;
+        this.moveSpeed = moveSpeed;
+
+        setBoundingBox(this.width, this.height);
         weapons = new HashMap<>();
 
         // TODO fulhax fixthisplz
 
         addNewWeapon(itemFactory.make("pistol", this));
         addNewWeapon(itemFactory.make("opaxe", this));
+    }
+
+    /**
+     *
+     * @param rectangleFactory
+     * @param projectileFactory
+     * @param itemFactory
+     * default int values of width, height, jumpSpeed and moveSpeed
+     */
+
+    public Player(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory, ItemFactory itemFactory) {
+        this(rectangleFactory, projectileFactory, itemFactory, 68, 151, 90, 40);
     }
 
     @Override
@@ -54,7 +71,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     public void jump() {
         if (canJump) {
-            setVelocity(getVelocity().setY(JUMP_SPEED));
+            setVelocity(getVelocity().setY(jumpSpeed));
             canJump = false;
         }
     }
@@ -73,12 +90,12 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void moveLeft() {
-        setVelocity(getVelocity().setX(-MOVE_SPEED));
+        setVelocity(getVelocity().setX(-moveSpeed));
         isWalking = true;
     }
 
     public void moveRight() {
-        setVelocity(getVelocity().setX(MOVE_SPEED));
+        setVelocity(getVelocity().setX(moveSpeed));
         isWalking = true;
     }
 
