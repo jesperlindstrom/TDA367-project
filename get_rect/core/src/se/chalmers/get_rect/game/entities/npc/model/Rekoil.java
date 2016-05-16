@@ -32,7 +32,7 @@ public class Rekoil extends AbstractNPCModel {
         dialogList = new ArrayList<>();
 
         try {
-            dialogList = dialogRepository.get("dialogs");
+            dialogList = dialogRepository.get("rekoil");
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
@@ -57,8 +57,8 @@ public class Rekoil extends AbstractNPCModel {
     @Override
     public void onInteract(IModel model) {
         if (!isDialogVisible()) {
-            int rando = (r.nextInt(dialogList.size()));
-            showDialog(dialogList.get(rando));
+            int random = (r.nextInt(dialogList.size()));
+            showDialog(dialogList.get(random));
         } else {
             nextDialog();
         }
