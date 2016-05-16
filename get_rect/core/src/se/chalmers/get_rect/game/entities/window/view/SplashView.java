@@ -11,9 +11,16 @@ public class SplashView extends AbstractView {
     private Point cameraPos;
     private SplashModel model;
 
+    /**
+     * cameraPos adjusts to the current screen in use and fits the picture to the middle
+     * @param model
+     * @param camera
+     */
+
     public SplashView(SplashModel model, ICamera camera) {
         this.model = model;
         this.cameraPos = camera.getPosition();
+        cameraPos = new Point(-(int)camera.getAdapter().getWidth()/2, -(int)camera.getAdapter().getHeight()/2);
     }
 
     @Override

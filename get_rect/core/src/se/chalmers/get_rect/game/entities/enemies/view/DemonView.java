@@ -35,12 +35,9 @@ public class DemonView extends AbstractAnimatedView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         if (model.getVelocity().getX() > 0) {
-            setDrawOffset(offset);
-            setFlip(true);
-
+            setFlip(true, offset);
         } else {
-            setDrawOffset(new Point(0, 0));
-            setFlip(false);
+            setFlip(false, new Point(0, 0));
         }
 
         super.draw(graphics);
