@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.entities.item.view;
 
-import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
@@ -29,18 +28,18 @@ public abstract class AbstractRangedWeaponView extends AbstractView {
         return direction.getX() < 0 ? -tmp : tmp;
     }
 
-    protected float getXScale(float scale) {
+    protected float getXScale() {
         if (model.getAimDirection().getX() != 0) {
-            return scale * model.getAimDirection().getX();
+            return model.getAimDirection().getX();
         }
-        return scale;
+        return 1;
     }
 
-    protected float getYScale(float scale) {
+    protected float getYScale() {
         if (model.getAimDirection().getY() != 0) {
-            return scale * model.getFacing();
+            return model.getFacing();
         }
-        return scale;
+        return 1;
 
     }
 }

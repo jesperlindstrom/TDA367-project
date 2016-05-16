@@ -18,7 +18,7 @@ public class PlayerFactory {
     @Inject private WeaponRepository weaponRepository;
     @Inject private IAssetManagerAdapter assetManager;
 
-    private static final String meleeStarting = "opaxe";
+    private static final String meleeStarting = "opsword";
     private static final String rangedStarting = "pistol";
 
 

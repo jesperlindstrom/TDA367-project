@@ -2,15 +2,12 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.animation.AnimationCoordinator;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.game.entities.item.view.OpAxeView;
-import se.chalmers.get_rect.game.entities.item.view.OpSwordNEttView;
+import se.chalmers.get_rect.game.entities.item.view.OpSwordView;
 import se.chalmers.get_rect.game.entities.item.view.PistolView;
-
-import java.util.Map;
 
 class PlayerView extends AbstractAnimatedView {
     private static final int STAND_STILL = 0;
@@ -72,7 +69,7 @@ class PlayerView extends AbstractAnimatedView {
     private IView getWeaponView(IWeapon model) {
         switch (model.getType()) {
             case "pistol" : return new PistolView(model, assetManager);
-            case "opswordnett" : return new OpSwordNEttView(model);
+            case "opsword" : return new OpSwordView(model);
             case "opaxe" : return new OpAxeView(model);
         }
         throw new RuntimeException("You done fucked up..  Weapon model didn't have a corresponding view");
