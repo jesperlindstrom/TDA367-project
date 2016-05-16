@@ -15,7 +15,7 @@ public class QuestManager implements IEventListener {
     public QuestManager() {
         System.out.println("Init quest");
         quests = new HashMap<>();
-        registerQuest(0);
+        //registerQuest(0);
     }
 
     private void registerQuest(Integer id) {

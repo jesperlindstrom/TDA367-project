@@ -29,12 +29,13 @@ public abstract class AbstractScene implements IScene {
     private Queue<IEntity> additions;
     private SceneLoader sceneLoader;
 
-    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader) {
+    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
         this.sceneLoader = sceneLoader;
+        this.quests = quests;
         additions = new LinkedList<>();
     }
 
@@ -109,7 +110,6 @@ public abstract class AbstractScene implements IScene {
     public void enteringState(Integer previousStateName) {
         setupDone = false;
         setupPhysics();
-        setupQuests();
         setupEntities();
         setupOverlays();
         sortViewsByDrawOrder();
@@ -145,10 +145,6 @@ public abstract class AbstractScene implements IScene {
 
     private void setupPhysics() {
         physics = new PhysicsEngine();
-    }
-
-    private void setupQuests() {
-        quests = new QuestManager();
     }
 
     public void add(IEntity entity) {
