@@ -9,16 +9,15 @@ import se.chalmers.get_rect.utilities.Point;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Rekoil extends AbstractNPCModel {
     private final int speed;
     private final int width;
     private final int height;
-    private boolean isFlying = false;
+    private boolean isShowingArch = false;
     private IRepository<String> dialogRepository;
     private List<String> dialogList;
-    private Random r;
+    private int dialogNr = 0;
 
     public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository, int speed, int width, int height) {
         super(point, new Point(0, 0), false, rectangleFactory);
@@ -28,7 +27,6 @@ public class Rekoil extends AbstractNPCModel {
         setBoundingBox(this.width, this.height);
         this.dialogRepository = dialogRepository;
 
-        r = new Random();
         dialogList = new ArrayList<>();
 
         try {
@@ -43,32 +41,31 @@ public class Rekoil extends AbstractNPCModel {
     @Override
     public void update(double delta) {
         super.update(delta);
-
-        if (isFlying) {
-            setVelocity(new Point(0, speed));
-        }
     }
 
     @Override
     public QuestState getQuestState() {
-        return isFlying ? QuestState.UNAVAILABLE : QuestState.AVAILABLE;
+        return isShowingArch ? QuestState.UNAVAILABLE : QuestState.AVAILABLE;
     }
 
     @Override
     public void onInteract(IModel model) {
+
         if (!isDialogVisible()) {
-            int random = (r.nextInt(dialogList.size()));
-            showDialog(dialogList.get(random));
+            showDialog(dialogList.get(0));
         } else {
             nextDialog();
+            isShowingArch = true;
+            setVelocity(new Point(0, 150));
         }
+
         if (model instanceof ICombatModel){
             ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
         }
     }
 
-    public boolean isFlying() {
-        return isFlying;
+    public boolean showArch() {
+        return isShowingArch;
     }
 
 }

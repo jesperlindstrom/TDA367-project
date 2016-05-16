@@ -10,6 +10,10 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
         super(position, velocity, solid, rectangleFactory);
     }
 
+    protected AbstractNPCModel(Point position, IRectangleFactoryAdapter rectangleFactory) {
+        this(position, new Point(0, 0), false, rectangleFactory);
+    }
+
     @Override
     public QuestState getQuestState() {
         return QuestState.UNAVAILABLE;

@@ -38,8 +38,10 @@ public class GameModule extends AbstractModule {
         // SceneManager and WindowManager
         StateManager<IScene> sceneManager = new StateManager<>();
         bind(new TypeLiteral<StateManager<IScene>>() {}).toInstance(sceneManager);
-        bind(new TypeLiteral<StateManager<IWindowController>>() {}).toInstance(new StateManager<>());
         bind(StateManager.class).annotatedWith(Names.named("Scene")).toInstance(sceneManager);
+        StateManager<IWindowController> windowManager = new StateManager<>();
+        bind(new TypeLiteral<StateManager<IWindowController>>() {}).toInstance(windowManager);
+        bind(StateManager.class).annotatedWith(Names.named("Window")).toInstance(windowManager);
 
         // Repositories
         bind(IRepository.class).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);

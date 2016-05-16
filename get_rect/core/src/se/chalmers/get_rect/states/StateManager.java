@@ -49,10 +49,20 @@ public class StateManager<V extends IState> {
      * @return The currently active IState
      */
     public V getState() {
-        return states.get(currentState);
+        if (currentState == null) return null;
+        return getState(currentState);
     }
 
     public V getState(int key) {
         return states.get(key);
+    }
+
+    public void clearState() {
+        currentState = null;
+    }
+
+    public Integer getCurrentStateKey() {
+        if (currentState == null) return -1;
+        return currentState;
     }
 }

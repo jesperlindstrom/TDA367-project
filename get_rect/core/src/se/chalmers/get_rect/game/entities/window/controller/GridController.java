@@ -29,6 +29,15 @@ public class GridController implements IWindowController {
         if (input.isKeyJustPressed(IInputAdapter.Keys.DOWNKEY)) {
             model.moveMarkDown();
         }
+
+        if (input.isKeyJustPressed(IInputAdapter.Keys.LEFTKEY)) {
+            model.moveMarkLeft();
+        }
+
+        if (input.isKeyJustPressed(IInputAdapter.Keys.RIGHTKEY)) {
+            model.moveMarkRight();
+        }
+
     }
 
     @Override
