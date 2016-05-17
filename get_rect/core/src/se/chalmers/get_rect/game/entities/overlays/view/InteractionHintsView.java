@@ -5,7 +5,9 @@ import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IInteractableModel;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.npc.model.INpcModel;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.quests.QuestState;
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -25,14 +27,27 @@ public class InteractionHintsView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if (player.getCurrentNpc() == null)return;
-        graphics.draw("img/interact/e.png", getUpperLeftCorner());
+        if (player.getCurrentNpc() == null)
+            return;
+
+        Point pos = getUpperLeftCorner();
+
+        if (player.getCurrentNpc() instanceof INpcModel) {
+            QuestState state = ((INpcModel) player.getCurrentNpc()).getQuestState();
+            if (!state.equals(QuestState.UNAVAILABLE) && !state.equals(QuestState.COMPLETED)) {
+                pos = pos.addX(70);
+            }
+        }
+
+        graphics.draw("img/interact/e.png", pos);
     }
 
     private Point getUpperLeftCorner() {
         IRectangleAdapter boundingBox = player.getCurrentNpc().getBoundingBox();
         Point point = new Point(boundingBox.getPosition());
         point = point.add((int)boundingBox.getWidth()/2 - 40, (int)boundingBox.getHeight()); // -40 due to e.png's size
+
+
         return point;
     }
 }

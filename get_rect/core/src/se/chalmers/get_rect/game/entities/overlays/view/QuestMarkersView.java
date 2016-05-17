@@ -48,7 +48,9 @@ public class QuestMarkersView extends AbstractView {
         String questStateImage = getQuestStateImage(model.getQuestState());
 
         if (questStateImage != null) {
-            graphics.draw(questStateImage, new Point(model.getPosition().add(75,300)));
+            int x = (int)(model.getBoundingBox().getX() + model.getBoundingBox().getWidth() / 2 - 40);
+            int y = (int)(model.getBoundingBox().getY() + model.getBoundingBox().getHeight() + 20);
+            graphics.draw(questStateImage, new Point(x, y));
         }
     }
 }
