@@ -55,7 +55,7 @@ public class NpcFactory {
     }
 
     private IPhysicsEntity makeChessT(Point point) {
-        ChessT model = new ChessT(point, rectangleFactory, windowManager);
+        ChessT model = new ChessT(point, rectangleFactory, windowManager, player);
         IView view = new ChessTView(model);
 
         return new PhysicsEntity(model, view);
