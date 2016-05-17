@@ -17,6 +17,7 @@ public class Demon extends AbstractCombatModel {
     private IModel player;
     private int randHeight;
     private int randFlap;
+    private boolean isAttacking = false;
 
     /**
      * Creates a demon
@@ -88,17 +89,25 @@ public class Demon extends AbstractCombatModel {
 
         if (demonY < randHeight && playerX != demonX) {
             setVelocity(getVelocity().setY(randFlap));
+
+
         }
         if (playerX > demonX - 3  && playerX < demonX + 3) {
             setVelocity(getVelocity().setY(-playerY));
+            isAttacking = true;
+        } else {
+            isAttacking = false;
         }
 
         setVelocity(getVelocity().setX(velX));
+
     }
     public int getRandFlap() {
         return randFlap;
     }
 
-    public
+    public boolean isAttacking() {
+        return isAttacking;
+    }
 
 }
