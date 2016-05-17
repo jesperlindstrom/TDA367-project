@@ -9,6 +9,7 @@ import se.chalmers.get_rect.utilities.Point;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Horv extends AbstractNPCModel {
     private final int speed;
@@ -48,12 +49,18 @@ public class Horv extends AbstractNPCModel {
         return isJumping ? QuestState.UNAVAILABLE : QuestState.AVAILABLE;
     }
 
+    /**
+     * Horv will show the first dialog first, then randomize between the other two available
+     * @param model
+     */
+
     @Override
     public void onInteract(IModel model) {
 
         if (!isDialogVisible()) {
+            Random random = new Random();
             showDialog(dialogList.get(dialogNr));
-            dialogNr =+ 1;
+            dialogNr =+ random.nextInt(2)+1;
         } else {
             nextDialog();
         }
