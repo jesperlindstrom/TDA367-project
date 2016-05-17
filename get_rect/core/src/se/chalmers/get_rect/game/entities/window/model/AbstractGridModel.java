@@ -62,7 +62,7 @@ public abstract class AbstractGridModel {
         }
     }
 
-    public Point getCurrentButton() {
+    public Point getCurrentlyMarked() {
         return currentButton;
     }
 

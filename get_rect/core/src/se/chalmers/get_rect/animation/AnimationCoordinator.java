@@ -54,7 +54,7 @@ public class AnimationCoordinator {
     /**
      * Draw the active sequence frame
      * @param graphics Graphics adapter
-     * @param position The position to draw at
+     * @param position The position to drawIcon at
      */
     public void draw(IGraphicsAdapter graphics, Point position, boolean flip) {
         if (activeSequence != null) {

@@ -9,22 +9,25 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class PistolView extends AbstractRangedWeaponView {
 
+    private static final String path = "img/items/";
     private static final int DRAW_PRIO = 6;
     private ISoundAdapter bulletSound;
 
     public PistolView(IWeapon model, IAssetManagerAdapter assetManager) {
-        super(model);
+        super(model, path+"pistol_icon.png");
         //bulletSound = assetManager.getSound("sounds/bulletSound.mp3");
 
     }
+
+
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         String imgPath;
         if (getModel().getUsedFrames() == 0) {
-            imgPath = "img/items/pistol.png";
+            imgPath = path+"pistol.png";
         } else {
-            imgPath = "img/items/pistolPANG.png";
+            imgPath = path+"pistolPANG.png";
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
         //bulletSound.play();
@@ -34,4 +37,6 @@ public class PistolView extends AbstractRangedWeaponView {
     public int getDrawPriority() {
         return DRAW_PRIO;
     }
+
+
 }

@@ -47,7 +47,7 @@ public class MainMenuView extends AbstractView {
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(EXIT));
 
         // Menu overlay
-        graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(model.getCurrentButton()));
+        graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(model.getCurrentlyMarked()));
 
     }
 

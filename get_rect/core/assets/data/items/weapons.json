@@ -12,12 +12,111 @@
     "width": 200,
     "height": 200,
     "damage": 6,
-    "frames": 30
+    "frames": 30,
+    "swingDegrees" : 360
   },
 
   {
     "type" : "pistol",
     "damage" : 20,
     "speed" : 600
+  },
+  {
+    "type" : "lasersword",
+    "width" : 175,
+    "height" : 150,
+    "damage" : 10,
+    "frames" : 20
+  },
+
+  {
+    "type": "opsword",
+    "width": 175,
+    "height": 150,
+    "damage": 2,
+    "frames": 30
+  },
+
+  {
+    "type": "opaxe",
+    "width": 200,
+    "height": 200,
+    "damage": 6,
+    "frames": 30,
+    "swingDegrees" : 360
+  },
+
+  {
+    "type" : "pistol",
+    "damage" : 20,
+    "speed" : 600
+  },
+  {
+    "type" : "lasersword",
+    "width" : 175,
+    "height" : 150,
+    "damage" : 10,
+    "frames" : 20
+  },
+
+  {
+    "type": "opsword",
+    "width": 175,
+    "height": 150,
+    "damage": 2,
+    "frames": 30
+  },
+
+  {
+    "type": "opaxe",
+    "width": 200,
+    "height": 200,
+    "damage": 6,
+    "frames": 30,
+    "swingDegrees" : 360
+  },
+
+  {
+    "type" : "pistol",
+    "damage" : 20,
+    "speed" : 600
+  },
+  {
+    "type" : "lasersword",
+    "width" : 175,
+    "height" : 150,
+    "damage" : 10,
+    "frames" : 20
+  },
+
+  {
+    "type": "opsword",
+    "width": 175,
+    "height": 150,
+    "damage": 2,
+    "frames": 30
+  },
+
+  {
+    "type": "opaxe",
+    "width": 200,
+    "height": 200,
+    "damage": 6,
+    "frames": 30,
+    "swingDegrees" : 360
+  },
+
+  {
+    "type" : "pistol",
+    "damage" : 20,
+    "speed" : 600
+  },
+  {
+    "type" : "lasersword",
+    "width" : 175,
+    "height" : 150,
+    "damage" : 10,
+    "frames" : 20
   }
+
 ]

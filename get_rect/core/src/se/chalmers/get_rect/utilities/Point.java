@@ -104,6 +104,15 @@ public class Point {
 
     }
 
+    /**
+     * multiplies x1 with x2 and y1 with y2
+     * @param p2 point to multiply with.
+     * @return new point
+     */
+    public Point multiply(Point p2) {
+        return new Point(xCoordinate*p2.getX(), yCoordinate*p2.getY());
+    }
+
     public Point normalize() {
         int x = xCoordinate < 0 ? -1 : xCoordinate == 0 ? 0 : 1;
         int y = yCoordinate < 0 ? -1 : yCoordinate == 0 ? 0 : 1;

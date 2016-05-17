@@ -77,7 +77,7 @@ public abstract class AbstractAnimatedView extends AbstractView {
         this.flip = flip;
     }
 
-    public void setFlip(boolean flip, Point offset){
+    public void setFlip(boolean flip, Point offset) {
         setDrawOffset(offset);
         setFlip(flip);
     }

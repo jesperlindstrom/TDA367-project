@@ -46,7 +46,7 @@ public class Game {
 
     /**
      * Tell current state to update
-     * @param delta Time since last draw
+     * @param delta Time since last drawIcon
      */
     public void update(double delta) {
 

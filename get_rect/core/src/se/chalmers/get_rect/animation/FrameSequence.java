@@ -37,7 +37,7 @@ public class FrameSequence {
     /**
      * Draw the current frame
      * @param graphics Graphics adapter
-     * @param position The position to draw at
+     * @param position The position to drawIcon at
      */
     public void draw(IGraphicsAdapter graphics, Point position, boolean flip) {
         getCurrentFrame().draw(graphics, position, flip);

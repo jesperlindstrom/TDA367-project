@@ -6,18 +6,18 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class OpSwordView extends AbstractMeleeWeaponView {
 
-    private static final String imgPath = "img/items/opsword.png";
+    private static final String imgPath = "img/items/opsword";
     private static final float SCALE = 1;
     private static final float tilt = 30;
 
 
     public OpSwordView(IWeapon model) {
-        super(model, tilt);
+        super(model, tilt, imgPath+"_icon.png");
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(SCALE), SCALE, getRotation());
+        graphics.draw(imgPath+".png", getModel().getHandPos(), new Point(0, 0), getXScale(SCALE), SCALE, getRotation());
         super.draw(graphics);
     }
 

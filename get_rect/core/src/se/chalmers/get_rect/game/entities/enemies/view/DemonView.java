@@ -6,7 +6,8 @@ import se.chalmers.get_rect.game.entities.enemies.model.Demon;
 import se.chalmers.get_rect.utilities.Point;
 
 public class DemonView extends AbstractAnimatedView {
-    private static final int WALKING = 1;
+    private static final int FLYING = 1;
+    private static final int ATTACK = 2;
     private Demon model;
     private Point offset = new Point(250, 0);
 
@@ -17,12 +18,13 @@ public class DemonView extends AbstractAnimatedView {
      */
 
     public DemonView(Demon model){
-        super(model, WALKING);
+        super(model, FLYING);
         this.model = model;
         int changeFrame = model.getRandFlap()/3;
 
-        addAnimationFrame(WALKING, "img/entities/demons/mjolnir1.png", changeFrame);
-        addAnimationFrame(WALKING, "img/entities/demons/mjolnir2.png", changeFrame);
+        addAnimationFrame(FLYING, "img/entities/demons/mjolnir1.png", changeFrame);
+        addAnimationFrame(FLYING, "img/entities/demons/mjolnir2.png", changeFrame);
+        addAnimationFrame(ATTACK, "img/entities/demons/mjolnir_attack.png", changeFrame);
 
     }
 
@@ -39,8 +41,16 @@ public class DemonView extends AbstractAnimatedView {
         } else {
             setFlip(false, new Point(0, 0));
         }
-
+        playSequence(getSequence());
         super.draw(graphics);
+    }
+    private int getSequence() {
+
+        if (model.isAttacking()) {
+            return 2;
+        } else {
+            return 1;
+        }
 
     }
 }

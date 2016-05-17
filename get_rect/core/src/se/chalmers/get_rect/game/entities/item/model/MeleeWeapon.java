@@ -11,17 +11,24 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
     private final int height;
     private final int damage;
     private final int frames;
+    private final float swingDegrees;
     private SwingFactory swingFactory;
     private boolean usable;
 
-    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int frames) {
+    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int frames, float swingDegrees) {
         super(user, type);
         this.width = width;
         this.height = height;
         this.damage = damage;
         this.frames = frames;
+        this.swingDegrees = swingDegrees;
         this.swingFactory = swingFactory;
     }
+
+    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int frames) {
+        this(user, type, swingFactory, width, height, damage, frames, 90f);
+    }
+
 
     public SwingFactory getSwingFactory() {
         return swingFactory;
@@ -55,5 +62,9 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
     @Override
     public int getSwingFrames() {
         return frames;
+    }
+
+    public float getSwingDegrees() {
+        return swingDegrees;
     }
 }
