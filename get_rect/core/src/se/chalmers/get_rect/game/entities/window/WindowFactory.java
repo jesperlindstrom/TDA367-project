@@ -1,10 +1,9 @@
 package se.chalmers.get_rect.game.entities.window;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.adapters.IInputAdapter;
 import se.chalmers.get_rect.game.IGame;
+import se.chalmers.get_rect.game.GameInput;
 import se.chalmers.get_rect.game.entities.EntityNotFoundException;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IView;
@@ -28,7 +27,7 @@ public class WindowFactory {
     @Inject private IAssetManagerAdapter assetManager;
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private ICamera camera;
-    @Inject private IInputAdapter input;
+    @Inject private GameInput gameInput;
     @Inject private IGame game;
     @Inject private Player player;
     @Inject private WeaponRepository weaponRepository;
@@ -59,18 +58,18 @@ public class WindowFactory {
     private IWindowController makeMainMenu() {
         MainMenu model = new MainMenu(game);
         IView view = new MainMenuView(model, camera);
-        return new GridController(input, model, view);
+        return new GridController(gameInput, model, view);
     }
 
     private IWindowController makeInGameMenu() {
         InGameMenu model = new InGameMenu(game);
         IView view = new InGameMenuView(model, camera);
-        return new GridController(input, model, view);
+        return new GridController(gameInput, model, view);
     }
 
     private IWindowController makeInverntory() {
         Inventory model = new Inventory(player, weaponRepository);
         IView view = new InventoryView(model, camera, itemFactory);
-        return new GridController(input, model, view);
+        return new GridController(gameInput, model, view);
     }
 }

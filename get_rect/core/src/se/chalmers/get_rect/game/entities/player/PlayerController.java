@@ -1,12 +1,12 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import com.google.inject.Inject;
-import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.game.GameInput;
 import se.chalmers.get_rect.game.entities.IController;
 import se.chalmers.get_rect.utilities.Point;
 
 public class PlayerController implements IController {
-    @Inject private IInputAdapter input;
+    @Inject private GameInput gameInput;
     @Inject private Player player;
 
     @Override
@@ -19,53 +19,35 @@ public class PlayerController implements IController {
     }
 
     private void handleInteract(){
-        if(input.isKeyJustPressed(IInputAdapter.Keys.E)){
+        if(gameInput.isKeyJustPressed(GameInput.Actions.INTERACT)){
             player.interact();
         }
     }
 
     private void handleMovement() {
-        if(input.isKeyPressed(IInputAdapter.Keys.A)){
+        if(gameInput.isKeyPressed(GameInput.Actions.MOVE_LEFT)){
             player.moveLeft();
-        } else if (input.isKeyPressed(IInputAdapter.Keys.D)){
+        } else if (gameInput.isKeyPressed(GameInput.Actions.MOVE_RIGHT)){
             player.moveRight();
         } else {
             player.stopMoving();
         }
-        if (input.isKeyJustPressed(IInputAdapter.Keys.H)) {
+        if (gameInput.isKeyJustPressed(GameInput.Actions.RESPAWN)) {
             player.flyHome();
         }
     }
 
     private void handleShooting() {
-        Point direction = new Point(0, 0);
-
-        if (input.isKeyJustPressed(IInputAdapter.Keys.LEFTKEY)) {
-            direction = direction.addX(-1);
-        }
-        if (input.isKeyJustPressed(IInputAdapter.Keys.UPKEY)) {
-            direction = direction.addY(1);
-        }
-        if (input.isKeyJustPressed(IInputAdapter.Keys.RIGHTKEY)) {
-            direction = direction.addX(1);
-        }
-        if (input.isKeyJustPressed(IInputAdapter.Keys.DOWNKEY)) {
-            direction = direction.addY(-1);
-        }
-
-
-        if (!direction.equals(new Point(0, 0))) {
-            player.use(direction);
-        }
+        player.use(gameInput.getAim());
     }
 
     private void handleJumping() {
-        if(input.isKeyPressed(IInputAdapter.Keys.SPACE)){
+        if(gameInput.isKeyPressed(GameInput.Actions.JUMP)){
             player.jump();
         }
     }
     private void handleWeaponSwitch(){
-        if(input.isKeyJustPressed(IInputAdapter.Keys.Q)){
+        if(gameInput.isKeyJustPressed(GameInput.Actions.SWITCH_WEAPON)){
             player.switchWeapon();
         }
     }
