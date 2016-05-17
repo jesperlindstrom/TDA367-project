@@ -20,6 +20,11 @@ public class HunchenView extends AbstractAnimatedView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         if (!model.isRiding()){
+            if (model.getVelocity().getX() < 0){
+                setFlip(true);
+            } else {
+                setFlip(false);
+            }
             super.draw(graphics);
         }
     }

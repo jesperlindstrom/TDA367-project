@@ -10,12 +10,13 @@ public class Hunchen extends AbstractNPCModel {
 
     private Player player;
     private boolean isRiding;
-
+    private int speed;
 
     public Hunchen(Point position, IRectangleFactoryAdapter rectangleFactory, Player player){
         super(position, rectangleFactory);
         this.player = player;
         setBoundingBox(200, 200);
+        speed = player.getVelocity().getX() - 1;
     }
 
     @Override
@@ -29,18 +30,21 @@ public class Hunchen extends AbstractNPCModel {
 
 
         int playerX = player.getPosition().getX();
-        int huncehnX = getPosition().getX();
+        int zombieX = getPosition().getX();
 
-        if (player.getPosition().distanceTo(getPosition()) < 100) return;
+        if (getVelocity().getX() != 0 && Math.abs(getVelocity().getX()) != speed)
+            return;
 
-        Point vel;
+        int velX = 0;
 
-        if (playerX > huncehnX){
-            vel = player.getVelocity();
-        } else {
-            vel = player.getVelocity().inverse();
+        if (playerX > zombieX) {
+            velX = speed;
+        } else if (playerX < zombieX) {
+            velX = -speed;
         }
-        setVelocity(getVelocity().setPosition(vel));
+
+        setVelocity(getVelocity().setX(velX));
+
     }
 
     public boolean isRiding() {
