@@ -11,12 +11,14 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
     }
 
     @Override
-    public void play() {
-            sound.play();
+    public long play() {
+        sound.play();
+        return sound.play();
     }
 
-    public void play(Float volume) {
+    public long play(Float volume) {
         sound.play(volume);
+        return sound.play();
     }
 
     public void pause() {
@@ -39,5 +41,8 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
     @Override
     public void setPan(long soundId, float pan, float volume) {
         sound.setPan(soundId, pan, volume);
+    }
+    public void setLooping(long id, boolean isLooping) {
+        sound.setLooping(id, isLooping);
     }
 }

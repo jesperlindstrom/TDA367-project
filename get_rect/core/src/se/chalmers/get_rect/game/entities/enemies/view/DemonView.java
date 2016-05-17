@@ -15,6 +15,7 @@ public class DemonView extends AbstractAnimatedView {
     private IAssetManagerAdapter assetManager;
     private ISoundAdapter mjolnirLaugh;
     private boolean isPlaying = false;
+    private long id;
 
     /**
      * changeFrame decides the amount of frames for each picture
@@ -45,23 +46,30 @@ public class DemonView extends AbstractAnimatedView {
         if (mjolnirLaugh == null) {
             mjolnirLaugh = assetManager.getSound("sounds/mjolnirLaugh.mp3");
         }
-        if (model.getVelocity().getX() < 3 && model.getVelocity().getX() > -3) {
+        if (model.getVelocity().getX() > 0) {
             setFlip(true, offset);
         } else {
             setFlip(false, new Point(0, 0));
         }
         playSequence(getSequence());
         super.draw(graphics);
-        if (!isPlaying)
-        mjolnirLaugh.play();
+        playLaughter();
+        mjolnirLaugh.setPan(id, (model.getPlayerPosition().getX()-model.getPosition().getX())/1000f, 0.5f );
+        System.out.println("panning = " + (model.getPlayerPosition().getX() - model.getPosition().getX())/1000f);
     }
     private int getSequence() {
-
         if (model.isAttacking()) {
             return 2;
         } else {
             return 1;
         }
 
+    }
+    public void playLaughter() {
+        if (!isPlaying) {
+            id = mjolnirLaugh.play();
+            mjolnirLaugh.setLooping(id, false);
+            isPlaying = true;
+        }
     }
 }

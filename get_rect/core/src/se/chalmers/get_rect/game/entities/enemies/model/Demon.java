@@ -110,8 +110,7 @@ public class Demon extends AbstractCombatModel {
         return isAttacking;
     }
 
-    public boolean isWithinScreen() {
-        return player.getPosition()
+    public Point getPlayerPosition() {
+        return player.getPosition();
     }
-
 }
