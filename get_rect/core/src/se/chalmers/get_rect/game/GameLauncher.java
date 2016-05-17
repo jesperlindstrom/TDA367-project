@@ -29,7 +29,7 @@ public class GameLauncher implements IGame {
     }
 
     /**
-     * Tell current state to draw
+     * Tell current state to drawIcon
      */
     public void draw() {
         graphics.clear();
@@ -41,7 +41,7 @@ public class GameLauncher implements IGame {
 
     /**
      * Tell current state to update
-     * @param delta Time since last draw
+     * @param delta Time since last drawIcon
      */
     public void update(double delta) {
         game.update(delta);

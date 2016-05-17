@@ -5,5 +5,5 @@ import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.utilities.Point;
 
 public interface IWeaponView extends IView {
-    void draw(IGraphicsAdapter graphics, Point point);
+    void drawIcon(IGraphicsAdapter graphics, Point point);
 }

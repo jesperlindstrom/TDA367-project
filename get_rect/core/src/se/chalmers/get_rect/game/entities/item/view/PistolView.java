@@ -9,7 +9,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class PistolView extends AbstractRangedWeaponView {
 
-    private static final String path = "img/item/";
+    private static final String path = "img/items/";
     private static final int DRAW_PRIO = 6;
     private ISoundAdapter bulletSound;
 

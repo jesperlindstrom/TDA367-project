@@ -13,11 +13,16 @@ import java.util.Map;
 
 public class InventoryView extends AbstractView {
 
+    private static final int WIDTH = 554;
+    private static final int HEIGHT = 668;
+    private static final Point ITEM_FIRST_OFFSET = new Point(60, HEIGHT-234);
+    private static final Point ITEM_OFFSET = new Point(122, -122);
+    private static final Point MARK_FIRST_OFFSET = new Point(45, HEIGHT-255);
+    private static final Point MARK_OFFSET = new Point(120, -122);
     private ICamera camera;
     private Inventory inventory;
     private Map<Point, IWeaponView> weaponViewMap;
     private Point windowPosition;
-    private static final int offset = 65;
 
     private static final String IMG_PATH = "img/window/";
 
@@ -26,17 +31,18 @@ public class InventoryView extends AbstractView {
         this.inventory = model;
         this.weaponViewMap = new HashMap<>();
         inventory.getItemsMap().forEach((K, V) -> weaponViewMap.put(K, itemFactory.makeView(V)));
-        windowPosition = new Point((int)camera.getAdapter().getWidth()*3/4 - 554/2, (int)camera.getAdapter().getWidth()/2 - 668/2);
+        windowPosition = new Point((int)camera.getAdapter().getWidth()/4 - WIDTH/2, (int)camera.getAdapter().getHeight()/2 - HEIGHT/2);
 
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        weaponViewMap.forEach((K, V) -> V.draw(graphics, getRealPosition(K)));
         graphics.draw(IMG_PATH+"chezzt.png", camera.getPosition().add(windowPosition));
+        weaponViewMap.forEach((K, V) -> V.drawIcon(graphics, getRealPosition(K, ITEM_FIRST_OFFSET, ITEM_OFFSET)));
+        graphics.draw("img/pauseMenu/inventory/item_active.png", getRealPosition(inventory.getCurrentlyMarked(), MARK_FIRST_OFFSET, MARK_OFFSET));
     }
 
-    public Point getRealPosition(Point gridPosition) {
-        return windowPosition.add(60, 180).add(gridPosition.multiply(offset));
+    public Point getRealPosition(Point gridPosition, Point firstOffset, Point offset) {
+        return camera.getPosition().add(windowPosition).add(firstOffset).add(gridPosition.multiply(offset));
     }
 }

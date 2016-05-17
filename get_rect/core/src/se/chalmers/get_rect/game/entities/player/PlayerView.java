@@ -64,7 +64,7 @@ class PlayerView extends AbstractAnimatedView {
         playSequence(getSequence());
 
 
-        // Tell abstract parent to draw the animation
+        // Tell abstract parent to drawIcon the animation
         super.draw(graphics);
         if (weaponView != null) weaponView.draw(graphics);
     }

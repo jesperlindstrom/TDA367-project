@@ -25,7 +25,7 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
         this.tilt = tilt;
         this.originalTilt = tilt;
         swingFrames = this.model.getSwingFrames();
-        degreesPerFrame = 180f / swingFrames ;
+        degreesPerFrame = this.model.getSwingDegrees() * (this.model.getSwingDegrees() < 350 ? 2 : 1) / swingFrames ;
         this.iconPath = iconPath;
     }
 
@@ -46,6 +46,10 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
             tilt = originalTilt;
             return;
         }
+        if (degreesPerFrame > 11.5) {
+            tilt = tilt + degreesPerFrame;
+            return;
+        }
         if (model.getUsedFrames() < swingFrames/2) {
             tilt = tilt - degreesPerFrame;
         } else {
@@ -55,12 +59,12 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-//        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), 1, 1, getRotation());
+//        graphics.drawIcon("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), 1, 1, getRotation());
         updateTilt();
     }
 
     @Override
-    public void draw(IGraphicsAdapter graphics, Point point) {
+    public void drawIcon(IGraphicsAdapter graphics, Point point) {
         graphics.draw(iconPath, point);
     }
 }

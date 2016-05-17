@@ -39,7 +39,7 @@ public class InGameMenuView extends AbstractView {
         graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(CONTINUE));
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(EXIT));
 
-        graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(model.getCurrentButton()));
+        graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(model.getCurrentlyMarked()));
     }
 
     public Point getRealPosition(Point gridPosition) {

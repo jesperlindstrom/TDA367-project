@@ -141,4 +141,12 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     public void setActiveWeapon(IWeapon weapon) {
         activeWeapon = weapon;
     }
+
+    public IMelee getMeleeWeapon() {
+        return meleeWeapon;
+    }
+
+    public IRanged getRangedWeapon() {
+        return rangedWeapon;
+    }
 }

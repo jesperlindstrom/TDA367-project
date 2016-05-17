@@ -13,6 +13,7 @@ import java.util.Map;
 public class Inventory extends AbstractGridModel {
     private Player player;
     private Map<Point, IWeapon> itemsMap;
+    private static final int COLUMNS = 4;
 
     public Inventory(Player player, WeaponRepository weaponRepository) {
         this.player = player;
@@ -31,10 +32,10 @@ public class Inventory extends AbstractGridModel {
 
     public void fillGrid(List<IWeapon> weaponsList) {
         Point placement = new Point(0, 0);
-        int collons = 4;
+
 
         for (IWeapon weapon : weaponsList) {
-            if (placement.getX() > collons) {
+            if (placement.getX() == COLUMNS) {
                 placement = placement.addY(1).setX(0);
             }
 

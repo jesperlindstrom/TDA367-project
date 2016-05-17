@@ -8,6 +8,7 @@ public class WeaponsDataStore {
     private int damage;
     private int frames;     //Amount of frames during which the weapon is used.
     private int speed;
+    private float swingDegrees;  //Default is 180
 
     public String getType() {
         return type;
@@ -31,5 +32,9 @@ public class WeaponsDataStore {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public float getSwingDegrees() {
+        return swingDegrees;
     }
 }
