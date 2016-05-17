@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.item.swing;
 
+import com.badlogic.gdx.assets.AssetManager;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
@@ -18,6 +19,7 @@ public class Swing extends AbstractPhysicsModel{
     private int height;
     private int deltaX;
     private int deltaY;
+    private AssetManager assetManager;
 
     public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon) {
         super(owner.getPosition(), null, false, rectangleFactory);
@@ -31,6 +33,7 @@ public class Swing extends AbstractPhysicsModel{
         deltaX = this.width*2/swingFrames;
         deltaY = this.height*2/swingFrames;
         setBoundingBox(20, height);
+        this.assetManager = assetManager;
     }
 
     @Override

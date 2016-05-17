@@ -2,6 +2,8 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
+import se.chalmers.get_rect.adapters.IMusicAdapter;
+import se.chalmers.get_rect.adapters.ISoundAdapter;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
@@ -16,6 +18,8 @@ class PlayerView extends AbstractAnimatedView {
     private static final int JUMPING = 2;
     private static final int RIDING = 3;
     private static final int DRAW_PRIORITY = 5;
+    private ISoundAdapter walkingSound;
+    private ISoundAdapter ridingSound;
     private IView weaponView;
     private IWeapon activeWeapon;
     private IAssetManagerAdapter assetManager;
@@ -49,10 +53,7 @@ class PlayerView extends AbstractAnimatedView {
         if (player.isWalking()) {
             return WALKING;
         }
-
         return STAND_STILL;
-
-
     }
 
     @Override
@@ -60,8 +61,19 @@ class PlayerView extends AbstractAnimatedView {
         return DRAW_PRIORITY;
     }
 
+    /**
+     * initializes sounds since they can't be initalized while creating player
+     * @param graphics
+     */
+
     @Override
     public void draw(IGraphicsAdapter graphics) {
+        if (walkingSound == null){
+            walkingSound = assetManager.getSound("sounds/walkingSound.mp3");
+        }
+        if (ridingSound == null) {
+            ridingSound = assetManager.getSound("sounds/ridingSound.mp3");
+        }
         if (player.getActiveWeapon() != null && !player.getActiveWeapon().equals(activeWeapon)) {
             activeWeapon = player.getActiveWeapon();
             weaponView = itemFactory.makeView(activeWeapon);
@@ -69,6 +81,17 @@ class PlayerView extends AbstractAnimatedView {
 
         setFlip(player.getVelocity().getX() < 0);
         playSequence(getSequence());
+
+        if (getSequence() == RIDING) {
+            ridingSound.play();
+        } else {
+            ridingSound.pause();
+        }
+        if (getSequence() == WALKING) {
+            walkingSound.play();
+        } else {
+            walkingSound.pause();
+        }
 
 
         // Tell abstract parent to drawIcon the animation

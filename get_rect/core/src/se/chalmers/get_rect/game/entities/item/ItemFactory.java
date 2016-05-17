@@ -26,7 +26,7 @@ public class ItemFactory {
     public IWeaponView makeView(IWeapon model) {
         switch (model.getType()) {
             case "pistol" : return new PistolView(model, assetManager);
-            case "opsword" : return new OpSwordView(model);
+            case "opsword" : return new OpSwordView(model, assetManager);
             case "opaxe" : return new OpAxeView(model);
             case "lasersword" : return new LaserSwordView(model);
         }

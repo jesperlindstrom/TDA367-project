@@ -14,4 +14,25 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
     public void play() {
             sound.play();
     }
+
+    public void play(Float volume) {
+        sound.play(volume);
+    }
+
+    public void pause() {
+        sound.pause();
+    }
+
+    public void setPitch(Long time, float pitch){
+        sound.setPitch(time, pitch);
+    }
+
+    public void loop() {
+        sound.loop();
+    }
+
+    @Override
+    public void loop(float volume) {
+        sound.loop(volume);
+    }
 }

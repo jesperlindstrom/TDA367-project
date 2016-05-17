@@ -13,7 +13,7 @@ public class PistolView extends AbstractRangedWeaponView {
     private IAssetManagerAdapter assetManager;
 
     public PistolView(IWeapon model, IAssetManagerAdapter assetManager) {
-        super(model, path+"pistol_icon.png");
+        super(model, path + "pistol_icon.png");
         this.assetManager = assetManager;
     }
 
@@ -21,17 +21,17 @@ public class PistolView extends AbstractRangedWeaponView {
     public void draw(IGraphicsAdapter graphics) {
         if (bulletSound == null) {
             bulletSound = assetManager.getSound("sounds/bulletSound.mp3");
-            System.out.println(bulletSound);
         }
 
         String imgPath;
         if (getModel().getUsedFrames() == 0) {
-            imgPath = path+"pistol.png";
+            imgPath = path + "pistol.png";
         } else {
-            imgPath = path+"pistolPANG.png";
+            imgPath = path + "pistolPANG.png";
+            bulletSound.play(0.5f);
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
-        bulletSound.play();
+
     }
 
     @Override
