@@ -15,6 +15,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     private final int jumpSpeed;
     private final int moveSpeed;
     private boolean isWalking = false;
+    private boolean isRiding = false;
     private boolean canJump = true;
     private IInteractableModel interactableNPC;
     private IMelee meleeWeapon;
@@ -148,5 +149,9 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     public IRanged getRangedWeapon() {
         return rangedWeapon;
+    }
+
+    public boolean isRiding(){
+        return isRiding;
     }
 }
