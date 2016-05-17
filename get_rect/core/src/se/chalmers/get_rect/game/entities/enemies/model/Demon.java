@@ -63,7 +63,7 @@ public class Demon extends AbstractCombatModel {
 
     /**
      * Controls the movement of the demon
-     * follows the player in the air until it's above its target within 10 px each way, then attacks it straight down
+     * follows the player in the air until it's above its target within 3 px each way, then attacks it straight down
      * demonX is manually set to X plus half the size of the picture to be in the middle
      * @param delta
      */
@@ -98,5 +98,7 @@ public class Demon extends AbstractCombatModel {
     public int getRandFlap() {
         return randFlap;
     }
+
+    public
 
 }
