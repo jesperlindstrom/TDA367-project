@@ -20,7 +20,6 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
     }
 
     public LibGDXAssetManagerAdapter() {
-        System.out.println("created new assetmanager");
         manager = new AssetManager();
     }
 
@@ -31,7 +30,6 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
 
     @Override
     public void loadSound(String path) {
-        System.out.println("Loaded " + path + " as sound");
         manager.load(path, Sound.class);
     }
 
