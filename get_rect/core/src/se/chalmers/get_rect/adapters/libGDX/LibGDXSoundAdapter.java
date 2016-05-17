@@ -23,7 +23,7 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
         sound.pause();
     }
 
-    public void setPitch(Long time, float pitch){
+    public void setPitch(long time, float pitch){
         sound.setPitch(time, pitch);
     }
 
@@ -34,5 +34,10 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
     @Override
     public void loop(float volume) {
         sound.loop(volume);
+    }
+
+    @Override
+    public void setPan(long soundId, float pan, float volume) {
+        sound.setPan(soundId, pan, volume);
     }
 }
