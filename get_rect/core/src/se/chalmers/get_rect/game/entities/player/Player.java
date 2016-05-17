@@ -4,6 +4,7 @@ import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
 import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
+import se.chalmers.get_rect.game.entities.npc.model.Hunchen;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.SideData;
@@ -17,6 +18,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     private boolean isWalking = false;
     private boolean isRiding = false;
     private boolean canJump = true;
+    private boolean hasFoundHunch = false;
     private IInteractableModel interactableNPC;
     private IMelee meleeWeapon;
     private IRanged rangedWeapon;
@@ -64,6 +66,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
             }
         }
         activeWeapon.update(delta);
+
     }
 
     public void use(Point direction) {
@@ -71,18 +74,24 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void moveLeft() {
-        setVelocity(getVelocity().setX(-moveSpeed));
+        setVelocity(getVelocity().setX(-getSpeed()));
         isWalking = true;
     }
 
     public void moveRight() {
-        setVelocity(getVelocity().setX(moveSpeed));
+        setVelocity(getVelocity().setX(getSpeed()));
         isWalking = true;
     }
 
     public void stopMoving() {
         setVelocity(getVelocity().addX(-getVelocity().getX()/6));
         isWalking = false;
+    }
+
+    private int getSpeed(){
+        if (isRiding)
+            return 80;
+        return moveSpeed;
     }
 
     public boolean isWalking(){
@@ -153,5 +162,17 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     public boolean isRiding(){
         return isRiding;
+    }
+
+    public void setRiding(boolean riding) {
+        isRiding = riding;
+    }
+
+    public boolean hasFoundHunch() {
+        return hasFoundHunch;
+    }
+
+    public void setHasFoundHunch(boolean hasFoundHunch) {
+        this.hasFoundHunch = hasFoundHunch;
     }
 }

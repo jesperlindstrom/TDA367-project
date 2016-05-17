@@ -7,14 +7,14 @@ import se.chalmers.get_rect.game.entities.npc.model.Hunchen;
 
 public class HunchenView extends AbstractAnimatedView {
 
-    private static final int FIRST = 1;
+    private static final int FREE = 1;
     private Hunchen model;
 
     public HunchenView(Hunchen model) {
-        super(model, FIRST);
+        super(model, FREE);
         this.model = model;
-        addAnimationFrame(FIRST, "img/entities/hunchen/hunchen.png", 5);
-        addAnimationFrame(FIRST, "img/entities/hunchen/hunchen2.png", 5);
+        addAnimationFrame(FREE, "img/entities/hunchen/hunchen.png", 5);
+        addAnimationFrame(FREE, "img/entities/hunchen/hunchen2.png", 5);
     }
 
     @Override
