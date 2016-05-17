@@ -36,7 +36,7 @@ public class Rekoil extends AbstractNPCModel {
         }
     }
     public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
-        this(point, rectangleFactory, dialogRepository, 50, 200, 360);
+        this(point, rectangleFactory, dialogRepository, 50, 90, 158);
     }
     @Override
     public void update(double delta) {
