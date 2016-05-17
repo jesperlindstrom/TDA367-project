@@ -101,7 +101,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void flyHome() {
-        setPosition(new Point(3420, 600));
+        getScene().respawn();
     }
 
     @Override
