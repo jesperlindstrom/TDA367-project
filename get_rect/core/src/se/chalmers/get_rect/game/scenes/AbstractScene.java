@@ -71,6 +71,7 @@ public abstract class AbstractScene implements IScene {
     protected void addPlayerAtPosition(int x, int y) {
         playerEntity.getModel().setPosition(new Point(x, y));
         addEntity(playerEntity);
+        camera.snapToPosition(playerEntity.getModel().getPosition());
     }
 
     /**

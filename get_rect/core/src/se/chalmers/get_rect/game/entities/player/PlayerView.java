@@ -14,6 +14,7 @@ class PlayerView extends AbstractAnimatedView {
     private static final int STAND_STILL = 0;
     private static final int WALKING = 1;
     private static final int JUMPING = 2;
+    private static final int RIDING = 3;
     private static final int DRAW_PRIORITY = 5;
     private IView weaponView;
     private IWeapon activeWeapon;
@@ -34,9 +35,13 @@ class PlayerView extends AbstractAnimatedView {
         addAnimationFrame(WALKING, "img/entities/player/player_walking_1.png", 5);
         addAnimationFrame(WALKING, "img/entities/player/player_walking_3.png", 5);
         addAnimationFrame(WALKING, "img/entities/player/player_walking_2.png", 5);
+        addAnimationFrame(RIDING, "img/entities/hunchen/player_hunchen1.png", 5);
+        addAnimationFrame(RIDING, "img/entities/hunchen/player_hunchen2.png", 5);
     }
 
     private int getSequence() {
+        if (player.isRiding())
+            return RIDING;
         if (!player.canJump()) {
             return JUMPING;
         }
@@ -46,6 +51,8 @@ class PlayerView extends AbstractAnimatedView {
         }
 
         return STAND_STILL;
+
+
     }
 
     @Override
