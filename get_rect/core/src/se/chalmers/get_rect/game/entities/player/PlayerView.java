@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.game.entities.item.view.OpAxeView;
 import se.chalmers.get_rect.game.entities.item.view.OpSwordView;
@@ -17,13 +18,15 @@ class PlayerView extends AbstractAnimatedView {
     private IView weaponView;
     private IWeapon activeWeapon;
     private IAssetManagerAdapter assetManager;
+    private ItemFactory itemFactory;
 
     private Player player;
 
-    public PlayerView(Player player, IAssetManagerAdapter assetManager) {
+    public PlayerView(Player player, IAssetManagerAdapter assetManager, ItemFactory itemFactory) {
         super(player, STAND_STILL);
         this.player = player;
         this.assetManager = assetManager;
+        this.itemFactory = itemFactory;
 
         addAnimationFrame(STAND_STILL, "img/entities/player/player_still.png");
         addAnimationFrame(JUMPING, "img/entities/player/player_still.png");
@@ -54,7 +57,7 @@ class PlayerView extends AbstractAnimatedView {
     public void draw(IGraphicsAdapter graphics) {
         if (player.getActiveWeapon() != null && !player.getActiveWeapon().equals(activeWeapon)) {
             activeWeapon = player.getActiveWeapon();
-            weaponView = getWeaponView(activeWeapon);
+            weaponView = itemFactory.makeView(activeWeapon);
         }
 
         setFlip(player.getVelocity().getX() < 0);
@@ -66,12 +69,5 @@ class PlayerView extends AbstractAnimatedView {
         if (weaponView != null) weaponView.draw(graphics);
     }
 
-    private IView getWeaponView(IWeapon model) {
-        switch (model.getType()) {
-            case "pistol" : return new PistolView(model, assetManager);
-            case "opsword" : return new OpSwordView(model);
-            case "opaxe" : return new OpAxeView(model);
-        }
-        throw new RuntimeException("You done fucked up..  Weapon model didn't have a corresponding view");
-    }
+
 }

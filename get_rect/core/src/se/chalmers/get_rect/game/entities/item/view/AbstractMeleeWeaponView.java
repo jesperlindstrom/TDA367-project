@@ -4,16 +4,18 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
+import se.chalmers.get_rect.utilities.Point;
 
-public class AbstractMeleeWeaponView extends AbstractView {
+public abstract class AbstractMeleeWeaponView extends AbstractView implements IWeaponView {
 
     private IMelee model;
     private float tilt;
     private int swingFrames;
     private float degreesPerFrame;
     private final float originalTilt;
+    private String iconPath;
 
-    protected AbstractMeleeWeaponView(IWeapon model, float tilt) {
+    protected AbstractMeleeWeaponView(IWeapon model, float tilt, String iconPath) {
         super(model);
         if (model instanceof IMelee) {
             this.model = (IMelee)model;
@@ -24,7 +26,7 @@ public class AbstractMeleeWeaponView extends AbstractView {
         this.originalTilt = tilt;
         swingFrames = this.model.getSwingFrames();
         degreesPerFrame = 180f / swingFrames ;
-
+        this.iconPath = iconPath;
     }
 
     protected IWeapon getModel() {
@@ -55,5 +57,10 @@ public class AbstractMeleeWeaponView extends AbstractView {
     public void draw(IGraphicsAdapter graphics) {
 //        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), 1, 1, getRotation());
         updateTilt();
+    }
+
+    @Override
+    public void draw(IGraphicsAdapter graphics, Point point) {
+        graphics.draw(iconPath, point);
     }
 }

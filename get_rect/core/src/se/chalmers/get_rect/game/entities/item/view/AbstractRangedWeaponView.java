@@ -1,21 +1,24 @@
 package se.chalmers.get_rect.game.entities.item.view;
 
+import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
-public abstract class AbstractRangedWeaponView extends AbstractView {
+public abstract class AbstractRangedWeaponView extends AbstractView implements IWeaponView {
 
     private IRanged model;
+    private String iconPath;
 
-    protected AbstractRangedWeaponView(IWeapon model) {
+    protected AbstractRangedWeaponView(IWeapon model, String iconPath) {
         super(model);
         if (model instanceof IRanged) {
             this.model = (IRanged)model;
         } else {
             throw new RuntimeException("Model was not IRanged");
         }
+        this.iconPath = iconPath;
     }
 
     protected IWeapon getModel() {
@@ -42,4 +45,11 @@ public abstract class AbstractRangedWeaponView extends AbstractView {
         return 1;
 
     }
+
+
+    @Override
+    public void draw(IGraphicsAdapter graphics, Point point) {
+        graphics.draw(iconPath, point);
+    }
+
 }

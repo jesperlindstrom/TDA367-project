@@ -8,6 +8,7 @@ import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.game.entities.EntityNotFoundException;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.window.controller.GridController;
@@ -31,6 +32,7 @@ public class WindowFactory {
     @Inject private IGame game;
     @Inject private Player player;
     @Inject private WeaponRepository weaponRepository;
+    @Inject private ItemFactory itemFactory;
 
     public IWindowController make(String type) {
         if (type.equals("splash"))
@@ -68,7 +70,7 @@ public class WindowFactory {
 
     private IWindowController makeInverntory() {
         Inventory model = new Inventory(player, weaponRepository);
-        IView view = new InventoryView();
+        IView view = new InventoryView(model, camera, itemFactory);
         return new GridController(input, model, view);
     }
 }
