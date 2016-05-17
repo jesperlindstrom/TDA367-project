@@ -18,8 +18,6 @@ public class Game {
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
 
-
-
     public void draw() {
         if (sceneManager.getState() != null) {
             sceneManager.getState().draw(graphics);

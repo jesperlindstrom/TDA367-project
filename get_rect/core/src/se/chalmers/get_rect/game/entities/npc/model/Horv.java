@@ -9,17 +9,18 @@ import se.chalmers.get_rect.utilities.Point;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class Rekoil extends AbstractNPCModel {
+public class Horv extends AbstractNPCModel {
     private final int speed;
     private final int width;
     private final int height;
-    private boolean isShowingArch = false;
+    private boolean isJumping;
     private IRepository<String> dialogRepository;
     private List<String> dialogList;
     private int dialogNr = 0;
 
-    public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository, int speed, int width, int height) {
+    public Horv(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository, int speed, int width, int height) {
         super(point, new Point(0, 0), false, rectangleFactory);
         this.speed = speed;
         this.width = width;
@@ -30,13 +31,13 @@ public class Rekoil extends AbstractNPCModel {
         dialogList = new ArrayList<>();
 
         try {
-            dialogList = dialogRepository.get("rekoil");
+            dialogList = dialogRepository.get("horv");
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
     }
-    public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
-        this(point, rectangleFactory, dialogRepository, 50, 90, 158);
+    public Horv(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
+        this(point, rectangleFactory, dialogRepository, 50, 150, 300);
     }
     @Override
     public void update(double delta) {
@@ -45,27 +46,28 @@ public class Rekoil extends AbstractNPCModel {
 
     @Override
     public QuestState getQuestState() {
-        return isShowingArch ? QuestState.UNAVAILABLE : QuestState.AVAILABLE;
+        return isJumping ? QuestState.UNAVAILABLE : QuestState.AVAILABLE;
     }
+
+    /**
+     * Horv will show the first dialog first, then randomize between the other two available
+     * @param model
+     */
 
     @Override
     public void onInteract(IModel model) {
 
         if (!isDialogVisible()) {
+            Random random = new Random();
             showDialog(dialogList.get(dialogNr));
-            dialogNr =+ 1;
+            dialogNr =+ random.nextInt(2)+1;
         } else {
             nextDialog();
-            isShowingArch = true;
         }
 
         if (model instanceof ICombatModel){
             ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
         }
-    }
-
-    public boolean showArch() {
-        return isShowingArch;
     }
 
 }
