@@ -4,8 +4,10 @@ package se.chalmers.get_rect.game.entities.npc.model;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
+import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.Side;
 import se.chalmers.get_rect.utilities.SideData;
 
 public class Hunchen extends AbstractNPCModel {
@@ -14,6 +16,7 @@ public class Hunchen extends AbstractNPCModel {
     private int speed;
     private int oldX;
     private boolean init = false;
+    private boolean stop;
 
     public Hunchen(Point position, IRectangleFactoryAdapter rectangleFactory, Player player){
         super(position, rectangleFactory);
@@ -43,24 +46,42 @@ public class Hunchen extends AbstractNPCModel {
             setPosition(player.getPosition());
         }
 
+
+        IRectangleAdapter rect = getRectangleFactory().make(getPosition().getX()-30, getPosition().getY(), 81+60, 51);
+        SideData collision = player.getBoundingBox().intersects(rect);
+
+        if (collision == null){
+            stop = false;
+        } else {
+            stop = true;
+        }
+
+
+
         if (player.hasFoundHunch() && !isRiding()) {
 
             int playerX = player.getPosition().getX();
-            int zombieX = getPosition().getX();
+            int hunchX = getPosition().getX();
 
 
-            if (getVelocity().getX() != 0 && Math.abs(getVelocity().getX()) != speed || getPosition().distanceTo(player.getPosition()) < 200)
+            if (getVelocity().getX() != 0 && Math.abs(getVelocity().getX()) != speed)
                 return;
 
             int velX = 0;
 
-            if (playerX > zombieX) {
+            if (!stop && playerX > hunchX) {
                 velX = speed;
-            } else if (playerX < zombieX) {
+            } else if (!stop && playerX < hunchX) {
                 velX = -speed;
+            } else if (stop){
+                velX = 0;
             }
 
             setVelocity(getVelocity().setX(velX));
+
+
+
+
         }
         if (isRiding()){
             super.setPosition(player.getPosition().addY(100));
