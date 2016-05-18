@@ -20,7 +20,7 @@ public class GameConfig {
     public static final boolean SHOW_FPS = true;
 
     // Debug booleans
-    public static final boolean DISABLE_ALL = false;
+    public static final boolean DISABLE_ALL = true;
 
     public static final boolean SHOW_LOWESTFPS = true;
     public static final boolean SHOW_DELTA = true;
@@ -32,7 +32,7 @@ public class GameConfig {
     public static final boolean SPLASH_SCREEN_TROLL = false;
 
     //Music
-    public static final boolean MUSIC_ON = false;
+    public static final boolean MUSIC_ON = true;
     //Sound
-    public static final boolean SOUND_ON = false;
+    public static final boolean SOUND_ON = true;
 }
