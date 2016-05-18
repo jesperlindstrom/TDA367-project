@@ -2,22 +2,20 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.adapters.IKeyboardInputAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LibGDXInputAdapter implements IInputAdapter {
+public class LibGDXKeyboardInputAdapter implements IKeyboardInputAdapter {
 
     private Input input;
-
     private Map<Keys, Integer> keyMap;
 
-    public LibGDXInputAdapter() {
+    public LibGDXKeyboardInputAdapter() {
         this.input = Gdx.input;
         initKeyMap();
-
     }
 
     @Override
@@ -32,10 +30,7 @@ public class LibGDXInputAdapter implements IInputAdapter {
      */
     @Override
     public boolean isKeyPressed(Keys key) {
-        if(isTranslatable(key)) {
-            return input.isKeyPressed(keyMap.get(key));
-        }
-        return false;
+        return keyMap.containsKey(key) && input.isKeyPressed(keyMap.get(key));
     }
 
     /**
@@ -45,7 +40,7 @@ public class LibGDXInputAdapter implements IInputAdapter {
      */
     @Override
     public boolean isKeyJustPressed(Keys key) {
-        return input.isKeyJustPressed(keyMap.get(key));
+        return keyMap.containsKey(key) && input.isKeyJustPressed(keyMap.get(key));
     }
 
     /**
@@ -75,15 +70,15 @@ public class LibGDXInputAdapter implements IInputAdapter {
         keyMap.put(Keys.S, Input.Keys.S);
         keyMap.put(Keys.D, Input.Keys.D);
         keyMap.put(Keys.X, Input.Keys.X);
-        keyMap.put(Keys.H,Input.Keys.H);
+        keyMap.put(Keys.H, Input.Keys.H);
         keyMap.put(Keys.M, Input.Keys.M);
         keyMap.put(Keys.SPACE, Input.Keys.SPACE);
         keyMap.put(Keys.ENTER, Input.Keys.ENTER);
         keyMap.put(Keys.ESC, Input.Keys.ESCAPE);
-        keyMap.put(Keys.UPKEY, Input.Keys.UP);
-        keyMap.put(Keys.LEFTKEY, Input.Keys.LEFT);
-        keyMap.put(Keys.RIGHTKEY, Input.Keys.RIGHT);
-        keyMap.put(Keys.DOWNKEY, Input.Keys.DOWN);
+        keyMap.put(Keys.UP_KEY, Input.Keys.UP);
+        keyMap.put(Keys.LEFT_KEY, Input.Keys.LEFT);
+        keyMap.put(Keys.RIGHT_KEY, Input.Keys.RIGHT);
+        keyMap.put(Keys.DOWN_KEY, Input.Keys.DOWN);
         keyMap.put(Keys.MOUSELEFT, Input.Buttons.LEFT);
         keyMap.put(Keys.MOUSERIGHT, Input.Buttons.RIGHT);
     }

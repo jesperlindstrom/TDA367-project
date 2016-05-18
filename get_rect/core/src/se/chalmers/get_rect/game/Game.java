@@ -11,14 +11,12 @@ import se.chalmers.get_rect.states.*;
 
 public class Game {
     @Inject private IGraphicsAdapter graphics;
-    @Inject private IInputAdapter input;
+    @Inject private GameInput gameInput;
     @Inject private StateManager<IScene> sceneManager;
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private PlayerController playerController;
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
-
-
 
     public void draw() {
         if (sceneManager.getState() != null) {
@@ -65,7 +63,7 @@ public class Game {
     }
 
     private void handleInput() {
-        if (input.isKeyJustPressed(IInputAdapter.Keys.ESC) && windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
+        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU) && windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
             if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
             } else {

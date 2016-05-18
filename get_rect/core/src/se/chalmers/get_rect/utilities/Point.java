@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.utilities;
 
 
+import java.security.PublicKey;
+
 public class Point {
     private int xCoordinate;
     private int yCoordinate;
@@ -118,6 +120,29 @@ public class Point {
         int y = yCoordinate < 0 ? -1 : yCoordinate == 0 ? 0 : 1;
 
         return new Point(x, y);
+    }
+
+    public Point normalize (float x, float y) {
+        int intX;
+        int intY;
+
+        if (x < 0) {
+            intX = -1;
+        } else if (x > 0) {
+            intX = 1;
+        } else {
+            intX = 0;
+        }
+
+        if (y < 0) {
+            intY = -1;
+        } else if (y > 0) {
+            intY = 1;
+        } else {
+            intY = 0;
+        }
+
+        return new Point(intX, intY);
     }
 
     @Override
