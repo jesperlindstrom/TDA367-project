@@ -43,7 +43,7 @@ public class PlayerController implements IController {
     }
 
     private void handleJumping() {
-        if(gameInput.isKeyJustPressed(GameInput.Actions.JUMP)){
+        if(gameInput.isKeyPressed(GameInput.Actions.JUMP)){
             player.jump();
         }
     }

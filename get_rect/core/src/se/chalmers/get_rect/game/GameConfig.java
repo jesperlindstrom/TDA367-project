@@ -29,10 +29,10 @@ public class GameConfig {
     public static final boolean SHOW_MOUSE_POS = true;
 
     // Misc.
-    public static final boolean SPLASH_SCREEN_TROLL = true;
+    public static final boolean SPLASH_SCREEN_TROLL = false;
 
     //Music
-    public static final boolean MUSIC_ON = true;
+    public static final boolean MUSIC_ON = false;
     //Sound
-    public static final boolean SOUND_ON = true;
+    public static final boolean SOUND_ON = false;
 }
