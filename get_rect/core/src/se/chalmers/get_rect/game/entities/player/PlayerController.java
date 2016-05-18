@@ -38,7 +38,8 @@ public class PlayerController implements IController {
     }
 
     private void handleShooting() {
-        if (gameInput.isKeyJustPressed(GameInput.Actions.SHOOT)) player.use(gameInput.getAim());
+        if (gameInput.isKeyJustPressed(GameInput.Actions.SHOOT))
+            player.use(gameInput.getAim());
     }
 
     private void handleJumping() {

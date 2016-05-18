@@ -5,7 +5,7 @@ import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.Random;
@@ -32,7 +32,7 @@ public class Zombie extends AbstractCombatModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData side, boolean isSolid) {
         // Jump, to simulate a lethal broccoli ninja attack.
         if (otherObject.equals(player) && getVelocity().getY() == 0) {
             Player player = (Player) otherObject;

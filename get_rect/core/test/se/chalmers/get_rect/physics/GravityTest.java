@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import org.mockito.Mockito;
@@ -13,7 +12,7 @@ import se.chalmers.get_rect.adapters.RectangleAdapterStub;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 public class GravityTest {
     private IPhysicsEngine engine;
@@ -48,8 +47,8 @@ public class GravityTest {
         // Inject rectangles that intersect on the bottom/top side.
         RectangleAdapterStub rect1 = mock(RectangleAdapterStub.class);
         RectangleAdapterStub rect2 = mock(RectangleAdapterStub.class);
-        SideData rectCollision1 = new SideData();
-        SideData rectCollision2 = new SideData();
+        CollisionData rectCollision1 = new CollisionData();
+        CollisionData rectCollision2 = new CollisionData();
         rectCollision1.set(Side.BOTTOM);
         rectCollision2.set(Side.TOP);
         when(rect1.intersects(rect2)).thenReturn(rectCollision1);

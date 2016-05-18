@@ -7,7 +7,7 @@ import se.chalmers.get_rect.adapters.RectangleAdapterStub;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 import static org.junit.Assert.*;
 
@@ -50,8 +50,8 @@ public class MovementTest {
         // Inject rectangles that intersect on the right side of the player.
         RectangleAdapterStub rect1 = mock(RectangleAdapterStub.class);
         RectangleAdapterStub rect2 = mock(RectangleAdapterStub.class);
-        SideData rectCollision1 = new SideData();
-        SideData rectCollision2 = new SideData();
+        CollisionData rectCollision1 = new CollisionData();
+        CollisionData rectCollision2 = new CollisionData();
         rectCollision1.set(Side.RIGHT);
         rectCollision2.set(Side.LEFT);
         when(rect1.intersects(rect2)).thenReturn(rectCollision1);

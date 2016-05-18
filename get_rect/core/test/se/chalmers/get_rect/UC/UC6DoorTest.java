@@ -12,7 +12,7 @@ import se.chalmers.get_rect.game.scenes.TestScene;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 
 import static org.junit.Assert.*;
@@ -23,8 +23,8 @@ public class UC6DoorTest {
     private Door door;
     private StateManager<IScene> stateManager;
     private Player player;
-    private SideData playerSideData;
-    private SideData otherSideData;
+    private CollisionData playerSideData;
+    private CollisionData otherSideData;
     private TestScene testScene;
 
     @Before
@@ -37,9 +37,9 @@ public class UC6DoorTest {
         RectangleFactoryAdapterStub rectangleFactoryAdapterStub = new RectangleFactoryAdapterStub();
         door = new Door(new Point(0,0),100,100, rectangleFactoryAdapterStub , stateManager , 22 );
         player = new Player(rectangleFactoryAdapterStub);
-        playerSideData = new SideData();
+        playerSideData = new CollisionData();
         playerSideData.set(Side.LEFT);
-        otherSideData = new SideData();
+        otherSideData = new CollisionData();
         otherSideData.set(Side.RIGHT);
     }
 

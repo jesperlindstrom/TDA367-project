@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 import java.util.Random;
 
@@ -55,7 +55,7 @@ public class Demon extends AbstractCombatModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData side, boolean isSolid) {
         if (otherObject.equals(player)) {
             Player player = (Player) otherObject;
             player.takeDamage(1);

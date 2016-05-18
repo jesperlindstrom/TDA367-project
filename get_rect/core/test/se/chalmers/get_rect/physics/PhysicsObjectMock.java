@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.physics;
 
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 public class PhysicsObjectMock implements IPhysicsObject {
     private IRectangleAdapter boundingBox;
@@ -19,7 +19,7 @@ public class PhysicsObjectMock implements IPhysicsObject {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
 
     }
 

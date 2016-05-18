@@ -4,10 +4,9 @@ import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
 import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
-import se.chalmers.get_rect.game.entities.npc.model.Hunchen;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Player extends AbstractCombatModel implements IInteractorModel {
@@ -41,7 +40,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData side, boolean isSolid) {
         if (isSolid && side.bottom()) {
             canJump = true;
         }

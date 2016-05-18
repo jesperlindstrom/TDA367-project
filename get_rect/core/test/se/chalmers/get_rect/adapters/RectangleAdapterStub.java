@@ -2,7 +2,7 @@ package se.chalmers.get_rect.adapters;
 
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 public class RectangleAdapterStub implements IRectangleAdapter {
     public RectangleAdapterStub(float x, float y, float width, float height) {
@@ -40,7 +40,7 @@ public class RectangleAdapterStub implements IRectangleAdapter {
     }
 
     @Override
-    public SideData intersects(IRectangleAdapter rectangle) {
+    public CollisionData intersects(IRectangleAdapter rectangle) {
         return null;
     }
 }

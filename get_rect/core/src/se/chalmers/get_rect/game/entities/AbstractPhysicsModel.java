@@ -4,7 +4,7 @@ import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 public abstract class AbstractPhysicsModel extends AbstractModel implements IPhysicsModel {
     private IRectangleFactoryAdapter rectangleFactory;
@@ -59,7 +59,7 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
         // Default: do nothing
     }
 }

@@ -9,7 +9,7 @@ import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.utilities.CollisionData;
 
 import static org.junit.Assert.*;
 
@@ -18,17 +18,17 @@ public class UC2InteractTest {
 
     private Player player;
     private SawmillExpress sawmillExpress;
-    private SideData playerSide;
-    private SideData otherSide;
+    private CollisionData playerSide;
+    private CollisionData otherSide;
 
 
     @Before
     public void setup(){
         player = new Player(new RectangleFactoryAdapterStub());
         sawmillExpress = new SawmillExpress(new Point(10,10), new RectangleFactoryAdapterStub());
-        playerSide = new SideData();
+        playerSide = new CollisionData();
         playerSide.set(Side.RIGHT);
-        otherSide = new SideData();
+        otherSide = new CollisionData();
         otherSide.set(Side.LEFT);
     }
 
@@ -50,9 +50,9 @@ public class UC2InteractTest {
     @Test
     public void testAlternateFlow(){
         Zombie zombie = Mockito.mock(Zombie.class);
-        SideData zombieSideData = new SideData();
-        zombieSideData.set(Side.LEFT);
-        zombie.onCollision(player,zombieSideData,false);
+        CollisionData zombieCollisionData = new CollisionData();
+        zombieCollisionData.set(Side.LEFT);
+        zombie.onCollision(player, zombieCollisionData,false);
         player.onCollision(zombie, playerSide, false);
         assertNull("Should be null", player.getCurrentNpc());
     }

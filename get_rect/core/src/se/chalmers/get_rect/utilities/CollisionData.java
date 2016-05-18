@@ -1,11 +1,17 @@
 package se.chalmers.get_rect.utilities;
 
 
-public class SideData {
+import se.chalmers.get_rect.physics.IRectangleAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CollisionData {
     private boolean top;
     private boolean left;
     private boolean right;
     private boolean bottom;
+    private List<IRectangleAdapter> overlapList;
 
     public void set(Side side) {
         switch (side) {
@@ -16,11 +22,23 @@ public class SideData {
         }
     }
 
-    public void set(SideData data) {
+    public void set(CollisionData data) {
         if (data.top) top = true;
         if (data.left) left = true;
         if (data.right) right = true;
         if (data.bottom) bottom = true;
+        overlapList = data.getOverlapList();
+    }
+
+    public void addSolidOverlap(IRectangleAdapter overlap) {
+        if (overlapList == null)
+            overlapList = new ArrayList<>();
+
+        overlapList.add(overlap);
+    }
+
+    public List<IRectangleAdapter> getOverlapList() {
+        return overlapList;
     }
 
     public boolean top() {
