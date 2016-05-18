@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.entities.overlays;
 
 import com.google.inject.Inject;
-import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.game.GameInput;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
@@ -16,7 +16,7 @@ import java.util.List;
 public class OverlayFactory {
     @Inject private Player player;
     @Inject private ICamera camera;
-    @Inject private IInputAdapter input;
+    @Inject private GameInput gameInput;
     @Inject private ItemFactory itemFactory;
     private List<IModel> models;
     private IPhysicsEngine physics;
@@ -84,7 +84,7 @@ public class OverlayFactory {
     }
 
     private IEntity makeDebug() {
-        Debug model = new Debug(player, camera, input, physics);
+        Debug model = new Debug(player, camera, gameInput, physics);
         IView view = new DebugView(model);
 
         return new Entity(model, view);

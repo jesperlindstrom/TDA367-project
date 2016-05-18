@@ -10,7 +10,6 @@ public class GameConfig {
     public static final int SPLASH = 11;
     public static final int MAIN_MENU = 12;
 
-    public static final int NULL = 20;
     public static final int HORSALSVAGEN = 21;
     public static final int TEST = 22;
     public static final int HUBBEN = 23;

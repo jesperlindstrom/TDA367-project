@@ -1,6 +1,6 @@
 package se.chalmers.get_rect.adapters;
 
-public class InputAdapterStub implements IInputAdapter {
+public class InputAdapterStub implements IKeyboardInputAdapter {
     @Override
     public boolean isKeyPressed(Keys key) {
         return false;

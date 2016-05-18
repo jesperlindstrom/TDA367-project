@@ -2,9 +2,9 @@ package se.chalmers.get_rect.adapters;
 
 import se.chalmers.get_rect.utilities.Point;
 
-public interface IInputAdapter {
+public interface IKeyboardInputAdapter {
     enum Keys{
-        Q, W, E, A, S, D, X, H, M, SPACE, MOUSELEFT, MOUSERIGHT, LEFTKEY, RIGHTKEY, UPKEY, DOWNKEY, ENTER, ESC
+        Q, W, E, A, S, D, X, H, M, SPACE, MOUSELEFT, MOUSERIGHT, LEFT_KEY, RIGHT_KEY, UP_KEY, DOWN_KEY, ENTER, ESC
     }
     Point getMousePosition();
 

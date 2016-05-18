@@ -16,12 +16,13 @@ public class GameLauncher implements IGame {
     private EntityCamera cameraManager;
 
     @Inject
-    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory) {
+    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory, IKeyboardInputAdapter keyboard, IControllerInputAdapter controller) {
         PlayerFactory playerFactory = rootInjector.getInstance(PlayerFactory.class);
         IPhysicsEntity player = playerFactory.make();
+        GameInput input = new GameInput(keyboard, controller);
 
         cameraManager = new EntityCamera(cameraFactory, player.getModel());
-        Injector injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this));
+        Injector injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this, input));
 
         game = injector.getInstance(Game.class);
 
