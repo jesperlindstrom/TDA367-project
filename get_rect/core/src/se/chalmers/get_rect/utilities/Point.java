@@ -15,8 +15,11 @@ public class Point {
     }
 
     public Point(Point point) {
-        this.yCoordinate = point.getY();
-        this.xCoordinate = point.getX();
+        this(0 ,0);
+        if (point != null) {
+            this.xCoordinate = point.getX();
+            this.yCoordinate = point.getY();
+        }
     }
 
 

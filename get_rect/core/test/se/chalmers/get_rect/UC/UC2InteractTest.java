@@ -1,10 +1,15 @@
 package se.chalmers.get_rect.UC;
+import com.google.inject.Inject;
 import org.junit.Before;
 import org.junit.Test;
 
 import org.mockito.Mockito;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
+import se.chalmers.get_rect.game.entities.IInteractableModel;
+import se.chalmers.get_rect.game.entities.IPhysicsEntity;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
+import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;
@@ -17,7 +22,8 @@ import static org.junit.Assert.*;
 public class UC2InteractTest {
 
     private Player player;
-    private SawmillExpress sawmillExpress;
+    @Inject private NpcFactory npcFactory;
+    SawmillExpress sawmillExpress;
     private CollisionData playerSide;
     private CollisionData otherSide;
 
@@ -25,7 +31,7 @@ public class UC2InteractTest {
     @Before
     public void setup(){
         player = new Player(new RectangleFactoryAdapterStub());
-        sawmillExpress = new SawmillExpress(new Point(10,10), new RectangleFactoryAdapterStub());
+        sawmillExpress = (SawmillExpress)npcFactory.make("sawmillExpress", new Point(10, 10)).getModel();
         playerSide = new CollisionData();
         playerSide.set(Side.RIGHT);
         otherSide = new CollisionData();

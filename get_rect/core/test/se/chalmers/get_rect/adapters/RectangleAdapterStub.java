@@ -10,22 +10,22 @@ public class RectangleAdapterStub implements IRectangleAdapter {
     }
 
     @Override
-    public float getWidth() {
+    public int getWidth() {
         return 0;
     }
 
     @Override
-    public float getHeight() {
+    public int getHeight() {
         return 0;
     }
 
     @Override
-    public float getX() {
+    public int getX() {
         return 0;
     }
 
     @Override
-    public float getY() {
+    public int getY() {
         return 0;
     }
 
@@ -41,6 +41,11 @@ public class RectangleAdapterStub implements IRectangleAdapter {
 
     @Override
     public CollisionData intersects(IRectangleAdapter rectangle) {
+        return null;
+    }
+
+    @Override
+    public IRectangleAdapter getIntersection(IRectangleAdapter rect) {
         return null;
     }
 }

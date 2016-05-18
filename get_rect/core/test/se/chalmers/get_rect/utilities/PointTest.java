@@ -13,7 +13,7 @@ public class PointTest {
     @Before
     public void setup() {
         p = new Point(1, 2);
-        p2 = null;
+        p2 = new Point();
     }
 
     @Test
@@ -130,7 +130,7 @@ public class PointTest {
     @Test
     public void testEquals() throws Exception {
         p2 = new Point(p);
-        assertTrue(p2.equals(p));
+        assertEquals("should be equal", p, p2);
         p2 = p2.addY(5);
         assertFalse(p2.equals(p));
     }
