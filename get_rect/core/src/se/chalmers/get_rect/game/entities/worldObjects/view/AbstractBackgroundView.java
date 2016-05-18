@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.entities.worldObjects.view;
 
-import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.ICamera;

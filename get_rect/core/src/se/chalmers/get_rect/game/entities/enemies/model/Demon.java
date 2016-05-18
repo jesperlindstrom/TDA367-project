@@ -110,4 +110,7 @@ public class Demon extends AbstractCombatModel {
         return isAttacking;
     }
 
+    public Point getPlayerPosition() {
+        return player.getPosition();
+    }
 }
