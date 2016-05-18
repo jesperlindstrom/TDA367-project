@@ -24,7 +24,7 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
         }
         this.tilt = tilt;
         this.originalTilt = tilt;
-        swingFrames = this.model.getSwingFrames();
+        swingFrames = this.model.getCooldown();
         degreesPerFrame = this.model.getSwingDegrees() * (this.model.getSwingDegrees() < 350 ? 2 : 1) / swingFrames ;
         this.iconPath = iconPath;
     }

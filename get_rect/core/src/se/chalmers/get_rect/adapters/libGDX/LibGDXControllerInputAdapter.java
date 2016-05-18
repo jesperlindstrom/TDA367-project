@@ -134,7 +134,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
     @Override
     public Point getDirection() {
         if (controller == null) return new Point(0, 0);
-        return new Point(rightStick);
+        return new Point(rightStick).multiply(new Point(1, -1));  // TODO: this solved it.. it should work from the start
     }
 
     @Override
@@ -183,7 +183,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
             index = value < 0 ? keyMap.get(Keys.R_LEFT) : keyMap.get(Keys.R_RIGHT);
         }
         if (axisIndex == R_VERTICAL) {
-            index = value > 0 ? keyMap.get(Keys.R_DOWN) : keyMap.get(Keys.R_UP);
+            index = value < 0 ? keyMap.get(Keys.R_DOWN) : keyMap.get(Keys.R_UP);
         }
         if (axisIndex == R_TRIGGER) {
             index = value > 0 ? keyMap.get(Keys.R_TRIGGER) : R_TRIGGER == L_TRIGGER ? keyMap.get(Keys.L_TRIGGER) : -1;

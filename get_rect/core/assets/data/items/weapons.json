@@ -20,7 +20,7 @@
     "type" : "pistol",
     "damage" : 20,
     "speed" : 600,
-    "cooldown" : 10
+    "cooldown" : 60
   },
   {
     "type" : "lasersword",
@@ -51,7 +51,7 @@
     "type" : "pistol",
     "damage" : 20,
     "speed" : 600,
-    "cooldown" : 10
+    "cooldown" : 1
   },
   {
     "type" : "lasersword",
@@ -82,7 +82,7 @@
     "type" : "pistol",
     "damage" : 20,
     "speed" : 600,
-    "cooldown" : 10
+    "cooldown" : 20
   },
   {
     "type" : "lasersword",
@@ -113,7 +113,7 @@
     "type" : "pistol",
     "damage" : 20,
     "speed" : 600,
-    "cooldown" : 10
+    "cooldown" : 40
   },
   {
     "type" : "lasersword",

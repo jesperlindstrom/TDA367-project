@@ -31,4 +31,6 @@ public interface IWeapon extends IModel, ISwinger{
     int getFacing();
 
     String getType();
+
+    int getCooldown();
 }

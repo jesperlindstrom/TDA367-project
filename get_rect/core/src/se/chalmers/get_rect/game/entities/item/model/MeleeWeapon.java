@@ -10,23 +10,23 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
     private final int width;
     private final int height;
     private final int damage;
-    private final int frames;
+    private final int cooldown;
     private final float swingDegrees;
     private SwingFactory swingFactory;
     private boolean usable;
 
-    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int frames, float swingDegrees) {
+    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int cooldown, float swingDegrees) {
         super(user, type);
         this.width = width;
         this.height = height;
         this.damage = damage;
-        this.frames = frames;
+        this.cooldown = cooldown;
         this.swingDegrees = swingDegrees;
         this.swingFactory = swingFactory;
     }
 
-    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int frames) {
-        this(user, type, swingFactory, width, height, damage, frames, 90f);
+    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int cooldown) {
+        this(user, type, swingFactory, width, height, damage, cooldown, 90f);
     }
 
 
@@ -38,9 +38,14 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
     public void use(Point aimDirection, IEntityHolder entityHolder) {
         if (getUsable()) {
             setUsable(false);
-            setCooldownFrames(frames);
-            entityHolder.add(getSwingFactory().make(damage, width, height, frames, getUser(), this));
+            setCooldownFrames(cooldown);
+            entityHolder.add(getSwingFactory().make(damage, width, height, cooldown, getUser(), this));
         }
+    }
+
+    @Override
+    public int getCooldown() {
+        return cooldown;
     }
 
     @Override
@@ -57,11 +62,6 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
 
     protected boolean getUsable() {
         return this.usable;
-    }
-
-    @Override
-    public int getSwingFrames() {
-        return frames;
     }
 
     public float getSwingDegrees() {

@@ -40,5 +40,5 @@ public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRa
         return damage;
     }
 
-    protected int getCooldown() { return cooldown; }
+    public int getCooldown() { return cooldown; }
 }
