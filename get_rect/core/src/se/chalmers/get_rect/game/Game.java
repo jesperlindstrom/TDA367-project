@@ -47,8 +47,9 @@ public class Game {
      * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-
-        handleInput();
+        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
+            handleInput();
+        }
 
         // Will update the menu if it is active and pause the current scene.
         if (windowManager.getState() != null) {
@@ -63,12 +64,16 @@ public class Game {
     }
 
     private void handleInput() {
-        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU) && windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
+        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU)) {
             if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
             } else {
                 resume();
             }
+        }
+        if (gameInput.isKeyJustPressed(GameInput.Actions.EXIT_MENU)) {
+            if (windowManager.getState() != null)
+                resume();
         }
     }
 

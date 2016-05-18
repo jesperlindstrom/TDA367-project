@@ -78,7 +78,7 @@ class PlayerView extends AbstractAnimatedView {
             weaponView = itemFactory.makeView(activeWeapon);
         }
 
-        setFlip(player.getVelocity().getX() < 0);
+        setFlip(player.getVelocity().getX() == 0 ? isFlip() : player.getVelocity().getX() < 0);
         playSequence(getSequence());
 
         if (getSequence() == RIDING) {

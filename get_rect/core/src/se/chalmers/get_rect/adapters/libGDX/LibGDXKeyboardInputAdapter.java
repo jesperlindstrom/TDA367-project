@@ -48,8 +48,7 @@ public class LibGDXKeyboardInputAdapter implements IKeyboardInputAdapter {
      * @param key The key in question
      * @return true if is available in KeyMap
      */
-    @Override
-    public boolean isTranslatable(Keys key) {
+    private boolean isTranslatable(Keys key) {
         if (keyMap.get(key) != null) {
             return true;
         }

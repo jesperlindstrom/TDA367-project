@@ -13,13 +13,14 @@ public class GameInput {
     private IKeyboardInputAdapter keyboard;
     private Map<Actions, IKeyboardInputAdapter.Keys> keyboardMap;
     private Map<Actions, IControllerInputAdapter.Keys> controllerMap;
-    private Types active;
+    private Point nameInProgress;
 
     public GameInput(IKeyboardInputAdapter keyboard, IControllerInputAdapter controller) {
+        nameInProgress = new Point();
         this.controller = controller;
         this.keyboard = keyboard;
-        active = Types.KEYBOARD;
         fillKeyboardMap();
+        fillControllerMap();
     }
 
     public Point getMousePosition() {
@@ -28,50 +29,28 @@ public class GameInput {
     }
 
     public boolean isKeyPressed(Actions key) {
-        if (active.equals(Types.KEYBOARD)) {
             if (key.equals(Actions.SHOOT))
-                return !getKeyboardDirection().equals(new Point(0, 0));
-
-            return keyboardMap.containsKey(key) && keyboard.isKeyPressed(keyboardMap.get(key));
-        }
-        if (active.equals(Types.CONTROLLER)) {
-            if (key.equals(Actions.SHOOT))
-                return !controller.getDirection().equals(new Point(0, 0));
-
-            return controllerMap.containsKey(key) && controller.isKeyPressed(controllerMap.get(key));
-        }
-        return false;
+                return (!getKeyboardDirection().equals(nameInProgress) || (!controller.getDirection().equals(nameInProgress)));
+            return (keyboardMap.containsKey(key) && keyboard.isKeyPressed(keyboardMap.get(key)))
+                    || (controllerMap.containsKey(key) && controller.isKeyPressed(controllerMap.get(key)));
     }
 
     public boolean isKeyJustPressed(Actions key) {
-        if (active.equals(Types.KEYBOARD)) {
-            if (key.equals(Actions.SHOOT)) return !getKeyboardDirection().equals(new Point(0, 0));
-            return keyboardMap.containsKey(key) && keyboard.isKeyJustPressed(keyboardMap.get(key));
-        }
-        if (active.equals(Types.CONTROLLER)) {
-            if (key.equals(Actions.SHOOT)) return !controller.getDirection().equals(new Point(0, 0));
-            return controllerMap.containsKey(key) && controller.isKeyJustPressed(controllerMap.get(key));
-        }
-        return false;
+        if (key.equals(Actions.SHOOT))
+            return (!getKeyboardDirection().equals(nameInProgress) || (!controller.getDirection().equals(nameInProgress)));
+        return (keyboardMap.containsKey(key) && keyboard.isKeyJustPressed(keyboardMap.get(key)))
+                || (controllerMap.containsKey(key) && controller.isKeyJustPressed(controllerMap.get(key)));
     }
 
     public Point getAim() {
-        if (active.equals(Types.CONTROLLER))
-            return controller.getDirection();
-        if (active.equals(Types.KEYBOARD))
-            return getKeyboardDirection();
-        return null;
+        return controller.getDirection().add(getKeyboardDirection()).normalize();
     }
 
     public enum Actions {
         MOVE_LEFT, MOVE_UP, MOVE_RIGHT, MOVE_DOWN,
         MENU_UP, MENU_LEFT, MENU_DOWN, MENU_RIGHT,
         SWITCH_WEAPON, INTERACT, JUMP, CONFIRM, RESPAWN, MENU,
-        SHOOT
-    }
-
-    private enum Types {
-        KEYBOARD, CONTROLLER
+        SHOOT, EXIT_MENU
     }
 
     private void fillKeyboardMap() {
@@ -89,10 +68,26 @@ public class GameInput {
         keyboardMap.put(Actions.JUMP, IKeyboardInputAdapter.Keys.SPACE);
         keyboardMap.put(Actions.CONFIRM, IKeyboardInputAdapter.Keys.ENTER);
         keyboardMap.put(Actions.MENU, IKeyboardInputAdapter.Keys.ESC);
+        keyboardMap.put(Actions.EXIT_MENU, IKeyboardInputAdapter.Keys.SPACE);
     }
 
     private void fillControllerMap() {
         controllerMap = new HashMap<>();
+        controllerMap.put(Actions.MOVE_LEFT, IControllerInputAdapter.Keys.L_LEFT);
+        controllerMap.put(Actions.MOVE_UP, IControllerInputAdapter.Keys.L_UP);
+        controllerMap.put(Actions.MOVE_RIGHT, IControllerInputAdapter.Keys.L_RIGHT);
+        controllerMap.put(Actions.MOVE_DOWN, IControllerInputAdapter.Keys.L_DOWN);
+        controllerMap.put(Actions.MENU_LEFT, IControllerInputAdapter.Keys.DPAD_LEFT);
+        controllerMap.put(Actions.MENU_UP, IControllerInputAdapter.Keys.DPAD_UP);
+        controllerMap.put(Actions.MENU_RIGHT, IControllerInputAdapter.Keys.DPAD_RIGHT);
+        controllerMap.put(Actions.MENU_DOWN, IControllerInputAdapter.Keys.DPAD_DOWN);
+        controllerMap.put(Actions.SWITCH_WEAPON, IControllerInputAdapter.Keys.Y);
+        controllerMap.put(Actions.INTERACT, IControllerInputAdapter.Keys.A);
+        controllerMap.put(Actions.JUMP, IControllerInputAdapter.Keys.R_BUMPER);
+        controllerMap.put(Actions.CONFIRM, IControllerInputAdapter.Keys.A);
+        controllerMap.put(Actions.MENU, IControllerInputAdapter.Keys.START);
+        controllerMap.put(Actions.EXIT_MENU, IControllerInputAdapter.Keys.B);
+
     }
 
     private Point getKeyboardDirection() {

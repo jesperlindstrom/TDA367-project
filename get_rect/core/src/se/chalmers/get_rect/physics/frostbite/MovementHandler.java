@@ -20,43 +20,28 @@ public class MovementHandler {
 
         if (velocity == null) return;
 
-        boolean isOverlapping = (collision.getOverlapList() != null);
-        List<IRectangleAdapter> overlapList = collision.getOverlapList();
-        IRectangleAdapter overlap = null;
-
-        if (isOverlapping) {
-            if (overlapList.size() == 1) {
-                overlap = overlapList.get(0);
-            } else {
-                // TODO: Matte
-            }
-        }
+        IRectangleAdapter overlap = collision.getOverlap();
 
         int x = velocity.getX();
         int y = velocity.getY();
 
         if ((x > 0 && collision.right())) {
-            if (isOverlapping)
-                position = position.addX((overlap.getWidth()-1));
+            position = position.addX(-overlap.getWidth()+1);
             velocity = velocity.setX(0);
         }
 
         if (x < 0 && collision.left()) {
-            if (isOverlapping)
-                position = position.addX(overlap.getWidth()-1);
+            position = position.addX(overlap.getWidth()-1);
             velocity = velocity.setX(0);
         }
 
-        if (y > 0 && collision.top()) {
-            if (isOverlapping)
-                position = position.addY(-(overlap.getHeight()-1));
+        if (y > 0 && collision.top() && overlap.getHeight() > 1) {
+            position = position.addY(-overlap.getHeight()+1);
             velocity = velocity.setY(0);
         }
 
-        if (y < 0 && collision.bottom()) {
-            if (isOverlapping) {
-                position = position.addY(overlap.getHeight()-1);
-            }
+        if (y < 0 && collision.bottom() && overlap.getHeight() > 1) {
+             position = position.addY(overlap.getHeight()-1);
             velocity = velocity.setY(0);
         }
 
