@@ -12,18 +12,16 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
     }
 
     @Override
-    public long play() {
+    public void play() {
         if (GameConfig.SOUND_ON) {
             sound.play();
         }
-        return sound.play();
     }
 
-    public long play(Float volume) {
+    public void play(Float volume) {
         if (GameConfig.SOUND_ON) {
             sound.play(volume);
         }
-        return sound.play();
     }
 
     public void pause() {
