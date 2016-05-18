@@ -6,7 +6,7 @@ public class WeaponsDataStore {
     private int width;
     private int height;
     private int damage;
-    private int frames;     //Amount of frames during which the weapon is used.
+    private int cooldown;     //Amount of frames during which the weapon is used.
     private int speed;
     private float swingDegrees;  //Default is 180
 
@@ -18,8 +18,8 @@ public class WeaponsDataStore {
         return damage;
     }
 
-    public int getFrames() {
-        return frames;
+    public int getCooldown() {
+        return cooldown;
     }
 
     public int getHeight() {

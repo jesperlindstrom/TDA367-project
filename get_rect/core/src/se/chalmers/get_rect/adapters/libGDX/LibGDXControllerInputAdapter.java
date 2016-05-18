@@ -2,6 +2,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.controllers.*;
 import se.chalmers.get_rect.adapters.IControllerInputAdapter;
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.HashMap;
@@ -13,12 +14,14 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
     private Map<Keys, Integer> keyMap;
     private Map<Integer, Boolean> downMap;
     private Map<Integer, Boolean> releasedMap;
-    private static final int OFFSET = 50;
     private Point rightStick;
-    private static final int L_VERTICAL = 0;
-    private static final int L_HORIZONTAL = 1;
-    private static final int R_VERTICAL = 2;
-    private static final int R_HORIZONTAL = 3;
+
+    private static final int L_VERTICAL = Xbox.L_STICK_VERTICAL_AXIS;
+    private static final int L_HORIZONTAL = Xbox.L_STICK_HORIZONTAL_AXIS;
+    private static final int R_VERTICAL = Xbox.R_STICK_VERTICAL_AXIS;
+    private static final int R_HORIZONTAL = Xbox.R_STICK_HORIZONTAL_AXIS;
+    private static final int L_TRIGGER = Xbox.L_TRIGGER;
+    private static final int R_TRIGGER = Xbox.R_TRIGGER;
 
     public LibGDXControllerInputAdapter() {
         controller = getXboxController();
@@ -39,29 +42,29 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
      */
     private void initMaps(){
         this.keyMap = new HashMap<>();
-        keyMap.put(Keys.X, 2);
-        keyMap.put(Keys.Y, 3);
-        keyMap.put(Keys.B, 1);
-        keyMap.put(Keys.A, 0);
-        keyMap.put(Keys.LB, 4);
-        keyMap.put(Keys.RB, 5);
-        keyMap.put(Keys.SELECT, 6);
-        keyMap.put(Keys.START, 7);
-        keyMap.put(Keys.L_LEFT, 20);
-        keyMap.put(Keys.L_RIGHT, 21);
-        keyMap.put(Keys.L_UP, 22);
-        keyMap.put(Keys.L_DOWN, 23);
-        keyMap.put(Keys.R_LEFT, 30);
-        keyMap.put(Keys.R_RIGHT, 31);
-        keyMap.put(Keys.R_UP, 32);
-        keyMap.put(Keys.R_DOWN, 33);
-        keyMap.put(Keys.L_BUMPER, 40);
-        keyMap.put(Keys.R_BUMPER, 41);
-        keyMap.put(Keys.DPAD_CENTER, 0+OFFSET);
-        keyMap.put(Keys.DPAD_UP, 1+OFFSET);
-        keyMap.put(Keys.DPAD_DOWN, 2+OFFSET);
-        keyMap.put(Keys.DPAD_RIGHT, 3+OFFSET);
-        keyMap.put(Keys.DPAD_LEFT, 4+OFFSET);
+        keyMap.put(Keys.X, Xbox.X);
+        keyMap.put(Keys.Y, Xbox.Y);
+        keyMap.put(Keys.B, Xbox.B);
+        keyMap.put(Keys.A, Xbox.A);
+        keyMap.put(Keys.LB, Xbox.L_BUMPER);
+        keyMap.put(Keys.RB, Xbox.R_BUMPER);
+        keyMap.put(Keys.BACK, Xbox.BACK);
+        keyMap.put(Keys.START, Xbox.START);
+        keyMap.put(Keys.L_LEFT, Xbox.L_STICK_LEFT);
+        keyMap.put(Keys.L_RIGHT, Xbox.L_STICK_RIGHT);
+        keyMap.put(Keys.L_UP, Xbox.L_STICK_UP);
+        keyMap.put(Keys.L_DOWN, Xbox.L_STICK_DOWN);
+        keyMap.put(Keys.R_LEFT, Xbox.R_STICK_LEFT);
+        keyMap.put(Keys.R_RIGHT, Xbox.R_STICK_RIGHT);
+        keyMap.put(Keys.R_UP, Xbox.R_STICK_UP);
+        keyMap.put(Keys.R_DOWN, Xbox.R_STICK_DOWN);
+        keyMap.put(Keys.L_TRIGGER, Xbox.L_TRIGGER + Xbox.OFFSET*2);
+        keyMap.put(Keys.R_TRIGGER, Xbox.R_TRIGGER + Xbox.OFFSET*2);
+        keyMap.put(Keys.DPAD_CENTER, Xbox.DPAD_CENTER);
+        keyMap.put(Keys.DPAD_UP, Xbox.DPAD_UP);
+        keyMap.put(Keys.DPAD_DOWN, Xbox.DPAD_DOWN);
+        keyMap.put(Keys.DPAD_RIGHT, Xbox.DPAD_RIGHT);
+        keyMap.put(Keys.DPAD_LEFT, Xbox.DPAD_LEFT);
 
 
 
@@ -72,7 +75,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
         downMap.put(keyMap.get(Keys.B), false);
         downMap.put(keyMap.get(Keys.LB), false);
         downMap.put(keyMap.get(Keys.RB), false);
-        downMap.put(keyMap.get(Keys.SELECT), false);
+        downMap.put(keyMap.get(Keys.BACK), false);
         downMap.put(keyMap.get(Keys.START), false);
         downMap.put(keyMap.get(Keys.L_LEFT), false);
         downMap.put(keyMap.get(Keys.L_RIGHT), false);
@@ -82,8 +85,8 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
         downMap.put(keyMap.get(Keys.R_UP), false);
         downMap.put(keyMap.get(Keys.R_RIGHT), false);
         downMap.put(keyMap.get(Keys.R_DOWN), false);
-        downMap.put(keyMap.get(Keys.L_BUMPER), false);
-        downMap.put(keyMap.get(Keys.R_BUMPER), false);
+        downMap.put(keyMap.get(Keys.L_TRIGGER), false);
+        downMap.put(keyMap.get(Keys.R_TRIGGER), false);
         downMap.put(keyMap.get(Keys.DPAD_LEFT), false);
         downMap.put(keyMap.get(Keys.DPAD_UP), false);
         downMap.put(keyMap.get(Keys.DPAD_RIGHT), false);
@@ -97,7 +100,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
         releasedMap.put(keyMap.get(Keys.B), false);
         releasedMap.put(keyMap.get(Keys.LB), false);
         releasedMap.put(keyMap.get(Keys.RB), false);
-        releasedMap.put(keyMap.get(Keys.SELECT), false);
+        releasedMap.put(keyMap.get(Keys.BACK), false);
         releasedMap.put(keyMap.get(Keys.START), false);
         releasedMap.put(keyMap.get(Keys.L_LEFT), false);
         releasedMap.put(keyMap.get(Keys.L_RIGHT), false);
@@ -107,8 +110,8 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
         releasedMap.put(keyMap.get(Keys.R_UP), false);
         releasedMap.put(keyMap.get(Keys.R_RIGHT), false);
         releasedMap.put(keyMap.get(Keys.R_DOWN), false);
-        releasedMap.put(keyMap.get(Keys.L_BUMPER), false);
-        releasedMap.put(keyMap.get(Keys.R_BUMPER), false);
+        releasedMap.put(keyMap.get(Keys.L_TRIGGER), false);
+        releasedMap.put(keyMap.get(Keys.R_TRIGGER), false);
         releasedMap.put(keyMap.get(Keys.DPAD_LEFT), false);
         releasedMap.put(keyMap.get(Keys.DPAD_UP), false);
         releasedMap.put(keyMap.get(Keys.DPAD_RIGHT), false);
@@ -142,6 +145,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
 
     @Override
     public boolean buttonDown(Controller controller, int buttonIndex) {
+        if (!GameConfig.DISABLE_ALL && GameConfig.PRINT_CONTROLLERVALUES)System.out.println("button = " + buttonIndex);
         downMap.put(buttonIndex, true);
         releasedMap.put(buttonIndex, true);
         return super.buttonDown(controller, buttonIndex);
@@ -167,42 +171,39 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
     }
 
     private int getAxisIndex(int axisIndex, float value) {
+        if (!GameConfig.DISABLE_ALL && GameConfig.PRINT_CONTROLLERVALUES && Math.abs(value) > 0.7)System.out.println("Axis index = " + axisIndex);
+        int index = -1;
         if (axisIndex == L_HORIZONTAL) {
-            return value < 0 ? keyMap.get(Keys.L_LEFT) : keyMap.get(Keys.L_RIGHT);
+            index = value < 0 ? keyMap.get(Keys.L_LEFT) : keyMap.get(Keys.L_RIGHT);
         }
         if (axisIndex == L_VERTICAL) {
-            return value > 0 ? keyMap.get(Keys.L_DOWN) : keyMap.get(Keys.L_UP);
+            index = value > 0 ? keyMap.get(Keys.L_DOWN) : keyMap.get(Keys.L_UP);
         }
         if (axisIndex == R_HORIZONTAL) {
-            return value < 0 ? keyMap.get(Keys.R_LEFT) : keyMap.get(Keys.R_RIGHT);
+            index = value < 0 ? keyMap.get(Keys.R_LEFT) : keyMap.get(Keys.R_RIGHT);
         }
         if (axisIndex == R_VERTICAL) {
-            return value > 0 ? keyMap.get(Keys.R_DOWN) : keyMap.get(Keys.R_UP);
+            index = value > 0 ? keyMap.get(Keys.R_DOWN) : keyMap.get(Keys.R_UP);
         }
-        return value < 0 ? keyMap.get(Keys.R_BUMPER) : keyMap.get(Keys.L_BUMPER);
-    }
-
-    @Override
-    public boolean xSliderMoved(Controller controller, int sliderIndex, boolean value) {
-        System.out.println("xslide moved = " + sliderIndex);
-        return super.xSliderMoved(controller, sliderIndex, value);
-    }
-
-    @Override
-    public boolean ySliderMoved(Controller controller, int sliderIndex, boolean value) {
-        System.out.println("Y slider = " + sliderIndex);
-        return super.ySliderMoved(controller, sliderIndex, value);
+        if (axisIndex == R_TRIGGER) {
+            index = value > 0 ? keyMap.get(Keys.R_TRIGGER) : R_TRIGGER == L_TRIGGER ? keyMap.get(Keys.L_TRIGGER) : -1;
+        }
+        if (axisIndex == L_TRIGGER) {
+            index = value > 0 ? keyMap.get(Keys.L_TRIGGER) : R_TRIGGER == L_TRIGGER ? keyMap.get(Keys.R_TRIGGER) : -1;
+        }
+        return index;
     }
 
     @Override
     public boolean povMoved(Controller controller, int povIndex, PovDirection value) {
-        if (povIndex + OFFSET == keyMap.get(Keys.DPAD_CENTER)) {
-            for (int dpadIndex = OFFSET+1; dpadIndex < OFFSET+5; dpadIndex++) {
+        if (!GameConfig.DISABLE_ALL && GameConfig.PRINT_CONTROLLERVALUES)System.out.println("dpad = " + value.ordinal());
+        if (povIndex + Xbox.OFFSET == keyMap.get(Keys.DPAD_CENTER)) {
+            for (int dpadIndex = Xbox.OFFSET+1; dpadIndex < Xbox.OFFSET+5; dpadIndex++) {
                 downMap.put(dpadIndex, false);
             }
         }
-        downMap.put(value.ordinal() + OFFSET, true);
-        releasedMap.put(value.ordinal() + OFFSET, true);
+        downMap.put(value.ordinal() + Xbox.OFFSET, true);
+        releasedMap.put(value.ordinal() + Xbox.OFFSET, true);
         return super.povMoved(controller, povIndex, value);
     }
 }

@@ -38,7 +38,7 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
     public void use(Point aimDirection, IEntityHolder entityHolder) {
         if (getUsable()) {
             setUsable(false);
-            setUseFrames(frames);
+            setCooldownFrames(frames);
             entityHolder.add(getSwingFactory().make(damage, width, height, frames, getUser(), this));
         }
     }
@@ -46,7 +46,7 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
     @Override
     public void update(double delta) {
         super.update(delta);
-        if (getUsedFrames() == 0) {
+        if (getCooldownFrames() == 0) {
             usable = true;
         }
     }

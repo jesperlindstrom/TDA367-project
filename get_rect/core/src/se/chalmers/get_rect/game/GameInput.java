@@ -83,7 +83,7 @@ public class GameInput {
         controllerMap.put(Actions.MENU_DOWN, IControllerInputAdapter.Keys.DPAD_DOWN);
         controllerMap.put(Actions.SWITCH_WEAPON, IControllerInputAdapter.Keys.Y);
         controllerMap.put(Actions.INTERACT, IControllerInputAdapter.Keys.A);
-        controllerMap.put(Actions.JUMP, IControllerInputAdapter.Keys.R_BUMPER);
+        controllerMap.put(Actions.JUMP, IControllerInputAdapter.Keys.R_TRIGGER);
         controllerMap.put(Actions.CONFIRM, IControllerInputAdapter.Keys.A);
         controllerMap.put(Actions.MENU, IControllerInputAdapter.Keys.START);
         controllerMap.put(Actions.EXIT_MENU, IControllerInputAdapter.Keys.B);

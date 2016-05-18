@@ -24,7 +24,7 @@ public class PistolView extends AbstractRangedWeaponView {
         }
 
         String imgPath;
-        if (getModel().getUsedFrames() == 0) {
+        if (getModel().getCooldownFrames() == 0) {
             imgPath = path + "pistol.png";
         } else {
             imgPath = path + "pistolPANG.png";

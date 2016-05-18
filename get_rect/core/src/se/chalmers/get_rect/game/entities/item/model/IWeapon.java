@@ -22,7 +22,7 @@ public interface IWeapon extends IModel, ISwinger{
     /**
      * @return returns the frames since usage.
      */
-    int getUsedFrames();
+    int getCooldownFrames();
 
     /**
      * Returns an int that represents the players facing.

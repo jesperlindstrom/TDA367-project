@@ -8,7 +8,7 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
 
     private final String type;
     private int facing;
-    private int usedFrames;
+    private int cooldownFrames;
     private IPhysicsModel user;
 
     protected AbstractWeapon(IPhysicsModel user, String type) {
@@ -46,17 +46,17 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
         return user;
     }
 
-    protected void setUseFrames(int frames) {
-        this.usedFrames = frames;
+    protected void setCooldownFrames(int frames) {
+        this.cooldownFrames = frames;
     }
 
-    public int getUsedFrames() {
-        return usedFrames;
+    public int getCooldownFrames() {
+        return cooldownFrames;
     }
 
     @Override
     public void update(double delta) {
         super.update(delta);
-        if (usedFrames != 0) usedFrames--;
+        if (cooldownFrames != 0) cooldownFrames--;
     }
 }

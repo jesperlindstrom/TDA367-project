@@ -40,7 +40,7 @@ public class OpSwordView extends AbstractMeleeWeaponView {
         if (swoshSound2 == null) {
             swoshSound2 = assetManager.getSound("sounds/swosh2.mp3");
         }
-        if (getModel().getUsedFrames() == 0) {
+        if (getModel().getCooldownFrames() == 0) {
             swoshSound1.pause();
             swoshSound2.pause();
             isPlaying = false;

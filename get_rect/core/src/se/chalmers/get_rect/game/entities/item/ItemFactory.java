@@ -13,12 +13,12 @@ public class ItemFactory {
     @Inject private SwingFactory swingFactory;
     @Inject private IAssetManagerAdapter assetManager;
 
-    public IWeapon make(String type, IPhysicsModel model, int width, int height, int damage, int frames, int speed, float swingDegrees) {
+    public IWeapon make(String type, IPhysicsModel model, int width, int height, int damage, int cooldown, int speed, float swingDegrees) {
         switch (type) {
-            case "pistol" : return new Pistol(model, projectileFactory, damage, speed);
-            case "opsword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, frames);
-            case "opaxe" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, frames, swingDegrees);
-            case "lasersword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, frames);
+            case "pistol" : return new Pistol(model, projectileFactory, damage, speed, cooldown);
+            case "opsword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown);
+            case "opaxe" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees);
+            case "lasersword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown);
         }
         throw new EntityNotFoundException("item", type);
     }

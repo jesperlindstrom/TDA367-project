@@ -42,7 +42,7 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
     }
 
     private void updateTilt() {
-        if (model.getUsedFrames() == 0) {
+        if (model.getCooldownFrames() == 0) {
             tilt = originalTilt;
             return;
         }
@@ -50,7 +50,7 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
             tilt = tilt + degreesPerFrame;
             return;
         }
-        if (model.getUsedFrames() < swingFrames/2) {
+        if (model.getCooldownFrames() < swingFrames/2) {
             tilt = tilt - degreesPerFrame;
         } else {
             tilt = tilt + degreesPerFrame;
