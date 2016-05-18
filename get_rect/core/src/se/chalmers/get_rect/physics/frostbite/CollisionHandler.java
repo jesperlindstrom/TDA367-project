@@ -40,7 +40,7 @@ public class CollisionHandler {
         }
 
         if (isSolid) {
-            entityCollision.addSolidOverlap(rect1.getIntersection(rect2));
+            entityCollision.setSolidOverlap(rect1.getIntersection(rect2));
             solidCollision.set(entityCollision);
         }
 

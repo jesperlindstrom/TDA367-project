@@ -85,4 +85,8 @@ public abstract class AbstractAnimatedView extends AbstractView {
     protected IModel getModel() {
         return model;
     }
+
+    protected boolean isFlip() {
+        return flip;
+    }
 }

@@ -10,6 +10,5 @@ public interface IKeyboardInputAdapter {
 
     boolean isKeyPressed(Keys key);
     boolean isKeyJustPressed(Keys key);
-    boolean isTranslatable(Keys key);
 
 }

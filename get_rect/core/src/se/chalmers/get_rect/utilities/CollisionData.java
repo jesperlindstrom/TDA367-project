@@ -11,7 +11,7 @@ public class CollisionData {
     private boolean left;
     private boolean right;
     private boolean bottom;
-    private List<IRectangleAdapter> overlapList;
+    private IRectangleAdapter overlap;
 
     public void set(Side side) {
         switch (side) {
@@ -27,18 +27,15 @@ public class CollisionData {
         if (data.left) left = true;
         if (data.right) right = true;
         if (data.bottom) bottom = true;
-        overlapList = data.getOverlapList();
+        overlap = data.getOverlap();
     }
 
-    public void addSolidOverlap(IRectangleAdapter overlap) {
-        if (overlapList == null)
-            overlapList = new ArrayList<>();
-
-        overlapList.add(overlap);
+    public void setSolidOverlap(IRectangleAdapter overlap) {
+        this.overlap = overlap;
     }
 
-    public List<IRectangleAdapter> getOverlapList() {
-        return overlapList;
+    public IRectangleAdapter getOverlap() {
+        return overlap;
     }
 
     public boolean top() {
