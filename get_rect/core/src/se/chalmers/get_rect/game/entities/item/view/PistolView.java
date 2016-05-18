@@ -21,7 +21,6 @@ public class PistolView extends AbstractRangedWeaponView {
     public void draw(IGraphicsAdapter graphics) {
         if (bulletSound == null) {
             bulletSound = assetManager.getSound("sounds/bulletSound.mp3");
-            System.out.println(bulletSound);
         }
 
         String imgPath;

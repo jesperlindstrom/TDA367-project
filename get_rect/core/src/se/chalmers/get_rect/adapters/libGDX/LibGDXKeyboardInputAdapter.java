@@ -30,10 +30,7 @@ public class LibGDXKeyboardInputAdapter implements IKeyboardInputAdapter {
      */
     @Override
     public boolean isKeyPressed(Keys key) {
-        if(!isTranslatable(key)) {
-            return input.isKeyPressed(keyMap.get(key));
-        }
-        return false;
+        return keyMap.containsKey(key) && input.isKeyPressed(keyMap.get(key));
     }
 
     /**
@@ -43,8 +40,7 @@ public class LibGDXKeyboardInputAdapter implements IKeyboardInputAdapter {
      */
     @Override
     public boolean isKeyJustPressed(Keys key) {
-        if (! isTranslatable(key)) return false;
-        return input.isKeyJustPressed(keyMap.get(key));
+        return keyMap.containsKey(key) && input.isKeyJustPressed(keyMap.get(key));
     }
 
     /**

@@ -23,22 +23,35 @@ public class GameInput {
     }
 
     public Point getMousePosition() {
-        if (active.equals(Types.KEYBOARD)) return keyboard.getMousePosition();
-        return null;
+        if (keyboard.getMousePosition() == null) return new Point(0 ,0);
+        return keyboard.getMousePosition();
     }
 
     public boolean isKeyPressed(Actions key) {
-        if (active.equals(Types.KEYBOARD))
-            return keyboard.isKeyPressed(keyboardMap.get(key));
-        if (active.equals(Types.CONTROLLER))
-            return controller.isKeyPressed(controllerMap.get(key));
+        if (active.equals(Types.KEYBOARD)) {
+            if (key.equals(Actions.SHOOT))
+                return !getKeyboardDirection().equals(new Point(0, 0));
 
+            return keyboardMap.containsKey(key) && keyboard.isKeyPressed(keyboardMap.get(key));
+        }
+        if (active.equals(Types.CONTROLLER)) {
+            if (key.equals(Actions.SHOOT))
+                return !controller.getDirection().equals(new Point(0, 0));
+
+            return controllerMap.containsKey(key) && controller.isKeyPressed(controllerMap.get(key));
+        }
         return false;
     }
 
     public boolean isKeyJustPressed(Actions key) {
-        if (active.equals(Types.KEYBOARD))
-            return keyboard.isKeyJustPressed(keyboardMap.get(key));
+        if (active.equals(Types.KEYBOARD)) {
+            if (key.equals(Actions.SHOOT)) return !getKeyboardDirection().equals(new Point(0, 0));
+            return keyboardMap.containsKey(key) && keyboard.isKeyJustPressed(keyboardMap.get(key));
+        }
+        if (active.equals(Types.CONTROLLER)) {
+            if (key.equals(Actions.SHOOT)) return !controller.getDirection().equals(new Point(0, 0));
+            return controllerMap.containsKey(key) && controller.isKeyJustPressed(controllerMap.get(key));
+        }
         return false;
     }
 
@@ -53,7 +66,8 @@ public class GameInput {
     public enum Actions {
         MOVE_LEFT, MOVE_UP, MOVE_RIGHT, MOVE_DOWN,
         MENU_UP, MENU_LEFT, MENU_DOWN, MENU_RIGHT,
-        SWITCH_WEAPON, INTERACT, JUMP, CONFIRM, RESPAWN, MENU
+        SWITCH_WEAPON, INTERACT, JUMP, CONFIRM, RESPAWN, MENU,
+        SHOOT
     }
 
     private enum Types {
@@ -87,10 +101,10 @@ public class GameInput {
         if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.LEFT_KEY)) {
             direction = direction.addX(-1);
         }
-        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.RIGHT_KEY)) {
+        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.UP_KEY)) {
             direction = direction.addY(1);
         }
-        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.UP_KEY)) {
+        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.RIGHT_KEY)) {
             direction = direction.addX(1);
         }
         if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.DOWN_KEY)) {

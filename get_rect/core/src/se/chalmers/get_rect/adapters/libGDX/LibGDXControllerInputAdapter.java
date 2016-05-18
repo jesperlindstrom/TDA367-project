@@ -12,19 +12,24 @@ import java.util.Map;
 public class LibGDXControllerInputAdapter implements IControllerInputAdapter {
 
     private Map<Keys, Integer> keyMap;
-    private Xbox xbox;
     private Controller controller;
 
-/*
+
     public LibGDXControllerInputAdapter() {
 
-        if (Controllers.getControllers().size > 0) {
-            controller = Controllers.getControllers().first();
-//        }
-        }
+        controller = getXboxController();
         initMaps();
     }
-*/
+
+    private Controller getXboxController() {
+        for (Controller c : Controllers.getControllers()) {
+            if (Xbox.isXboxController(c)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     public boolean isTranslatable(Keys key) {
         if (keyMap.get(key) != null) {
             return true;
@@ -49,14 +54,12 @@ public class LibGDXControllerInputAdapter implements IControllerInputAdapter {
         keyMap.put(Keys.DOWN, Xbox.DPAD_DOWN);
 
     }
+
     @Override
     public boolean isKeyPressed(Keys key) {
-        if (keyMap.containsKey(key)) {
+        if (keyMap.containsKey(key))
             return controller.getButton(keyMap.get(key));
-        } else {
-//            return getAxis(key);'
-            return false;
-        }
+        return false;
     }
 
     @Override
@@ -66,10 +69,7 @@ public class LibGDXControllerInputAdapter implements IControllerInputAdapter {
 
     @Override
     public Point getDirection() {
-        return null;
+        return new Point().normalize(controller.getAxis(Xbox.L_STICK_HORIZONTAL_AXIS), controller.getAxis(Xbox.L_STICK_VERTICAL_AXIS));
     }
 
-    private boolean getAxis(int i) {
-        return false;
-    }
 }
