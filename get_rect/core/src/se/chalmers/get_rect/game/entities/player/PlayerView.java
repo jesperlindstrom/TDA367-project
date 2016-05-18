@@ -49,7 +49,6 @@ class PlayerView extends AbstractAnimatedView {
         if (!player.canJump()) {
             return JUMPING;
         }
-
         if (player.isWalking()) {
             return WALKING;
         }
@@ -68,7 +67,7 @@ class PlayerView extends AbstractAnimatedView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if (walkingSound == null){
+        if (walkingSound == null) {
             walkingSound = assetManager.getSound("sounds/walkingSound.mp3");
         }
         if (ridingSound == null) {
@@ -83,21 +82,18 @@ class PlayerView extends AbstractAnimatedView {
         playSequence(getSequence());
 
         if (getSequence() == RIDING) {
-            ridingSound.play();
+
         } else {
-            ridingSound.pause();
+            ridingSound.play();
         }
         if (getSequence() == WALKING) {
-            walkingSound.play();
-        } else {
-            walkingSound.pause();
-        }
 
+        } else {
+            walkingSound.play();
+        }
 
         // Tell abstract parent to drawIcon the animation
         super.draw(graphics);
         if (weaponView != null) weaponView.draw(graphics);
     }
-
-
 }

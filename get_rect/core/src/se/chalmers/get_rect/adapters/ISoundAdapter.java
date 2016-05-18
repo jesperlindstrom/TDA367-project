@@ -9,4 +9,5 @@ public interface ISoundAdapter {
     void loop(float volume);
     void setPan(long soundId, float pan, float volume);
     void setLooping(long id, boolean isLooping);
+    void resume();
 }

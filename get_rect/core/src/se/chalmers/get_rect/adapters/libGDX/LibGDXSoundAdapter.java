@@ -2,6 +2,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.audio.Sound;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
+import se.chalmers.get_rect.game.GameConfig;
 
 public class LibGDXSoundAdapter implements ISoundAdapter {
     private Sound sound;
@@ -12,12 +13,16 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
 
     @Override
     public long play() {
-        sound.play();
+        if (GameConfig.SOUND_ON) {
+            sound.play();
+        }
         return sound.play();
     }
 
     public long play(Float volume) {
-        sound.play(volume);
+        if (GameConfig.SOUND_ON) {
+            sound.play(volume);
+        }
         return sound.play();
     }
 
@@ -42,7 +47,11 @@ public class LibGDXSoundAdapter implements ISoundAdapter {
     public void setPan(long soundId, float pan, float volume) {
         sound.setPan(soundId, pan, volume);
     }
+
     public void setLooping(long id, boolean isLooping) {
         sound.setLooping(id, isLooping);
+    }
+    public void resume() {
+        sound.resume();
     }
 }

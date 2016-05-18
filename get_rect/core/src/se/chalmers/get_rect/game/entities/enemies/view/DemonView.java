@@ -53,9 +53,11 @@ public class DemonView extends AbstractAnimatedView {
         }
         playSequence(getSequence());
         super.draw(graphics);
-        playLaughter();
-        mjolnirLaugh.setPan(id, (model.getPlayerPosition().getX()-model.getPosition().getX())/1000f, 0.5f );
-        System.out.println("panning = " + (model.getPlayerPosition().getX() - model.getPosition().getX())/1000f);
+        if (getSequence() == ATTACK) {
+            playLaughter();
+        }
+        mjolnirLaugh.setPan(id, (model.getPlayerPosition().getX()-model.getPosition().getX())/1000f, 0.5f);
+
     }
     private int getSequence() {
         if (model.isAttacking()) {
@@ -63,12 +65,10 @@ public class DemonView extends AbstractAnimatedView {
         } else {
             return 1;
         }
-
     }
     public void playLaughter() {
         if (!isPlaying) {
-            id = mjolnirLaugh.play();
-            mjolnirLaugh.setLooping(id, false);
+            mjolnirLaugh.play();
             isPlaying = true;
         }
     }

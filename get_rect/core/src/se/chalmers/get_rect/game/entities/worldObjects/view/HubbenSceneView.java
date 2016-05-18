@@ -6,4 +6,5 @@ public class HubbenSceneView extends AbstractBackgroundView{
     public HubbenSceneView(ICamera camera) {
         super(camera, "img/backgrounds/hubben.png");
     }
+
 }
