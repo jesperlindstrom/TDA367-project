@@ -187,7 +187,6 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
             index = value < 0 ? keyMap.get(Keys.R_DOWN) : keyMap.get(Keys.R_UP);
         }
         if (L_TRIGGER == R_TRIGGER && R_TRIGGER == axisIndex) {
-            System.out.println(value);
             index = value > 0 ? keyMap.get(Keys.R_TRIGGER) : keyMap.get(Keys.L_TRIGGER);
         } else {
             if (axisIndex == R_TRIGGER)
