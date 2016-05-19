@@ -13,10 +13,6 @@ public class Quest implements IQuest {
         this.objectives = objectives;
     }
 
-    private void updateState() {
-        // if (state.equals())
-    }
-
     @Override
     public QuestState getState() {
         return state;
@@ -24,6 +20,27 @@ public class Quest implements IQuest {
 
     @Override
     public void handleEvent(Event e) {
+        if (state.equals(QuestState.COMPLETED))
+            return;
 
+        //for ()
+        checkObjectives();
+    }
+
+    private void checkObjectives() {
+        if (!state.equals(QuestState.IN_PROGRESS))
+            return;
+
+        boolean allCompleted = true;
+
+        for (QuestObjective objective : objectives) {
+            if (!objective.isCompleted()) {
+                allCompleted = false;
+            }
+        }
+
+        if (allCompleted) {
+            state = QuestState.COMPLETABLE;
+        }
     }
 }
