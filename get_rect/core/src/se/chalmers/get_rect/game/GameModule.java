@@ -14,6 +14,8 @@ import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.states.StateManager;
 
+import java.lang.reflect.Type;
+
 public class GameModule extends AbstractModule {
     private IPhysicsEntity playerEntity;
     private EntityCamera camera;
@@ -49,8 +51,9 @@ public class GameModule extends AbstractModule {
         bind(StateManager.class).annotatedWith(Names.named("Window")).toInstance(windowManager);
 
         // Repositories
-        bind(IRepository.class).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
-        bind(IRepository.class).annotatedWith(Names.named("npc")).to(NpcRepository.class);
-        bind(IRepository.class).annotatedWith(Names.named("enemy")).to(EnemyRepository.class);
+        TypeLiteral repository = new TypeLiteral<IRepository<IPhysicsEntity>>() {};
+        bind(repository).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
+        bind(repository).annotatedWith(Names.named("npc")).to(NpcRepository.class);
+        bind(repository).annotatedWith(Names.named("enemy")).to(EnemyRepository.class);
     }
 }
