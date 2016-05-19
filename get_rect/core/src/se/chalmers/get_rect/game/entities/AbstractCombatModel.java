@@ -69,4 +69,12 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
     public void refillHealth(){
      this.currentHealth = maxHealth;
     }
+
+
+    public void setHealth(int health){
+        currentHealth = health;
+        if (currentHealth > maxHealth){
+            currentHealth = maxHealth;
+        }
+    }
 }
