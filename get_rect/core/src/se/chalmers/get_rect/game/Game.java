@@ -96,6 +96,7 @@ public class Game {
                 muted = true;
             } else {
                 audioManager.unmute();
+                muted = false;
             }
         }
     }
