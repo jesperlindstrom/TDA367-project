@@ -12,23 +12,12 @@ import java.io.FileNotFoundException;
 
 public class PlayerFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
-    @Inject private WeaponRepository weaponRepository;
     @Inject private IAudioManagerAdapter audioManager;
     @Inject private ItemFactory itemFactory;
-
-    private static final String meleeStarting = "opsword";
-    private static final String rangedStarting = "pistol";
-
 
     public PhysicsEntity make() {
         Player model = new Player(rectangleFactory);
         IView view = new PlayerView(model, audioManager, itemFactory);
-        try {
-            model.addNewWeapon(weaponRepository.getSingleWeapon(rangedStarting, model));
-            model.addNewWeapon(weaponRepository.getSingleWeapon(meleeStarting, model));
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
         return new PhysicsEntity(model,view);
     }
 }
