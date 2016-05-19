@@ -3,12 +3,13 @@ package se.chalmers.get_rect.game.entities.overlays;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.item.WeapomFactory;
+import se.chalmers.get_rect.game.entities.item.WeaponFactory;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
 import se.chalmers.get_rect.game.entities.overlays.view.*;
 import se.chalmers.get_rect.game.entities.overlays.model.Debug;
 import se.chalmers.get_rect.game.entities.overlays.model.NpcList;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 
 import java.util.List;
@@ -17,7 +18,8 @@ public class OverlayFactory {
     @Inject private Player player;
     @Inject private ICamera camera;
     @Inject private GameInput gameInput;
-    @Inject private WeapomFactory weapomFactory;
+    @Inject private WeaponFactory weaponFactory;
+    @Inject private QuestManager questManager;
     private List<IModel> models;
     private IPhysicsEngine physics;
 
@@ -52,16 +54,24 @@ public class OverlayFactory {
             return makeDialog();
         }
 
+        if (type.equals("activeQuests"))
+            return makeActiveQuests();
+
         throw new EntityNotFoundException("overlay", type);
+    }
+
+    private IEntity makeActiveQuests() {
+        IView view = new ActiveQuestsView(questManager, camera);
+        return new Entity(null, view);
     }
 
     private IEntity makeDialog() {
         IView view = new DialogView(player);
-        return new Entity(null,view);
+        return new Entity(null, view);
     }
 
     private IEntity makePlayerWeaponSlot() {
-        IView view = new PlayerWeaponSlotsView(player, camera, weapomFactory);
+        IView view = new PlayerWeaponSlotsView(player, camera, weaponFactory);
         return new Entity(null, view);
     }
 

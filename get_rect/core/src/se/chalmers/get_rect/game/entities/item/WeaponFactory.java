@@ -9,7 +9,7 @@ import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
 import se.chalmers.get_rect.game.entities.item.view.*;
 
-public class WeapomFactory {
+public class WeaponFactory {
     @Inject private ProjectileFactory projectileFactory;
     @Inject private SwingFactory swingFactory;
     @Inject private IAudioManagerAdapter audioManager;

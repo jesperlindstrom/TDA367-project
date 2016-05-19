@@ -60,7 +60,7 @@ public class Swing extends AbstractPhysicsModel{
     }
 
     public Point getVelocity() {
-        return null;
+        return new Point();
     }
 
     private void setNewHitBox() {
