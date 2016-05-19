@@ -1,9 +1,7 @@
 package se.chalmers.get_rect.game.entities.item.view;
 
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.ISoundAdapter;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 

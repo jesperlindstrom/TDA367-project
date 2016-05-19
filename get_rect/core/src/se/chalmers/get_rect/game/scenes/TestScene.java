@@ -1,13 +1,14 @@
 package se.chalmers.get_rect.game.scenes;
 
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.utilities.Point;
 
 public class TestScene extends AbstractScene {
-    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests) {
-        super("test", playerEntity, rectangleFactory, camera, sceneLoader, quests);
+    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
+        super("test", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager);
     }
 
     @Override
