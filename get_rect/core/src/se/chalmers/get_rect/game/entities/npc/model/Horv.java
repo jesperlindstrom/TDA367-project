@@ -44,11 +44,6 @@ public class Horv extends AbstractNPCModel {
         return QuestState.AVAILABLE;
     }
 
-    /**
-     * Horv will show the first dialog first, then randomize between the other two available
-     * @param model
-     */
-
     @Override
     public void onInteract(IModel model) {
 

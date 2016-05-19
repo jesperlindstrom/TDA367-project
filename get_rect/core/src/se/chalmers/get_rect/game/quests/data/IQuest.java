@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IQuest extends IEventListener {
     int getId();
+    String getTitle();
     QuestState getState();
     void interact(CompleteAction action);
     String getAcceptText();

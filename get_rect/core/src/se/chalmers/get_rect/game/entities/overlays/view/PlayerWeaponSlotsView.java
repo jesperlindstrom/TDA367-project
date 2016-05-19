@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.overlays.view;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.ICamera;
-import se.chalmers.get_rect.game.entities.item.WeapomFactory;
+import se.chalmers.get_rect.game.entities.item.WeaponFactory;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.game.entities.item.view.IWeaponView;
@@ -14,7 +14,7 @@ public class PlayerWeaponSlotsView extends AbstractView {
 
     private Player player;
     private ICamera camera;
-    private WeapomFactory weapomFactory;
+    private WeaponFactory weaponFactory;
     private IWeapon lastWeapon;
     private IWeaponView meleeView;
     private IWeaponView rangedView;
@@ -23,12 +23,12 @@ public class PlayerWeaponSlotsView extends AbstractView {
     private static final int DRAW_PRIORITY = 60;
 
 
-    public PlayerWeaponSlotsView(Player player, ICamera camera, WeapomFactory weapomFactory){
+    public PlayerWeaponSlotsView(Player player, ICamera camera, WeaponFactory weaponFactory){
         this.player = player;
         this.camera = camera;
-        this.weapomFactory = weapomFactory;
-        meleeView = weapomFactory.makeView(player.getMeleeWeapon());
-        rangedView = weapomFactory.makeView(player.getRangedWeapon());
+        this.weaponFactory = weaponFactory;
+        meleeView = weaponFactory.makeView(player.getMeleeWeapon());
+        rangedView = weaponFactory.makeView(player.getRangedWeapon());
     }
 
     @Override
@@ -41,9 +41,9 @@ public class PlayerWeaponSlotsView extends AbstractView {
         if (!player.getActiveWeapon().equals(lastWeapon)) {
             lastWeapon = player.getActiveWeapon();
             if (lastWeapon instanceof IMelee) {
-                meleeView = weapomFactory.makeView(lastWeapon);
+                meleeView = weaponFactory.makeView(lastWeapon);
             } else {
-                rangedView = weapomFactory.makeView(lastWeapon);
+                rangedView = weaponFactory.makeView(lastWeapon);
             }
         }
 

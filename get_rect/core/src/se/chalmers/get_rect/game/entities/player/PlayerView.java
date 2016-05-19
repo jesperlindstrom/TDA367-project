@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.player;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.entities.item.WeapomFactory;
+import se.chalmers.get_rect.game.entities.item.WeaponFactory;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 
 class PlayerView extends AbstractAnimatedView {
@@ -15,15 +15,15 @@ class PlayerView extends AbstractAnimatedView {
     private IView weaponView;
     private IWeapon activeWeapon;
     private IAudioManagerAdapter audioManager;
-    private WeapomFactory weapomFactory;
+    private WeaponFactory weaponFactory;
 
     private Player player;
 
-    public PlayerView(Player player, IAudioManagerAdapter audioManager, WeapomFactory weapomFactory) {
+    public PlayerView(Player player, IAudioManagerAdapter audioManager, WeaponFactory weaponFactory) {
         super(player, STAND_STILL);
         this.player = player;
         this.audioManager= audioManager;
-        this.weapomFactory = weapomFactory;
+        this.weaponFactory = weaponFactory;
 
         addAnimationFrame(STAND_STILL, "img/entities/player/player_still.png");
         addAnimationFrame(JUMPING, "img/entities/player/player_still.png");
@@ -61,7 +61,7 @@ class PlayerView extends AbstractAnimatedView {
     public void draw(IGraphicsAdapter graphics) {
         if (player.getActiveWeapon() != null && !player.getActiveWeapon().equals(activeWeapon)) {
             activeWeapon = player.getActiveWeapon();
-            weaponView = weapomFactory.makeView(activeWeapon);
+            weaponView = weaponFactory.makeView(activeWeapon);
         }
 
         setFlip(player.getVelocity().getX() == 0 ? isFlip() : player.getVelocity().getX() < 0);
