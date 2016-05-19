@@ -17,7 +17,7 @@ public class Hunchen extends AbstractNPCModel {
     private boolean stop;
 
     public Hunchen(Point position, IRectangleFactoryAdapter rectangleFactory, Player player){
-        super(position, rectangleFactory);
+        super(position, true, rectangleFactory);
         this.player = player;
         setBoundingBox(81, 51);
         speed = 30;

@@ -13,13 +13,6 @@ public class DemonView extends AbstractAnimatedView {
     private Point offset = new Point(250, 0);
     private IAudioManagerAdapter audioManager;
 
-
-    /**
-     * changeFrame decides the amount of frames for each picture
-     * it is dynamic depending on the speed of the flap of the demon
-     * @param model
-     */
-
     public DemonView(Demon model, IAudioManagerAdapter audioManager){
         super(model, FLYING);
         this.model = model;
@@ -31,12 +24,6 @@ public class DemonView extends AbstractAnimatedView {
         addAnimationFrame(ATTACK, "img/entities/demons/mjolnir_attack.png", changeFrame);
 
     }
-
-    /**
-     * flips image if the demon is moving to the right
-     * uses a fixed offset based on the picture to make sure the image is flipped to the right place
-     * @param graphics
-     */
 
     @Override
     public void draw(IGraphicsAdapter graphics) {

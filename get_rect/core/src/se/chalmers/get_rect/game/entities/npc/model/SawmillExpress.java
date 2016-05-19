@@ -23,7 +23,7 @@ public class SawmillExpress extends AbstractNPCModel {
     }
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository<String> dialogRepository, int speed, int width, int height, QuestManager questManager) {
-        super(point, rectangleFactory);
+        super(point, new Point(), false, rectangleFactory);
         this.flyingSpeed = speed;
         setQuest(questManager.get(0));
         setBoundingBox(width, height);

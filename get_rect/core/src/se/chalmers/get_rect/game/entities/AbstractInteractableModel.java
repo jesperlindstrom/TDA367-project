@@ -20,8 +20,8 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     private StringWrapper wrapper;
     private int dialogIndex;
 
-    protected AbstractInteractableModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory) {
-        super(position, velocity, solid, rectangleFactory);
+    protected AbstractInteractableModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory) {
+        super(position, velocity, solid, affectedByGravity,  rectangleFactory);
         wrapper = new StringWrapper();
         eventSource = new EventSource();
     }

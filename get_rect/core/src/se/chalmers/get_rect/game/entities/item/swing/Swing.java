@@ -20,20 +20,26 @@ public class Swing extends AbstractPhysicsModel{
     private int deltaY;
 
     public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon) {
-        super(owner.getPosition(), null, false, rectangleFactory);
+        this(damage, width, height, swingFrames, rectangleFactory, owner, weapon, false);
+    }
+    public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon, boolean solid) {
+        super(owner.getPosition(), new Point(), solid, false, rectangleFactory);
         this.damage = damage;
         this.owner = owner;
         this.weapon = weapon;
         this.originalSwingFrames = swingFrames;
         this.swingFrames = swingFrames;
-        this.width = width/2;
+        this.width = width / 2;
         this.height = height;
-        deltaX = this.width*2/swingFrames;
-        deltaY = this.height*2/swingFrames;
+        deltaX = this.width * 2 / swingFrames;
+        deltaY = this.height * 2 / swingFrames;
         setBoundingBox(20, height);
     }
 
-    @Override
+
+
+
+        @Override
     public void update(double delta) {
         super.update(delta);
         setPosition(weapon.getHandPos().addX(weapon.getFacing() < 0 ? -width : 0));

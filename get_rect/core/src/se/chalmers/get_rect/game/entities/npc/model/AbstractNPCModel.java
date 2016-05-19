@@ -10,12 +10,12 @@ import se.chalmers.get_rect.utilities.Point;
 public abstract class AbstractNPCModel extends AbstractInteractableModel implements INpcModel {
     private IQuest quest;
 
-    protected AbstractNPCModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory) {
-        super(position, velocity, solid, rectangleFactory);
+    protected AbstractNPCModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory) {
+        super(position, velocity, solid, affectedByGravity, rectangleFactory);
     }
 
-    protected AbstractNPCModel(Point position, IRectangleFactoryAdapter rectangleFactory) {
-        this(position, new Point(0, 0), false, rectangleFactory);
+    protected AbstractNPCModel(Point position, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory) {
+        this(position, new Point(0, 0), false, affectedByGravity, rectangleFactory);
     }
 
     protected void setQuest(IQuest quest) {

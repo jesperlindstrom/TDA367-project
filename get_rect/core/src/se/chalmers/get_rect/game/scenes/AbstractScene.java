@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.scenes;
 
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.event.IEventSource;
 import se.chalmers.get_rect.game.quests.QuestManager;
@@ -28,14 +29,16 @@ public abstract class AbstractScene implements IScene {
     private boolean setupDone;
     private Queue<IEntity> additions;
     private SceneLoader sceneLoader;
+    private IAudioManagerAdapter audioManager;
 
-    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests) {
+    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
         this.sceneLoader = sceneLoader;
         this.quests = quests;
+        this.audioManager = audioManager;
         additions = new LinkedList<>();
     }
 
@@ -130,6 +133,8 @@ public abstract class AbstractScene implements IScene {
         models.stream()
             .filter(model -> model instanceof IEventSource)
             .forEach(model -> ((IEventSource) model).removeListener(quests));
+
+        audioManager.stopAllMusic();
     }
 
     private void setupEntities() {

@@ -21,6 +21,9 @@ public class Game {
     @Inject private Player player;
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
+    @Inject private IAudioManagerAdapter audioManager;
+
+    private boolean muted = false;
 
     public void draw() {
         if (sceneManager.getState() != null) {
@@ -87,6 +90,20 @@ public class Game {
             if (windowManager.getState() != null)
                 resume();
         }
+        if (gameInput.isKeyJustPressed(Actions.MUTE)) {
+            if (!muted) {
+                audioManager.mute();
+                muted = true;
+            } else {
+                audioManager.unmute();
+                muted = false;
+            }
+        }
+    }
+
+    public void startNew() {
+        sceneManager.set(GameConfig.HUBBEN);
+
     }
 
     public void load() {
@@ -100,11 +117,6 @@ public class Game {
 
     public void resume() {
         windowManager.clearState();
-    }
-
-    public void startNew() {
-        sceneManager.set(GameConfig.HUBBEN);
-        resume();
     }
 
     public boolean loadAvailable() {

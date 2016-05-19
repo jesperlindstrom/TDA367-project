@@ -25,7 +25,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
 
     public Player(IRectangleFactoryAdapter rectangleFactory, int width, int height, int jumpSpeed, int moveSpeed) {
-        super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
+        super(new Point(0, 0), new Point(0, 0), false, true, rectangleFactory, 100);
         this.width = width;
         this.height = height;
         this.jumpSpeed = jumpSpeed;

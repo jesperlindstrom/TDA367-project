@@ -46,7 +46,6 @@ public abstract class AbstractRangedWeaponView extends AbstractView implements I
 
     }
 
-
     @Override
     public void drawIcon(IGraphicsAdapter graphics, Point point) {
         graphics.draw(iconPath, point);

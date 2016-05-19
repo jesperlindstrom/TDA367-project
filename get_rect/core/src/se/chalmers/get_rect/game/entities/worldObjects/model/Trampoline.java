@@ -12,7 +12,7 @@ public class Trampoline extends AbstractPhysicsModel {
     private boolean gotHit;
 
     public Trampoline(Point position, IRectangleFactoryAdapter rectangleFactory) {
-        super(position, new Point(0, 0), false, rectangleFactory);
+        super(position, new Point(0, 0), false, true, rectangleFactory);
         setBoundingBox();
     }
 
