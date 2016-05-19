@@ -8,6 +8,8 @@ import se.chalmers.get_rect.game.entities.window.model.IGameControl;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
+import se.chalmers.get_rect.game.quests.QuestManager;
+import se.chalmers.get_rect.game.quests.QuestRepository;
 
 public class GameLauncher implements IGameControl {
     @Inject private IGameLoopAdapter gameLoop;
@@ -18,14 +20,16 @@ public class GameLauncher implements IGameControl {
     private EntityCamera cameraManager;
 
     @Inject
-    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory, IKeyboardInputAdapter keyboard, IControllerInputAdapter controller) {
+    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory, IKeyboardInputAdapter keyboard, IControllerInputAdapter controller, QuestRepository questRepository) {
         GameInput input = new GameInput(keyboard, controller);
 
         PlayerFactory playerFactory = rootInjector.getInstance(PlayerFactory.class);
         IPhysicsEntity player = playerFactory.make();
 
         cameraManager = new EntityCamera(cameraFactory, player.getModel());
-        Injector injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this, input));
+
+        QuestManager questManager = new QuestManager(questRepository);
+        Injector injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this, input, questManager));
 
         game = injector.getInstance(Game.class);
 

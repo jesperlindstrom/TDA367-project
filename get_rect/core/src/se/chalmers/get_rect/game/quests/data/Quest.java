@@ -5,12 +5,33 @@ import se.chalmers.get_rect.event.Event;
 import java.util.List;
 
 public class Quest implements IQuest {
+    private int id;
     private QuestState state;
     private List<Objective> objectives;
+    private String acceptText;
+    private String completionText;
 
-    public Quest(QuestState state, List<Objective> objectives) {
+    public Quest(int id, QuestState state, List<Objective> objectives, String acceptText, String completionText) {
+        this.id = id;
         this.state = state;
         this.objectives = objectives;
+        this.acceptText = acceptText;
+        this.completionText = completionText;
+    }
+
+    @Override
+    public String getAcceptText() {
+        return acceptText;
+    }
+
+    @Override
+    public String getCompletionText() {
+        return completionText;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -18,19 +39,24 @@ public class Quest implements IQuest {
         return state;
     }
 
-    public void interact() {
-        if (state.equals(QuestState.AVAILABLE))
+    @Override
+    public void interact(CompleteAction completion) {
+        if (state.equals(QuestState.AVAILABLE)) {
             accept();
-        else if (state.equals(QuestState.COMPLETABLE))
-            complete();
+        } else if (state.equals(QuestState.COMPLETABLE)) {
+            complete(completion);
+        }
     }
 
     private void accept() {
         state = QuestState.IN_PROGRESS;
     }
 
-    private void complete() {
+    private void complete(CompleteAction completion) {
         state = QuestState.COMPLETED;
+
+        if (completion != null)
+            completion.complete();
     }
 
     @Override

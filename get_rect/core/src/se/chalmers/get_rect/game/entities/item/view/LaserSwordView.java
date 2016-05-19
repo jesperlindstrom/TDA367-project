@@ -32,7 +32,6 @@ public class LaserSwordView extends AbstractMeleeWeaponView {
         if (isAttacking()) {
             audioManager.playSound("laserSword" + getRandomNumber());
         }
-        System.out.println("isAttacking = " + isAttacking());
     }
 
     @Override

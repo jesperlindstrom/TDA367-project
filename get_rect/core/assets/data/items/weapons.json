@@ -18,7 +18,7 @@
 
   {
     "type" : "paddle",
-    "damage" : 20,
+    "damage" : 0,
     "cooldown" : 30,
     "swingDegrees" : 75,
     "width" : 100,

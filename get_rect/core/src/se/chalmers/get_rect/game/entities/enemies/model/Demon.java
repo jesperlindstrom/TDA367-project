@@ -25,7 +25,6 @@ public class Demon extends AbstractCombatModel {
         randFlap = rand.nextInt(50) + 30;
         speed = rand.nextInt(10) + 15;
         this.player = player;
-
     }
 
     public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
@@ -75,9 +74,5 @@ public class Demon extends AbstractCombatModel {
 
     public boolean isAttacking() {
         return isAttacking;
-    }
-
-    public Point getPlayerPosition() {
-        return player.getPosition();
     }
 }

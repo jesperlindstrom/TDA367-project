@@ -28,6 +28,7 @@ public class Keyboard {
         keys.put(Actions.CONFIRM, IKeyboardInputAdapter.Keys.ENTER);
         keys.put(Actions.MENU, IKeyboardInputAdapter.Keys.ESC);
         keys.put(Actions.EXIT_MENU, IKeyboardInputAdapter.Keys.SPACE);
+        keys.put(Actions.MUTE, IKeyboardInputAdapter.Keys.M);
     }
 
     public Point getMousePosition() {
@@ -48,16 +49,16 @@ public class Keyboard {
     public Point getAim() {
         Point direction = new Point(0, 0);
 
-        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.LEFT_KEY)) {
+        if (keyboard.isKeyPressed(IKeyboardInputAdapter.Keys.LEFT_KEY)) {
             direction = direction.addX(-1);
         }
-        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.UP_KEY)) {
+        if (keyboard.isKeyPressed(IKeyboardInputAdapter.Keys.UP_KEY)) {
             direction = direction.addY(1);
         }
-        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.RIGHT_KEY)) {
+        if (keyboard.isKeyPressed(IKeyboardInputAdapter.Keys.RIGHT_KEY)) {
             direction = direction.addX(1);
         }
-        if (keyboard.isKeyJustPressed(IKeyboardInputAdapter.Keys.DOWN_KEY)) {
+        if (keyboard.isKeyPressed(IKeyboardInputAdapter.Keys.DOWN_KEY)) {
             direction = direction.addY(-1);
         }
 

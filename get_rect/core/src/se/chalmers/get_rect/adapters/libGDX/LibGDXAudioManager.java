@@ -24,6 +24,7 @@ public class LibGDXAudioManager implements IAudioManagerAdapter{
 
     @Override
     public void playMusic(String soundName, float volume) {
+        if (muted) return;
         Music file = musicList.get(soundName);
 
         if (file == null) {
@@ -74,7 +75,7 @@ public class LibGDXAudioManager implements IAudioManagerAdapter{
     @Override
     public void mute() {
         muted = true;
-        musicList.forEach((k, m) -> m.stop());
+        musicList.forEach((k, m) -> m.pause());
     }
 
 
@@ -93,6 +94,5 @@ public class LibGDXAudioManager implements IAudioManagerAdapter{
     @Override
     public void unmute() {
         muted = false;
-        musicList.forEach((k, m) -> m.play());
     }
 }
