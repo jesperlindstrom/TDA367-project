@@ -5,9 +5,6 @@ import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
-import se.chalmers.get_rect.game.entities.item.view.OpAxeView;
-import se.chalmers.get_rect.game.entities.item.view.OpSwordView;
-import se.chalmers.get_rect.game.entities.item.view.PistolView;
 
 class PlayerView extends AbstractAnimatedView {
     private static final int STAND_STILL = 0;
@@ -69,6 +66,17 @@ class PlayerView extends AbstractAnimatedView {
 
         setFlip(player.getVelocity().getX() < 0);
         playSequence(getSequence());
+
+        if (getSequence() == WALKING) {
+            audioManager.playMusic("walkingSound");
+        } else {
+            audioManager.stopMusic("walkingSound");
+        }
+        if (getSequence() == RIDING) {
+            audioManager.playMusic("ridingSound");
+        } else {
+            audioManager.stopMusic("ridingSound");
+        }
 
 
         // Tell abstract parent to drawIcon the animation

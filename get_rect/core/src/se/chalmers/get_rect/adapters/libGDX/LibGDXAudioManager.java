@@ -1,17 +1,20 @@
 package se.chalmers.get_rect.adapters.libGDX;
 
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 
 public class LibGDXAudioManager implements IAudioManagerAdapter{
     private LibGDXAssetManagerAdapter assetManager;
-    private Set<Music> musicList;
+    private Map<String, Music> musicList;
+    private Map<String, Sound> soundList;
     private boolean muted = false;
 
     public LibGDXAudioManager(LibGDXAssetManagerAdapter assetManager) {
-        musicList = new HashSet<>();
+        musicList = new HashMap<>();
+        soundList = new HashMap<>();
         this.assetManager = assetManager;
     }
     @Override
@@ -21,47 +24,61 @@ public class LibGDXAudioManager implements IAudioManagerAdapter{
 
     @Override
     public void playMusic(String soundName, float volume) {
-        Music file = assetManager.getMusic(soundName);
+        Music file = musicList.get(soundName);
 
-        if (file == null) return;
+        if (file == null) {
+            file = assetManager.getMusic("music/" + soundName + ".mp3");
 
-        musicList.add(file);
+            if (file == null)
+                return;
+
+            musicList.put(soundName, file);
+        }
 
         file.setVolume(volume);
         file.play();
-
-        removeFinished();
     }
+
     @Override
-    public void playSound(String soundName) {
+    public void playSound(String soundName, float volume) {
         if (muted) return;
 
-        assetManager.getSound("sounds/" + soundName + "mp3");
-    }
+        Sound file = soundList.get(soundName);
 
-    private void removeFinished() {
-        while (musicList.iterator().hasNext()) {
-            Music file = musicList.iterator().next();
+        if (file == null) {
+            file = assetManager.getSound("sounds/" + soundName + ".mp3");
 
-            if (!file.isPlaying()) {
-                musicList.remove(file);
-            }
+            if (file == null)
+                return;
+
+            soundList.put(soundName, file);
         }
+
+        file.setVolume(soundList.get(soundName).play(), volume);
+        file.play();
+
     }
+    public void playSound(String soundName) {
+        playSound(soundName, 1f);
+    }
+
     @Override
     public void mute() {
         muted = true;
-
-        for (Music file : musicList) {
-            file.pause();
-        }
+        musicList.forEach((k, m) -> m.stop());
     }
+
+
+    @Override
+    public void stopMusic(String soundName) {
+        Music file = musicList.get(soundName);
+        if (file != null)
+            file.stop();
+    }
+
     @Override
     public void unmute() {
         muted = false;
-
-        for (Music file : musicList) {
-            file.play();
-        }
+        musicList.forEach((k, m) -> m.play());
     }
 }

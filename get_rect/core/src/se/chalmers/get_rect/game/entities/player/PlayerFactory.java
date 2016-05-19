@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.entities.player;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.GameInput;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.item.WeaponRepository;
@@ -14,7 +15,7 @@ import java.io.FileNotFoundException;
 public class PlayerFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private WeaponRepository weaponRepository;
-    @Inject private IAssetManagerAdapter assetManager;
+    @Inject private IAudioManagerAdapter audioManager;
     @Inject private ItemFactory itemFactory;
 
     private static final String meleeStarting = "opsword";
@@ -23,7 +24,7 @@ public class PlayerFactory {
 
     public PhysicsEntity make() {
         Player model = new Player(rectangleFactory);
-        IView view = new PlayerView(model, assetManager, itemFactory);
+        IView view = new PlayerView(model, audioManager, itemFactory);
         try {
             model.addNewWeapon(weaponRepository.getSingleWeapon(rangedStarting, model));
             model.addNewWeapon(weaponRepository.getSingleWeapon(meleeStarting, model));

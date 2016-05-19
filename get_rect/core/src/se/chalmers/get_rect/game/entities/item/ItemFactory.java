@@ -1,8 +1,8 @@
 package se.chalmers.get_rect.game.entities.item;
 
 import com.google.inject.Inject;
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.adapters.libGDX.LibGDXAudioManager;
+
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.model.*;
 import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
@@ -12,8 +12,7 @@ import se.chalmers.get_rect.game.entities.item.view.*;
 public class ItemFactory {
     @Inject private ProjectileFactory projectileFactory;
     @Inject private SwingFactory swingFactory;
-    @Inject private IAssetManagerAdapter assetManager;
-    @Inject private LibGDXAudioManager audioManager;
+    @Inject private IAudioManagerAdapter audioManager;
 
     public IWeapon make(String type, IPhysicsModel model, int width, int height, int damage, int frames, int speed, float swingDegrees) {
         switch (type) {

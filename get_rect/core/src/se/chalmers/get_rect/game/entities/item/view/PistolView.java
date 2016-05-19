@@ -23,7 +23,7 @@ public class PistolView extends AbstractRangedWeaponView {
             imgPath = path + "pistol.png";
         } else {
             imgPath = path + "pistolPANG.png";
-            audioManager.playMusic("pistol" ,0.5f);
+            audioManager.playSound("bulletSound" ,0.5f);
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
 

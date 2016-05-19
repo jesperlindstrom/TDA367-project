@@ -6,5 +6,6 @@ public interface IAudioManagerAdapter {
     void playSound(String soundName);
     void mute();
     void unmute();
-
+    void stopMusic(String soundName);
+    void playSound(String soundName, float volume);
 }

@@ -1,8 +1,7 @@
 package se.chalmers.get_rect.game.entities.enemies.view;
 
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.ISoundAdapter;
 import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.enemies.model.Demon;
 import se.chalmers.get_rect.utilities.Point;
@@ -12,10 +11,8 @@ public class DemonView extends AbstractAnimatedView {
     private static final int ATTACK = 2;
     private Demon model;
     private Point offset = new Point(250, 0);
-    private IAssetManagerAdapter assetManager;
-    private ISoundAdapter mjolnirLaugh;
-    private boolean isPlaying = false;
-    private long id;
+    private IAudioManagerAdapter audioManager;
+
 
     /**
      * changeFrame decides the amount of frames for each picture
@@ -23,11 +20,11 @@ public class DemonView extends AbstractAnimatedView {
      * @param model
      */
 
-    public DemonView(Demon model, IAssetManagerAdapter assetManager){
+    public DemonView(Demon model, IAudioManagerAdapter audioManager){
         super(model, FLYING);
         this.model = model;
         int changeFrame = model.getRandFlap()/3;
-        this.assetManager = assetManager;
+        this.audioManager = audioManager;
 
         addAnimationFrame(FLYING, "img/entities/demons/mjolnir1.png", changeFrame);
         addAnimationFrame(FLYING, "img/entities/demons/mjolnir2.png", changeFrame);
@@ -43,9 +40,7 @@ public class DemonView extends AbstractAnimatedView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if (mjolnirLaugh == null) {
-            mjolnirLaugh = assetManager.getSound("sounds/mjolnirLaugh.mp3");
-        }
+
         if (model.getVelocity().getX() > 0) {
             setFlip(true, offset);
         } else {
@@ -53,23 +48,14 @@ public class DemonView extends AbstractAnimatedView {
         }
         playSequence(getSequence());
         super.draw(graphics);
-        if (getSequence() == ATTACK) {
-            playLaughter();
-        }
-        mjolnirLaugh.setPan(id, (model.getPlayerPosition().getX()-model.getPosition().getX())/1000f, 0.5f);
+        audioManager.playMusic("mjolnirLaugh");
 
     }
     private int getSequence() {
-        if (model.isAttacking()) {
-            return 2;
+        if (!model.isAttacking()) {
+            return FLYING;
         } else {
-            return 1;
-        }
-    }
-    public void playLaughter() {
-        if (!isPlaying) {
-            mjolnirLaugh.play();
-            isPlaying = true;
+            return ATTACK;
         }
     }
 }
