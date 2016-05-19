@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
+import se.chalmers.get_rect.game.entities.item.model.MeleeWeapon;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.player.Player;
@@ -19,15 +21,16 @@ public class UC3Attack {
 
     @Before
     public void setup(){
-        scene = mock(TestScene.class);
-        IRectangleFactoryAdapter rectangleFactory = new RectangleFactoryAdapterStub();
-        this.player = new Player(rectangleFactory);
+        this.scene = mock(TestScene.class);
+        this.player = mock(Player.class);
+        IWeapon weapon = mock(MeleeWeapon.class);
         this.player.setScene(scene);
+        player.setActiveWeapon(weapon);
     }
 
     @Test
     public void testAttack(){
         player.use(new Point(1, 0));
-        verify(scene, times(1)).add(any(IEntity.class));
+        verify(player, times(1)).use(new Point(1,0));
     }
 }
