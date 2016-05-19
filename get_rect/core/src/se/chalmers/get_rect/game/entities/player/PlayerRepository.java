@@ -31,7 +31,10 @@ public class PlayerRepository {
     public void save() throws FileNotFoundException {
         if (!hasFile()){
             File theFile = new File(PATH);
-            theFile.mkdirs();
+            boolean tmp = theFile.mkdirs();
+            if (!tmp){
+                System.out.println("Failed to make file path");
+            }
         }
         List<PlayerDataStore> list = new ArrayList<>();
         PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());

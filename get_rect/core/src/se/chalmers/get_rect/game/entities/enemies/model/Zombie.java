@@ -13,7 +13,6 @@ import java.util.Random;
 public class Zombie extends AbstractCombatModel {
     private int speed;
     private IModel player;
-    private boolean isAlive = true;
 
     public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
         super(point, new Point(0, 0), false, true, rectangleFactory, 30);
@@ -49,7 +48,6 @@ public class Zombie extends AbstractCombatModel {
         } else if (playerX < zombieX) {
             velX = -speed;
         }
-        isAlive = false;
 
         setVelocity(getVelocity().setX(velX));
     }
@@ -58,6 +56,5 @@ public class Zombie extends AbstractCombatModel {
     protected void die() {
         super.die();
         triggerEvent("zombie", "died");
-        isAlive = false;
     }
 }

@@ -13,7 +13,6 @@ public class OpSwordView extends AbstractMeleeWeaponView {
     private static final float SCALE = 1;
     private static final float tilt = 30;
     private IAudioManagerAdapter audioManager;
-    private boolean isPlaying = false;
 
 
     public OpSwordView(IWeapon model, IAudioManagerAdapter audioManager) {

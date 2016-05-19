@@ -8,7 +8,6 @@ import se.chalmers.get_rect.utilities.Point;
 public class HorvView extends AbstractAnimatedView{
     private static final int DEFAULT = 1;
     private static final int SHOW_BEER = 2;
-    private Horv model;
 
 
     public HorvView(Horv model) {
