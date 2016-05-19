@@ -26,6 +26,7 @@ public class PistolView extends AbstractRangedWeaponView {
         }
         if (getModel().getCooldownFrames() == getModel().getCooldown()-1) {
             audioManager.playSound("bulletSound" ,0.5f);
+
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
 

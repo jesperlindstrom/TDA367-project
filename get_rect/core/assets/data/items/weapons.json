@@ -51,7 +51,7 @@
     "type" : "pistol",
     "damage" : 20,
     "speed" : 600,
-    "cooldown" : 1
+    "cooldown" : 10
   },
   {
     "type" : "lasersword",
