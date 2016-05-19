@@ -17,20 +17,10 @@ public class Door extends AbstractInteractableModel {
     private int doorPath;
 
     public Door(Point position, int width, int height, IRectangleFactoryAdapter factory, StateManager sceneManager, int doorPath) {
-        super(position.addY((-height)), new Point(0, 0), true, factory);
+        super(position.addY((-height)), new Point(0, 0), false, false,  factory);
         setBoundingBox(width, height);
         this.sceneManager = sceneManager;
         this.doorPath = doorPath;
-    }
-
-    @Override
-    public boolean isSolid() {
-        return false;
-    }
-
-    @Override
-    public void setVelocity(Point vel) {
-        // Do nothing. We don't want gravity applied to this object.
     }
 
     @Override

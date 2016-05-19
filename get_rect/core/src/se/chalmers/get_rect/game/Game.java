@@ -89,6 +89,11 @@ public class Game {
         }
     }
 
+    public void startNew() {
+        sceneManager.set(GameConfig.HUBBEN);
+
+    }
+
     public void load() {
         sceneManager.set(GameConfig.HUBBEN);
         resume();
@@ -100,11 +105,6 @@ public class Game {
 
     public void resume() {
         windowManager.clearState();
-    }
-
-    public void startNew() {
-        sceneManager.set(GameConfig.HUBBEN);
-        resume();
     }
 
     public boolean loadAvailable() {

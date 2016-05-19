@@ -54,8 +54,9 @@ public class PhysicsEngine implements IPhysicsEngine {
             // Move the entity
             movement.move(entity, entityCollision, delta);
 
-            // Apply gravity if entity is in the air
-            gravity.apply(entity, entityCollision);
+            // Apply gravity if entity is in the air and it's affected by gravity
+            if (entity.isAffectedByGravity())
+                gravity.apply(entity, entityCollision);
 
             if (entity.shouldBeRemoved()) {
                 removalQueue.add(entity);

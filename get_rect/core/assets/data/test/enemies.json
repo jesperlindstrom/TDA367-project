@@ -12,19 +12,19 @@
   },
 
   {
-    "type": "zombie",
+    "type": "broccolighost",
     "x": 800,
     "y": 400
   },
 
   {
-    "type": "zombie",
+    "type": "broccolighost",
     "x": 750,
     "y": 550
   },
 
   {
-    "type": "zombie",
+    "type": "broccolighost",
     "x": 700,
     "y": 600
   },
