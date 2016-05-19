@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Quest implements IQuest {
     private QuestState state;
-    private List<QuestObjective> objectives;
+    private List<Objective> objectives;
 
-    public Quest(QuestState state, List<QuestObjective> objectives) {
+    public Quest(QuestState state, List<Objective> objectives) {
         this.state = state;
         this.objectives = objectives;
     }
@@ -18,23 +18,31 @@ public class Quest implements IQuest {
         return state;
     }
 
-    @Override
-    public void handleEvent(Event e) {
-        if (state.equals(QuestState.COMPLETED))
-            return;
-
-        //for ()
-        checkObjectives();
+    public void interact() {
+        if (state.equals(QuestState.AVAILABLE))
+            accept();
+        else if (state.equals(QuestState.COMPLETABLE))
+            complete();
     }
 
-    private void checkObjectives() {
+    private void accept() {
+        state = QuestState.IN_PROGRESS;
+    }
+
+    private void complete() {
+        state = QuestState.COMPLETED;
+    }
+
+    @Override
+    public void handleEvent(Event e) {
         if (!state.equals(QuestState.IN_PROGRESS))
             return;
 
         boolean allCompleted = true;
 
-        for (QuestObjective objective : objectives) {
+        for (Objective objective : objectives) {
             if (!objective.isCompleted()) {
+                objective.handleEvent(e);
                 allCompleted = false;
             }
         }
