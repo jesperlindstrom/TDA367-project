@@ -28,7 +28,7 @@ public class Trampoline extends AbstractPhysicsModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
-        if (otherObject != null && collisionSide.top()) {
+        if (collisionSide != null &&  collisionSide.top()) {
             otherObject.setVelocity(otherObject.getVelocity().setY(150));
             gotHit = true;
         }
