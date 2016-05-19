@@ -86,6 +86,11 @@ public class LibGDXAudioManager implements IAudioManagerAdapter{
     }
 
     @Override
+    public void stopAllMusic() {
+        musicList.forEach((k, m) -> m.stop());
+    }
+
+    @Override
     public void unmute() {
         muted = false;
         musicList.forEach((k, m) -> m.play());

@@ -74,10 +74,10 @@ public class WorldObjectFactory {
     }
 
     private IPhysicsEntity makeTestBg() {
-        return new PhysicsEntity(null, new TestSceneView(camera));
+        return new PhysicsEntity(null, new TestSceneView(camera, audioManager));
     }
 
     private IPhysicsEntity makeHubbenBg() {
-        return new PhysicsEntity(null, new HubbenSceneView(camera));
+        return new PhysicsEntity(null, new HubbenSceneView(camera, audioManager));
     }
 }
