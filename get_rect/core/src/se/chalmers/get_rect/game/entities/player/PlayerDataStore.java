@@ -9,9 +9,11 @@ public class PlayerDataStore {
     private String melee;
     private String ranged;
 
-    public PlayerDataStore(int health, boolean hasFoundHunch){
+    public PlayerDataStore(int health, boolean hasFoundHunch, String melee, String ranged){
         this.health = health;
         this.hasFoundHunch = hasFoundHunch;
+        this.melee = melee;
+        this.ranged = ranged;
     }
 
     public int getHealth() {

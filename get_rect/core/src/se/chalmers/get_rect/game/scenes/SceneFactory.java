@@ -5,6 +5,7 @@ import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
+import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 
@@ -13,7 +14,7 @@ public class SceneFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private ICamera camera;
     @Inject private SceneLoader sceneLoader;
-    @Inject private IAssetManagerAdapter assetManager;
+    @Inject private PlayerRepository playerRepository;
     @Inject private QuestManager quests;
 
     public IScene make(String name) {
@@ -30,14 +31,14 @@ public class SceneFactory {
     }
 
     private IScene makeHorsalsvagen() {
-        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneLoader, quests);
+        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneLoader, quests, playerRepository);
     }
 
     private IScene makeTest() {
-        return new TestScene(playerEntity, rectangleFactory, camera, sceneLoader, quests);
+        return new TestScene(playerEntity, rectangleFactory, camera, sceneLoader, quests, playerRepository);
     }
 
     private IScene makeHubben(){
-        return new HubbenScene(playerEntity,rectangleFactory,camera,sceneLoader, quests);
+        return new HubbenScene(playerEntity,rectangleFactory,camera,sceneLoader, quests, playerRepository);
     }
 }

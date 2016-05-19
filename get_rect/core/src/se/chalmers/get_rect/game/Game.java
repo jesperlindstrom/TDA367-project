@@ -119,16 +119,19 @@ public class Game {
     }
 
     public void startNew() {
-        sceneManager.set(GameConfig.HUBBEN);
+        if (!playerRepository.hasFile()){
+               
+        }
         try {
             playerRepository.reset();
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
+        sceneManager.set(GameConfig.HUBBEN);
         resume();
     }
 
     public boolean loadAvailable() {
-        return true;
+        return playerRepository.hasFile();
     }
 }

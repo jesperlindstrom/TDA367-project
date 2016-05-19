@@ -6,6 +6,7 @@ import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.io.IOFacade;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class PlayerRepository {
 
     public void save() throws FileNotFoundException {
         List<PlayerDataStore> list = new ArrayList<>();
-        PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch());
+        PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
         list.add(dataStore);
         json.save(list);
 
@@ -48,7 +49,10 @@ public class PlayerRepository {
         player.setHasFoundHunch(false);
         player.setRiding(false);
         player.addNewWeapon(weaponRepository.getSingleWeapon(melee, player));
-        player.addNewWeapon(weaponRepository.getSingleWeapon(ranged, player));}
-
+        player.addNewWeapon(weaponRepository.getSingleWeapon(ranged, player));
+    }
+    public boolean hasFile(){
+        return new File("savedData/playerSavedData.json").isFile();
+    }
 
 }
