@@ -31,7 +31,7 @@ public class EnemyFactory {
 
     private IPhysicsEntity makeZombie(Point position) {
         Zombie model = new Zombie(position, rectangleFactory, player);
-        IView view = new ZombieView(model);
+        IView view = new ZombieView(model, audioManager);
 
         return new PhysicsEntity(model, view);
     }
