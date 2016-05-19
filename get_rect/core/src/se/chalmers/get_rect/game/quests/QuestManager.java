@@ -1,35 +1,51 @@
 package se.chalmers.get_rect.game.quests;
 
-import com.google.inject.Inject;
 import se.chalmers.get_rect.event.Event;
 import se.chalmers.get_rect.event.IEventListener;
 import se.chalmers.get_rect.game.quests.data.IQuest;
+import se.chalmers.get_rect.game.quests.data.QuestState;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuestManager implements IEventListener {
-    @Inject private QuestRepository repository;
-    private Map<Integer, IQuest> quests;
+    private QuestRepository repository;
+    private List<IQuest> quests;
 
-    public QuestManager() {
+    public QuestManager(QuestRepository repository) {
+        this.repository = repository;
         System.out.println("Init quest");
-        quests = new HashMap<>();
-        //registerQuest(0);
+        quests = new ArrayList<>();
+        System.out.println(quests);
+        System.out.println(repository);
+        registerQuest(0);
     }
 
-    private void registerQuest(Integer id) {
-        quests.put(id, repository.get(id));
+    private void registerQuest(int id) {
+        quests.add(repository.get(id));
     }
 
-    public IQuest get(Integer id) {
-        return quests.get(id);
+    public IQuest get(int id) {
+        for (IQuest quest : quests) {
+            if (quest.getId() == id) {
+                return quest;
+            }
+        }
+
+        return null;
+    }
+
+    public List<IQuest> getAllActive() {
+        return quests.stream()
+            .filter((q) -> q.getState().equals(QuestState.IN_PROGRESS))
+            .collect(Collectors.toList());
     }
 
     @Override
     public void handleEvent(Event e) {
-        for (Map.Entry<Integer, IQuest> quest : quests.entrySet()) {
-            quest.getValue().handleEvent(e);
+        for (IQuest quest : quests) {
+            quest.handleEvent(e);
         }
     }
 }
