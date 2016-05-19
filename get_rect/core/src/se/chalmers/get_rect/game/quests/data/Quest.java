@@ -78,9 +78,10 @@ public class Quest implements IQuest {
 
         boolean allCompleted = true;
 
+        objectives.forEach((obj) -> obj.handleEvent(e));
+
         for (Objective objective : objectives) {
             if (!objective.isCompleted()) {
-                objective.handleEvent(e);
                 allCompleted = false;
             }
         }

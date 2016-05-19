@@ -61,7 +61,7 @@ public class OverlayFactory {
     }
 
     private IEntity makeActiveQuests() {
-        IView view = new ActiveQuestsView(questManager);
+        IView view = new ActiveQuestsView(questManager, camera);
         return new Entity(null, view);
     }
 

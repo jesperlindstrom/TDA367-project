@@ -34,4 +34,12 @@ public class Objective {
     public String getInfoText() {
         return infoText;
     }
+
+    public int getRequiredCount() {
+        return requiredCount;
+    }
+
+    public int getCount() {
+        return count;
+    }
 }
