@@ -55,6 +55,7 @@ public class SceneLoader {
         entities.add(overlayFactory.make("playerHealthbar"));
         entities.add(overlayFactory.make("weaponSlots"));
         entities.add(overlayFactory.make("dialog"));
+        entities.add(overlayFactory.make("activeQuests"));
 
         return entities;
     }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeapon> {
 
-    @Inject private WeapomFactory weapomFactory;
+    @Inject private WeaponFactory weaponFactory;
     private IPhysicsModel user;
 
     public WeaponRepository() {
@@ -34,6 +34,6 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
 
     @Override
     protected IWeapon makeFromDataStore(WeaponsDataStore data) {
-        return weapomFactory.make(data.getType(), user, data.getWidth(), data.getHeight(), data.getDamage(), data.getCooldown(), data.getSpeed(), data.getSwingDegrees());
+        return weaponFactory.make(data.getType(), user, data.getWidth(), data.getHeight(), data.getDamage(), data.getCooldown(), data.getSpeed(), data.getSwingDegrees());
     }
 }

@@ -6,13 +6,15 @@ import java.util.List;
 
 public class Quest implements IQuest {
     private int id;
+    private String title;
     private QuestState state;
     private List<Objective> objectives;
     private String acceptText;
     private String completionText;
 
-    public Quest(int id, QuestState state, List<Objective> objectives, String acceptText, String completionText) {
+    public Quest(int id, String title, QuestState state, List<Objective> objectives, String acceptText, String completionText) {
         this.id = id;
+        this.title = title;
         this.state = state;
         this.objectives = objectives;
         this.acceptText = acceptText;
@@ -37,6 +39,11 @@ public class Quest implements IQuest {
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
     }
 
     @Override

@@ -36,13 +36,16 @@ public class InteractionHintsView extends AbstractView {
             }
         }
 
+        if (player.getCurrentNpc().isDialogVisible())
+            return;
+
         graphics.draw("img/interact/e.png", pos);
     }
 
     private Point getUpperLeftCorner() {
         IRectangleAdapter boundingBox = player.getCurrentNpc().getBoundingBox();
         Point point = new Point(boundingBox.getPosition());
-        point = point.add((int)boundingBox.getWidth()/2 - 40, (int)boundingBox.getHeight()); // -40 due to e.png's size
+        point = point.add(boundingBox.getWidth()/2 - 40, boundingBox.getHeight()); // -40 due to e.png's size
 
 
         return point;

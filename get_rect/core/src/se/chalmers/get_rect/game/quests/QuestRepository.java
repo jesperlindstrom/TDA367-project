@@ -20,6 +20,6 @@ public class QuestRepository {
 
         String acceptText = "Hej!";
         String completionText = "I'M OUTTA HERE! LOLWUT";
-        return factory.make(0, QuestState.AVAILABLE, objectives, acceptText, completionText);
+        return factory.make(0, "Sawmill's Escape", QuestState.AVAILABLE, objectives, acceptText, completionText);
     }
 }
