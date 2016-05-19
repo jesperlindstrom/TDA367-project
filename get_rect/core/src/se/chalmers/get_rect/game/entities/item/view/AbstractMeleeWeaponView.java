@@ -33,6 +33,10 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
         return model;
     }
 
+    protected boolean isAttacking() {
+        return getModel().getCooldownFrames() == getModel().getCooldown()-1;
+    }
+
     protected float getRotation() {
         return getModel().getFacing() < 0 ? tilt : -tilt;
     }

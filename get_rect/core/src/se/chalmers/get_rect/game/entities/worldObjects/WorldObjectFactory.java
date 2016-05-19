@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.worldObjects;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
 import se.chalmers.get_rect.game.entities.worldObjects.view.*;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
@@ -18,7 +19,7 @@ public class WorldObjectFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject @Named("Scene") private StateManager sceneManager;
     @Inject private ICamera camera;
-    @Inject private IAssetManagerAdapter assetManager;
+    @Inject private IAudioManagerAdapter audioManager;
 
     public IPhysicsEntity make(String type, Point point, int width, int height, int path) {
         if (type.equals("boundingBox"))
@@ -69,7 +70,7 @@ public class WorldObjectFactory {
         return new PhysicsEntity(model, view);
     }
     private IPhysicsEntity makeHorsalsvagenBg() {
-        return new PhysicsEntity(null, new HorsalsvagenSceneView(camera, assetManager));
+        return new PhysicsEntity(null, new HorsalsvagenSceneView(camera, audioManager));
     }
 
     private IPhysicsEntity makeTestBg() {

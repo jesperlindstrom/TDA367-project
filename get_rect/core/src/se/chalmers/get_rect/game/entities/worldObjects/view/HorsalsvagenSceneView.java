@@ -1,21 +1,20 @@
 package se.chalmers.get_rect.game.entities.worldObjects.view;
 
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.IMusicAdapter;
 import se.chalmers.get_rect.game.entities.ICamera;
 
 public class HorsalsvagenSceneView extends AbstractBackgroundView {
-    private IMusicAdapter backgroundMusic;
+    private IAudioManagerAdapter audioManager;
 
-    public HorsalsvagenSceneView(ICamera camera, IAssetManagerAdapter assetManager) {
+    public HorsalsvagenSceneView(ICamera camera, IAudioManagerAdapter audioManager) {
         super(camera, "img/backgrounds/horsalsvagen.png", "img/backgrounds/skybox.png");
-        backgroundMusic = assetManager.getMusic("music/BackgroundMusic.mp3");
+        this.audioManager = audioManager;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         super.draw(graphics);
-        backgroundMusic.play();
+        audioManager.playMusic("BackgroundMusic");
     }
 }
