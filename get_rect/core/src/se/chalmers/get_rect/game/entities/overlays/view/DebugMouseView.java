@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.overlays.view;
 import se.chalmers.get_rect.adapters.ICameraAdapter;
 import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.GameInput;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.utilities.Point;
 
 public class DebugMouseView {

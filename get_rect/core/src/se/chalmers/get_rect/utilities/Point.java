@@ -1,8 +1,6 @@
 package se.chalmers.get_rect.utilities;
 
 
-import java.security.PublicKey;
-
 public class Point {
     private int xCoordinate;
     private int yCoordinate;
@@ -17,8 +15,11 @@ public class Point {
     }
 
     public Point(Point point) {
-        this.yCoordinate = point.getY();
-        this.xCoordinate = point.getX();
+        this(0 ,0);
+        if (point != null) {
+            this.xCoordinate = point.getX();
+            this.yCoordinate = point.getY();
+        }
     }
 
 
@@ -126,17 +127,17 @@ public class Point {
         int intX;
         int intY;
 
-        if (x < 0) {
+        if (x < -0.5) {
             intX = -1;
-        } else if (x > 0) {
+        } else if (x > 0.5) {
             intX = 1;
         } else {
             intX = 0;
         }
 
-        if (y < 0) {
+        if (y < -0.5) {
             intY = -1;
-        } else if (y > 0) {
+        } else if (y > 0.5) {
             intY = 1;
         } else {
             intY = 0;

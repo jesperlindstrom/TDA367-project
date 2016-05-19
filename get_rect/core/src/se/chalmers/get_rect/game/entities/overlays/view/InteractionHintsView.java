@@ -2,12 +2,9 @@ package se.chalmers.get_rect.game.entities.overlays.view;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
-import se.chalmers.get_rect.game.entities.IEntity;
-import se.chalmers.get_rect.game.entities.IInteractableModel;
-import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.npc.model.INpcModel;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.quests.QuestState;
+import se.chalmers.get_rect.game.quests.data.QuestState;
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
 

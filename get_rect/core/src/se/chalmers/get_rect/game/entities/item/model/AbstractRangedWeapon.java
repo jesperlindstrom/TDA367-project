@@ -8,10 +8,13 @@ public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRa
     private Point aimDirection;
     private final int damage;
     private final int speed;
-    protected AbstractRangedWeapon(IPhysicsModel user, String type, int damage, int speed) {
+    private final int cooldown;
+
+    protected AbstractRangedWeapon(IPhysicsModel user, String type, int damage, int speed, int cooldown) {
         super(user, type);
         this.damage = damage;
         this.speed = speed;
+        this.cooldown = cooldown;
         setAimDirection(user.getVelocity().normalize());
     }
 
@@ -36,4 +39,6 @@ public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRa
     protected int getDamage() {
         return damage;
     }
+
+    public int getCooldown() { return cooldown; }
 }

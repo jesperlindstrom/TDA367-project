@@ -20,7 +20,7 @@ public class LaserSwordView extends AbstractMeleeWeaponView {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath + "laser_hand.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 20 : 0, 0), new Point(-10, 5), getXScale(SCALE), SCALE, getRotation());
         super.draw(graphics);
-        if (getModel().getUsedFrames() == 0) {
+        if (isAttacking()) {
             audioManager.playMusic("laserSword1");
         } else {
             audioManager.stopMusic("laserSword1");

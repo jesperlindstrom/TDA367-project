@@ -33,16 +33,12 @@ public class OpSwordView extends AbstractMeleeWeaponView {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath + ".png", getModel().getHandPos(), new Point(0, 0), getXScale(SCALE), SCALE, getRotation());
         super.draw(graphics);
-        if (getModel().getUsedFrames() == 0) {
-            isPlaying = false;
-        } else {
-            if (!isPlaying) {
-                    if (randomNumber() == 1) {
-                        audioManager.playMusic("swosh1");
-                    } else {
-                        audioManager.playMusic("swosh2");
-                    }
-                isPlaying = true;
+
+        if (isAttacking()) {
+            if (randomNumber() == 1) {
+                audioManager.playMusic("swosh1");
+            } else {
+                audioManager.playMusic("swosh2");
             }
         }
     }

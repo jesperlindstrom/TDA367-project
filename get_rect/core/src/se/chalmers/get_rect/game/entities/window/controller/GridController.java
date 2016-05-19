@@ -1,7 +1,8 @@
 package se.chalmers.get_rect.game.entities.window.controller;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.game.GameInput;
+import se.chalmers.get_rect.game.input.Actions;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.window.model.AbstractGridModel;
 
@@ -18,23 +19,23 @@ public class GridController implements IWindowController {
 
     @Override
     public void update(double delta) {
-        if (gameInput.isKeyJustPressed(GameInput.Actions.CONFIRM)) {
+        if (gameInput.isKeyJustPressed(Actions.CONFIRM)) {
             model.getCurrentlyMarkedButton().executeAction();
         }
 
-        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU_UP)) {
+        if (gameInput.isKeyJustPressed(Actions.MENU_UP)) {
             model.moveMarkUp();
         }
 
-        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU_DOWN)) {
+        if (gameInput.isKeyJustPressed(Actions.MENU_DOWN)) {
             model.moveMarkDown();
         }
 
-        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU_LEFT)) {
+        if (gameInput.isKeyJustPressed(Actions.MENU_LEFT)) {
             model.moveMarkLeft();
         }
 
-        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU_RIGHT)) {
+        if (gameInput.isKeyJustPressed(Actions.MENU_RIGHT)) {
             model.moveMarkRight();
         }
 

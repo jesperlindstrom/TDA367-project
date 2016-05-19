@@ -19,10 +19,12 @@ public class PistolView extends AbstractRangedWeaponView {
     public void draw(IGraphicsAdapter graphics) {
 
         String imgPath;
-        if (getModel().getUsedFrames() == 0) {
-            imgPath = path + "pistol.png";
-        } else {
+        if (getModel().getCooldownFrames() != 0 && getModel().getCooldownFrames() > Math.abs(getModel().getCooldown()-6)) {
             imgPath = path + "pistolPANG.png";
+        } else {
+            imgPath = path + "pistol.png";
+        }
+        if (getModel().getCooldownFrames() == getModel().getCooldown()-1) {
             audioManager.playSound("bulletSound" ,0.5f);
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());

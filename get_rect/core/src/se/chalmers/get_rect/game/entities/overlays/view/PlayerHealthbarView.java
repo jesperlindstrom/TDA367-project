@@ -9,9 +9,9 @@ import se.chalmers.get_rect.utilities.Point;
 public class PlayerHealthbarView extends AbstractView {
     private Player player;
     private ICamera camera;
-    private final String pathbackOverlay1 = "img/player/player-health-background.png";
-    private final String pathCenterOverlay3 = "img/player/player-center-overlay.png";
-    private final String pathHealthOverlay2 = "img/player/player-health-fill.png";
+    private static final String pathbackOverlay1 = "img/player/player-health-background.png";
+    private static final String pathCenterOverlay3 = "img/player/player-center-overlay.png";
+    private static final String pathHealthOverlay2 = "img/player/player-health-fill.png";
     private static final int DRAW_PRIORITY = 30;
 
     public PlayerHealthbarView(Player player, ICamera camera){

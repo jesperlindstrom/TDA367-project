@@ -1,13 +1,12 @@
 package se.chalmers.get_rect.game.entities.item.swing;
 
-import com.badlogic.gdx.assets.AssetManager;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 public class Swing extends AbstractPhysicsModel{
     private IPhysicsModel owner;
@@ -19,7 +18,6 @@ public class Swing extends AbstractPhysicsModel{
     private int height;
     private int deltaX;
     private int deltaY;
-    private AssetManager assetManager;
 
     public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon) {
         super(owner.getPosition(), null, false, rectangleFactory);
@@ -33,7 +31,6 @@ public class Swing extends AbstractPhysicsModel{
         deltaX = this.width*2/swingFrames;
         deltaY = this.height*2/swingFrames;
         setBoundingBox(20, height);
-        this.assetManager = assetManager;
     }
 
     @Override
@@ -49,7 +46,7 @@ public class Swing extends AbstractPhysicsModel{
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
         super.onCollision(otherObject, collisionSide, isSolid);
         if (otherObject instanceof ICombatModel && !otherObject.equals(owner)) {
             ((ICombatModel)otherObject).takeDamage(damage);

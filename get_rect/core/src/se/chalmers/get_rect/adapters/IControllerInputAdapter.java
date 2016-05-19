@@ -4,7 +4,11 @@ import se.chalmers.get_rect.utilities.Point;
 
 public interface IControllerInputAdapter {
     enum Keys {
-        X, Y, A, B, LEFT, RIGHT, UP, DOWN,
+        X, Y, A, B, START, BACK, LB, RB,
+        DPAD_LEFT, DPAD_RIGHT, DPAD_UP, DPAD_DOWN, DPAD_CENTER,
+        L_LEFT, L_RIGHT, L_UP, L_DOWN,
+        R_LEFT, R_RIGHT, R_UP, R_DOWN,
+        L_TRIGGER, R_TRIGGER
     }
 
     boolean isKeyPressed(Keys key);

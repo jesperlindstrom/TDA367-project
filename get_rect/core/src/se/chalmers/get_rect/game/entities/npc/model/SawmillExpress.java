@@ -4,7 +4,7 @@ import se.chalmers.get_rect.game.entities.IRepository;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.quests.QuestState;
+import se.chalmers.get_rect.game.quests.data.QuestState;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
@@ -17,7 +17,6 @@ public class SawmillExpress extends AbstractNPCModel {
     private final int width;
     private final int height;
     private boolean isFlying = false;
-    private IRepository<String> dialogRepository;
     private List<String> dialogList;
     private Random r;
 
@@ -27,7 +26,6 @@ public class SawmillExpress extends AbstractNPCModel {
         this.width = width;
         this.height = height;
         setBoundingBox(this.width, this.height);
-        this.dialogRepository = dialogRepository;
 
         r = new Random();
         dialogList = new ArrayList<>();
@@ -57,6 +55,8 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     public void onInteract(IModel model) {
+        triggerEvent("sawmillExpress", "interacted");
+
         if (!isDialogVisible()) {
             int random = (r.nextInt(dialogList.size()));
             showDialog(dialogList.get(random));

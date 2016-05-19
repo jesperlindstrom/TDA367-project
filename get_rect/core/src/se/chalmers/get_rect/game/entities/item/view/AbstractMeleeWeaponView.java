@@ -24,13 +24,17 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
         }
         this.tilt = tilt;
         this.originalTilt = tilt;
-        swingFrames = this.model.getSwingFrames();
+        swingFrames = this.model.getCooldown();
         degreesPerFrame = this.model.getSwingDegrees() * (this.model.getSwingDegrees() < 350 ? 2 : 1) / swingFrames ;
         this.iconPath = iconPath;
     }
 
     protected IWeapon getModel() {
         return model;
+    }
+
+    protected boolean isAttacking() {
+        return getModel().getCooldownFrames() == getModel().getCooldown()-1;
     }
 
     protected float getRotation() {
@@ -42,7 +46,7 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
     }
 
     private void updateTilt() {
-        if (model.getUsedFrames() == 0) {
+        if (model.getCooldownFrames() == 0) {
             tilt = originalTilt;
             return;
         }
@@ -50,7 +54,7 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
             tilt = tilt + degreesPerFrame;
             return;
         }
-        if (model.getUsedFrames() < swingFrames/2) {
+        if (model.getCooldownFrames() < swingFrames/2) {
             tilt = tilt - degreesPerFrame;
         } else {
             tilt = tilt + degreesPerFrame;

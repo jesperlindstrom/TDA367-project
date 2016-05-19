@@ -5,21 +5,17 @@ import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.Random;
 
 public class Zombie extends AbstractCombatModel {
-    private final int width;
-    private final int height;
     private int speed;
     private IModel player;
 
     public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
         super(point, new Point(0, 0), false, rectangleFactory, 30);
-        this.width = width;
-        this.height = height;
         setBoundingBox(width, height);
 
         this.player = player;
@@ -32,8 +28,7 @@ public class Zombie extends AbstractCombatModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
-        // Jump, to simulate a lethal broccoli ninja attack.
+    public void onCollision(IPhysicsObject otherObject, CollisionData side, boolean isSolid) {
         if (otherObject.equals(player) && getVelocity().getY() == 0) {
             Player player = (Player) otherObject;
             player.takeDamage(1);
@@ -46,9 +41,6 @@ public class Zombie extends AbstractCombatModel {
         int playerX = player.getPosition().getX();
         int zombieX = getPosition().getX();
 
-        if (getVelocity().getX() != 0 && Math.abs(getVelocity().getX()) != speed)
-            return;
-
         int velX = 0;
 
         if (playerX > zombieX) {
@@ -58,5 +50,11 @@ public class Zombie extends AbstractCombatModel {
         }
 
         setVelocity(getVelocity().setX(velX));
+    }
+
+    @Override
+    protected void die() {
+        super.die();
+        triggerEvent("zombie", "died");
     }
 }

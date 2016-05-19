@@ -19,8 +19,8 @@ public class PlayerWeaponSlotsView extends AbstractView {
     private IWeapon lastWeapon;
     private IWeaponView meleeView;
     private IWeaponView rangedView;
-    private final String pathItemSlot= "img/pauseMenu/inventory/item_slot.png";
-    private final String pathItemActive = "img/pauseMenu/inventory/item_active.png";
+    private static final String pathItemSlot= "img/pauseMenu/inventory/item_slot.png";
+    private static final String pathItemActive = "img/pauseMenu/inventory/item_active.png";
     private static final int DRAW_PRIORITY = 60;
 
 

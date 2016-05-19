@@ -7,14 +7,12 @@ import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 public class Hunchen extends AbstractNPCModel {
 
     private Player player;
     private int speed;
-    private int oldX;
     private boolean init = false;
     private boolean stop;
 
@@ -23,8 +21,6 @@ public class Hunchen extends AbstractNPCModel {
         this.player = player;
         setBoundingBox(81, 51);
         speed = 30;
-        oldX = getPosition().getX();
-
     }
 
     @Override
@@ -48,7 +44,7 @@ public class Hunchen extends AbstractNPCModel {
 
 
         IRectangleAdapter rect = getRectangleFactory().make(getPosition().getX()-30, getPosition().getY(), 81+60, 51);
-        SideData collision = player.getBoundingBox().intersects(rect);
+        CollisionData collision = player.getBoundingBox().intersects(rect);
 
         if (collision == null){
             stop = false;
@@ -94,7 +90,7 @@ public class Hunchen extends AbstractNPCModel {
 
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData data, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData data, boolean isSolid) {
         super.onCollision(otherObject, data, isSolid);
 
         if (isSolid && (data.left())) {

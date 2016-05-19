@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.game.entities;
 
-public interface ICombatModel extends IPhysicsModel {
+import se.chalmers.get_rect.event.IEventSource;
+
+public interface ICombatModel extends IPhysicsModel, IEventSource {
     void addHealth(int health);
     int getCurrentHealth();
     void takeDamage(int dmg);

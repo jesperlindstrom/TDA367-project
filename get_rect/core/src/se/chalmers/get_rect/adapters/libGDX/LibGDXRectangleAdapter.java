@@ -3,7 +3,7 @@ package se.chalmers.get_rect.adapters.libGDX;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import se.chalmers.get_rect.physics.IRectangleAdapter;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
 
@@ -12,6 +12,10 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
 
     public LibGDXRectangleAdapter(float x, float y, float width, float height) {
         rectangle = new Rectangle(x, y, width, height);
+    }
+
+    public LibGDXRectangleAdapter(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 
     private Rectangle getRealRectangle(IRectangleAdapter rect) {
@@ -27,59 +31,67 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
         return otherRectangle;
     }
 
+    public IRectangleAdapter getIntersection(IRectangleAdapter rect) {
+        Rectangle otherRectangle = getRealRectangle(rect);
+        Rectangle intersection = new Rectangle();
+        Intersector.intersectRectangles(rectangle, otherRectangle, intersection);
+        return new LibGDXRectangleAdapter(intersection);
+    }
+
     /**
      * Check whether this rectangle intersects another
      * @param rect Another rectangle
      * @return The side of the intersection, or null the rectangles don't overlap.
      */
     @Override
-    public SideData intersects(IRectangleAdapter rect) {
+    public CollisionData intersects(IRectangleAdapter rect) {
         Rectangle otherRectangle = getRealRectangle(rect);
         Rectangle intersection = new Rectangle();
         Intersector.intersectRectangles(rectangle, otherRectangle, intersection);
 
-        SideData sideData = new SideData();
+        CollisionData collisionData = new CollisionData();
 
         if(rectangle.overlaps(otherRectangle)) {
 
             if (intersection.x > rectangle.x) {
-                sideData.set(Side.RIGHT);
+                collisionData.set(Side.RIGHT);
             }
 
             if (intersection.y > rectangle.y) {
-                sideData.set(Side.TOP);
+                collisionData.set(Side.TOP);
             }
 
             if (intersection.x + intersection.width < rectangle.x + rectangle.width) {
-                sideData.set(Side.LEFT);
+                collisionData.set(Side.LEFT);
             }
 
             if (intersection.y + intersection.height < rectangle.y + rectangle.height) {
-                sideData.set(Side.BOTTOM);
+                collisionData.set(Side.BOTTOM);
             }
-            return sideData;
+
+            return collisionData;
         }
         return null;
     }
 
     @Override
-    public float getWidth() {
-        return rectangle.getWidth();
+    public int getWidth() {
+        return (int)rectangle.getWidth();
     }
 
     @Override
-    public float getHeight() {
-        return rectangle.getHeight();
+    public int getHeight() {
+        return (int)rectangle.getHeight();
     }
 
     @Override
-    public float getX() {
-        return rectangle.getX();
+    public int getX() {
+        return (int)rectangle.getX();
     }
 
     @Override
-    public float getY() {
-        return rectangle.getY();
+    public int getY() {
+        return (int)rectangle.getY();
     }
 
     @Override

@@ -4,7 +4,7 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 public class Trampoline extends AbstractPhysicsModel {
     private static final int WIDTH = 270;
@@ -27,7 +27,7 @@ public class Trampoline extends AbstractPhysicsModel {
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
         if (collisionSide.top()) {
             otherObject.setVelocity(otherObject.getVelocity().setY(150));
             gotHit = true;

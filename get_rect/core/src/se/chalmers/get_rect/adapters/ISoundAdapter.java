@@ -1,10 +1,10 @@
 package se.chalmers.get_rect.adapters;
 
 public interface ISoundAdapter {
-    long play();
+    void play();
     void pause();
     void setPitch(long time, float pitch);
-    long play(Float volume);
+    void play(Float volume);
     void loop();
     void loop(float volume);
     void setPan(long soundId, float pan, float volume);

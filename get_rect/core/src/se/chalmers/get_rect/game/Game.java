@@ -2,6 +2,9 @@ package se.chalmers.get_rect.game;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.input.Actions;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.SceneFactory;
@@ -15,6 +18,7 @@ public class Game {
     @Inject private StateManager<IScene> sceneManager;
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private PlayerController playerController;
+    @Inject private Player player;
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
 
@@ -40,6 +44,14 @@ public class Game {
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
+
+        player.addListener((e) -> {
+            System.out.println(e);
+            if (e.getAction().equals("died")) {
+                sceneManager.set(GameConfig.HUBBEN);
+                player.refillHealth();
+            }
+        });
     }
 
     /**
@@ -47,8 +59,9 @@ public class Game {
      * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-
-        handleInput();
+        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
+            handleInput();
+        }
 
         // Will update the menu if it is active and pause the current scene.
         if (windowManager.getState() != null) {
@@ -63,12 +76,16 @@ public class Game {
     }
 
     private void handleInput() {
-        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU) && windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
+        if (gameInput.isKeyJustPressed(Actions.MENU)) {
             if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
             } else {
                 resume();
             }
+        }
+        if (gameInput.isKeyJustPressed(Actions.EXIT_MENU)) {
+            if (windowManager.getState() != null)
+                resume();
         }
     }
 

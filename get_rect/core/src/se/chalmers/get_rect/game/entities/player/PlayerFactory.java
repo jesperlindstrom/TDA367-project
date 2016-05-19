@@ -1,9 +1,7 @@
 package se.chalmers.get_rect.game.entities.player;
 
 import com.google.inject.Inject;
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
-import se.chalmers.get_rect.game.GameInput;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;

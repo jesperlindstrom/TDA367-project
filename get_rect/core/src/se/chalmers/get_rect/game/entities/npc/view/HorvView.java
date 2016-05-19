@@ -10,9 +10,9 @@ public class HorvView extends AbstractAnimatedView{
     private static final int SHOW_BEER = 2;
     private Horv model;
 
+
     public HorvView(Horv model) {
         super(model, DEFAULT);
-        this.model = model;
         super.setDrawOffset(new Point(0, -20));
         addAnimationFrame(DEFAULT, "img/entities/horv/horv1.png");
         addAnimationFrame(SHOW_BEER, "img/entities/horv/horv2.png");
