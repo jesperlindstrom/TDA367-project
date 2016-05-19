@@ -28,6 +28,7 @@ public class Keyboard {
         keys.put(Actions.CONFIRM, IKeyboardInputAdapter.Keys.ENTER);
         keys.put(Actions.MENU, IKeyboardInputAdapter.Keys.ESC);
         keys.put(Actions.EXIT_MENU, IKeyboardInputAdapter.Keys.SPACE);
+        keys.put(Actions.MUTE, IKeyboardInputAdapter.Keys.M);
     }
 
     public Point getMousePosition() {

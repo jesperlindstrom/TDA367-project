@@ -21,6 +21,9 @@ public class Game {
     @Inject private Player player;
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
+    @Inject private IAudioManagerAdapter audioManager;
+
+    private boolean muted = false;
 
     public void draw() {
         if (sceneManager.getState() != null) {
@@ -86,6 +89,15 @@ public class Game {
         if (gameInput.isKeyJustPressed(Actions.EXIT_MENU)) {
             if (windowManager.getState() != null)
                 resume();
+        }
+        if (gameInput.isKeyJustPressed(Actions.MUTE)) {
+            if (!muted) {
+                audioManager.mute();
+                muted = true;
+            } else {
+                audioManager.unmute();
+                muted = false;
+            }
         }
     }
 
