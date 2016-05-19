@@ -17,16 +17,22 @@ public class PlayerRepository {
     @Inject WeaponRepository weaponRepository;
     private static final String melee = "opsword";
     private static final String ranged = "pistol";
+    private static final String PATH = "data/savedData/";
+    private static final String  FILE = "playerSavedData.json";
 
     private IOFacade<PlayerDataStore> json;
 
     public PlayerRepository(){
-        json = new IOFacade<>("savedData/playerSavedData.json", PlayerDataStore.class);
+        json = new IOFacade<>(PATH + FILE, PlayerDataStore.class);
 
     }
 
 
     public void save() throws FileNotFoundException {
+        if (!hasFile()){
+            File theFile = new File(PATH);
+            theFile.mkdirs();
+        }
         List<PlayerDataStore> list = new ArrayList<>();
         PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
         list.add(dataStore);
@@ -35,6 +41,7 @@ public class PlayerRepository {
     }
 
     public void load() throws FileNotFoundException{
+        if (!hasFile()) throw new FileNotFoundException();
         PlayerDataStore data = json.load().get(0);
         player.setHasFoundHunch(data.isHasFoundHunch());
         player.setHealth(data.getHealth());
@@ -52,7 +59,7 @@ public class PlayerRepository {
         player.addNewWeapon(weaponRepository.getSingleWeapon(ranged, player));
     }
     public boolean hasFile(){
-        return new File("savedData/playerSavedData.json").isFile();
+        return new File(PATH + FILE).isFile();
     }
 
 }

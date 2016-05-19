@@ -27,7 +27,7 @@ public class JsonIOStrategy<T> implements IOStrategy<T> {
         Gson gson = new Gson();
         String s = gson.toJson(data);
 
-        File myFile = new File("savedData/playerSavedData.json");
+        File myFile = new File(file);
         try {
             myFile.createNewFile();
             FileOutputStream fOut = new FileOutputStream(myFile);

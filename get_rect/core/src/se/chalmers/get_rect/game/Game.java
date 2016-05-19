@@ -13,6 +13,7 @@ import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.game.entities.window.WindowFactory;
 import se.chalmers.get_rect.states.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.NoSuchFileException;
 
@@ -119,9 +120,7 @@ public class Game {
     }
 
     public void startNew() {
-        if (!playerRepository.hasFile()){
-               
-        }
+
         try {
             playerRepository.reset();
         } catch (FileNotFoundException e){
