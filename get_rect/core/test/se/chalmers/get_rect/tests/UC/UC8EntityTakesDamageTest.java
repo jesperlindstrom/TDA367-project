@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
+import se.chalmers.get_rect.game.entities.item.model.MeleeWeapon;
 import se.chalmers.get_rect.game.entities.item.swing.Swing;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
@@ -20,6 +21,7 @@ import se.chalmers.get_rect.physics.CollisionData;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class UC8EntityTakesDamageTest {
 
@@ -34,13 +36,14 @@ public class UC8EntityTakesDamageTest {
     public void setup() {
         IPhysicsModel owner = Mockito.mock(Player.class);
         Point point = Mockito.mock(Point.class);
+        when(owner.getPosition()).thenReturn(new Point(0,0));
         collision = Mockito.mock(CollisionData.class);
         IScene scene = Mockito.mock(TestScene.class);
         IRectangleFactoryAdapter rectangleFactory = new RectangleFactoryAdapterStub();
-        IMelee meleeWeapon = mock(IMelee.class);
-        this.target = new Zombie(point, rectangleFactory, target);
+        IMelee meleeWeapon = mock(MeleeWeapon.class);
+        this.target = new Zombie(point, rectangleFactory, owner);
         projectile = new Projectile(new Point(), new Point(), 10, rectangleFactory, owner);
-        swing = new Swing(10, 10, 10, 10, rectangleFactory, owner, meleeWeapon);
+        swing = new Swing(10,10,10,5, rectangleFactory,owner,meleeWeapon);
         scene.add(new Entity(projectile, null));
 
     }
