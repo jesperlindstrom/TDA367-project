@@ -7,9 +7,10 @@ import se.chalmers.get_rect.game.entities.window.model.AbstractGridModel;
 import se.chalmers.get_rect.utilities.Point;
 
 public class InGameMenuView extends AbstractView {
-    private static final Point CONTINUE = new Point(0 ,0);
-    private static final Point EXIT = new Point(0 ,1);
-    private Point offset = new Point(70, 240);
+    private static final Point CONTINUE = new Point(0, 0);
+    private static final Point SAVE = new Point(0, 1);
+    private static final Point EXIT = new Point(0, 2);
+    private Point offset = new Point(70, 300);
     private static final String IMG_PATH = "img/pauseMenu/";
     private ICamera camera;
     private AbstractGridModel model;
@@ -35,12 +36,13 @@ public class InGameMenuView extends AbstractView {
 
         //Buttons
         graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(menuPos, CONTINUE));
+        graphics.draw(IMG_PATH + "buttons/continue.png", getRealPosition(menuPos, SAVE));
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(menuPos, EXIT));
 
         graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(menuPos, model.getCurrentlyMarked()));
     }
 
     public Point getRealPosition(Point menuBoxPos, Point gridPosition) {
-        return menuBoxPos.add(offset).add(gridPosition.multiply(new Point(0, -170)));
+        return menuBoxPos.add(offset).add(gridPosition.multiply(new Point(0, -125)));
     }
 }

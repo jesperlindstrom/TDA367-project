@@ -6,7 +6,8 @@ public class InGameMenu extends AbstractGridModel {
     public InGameMenu(IGameControl game) {
         super();
         addToMap(0, 0, game::resume);
-        addToMap(0, 1, game::exit);
+        addToMap(0, 1, game::save);
+        addToMap(0, 2, game::exit);
     }
 
     @Override

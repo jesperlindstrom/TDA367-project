@@ -124,11 +124,6 @@ public abstract class AbstractScene implements IScene {
         setupDone = true;
         processAdditions();
         additions.clear();
-        try {
-            playerRepository.save();
-        } catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
-        }
 
     }
 

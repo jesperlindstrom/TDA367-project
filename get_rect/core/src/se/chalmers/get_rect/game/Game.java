@@ -125,7 +125,11 @@ public class Game {
     }
 
     public void save() {
-
+        try {
+            playerRepository.save();
+        } catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void resume() {
