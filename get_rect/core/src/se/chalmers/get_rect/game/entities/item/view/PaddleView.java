@@ -10,7 +10,7 @@ public class PaddleView extends AbstractMeleeWeaponView {
     private static final String imgPath = "img/items/";
 
     public PaddleView(IWeapon model) {
-        super(model, tilt, imgPath+"opaxe_icon.png");
+        super(model, tilt, imgPath+"paddle_icon.png");
     }
 
     @Override
