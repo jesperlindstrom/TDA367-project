@@ -14,13 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SceneLoader {
-    private IRepository worldObjectRepository;
-    private IRepository npcRepository;
-    private IRepository enemyRepository;
+    private IRepository<IPhysicsEntity> worldObjectRepository;
+    private IRepository<IPhysicsEntity> npcRepository;
+    private IRepository<IPhysicsEntity> enemyRepository;
     private OverlayFactory overlayFactory;
 
     @Inject
-    public SceneLoader(@Named("worldObject") IRepository worldObjectRepository, @Named("npc") IRepository npcRepository, @Named("enemy") IRepository enemyRepository, OverlayFactory overlayFactory) {
+    public SceneLoader(@Named("worldObject") IRepository<IPhysicsEntity> worldObjectRepository, @Named("npc") IRepository<IPhysicsEntity> npcRepository, @Named("enemy") IRepository<IPhysicsEntity> enemyRepository, OverlayFactory overlayFactory) {
         this.worldObjectRepository = worldObjectRepository;
         this.npcRepository = npcRepository;
         this.enemyRepository = enemyRepository;

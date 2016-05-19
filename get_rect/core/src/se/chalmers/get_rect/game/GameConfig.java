@@ -30,9 +30,6 @@ public class GameConfig {
     public static final boolean DRAW_BOUNDING_BOXES = false;
     public static final boolean SHOW_MOUSE_POS = true;
 
-    // Misc.
-    public static final boolean SPLASH_SCREEN_TROLL = false;
-
     //Music
     public static final boolean MUSIC_ON = true;
     //Sound
