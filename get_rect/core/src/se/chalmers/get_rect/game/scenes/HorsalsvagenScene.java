@@ -1,13 +1,14 @@
 package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 public class HorsalsvagenScene extends AbstractScene {
 
-    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader) {
-        super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneLoader);
+    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests) {
+        super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneLoader, quests);
     }
 
     @Override

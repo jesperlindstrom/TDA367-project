@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.game.entities;
 
-public interface IInteractableModel extends IPhysicsModel {
+import se.chalmers.get_rect.event.IEventSource;
+
+public interface IInteractableModel extends IPhysicsModel, IEventSource {
     void onInteract(IModel model);
     void showDialog(String text);
     String getDialog();

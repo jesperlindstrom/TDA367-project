@@ -114,7 +114,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     @Override
     protected void die(){
-
+        triggerEvent("player", "died");
     }
 
     public IInteractableModel getCurrentNpc(){

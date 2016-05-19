@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.entities.worldObjects.model;
 
+import se.chalmers.get_rect.game.entities.AbstractInteractableModel;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.AbstractPhysicsModel;
 import se.chalmers.get_rect.game.entities.IInteractableModel;
@@ -8,18 +9,13 @@ import se.chalmers.get_rect.states.IState;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Door extends AbstractPhysicsModel implements IInteractableModel {
+import java.util.Observable;
+import java.util.Observer;
 
+public class Door extends AbstractInteractableModel {
     private StateManager sceneManager;
     private int doorPath;
 
-    /**
-     * This will place a solid bounding box
-     * @param position The lower left corner of the boundingBox
-     * @param width The boundingBox width
-     * @param height The boundingBox height
-     * @param factory Factory needed to create a boundingBox for the boundingBox
-     */
     public Door(Point position, int width, int height, IRectangleFactoryAdapter factory, StateManager sceneManager, int doorPath) {
         super(position.addY((-height)), new Point(0, 0), true, factory);
         setBoundingBox(width, height);
@@ -37,29 +33,9 @@ public class Door extends AbstractPhysicsModel implements IInteractableModel {
         // Do nothing. We don't want gravity applied to this object.
     }
 
-
     @Override
     public void onInteract(IModel model) {
+        triggerEvent("door", "interacted", doorPath);
         sceneManager.set(doorPath);
-    }
-
-    @Override
-    public void showDialog(String text) {
-
-    }
-
-    @Override
-    public String getDialog() {
-        return null;
-    }
-
-    @Override
-    public boolean isDialogVisible() {
-        return false;
-    }
-
-    @Override
-    public void nextDialog() {
-        //do nothing on standard
     }
 }

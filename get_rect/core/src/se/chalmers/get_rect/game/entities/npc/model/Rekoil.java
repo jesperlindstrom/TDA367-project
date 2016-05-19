@@ -4,7 +4,7 @@ import se.chalmers.get_rect.game.entities.IRepository;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
-import se.chalmers.get_rect.game.quests.QuestState;
+import se.chalmers.get_rect.game.quests.data.QuestState;
 import se.chalmers.get_rect.utilities.Point;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
