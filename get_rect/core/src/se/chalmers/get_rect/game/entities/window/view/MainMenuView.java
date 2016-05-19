@@ -15,7 +15,7 @@ public class MainMenuView extends AbstractView {
     private static final int DRAW_PRIORITY = 7;
 
     private ICamera camera;
-    private AbstractGridModel model;
+    private MainMenu model;
 
     public MainMenuView(MainMenu model, ICamera camera) {
         this.camera = camera;
@@ -42,7 +42,9 @@ public class MainMenuView extends AbstractView {
         graphics.draw(IMG_PATH + "main_menu.png", cameraPos);
 
         //Buttons
-        graphics.draw(IMG_PATH + "buttons/continue.png", getRealPosition(CONTINUE));
+        if (model.isContinueAvailable()) {
+            graphics.draw(IMG_PATH + "buttons/continue.png", getRealPosition(CONTINUE));
+        }
         graphics.draw(IMG_PATH + "buttons/new_game.png", getRealPosition(NEW_GAME));
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(EXIT));
 

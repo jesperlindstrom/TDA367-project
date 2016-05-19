@@ -2,15 +2,15 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.window.model.AbstractGridModel;
+import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 public class HorsalsvagenScene extends AbstractScene {
 
-    public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
-        super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager);
+        public HorsalsvagenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager, PlayerRepository playerRepository) {
+        super("horsalsvagen", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager , playerRepository);
     }
 
     @Override

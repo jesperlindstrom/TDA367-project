@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.overlays;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.item.ItemFactory;
+import se.chalmers.get_rect.game.entities.item.WeapomFactory;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;
 import se.chalmers.get_rect.game.entities.overlays.view.*;
 import se.chalmers.get_rect.game.entities.overlays.model.Debug;
@@ -17,7 +17,7 @@ public class OverlayFactory {
     @Inject private Player player;
     @Inject private ICamera camera;
     @Inject private GameInput gameInput;
-    @Inject private ItemFactory itemFactory;
+    @Inject private WeapomFactory weapomFactory;
     private List<IModel> models;
     private IPhysicsEngine physics;
 
@@ -61,7 +61,7 @@ public class OverlayFactory {
     }
 
     private IEntity makePlayerWeaponSlot() {
-        IView view = new PlayerWeaponSlotsView(player, camera, itemFactory);
+        IView view = new PlayerWeaponSlotsView(player, camera, weapomFactory);
         return new Entity(null, view);
     }
 

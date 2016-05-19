@@ -13,7 +13,7 @@
 .idea/jsLibraryMappings.xml
 .idea
 *.ipr
-
+savedData/
 # Sensitive or high-churn files:
 .idea/dataSources.ids
 .idea/dataSources.xml
