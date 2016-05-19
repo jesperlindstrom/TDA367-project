@@ -29,9 +29,9 @@ public class ItemFactory {
         switch (model.getType()) {
             case "pistol" : return new PistolView(model, audioManager);
             case "opsword" : return new OpSwordView(model, audioManager);
-            case "opaxe" : return new OpAxeView(model);
+            case "opaxe" : return new OpAxeView(model, audioManager);
             case "lasersword" : return new LaserSwordView(model, audioManager);
-            case "paddle" : return new PaddleView(model);
+            case "paddle" : return new PaddleView(model, audioManager);
         }
         throw new RuntimeException("You done fucked up..  Weapon model didn't have a corresponding view");
     }

@@ -10,7 +10,6 @@ import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 
 public class ZombieView extends AbstractAnimatedView implements IEventListener {
     private static final int WALKING = 1;
-    private static final int DEAD = 2;
     private IAudioManagerAdapter audioManager;
 
     public ZombieView(Zombie model, IAudioManagerAdapter audioManager){
