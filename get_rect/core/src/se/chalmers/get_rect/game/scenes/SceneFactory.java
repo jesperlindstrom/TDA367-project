@@ -13,7 +13,6 @@ public class SceneFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private ICamera camera;
     @Inject private SceneLoader sceneLoader;
-    @Inject private IAssetManagerAdapter assetManager;
     @Inject private QuestManager quests;
 
     public IScene make(String name) {

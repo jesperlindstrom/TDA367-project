@@ -10,6 +10,7 @@ import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.window.model.IGameControl;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectRepository;
 import se.chalmers.get_rect.game.input.GameInput;
+import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.states.StateManager;
@@ -21,12 +22,14 @@ public class GameModule extends AbstractModule {
     private EntityCamera camera;
     private IGameControl game;
     private GameInput gameInput;
+    private QuestManager questManager;
 
-    public GameModule(IPhysicsEntity playerEntity, EntityCamera camera, IGameControl game, GameInput gameInput) {
+    public GameModule(IPhysicsEntity playerEntity, EntityCamera camera, IGameControl game, GameInput gameInput, QuestManager questManager) {
         this.playerEntity = playerEntity;
         this.camera = camera;
         this.game = game;
         this.gameInput = gameInput;
+        this.questManager = questManager;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class GameModule extends AbstractModule {
         bind(ICamera.class).toInstance(camera);
         bind(EntityCamera.class).toInstance(camera);
         bind(IGameControl.class).toInstance(game);
+        bind(QuestManager.class).toInstance(questManager);
 
         // SceneManager and WindowManager
         StateManager<IScene> sceneManager = new StateManager<>();
@@ -50,7 +54,6 @@ public class GameModule extends AbstractModule {
         bind(StateManager.class).annotatedWith(Names.named("Window")).toInstance(windowManager);
 
         // Repositories
-
         TypeLiteral repository = new TypeLiteral<IRepository<IPhysicsEntity>>() {};
         bind(repository).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
         bind(repository).annotatedWith(Names.named("npc")).to(NpcRepository.class);

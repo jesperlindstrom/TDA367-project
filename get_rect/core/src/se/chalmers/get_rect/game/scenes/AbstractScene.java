@@ -126,7 +126,10 @@ public abstract class AbstractScene implements IScene {
      */
     @Override
     public void leavingState(Integer nextStateName) {
-
+        // Remove quest manager from entities
+        models.stream()
+            .filter(model -> model instanceof IEventSource)
+            .forEach(model -> ((IEventSource) model).removeListener(quests));
     }
 
     private void setupEntities() {
