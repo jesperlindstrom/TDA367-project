@@ -8,4 +8,5 @@ public interface IAudioManagerAdapter {
     void unmute();
     void stopMusic(String soundName);
     void playSound(String soundName, float volume);
+    void panSound(String soundName, float panning, float volume);
 }

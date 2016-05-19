@@ -58,6 +58,15 @@ public class LibGDXAudioManager implements IAudioManagerAdapter{
         file.play();
 
     }
+
+    @Override
+    public void panSound(String soundName, float panning, float volume) {
+        if (soundList.get(soundName) == null) {
+            return;
+        }
+        soundList.get(soundName).setPan(soundList.get(soundName).play(), panning, volume);
+    }
+
     public void playSound(String soundName) {
         playSound(soundName, 1f);
     }

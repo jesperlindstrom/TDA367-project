@@ -34,8 +34,6 @@ public class Pistol extends AbstractRangedWeapon implements IRanged {
         if (getAimDirection().getY() != 0) {
             offset = offset.addX(getAimDirection().getY() < 0 ? 25 : -25 * getFacing());
         }
-
         return new Point(offset.add(getAimDirection().multiply(50)));
     }
-
 }

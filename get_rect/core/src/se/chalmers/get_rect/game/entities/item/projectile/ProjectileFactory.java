@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game.entities.item.projectile;
 
 import com.google.inject.Inject;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
