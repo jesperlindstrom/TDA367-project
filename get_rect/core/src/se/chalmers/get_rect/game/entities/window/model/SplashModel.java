@@ -14,7 +14,6 @@ public class SplashModel {
     private double progressValue = 0.0;
     private boolean stop = false;
     private boolean didStop = false;
-    private int stopTimer = 0;
 
     public SplashModel(IAssetManagerAdapter assetManager, StateManager<? extends IState> windowManager) {
         this.assetManager = assetManager;
@@ -38,6 +37,7 @@ public class SplashModel {
     }
 
     public void update(double delta) {
+        int stopTimer = 0;
         if (assetManager.update() && !addedAssets) {
             addedAssets = true;
             loadAssets();

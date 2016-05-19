@@ -34,7 +34,7 @@ public class GameConfig {
     public static final boolean SPLASH_SCREEN_TROLL = false;
 
     //Music
-    public static final boolean MUSIC_ON = false;
+    public static final boolean MUSIC_ON = true;
     //Sound
-    public static final boolean SOUND_ON = false;
+    public static final boolean SOUND_ON = true;
 }

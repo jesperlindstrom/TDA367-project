@@ -13,7 +13,6 @@ public class Hunchen extends AbstractNPCModel {
 
     private Player player;
     private int speed;
-    private int oldX;
     private boolean init = false;
     private boolean stop;
 
@@ -22,8 +21,6 @@ public class Hunchen extends AbstractNPCModel {
         this.player = player;
         setBoundingBox(81, 51);
         speed = 30;
-        oldX = getPosition().getX();
-
     }
 
     @Override
