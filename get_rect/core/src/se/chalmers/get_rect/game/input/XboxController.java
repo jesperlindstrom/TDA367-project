@@ -28,6 +28,7 @@ public class XboxController {
         keys.put(Actions.CONFIRM, IControllerInputAdapter.Keys.A);
         keys.put(Actions.MENU, IControllerInputAdapter.Keys.START);
         keys.put(Actions.EXIT_MENU, IControllerInputAdapter.Keys.B);
+        keys.put(Actions.RESPAWN, IControllerInputAdapter.Keys.BACK);
     }
 
     public boolean isKeyPressed(Actions key) {

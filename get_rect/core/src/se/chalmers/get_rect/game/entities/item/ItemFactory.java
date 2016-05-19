@@ -18,7 +18,7 @@ public class ItemFactory {
             case "pistol" : return new Pistol(model, projectileFactory, damage, speed, cooldown);
             case "opsword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown);
             case "opaxe" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees);
-            case "lasersword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown);
+            case "lasersword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees);
         }
         throw new EntityNotFoundException("item", type);
     }

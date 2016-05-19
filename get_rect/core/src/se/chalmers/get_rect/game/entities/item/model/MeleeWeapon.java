@@ -21,7 +21,7 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
         this.height = height;
         this.damage = damage;
         this.cooldown = cooldown;
-        this.swingDegrees = swingDegrees;
+        this.swingDegrees = swingDegrees == 0 ? 90f : swingDegrees;
         this.swingFactory = swingFactory;
     }
 

@@ -102,7 +102,7 @@ public class Xbox {
             DPAD_DOWN = 52;
             DPAD_RIGHT = 53;
             DPAD_LEFT = 54;
-            L_TRIGGER = 4;
+            L_TRIGGER = 2;
             R_TRIGGER = 5;
             L_STICK_VERTICAL_AXIS = 1;
             L_STICK_HORIZONTAL_AXIS = 0;

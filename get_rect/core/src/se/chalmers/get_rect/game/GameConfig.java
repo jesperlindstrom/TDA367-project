@@ -23,7 +23,7 @@ public class GameConfig {
     public static final boolean DISABLE_ALL = true;
 
 
-    public static final boolean PRINT_CONTROLLERVALUES = false;
+    public static final boolean PRINT_CONTROLLERVALUES = true;
     public static final boolean SHOW_LOWESTFPS = true;
     public static final boolean SHOW_DELTA = true;
     public static final boolean SHOW_POS = true;

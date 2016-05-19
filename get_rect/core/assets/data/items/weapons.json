@@ -120,7 +120,8 @@
     "width" : 175,
     "height" : 150,
     "damage" : 10,
-    "cooldown": 20
+    "cooldown" : 30,
+    "swingDegrees" : 360
   }
 
 ]
