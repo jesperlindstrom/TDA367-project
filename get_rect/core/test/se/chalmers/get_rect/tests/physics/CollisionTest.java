@@ -1,12 +1,12 @@
-package se.chalmers.get_rect.physics;
+package se.chalmers.get_rect.tests.physics;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import se.chalmers.get_rect.adapters.RectangleAdapterStub;
+import se.chalmers.get_rect.physics.CollisionData;
+import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.CollisionData;
 
 import static org.mockito.Mockito.*;
 

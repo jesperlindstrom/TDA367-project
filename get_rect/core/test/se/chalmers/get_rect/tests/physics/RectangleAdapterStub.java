@@ -1,8 +1,8 @@
-package se.chalmers.get_rect.adapters;
+package se.chalmers.get_rect.tests.physics;
 
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.CollisionData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 public class RectangleAdapterStub implements IRectangleAdapter {
     public RectangleAdapterStub(float x, float y, float width, float height) {

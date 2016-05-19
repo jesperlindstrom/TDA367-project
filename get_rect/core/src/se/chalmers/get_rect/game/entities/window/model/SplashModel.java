@@ -12,8 +12,6 @@ public class SplashModel {
     private StateManager<? extends IState> windowManager;
     private boolean addedAssets = false;
     private double progressValue = 0.0;
-    private boolean stop = false;
-    private boolean didStop = false;
 
     public SplashModel(IAssetManagerAdapter assetManager, StateManager<? extends IState> windowManager) {
         this.assetManager = assetManager;
@@ -37,7 +35,6 @@ public class SplashModel {
     }
 
     public void update(double delta) {
-        int stopTimer = 0;
         if (assetManager.update() && !addedAssets) {
             addedAssets = true;
             loadAssets();
@@ -45,37 +42,13 @@ public class SplashModel {
 
         if (progressValue < 1.0) {
             progressValue = assetManager.getProgress();
-        } else if (progressValue >= 4.35) {
+        } else if (progressValue >= 1.0) {
             windowManager.set(GameConfig.MAIN_MENU);
-        } else if (progressValue >= 1.0 && didStop) {
-            progressValue += 0.015;
-            stop = false;
-        } else if (progressValue >= 1.0 && !didStop) {
-            if (!GameConfig.SPLASH_SCREEN_TROLL) {
-                windowManager.set(GameConfig.MAIN_MENU);
-                return;
-            }
-
-            stop = true;
-            stopTimer++;
-
-            if (stopTimer == 100) {
-                stop = false;
-                didStop = true;
-            }
         }
     }
 
     public double getProgressValue() {
         return progressValue;
-    }
-
-    public boolean getStop() {
-        return stop;
-    }
-
-    public boolean getDidStop() {
-        return didStop;
     }
 
     public boolean getAddedAssets() {

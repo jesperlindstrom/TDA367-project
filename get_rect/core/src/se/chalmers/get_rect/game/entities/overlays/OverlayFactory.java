@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.entities.overlays;
 
 import com.google.inject.Inject;
-import se.chalmers.get_rect.game.GameInput;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.overlays.model.CombatList;

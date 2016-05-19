@@ -1,4 +1,6 @@
-package se.chalmers.get_rect.states;
+package se.chalmers.get_rect.tests.states;
+
+import se.chalmers.get_rect.states.IState;
 
 public class StateStub implements IState {
 

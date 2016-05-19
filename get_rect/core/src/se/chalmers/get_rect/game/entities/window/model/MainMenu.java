@@ -1,12 +1,11 @@
 package se.chalmers.get_rect.game.entities.window.model;
 
-import se.chalmers.get_rect.game.IGame;
 import se.chalmers.get_rect.utilities.Point;
 
 public class MainMenu extends AbstractGridModel {
     private boolean continueAvailable;
 
-    public MainMenu(IGame game) {
+    public MainMenu(IGameControl game) {
         if (game.loadAvailable()) {
             addToMap(0, 0, game::load);
             continueAvailable = true;

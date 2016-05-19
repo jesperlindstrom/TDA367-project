@@ -1,7 +1,8 @@
-package se.chalmers.get_rect.utilities;
+package se.chalmers.get_rect.tests.utilities;
 
 import org.junit.Before;
 import org.junit.Test;
+import se.chalmers.get_rect.utilities.Point;
 
 import static org.junit.Assert.*;
 

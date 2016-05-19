@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.physics;
 
-import se.chalmers.get_rect.utilities.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 public interface IRectangleAdapter {

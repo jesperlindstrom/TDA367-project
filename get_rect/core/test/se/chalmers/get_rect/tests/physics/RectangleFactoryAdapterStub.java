@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.adapters;
+package se.chalmers.get_rect.tests.physics;
 
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;

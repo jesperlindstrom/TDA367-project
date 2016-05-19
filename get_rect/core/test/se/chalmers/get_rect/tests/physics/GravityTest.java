@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.physics;
+package se.chalmers.get_rect.tests.physics;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,11 +8,11 @@ import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 
 import org.mockito.Mockito;
-import se.chalmers.get_rect.adapters.RectangleAdapterStub;
+import se.chalmers.get_rect.physics.CollisionData;
+import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
-import se.chalmers.get_rect.utilities.CollisionData;
 
 public class GravityTest {
     private IPhysicsEngine engine;
@@ -51,14 +51,16 @@ public class GravityTest {
         CollisionData rectCollision2 = new CollisionData();
         rectCollision1.set(Side.BOTTOM);
         rectCollision2.set(Side.TOP);
+        rectCollision1.setSolidOverlap(new RectangleAdapterStub(0, 0, 0, 50));
+        rectCollision2.setSolidOverlap(new RectangleAdapterStub(0, 0, 0, 50));
         when(rect1.intersects(rect2)).thenReturn(rectCollision1);
         when(rect2.intersects(rect1)).thenReturn(rectCollision2);
-        when(entity.getBoundingBox()).thenCallRealMethod();
-        when(ground.getBoundingBox()).thenCallRealMethod();
         Mockito.doCallRealMethod().when(entity).setBoundingBox(Mockito.any(RectangleAdapterStub.class));
         Mockito.doCallRealMethod().when(ground).setBoundingBox(Mockito.any(RectangleAdapterStub.class));
         entity.setBoundingBox(rect1);
         ground.setBoundingBox(rect2);
+        Mockito.doCallRealMethod().when(entity).getBoundingBox();
+        Mockito.doCallRealMethod().when(ground).getBoundingBox();
 
         // Make sure we can set velocity and position
         Mockito.doCallRealMethod().when(entity).getVelocity();

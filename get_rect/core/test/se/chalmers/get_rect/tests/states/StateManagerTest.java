@@ -1,7 +1,10 @@
-package se.chalmers.get_rect.states;
+package se.chalmers.get_rect.tests.states;
 
 import org.junit.Before;
 import org.junit.Test;
+import se.chalmers.get_rect.states.StateManager;
+import se.chalmers.get_rect.states.StateNotFoundException;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 

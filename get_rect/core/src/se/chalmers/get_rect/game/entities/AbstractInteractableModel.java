@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.CollisionData;
+import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.StringWrapper;
 
 public abstract class AbstractInteractableModel extends AbstractPhysicsModel implements IInteractableModel {

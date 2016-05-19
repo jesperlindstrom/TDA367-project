@@ -2,6 +2,8 @@ package se.chalmers.get_rect.game;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.game.input.Actions;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.SceneFactory;
@@ -64,14 +66,14 @@ public class Game {
     }
 
     private void handleInput() {
-        if (gameInput.isKeyJustPressed(GameInput.Actions.MENU)) {
+        if (gameInput.isKeyJustPressed(Actions.MENU)) {
             if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
             } else {
                 resume();
             }
         }
-        if (gameInput.isKeyJustPressed(GameInput.Actions.EXIT_MENU)) {
+        if (gameInput.isKeyJustPressed(Actions.EXIT_MENU)) {
             if (windowManager.getState() != null)
                 resume();
         }

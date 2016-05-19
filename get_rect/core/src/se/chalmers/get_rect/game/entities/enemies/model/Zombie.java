@@ -5,7 +5,7 @@ import se.chalmers.get_rect.game.entities.AbstractCombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.CollisionData;
+import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.Random;

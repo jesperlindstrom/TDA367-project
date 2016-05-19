@@ -1,9 +1,9 @@
-package se.chalmers.get_rect.UC;
+package se.chalmers.get_rect.tests.UC;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
+import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
 import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;

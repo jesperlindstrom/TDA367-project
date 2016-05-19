@@ -22,6 +22,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
     private static final int R_HORIZONTAL = Xbox.R_STICK_HORIZONTAL_AXIS;
     private static final int L_TRIGGER = Xbox.L_TRIGGER;
     private static final int R_TRIGGER = Xbox.R_TRIGGER;
+    private static final float SENSITIVITY = 0.8f;
 
     public LibGDXControllerInputAdapter() {
         controller = getXboxController();
@@ -165,13 +166,13 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
         if (axisIndex == R_VERTICAL) {
             rightStick = rightStick.normalize(rightStick.getX(), value);
         }
-        downMap.put(getAxisIndex(axisIndex, value), Math.abs(value) > 0.7);
-        releasedMap.put(getAxisIndex(axisIndex, value), Math.abs(value) > 0.7);
+        downMap.put(getAxisIndex(axisIndex, value), Math.abs(value) > SENSITIVITY);
+        releasedMap.put(getAxisIndex(axisIndex, value), Math.abs(value) > SENSITIVITY);
         return super.axisMoved(controller, axisIndex, value);
     }
 
     private int getAxisIndex(int axisIndex, float value) {
-        if (!GameConfig.DISABLE_ALL && GameConfig.PRINT_CONTROLLERVALUES && Math.abs(value) > 0.7)System.out.println("Axis index = " + axisIndex);
+        if (!GameConfig.DISABLE_ALL && GameConfig.PRINT_CONTROLLERVALUES && Math.abs(value) > SENSITIVITY)System.out.println("Axis index = " + axisIndex);
         int index = -1;
         if (axisIndex == L_HORIZONTAL) {
             index = value < 0 ? keyMap.get(Keys.L_LEFT) : keyMap.get(Keys.L_RIGHT);
@@ -185,11 +186,14 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
         if (axisIndex == R_VERTICAL) {
             index = value < 0 ? keyMap.get(Keys.R_DOWN) : keyMap.get(Keys.R_UP);
         }
-        if (axisIndex == R_TRIGGER) {
-            index = value > 0 ? keyMap.get(Keys.R_TRIGGER) : R_TRIGGER == L_TRIGGER ? keyMap.get(Keys.L_TRIGGER) : -1;
-        }
-        if (axisIndex == L_TRIGGER) {
-            index = value > 0 ? keyMap.get(Keys.L_TRIGGER) : R_TRIGGER == L_TRIGGER ? keyMap.get(Keys.R_TRIGGER) : -1;
+        if (L_TRIGGER == R_TRIGGER && R_TRIGGER == axisIndex) {
+            System.out.println(value);
+            index = value > 0 ? keyMap.get(Keys.R_TRIGGER) : keyMap.get(Keys.L_TRIGGER);
+        } else {
+            if (axisIndex == R_TRIGGER)
+                index = value > -SENSITIVITY ? keyMap.get(Keys.R_TRIGGER) : -1;
+            if (axisIndex == L_TRIGGER)
+                index = value > -SENSITIVITY ? keyMap.get(Keys.L_TRIGGER) : -1;
         }
         return index;
     }
