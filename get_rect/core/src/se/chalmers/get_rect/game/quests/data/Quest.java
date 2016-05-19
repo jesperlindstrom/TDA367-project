@@ -23,7 +23,7 @@ public class Quest implements IQuest {
         if (state.equals(QuestState.COMPLETED))
             return;
 
-        for ()
+        //for ()
         checkObjectives();
     }
 
