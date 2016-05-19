@@ -1,13 +1,10 @@
-package se.chalmers.get_rect.adapters;
+package se.chalmers.get_rect.tests.combat;
 
 import se.chalmers.get_rect.game.entities.IEntityHolder;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
 import se.chalmers.get_rect.utilities.Point;
 
-/**
- * Created by Simon on 16-05-19.
- */
-public class MeleeStud implements IMelee {
+public class MeleeStub implements IMelee {
     @Override
     public float getSwingDegrees() {
         return 0;

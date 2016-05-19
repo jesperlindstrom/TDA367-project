@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.CollisionData;
+import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 public class Player extends AbstractCombatModel implements IInteractorModel {

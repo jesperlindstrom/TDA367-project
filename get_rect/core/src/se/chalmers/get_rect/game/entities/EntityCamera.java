@@ -11,7 +11,7 @@ import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.utilities.Point;
 
-public class EntityCamera implements IGameComponent, ICamera {
+public class EntityCamera implements ICamera {
     private static final int FOLLOW_SPEED = 50;
     private static final int SPAN_X = 350;
     private static final int SPAN_Y = 200;
@@ -26,7 +26,6 @@ public class EntityCamera implements IGameComponent, ICamera {
         cameraPos = new Point(0, 0);
     }
 
-    @Override
     public void draw(IGraphicsAdapter graphics) {
         cameraAdapter.draw(graphics);
     }
@@ -36,7 +35,6 @@ public class EntityCamera implements IGameComponent, ICamera {
         return cameraPos.subtract((int)cameraAdapter.getWidth() / 2, (int)cameraAdapter.getHeight() / 2);
     }
 
-    @Override
     public void update(double delta) {
         Point entityPosition = model.getPosition().addY(100);
         Point entityVelocity = model.getVelocity();

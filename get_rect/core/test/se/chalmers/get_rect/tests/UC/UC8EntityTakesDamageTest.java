@@ -1,37 +1,25 @@
-package se.chalmers.get_rect.UC;
+package se.chalmers.get_rect.tests.UC;
 
-import com.google.inject.Inject;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import se.chalmers.get_rect.adapters.MeleeStud;
 import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.item.ItemFactory;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
-import se.chalmers.get_rect.game.entities.item.model.MeleeWeapon;
-import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.entities.item.swing.ISwinger;
 import se.chalmers.get_rect.game.entities.item.swing.Swing;
-import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
-import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
+import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.ICombatModel;
-import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.item.projectile.Projectile;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.TestScene;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.CollisionData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockingDetails;
-import static org.mockito.Mockito.when;
 
 public class UC8EntityTakesDamageTest {
 

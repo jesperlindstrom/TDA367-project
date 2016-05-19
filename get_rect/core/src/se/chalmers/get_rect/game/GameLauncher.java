@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.EntityCamera;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 

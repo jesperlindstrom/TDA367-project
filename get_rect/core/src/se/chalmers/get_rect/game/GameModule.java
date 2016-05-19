@@ -8,6 +8,7 @@ import se.chalmers.get_rect.game.entities.enemies.EnemyRepository;
 import se.chalmers.get_rect.game.entities.npc.NpcRepository;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectRepository;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.states.StateManager;

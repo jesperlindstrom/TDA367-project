@@ -2,7 +2,7 @@ package se.chalmers.get_rect.physics.frostbite;
 
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.CollisionData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 import java.util.ArrayList;
 import java.util.List;

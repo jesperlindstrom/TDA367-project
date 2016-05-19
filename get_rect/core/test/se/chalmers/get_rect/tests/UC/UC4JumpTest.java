@@ -1,10 +1,10 @@
-package se.chalmers.get_rect.UC;
+package se.chalmers.get_rect.tests.UC;
 
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.adapters.RectangleFactoryAdapterStub;
+import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.player.Player;
 
 public class UC4JumpTest {

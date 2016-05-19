@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.entities.overlays.model;
 
 import se.chalmers.get_rect.adapters.ICameraAdapter;
-import se.chalmers.get_rect.game.GameInput;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.AbstractModel;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;

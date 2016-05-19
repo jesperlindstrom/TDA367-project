@@ -1,10 +1,7 @@
-package se.chalmers.get_rect.utilities;
+package se.chalmers.get_rect.physics;
 
 
-import se.chalmers.get_rect.physics.IRectangleAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import se.chalmers.get_rect.utilities.Side;
 
 public class CollisionData {
     private boolean top;

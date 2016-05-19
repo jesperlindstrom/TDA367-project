@@ -7,7 +7,7 @@ import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.CollisionData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 public class Hunchen extends AbstractNPCModel {
 

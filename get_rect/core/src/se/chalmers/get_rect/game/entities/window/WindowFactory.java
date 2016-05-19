@@ -3,7 +3,7 @@ package se.chalmers.get_rect.game.entities.window;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.game.IGame;
-import se.chalmers.get_rect.game.GameInput;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.EntityNotFoundException;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IView;
