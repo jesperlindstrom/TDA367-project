@@ -17,7 +17,6 @@ public class SawmillExpress extends AbstractNPCModel {
     private final int width;
     private final int height;
     private boolean isFlying = false;
-    private IRepository<String> dialogRepository;
     private List<String> dialogList;
     private Random r;
 
@@ -27,7 +26,6 @@ public class SawmillExpress extends AbstractNPCModel {
         this.width = width;
         this.height = height;
         setBoundingBox(this.width, this.height);
-        this.dialogRepository = dialogRepository;
 
         r = new Random();
         dialogList = new ArrayList<>();

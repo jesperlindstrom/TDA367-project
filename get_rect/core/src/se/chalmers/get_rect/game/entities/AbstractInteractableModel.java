@@ -10,7 +10,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     private IModel model;
     private static final int DISTANCE = 150;
     private boolean showDialog;
-    private String dialog;
     private String[] wrappedDialog;
     private StringWrapper wrapper;
     private int dialogIndex;
@@ -31,7 +30,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
 
     @Override
     public void showDialog(String message) {
-        dialog = message;
         if (message != null && !isDialogVisible()) {
             wrappedDialog = wrapper.wrap(message);
             dialogIndex = 0;

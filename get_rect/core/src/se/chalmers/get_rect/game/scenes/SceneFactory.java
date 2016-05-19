@@ -12,7 +12,6 @@ public class SceneFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private ICamera camera;
     @Inject private SceneLoader sceneLoader;
-    @Inject private IAssetManagerAdapter assetManager;
 
     public IScene make(String name) {
         if (name.equals("horsalsvagen"))
@@ -28,7 +27,7 @@ public class SceneFactory {
     }
 
     private IScene makeHorsalsvagen() {
-        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneLoader, assetManager);
+        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneLoader);
     }
 
     private IScene makeTest() {
