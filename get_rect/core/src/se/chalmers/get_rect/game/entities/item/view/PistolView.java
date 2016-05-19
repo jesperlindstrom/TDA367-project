@@ -1,34 +1,29 @@
 package se.chalmers.get_rect.game.entities.item.view;
 
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.ISoundAdapter;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
 public class PistolView extends AbstractRangedWeaponView {
     private static final String path = "img/items/";
     private static final int DRAW_PRIORITY = 6;
-    private ISoundAdapter bulletSound;
-    private IAssetManagerAdapter assetManager;
+    private IAudioManagerAdapter audioManager;
 
-    public PistolView(IWeapon model, IAssetManagerAdapter assetManager) {
+    public PistolView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, path + "pistol_icon.png");
-        this.assetManager = assetManager;
+        this.audioManager = audioManager;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        if (bulletSound == null) {
-            bulletSound = assetManager.getSound("sounds/bulletSound.mp3");
-        }
 
         String imgPath;
         if (getModel().getUsedFrames() == 0) {
             imgPath = path + "pistol.png";
         } else {
             imgPath = path + "pistolPANG.png";
-            bulletSound.play(0.5f);
+            audioManager.playMusic("pistol" ,0.5f);
         }
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
 

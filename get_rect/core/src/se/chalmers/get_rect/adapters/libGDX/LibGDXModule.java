@@ -22,5 +22,6 @@ public class LibGDXModule extends AbstractModule {
         bind(IControllerInputAdapter.class).to(LibGDXControllerInputAdapter.class);
         bind(IRectangleFactoryAdapter.class).to(LibGDXRectangleFactoryAdapter.class);
         bind(IGameLoopAdapter.class).toInstance(gameLoopAdapter);
+        bind(IAudioManagerAdapter.class).toInstance(new LibGDXAudioManager(assetManager));
     }
 }

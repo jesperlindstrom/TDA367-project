@@ -31,12 +31,11 @@ public class GameModule extends AbstractModule {
         bind(IPhysicsEntity.class).annotatedWith(Names.named("Player")).toInstance(playerEntity);
         bind(IPhysicsModel.class).annotatedWith(Names.named("Player")).toInstance(playerEntity.getModel());
         bind(Player.class).toInstance((Player) playerEntity.getModel());
-        bind(GameInput.class).toInstance(gameInput);
 
+        bind(GameInput.class).toInstance(gameInput);
         bind(ICamera.class).toInstance(camera);
         bind(EntityCamera.class).toInstance(camera);
         bind(IGame.class).toInstance(game);
-
 
         // SceneManager and WindowManager
         StateManager<IScene> sceneManager = new StateManager<>();
@@ -50,5 +49,6 @@ public class GameModule extends AbstractModule {
         bind(IRepository.class).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
         bind(IRepository.class).annotatedWith(Names.named("npc")).to(NpcRepository.class);
         bind(IRepository.class).annotatedWith(Names.named("enemy")).to(EnemyRepository.class);
+
     }
 }

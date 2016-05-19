@@ -6,8 +6,6 @@ public interface IAssetManagerAdapter {
     void loadTexture(String path);
     void loadSound(String path);
     void loadMusic(String path);
-    ISoundAdapter getSound(String path);
-    IMusicAdapter getMusic(String path);
     boolean update();
     float getProgress();
     void dispose();

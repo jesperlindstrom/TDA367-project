@@ -38,14 +38,12 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
         manager.load(path, Music.class);
     }
 
-    @Override
-    public ISoundAdapter getSound(String path) {
-        return new LibGDXSoundAdapter(manager.get(path, Sound.class));
+    public Sound getSound(String path) {
+        return manager.get(path, Sound.class);
     }
 
-    @Override
-    public IMusicAdapter getMusic(String path) {
-        return new LibGDXMusicAdapter(manager.get(path, Music.class));
+    public Music getMusic(String path) {
+        return manager.get(path, Music.class);
     }
 
     @Override
