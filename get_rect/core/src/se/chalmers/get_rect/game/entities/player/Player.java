@@ -174,4 +174,5 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     public void setHasFoundHunch(boolean hasFoundHunch) {
         this.hasFoundHunch = hasFoundHunch;
     }
+
 }
