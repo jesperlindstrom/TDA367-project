@@ -3,37 +3,41 @@ package se.chalmers.get_rect.game.entities.item.view;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.adapters.ISoundAdapter;
-import se.chalmers.get_rect.game.entities.item.model.IRanged;
+import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
 public class PistolView extends AbstractRangedWeaponView {
-
-    private static final float scale = 0.2f;
-    private static final int DRAW_PRIO = 6;
+    private static final String path = "img/items/";
+    private static final int DRAW_PRIORITY = 6;
     private ISoundAdapter bulletSound;
+    private IAssetManagerAdapter assetManager;
 
-
-    public PistolView(IRanged model, IAssetManagerAdapter assetManager) {
-        super(model);
-        //bulletSound = assetManager.getSound("music/bulletSound.mp3");
-
+    public PistolView(IWeapon model, IAssetManagerAdapter assetManager) {
+        super(model, path + "pistol_icon.png");
+        this.assetManager = assetManager;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        String imgPath;
-        if (getModel().getUsedFrames() == 0) {
-            imgPath = "img/items/potistol.png";
-        } else {
-            imgPath = "img/items/potistolPANG.png";
+        if (bulletSound == null) {
+            bulletSound = assetManager.getSound("sounds/bulletSound.mp3");
         }
-        graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(scale), getYScale(scale), getRotation());
-        super.draw(graphics);
-        //bulletSound.play();
+
+        String imgPath;
+        if (getModel().getCooldownFrames() != 0 && getModel().getCooldownFrames() > Math.abs(getModel().getCooldown()-6)) {
+            imgPath = path + "pistolPANG.png";
+        } else {
+            imgPath = path + "pistol.png";
+        }
+        if (getModel().getCooldownFrames() == getModel().getCooldown()) {
+            bulletSound.play(0.5f);
+        }
+        graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
+
     }
 
     @Override
     public int getDrawPriority() {
-        return DRAW_PRIO;
+        return DRAW_PRIORITY;
     }
 }

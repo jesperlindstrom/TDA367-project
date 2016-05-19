@@ -2,7 +2,7 @@ package se.chalmers.get_rect.physics.frostbite;
 
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class PhysicsEngine implements IPhysicsEngine {
 
         for (IPhysicsObject entity : entities) {
             // Check for collision
-            SideData entityCollision = collision.check(entity, entities);
+            CollisionData entityCollision = collision.check(entity, entities);
 
             // Move the entity
             movement.move(entity, entityCollision, delta);

@@ -5,7 +5,7 @@ import se.chalmers.get_rect.event.IEventListener;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.StringWrapper;
 
 import java.util.Observable;
@@ -16,7 +16,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     private IModel model;
     private static final int DISTANCE = 150;
     private boolean showDialog;
-    private String dialog;
     private String[] wrappedDialog;
     private StringWrapper wrapper;
     private int dialogIndex;
@@ -36,7 +35,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
 
     @Override
     public void showDialog(String message) {
-        dialog = message;
         if (message != null && !isDialogVisible()) {
             wrappedDialog = wrapper.wrap(message);
             dialogIndex = 0;
@@ -64,7 +62,7 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData data, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData data, boolean isSolid) {
         if (otherObject instanceof IInteractorModel) {
             model = (IModel) otherObject;
         }

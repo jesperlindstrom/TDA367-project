@@ -2,51 +2,45 @@ package se.chalmers.get_rect.game.entities.player;
 
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.model.IMelee;
+import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
-import se.chalmers.get_rect.game.entities.item.ItemFactory;
-import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.physics.IPhysicsObject;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Player extends AbstractCombatModel implements IInteractorModel {
-    private static final int WIDTH = 68;
-    private static final int HEIGHT = 151;
-    private static final int JUMP_SPEED = 90;
-    private static final int MOVE_SPEED = 40;
-    private static final int MELEE = 1;
-    private static final int RANGED = 2;
+    private final int width;
+    private final int height;
+    private final int jumpSpeed;
+    private final int moveSpeed;
     private boolean isWalking = false;
+    private boolean isRiding = false;
     private boolean canJump = true;
+    private boolean hasFoundHunch = false;
     private IInteractableModel interactableNPC;
-    private Map<Integer, IEntity> weapons;
-    private IEntity activeWeapon;
-    private ProjectileFactory projectileFactory;
-    private ItemFactory itemFactory;
+    private IMelee meleeWeapon;
+    private IRanged rangedWeapon;
+    private IWeapon activeWeapon;
 
-    /**
-     * Initialize a new player with fixed position and 10 hp and level 1.
-     * @param rectangleFactory
-     */
-    public Player(IRectangleFactoryAdapter rectangleFactory, ProjectileFactory projectileFactory, ItemFactory itemFactory) {
+
+    public Player(IRectangleFactoryAdapter rectangleFactory, int width, int height, int jumpSpeed, int moveSpeed) {
         super(new Point(0, 0), new Point(0, 0), false, rectangleFactory, 100);
-        setBoundingBox(WIDTH, HEIGHT);
-        weapons = new HashMap<>();
+        this.width = width;
+        this.height = height;
+        this.jumpSpeed = jumpSpeed;
+        this.moveSpeed = moveSpeed;
 
-        this.projectileFactory = projectileFactory;
-        this.itemFactory = itemFactory;
-        // TODO fulhax fixthisplz
+        setBoundingBox(this.width, this.height);
+    }
 
-        addNewWeapon(itemFactory.make("pistol", this));
-        addNewWeapon(itemFactory.make("opswordnett", this));
+
+    public Player(IRectangleFactoryAdapter rectangleFactory) {
+        this(rectangleFactory, 68, 151, 90, 40);
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData side, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData side, boolean isSolid) {
         if (isSolid && side.bottom()) {
             canJump = true;
         }
@@ -58,7 +52,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
 
     public void jump() {
         if (canJump) {
-            setVelocity(getVelocity().setY(JUMP_SPEED));
+            setVelocity(getVelocity().setY(jumpSpeed));
             canJump = false;
         }
     }
@@ -70,25 +64,33 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
                 interactableNPC = null;
             }
         }
+        activeWeapon.update(delta);
+
     }
 
-    public void shoot(Point direction) {
-        ((IWeapon)activeWeapon.getModel()).use(direction, getScene());
+    public void use(Point direction) {
+        activeWeapon.use(direction, getScene());
     }
 
     public void moveLeft() {
-        setVelocity(getVelocity().setX(-MOVE_SPEED));
+        setVelocity(getVelocity().setX(-getSpeed()));
         isWalking = true;
     }
 
     public void moveRight() {
-        setVelocity(getVelocity().setX(MOVE_SPEED));
+        setVelocity(getVelocity().setX(getSpeed()));
         isWalking = true;
     }
 
     public void stopMoving() {
         setVelocity(getVelocity().addX(-getVelocity().getX()/6));
         isWalking = false;
+    }
+
+    private int getSpeed(){
+        if (isRiding)
+            return 80;
+        return moveSpeed;
     }
 
     public boolean isWalking(){
@@ -107,7 +109,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void flyHome() {
-        setPosition(new Point(3420, 600));
+        getScene().respawn();
     }
 
     @Override
@@ -120,38 +122,56 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void switchWeapon() {
-        if (activeWeapon.getModel() instanceof IMelee){
-            setWeapon(weapons.get(RANGED));
+        if (activeWeapon instanceof IMelee){
+            setActiveWeapon(rangedWeapon);
         } else {
-            setWeapon(weapons.get(MELEE));
+            setActiveWeapon(meleeWeapon);
         }
     }
 
     public IWeapon getActiveWeapon(){
-        return (IWeapon)activeWeapon.getModel();
+        return activeWeapon;
     }
 
-    public void addNewWeapon(IEntity entity) {
-        if (entity.getModel() instanceof IWeapon) {
-            weapons.put(entity.getModel() instanceof IMelee ? MELEE : RANGED, entity);
-            setWeapon(entity);
+    public void addNewWeapon(IWeapon model) {
+        if (model instanceof IMelee) {
+            meleeWeapon = (IMelee)model;
+        } else if (model instanceof IRanged) {
+            rangedWeapon = (IRanged)model;
         }
+        setActiveWeapon(model);
     }
 
     @Override
     public void setScene(IEntityHolder scene) {
         super.setScene(scene);
-        scene.add(activeWeapon);
     }
 
-    private void setWeapon(IEntity weapon) {
-        if (activeWeapon != null ) {
-            ((IWeapon)activeWeapon.getModel()).remove();
-        }
+    public void setActiveWeapon(IWeapon weapon) {
         activeWeapon = weapon;
-        ((IWeapon)activeWeapon.getModel()).setActive();
-        if (getScene() != null) {
-            getScene().add(weapon);
-        }
+    }
+
+    public IMelee getMeleeWeapon() {
+        return meleeWeapon;
+    }
+
+    public IRanged getRangedWeapon() {
+        return rangedWeapon;
+    }
+
+    public boolean isRiding(){
+        return isRiding;
+    }
+
+    public void setRiding(boolean riding) {
+        isRiding = riding;
+    }
+
+    public boolean hasFoundHunch() {
+        return hasFoundHunch;
+    }
+
+    public void setHasFoundHunch(boolean hasFoundHunch) {
+        this.hasFoundHunch = hasFoundHunch;
     }
 }

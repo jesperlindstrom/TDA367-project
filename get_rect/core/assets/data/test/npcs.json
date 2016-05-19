@@ -3,5 +3,16 @@
     "type": "sawmillExpress",
     "x": 2700,
     "y": -3
-  }
+  },
+
+  {
+    "type" : "chesst",
+    "x" : 4120,
+    "y" : 118
+  },
+  {
+  "type" : "hunchen",
+  "x" : 670,
+  "y" : 500
+}
 ]

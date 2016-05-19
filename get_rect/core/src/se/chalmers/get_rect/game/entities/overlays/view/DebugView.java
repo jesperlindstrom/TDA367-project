@@ -19,7 +19,7 @@ public class DebugView extends AbstractView {
         debugFrameRateView = new DebugFrameRateView(model.getFrameRate());
         debugPhysicsView = new DebugPhysicsView(model.getPhysics());
         debugPlayerView = new DebugPlayerView(model.getPlayer());
-        debugMouseView = new DebugMouseView(model.getInput(),model.getCamera());
+        debugMouseView = new DebugMouseView(model.getGameInput(),model.getCamera());
     }
 
     @Override

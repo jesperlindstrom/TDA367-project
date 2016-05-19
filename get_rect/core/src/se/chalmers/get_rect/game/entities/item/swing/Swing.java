@@ -6,7 +6,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
-import se.chalmers.get_rect.utilities.SideData;
+import se.chalmers.get_rect.physics.CollisionData;
 
 public class Swing extends AbstractPhysicsModel{
     private IPhysicsModel owner;
@@ -46,7 +46,7 @@ public class Swing extends AbstractPhysicsModel{
     }
 
     @Override
-    public void onCollision(IPhysicsObject otherObject, SideData collisionSide, boolean isSolid) {
+    public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
         super.onCollision(otherObject, collisionSide, isSolid);
         if (otherObject instanceof ICombatModel && !otherObject.equals(owner)) {
             ((ICombatModel)otherObject).takeDamage(damage);

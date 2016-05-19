@@ -10,26 +10,28 @@ public class GameConfig {
     public static final int SPLASH = 11;
     public static final int MAIN_MENU = 12;
 
-    public static final int NULL = 20;
     public static final int HORSALSVAGEN = 21;
     public static final int TEST = 22;
     public static final int HUBBEN = 23;
 
     public static final int INGAME_MENU = 31;
+    public static final int INVENTORY = 32;
+
+    public static final boolean SHOW_FPS = true;
 
     // Debug booleans
     public static final boolean DISABLE_ALL = true;
 
-    public static final boolean SHOW_FPS = true;
+
+    public static final boolean PRINT_CONTROLLERVALUES = false;
     public static final boolean SHOW_LOWESTFPS = true;
     public static final boolean SHOW_DELTA = true;
     public static final boolean SHOW_POS = true;
     public static final boolean DRAW_BOUNDING_BOXES = false;
     public static final boolean SHOW_MOUSE_POS = true;
 
-    // Misc.
-    public static final boolean SPLASH_SCREEN_TROLL = false;
-
+    //Music
+    public static final boolean MUSIC_ON = true;
     //Sound
-    public static final boolean MUSIC_ON = false;
+    public static final boolean SOUND_ON = true;
 }

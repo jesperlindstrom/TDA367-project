@@ -6,13 +6,19 @@ import se.chalmers.get_rect.game.entities.item.model.IRanged;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
-public abstract class AbstractRangedWeaponView extends AbstractView {
+public abstract class AbstractRangedWeaponView extends AbstractView implements IWeaponView {
 
     private IRanged model;
+    private String iconPath;
 
-    protected AbstractRangedWeaponView(IRanged model) {
+    protected AbstractRangedWeaponView(IWeapon model, String iconPath) {
         super(model);
-        this.model = model;
+        if (model instanceof IRanged) {
+            this.model = (IRanged)model;
+        } else {
+            throw new RuntimeException("Model was not IRanged");
+        }
+        this.iconPath = iconPath;
     }
 
     protected IWeapon getModel() {
@@ -25,24 +31,25 @@ public abstract class AbstractRangedWeaponView extends AbstractView {
         return direction.getX() < 0 ? -tmp : tmp;
     }
 
-    protected float getXScale(float scale) {
+    protected float getXScale() {
         if (model.getAimDirection().getX() != 0) {
-            return scale * model.getAimDirection().getX();
+            return model.getAimDirection().getX();
         }
-        return scale;
+        return 1;
     }
 
-    protected float getYScale(float scale) {
+    protected float getYScale() {
         if (model.getAimDirection().getY() != 0) {
-            return scale * model.getFacing();
+            return model.getFacing();
         }
-        return scale;
+        return 1;
 
     }
 
 
     @Override
-    public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0),getModel().getFacing() < 0 ? -1:1 , (1), getRotation());
+    public void drawIcon(IGraphicsAdapter graphics, Point point) {
+        graphics.draw(iconPath, point);
     }
+
 }

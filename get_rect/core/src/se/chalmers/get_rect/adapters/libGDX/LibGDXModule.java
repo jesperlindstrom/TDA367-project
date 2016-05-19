@@ -18,7 +18,8 @@ public class LibGDXModule extends AbstractModule {
         bind(LibGDXAssetManagerAdapter.class).toInstance(assetManager);
         bind(ICameraFactoryAdapter.class).to(LibGDXCameraFactoryAdapter.class);
         bind(IGraphicsAdapter.class).toInstance(new LibGDXGraphicsAdapter());
-        bind(IInputAdapter.class).to(LibGDXInputAdapter.class);
+        bind(IKeyboardInputAdapter.class).to(LibGDXKeyboardInputAdapter.class);
+        bind(IControllerInputAdapter.class).to(LibGDXControllerInputAdapter.class);
         bind(IRectangleFactoryAdapter.class).to(LibGDXRectangleFactoryAdapter.class);
         bind(IGameLoopAdapter.class).toInstance(gameLoopAdapter);
     }

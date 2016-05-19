@@ -30,12 +30,13 @@ public class SceneFactory {
     }
 
     private IScene makeHorsalsvagen() {
-        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneLoader, assetManager, quests);
+        return new HorsalsvagenScene(playerEntity, rectangleFactory, camera, sceneLoader, quests);
     }
 
     private IScene makeTest() {
         return new TestScene(playerEntity, rectangleFactory, camera, sceneLoader, quests);
     }
+
     private IScene makeHubben(){
         return new HubbenScene(playerEntity,rectangleFactory,camera,sceneLoader, quests);
     }

@@ -3,5 +3,15 @@
     "type": "sawmillExpress",
     "x": 2700,
     "y": 700
+  },
+  {
+    "type": "rekoil",
+    "x": 1000,
+    "y": 500
+  },
+  {
+    "type" : "hunchen",
+    "x" : 670,
+    "y" : 500
   }
 ]

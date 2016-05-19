@@ -84,7 +84,9 @@ public class LibGDXAssetManagerAdapter implements IAssetManagerAdapter {
     public void loadSoundsDir(String path) throws FileNotFoundException {
         readDirectory(path, ".mp3", this::loadSound);
     }
-    public void loadMusicDir(String path) throws  FileNotFoundException {
+
+    @Override
+    public void loadMusicDir(String path) throws FileNotFoundException {
         readDirectory(path, ".mp3", this::loadMusic);
     }
 

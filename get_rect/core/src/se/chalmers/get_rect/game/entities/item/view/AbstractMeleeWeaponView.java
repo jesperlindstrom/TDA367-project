@@ -6,20 +6,27 @@ import se.chalmers.get_rect.game.entities.item.model.IMelee;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
-public class AbstractMeleeWeaponView extends AbstractView {
+public abstract class AbstractMeleeWeaponView extends AbstractView implements IWeaponView {
 
-    private IWeapon model;
+    private IMelee model;
     private float tilt;
     private int swingFrames;
     private float degreesPerFrame;
+    private final float originalTilt;
+    private String iconPath;
 
-    protected AbstractMeleeWeaponView(IWeapon model, float tilt) {
+    protected AbstractMeleeWeaponView(IWeapon model, float tilt, String iconPath) {
         super(model);
-        this.model = model;
+        if (model instanceof IMelee) {
+            this.model = (IMelee)model;
+        } else {
+            throw new RuntimeException("Model was not IRanged");
+        }
         this.tilt = tilt;
-        swingFrames = ((IMelee)model).getSwingFrames();
-        degreesPerFrame = 450 / swingFrames ;
-
+        this.originalTilt = tilt;
+        swingFrames = this.model.getCooldown();
+        degreesPerFrame = this.model.getSwingDegrees() * (this.model.getSwingDegrees() < 350 ? 2 : 1) / swingFrames ;
+        this.iconPath = iconPath;
     }
 
     protected IWeapon getModel() {
@@ -35,8 +42,15 @@ public class AbstractMeleeWeaponView extends AbstractView {
     }
 
     private void updateTilt() {
-        if (model.getUsedFrames() == 0) return;
-        if (model.getUsedFrames() < swingFrames/2) {
+        if (model.getCooldownFrames() == 0) {
+            tilt = originalTilt;
+            return;
+        }
+        if (degreesPerFrame > 11.5) {
+            tilt = tilt + degreesPerFrame;
+            return;
+        }
+        if (model.getCooldownFrames() < swingFrames/2) {
             tilt = tilt - degreesPerFrame;
         } else {
             tilt = tilt + degreesPerFrame;
@@ -45,7 +59,12 @@ public class AbstractMeleeWeaponView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
+//        graphics.drawIcon("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), 1, 1, getRotation());
         updateTilt();
-        graphics.draw("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), 1, 1, getRotation());
+    }
+
+    @Override
+    public void drawIcon(IGraphicsAdapter graphics, Point point) {
+        graphics.draw(iconPath, point);
     }
 }

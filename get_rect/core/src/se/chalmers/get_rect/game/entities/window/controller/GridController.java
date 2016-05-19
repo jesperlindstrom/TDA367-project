@@ -1,34 +1,44 @@
 package se.chalmers.get_rect.game.entities.window.controller;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
-import se.chalmers.get_rect.adapters.IInputAdapter;
+import se.chalmers.get_rect.game.input.Actions;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.IView;
 import se.chalmers.get_rect.game.entities.window.model.AbstractGridModel;
 
 public class GridController implements IWindowController {
-    private IInputAdapter input;
+    private GameInput gameInput;
     private AbstractGridModel model;
     private IView view;
 
-    public GridController(IInputAdapter input, AbstractGridModel model, IView view) {
-        this.input = input;
+    public GridController(GameInput gameInput, AbstractGridModel model, IView view) {
+        this.gameInput = gameInput;
         this.model = model;
         this.view = view;
     }
 
     @Override
     public void update(double delta) {
-        if (input.isKeyJustPressed(IInputAdapter.Keys.ENTER)) {
+        if (gameInput.isKeyJustPressed(Actions.CONFIRM)) {
             model.getCurrentlyMarkedButton().executeAction();
         }
 
-        if (input.isKeyJustPressed(IInputAdapter.Keys.UPKEY)) {
+        if (gameInput.isKeyJustPressed(Actions.MENU_UP)) {
             model.moveMarkUp();
         }
 
-        if (input.isKeyJustPressed(IInputAdapter.Keys.DOWNKEY)) {
+        if (gameInput.isKeyJustPressed(Actions.MENU_DOWN)) {
             model.moveMarkDown();
         }
+
+        if (gameInput.isKeyJustPressed(Actions.MENU_LEFT)) {
+            model.moveMarkLeft();
+        }
+
+        if (gameInput.isKeyJustPressed(Actions.MENU_RIGHT)) {
+            model.moveMarkRight();
+        }
+
     }
 
     @Override

@@ -3,6 +3,8 @@ package se.chalmers.get_rect.game;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.input.Actions;
+import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.SceneFactory;
@@ -12,7 +14,7 @@ import se.chalmers.get_rect.states.*;
 
 public class Game {
     @Inject private IGraphicsAdapter graphics;
-    @Inject private IInputAdapter input;
+    @Inject private GameInput gameInput;
     @Inject private StateManager<IScene> sceneManager;
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private PlayerController playerController;
@@ -20,17 +22,12 @@ public class Game {
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
 
-    private boolean paused = true;
-
-    /**
-     * Tell current state to draw
-     */
     public void draw() {
         if (sceneManager.getState() != null) {
             sceneManager.getState().draw(graphics);
         }
 
-        if (paused) {
+        if (windowManager.getState() != null) {
             windowManager.getState().draw(graphics);
         }
     }
@@ -40,12 +37,10 @@ public class Game {
         sceneManager.add(GameConfig.HORSALSVAGEN, sceneFactory.make("horsalsvagen"));
         sceneManager.add(GameConfig.HUBBEN, sceneFactory.make("hubben"));
 
-        // todo: this is bad and Sune should feel bad
-        sceneManager.add(GameConfig.NULL, null);
-
         windowManager.add(GameConfig.SPLASH, windowFactory.make("splash"));
         windowManager.add(GameConfig.MAIN_MENU, windowFactory.make("mainMenu"));
         windowManager.add(GameConfig.INGAME_MENU, windowFactory.make("inGameMenu"));
+        windowManager.add(GameConfig.INVENTORY, windowFactory.make("inventory"));
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
@@ -61,15 +56,15 @@ public class Game {
 
     /**
      * Tell current state to update
-     * @param delta Time since last draw
+     * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-        if (!windowManager.getState().equals(windowManager.getState(GameConfig.SPLASH))) {
+        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
             handleInput();
         }
 
         // Will update the menu if it is active and pause the current scene.
-        if (paused) {
+        if (windowManager.getState() != null) {
             windowManager.getState().update(delta);
         } else {
             playerController.update();
@@ -81,18 +76,21 @@ public class Game {
     }
 
     private void handleInput() {
-        if (input.isKeyJustPressed(IInputAdapter.Keys.ESC)) {
-            if (paused) {
-                resume();
-            } else {
+        if (gameInput.isKeyJustPressed(Actions.MENU)) {
+            if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
-                paused = true;
+            } else {
+                resume();
             }
+        }
+        if (gameInput.isKeyJustPressed(Actions.EXIT_MENU)) {
+            if (windowManager.getState() != null)
+                resume();
         }
     }
 
     public void load() {
-        sceneManager.set(GameConfig.HORSALSVAGEN);
+        sceneManager.set(GameConfig.HUBBEN);
         resume();
     }
 
@@ -101,11 +99,11 @@ public class Game {
     }
 
     public void resume() {
-        paused = false;
+        windowManager.clearState();
     }
 
     public void startNew() {
-        sceneManager.set(GameConfig.HORSALSVAGEN);
+        sceneManager.set(GameConfig.HUBBEN);
         resume();
     }
 

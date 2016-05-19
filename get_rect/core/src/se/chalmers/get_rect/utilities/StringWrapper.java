@@ -1,5 +1,8 @@
 package se.chalmers.get_rect.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringWrapper {
 
 
@@ -19,21 +22,25 @@ public class StringWrapper {
 
     private String[] trimString(StringBuilder sb) {
         String[] trimmedString = sb.toString().split("\n");
-        String[] returnMe = new String[trimmedString.length/4 + 1];
-        int index = 0;
+        List<String> tmp = new ArrayList<>();
+        String parseString = "";
         int count = 0;
-
-
-        for (int i = 0; i < returnMe.length; i ++){
-            returnMe[i] = "";
+        for (String s : trimmedString){
+            parseString += s + "\n";
+            count++;
+            if (count % 4 == 0){
+                tmp.add(parseString);
+                parseString = "";
+            }
+        }
+        if (!parseString.equals("")){
+            tmp.add(parseString);
         }
 
-        for (String s : trimmedString){
-            returnMe[index] += trimmedString[count] + "\n";
-            if (count % 4 == 0){
-                index++;
-            }
-            count++;
+
+        String[] returnMe = new String[tmp.size()];
+        for (int i = 0; i < tmp.size(); i++){
+            returnMe[i] = tmp.get(i);
         }
         return returnMe;
     }

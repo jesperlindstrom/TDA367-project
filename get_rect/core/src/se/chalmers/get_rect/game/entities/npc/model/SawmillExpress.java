@@ -13,35 +13,38 @@ import java.util.List;
 import java.util.Random;
 
 public class SawmillExpress extends AbstractNPCModel {
-    private static final int SPEED = 50;
-    private static final int WIDTH = 219;
-    private static final int HEIGHT = 200;
+    private final int speed;
+    private final int width;
+    private final int height;
     private boolean isFlying = false;
-    private IRepository<String> dialogRepository;
     private List<String> dialogList;
     private Random r;
 
-    public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
+    public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository<String> dialogRepository, int speed, int width, int height) {
         super(point, new Point(0, 0), false, rectangleFactory);
-        setBoundingBox(WIDTH, HEIGHT);
-        this.dialogRepository = dialogRepository;
+        this.speed = speed;
+        this.width = width;
+        this.height = height;
+        setBoundingBox(this.width, this.height);
+
         r = new Random();
         dialogList = new ArrayList<>();
+
         try {
-            dialogList = dialogRepository.get("dialogs");
+            dialogList = dialogRepository.get("sawmill");
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
-
-
     }
-
+    public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
+        this(point, rectangleFactory, dialogRepository, 50, 219, 200);
+    }
     @Override
     public void update(double delta) {
         super.update(delta);
 
         if (isFlying) {
-            setVelocity(new Point(0, SPEED));
+            setVelocity(new Point(0, speed));
         }
     }
 
@@ -55,8 +58,8 @@ public class SawmillExpress extends AbstractNPCModel {
         triggerEvent("sawmillExpress", "interacted");
 
         if (!isDialogVisible()) {
-            int rando = (r.nextInt(dialogList.size()));
-            showDialog(dialogList.get(rando));
+            int random = (r.nextInt(dialogList.size()));
+            showDialog(dialogList.get(random));
         } else {
             nextDialog();
         }

@@ -15,8 +15,11 @@ public class Point {
     }
 
     public Point(Point point) {
-        this.yCoordinate = point.getY();
-        this.xCoordinate = point.getX();
+        this(0 ,0);
+        if (point != null) {
+            this.xCoordinate = point.getX();
+            this.yCoordinate = point.getY();
+        }
     }
 
 
@@ -104,11 +107,43 @@ public class Point {
 
     }
 
+    /**
+     * multiplies x1 with x2 and y1 with y2
+     * @param p2 point to multiply with.
+     * @return new point
+     */
+    public Point multiply(Point p2) {
+        return new Point(xCoordinate*p2.getX(), yCoordinate*p2.getY());
+    }
+
     public Point normalize() {
         int x = xCoordinate < 0 ? -1 : xCoordinate == 0 ? 0 : 1;
         int y = yCoordinate < 0 ? -1 : yCoordinate == 0 ? 0 : 1;
 
         return new Point(x, y);
+    }
+
+    public Point normalize (float x, float y) {
+        int intX;
+        int intY;
+
+        if (x < -0.5) {
+            intX = -1;
+        } else if (x > 0.5) {
+            intX = 1;
+        } else {
+            intX = 0;
+        }
+
+        if (y < -0.5) {
+            intY = -1;
+        } else if (y > 0.5) {
+            intY = 1;
+        } else {
+            intY = 0;
+        }
+
+        return new Point(intX, intY);
     }
 
     @Override

@@ -6,16 +6,16 @@ import se.chalmers.get_rect.adapters.IMusicAdapter;
 import se.chalmers.get_rect.game.entities.ICamera;
 
 public class HorsalsvagenSceneView extends AbstractBackgroundView {
-    private IMusicAdapter backgroundSound;
+    private IMusicAdapter backgroundMusic;
 
     public HorsalsvagenSceneView(ICamera camera, IAssetManagerAdapter assetManager) {
         super(camera, "img/backgrounds/horsalsvagen.png", "img/backgrounds/skybox.png");
-        //backgroundSound = assetManager.getMusic("music/sune.mp3");
+        backgroundMusic = assetManager.getMusic("music/BackgroundMusic.mp3");
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         super.draw(graphics);
-        //backgroundSound.play();
+        backgroundMusic.play();
     }
 }

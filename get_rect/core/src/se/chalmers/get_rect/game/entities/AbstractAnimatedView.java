@@ -76,4 +76,17 @@ public abstract class AbstractAnimatedView extends AbstractView {
     public void setFlip(boolean flip) {
         this.flip = flip;
     }
+
+    public void setFlip(boolean flip, Point offset) {
+        setDrawOffset(offset);
+        setFlip(flip);
+    }
+
+    protected IModel getModel() {
+        return model;
+    }
+
+    protected boolean isFlip() {
+        return flip;
+    }
 }
