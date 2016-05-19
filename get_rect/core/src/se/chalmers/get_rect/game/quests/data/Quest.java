@@ -30,6 +30,11 @@ public class Quest implements IQuest {
     }
 
     @Override
+    public List<Objective> getObjectives() {
+        return objectives;
+    }
+
+    @Override
     public int getId() {
         return id;
     }
