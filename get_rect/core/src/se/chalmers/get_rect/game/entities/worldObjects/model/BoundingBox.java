@@ -13,12 +13,8 @@ public class BoundingBox extends AbstractPhysicsModel {
      * @param factory Factory needed to create a boundingBox for the boundingBox
      */
     public BoundingBox(Point position, int width, int height, IRectangleFactoryAdapter factory) {
-        super(position.addY((-height)), new Point(0, 0), true, factory);
+        super(position.addY((-height)), new Point(0, 0), true, false, factory);
         setBoundingBox(width, height);
     }
 
-    @Override
-    public void setVelocity(Point vel) {
-        // Do nothing. We don't want gravity applied to this object.
-    }
 }

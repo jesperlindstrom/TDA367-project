@@ -11,4 +11,5 @@ public interface IPhysicsObject {
     Point getVelocity();
     boolean isSolid();
     boolean shouldBeRemoved();
+    boolean isAffectedByGravity();
 }

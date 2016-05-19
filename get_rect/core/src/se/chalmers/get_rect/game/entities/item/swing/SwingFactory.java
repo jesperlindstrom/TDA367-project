@@ -14,4 +14,9 @@ public class SwingFactory {
         Swing swing = new Swing(damage, width, height, swingFrames, rectangleFactory, owner, weapon);
         return new Entity(swing, null);
     }
+
+    public IEntity make(int damage, int width, int height, int swingFrames, IPhysicsModel owner, ISwinger weapon, boolean isSolid) {
+        Swing swing = new Swing(damage, width, height, swingFrames, rectangleFactory, owner, weapon, isSolid);
+        return new Entity(swing, null);
+    }
 }

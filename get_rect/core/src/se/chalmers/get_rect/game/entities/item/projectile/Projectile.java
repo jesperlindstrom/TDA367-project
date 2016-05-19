@@ -13,7 +13,7 @@ public class Projectile extends AbstractPhysicsModel {
     private IModel owner;
 
     public Projectile(Point position, Point velocity, int damage, IRectangleFactoryAdapter rectangleFactory, IModel owner) {
-        super(position, velocity, false, rectangleFactory);
+        super(position, velocity, false, false, rectangleFactory);
         setBoundingBox(width, height);
         this.owner = owner;
         this.dmg = damage;

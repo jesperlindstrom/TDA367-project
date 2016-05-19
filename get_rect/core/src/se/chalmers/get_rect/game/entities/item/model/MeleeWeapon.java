@@ -14,8 +14,9 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
     private final float swingDegrees;
     private SwingFactory swingFactory;
     private boolean usable;
+    private boolean solid;
 
-    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int cooldown, float swingDegrees) {
+    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int cooldown, float swingDegrees, boolean solid) {
         super(user, type);
         this.width = width;
         this.height = height;
@@ -23,10 +24,11 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
         this.cooldown = cooldown;
         this.swingDegrees = swingDegrees == 0 ? 90f : swingDegrees;
         this.swingFactory = swingFactory;
+        this.solid = solid;
     }
 
     public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int cooldown) {
-        this(user, type, swingFactory, width, height, damage, cooldown, 90f);
+        this(user, type, swingFactory, width, height, damage, cooldown, 90f, false);
     }
 
 
@@ -39,7 +41,7 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
         if (getUsable()) {
             setUsable(false);
             setCooldownFrames(cooldown);
-            entityHolder.add(getSwingFactory().make(damage, width, height, cooldown, getUser(), this));
+            entityHolder.add(getSwingFactory().make(damage, width, height, cooldown, getUser(), this, solid));
         }
     }
 

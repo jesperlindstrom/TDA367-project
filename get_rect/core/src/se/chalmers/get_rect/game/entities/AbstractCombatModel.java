@@ -10,8 +10,8 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
     private int currentHealth;
     private int maxHealth;
 
-    protected AbstractCombatModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory, int maxHealth) {
-        super(position, velocity, solid, rectangleFactory);
+    protected AbstractCombatModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory, int maxHealth) {
+        super(position, velocity, solid, affectedByGravity, rectangleFactory);
         eventSource = new EventSource();
         this.maxHealth = maxHealth;
         this.currentHealth = this.maxHealth;

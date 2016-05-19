@@ -11,11 +11,13 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
     private IRectangleAdapter boundingBox;
     private Point velocity;
     private boolean solid;
+    private boolean affectedByGravity;
 
-    protected AbstractPhysicsModel(Point position, Point velocity, boolean solid, IRectangleFactoryAdapter rectangleFactory) {
+    protected AbstractPhysicsModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory) {
         super(position);
         this.velocity = velocity;
         this.rectangleFactory = rectangleFactory;
+        this.affectedByGravity = affectedByGravity;
         this.boundingBox = rectangleFactory.make(position, 0, 0);
         this.solid = solid;
     }
@@ -61,5 +63,10 @@ public abstract class AbstractPhysicsModel extends AbstractModel implements IPhy
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
         // Default: do nothing
+    }
+
+    @Override
+    public boolean isAffectedByGravity() {
+        return affectedByGravity;
     }
 }

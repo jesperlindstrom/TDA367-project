@@ -18,7 +18,7 @@ public class Rekoil extends AbstractNPCModel {
     private int dialogNr = 0;
 
     public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository, int width, int height) {
-        super(point, new Point(0, 0), false, rectangleFactory);
+        super(point, new Point(0, 0), false, true, rectangleFactory);
         this.width = width;
         this.height = height;
         setBoundingBox(this.width, this.height);

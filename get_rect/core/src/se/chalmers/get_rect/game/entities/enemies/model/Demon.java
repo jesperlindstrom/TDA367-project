@@ -18,7 +18,7 @@ public class Demon extends AbstractCombatModel {
     private boolean isAttacking = false;
 
     public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
-        super(point, new Point(0, 0), false, rectangleFactory, 30);
+        super(point, new Point(0, 0), false, true, rectangleFactory, 30);
         setBoundingBox(width, height);
         Random rand = new Random();
         randHeight = rand.nextInt(200) + 500;

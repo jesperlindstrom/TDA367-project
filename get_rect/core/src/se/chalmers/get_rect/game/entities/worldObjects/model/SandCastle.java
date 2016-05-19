@@ -9,7 +9,7 @@ public class SandCastle extends AbstractInteractableModel {
     private boolean interactedWith = false;
 
     public SandCastle(Point position, IRectangleFactoryAdapter factory) {
-        super(position, new Point(0,0), false, factory);
+        super(position, new Point(0,0), false, true, factory);
         setBoundingBox(100, 100);
     }
 

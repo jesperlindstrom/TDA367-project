@@ -21,7 +21,7 @@ public class SawmillExpress extends AbstractNPCModel {
     private Random r;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository<String> dialogRepository, int speed, int width, int height) {
-        super(point, new Point(0, 0), false, rectangleFactory);
+        super(point, new Point(0, 0), false, false, rectangleFactory);
         this.speed = speed;
         this.width = width;
         this.height = height;

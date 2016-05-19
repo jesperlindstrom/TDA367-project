@@ -18,8 +18,9 @@ public class ItemFactory {
         switch (type) {
             case "pistol" : return new Pistol(model, projectileFactory, damage, speed, cooldown);
             case "opsword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown);
-            case "opaxe" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees);
-            case "lasersword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees);
+            case "opaxe" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees, false);
+            case "lasersword" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees, false);
+            case "paddle" : return new MeleeWeapon(model, type, swingFactory, width, height, damage, cooldown, swingDegrees, true);
         }
         throw new EntityNotFoundException("item", type);
     }
@@ -30,6 +31,7 @@ public class ItemFactory {
             case "opsword" : return new OpSwordView(model, audioManager);
             case "opaxe" : return new OpAxeView(model);
             case "lasersword" : return new LaserSwordView(model, audioManager);
+            case "paddle" : return new PaddleView(model);
         }
         throw new RuntimeException("You done fucked up..  Weapon model didn't have a corresponding view");
     }

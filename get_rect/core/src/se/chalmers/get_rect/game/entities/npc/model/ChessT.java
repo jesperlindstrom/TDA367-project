@@ -16,7 +16,7 @@ public class ChessT extends AbstractNPCModel {
     private boolean isInteracting = false;
 
     public ChessT(Point position, IRectangleFactoryAdapter rectangleFactory, StateManager windowManager, IPhysicsModel player) {
-        super(position, rectangleFactory);
+        super(position, true, rectangleFactory);
         this.model = player;
         this.windowManager = windowManager;
         setBoundingBox(200, 200);
