@@ -52,7 +52,7 @@
   {
     "type" : "pistol",
     "damage" : 20,
-    "speed" : 600,
+    "speed" : 200,
     "cooldown" : 10
   },
   {
@@ -83,7 +83,7 @@
   {
     "type" : "pistol",
     "damage" : 20,
-    "speed" : 600,
+    "speed" : 10,
     "cooldown" : 20
   },
   {
