@@ -8,7 +8,7 @@ import se.chalmers.get_rect.game.quests.data.QuestState;
 import java.util.List;
 
 public class QuestFactory {
-    public IQuest make(QuestState state, List<Objective> objectives) {
-        return new Quest(QuestState.AVAILABLE, objectives);
+    public IQuest make(int id, QuestState state, List<Objective> objectives, String acceptText, String completionText) {
+        return new Quest(id, QuestState.AVAILABLE, objectives, acceptText, completionText);
     }
 }
