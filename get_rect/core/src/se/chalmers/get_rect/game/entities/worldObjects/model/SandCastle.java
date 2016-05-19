@@ -15,6 +15,8 @@ public class SandCastle extends AbstractInteractableModel {
 
     @Override
     public void onInteract(IModel model) {
+        triggerEvent("sandCastle", "interacted");
+
         if (!interactedWith){
             interactedWith = true;
         }

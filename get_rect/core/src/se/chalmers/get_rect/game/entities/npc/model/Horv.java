@@ -17,7 +17,7 @@ public class Horv extends AbstractNPCModel {
     private List<String> dialogList;
     private int dialogNr = 0;
 
-    public Horv(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository, int width, int height) {
+    public Horv(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository<String> dialogRepository, int width, int height) {
         super(point, new Point(0, 0), false, true, rectangleFactory);
         this.width = width;
         this.height = height;
@@ -31,8 +31,8 @@ public class Horv extends AbstractNPCModel {
             System.out.println(e.getMessage());
         }
     }
-    public Horv(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository dialogRepository) {
-        this(point, rectangleFactory, dialogRepository, 150, 300);
+    public Horv(Point point, IRectangleFactoryAdapter rectangleFactory, IRepository<String> dialogRepository) {
+        this(point, rectangleFactory, dialogRepository, 58, 158);
     }
     @Override
     public void update(double delta) {
