@@ -7,6 +7,7 @@ import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.enemies.EnemyRepository;
 import se.chalmers.get_rect.game.entities.npc.NpcRepository;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.game.entities.window.model.IGameControl;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectRepository;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.scenes.IScene;
@@ -16,10 +17,10 @@ import se.chalmers.get_rect.states.StateManager;
 public class GameModule extends AbstractModule {
     private IPhysicsEntity playerEntity;
     private EntityCamera camera;
-    private IGame game;
+    private IGameControl game;
     private GameInput gameInput;
 
-    public GameModule(IPhysicsEntity playerEntity, EntityCamera camera, IGame game, GameInput gameInput) {
+    public GameModule(IPhysicsEntity playerEntity, EntityCamera camera, IGameControl game, GameInput gameInput) {
         this.playerEntity = playerEntity;
         this.camera = camera;
         this.game = game;
@@ -36,7 +37,7 @@ public class GameModule extends AbstractModule {
 
         bind(ICamera.class).toInstance(camera);
         bind(EntityCamera.class).toInstance(camera);
-        bind(IGame.class).toInstance(game);
+        bind(IGameControl.class).toInstance(game);
 
 
         // SceneManager and WindowManager

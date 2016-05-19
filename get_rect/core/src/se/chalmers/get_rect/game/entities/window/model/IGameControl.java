@@ -1,6 +1,6 @@
-package se.chalmers.get_rect.game;
+package se.chalmers.get_rect.game.entities.window.model;
 
-public interface IGame {
+public interface IGameControl {
     void exit();
     void load();
     void resume();

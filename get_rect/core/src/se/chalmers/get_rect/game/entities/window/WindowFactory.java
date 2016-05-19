@@ -2,7 +2,7 @@ package se.chalmers.get_rect.game.entities.window;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
-import se.chalmers.get_rect.game.IGame;
+import se.chalmers.get_rect.game.entities.window.model.*;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.EntityNotFoundException;
 import se.chalmers.get_rect.game.entities.ICamera;
@@ -13,10 +13,6 @@ import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.window.controller.GridController;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.game.entities.window.controller.SplashController;
-import se.chalmers.get_rect.game.entities.window.model.InGameMenu;
-import se.chalmers.get_rect.game.entities.window.model.Inventory;
-import se.chalmers.get_rect.game.entities.window.model.MainMenu;
-import se.chalmers.get_rect.game.entities.window.model.SplashModel;
 import se.chalmers.get_rect.game.entities.window.view.InGameMenuView;
 import se.chalmers.get_rect.game.entities.window.view.InventoryView;
 import se.chalmers.get_rect.game.entities.window.view.MainMenuView;
@@ -28,7 +24,7 @@ public class WindowFactory {
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private ICamera camera;
     @Inject private GameInput gameInput;
-    @Inject private IGame game;
+    @Inject private IGameControl game;
     @Inject private Player player;
     @Inject private WeaponRepository weaponRepository;
     @Inject private ItemFactory itemFactory;
