@@ -24,6 +24,21 @@ public class JsonIOStrategy<T> implements IOStrategy<T> {
 
     @Override
     public void write(String file, List data) {
+        Gson gson = new Gson();
+        String s = gson.toJson(data);
+
+        File myFile = new File(file);
+        try {
+            myFile.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
+            myOutWriter.append(s);
+            myOutWriter.close();
+            fOut.close();
+
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
 
     }
 }

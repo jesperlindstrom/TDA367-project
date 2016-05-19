@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.scenes;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.event.IEventSource;
+import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
@@ -30,8 +31,10 @@ public abstract class AbstractScene implements IScene {
     private Queue<IEntity> additions;
     private SceneLoader sceneLoader;
     private IAudioManagerAdapter audioManager;
+    private PlayerRepository playerRepository;
 
-    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
+
+    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager, PlayerRepository playerRepository) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.rectangleFactory = rectangleFactory;
@@ -40,6 +43,7 @@ public abstract class AbstractScene implements IScene {
         this.quests = quests;
         this.audioManager = audioManager;
         additions = new LinkedList<>();
+        this.playerRepository = playerRepository;
     }
 
     /**
@@ -120,6 +124,12 @@ public abstract class AbstractScene implements IScene {
         setupDone = true;
         processAdditions();
         additions.clear();
+        try {
+            playerRepository.save();
+        } catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     /**
