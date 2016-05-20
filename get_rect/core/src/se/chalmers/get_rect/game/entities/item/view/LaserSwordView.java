@@ -17,14 +17,13 @@ public class LaserSwordView extends AbstractMeleeWeaponView {
     public LaserSwordView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, tilt, imgPath + "laser_icon.png");
         this.audioManager = audioManager;
-
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath + "laser_hand.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 20 : 0, 0), new Point(-10, 5), getXScale(SCALE), SCALE, getRotation());
         super.draw(graphics);
-        if (isUsed) {
+        if (!isUsed) {
             audioManager.playSound("laserSword1");
             isUsed = true;
         }
@@ -41,7 +40,6 @@ public class LaserSwordView extends AbstractMeleeWeaponView {
 
     private int getRandomNumber() {
         Random random = new Random();
-        System.out.println(random.nextInt(4) + 1);
         return random.nextInt(4) + 1;
 
     }
