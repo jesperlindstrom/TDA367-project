@@ -33,7 +33,7 @@ public class PlayerRepository {
             File theFile = new File(PATH);
             boolean tmp = theFile.mkdirs();
             if (!tmp){
-                System.out.println("Failed to make file path");
+                System.out.println("Failed to makeBullet file path");
             }
         }
         List<PlayerDataStore> list = new ArrayList<>();

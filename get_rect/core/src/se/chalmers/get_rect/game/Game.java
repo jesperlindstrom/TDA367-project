@@ -64,7 +64,6 @@ public class Game {
                     startNew();
                 }
                 sceneManager.set(GameConfig.HUBBEN);
-                player.refillHealth();
             }
         });
     }
@@ -137,7 +136,6 @@ public class Game {
     }
 
     public void startNew() {
-
         try {
             playerRepository.reset();
         } catch (FileNotFoundException e){

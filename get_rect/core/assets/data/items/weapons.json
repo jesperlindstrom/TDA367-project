@@ -33,11 +33,10 @@
   },
 
   {
-    "type": "opsword",
-    "width": 175,
-    "height": 150,
-    "damage": 2,
-    "cooldown": 30
+    "type": "wand",
+    "speed" : 100,
+    "damage": 50,
+    "cooldown": 20
   },
 
   {
