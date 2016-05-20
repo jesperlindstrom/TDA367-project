@@ -57,7 +57,7 @@ public class PhysicsObjectMock implements IPhysicsObject {
 
     @Override
     public boolean isAffectedByGravity() {
-        return false;
+        return true;
     }
 
     public void setBoundingBox(IRectangleAdapter rect) {

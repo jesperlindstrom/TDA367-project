@@ -6,6 +6,13 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import se.chalmers.get_rect.game.entities.DialogRepository;
 import se.chalmers.get_rect.game.entities.IRepository;
+import se.chalmers.get_rect.game.quests.QuestFactory;
+import se.chalmers.get_rect.game.quests.QuestManager;
+import se.chalmers.get_rect.game.quests.QuestRepository;
+import se.chalmers.get_rect.game.quests.data.IQuest;
+import se.chalmers.get_rect.game.quests.data.Objective;
+import se.chalmers.get_rect.game.quests.data.Quest;
+import se.chalmers.get_rect.game.quests.data.QuestState;
 import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
@@ -43,8 +50,18 @@ public class UC2InteractTest {
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
+
+        List<Objective> objectives = new ArrayList<>();
+        objectives.add(new Objective("zombie", "died", 5, 0, "Ninja-Broccolis killed"));
+        objectives.add(new Objective("sandCastle", "interacted", 1, 0, "Construct a magnificent sand castle"));
+        String acceptText = "Hej!";
+        String completionText = "I'M OUTTA HERE! LOLWUT";
+
+        QuestManager questManager = Mockito.mock(QuestManager.class);
+        Mockito.when(questManager.get(0)).thenReturn(new Quest(0, "Sawmill's Escape", QuestState.AVAILABLE, objectives, acceptText, completionText));
+
         this.player = new Player(rectangleFactoryAdapter);
-        this.sawmillExpress = new SawmillExpress(new Point(1,1), rectangleFactoryAdapter, repository, 10, 10 ,10);
+        this.sawmillExpress = new SawmillExpress(new Point(1,1), rectangleFactoryAdapter, repository, 10, 10 ,10, questManager);
         this.playerSide = new CollisionData();
         this.otherSide = new CollisionData();
         playerSide.set(Side.RIGHT);
@@ -86,6 +103,6 @@ public class UC2InteractTest {
         assertFalse("Should be false", sawmillExpress.isDialogVisible());
         player.interact();
         assertTrue("Should be true", sawmillExpress.isDialogVisible());
-        assertEquals("Should be equal", sawmillExpress.getDialog(), "sawmill\n");
+        assertEquals("Should be equal", sawmillExpress.getDialog(), "Hej!\n");
     }
 }
