@@ -13,30 +13,23 @@ public class OpSwordView extends AbstractMeleeWeaponView {
     private static final float SCALE = 1;
     private static final float tilt = 30;
     private IAudioManagerAdapter audioManager;
-
+    private boolean isUsed = false;
 
     public OpSwordView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, tilt, imgPath + "_icon.png");
         this.audioManager = audioManager;
     }
 
-    /**
-     *
-     * randomizes to choose which of the sounds to play
-     * @param graphics
-     */
-
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath + ".png", getModel().getHandPos(), new Point(0, 0), getXScale(SCALE), SCALE, getRotation());
         super.draw(graphics);
-
+        if (!isUsed) {
+            audioManager.playMusic("swosh1");
+            isUsed = true;
+        }
         if (isAttacking()) {
-            if (randomNumber() == 1) {
-                audioManager.playMusic("swosh1");
-            } else {
-                audioManager.playMusic("swosh2");
-            }
+            audioManager.playMusic("swosh"+randomNumber());
         }
     }
 
@@ -44,9 +37,9 @@ public class OpSwordView extends AbstractMeleeWeaponView {
     public int getDrawPriority() {
         return 7;
     }
+
     private int randomNumber() {
         Random random = new Random();
         return random.nextInt(2)+1;
-
     }
 }

@@ -112,7 +112,6 @@ public class Game {
         }
     }
 
-
     public void load() {
         try {
             playerRepository.load();

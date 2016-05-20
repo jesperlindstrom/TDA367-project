@@ -29,9 +29,4 @@ public class GameConfig {
     public static final boolean SHOW_POS = true;
     public static final boolean DRAW_BOUNDING_BOXES = true;
     public static final boolean SHOW_MOUSE_POS = true;
-
-    //Music
-    public static final boolean MUSIC_ON = true;
-    //Sound
-    public static final boolean SOUND_ON = true;
 }
