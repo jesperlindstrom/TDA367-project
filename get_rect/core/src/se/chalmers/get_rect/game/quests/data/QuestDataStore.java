@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.quests;
+package se.chalmers.get_rect.game.quests.data;
 
 import java.util.ArrayList;
 

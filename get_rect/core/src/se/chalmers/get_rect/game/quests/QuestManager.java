@@ -34,6 +34,10 @@ public class QuestManager implements IEventListener {
         return null;
     }
 
+    public List<IQuest> getAll() {
+        return quests;
+    }
+
     public List<IQuest> getAllActive() {
         return quests.stream()
             .filter((q) -> q.getState().equals(QuestState.IN_PROGRESS) || q.getState().equals(QuestState.COMPLETABLE))

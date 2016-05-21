@@ -12,7 +12,6 @@ public class ProjectileFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
 
     public IPhysicsEntity make(String type, Point point, Point velocity, int damage, IModel owner) {
-        System.out.println("making " + type);
         if (type.equals("bullet"))
             return makeBullet(point, velocity, damage, owner);
 

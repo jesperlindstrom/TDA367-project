@@ -10,8 +10,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class HubbenScene extends AbstractScene {
 
-    public HubbenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager, PlayerRepository playerRepository) {
-        super("hubben", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager, playerRepository);
+    public HubbenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
+        super("hubben", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager);
     }
 
 

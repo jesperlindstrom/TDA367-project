@@ -1,9 +1,14 @@
 package se.chalmers.get_rect.states;
 
+import se.chalmers.get_rect.event.EventSource;
+import se.chalmers.get_rect.event.IEventListener;
+import se.chalmers.get_rect.event.IEventSource;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class StateManager<V extends IState> {
+public class StateManager<V extends IState> implements IEventSource {
+    private EventSource event = new EventSource();
     private Map<Integer, V> states;
     private Integer currentState;
 
@@ -42,6 +47,8 @@ public class StateManager<V extends IState> {
 
         // Tell the new state it's becoming active
         getState().enteringState(oldState);
+
+        event.triggerEvent("state", "changed", stateName);
     }
 
     /**
@@ -64,5 +71,15 @@ public class StateManager<V extends IState> {
     public Integer getCurrentStateKey() {
         if (currentState == null) return -1;
         return currentState;
+    }
+
+    @Override
+    public void addListener(IEventListener o) {
+        event.addListener(o);
+    }
+
+    @Override
+    public void removeListener(IEventListener o) {
+        event.removeListener(o);
     }
 }

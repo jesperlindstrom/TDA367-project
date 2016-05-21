@@ -33,7 +33,7 @@ public class PlayerRepository {
             File theFile = new File(PATH);
             boolean tmp = theFile.mkdirs();
             if (!tmp){
-                System.out.println("Failed to makeBullet file path");
+                throw new RuntimeException("Failed to create save path");
             }
         }
         List<PlayerDataStore> list = new ArrayList<>();
@@ -55,6 +55,8 @@ public class PlayerRepository {
     }
 
     public void reset() throws FileNotFoundException{
+        new File(PATH + FILE).delete();
+
         player.setHealth(player.getMaxHealth());
         player.setHasFoundHunch(false);
         player.setRiding(false);

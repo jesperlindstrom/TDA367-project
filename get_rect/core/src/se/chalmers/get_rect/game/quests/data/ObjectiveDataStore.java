@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.quests;
+package se.chalmers.get_rect.game.quests.data;
 
 public class ObjectiveDataStore {
     private String type;
