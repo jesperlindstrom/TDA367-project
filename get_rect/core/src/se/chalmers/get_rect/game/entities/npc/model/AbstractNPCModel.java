@@ -29,7 +29,7 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
     @Override
     public void onInteract(IModel model) {
         if (isDialogVisible()) {
-            if (isLastDialog()) {
+            if (isLastDialog() && quest != null) {
                 quest.interact(() -> onQuestCompletion(model));
             }
 
@@ -66,9 +66,6 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
 
     @Override
     public QuestState getQuestState() {
-        if (quest != null)
-            return quest.getState();
-
-        return QuestState.UNAVAILABLE;
+        return quest != null ? quest.getState() : QuestState.UNAVAILABLE;
     }
 }

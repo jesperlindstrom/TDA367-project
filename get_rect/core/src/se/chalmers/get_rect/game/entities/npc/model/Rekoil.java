@@ -21,8 +21,6 @@ public class Rekoil extends AbstractNPCModel {
         setBoundingBox(this.width, this.height);
         setQuest(quests.get(1));
         this.dialogList = phrases;
-        System.out.println("rekoil");
-        System.out.println(dialogList);
     }
 
     public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, List<String> phrases, QuestManager quests) {
