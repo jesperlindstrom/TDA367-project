@@ -61,6 +61,10 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
         dialogIndex++;
     }
 
+    protected boolean isLastDialog() {
+        return wrappedDialog.length - 1 == dialogIndex;
+    }
+
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData data, boolean isSolid) {
         if (otherObject instanceof IInteractorModel) {

@@ -32,6 +32,6 @@ public class PlayerHealthbarView extends AbstractView {
         Point position = new Point(x,y);
         graphics.draw(pathbackOverlay1,position.addX(120));
         graphics.draw(pathHealthOverlay2,position.add(120, (int)dmgTaken-150));
-        graphics.draw(pathCenterOverlay3, position);
+        graphics.draw(pathCenterOverlay3, position.addY(-2));
     }
 }

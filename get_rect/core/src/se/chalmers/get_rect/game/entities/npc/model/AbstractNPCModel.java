@@ -29,8 +29,12 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
     @Override
     public void onInteract(IModel model) {
         if (isDialogVisible()) {
+            if (isLastDialog()) {
+                System.out.println("CALLED!!!!");
+                quest.interact(() -> onQuestCompletion(model));
+            }
+
             nextDialog();
-            quest.interact(() -> onQuestCompletion(model));
         } else {
             nextPhrase();
         }

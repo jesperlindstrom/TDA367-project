@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "title": "Sawmill's escape",
+    "acceptText": "Hello, I am Sawmill! I live in this rocket because of reasons. That is why it is called ''Sawmill Express''. But I have a problem, I can not start the rocket because I fucked up the start button. It is on the outside... Can you help me press the button? It only works if you first kill five zombies AND build a sandcastle. You're a wizard, Legolas! Now go!",
+    "completionText": "FUCK THIS, I'M OUTTA HERE",
+    "objectives": [
+      {
+        "type": "zombie",
+        "action": "died",
+        "requiredCount": 5,
+        "infoText": "JSON wants ALL broccoli dead"
+      },
+      {
+        "type": "sandCastle",
+        "action": "interacted",
+        "requiredCount": 1,
+        "infoText": "...oh, and build a sandcastle plz."
+      }
+    ]
+  }
+]

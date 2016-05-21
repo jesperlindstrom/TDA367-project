@@ -5,6 +5,7 @@ import se.chalmers.get_rect.event.IEventListener;
 import se.chalmers.get_rect.game.quests.data.IQuest;
 import se.chalmers.get_rect.game.quests.data.QuestState;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,13 +18,13 @@ public class QuestManager implements IEventListener {
         this.repository = repository;
         System.out.println("Init quest");
         quests = new ArrayList<>();
-        System.out.println(quests);
-        System.out.println(repository);
-        registerQuest(0);
-    }
 
-    private void registerQuest(int id) {
-        quests.add(repository.get(id));
+        try {
+            quests.addAll(repository.getAll());
+        } catch(FileNotFoundException e) {
+            // todo: handle this :-)
+            System.out.println("Quests: " + e.getMessage());
+        }
     }
 
     public IQuest get(int id) {
