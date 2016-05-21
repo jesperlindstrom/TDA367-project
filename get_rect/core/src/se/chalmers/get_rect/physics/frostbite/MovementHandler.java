@@ -6,11 +6,6 @@ import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 public class MovementHandler {
-    /**
-     * Move the entity if nothing is in the way
-     * @param entity
-     * @param delta
-     */
     public void move(IPhysicsObject entity, CollisionData collision, double delta) {
         // Get velocity
         Point velocity = entity.getVelocity();
@@ -56,7 +51,6 @@ public class MovementHandler {
         }
 
         entity.setVelocity(velocity);
-
 
         // Frame-rate dependent distance
         velocity = velocity.multiply(delta);

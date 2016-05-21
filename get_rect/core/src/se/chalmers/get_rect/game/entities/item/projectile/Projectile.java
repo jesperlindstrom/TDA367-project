@@ -60,7 +60,7 @@ public class Projectile extends AbstractPhysicsModel {
             int velY = rand.nextInt(300) - 20;
             Point vel = new Point(velX, velY);
 
-            IPhysicsEntity projectile = factory.make(clusterProjectile, getPosition().addY(100), vel, dmg, owner);
+            IEntity projectile = factory.make(clusterProjectile, getPosition().addY(100), vel, dmg, owner);
             getScene().add(projectile);
         }
     }

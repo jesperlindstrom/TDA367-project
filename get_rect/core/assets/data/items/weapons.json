@@ -48,8 +48,8 @@
 
   {
     "type" : "lasersword",
-    "width" : 700,
-    "height" : 700,
+    "width" : 200,
+    "height" : 200,
     "damage" : 10,
     "cooldown" : 30,
     "swingDegrees" : 360

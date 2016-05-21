@@ -7,10 +7,6 @@ import se.chalmers.get_rect.physics.CollisionData;
 import java.util.List;
 
 public class CollisionHandler {
-    /**
-     * Handle collision check between solid objects
-     * @param entity
-     */
     public CollisionData check(IPhysicsObject entity, List<IPhysicsObject> entities) {
         CollisionData collision = new CollisionData();
 
@@ -19,14 +15,10 @@ public class CollisionHandler {
                 checkEntity(entity, otherEntity, collision);
             }
         }
+
         return collision;
     }
 
-    /**
-     * Check if an entity collides with another and tell the first entity.
-     * @param entity
-     * @param otherEntity
-     */
     private void checkEntity(IPhysicsObject entity, IPhysicsObject otherEntity, CollisionData solidCollision) {
         IRectangleAdapter rect1 = entity.getBoundingBox();
         IRectangleAdapter rect2 = otherEntity.getBoundingBox();
@@ -46,6 +38,5 @@ public class CollisionHandler {
 
         // Tell the entity it has collided with another
         entity.onCollision(otherEntity, entityCollision, isSolid);
-
     }
 }

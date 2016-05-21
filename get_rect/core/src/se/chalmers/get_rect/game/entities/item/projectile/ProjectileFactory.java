@@ -3,15 +3,13 @@ package se.chalmers.get_rect.game.entities.item.projectile;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IView;
-import se.chalmers.get_rect.game.entities.PhysicsEntity;
 import se.chalmers.get_rect.utilities.Point;
 
 public class ProjectileFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
 
-    public IPhysicsEntity make(String type, Point point, Point velocity, int damage, IModel owner) {
+    public IEntity make(String type, Point point, Point velocity, int damage, IModel owner) {
         if (type.equals("bullet"))
             return makeBullet(point, velocity, damage, owner);
 
@@ -28,19 +26,19 @@ public class ProjectileFactory {
         throw new EntityNotFoundException("projectile", type);
     }
 
-    private IPhysicsEntity makeBullet(Point point, Point velocity, int damage, IModel owner) {
+    private IEntity makeBullet(Point point, Point velocity, int damage, IModel owner) {
         Projectile model = new Projectile(point, velocity, damage, rectangleFactory, owner, false);
         IView view = new BulletView(model);
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 
-    private IPhysicsEntity makeMagic(Point point, Point velocity, int damage, IModel owner) {
+    private IEntity makeMagic(Point point, Point velocity, int damage, IModel owner) {
         Projectile model = new Projectile(point, velocity, damage, rectangleFactory, owner, false);
         IView view = new MagicView(model);
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 
-    private IPhysicsEntity makeFireMagic(Point point, Point velocity, int damage, IModel owner, boolean cluster) {
+    private IEntity makeFireMagic(Point point, Point velocity, int damage, IModel owner, boolean cluster) {
         Projectile model;
 
         if (cluster) {
@@ -50,6 +48,6 @@ public class ProjectileFactory {
         }
 
         IView view = new FireMagicView(model);
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 }

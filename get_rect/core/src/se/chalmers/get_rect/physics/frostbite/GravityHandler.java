@@ -7,10 +7,6 @@ import se.chalmers.get_rect.utilities.Point;
 public class GravityHandler {
     private static final int GRAVITY = -3;
 
-    /**
-     * Apply gravity to the entity velocity
-     * @param entity
-     */
     public void apply(IPhysicsObject entity, CollisionData collision) {
         Point velocity = entity.getVelocity();
 

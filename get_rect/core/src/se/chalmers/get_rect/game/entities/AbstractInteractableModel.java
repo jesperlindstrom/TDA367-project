@@ -14,12 +14,10 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     private static final int DISTANCE = 150;
     private boolean showDialog;
     private String[] wrappedDialog;
-    private StringWrapper wrapper;
     private int dialogIndex;
 
     protected AbstractInteractableModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory) {
         super(position, velocity, solid, affectedByGravity,  rectangleFactory);
-        wrapper = new StringWrapper();
         eventSource = new EventSource();
     }
 
@@ -33,7 +31,7 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     @Override
     public void showDialog(String message) {
         if (message != null && !isDialogVisible()) {
-            wrappedDialog = wrapper.wrap(message);
+            wrappedDialog = StringWrapper.wrap(message);
             dialogIndex = 0;
         }
         showDialog = true;

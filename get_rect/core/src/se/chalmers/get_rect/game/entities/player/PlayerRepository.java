@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerRepository {
-
     @Inject Player player;
     @Inject WeaponRepository weaponRepository;
+
     private static final String melee = "opsword";
     private static final String ranged = "pistol";
     private static final String PATH = "data/savedData/";
@@ -24,9 +24,7 @@ public class PlayerRepository {
 
     public PlayerRepository(){
         json = new IOFacade<>(PATH + FILE, PlayerDataStore.class);
-
     }
-
 
     public void save() throws FileNotFoundException {
         if (!hasFile()){
@@ -40,7 +38,6 @@ public class PlayerRepository {
         PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
         list.add(dataStore);
         json.save(list);
-
     }
 
     public void load() throws FileNotFoundException{
@@ -63,8 +60,8 @@ public class PlayerRepository {
         player.addNewWeapon(weaponRepository.getSingleWeapon(melee, player));
         player.addNewWeapon(weaponRepository.getSingleWeapon(ranged, player));
     }
+
     public boolean hasFile(){
         return new File(PATH + FILE).isFile();
     }
-
 }

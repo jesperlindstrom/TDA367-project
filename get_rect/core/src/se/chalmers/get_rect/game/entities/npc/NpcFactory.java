@@ -22,7 +22,7 @@ public class NpcFactory {
     @Inject private QuestManager quests;
     @Inject private Player player;
 
-    public IPhysicsEntity make(String type, Point point) {
+    public IEntity make(String type, Point point) {
         if (type.equals("sawmillExpress"))
             return makeSawmillExpress(point);
 
@@ -41,39 +41,39 @@ public class NpcFactory {
         throw new EntityNotFoundException("NPC", type);
     }
 
-    private IPhysicsEntity makeHunchen(Point point){
+    private IEntity makeHunchen(Point point){
         Hunchen model = new Hunchen(point, rectangleFactory, player);
         IView view = new HunchenView(model);
-        return new PhysicsEntity(model,view);
+        return new Entity(model,view);
     }
 
-    private IPhysicsEntity makeSawmillExpress(Point point) {
+    private IEntity makeSawmillExpress(Point point) {
         List<String> phrases = getPhrases("sawmill");
         SawmillExpress model = new SawmillExpress(point, rectangleFactory, phrases, quests);
         IView view = new SawmillView(model);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
-    private IPhysicsEntity makeRekoil(Point point) {
+    private IEntity makeRekoil(Point point) {
         List<String> phrases = getPhrases("rekoil");
         Rekoil model = new Rekoil(point, rectangleFactory, phrases, quests);
         IView view = new RekoilView(model);
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 
-    private IPhysicsEntity makeChessT(Point point) {
+    private IEntity makeChessT(Point point) {
         ChessT model = new ChessT(point, rectangleFactory, windowManager, player);
         IView view = new ChessTView(model);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 
-    private IPhysicsEntity makeHorv(Point point) {
+    private IEntity makeHorv(Point point) {
         List<String> phrases = getPhrases("horv");
         Horv model = new Horv(point, rectangleFactory, phrases);
         IView view = new HorvView(model);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 
     private List<String> getPhrases(String npc) {

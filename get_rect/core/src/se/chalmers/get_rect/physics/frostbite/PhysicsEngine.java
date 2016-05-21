@@ -68,14 +68,6 @@ public class PhysicsEngine implements IPhysicsEngine {
         processRemovals();
     }
 
-    @Override
-    public void reset() {
-        entities.clear();
-        addQueue.clear();
-        removalQueue.clear();
-        inLoop = false;
-    }
-
     private void processAdditions() {
         for (IPhysicsObject entity : addQueue) {
             entities.add(entity);

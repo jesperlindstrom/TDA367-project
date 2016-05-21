@@ -16,19 +16,10 @@ public class StateManager<V extends IState> implements IEventSource {
         this.states = new HashMap<>();
     }
 
-    /**
-     * Register a state
-     * @param key The state name
-     * @param state The state
-     */
     public void add(Integer key, V state) {
         states.put(key, state);
     }
 
-    /**
-     * Switch to another state
-     * @param stateName The state name
-     */
     public void set(Integer stateName) {
         if (!states.containsKey(stateName)) {
             throw new StateNotFoundException("Could not find a state with ID:" + stateName);
@@ -51,10 +42,6 @@ public class StateManager<V extends IState> implements IEventSource {
         event.triggerEvent("state", "changed", stateName);
     }
 
-    /**
-     * Get the current state
-     * @return The currently active IState
-     */
     public V getState() {
         if (currentState == null) return null;
         return getState(currentState);
