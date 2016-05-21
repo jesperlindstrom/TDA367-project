@@ -39,7 +39,7 @@ public class StateManager<V extends IState> implements IEventSource {
         // Tell the new state it's becoming active
         getState().enteringState(oldState);
 
-        event.triggerEvent("state", "changed", stateName);
+        event.triggerEvent("state", stateName.toString());
     }
 
     public V getState() {

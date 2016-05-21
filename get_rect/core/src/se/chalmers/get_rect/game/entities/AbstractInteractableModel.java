@@ -78,10 +78,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     }
 
     protected void triggerEvent(String type, String action) {
-        triggerEvent(type, action, null);
-    }
-
-    protected void triggerEvent(String type, String action, Object data) {
-        eventSource.triggerEvent(type, action, data);
+        eventSource.triggerEvent(type, action);
     }
 }

@@ -15,10 +15,6 @@ public abstract class AbstractModel implements IModel {
         shouldBeRemoved = true;
     }
 
-    protected void setShouldNotBeRemoved() {
-        shouldBeRemoved = false;
-    }
-
     protected IEntityHolder getScene() {
         return scene;
     }
