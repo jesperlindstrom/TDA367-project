@@ -11,6 +11,10 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class NpcFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private DialogRepository dialogRepository;
@@ -44,13 +48,15 @@ public class NpcFactory {
     }
 
     private IPhysicsEntity makeSawmillExpress(Point point) {
-        SawmillExpress model = new SawmillExpress(point, rectangleFactory, dialogRepository, quests);
+        List<String> phrases = getPhrases("sawmill");
+        SawmillExpress model = new SawmillExpress(point, rectangleFactory, phrases, quests);
         IView view = new SawmillView(model);
 
         return new PhysicsEntity(model, view);
     }
     private IPhysicsEntity makeRekoil(Point point) {
-        Rekoil model = new Rekoil(point, rectangleFactory, dialogRepository);
+        List<String> phrases = getPhrases("rekoil");
+        Rekoil model = new Rekoil(point, rectangleFactory, phrases);
         IView view = new RekoilView(model);
         return new PhysicsEntity(model, view);
     }
@@ -63,9 +69,23 @@ public class NpcFactory {
     }
 
     private IPhysicsEntity makeHorv(Point point) {
-        Horv model = new Horv(point, rectangleFactory, dialogRepository);
+        List<String> phrases = getPhrases("horv");
+        Horv model = new Horv(point, rectangleFactory, phrases);
         IView view = new HorvView(model);
 
         return new PhysicsEntity(model, view);
+    }
+
+    private List<String> getPhrases(String npc) {
+        List<String> list = new ArrayList<>();
+
+        try {
+            list = dialogRepository.get(npc);
+        } catch (FileNotFoundException e){
+            // todo: this should probably be thrown further up
+            System.out.println(e.getMessage());
+        }
+
+        return list;
     }
 }
