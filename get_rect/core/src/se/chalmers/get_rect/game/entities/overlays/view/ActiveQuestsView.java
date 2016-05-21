@@ -41,8 +41,12 @@ public class ActiveQuestsView extends AbstractView {
             pos = drawObjective(graphics, pos, "Talk to quest NPC to complete.");
         } else {
             for (Objective obj : quest.getObjectives()) {
+                pos = drawObjective(graphics, pos, obj.getInfoText());
                 String progress = obj.getCount() + " / " + obj.getRequiredCount();
-                pos = drawObjective(graphics, pos, obj.getInfoText() + ": " + progress);
+
+                IGraphicsAdapter.Colors color = obj.isCompleted() ? IGraphicsAdapter.Colors.BLACK : IGraphicsAdapter.Colors.RED;
+
+                graphics.drawText(progress, pos.addX(250), color);
             }
         }
 
