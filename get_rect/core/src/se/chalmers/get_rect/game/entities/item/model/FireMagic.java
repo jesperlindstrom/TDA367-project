@@ -5,12 +5,12 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Wand extends AbstractRangedWeapon {
+public class FireMagic extends AbstractRangedWeapon {
 
     private ProjectileFactory projectileFactory;
 
-    public Wand(IPhysicsModel user, ProjectileFactory projectileFactory, int damage, int speed, int cooldown) {
-        super(user, "wand", damage, speed, cooldown);
+    public FireMagic(IPhysicsModel user, ProjectileFactory projectileFactory, int damage, int speed, int cooldown) {
+        super(user, "firemagic", damage, speed, cooldown);
         this.projectileFactory = projectileFactory;
     }
 
@@ -19,7 +19,8 @@ public class Wand extends AbstractRangedWeapon {
         if (getCooldownFrames() == 0) {
             setCooldownFrames(getCooldown());
             setAimDirection(aimDirection);
-            entityHolder.add(projectileFactory.make("magic", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
+
+            entityHolder.add(projectileFactory.make("fireMagic", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
         }
     }
 

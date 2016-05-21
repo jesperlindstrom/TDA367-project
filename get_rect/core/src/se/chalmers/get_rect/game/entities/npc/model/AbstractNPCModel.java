@@ -48,11 +48,13 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
     }
 
     private String getSpeechDialog() {
-        if (quest.getState().equals(QuestState.AVAILABLE))
-            return quest.getAcceptText();
+        if (quest != null) {
+            if (quest.getState().equals(QuestState.AVAILABLE))
+                return quest.getAcceptText();
 
-        if (quest.getState().equals(QuestState.COMPLETABLE))
-            return quest.getCompletionText();
+            if (quest.getState().equals(QuestState.COMPLETABLE))
+                return quest.getCompletionText();
+        }
 
         return getSmallTalk();
     }

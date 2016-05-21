@@ -4,10 +4,10 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IModel;
 
-public class MagicView extends AbstractView {
+public class FireMagicView extends AbstractView {
     private IModel model;
 
-    public MagicView(IModel model) {
+    public FireMagicView(IModel model) {
         super(model);
         this.model = model;
     }
@@ -20,6 +20,6 @@ public class MagicView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/entities/projectiles/magic.png", model.getPosition().add(-8, -9));
+        graphics.draw("img/entities/projectiles/fire.png", model.getPosition().add(-8, -9));
     }
 }

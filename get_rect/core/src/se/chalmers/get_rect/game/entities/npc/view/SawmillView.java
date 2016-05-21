@@ -6,6 +6,7 @@ import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SawmillView extends AbstractAnimatedView {
+    private static final int DRAW_PRIORITY = 0;
     private static final int DEFAULT = 1;
     private static final int FLYING = 2;
     private SawmillExpress model;
@@ -28,5 +29,10 @@ public class SawmillView extends AbstractAnimatedView {
             playSequence(DEFAULT);
         }
         super.draw(graphics);
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 }

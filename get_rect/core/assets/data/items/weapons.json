@@ -8,28 +8,12 @@
   },
 
   {
-    "type": "opaxe",
-    "width": 200,
-    "height": 200,
-    "damage": 6,
-    "cooldown": 30,
-    "swingDegrees" : 360
-  },
-
-  {
     "type" : "paddle",
     "damage" : 0,
     "cooldown" : 30,
     "swingDegrees" : 75,
     "width" : 100,
     "height" : 100
-  },
-  {
-    "type" : "lasersword",
-    "width" : 175,
-    "height" : 150,
-    "damage" : 10,
-    "cooldown": 20
   },
 
   {
@@ -40,6 +24,14 @@
   },
 
   {
+    "type": "firemagic",
+    "speed" : 100,
+    "damage": 50,
+    "cooldown": 20
+  },
+
+
+  {
     "type": "opaxe",
     "width": 200,
     "height": 200,
@@ -47,76 +39,13 @@
     "cooldown": 30,
     "swingDegrees" : 360
   },
-
   {
     "type" : "pistol",
     "damage" : 20,
     "speed" : 200,
-    "cooldown" : 10
-  },
-  {
-    "type" : "lasersword",
-    "width" : 175,
-    "height" : 150,
-    "damage" : 10,
-    "cooldown": 20
-  },
-
-  {
-    "type": "opsword",
-    "width": 175,
-    "height": 150,
-    "damage": 2,
-    "cooldown": 30
-  },
-
-  {
-    "type": "opaxe",
-    "width": 200,
-    "height": 200,
-    "damage": 6,
-    "cooldown": 30,
-    "swingDegrees" : 360
-  },
-
-  {
-    "type" : "pistol",
-    "damage" : 20,
-    "speed" : 10,
     "cooldown" : 20
   },
-  {
-    "type" : "lasersword",
-    "width" : 175,
-    "height" : 150,
-    "damage" : 10,
-    "cooldown": 20,
-    "swingDegrees" : 30
-  },
 
-  {
-    "type": "opsword",
-    "width": 175,
-    "height": 150,
-    "damage": 2,
-    "cooldown": 30
-  },
-
-  {
-    "type": "opaxe",
-    "width": 200,
-    "height": 200,
-    "damage": 6,
-    "cooldown": 30,
-    "swingDegrees" : 360
-  },
-
-  {
-    "type" : "pistol",
-    "damage" : 20,
-    "speed" : 600,
-    "cooldown" : 40
-  },
   {
     "type" : "lasersword",
     "width" : 700,

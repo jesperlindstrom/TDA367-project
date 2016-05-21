@@ -27,8 +27,8 @@ public class MovementHandler {
         boolean overlapsOnY = overlap != null && overlap.getHeight() > 0;
 
         if ((x > 0 && collision.right())) {
-            if (overlapsOnX)
-                position = position.addX(-overlap.getWidth() + 1);
+            /*if (overlapsOnX)
+                position = position.addX(-overlap.getWidth() + 1);*/
 
             velocity = velocity.setX(0);
         }
