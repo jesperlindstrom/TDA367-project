@@ -30,11 +30,10 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
     public void onInteract(IModel model) {
         if (isDialogVisible()) {
             nextDialog();
+            quest.interact(() -> onQuestCompletion(model));
         } else {
             nextPhrase();
         }
-
-        quest.interact(() -> onQuestCompletion(model));
     }
 
     private void nextPhrase() {

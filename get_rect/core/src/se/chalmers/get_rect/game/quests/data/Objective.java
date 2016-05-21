@@ -24,11 +24,13 @@ public class Objective {
         if (action != null && !e.getAction().equals(action))
             return;
 
-        count++;
+        if (count < requiredCount) {
+            count++;
+        }
     }
 
     public boolean isCompleted() {
-        return count == requiredCount;
+        return count >= requiredCount;
     }
 
     public String getInfoText() {
