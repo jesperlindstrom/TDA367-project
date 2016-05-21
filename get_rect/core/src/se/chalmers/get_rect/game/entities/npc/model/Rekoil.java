@@ -50,5 +50,4 @@ public class Rekoil extends AbstractNPCModel {
     public boolean showArch() {
         return isShowingArch;
     }
-
 }

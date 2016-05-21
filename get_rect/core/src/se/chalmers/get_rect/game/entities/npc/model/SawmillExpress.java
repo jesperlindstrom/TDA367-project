@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.game.entities.npc.model;
 
 import se.chalmers.get_rect.game.quests.QuestManager;
+import se.chalmers.get_rect.game.quests.data.IQuest;
+import se.chalmers.get_rect.game.quests.data.QuestState;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
@@ -21,9 +23,16 @@ public class SawmillExpress extends AbstractNPCModel {
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, List<String> dialogList, int speed, int width, int height, QuestManager questManager) {
         super(point, true, rectangleFactory);
         this.flyingSpeed = speed;
-        setQuest(questManager.get(0));
+        IQuest quest = questManager.get(0);
+        setQuest(quest);
+        checkIfCompleted(quest);
         setBoundingBox(width, height);
         this.dialogList = dialogList;
+    }
+
+    private void checkIfCompleted(IQuest quest) {
+        if (quest.getState().equals(QuestState.COMPLETED))
+            setShouldBeRemoved();
     }
 
     @Override
