@@ -17,7 +17,6 @@ import java.util.List;
 
 public class NpcFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
-    @Inject private DialogRepository dialogRepository;
     @Inject @Named("Window") private StateManager windowManager;
     @Inject private QuestManager quests;
     @Inject private Player player;
@@ -77,10 +76,11 @@ public class NpcFactory {
     }
 
     private List<String> getPhrases(String npc) {
+        DialogRepository repository = new DialogRepository(npc);
         List<String> list = new ArrayList<>();
 
         try {
-            list = dialogRepository.get(npc);
+            list = repository.get();
         } catch (FileNotFoundException e){
             // todo: this should probably be thrown further up
             System.out.println(e.getMessage());

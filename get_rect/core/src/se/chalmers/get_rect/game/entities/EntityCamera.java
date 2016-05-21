@@ -8,7 +8,6 @@ import se.chalmers.get_rect.adapters.ICameraFactoryAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 
 import se.chalmers.get_rect.game.GameConfig;
-import se.chalmers.get_rect.game.IGameComponent;
 import se.chalmers.get_rect.utilities.Point;
 
 public class EntityCamera implements ICamera {
