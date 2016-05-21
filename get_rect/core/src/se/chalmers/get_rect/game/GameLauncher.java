@@ -21,7 +21,7 @@ public class GameLauncher implements IGameControl {
     private EntityCamera cameraManager;
 
     @Inject
-    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory, IKeyboardInputAdapter keyboard, IControllerInputAdapter controller, QuestRepository questRepository) {
+    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory, IKeyboardInputAdapter keyboard, IControllerInputAdapter controller) {
         GameInput input = new GameInput(keyboard, controller);
 
         PlayerFactory playerFactory = rootInjector.getInstance(PlayerFactory.class);
@@ -29,7 +29,7 @@ public class GameLauncher implements IGameControl {
 
         cameraManager = new EntityCamera(cameraFactory, (IPhysicsModel) player.getModel());
 
-        QuestManager questManager = new QuestManager(questRepository);
+        QuestManager questManager = new QuestManager();
         Injector injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this, input, questManager));
 
         game = injector.getInstance(Game.class);

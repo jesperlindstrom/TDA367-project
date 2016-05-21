@@ -125,6 +125,7 @@ public class Game {
     public void load() {
         try {
             playerRepository.load();
+            questManager.setQuests(questRepository.getAll());
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
@@ -155,6 +156,7 @@ public class Game {
         try {
             questRepository.reset();
             playerRepository.reset();
+            questManager.setQuests(questRepository.getAll());
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }

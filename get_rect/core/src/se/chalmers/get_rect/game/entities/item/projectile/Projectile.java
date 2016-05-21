@@ -37,7 +37,6 @@ public class Projectile extends AbstractPhysicsModel {
         if (isSolid && collisionSide.bottom()) {
             int friction = getVelocity().getX() > 0 ? -5 : 5;
             setVelocity(getVelocity().addX(friction).setY(0));
-            System.out.println(getVelocity().addX(friction).setY(0));
         }
 
         if (otherObject instanceof ICombatModel && !otherObject.equals(owner)) {

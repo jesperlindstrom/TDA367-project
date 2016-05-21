@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.quests;
 
 import com.google.inject.Inject;
-import se.chalmers.get_rect.game.entities.player.PlayerDataStore;
 import se.chalmers.get_rect.game.quests.data.*;
 import se.chalmers.get_rect.game.quests.saveData.ObjectiveSaveDataStore;
 import se.chalmers.get_rect.game.quests.saveData.QuestSaveDataStore;
@@ -22,7 +21,6 @@ public class QuestRepository {
     @Inject private QuestFactory factory;
 
     public void save(List<IQuest> quests) throws FileNotFoundException {
-        System.out.println("Saving " + SAVE_FILE);
         IOFacade<QuestSaveDataStore> io = new IOFacade<>(SAVE_FILE, QuestSaveDataStore.class);
 
         if (!hasSavePath()){

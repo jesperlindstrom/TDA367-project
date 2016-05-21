@@ -27,7 +27,7 @@ public class PlayerRepository {
     }
 
     public void save() throws FileNotFoundException {
-        if (!hasFile()){
+        if (!hasFilePath()){
             File theFile = new File(PATH);
             boolean tmp = theFile.mkdirs();
             if (!tmp){
@@ -63,5 +63,9 @@ public class PlayerRepository {
 
     public boolean hasFile(){
         return new File(PATH + FILE).isFile();
+    }
+
+    public boolean hasFilePath(){
+        return new File(PATH).isDirectory();
     }
 }

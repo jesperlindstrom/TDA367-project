@@ -13,15 +13,12 @@ import java.util.stream.Collectors;
 public class QuestManager implements IEventListener {
     private List<IQuest> quests;
 
-    public QuestManager(QuestRepository repository) {
+    public QuestManager() {
         quests = new ArrayList<>();
+    }
 
-        try {
-            quests.addAll(repository.getAll());
-        } catch(FileNotFoundException e) {
-            // todo: handle this :-)
-            System.out.println("Quests: " + e.getMessage());
-        }
+    public void setQuests(List<IQuest> quests) {
+        this.quests = quests;
     }
 
     public IQuest get(int id) {
