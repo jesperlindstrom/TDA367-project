@@ -8,9 +8,6 @@ import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.StringWrapper;
 
-import java.util.Observable;
-import java.util.Observer;
-
 public abstract class AbstractInteractableModel extends AbstractPhysicsModel implements IInteractableModel {
     private EventSource eventSource;
     private IModel model;

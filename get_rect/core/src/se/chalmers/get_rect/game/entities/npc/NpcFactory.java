@@ -56,7 +56,7 @@ public class NpcFactory {
     }
     private IPhysicsEntity makeRekoil(Point point) {
         List<String> phrases = getPhrases("rekoil");
-        Rekoil model = new Rekoil(point, rectangleFactory, phrases);
+        Rekoil model = new Rekoil(point, rectangleFactory, phrases, quests);
         IView view = new RekoilView(model);
         return new PhysicsEntity(model, view);
     }

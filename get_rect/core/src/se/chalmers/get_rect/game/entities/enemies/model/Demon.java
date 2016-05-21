@@ -75,4 +75,10 @@ public class Demon extends AbstractCombatModel {
     public boolean isAttacking() {
         return isAttacking;
     }
+
+    @Override
+    protected void die() {
+        super.die();
+        triggerEvent("demon", "died");
+    }
 }

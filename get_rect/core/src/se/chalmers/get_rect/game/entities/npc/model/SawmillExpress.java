@@ -4,16 +4,15 @@ import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.utilities.ListUtils;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.util.List;
-import java.util.Random;
 
 public class SawmillExpress extends AbstractNPCModel {
     private final int flyingSpeed;
     private boolean isFlying = false;
     private List<String> dialogList;
-    private Random r;
 
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, List<String> dialogList, QuestManager quests) {
         this(point, rectangleFactory, dialogList, 50, 219, 200, quests);
@@ -25,7 +24,6 @@ public class SawmillExpress extends AbstractNPCModel {
         setQuest(questManager.get(0));
         setBoundingBox(width, height);
         this.dialogList = dialogList;
-        r = new Random();
     }
 
     @Override
@@ -54,8 +52,7 @@ public class SawmillExpress extends AbstractNPCModel {
 
     @Override
     protected String getSmallTalk() {
-        int random = r.nextInt(dialogList.size());
-        return dialogList.get(random);
+        return ListUtils.randomItem(dialogList);
     }
 
     public boolean isFlying() {
