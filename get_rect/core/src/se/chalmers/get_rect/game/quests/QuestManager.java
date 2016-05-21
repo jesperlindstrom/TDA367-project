@@ -11,12 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class QuestManager implements IEventListener {
-    private QuestRepository repository;
     private List<IQuest> quests;
 
     public QuestManager(QuestRepository repository) {
-        this.repository = repository;
-        System.out.println("Init quest");
         quests = new ArrayList<>();
 
         try {

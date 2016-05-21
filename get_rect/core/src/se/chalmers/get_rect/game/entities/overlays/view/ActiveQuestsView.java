@@ -11,6 +11,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class ActiveQuestsView extends AbstractView {
     private static final int DRAW_PRIORITY = 9;
+    private static final String TOP_BG = "img/interact/quest_top.png";
+    private static final String OBJECTIVE_BG = "img/interact/objective_bg.png";
     private QuestManager questManager;
     private ICamera camera;
 
@@ -32,21 +34,27 @@ public class ActiveQuestsView extends AbstractView {
     }
 
     public Point drawQuest(IGraphicsAdapter graphics, Point pos, IQuest quest) {
-        System.out.println("Drawing at " + pos);
-        graphics.drawText(quest.getTitle(), pos, IGraphicsAdapter.Colors.RED);
+        graphics.draw(TOP_BG, pos.addY(-22).addX(-30));
+        graphics.drawText(quest.getTitle(), pos, IGraphicsAdapter.Colors.WHITE);
 
         if (quest.getState().equals(QuestState.COMPLETABLE)) {
-            pos = pos.addY(-30);
-            graphics.drawText("Talk to quest NPC to complete.", pos, IGraphicsAdapter.Colors.BLACK);
+            pos = drawObjective(graphics, pos, "Talk to quest NPC to complete.");
         } else {
             for (Objective obj : quest.getObjectives()) {
-                pos = pos.addY(-30);
                 String progress = obj.getCount() + " / " + obj.getRequiredCount();
-                graphics.drawText(obj.getInfoText() + ": " + progress, pos, IGraphicsAdapter.Colors.BLACK);
+                pos = drawObjective(graphics, pos, obj.getInfoText() + ": " + progress);
             }
         }
 
         return pos.addY(-50);
+    }
+
+    private Point drawObjective(IGraphicsAdapter graphics, Point pos, String text) {
+        pos = pos.addY(-30);
+        graphics.draw(OBJECTIVE_BG, pos.addY(-22).addX(-30));
+        graphics.drawText(text, pos, IGraphicsAdapter.Colors.BLACK);
+
+        return pos;
     }
 
     @Override
