@@ -42,4 +42,12 @@ public class Objective {
     public int getCount() {
         return count;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getAction() {
+        return action;
+    }
 }

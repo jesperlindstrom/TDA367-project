@@ -6,6 +6,7 @@ import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
 import se.chalmers.get_rect.game.entities.worldObjects.view.*;
+import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
@@ -20,6 +21,7 @@ public class WorldObjectFactory {
     @Inject @Named("Scene") private StateManager sceneManager;
     @Inject private ICamera camera;
     @Inject private IAudioManagerAdapter audioManager;
+    @Inject private QuestManager questManager;
 
     public IPhysicsEntity make(String type, Point point, int width, int height, int path) {
         if (type.equals("boundingBox"))
@@ -64,7 +66,7 @@ public class WorldObjectFactory {
         return new PhysicsEntity(model, null);
     }
     private IPhysicsEntity makeSandCastle(Point point) {
-        IPhysicsModel model = new SandCastle(point, rectangleFactory);
+        IPhysicsModel model = new SandCastle(point, rectangleFactory, questManager);
         IView view = new SandCastleView(model);
 
         return new PhysicsEntity(model, view);
