@@ -12,6 +12,7 @@ import se.chalmers.get_rect.game.scenes.SceneFactory;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.game.entities.window.WindowFactory;
 import se.chalmers.get_rect.states.*;
+import se.chalmers.get_rect.utilities.Point;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,6 +31,7 @@ public class Game {
     @Inject private IAudioManagerAdapter audioManager;
 
     private boolean muted = false;
+    private static final String imgPath = "img/extras/";
 
     public void draw() {
         if (sceneManager.getState() != null) {
@@ -38,6 +40,9 @@ public class Game {
 
         if (windowManager.getState() != null) {
             windowManager.getState().draw(graphics);
+        }
+        if(muted) {
+            graphics.draw(imgPath + "noSound.png", new Point(700, 100));
         }
     }
 
