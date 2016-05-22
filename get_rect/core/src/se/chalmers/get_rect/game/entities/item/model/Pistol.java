@@ -5,7 +5,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.utilities.Point;
 
-public class Pistol extends AbstractRangedWeapon implements IRanged {
+public class Pistol extends AbstractRangedWeapon {
 
     private ProjectileFactory projectileFactory;
 
@@ -20,7 +20,7 @@ public class Pistol extends AbstractRangedWeapon implements IRanged {
         if (getCooldownFrames() == 0) {
             setCooldownFrames(getCooldown());
             setAimDirection(aimDirection);
-            entityHolder.add(projectileFactory.make(getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
+            entityHolder.add(projectileFactory.make("bullet", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
         }
     }
 

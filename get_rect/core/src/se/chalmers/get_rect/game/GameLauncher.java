@@ -4,9 +4,10 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.EntityCamera;
+import se.chalmers.get_rect.game.entities.IEntity;
+import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.window.model.IGameControl;
 import se.chalmers.get_rect.game.input.GameInput;
-import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.game.quests.QuestRepository;
@@ -20,15 +21,15 @@ public class GameLauncher implements IGameControl {
     private EntityCamera cameraManager;
 
     @Inject
-    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory, IKeyboardInputAdapter keyboard, IControllerInputAdapter controller, QuestRepository questRepository) {
+    public GameLauncher(Injector rootInjector, ICameraFactoryAdapter cameraFactory, IKeyboardInputAdapter keyboard, IControllerInputAdapter controller) {
         GameInput input = new GameInput(keyboard, controller);
 
         PlayerFactory playerFactory = rootInjector.getInstance(PlayerFactory.class);
-        IPhysicsEntity player = playerFactory.make();
+        IEntity player = playerFactory.make();
 
-        cameraManager = new EntityCamera(cameraFactory, player.getModel());
+        cameraManager = new EntityCamera(cameraFactory, (IPhysicsModel) player.getModel());
 
-        QuestManager questManager = new QuestManager(questRepository);
+        QuestManager questManager = new QuestManager();
         Injector injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this, input, questManager));
 
         game = injector.getInstance(Game.class);

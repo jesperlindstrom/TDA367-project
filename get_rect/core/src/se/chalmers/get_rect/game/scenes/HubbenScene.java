@@ -2,16 +2,15 @@ package se.chalmers.get_rect.game.scenes;
 
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.ICamera;
-import se.chalmers.get_rect.game.entities.IPhysicsEntity;
-import se.chalmers.get_rect.game.entities.player.PlayerRepository;
+import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 public class HubbenScene extends AbstractScene {
 
-    public HubbenScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager, PlayerRepository playerRepository) {
-        super("hubben", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager, playerRepository);
+    public HubbenScene(IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
+        super("hubben", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager);
     }
 
 
@@ -25,7 +24,7 @@ public class HubbenScene extends AbstractScene {
 
     @Override
     public void respawn() {
-        getPlayer().getModel().setPosition(new Point(30, 480));
+        getPlayer().setPosition(new Point(30, 480));
     }
 }
 

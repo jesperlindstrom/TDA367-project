@@ -29,12 +29,14 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
     @Override
     public void onInteract(IModel model) {
         if (isDialogVisible()) {
+            if (isLastDialog() && quest != null) {
+                quest.interact(() -> onQuestCompletion(model));
+            }
+
             nextDialog();
         } else {
             nextPhrase();
         }
-
-        quest.interact(() -> onQuestCompletion(model));
     }
 
     private void nextPhrase() {
@@ -45,11 +47,13 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
     }
 
     private String getSpeechDialog() {
-        if (quest.getState().equals(QuestState.AVAILABLE))
-            return quest.getAcceptText();
+        if (quest != null) {
+            if (quest.getState().equals(QuestState.AVAILABLE))
+                return quest.getAcceptText();
 
-        if (quest.getState().equals(QuestState.COMPLETABLE))
-            return quest.getCompletionText();
+            if (quest.getState().equals(QuestState.COMPLETABLE))
+                return quest.getCompletionText();
+        }
 
         return getSmallTalk();
     }
@@ -62,9 +66,6 @@ public abstract class AbstractNPCModel extends AbstractInteractableModel impleme
 
     @Override
     public QuestState getQuestState() {
-        if (quest != null)
-            return quest.getState();
-
-        return QuestState.UNAVAILABLE;
+        return quest != null ? quest.getState() : QuestState.UNAVAILABLE;
     }
 }

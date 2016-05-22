@@ -1,14 +1,13 @@
 package se.chalmers.get_rect.game.entities.item.projectile;
 
-import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IModel;
 
-public class ProjectileView extends AbstractView {
+public class MagicView extends AbstractView {
     private IModel model;
 
-    public ProjectileView(IModel model) {
+    public MagicView(IModel model) {
         super(model);
         this.model = model;
     }
@@ -21,7 +20,6 @@ public class ProjectileView extends AbstractView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw("img/entities/projectiles/bullet.png", model.getPosition().add(-27, -17));
-
+        graphics.draw("img/entities/projectiles/magic.png", model.getPosition().add(-8, -9));
     }
 }

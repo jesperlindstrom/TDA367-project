@@ -6,8 +6,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class EventSource implements IEventSource {
     private Set<IEventListener> listeners = new CopyOnWriteArraySet<>();
 
-    public void triggerEvent(String type, String message, Object data) {
-        Event event = new Event(type, message, data);
+    public void triggerEvent(String type, String message) {
+        Event event = new Event(type, message);
 
         for (IEventListener listener : listeners) {
             listener.handleEvent(event);

@@ -9,8 +9,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class TestScene extends AbstractScene {
 
-    public TestScene(IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests,IAudioManagerAdapter audioManager, PlayerRepository playerRepository) {
-        super("test", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager, playerRepository);
+    public TestScene(IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests,IAudioManagerAdapter audioManager) {
+        super("test", playerEntity, rectangleFactory, camera, sceneLoader, quests, audioManager);
     }
 
     @Override
@@ -23,6 +23,6 @@ public class TestScene extends AbstractScene {
 
     @Override
     public void respawn() {
-        getPlayer().getModel().setPosition(new Point(670, 265));
+        getPlayer().setPosition(new Point(670, 265));
     }
 }
