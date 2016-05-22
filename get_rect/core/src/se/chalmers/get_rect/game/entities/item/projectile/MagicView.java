@@ -4,9 +4,6 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IModel;
 
-/**
- * Created by Simon on 16-05-20.
- */
 public class MagicView extends AbstractView {
     private IModel model;
 

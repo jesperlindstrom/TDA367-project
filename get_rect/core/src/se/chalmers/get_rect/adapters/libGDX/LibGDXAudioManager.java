@@ -54,10 +54,8 @@ public class LibGDXAudioManager implements IAudioManagerAdapter{
 
             soundList.put(soundName, file);
         }
-
-        file.setVolume(soundList.get(soundName).play(), volume);
         file.play();
-
+        file.setVolume(soundList.get(soundName).play(), volume);
     }
 
     @Override

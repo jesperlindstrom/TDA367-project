@@ -21,7 +21,7 @@ public class JsonIOStrategy<T> implements IOStrategy<T> {
         Reader reader = new InputStreamReader(stream, charset);
         Gson gson = new Gson();
 
-        return gson.fromJson(reader, new JsonListWrapper<T>(className));
+        return gson.fromJson(reader, new JsonListWrapper<>(className));
     }
 
     @Override
@@ -30,6 +30,7 @@ public class JsonIOStrategy<T> implements IOStrategy<T> {
         String s = gson.toJson(data);
 
         File myFile = new File(file);
+
         try {
            boolean tmp =  myFile.createNewFile();
             if (!tmp){
@@ -40,10 +41,9 @@ public class JsonIOStrategy<T> implements IOStrategy<T> {
             myOutWriter.append(s);
             myOutWriter.close();
             fOut.close();
-
         } catch (IOException e){
+            // todo: throw this out of here
             System.out.println(e.getMessage());
         }
-
     }
 }

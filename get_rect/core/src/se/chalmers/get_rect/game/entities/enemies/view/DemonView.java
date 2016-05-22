@@ -7,6 +7,7 @@ import se.chalmers.get_rect.game.entities.enemies.model.Demon;
 import se.chalmers.get_rect.utilities.Point;
 
 public class DemonView extends AbstractAnimatedView {
+    private static final int DRAW_PRIORITY = 4;
     private static final int FLYING = 1;
     private static final int ATTACK = 2;
     private Demon model;
@@ -44,5 +45,10 @@ public class DemonView extends AbstractAnimatedView {
         } else {
             return ATTACK;
         }
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 }

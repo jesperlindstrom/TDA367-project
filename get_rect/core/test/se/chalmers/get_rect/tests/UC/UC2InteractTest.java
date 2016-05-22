@@ -1,23 +1,16 @@
 package se.chalmers.get_rect.tests.UC;
-import com.google.inject.Inject;
 import org.junit.Before;
 import org.junit.Test;
 
 import org.mockito.Mockito;
-import se.chalmers.get_rect.game.entities.DialogRepository;
 import se.chalmers.get_rect.game.entities.IRepository;
-import se.chalmers.get_rect.game.quests.QuestFactory;
 import se.chalmers.get_rect.game.quests.QuestManager;
-import se.chalmers.get_rect.game.quests.QuestRepository;
-import se.chalmers.get_rect.game.quests.data.IQuest;
 import se.chalmers.get_rect.game.quests.data.Objective;
 import se.chalmers.get_rect.game.quests.data.Quest;
 import se.chalmers.get_rect.game.quests.data.QuestState;
-import se.chalmers.get_rect.physics.IRectangleAdapter;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
-import se.chalmers.get_rect.game.entities.npc.NpcFactory;
 import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.utilities.Point;

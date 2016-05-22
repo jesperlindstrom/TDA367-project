@@ -19,7 +19,7 @@ public class Wand extends AbstractRangedWeapon {
         if (getCooldownFrames() == 0) {
             setCooldownFrames(getCooldown());
             setAimDirection(aimDirection);
-            entityHolder.add(projectileFactory.makeMagic(getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
+            entityHolder.add(projectileFactory.make("magic", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
         }
     }
 

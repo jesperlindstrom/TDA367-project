@@ -25,7 +25,7 @@ public class Door extends AbstractInteractableModel {
 
     @Override
     public void onInteract(IModel model) {
-        triggerEvent("door", "interacted", doorPath);
+        triggerEvent("door", Integer.toString(doorPath));
         sceneManager.set(doorPath);
     }
 }

@@ -1,4 +1,4 @@
-package se.chalmers.get_rect.game.entities;
+package se.chalmers.get_rect.game.entities.npc;
 
 public class DialogDataStore {
     private String dialog;
