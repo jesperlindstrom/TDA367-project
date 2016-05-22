@@ -27,7 +27,7 @@ public class Wand extends AbstractRangedWeapon {
         Point offset = getHandPos();
 
         if (getAimDirection().getX() != 0) {
-            offset = offset.addY(20);
+            offset = offset.addY(5);
         }
 
         if (getAimDirection().getY() != 0) {

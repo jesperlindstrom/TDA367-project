@@ -22,7 +22,6 @@ public class GameConfig {
     // Debug booleans
     public static final boolean DISABLE_ALL = true;
 
-
     public static final boolean PRINT_CONTROLLERVALUES = true;
     public static final boolean SHOW_LOWESTFPS = true;
     public static final boolean SHOW_DELTA = true;
