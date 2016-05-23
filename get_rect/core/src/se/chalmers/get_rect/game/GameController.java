@@ -126,7 +126,7 @@ public class GameController {
             }
         }
         if (gameInput.isKeyJustPressed(Actions.RESPAWN)) {
-            windowManager.set(GameConfig.HUBBEN);
+            worldManager.set(GameConfig.HUBBEN);
         }
     }
 
