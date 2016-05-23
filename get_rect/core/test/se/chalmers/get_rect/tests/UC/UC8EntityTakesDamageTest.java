@@ -42,7 +42,7 @@ public class UC8EntityTakesDamageTest {
         IRectangleFactoryAdapter rectangleFactory = new RectangleFactoryAdapterStub();
         IMelee meleeWeapon = mock(MeleeWeapon.class);
         this.target = new Zombie(point, rectangleFactory, owner);
-        projectile = new Projectile(new Point(), new Point(), 10, rectangleFactory, owner);
+        projectile = new Projectile(new Point(), new Point(), 10, rectangleFactory, owner, true);
         swing = new Swing(10,10,10,5, rectangleFactory,owner,meleeWeapon);
         scene.add(new Entity(projectile, null));
 
