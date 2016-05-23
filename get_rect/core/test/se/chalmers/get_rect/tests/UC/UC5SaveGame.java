@@ -2,16 +2,9 @@ package se.chalmers.get_rect.tests.UC;
 
 import org.junit.Before;
 import org.junit.Test;
-import se.chalmers.get_rect.game.entities.item.WeaponRepository;
-import se.chalmers.get_rect.game.entities.item.model.IWeapon;
-import se.chalmers.get_rect.game.entities.item.model.MeleeWeapon;
-import se.chalmers.get_rect.game.entities.item.model.Pistol;
-import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
-import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.player.PlayerDataStore;
 import se.chalmers.get_rect.game.entities.player.PlayerRepository;
-import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +12,7 @@ import java.io.FileNotFoundException;
 import static org.junit.Assert.*;
 
 
-public class UC5SaveGame {
+public class UC5SaveGame extends IOSetup {
 
     private Player player;
     private PlayerRepository playerRepository;
@@ -27,15 +20,10 @@ public class UC5SaveGame {
 
     @Before
     public void setup(){
-        this.player = new Player(new RectangleFactoryAdapterStub());
-        this.playerRepository = new PlayerRepository(player, new WeaponRepository());
-        SwingFactory swingFactory = new SwingFactory();
-        IWeapon melee = new MeleeWeapon(player,"melee", swingFactory,10,10,10,5);
-        ProjectileFactory projectileFactory = new ProjectileFactory();
-        IWeapon ranged = new Pistol(player, projectileFactory,10,10,5);
-        player.addNewWeapon(melee);
-        player.addNewWeapon(ranged);
-        this.dataStore = new PlayerDataStore(player.getCurrentHealth(),player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
+        super.setup();
+        this.player = getPlayer();
+        this.playerRepository = getPlayerRepository();
+        this.dataStore = getDataStore();
     }
 
     @Test
