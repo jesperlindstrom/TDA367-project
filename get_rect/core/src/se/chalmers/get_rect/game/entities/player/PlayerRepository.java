@@ -13,8 +13,8 @@ import java.util.List;
 
 public class PlayerRepository {
 
-    @Inject Player player;
-    @Inject WeaponRepository weaponRepository;
+    private Player player;
+    private WeaponRepository weaponRepository;
     private static final String melee = "opsword";
     private static final String ranged = "pistol";
     private static final String PATH = "data/savedData/";
@@ -22,8 +22,11 @@ public class PlayerRepository {
 
     private IOFacade<PlayerDataStore> json;
 
-    public PlayerRepository(){
+    @Inject
+    public PlayerRepository(Player player, WeaponRepository weaponRepository){
         json = new IOFacade<>(PATH + FILE, PlayerDataStore.class);
+        this.player = player;
+        this.weaponRepository = weaponRepository;
 
     }
 
@@ -33,7 +36,7 @@ public class PlayerRepository {
             File theFile = new File(PATH);
             boolean tmp = theFile.mkdirs();
             if (!tmp){
-                System.out.println("Failed to makeBullet file path");
+                System.out.println("Created new file path");
             }
         }
         List<PlayerDataStore> list = new ArrayList<>();
