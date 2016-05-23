@@ -139,7 +139,7 @@ public abstract class AbstractWorld implements IWorld {
         }
     }
 
-    protected void addEntity(IEntity entity) {
+    protected void addEntity(IEntity entity) throws EntityNotFoundException {
         IModel model = entity.getModel();
         IView view = entity.getView();
 

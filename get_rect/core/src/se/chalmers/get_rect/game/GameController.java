@@ -26,7 +26,7 @@ import java.util.List;
 public class GameController {
     @Inject private IGraphicsAdapter graphics;
     @Inject private GameInput gameInput;
-    @Inject private StateManager<IWorld> sceneManager;
+    @Inject private StateManager<IWorld> worldManager;
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private PlayerController playerController;
     @Inject private Player player;
@@ -42,8 +42,8 @@ public class GameController {
     private static final String imgPath = "img/extras/";
 
     public void draw() {
-        if (sceneManager.getState() != null) {
-            sceneManager.getState().draw(graphics);
+        if (worldManager.getState() != null) {
+            worldManager.getState().draw(graphics);
         }
 
         if (windowManager.getState() != null) {
@@ -55,9 +55,9 @@ public class GameController {
     }
 
     public void setup() {
-        sceneManager.add(GameConfig.TEST, worldFactory.make("test"));
-        sceneManager.add(GameConfig.HORSALSVAGEN, worldFactory.make("horsalsvagen"));
-        sceneManager.add(GameConfig.HUBBEN, worldFactory.make("hubben"));
+        worldManager.add(GameConfig.TEST, worldFactory.make("test"));
+        worldManager.add(GameConfig.HORSALSVAGEN, worldFactory.make("horsalsvagen"));
+        worldManager.add(GameConfig.HUBBEN, worldFactory.make("hubben"));
 
         windowManager.add(GameConfig.SPLASH, windowFactory.makeSplash());
         windowManager.add(GameConfig.MAIN_MENU, windowFactory.makeMainMenu());
@@ -70,7 +70,6 @@ public class GameController {
 
         // Add various listeners
         player.addListener(this::onPlayerDeath);
-        sceneManager.addListener((e) -> save());
     }
 
     private void onPlayerDeath(Event e) {
@@ -80,7 +79,7 @@ public class GameController {
             } catch (FileNotFoundException f){
                 startNew();
             }
-            sceneManager.set(GameConfig.HUBBEN);
+            worldManager.set(GameConfig.HUBBEN);
         }
     }
 
@@ -99,8 +98,8 @@ public class GameController {
         } else {
             playerController.update();
 
-            if (sceneManager.getState() != null) {
-                sceneManager.getState().update(delta);
+            if (worldManager.getState() != null) {
+                worldManager.getState().update(delta);
             }
         }
     }
@@ -132,7 +131,7 @@ public class GameController {
         try {
             playerRepository.load();
             questManager.setQuests(questRepository.getAll());
-            sceneManager.set(GameConfig.HUBBEN);
+            worldManager.set(GameConfig.HUBBEN);
             resume();
         } catch (FileNotFoundException e){
             ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
@@ -142,7 +141,6 @@ public class GameController {
 
     public void save() {
         try {
-            System.out.println("called from save");
             // Save player details and weapons
             playerRepository.save();
 
@@ -164,7 +162,7 @@ public class GameController {
             questRepository.reset();
             playerRepository.reset();
             questManager.setQuests(questRepository.getAll());
-            sceneManager.set(GameConfig.HUBBEN);
+            worldManager.set(GameConfig.HUBBEN);
             resume();
         } catch (FileNotFoundException e){
             ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
