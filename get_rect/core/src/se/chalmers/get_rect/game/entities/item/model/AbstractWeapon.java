@@ -1,7 +1,6 @@
 package se.chalmers.get_rect.game.entities.item.model;
 
 import se.chalmers.get_rect.game.entities.AbstractModel;
-import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.utilities.Point;
 

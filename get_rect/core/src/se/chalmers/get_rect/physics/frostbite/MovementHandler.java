@@ -6,11 +6,6 @@ import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.Point;
 
 public class MovementHandler {
-    /**
-     * Move the entity if nothing is in the way
-     * @param entity
-     * @param delta
-     */
     public void move(IPhysicsObject entity, CollisionData collision, double delta) {
         // Get velocity
         Point velocity = entity.getVelocity();
@@ -27,8 +22,8 @@ public class MovementHandler {
         boolean overlapsOnY = overlap != null && overlap.getHeight() > 0;
 
         if ((x > 0 && collision.right())) {
-            if (overlapsOnX)
-                position = position.addX(-overlap.getWidth() + 1);
+            /*if (overlapsOnX)
+                position = position.addX(-overlap.getWidth() + 1);*/
 
             velocity = velocity.setX(0);
         }
@@ -56,7 +51,6 @@ public class MovementHandler {
         }
 
         entity.setVelocity(velocity);
-
 
         // Frame-rate dependent distance
         velocity = velocity.multiply(delta);

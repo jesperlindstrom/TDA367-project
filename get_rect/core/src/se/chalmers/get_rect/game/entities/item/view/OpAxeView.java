@@ -10,11 +10,11 @@ public class OpAxeView extends AbstractMeleeWeaponView {
     private static final String imgPath = "img/items/";
     private static final float SCALE = 1f;
     private static final float tilt = 15;
-    IAudioManagerAdapter audioManager;
-
+    private IAudioManagerAdapter audioManager;
+    private boolean isUsed = false;
 
     public OpAxeView(IWeapon model, IAudioManagerAdapter audioManager) {
-        super(model, tilt, imgPath+"opaxe_icon.png");
+        super(model, tilt, imgPath + "opaxe_icon.png");
         this.audioManager = audioManager;
     }
 
@@ -22,6 +22,10 @@ public class OpAxeView extends AbstractMeleeWeaponView {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath+"opaxewithhand.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 20 : 0, 30), new Point(-10, 5), getXScale(SCALE), SCALE, getRotation());
         super.draw(graphics);
+        if (!isUsed) {
+            audioManager.playMusic("axe");
+            isUsed = true;
+        }
         if (isAttacking()) {
             audioManager.playMusic("axe");
         }

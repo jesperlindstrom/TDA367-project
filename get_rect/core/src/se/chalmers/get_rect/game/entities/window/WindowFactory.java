@@ -40,7 +40,7 @@ public class WindowFactory {
             return makeInGameMenu();
 
         if (type.equals("inventory"))
-            return makeInverntory();
+            return makeInventory();
 
         throw new EntityNotFoundException("window", type);
     }
@@ -63,7 +63,7 @@ public class WindowFactory {
         return new GridController(gameInput, model, view);
     }
 
-    private IWindowController makeInverntory() {
+    private IWindowController makeInventory() {
         Inventory model = new Inventory(player, weaponRepository);
         IView view = new InventoryView(model, camera, weaponFactory);
         return new GridController(gameInput, model, view);

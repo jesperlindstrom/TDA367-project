@@ -9,6 +9,7 @@ import se.chalmers.get_rect.game.entities.AbstractAnimatedView;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 
 public class ZombieView extends AbstractAnimatedView implements IEventListener {
+    private static final int DRAW_PRIORITY = 4;
     private static final int WALKING = 1;
     private IAudioManagerAdapter audioManager;
 
@@ -32,5 +33,10 @@ public class ZombieView extends AbstractAnimatedView implements IEventListener {
         if (e.getType().equals("zombie") && e.getAction().equals("died")) {
             audioManager.playSound("scream");
         }
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 }

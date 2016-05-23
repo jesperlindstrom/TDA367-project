@@ -8,21 +8,16 @@ import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.utilities.StringWrapper;
 
-import java.util.Observable;
-import java.util.Observer;
-
 public abstract class AbstractInteractableModel extends AbstractPhysicsModel implements IInteractableModel {
     private EventSource eventSource;
     private IModel model;
     private static final int DISTANCE = 150;
     private boolean showDialog;
     private String[] wrappedDialog;
-    private StringWrapper wrapper;
     private int dialogIndex;
 
     protected AbstractInteractableModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory) {
         super(position, velocity, solid, affectedByGravity,  rectangleFactory);
-        wrapper = new StringWrapper();
         eventSource = new EventSource();
     }
 
@@ -36,7 +31,7 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     @Override
     public void showDialog(String message) {
         if (message != null && !isDialogVisible()) {
-            wrappedDialog = wrapper.wrap(message);
+            wrappedDialog = StringWrapper.wrap(message);
             dialogIndex = 0;
         }
         showDialog = true;
@@ -61,6 +56,10 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
         dialogIndex++;
     }
 
+    protected boolean isLastDialog() {
+        return wrappedDialog.length - 1 == dialogIndex;
+    }
+
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData data, boolean isSolid) {
         if (otherObject instanceof IInteractorModel) {
@@ -79,10 +78,6 @@ public abstract class AbstractInteractableModel extends AbstractPhysicsModel imp
     }
 
     protected void triggerEvent(String type, String action) {
-        triggerEvent(type, action, null);
-    }
-
-    protected void triggerEvent(String type, String action, Object data) {
-        eventSource.triggerEvent(type, action, data);
+        eventSource.triggerEvent(type, action);
     }
 }

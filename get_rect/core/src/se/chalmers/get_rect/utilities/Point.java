@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.utilities;
 
-
 public class Point {
     private int xCoordinate;
     private int yCoordinate;
@@ -15,13 +14,8 @@ public class Point {
     }
 
     public Point(Point point) {
-        this(0 ,0);
-        if (point != null) {
-            this.xCoordinate = point.getX();
-            this.yCoordinate = point.getY();
-        }
+        this(point.getX(), point.getY());
     }
-
 
     public int getX() {
         return xCoordinate;
@@ -32,7 +26,6 @@ public class Point {
     }
 
     public Point setX(int xCoordinate) {
-
         return new Point(xCoordinate, this.yCoordinate);
     }
 
@@ -49,7 +42,6 @@ public class Point {
     }
 
     public Point add(Point p2) {
-
         return new Point(this.getX() + p2.getX(), this.getY() + p2.getY());
     }
 
@@ -62,7 +54,6 @@ public class Point {
     }
 
     public Point subtract(int x, int y) {
-
         return new Point(this.getX() - x, this.getY() - y);
     }
 
@@ -82,16 +73,8 @@ public class Point {
         return new Point(this.subtract(point)).getY();
     }
 
-    public Point inverse(){
-        return new Point(-this.getX(),-this.getY());
-    }
-
     public String toString(){
         return ("X = " + getX() + " Y = " + getY());
-    }
-
-    public Point vector(Point p) {
-        return p.subtract(this);
     }
 
     public int distanceTo(Point p) {
@@ -107,11 +90,6 @@ public class Point {
 
     }
 
-    /**
-     * multiplies x1 with x2 and y1 with y2
-     * @param p2 point to multiply with.
-     * @return new point
-     */
     public Point multiply(Point p2) {
         return new Point(xCoordinate*p2.getX(), yCoordinate*p2.getY());
     }
@@ -123,27 +101,21 @@ public class Point {
         return new Point(x, y);
     }
 
-    public Point normalize (float x, float y) {
-        int intX;
-        int intY;
-
-        if (x < -0.5) {
-            intX = -1;
-        } else if (x > 0.5) {
-            intX = 1;
-        } else {
-            intX = 0;
-        }
-
-        if (y < -0.5) {
-            intY = -1;
-        } else if (y > 0.5) {
-            intY = 1;
-        } else {
-            intY = 0;
-        }
+    public Point normalize(float x, float y) {
+        int intX = normalize(x);
+        int intY = normalize(y);
 
         return new Point(intX, intY);
+    }
+
+    private int normalize(float val) {
+        if (val < -0.5) {
+            return -1;
+        } else if (val > 0.5) {
+            return 1;
+        }
+
+        return 0;
     }
 
     @Override
@@ -162,5 +134,5 @@ public class Point {
     @Override
     public int hashCode() {
         return xCoordinate*35729 + yCoordinate*36571;
-    } // If we get a background that is larger than 35729 we need to change these values
+    }
 }

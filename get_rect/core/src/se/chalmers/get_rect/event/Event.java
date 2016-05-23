@@ -3,12 +3,10 @@ package se.chalmers.get_rect.event;
 public class Event {
     private final String type;
     private final String action;
-    private final Object data;
 
-    public Event(String type, String action, Object data) {
+    public Event(String type, String action) {
         this.type = type;
         this.action = action;
-        this.data = data;
     }
 
     public String getType() {
@@ -19,12 +17,8 @@ public class Event {
         return action;
     }
 
-    public Object getData() {
-        return data;
-    }
-
     @Override
     public String toString() {
-        return "Event:" + type + " -> " + action + " (" + data + ")";
+        return "Event:" + type + " -> " + action;
     }
 }

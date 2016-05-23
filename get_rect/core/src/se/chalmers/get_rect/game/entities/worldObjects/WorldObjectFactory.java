@@ -6,6 +6,7 @@ import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
 import se.chalmers.get_rect.game.entities.worldObjects.view.*;
+import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
@@ -20,8 +21,9 @@ public class WorldObjectFactory {
     @Inject @Named("Scene") private StateManager sceneManager;
     @Inject private ICamera camera;
     @Inject private IAudioManagerAdapter audioManager;
+    @Inject private QuestManager questManager;
 
-    public IPhysicsEntity make(String type, Point point, int width, int height, int path) {
+    public IEntity make(String type, Point point, int width, int height, int path) {
         if (type.equals("boundingBox"))
             return makeBoundingBox(point, width, height);
 
@@ -47,37 +49,37 @@ public class WorldObjectFactory {
         throw new EntityNotFoundException("worldObject", type);
     }
 
-    private IPhysicsEntity makeBoundingBox(Point point, int width, int height) {
+    private IEntity makeBoundingBox(Point point, int width, int height) {
         IPhysicsModel model = new BoundingBox(point, width, height, rectangleFactory);
-        return new PhysicsEntity(model, null);
+        return new Entity(model, null);
     }
 
-    private IPhysicsEntity makeTrampoline(Point point) {
+    private IEntity makeTrampoline(Point point) {
         IPhysicsModel model = new Trampoline(point, rectangleFactory);
         IView view = new TrampolineView(model);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 
-    private IPhysicsEntity makeDoor(Point point, int width, int height, int path){
+    private IEntity makeDoor(Point point, int width, int height, int path){
         IPhysicsModel model = new Door(point,width,height, rectangleFactory, sceneManager, path);
-        return new PhysicsEntity(model, null);
+        return new Entity(model, null);
     }
-    private IPhysicsEntity makeSandCastle(Point point) {
-        IPhysicsModel model = new SandCastle(point, rectangleFactory);
+    private IEntity makeSandCastle(Point point) {
+        IPhysicsModel model = new SandCastle(point, rectangleFactory, questManager);
         IView view = new SandCastleView(model);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
-    private IPhysicsEntity makeHorsalsvagenBg() {
-        return new PhysicsEntity(null, new HorsalsvagenSceneView(camera, audioManager));
-    }
-
-    private IPhysicsEntity makeTestBg() {
-        return new PhysicsEntity(null, new TestSceneView(camera, audioManager));
+    private IEntity makeHorsalsvagenBg() {
+        return new Entity(null, new HorsalsvagenSceneView(camera, audioManager));
     }
 
-    private IPhysicsEntity makeHubbenBg() {
-        return new PhysicsEntity(null, new HubbenSceneView(camera, audioManager));
+    private IEntity makeTestBg() {
+        return new Entity(null, new TestSceneView(camera, audioManager));
+    }
+
+    private IEntity makeHubbenBg() {
+        return new Entity(null, new HubbenSceneView(camera, audioManager));
     }
 }

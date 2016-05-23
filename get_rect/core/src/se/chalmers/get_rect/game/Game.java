@@ -2,20 +2,26 @@ package se.chalmers.get_rect.game;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
+import se.chalmers.get_rect.event.Event;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 import se.chalmers.get_rect.game.input.Actions;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.player.PlayerController;
+import se.chalmers.get_rect.game.quests.QuestManager;
+import se.chalmers.get_rect.game.quests.QuestRepository;
+import se.chalmers.get_rect.game.quests.data.IQuest;
 import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.scenes.SceneFactory;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.game.entities.window.WindowFactory;
 import se.chalmers.get_rect.states.*;
+import se.chalmers.get_rect.utilities.Point;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.NoSuchFileException;
+import java.util.List;
 
 public class Game {
     @Inject private IGraphicsAdapter graphics;
@@ -28,8 +34,11 @@ public class Game {
     @Inject private SceneFactory sceneFactory;
     @Inject private WindowFactory windowFactory;
     @Inject private IAudioManagerAdapter audioManager;
+    @Inject private QuestManager questManager;
+    @Inject private QuestRepository questRepository;
 
     private boolean muted = false;
+    private static final String imgPath = "img/extras/";
 
     public void draw() {
         if (sceneManager.getState() != null) {
@@ -38,6 +47,9 @@ public class Game {
 
         if (windowManager.getState() != null) {
             windowManager.getState().draw(graphics);
+        }
+        if(muted) {
+            graphics.draw(imgPath + "noSound.png", new Point(700, 100));
         }
     }
 
@@ -54,19 +66,21 @@ public class Game {
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
 
-        player.addListener((e) -> {
-            System.out.println(e);
-            if (e.getAction().equals("died")) {
-                try {
-                    playerRepository.load();
-                } catch (FileNotFoundException f){
-                    System.out.println(f.getMessage());
-                    startNew();
-                }
-                sceneManager.set(GameConfig.HUBBEN);
-                player.refillHealth();
+        // Add various listeners
+        player.addListener(this::onPlayerDeath);
+        sceneManager.addListener((e) -> save());
+    }
+
+    private void onPlayerDeath(Event e) {
+        if (e.getAction().equals("died")) {
+            try {
+                playerRepository.load();
+            } catch (FileNotFoundException f){
+                System.out.println(f.getMessage());
+                startNew();
             }
-        });
+            sceneManager.set(GameConfig.HUBBEN);
+        }
     }
 
     /**
@@ -74,7 +88,8 @@ public class Game {
      * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH || windowManager.getCurrentStateKey() != GameConfig.MAIN_MENU) {
+
+        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH && windowManager.getCurrentStateKey() != GameConfig.MAIN_MENU) {
             handleInput();
         }
 
@@ -113,10 +128,10 @@ public class Game {
         }
     }
 
-
     public void load() {
         try {
             playerRepository.load();
+            questManager.setQuests(questRepository.getAll());
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
@@ -126,8 +141,15 @@ public class Game {
 
     public void save() {
         try {
+            System.out.println("called from save");
+            // Save player details and weapons
             playerRepository.save();
+
+            // Save quest status
+            List<IQuest> quests = questManager.getAll();
+            questRepository.save(quests);
         } catch (FileNotFoundException e){
+            // todo: handle this
             System.out.println(e.getMessage());
         }
     }
@@ -137,9 +159,10 @@ public class Game {
     }
 
     public void startNew() {
-
         try {
+            questRepository.reset();
             playerRepository.reset();
+            questManager.setQuests(questRepository.getAll());
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }

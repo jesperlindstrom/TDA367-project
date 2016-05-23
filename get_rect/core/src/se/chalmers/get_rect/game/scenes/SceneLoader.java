@@ -5,7 +5,6 @@ import com.google.inject.name.Named;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.IRepository;
-import se.chalmers.get_rect.game.entities.IPhysicsEntity;
 import se.chalmers.get_rect.game.entities.overlays.OverlayFactory;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 
@@ -14,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SceneLoader {
-    private IRepository<IPhysicsEntity> worldObjectRepository;
-    private IRepository<IPhysicsEntity> npcRepository;
-    private IRepository<IPhysicsEntity> enemyRepository;
+    private IRepository<IEntity> worldObjectRepository;
+    private IRepository<IEntity> npcRepository;
+    private IRepository<IEntity> enemyRepository;
     private OverlayFactory overlayFactory;
 
     @Inject
-    public SceneLoader(@Named("worldObject") IRepository<IPhysicsEntity> worldObjectRepository, @Named("npc") IRepository<IPhysicsEntity> npcRepository, @Named("enemy") IRepository<IPhysicsEntity> enemyRepository, OverlayFactory overlayFactory) {
+    public SceneLoader(@Named("worldObject") IRepository<IEntity> worldObjectRepository, @Named("npc") IRepository<IEntity> npcRepository, @Named("enemy") IRepository<IEntity> enemyRepository, OverlayFactory overlayFactory) {
         this.worldObjectRepository = worldObjectRepository;
         this.npcRepository = npcRepository;
         this.enemyRepository = enemyRepository;
@@ -32,8 +31,8 @@ public class SceneLoader {
      * @return NPCs and zombies
      * @throws FileNotFoundException
      */
-    public List<IPhysicsEntity> getEntities(String sceneName) throws FileNotFoundException {
-        List<IPhysicsEntity> entities = new ArrayList<>();
+    public List<IEntity> getEntities(String sceneName) throws FileNotFoundException {
+        List<IEntity> entities = new ArrayList<>();
 
         entities.addAll(enemyRepository.get(sceneName));
         entities.addAll(npcRepository.get(sceneName));
