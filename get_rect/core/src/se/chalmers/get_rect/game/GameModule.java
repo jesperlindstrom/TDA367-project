@@ -7,12 +7,12 @@ import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.enemies.EnemyRepository;
 import se.chalmers.get_rect.game.entities.npc.NpcRepository;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.entities.window.model.IGameControl;
+import se.chalmers.get_rect.game.window.model.IGameControl;
 import se.chalmers.get_rect.game.entities.worldObjects.WorldObjectRepository;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.quests.QuestManager;
-import se.chalmers.get_rect.game.scenes.IScene;
-import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
+import se.chalmers.get_rect.game.world.IWorld;
+import se.chalmers.get_rect.game.window.controller.IWindowController;
 import se.chalmers.get_rect.states.StateManager;
 
 public class GameModule extends AbstractModule {
@@ -45,8 +45,8 @@ public class GameModule extends AbstractModule {
         bind(QuestManager.class).toInstance(questManager);
 
         // SceneManager and WindowManager
-        StateManager<IScene> sceneManager = new StateManager<>();
-        bind(new TypeLiteral<StateManager<IScene>>() {}).toInstance(sceneManager);
+        StateManager<IWorld> sceneManager = new StateManager<>();
+        bind(new TypeLiteral<StateManager<IWorld>>() {}).toInstance(sceneManager);
         bind(StateManager.class).annotatedWith(Names.named("Scene")).toInstance(sceneManager);
         StateManager<IWindowController> windowManager = new StateManager<>();
         bind(new TypeLiteral<StateManager<IWindowController>>() {}).toInstance(windowManager);

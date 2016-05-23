@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.world.IWorld;
 import se.chalmers.get_rect.game.entities.worldObjects.model.Door;
-import se.chalmers.get_rect.game.scenes.HorsalsvagenScene;
-import se.chalmers.get_rect.game.scenes.TestScene;
+import se.chalmers.get_rect.game.world.HorsalsvagenWorld;
+import se.chalmers.get_rect.game.world.TestWorld;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.utilities.Side;
@@ -21,18 +21,18 @@ import static org.junit.Assert.*;
 public class UC6DoorTest {
 
     private Door door;
-    private StateManager<IScene> stateManager;
+    private StateManager<IWorld> stateManager;
     private Player player;
     private CollisionData playerSideData;
     private CollisionData otherSideData;
-    private TestScene testScene;
+    private TestWorld testScene;
 
     @Before
     public void setup(){
         stateManager = new StateManager<>();
-        testScene = Mockito.mock(TestScene.class);
+        testScene = Mockito.mock(TestWorld.class);
         stateManager.add(22, testScene);
-        stateManager.add(21, Mockito.mock(HorsalsvagenScene.class));
+        stateManager.add(21, Mockito.mock(HorsalsvagenWorld.class));
 
         RectangleFactoryAdapterStub rectangleFactoryAdapterStub = new RectangleFactoryAdapterStub();
         door = new Door(new Point(0,0),100,100, rectangleFactoryAdapterStub , stateManager , 22 );

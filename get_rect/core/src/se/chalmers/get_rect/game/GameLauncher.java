@@ -6,18 +6,17 @@ import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.game.entities.EntityCamera;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
-import se.chalmers.get_rect.game.entities.window.model.IGameControl;
+import se.chalmers.get_rect.game.window.model.IGameControl;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.player.PlayerFactory;
 import se.chalmers.get_rect.game.quests.QuestManager;
-import se.chalmers.get_rect.game.quests.QuestRepository;
 
 public class GameLauncher implements IGameControl {
     @Inject private IGameLoopAdapter gameLoop;
     @Inject private IAssetManagerAdapter assetManager;
     @Inject private IGraphicsAdapter graphics;
 
-    private Game game;
+    private GameController gameController;
     private EntityCamera cameraManager;
 
     @Inject
@@ -32,9 +31,9 @@ public class GameLauncher implements IGameControl {
         QuestManager questManager = new QuestManager();
         Injector injector = rootInjector.createChildInjector(new GameModule(player, cameraManager, this, input, questManager));
 
-        game = injector.getInstance(Game.class);
+        gameController = injector.getInstance(GameController.class);
 
-        game.setup();
+        gameController.setup();
     }
 
     /**
@@ -44,7 +43,7 @@ public class GameLauncher implements IGameControl {
         graphics.clear();
         graphics.start();
         cameraManager.draw(graphics);
-        game.draw();
+        gameController.draw();
         graphics.end();
     }
 
@@ -53,7 +52,7 @@ public class GameLauncher implements IGameControl {
      * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-        game.update(delta);
+        gameController.update(delta);
         cameraManager.update(delta);
     }
 
@@ -65,26 +64,26 @@ public class GameLauncher implements IGameControl {
 
     @Override
     public void load() {
-        game.load();
+        gameController.load();
     }
 
     @Override
     public void save() {
-        game.save();
+        gameController.save();
     }
 
     @Override
     public void resume() {
-        game.resume();
+        gameController.resume();
     }
 
     @Override
     public void startNew() {
-        game.startNew();
+        gameController.startNew();
     }
 
     @Override
     public boolean loadAvailable() {
-        return game.loadAvailable();
+        return gameController.loadAvailable();
     }
 }
