@@ -48,7 +48,7 @@ public class Demon extends AbstractCombatModel {
 
         int velX = 0;
 
-        if (playerX > demonX) {
+        if (demonX < playerX ) {
             velX = speed;
         } else if (playerX < demonX) {
             velX = -speed;
@@ -58,7 +58,7 @@ public class Demon extends AbstractCombatModel {
             setVelocity(getVelocity().setY(randFlap));
         }
 
-        if (playerX > demonX - 3  && playerX < demonX + 3) {
+        if ( (demonX - 3) < playerX  && playerX < (demonX + 3) ) {
             setVelocity(getVelocity().setY(-playerY));
             isAttacking = true;
         } else {
