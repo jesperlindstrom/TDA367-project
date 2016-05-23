@@ -69,7 +69,7 @@ public class NpcFactory {
 
     private IEntity makeHorv(Point point) {
         List<String> phrases = getPhrases("horv");
-        Horv model = new Horv(point, rectangleFactory, phrases);
+        Horv model = new Horv(point, rectangleFactory, phrases, quests);
         IView view = new HorvView(model);
 
         return new Entity(model, view);
