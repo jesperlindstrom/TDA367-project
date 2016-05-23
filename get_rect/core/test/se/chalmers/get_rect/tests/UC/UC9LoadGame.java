@@ -34,7 +34,7 @@ public class UC9LoadGame extends IOSetup {
         this.playerRepository = getPlayerRepository();
         this.dataStore = getDataStore();
         newRanged= new FireMagic(player, new ProjectileFactory(),10,10,10);
-        newMelee = new MeleeWeapon(player,meleeName,new SwingFactory(),10,10,10,10);
+        newMelee = new MeleeWeapon(player,meleeName,new SwingFactory(),10,10,10,10,10,false);
     }
 
     @Test

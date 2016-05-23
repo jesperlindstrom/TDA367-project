@@ -11,6 +11,11 @@ public class MeleeStub implements IMelee {
     }
 
     @Override
+    public int getTilt() {
+        return 0;
+    }
+
+    @Override
     public void use(Point direction, IEntityHolder entityHolder) {
 
     }

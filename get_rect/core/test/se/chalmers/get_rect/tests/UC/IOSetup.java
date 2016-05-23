@@ -39,7 +39,7 @@ public class IOSetup {
         }
         this.playerRepository = new PlayerRepository(player, weaponRepository);
         SwingFactory swingFactory = new SwingFactory();
-        melee = new MeleeWeapon(player,"melee", swingFactory,10,10,10,5);
+        melee = new MeleeWeapon(player,"melee", swingFactory,10,10,10,5, 10, false);
         ProjectileFactory projectileFactory = new ProjectileFactory();
         ranged = new Pistol(player, projectileFactory,10,10,5);
         player.addNewWeapon(melee);
