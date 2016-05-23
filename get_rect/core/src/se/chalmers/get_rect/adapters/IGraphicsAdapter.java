@@ -14,7 +14,6 @@ public interface IGraphicsAdapter {
     void draw(String img, Point position, Point origin, float scaleX, float scaleY, float rotation);
     void drawText(String text, Point point, Colors color);
     void drawText(String text, Point point);
-    void drawText(String text, int x, int y);
     void start();
     void end();
     void clear();

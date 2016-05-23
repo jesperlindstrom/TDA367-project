@@ -12,6 +12,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.game.quests.QuestRepository;
 import se.chalmers.get_rect.game.quests.data.IQuest;
+import se.chalmers.get_rect.game.window.model.ErrorWindow;
 import se.chalmers.get_rect.game.world.IWorld;
 import se.chalmers.get_rect.game.world.WorldFactory;
 import se.chalmers.get_rect.game.window.controller.IWindowController;
@@ -25,7 +26,7 @@ import java.util.List;
 public class GameController {
     @Inject private IGraphicsAdapter graphics;
     @Inject private GameInput gameInput;
-    @Inject private StateManager<IWorld> sceneManager;
+    @Inject private StateManager<IWorld> worldManager;
     @Inject private StateManager<IWindowController> windowManager;
     @Inject private PlayerController playerController;
     @Inject private Player player;
@@ -41,8 +42,8 @@ public class GameController {
     private static final String imgPath = "img/extras/";
 
     public void draw() {
-        if (sceneManager.getState() != null) {
-            sceneManager.getState().draw(graphics);
+        if (worldManager.getState() != null) {
+            worldManager.getState().draw(graphics);
         }
 
         if (windowManager.getState() != null) {
@@ -54,32 +55,31 @@ public class GameController {
     }
 
     public void setup() {
-        sceneManager.add(GameConfig.TEST, worldFactory.make("test"));
-        sceneManager.add(GameConfig.HORSALSVAGEN, worldFactory.make("horsalsvagen"));
-        sceneManager.add(GameConfig.HUBBEN, worldFactory.make("hubben"));
+        worldManager.add(GameConfig.TEST, worldFactory.make("test"));
+        worldManager.add(GameConfig.HORSALSVAGEN, worldFactory.make("horsalsvagen"));
+        worldManager.add(GameConfig.HUBBEN, worldFactory.make("hubben"));
 
-        windowManager.add(GameConfig.SPLASH, windowFactory.make("splash"));
-        windowManager.add(GameConfig.MAIN_MENU, windowFactory.make("mainMenu"));
-        windowManager.add(GameConfig.INGAME_MENU, windowFactory.make("inGameMenu"));
-        windowManager.add(GameConfig.INVENTORY, windowFactory.make("inventory"));
+        windowManager.add(GameConfig.SPLASH, windowFactory.makeSplash());
+        windowManager.add(GameConfig.MAIN_MENU, windowFactory.makeMainMenu());
+        windowManager.add(GameConfig.INGAME_MENU, windowFactory.makeInGameMenu());
+        windowManager.add(GameConfig.INVENTORY, windowFactory.makeInventory());
+        windowManager.add(GameConfig.ERROR_WINDOW, windowFactory.makeErrorWindow());
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
 
         // Add various listeners
         player.addListener(this::onPlayerDeath);
-        sceneManager.addListener((e) -> save());
     }
 
     private void onPlayerDeath(Event e) {
-        if (e.getAction().equals("died")) {
+        if (e.getAction().equals("died")) { // TODO: this is probably not what should happen..
             try {
                 playerRepository.load();
             } catch (FileNotFoundException f){
-                System.out.println(f.getMessage());
                 startNew();
             }
-            sceneManager.set(GameConfig.HUBBEN);
+            worldManager.set(GameConfig.HUBBEN);
         }
     }
 
@@ -88,8 +88,7 @@ public class GameController {
      * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-
-        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH && windowManager.getCurrentStateKey() != GameConfig.MAIN_MENU) {
+        if (windowManager.getState() == null || windowManager.getState().allowsRegularInput()) {
             handleInput();
         }
 
@@ -99,8 +98,8 @@ public class GameController {
         } else {
             playerController.update();
 
-            if (sceneManager.getState() != null) {
-                sceneManager.getState().update(delta);
+            if (worldManager.getState() != null) {
+                worldManager.getState().update(delta);
             }
         }
     }
@@ -132,16 +131,16 @@ public class GameController {
         try {
             playerRepository.load();
             questManager.setQuests(questRepository.getAll());
+            worldManager.set(GameConfig.HUBBEN);
+            resume();
         } catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
+            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+            windowManager.set(GameConfig.ERROR_WINDOW);
         }
-        sceneManager.set(GameConfig.HUBBEN);
-        resume();
     }
 
     public void save() {
         try {
-            System.out.println("called from save");
             // Save player details and weapons
             playerRepository.save();
 
@@ -149,8 +148,8 @@ public class GameController {
             List<IQuest> quests = questManager.getAll();
             questRepository.save(quests);
         } catch (FileNotFoundException e){
-            // todo: handle this
-            System.out.println(e.getMessage());
+            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+            windowManager.set(GameConfig.ERROR_WINDOW);
         }
     }
 
@@ -163,11 +162,12 @@ public class GameController {
             questRepository.reset();
             playerRepository.reset();
             questManager.setQuests(questRepository.getAll());
+            worldManager.set(GameConfig.HUBBEN);
+            resume();
         } catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
+            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+            windowManager.set(GameConfig.ERROR_WINDOW);
         }
-        sceneManager.set(GameConfig.HUBBEN);
-        resume();
     }
 
     public boolean loadAvailable() {

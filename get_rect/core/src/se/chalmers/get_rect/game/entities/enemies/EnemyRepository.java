@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.entities.enemies;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.AbstractRepository;
+import se.chalmers.get_rect.game.entities.EntityNotFoundException;
 import se.chalmers.get_rect.game.entities.IEntity;
 
 public class EnemyRepository extends AbstractRepository<EnemyDataStore, IEntity> {
@@ -12,7 +13,7 @@ public class EnemyRepository extends AbstractRepository<EnemyDataStore, IEntity>
     }
 
     @Override
-    protected IEntity makeFromDataStore(EnemyDataStore data) {
+    protected IEntity makeFromDataStore(EnemyDataStore data) throws EntityNotFoundException {
         return factory.make(data.getType(), data.getPosition());
     }
 }

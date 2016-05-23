@@ -58,4 +58,13 @@ public class GridController implements IWindowController {
     public void leavingState(Integer nextStateName) {
 
     }
+
+    public AbstractGridModel getModel() {
+        return model;
+    }
+
+    @Override
+    public boolean allowsRegularInput() {
+        return model.isAllowingRegularInput();
+    }
 }

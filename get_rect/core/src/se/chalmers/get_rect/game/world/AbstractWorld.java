@@ -3,12 +3,16 @@ package se.chalmers.get_rect.game.world;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.event.IEventSource;
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.game.quests.QuestManager;
+import se.chalmers.get_rect.game.window.controller.GridController;
+import se.chalmers.get_rect.game.window.model.ErrorWindow;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.physics.IPhysicsEngine;
 import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.frostbite.PhysicsEngine;
+import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
@@ -31,8 +35,9 @@ public abstract class AbstractWorld implements IWorld {
     private Queue<IEntity> additions;
     private WorldLoader worldLoader;
     private IAudioManagerAdapter audioManager;
+    private StateManager<GridController> windowManager;
 
-    protected AbstractWorld(String folderName, IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
+    protected AbstractWorld(String folderName, IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager, StateManager windowManager) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.playerModel = (IPhysicsModel) playerEntity.getModel();
@@ -41,6 +46,7 @@ public abstract class AbstractWorld implements IWorld {
         this.worldLoader = worldLoader;
         this.quests = quests;
         this.audioManager = audioManager;
+        this.windowManager = windowManager;
         additions = new LinkedList<>();
     }
 
@@ -105,7 +111,8 @@ public abstract class AbstractWorld implements IWorld {
         try {
             worldLoader.getEntities(folderName).forEach(this::addEntity);
         } catch (FileNotFoundException e) {
-            // todo: handle error, window?
+            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+            windowManager.set(GameConfig.ERROR_WINDOW);
             System.out.println(e.getMessage());
         }
     }
@@ -132,7 +139,7 @@ public abstract class AbstractWorld implements IWorld {
         }
     }
 
-    protected void addEntity(IEntity entity) {
+    protected void addEntity(IEntity entity) throws EntityNotFoundException {
         IModel model = entity.getModel();
         IView view = entity.getView();
 

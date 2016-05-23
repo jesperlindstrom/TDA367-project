@@ -7,12 +7,14 @@ import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
+import se.chalmers.get_rect.states.StateManager;
 
 public class WorldFactory {
     @Inject @Named("Player") private IEntity playerEntity;
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private ICamera camera;
     @Inject private WorldLoader worldLoader;
+    @Inject @Named("Window") private StateManager windowManager;
     @Inject private QuestManager quests;
     @Inject private IAudioManagerAdapter audioManager;
 
@@ -30,15 +32,15 @@ public class WorldFactory {
     }
 
     private IWorld makeHorsalsvagen() {
-        return new HorsalsvagenWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager);
+        return new HorsalsvagenWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, windowManager);
     }
 
 
     private IWorld makeTest() {
-        return new TestWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager);
+        return new TestWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, windowManager);
     }
 
     private IWorld makeHubben(){
-        return new HubbenWorld(playerEntity,rectangleFactory,camera, worldLoader, quests, audioManager);
+        return new HubbenWorld(playerEntity,rectangleFactory,camera, worldLoader, quests, audioManager, windowManager);
     }
 }

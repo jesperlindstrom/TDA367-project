@@ -30,6 +30,11 @@ public class Inventory extends AbstractGridModel {
 
     }
 
+    @Override
+    public boolean isAllowingRegularInput() {
+        return true;
+    }
+
     public void fillGrid(List<IWeapon> weaponsList) {
         Point placement = new Point(0, 0);
 

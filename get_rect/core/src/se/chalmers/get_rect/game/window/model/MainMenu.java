@@ -24,4 +24,9 @@ public class MainMenu extends AbstractGridModel {
         int y = continueAvailable ? 0 : 1;
         setIndex(new Point(0, y));
     }
+
+    @Override
+    public boolean isAllowingRegularInput() {
+        return false;
+    }
 }

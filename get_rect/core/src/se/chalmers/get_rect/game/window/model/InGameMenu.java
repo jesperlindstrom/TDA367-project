@@ -14,4 +14,9 @@ public class InGameMenu extends AbstractGridModel {
     public void reset() {
         setIndex(new Point(0, 0));
     }
+
+    @Override
+    public boolean isAllowingRegularInput() {
+        return true;
+    }
 }

@@ -23,23 +23,24 @@ public class StateManager<V extends IState> implements IEventSource {
     public void set(Integer stateName) {
         if (!states.containsKey(stateName)) {
             throw new StateNotFoundException("Could not find a state with ID:" + stateName);
+        } else {
+
+            // Keep a copy of the previous state name
+            Integer oldState = currentState;
+
+            // Tell the current state it's being replaced
+            if (oldState != null) {
+                getState().leavingState(stateName);
+            }
+
+            // Change to the new state
+            currentState = stateName;
+
+            // Tell the new state it's becoming active
+            getState().enteringState(oldState);
+
+            event.triggerEvent("state", stateName.toString());
         }
-
-        // Keep a copy of the previous state name
-        Integer oldState = currentState;
-
-        // Tell the current state it's being replaced
-        if (oldState != null) {
-            getState().leavingState(stateName);
-        }
-
-        // Change to the new state
-        currentState = stateName;
-
-        // Tell the new state it's becoming active
-        getState().enteringState(oldState);
-
-        event.triggerEvent("state", stateName.toString());
     }
 
     public V getState() {

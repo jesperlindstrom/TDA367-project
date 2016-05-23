@@ -26,43 +26,33 @@ public class WindowFactory {
     @Inject private WeaponRepository weaponRepository;
     @Inject private WeaponFactory weaponFactory;
 
-    public IWindowController make(String type) {
-        if (type.equals("splash"))
-            return makeSplash();
-
-        if (type.equals("mainMenu"))
-            return makeMainMenu();
-
-        if (type.equals("inGameMenu"))
-            return makeInGameMenu();
-
-        if (type.equals("inventory"))
-            return makeInventory();
-
-        throw new EntityNotFoundException("window", type);
-    }
-
-    private IWindowController makeSplash() {
+    public IWindowController makeSplash() {
         SplashModel model = new SplashModel(assetManager, windowManager);
         IWindowView view = new SplashView(model, camera);
         return new SplashController(model, view);
     }
 
-    private IWindowController makeMainMenu() {
+    public IWindowController makeMainMenu() {
         MainMenu model = new MainMenu(game);
         IWindowView view = new MainMenuView(model, camera);
         return new GridController(gameInput, model, view);
     }
 
-    private IWindowController makeInGameMenu() {
+    public IWindowController makeInGameMenu() {
         InGameMenu model = new InGameMenu(game);
         IWindowView view = new InGameMenuView(model, camera);
         return new GridController(gameInput, model, view);
     }
 
-    private IWindowController makeInventory() {
+    public IWindowController makeInventory() {
         Inventory model = new Inventory(player, weaponRepository);
         IWindowView view = new InventoryView(model, camera, weaponFactory);
+        return new GridController(gameInput, model, view);
+    }
+
+    public IWindowController makeErrorWindow() {
+        ErrorWindow model = new ErrorWindow(game);
+        IWindowView view = new ErrorWindowView(model, camera);
         return new GridController(gameInput, model, view);
     }
 }
