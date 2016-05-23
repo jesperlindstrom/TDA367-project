@@ -36,7 +36,7 @@ public class PlayerRepository {
             File theFile = new File(PATH);
             boolean tmp = theFile.mkdirs();
             if (!tmp){
-                System.out.println("Created new file path");
+                System.out.println("Failed created new file path");
                 throw new RuntimeException("Failed to create save path");
             }
         }
