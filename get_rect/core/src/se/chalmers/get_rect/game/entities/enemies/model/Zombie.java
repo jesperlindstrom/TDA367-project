@@ -29,7 +29,7 @@ public class Zombie extends AbstractCombatModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData side, boolean isSolid) {
-        if (otherObject.equals(player) && getVelocity().getY() == 0) {
+        if (otherObject.equals(player)) {
             Player player = (Player) otherObject;
             player.takeDamage(1);
         }

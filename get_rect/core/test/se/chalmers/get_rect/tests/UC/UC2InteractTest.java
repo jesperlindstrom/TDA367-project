@@ -67,6 +67,7 @@ public class UC2InteractTest {
     @Test
     public void testInteraction(){
         assertFalse("Should not talking", sawmillExpress.isDialogVisible());
+        player.interact();
         player.onCollision(sawmillExpress,playerSide,false);
         sawmillExpress.onCollision(player, otherSide,false);
         player.interact();

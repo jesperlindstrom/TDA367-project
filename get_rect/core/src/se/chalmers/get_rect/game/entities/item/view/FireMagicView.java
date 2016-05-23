@@ -38,11 +38,10 @@ public class FireMagicView extends AbstractRangedWeaponView {
                 audioManager.playMusic("fireball");
                 isSelected = true;
             }
-            if (getModel().getCooldownFrames() > getModel().getCooldown()-19){
+            if (isThrowingAttack()){
                 audioManager.playMusic("fireball");
             }
         }
-
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
     }
 

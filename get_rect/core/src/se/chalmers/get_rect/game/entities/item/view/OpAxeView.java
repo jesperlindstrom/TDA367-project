@@ -19,6 +19,7 @@ public class OpAxeView extends AbstractMeleeWeaponView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath+"opaxewithhand.png", getModel().getHandPos(), new Point(-10, 5), getXScale(), 1, -getModel().getTilt());
+
         if (!isSelected) {
             audioManager.playMusic("axe");
             isSelected = true;
