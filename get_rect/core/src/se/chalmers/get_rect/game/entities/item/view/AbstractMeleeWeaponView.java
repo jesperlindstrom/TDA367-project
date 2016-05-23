@@ -34,7 +34,10 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
     }
 
     protected boolean isAttacking() {
-        return getModel().getCooldownFrames() == getModel().getCooldown()-1;
+        return isAttacking(1);
+    }
+    protected boolean isAttacking(int frames) {
+        return getModel().getCooldownFrames() == getModel().getCooldown() - frames;
     }
 
     protected float getRotation() {

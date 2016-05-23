@@ -52,7 +52,13 @@ public abstract class AbstractRangedWeaponView extends AbstractView implements I
     }
 
     public boolean isAttacking() {
-        return getModel().getCooldownFrames() == getModel().getCooldown()-1;
+        return isAttacking(1);
+    }
+    public boolean isAttacking(int frames) {
+        return getModel().getCooldownFrames() == getModel().getCooldown() - frames;
+    }
+    public boolean isThrowingAttack() {
+        return getModel().getCooldownFrames() > getModel().getCooldown() - (getModel().getCooldown() - 1);
     }
 
 }
