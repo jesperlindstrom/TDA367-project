@@ -9,6 +9,7 @@ public class PistolView extends AbstractRangedWeaponView {
     private static final String path = "img/items/";
     private static final int DRAW_PRIORITY = 6;
     private IAudioManagerAdapter audioManager;
+    private boolean isSelected = false;
 
     public PistolView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, path + "pistol_icon.png");
@@ -23,6 +24,10 @@ public class PistolView extends AbstractRangedWeaponView {
             imgPath = path + "pistolPANG.png";
         } else {
             imgPath = path + "pistol.png";
+        }
+        if (!isSelected) {
+            audioManager.playSound("gunCharge");
+            isSelected = true;
         }
         if (isAttacking()) {
             audioManager.playSound("bulletSound", 0.5f);
