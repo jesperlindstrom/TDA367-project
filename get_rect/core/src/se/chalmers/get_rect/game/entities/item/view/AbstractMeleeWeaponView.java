@@ -9,27 +9,19 @@ import se.chalmers.get_rect.utilities.Point;
 public abstract class AbstractMeleeWeaponView extends AbstractView implements IWeaponView {
 
     private IMelee model;
-    private float tilt;
-    private int swingFrames;
-    private float degreesPerFrame;
-    private final float originalTilt;
     private String iconPath;
 
-    protected AbstractMeleeWeaponView(IWeapon model, float tilt, String iconPath) {
+    protected AbstractMeleeWeaponView(IWeapon model, String iconPath) {
         super(model);
         if (model instanceof IMelee) {
             this.model = (IMelee)model;
         } else {
             throw new RuntimeException("Model was not IRanged");
         }
-        this.tilt = tilt;
-        this.originalTilt = tilt;
-        swingFrames = this.model.getCooldown();
-        degreesPerFrame = this.model.getSwingDegrees() * (this.model.getSwingDegrees() < 350 ? 2 : 1) / swingFrames ;
         this.iconPath = iconPath;
     }
 
-    protected IWeapon getModel() {
+    protected IMelee getModel() {
         return model;
     }
 
@@ -40,33 +32,8 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
         return getModel().getCooldownFrames() == getModel().getCooldown() - frames;
     }
 
-    protected float getRotation() {
-        return getModel().getFacing() < 0 ? tilt : -tilt;
-    }
-
-    protected float getXScale(float scale) {
-        return model.getFacing() < 0 ? -scale : scale;
-    }
-
-    private void updateTilt() {
-        if (model.getCooldownFrames() == 0) {
-            tilt = originalTilt;
-            return;
-        }
-        if (degreesPerFrame > 11.5) {
-            tilt = tilt + degreesPerFrame;
-            return;
-        }
-        if (model.getCooldownFrames() < swingFrames/2) {
-            tilt = tilt - degreesPerFrame;
-        } else {
-            tilt = tilt + degreesPerFrame;
-        }
-    }
-
-    @Override
-    public void draw(IGraphicsAdapter graphics) {
-        updateTilt();
+    protected float getXScale() {
+        return model.getFacing() < 0 ? -1 : 1;
     }
 
     @Override

@@ -83,13 +83,13 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void stopMoving() {
-        setVelocity(getVelocity().addX(-getVelocity().getX()/6));
+        setVelocity(getVelocity().addX(getVelocity().getX() > -10 && getVelocity().getX() < 10 ? -getVelocity().getX() : (-getVelocity().getX()/10)));
         isWalking = false;
     }
 
     private int getSpeed(){
         if (isRiding)
-            return 80;
+            return moveSpeed*2;
         return moveSpeed;
     }
 
@@ -106,10 +106,6 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
         if(interactableNPC != null){
             interactableNPC.onInteract(this);
         }
-    }
-
-    public void flyHome() {
-        getScene().respawn();
     }
 
     @Override

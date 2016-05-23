@@ -33,5 +33,19 @@
         "infoText": "Kill flying Mjölnirs"
       }
     ]
+  },
+  {
+    "id": 2,
+    "title": "Horv",
+    "acceptText": "Horv, horv horv horv",
+    "completionText": "Horveri!",
+    "objectives": [
+      {
+        "type": "broccolighost",
+        "action": "died",
+        "requiredCount": 1,
+        "infoText": "Kill a ghost broccoli!"
+      }
+    ]
   }
 ]

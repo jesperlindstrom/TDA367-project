@@ -11,38 +11,27 @@ import se.chalmers.get_rect.physics.CollisionData;
 public class Swing extends AbstractPhysicsModel{
     private IPhysicsModel owner;
     private ISwinger weapon;
-    private int originalSwingFrames;
     private int swingFrames;
     private int damage;
-    private int width;
-    private int height;
-    private int deltaX;
-    private int deltaY;
+    private int reach;
 
-    public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon) {
-        this(damage, width, height, swingFrames, rectangleFactory, owner, weapon, false);
+    public Swing(int damage, int reach, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon) {
+        this(damage, reach, swingFrames, rectangleFactory, owner, weapon, false);
     }
-    public Swing(int damage, int width, int height, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon, boolean solid) {
+    public Swing(int damage, int reach, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon, boolean solid) {
         super(owner.getPosition(), new Point(), solid, false, rectangleFactory);
         this.damage = damage;
         this.owner = owner;
         this.weapon = weapon;
-        this.originalSwingFrames = swingFrames;
         this.swingFrames = swingFrames;
-        this.width = width / 2;
-        this.height = height;
-        deltaX = this.width * 2 / swingFrames;
-        deltaY = this.height * 2 / swingFrames;
-        setBoundingBox(20, height);
+        this.reach = reach;
+        setBoundingBox((int)Math.sin(Math.toRadians(weapon.getTilt()))*reach, (int)(Math.sin(Math.toRadians(weapon.getTilt()))*reach));
     }
-
-
-
 
         @Override
     public void update(double delta) {
         super.update(delta);
-        setPosition(weapon.getHandPos().addX(weapon.getFacing() < 0 ? -width : 0));
+        setPosition(weapon.getHandPos());
         setNewHitBox();
         swingFrames--;
         if (swingFrames == 0) {
@@ -64,14 +53,7 @@ public class Swing extends AbstractPhysicsModel{
     }
 
     private void setNewHitBox() {
-        if (swingFrames > originalSwingFrames/2) {
-            width = width + deltaX;
-            height = height - deltaY;
-        } else {
-            width = width - deltaX;
-            height = height + deltaY;
-        }
-        setBoundingBox(width, height);
+        setBoundingBox((int)(Math.sin(Math.toRadians(weapon.getTilt()))*reach), (int)(Math.cos(Math.toRadians(weapon.getTilt()))*reach));
     }
 
     @Override

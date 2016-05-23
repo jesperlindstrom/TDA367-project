@@ -5,4 +5,5 @@ import se.chalmers.get_rect.utilities.Point;
 public interface ISwinger {
     Point getHandPos();
     int getFacing();
+    int getTilt();
 }

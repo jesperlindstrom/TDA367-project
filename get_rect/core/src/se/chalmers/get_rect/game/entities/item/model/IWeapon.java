@@ -5,7 +5,7 @@ import se.chalmers.get_rect.game.entities.IModel;
 import se.chalmers.get_rect.game.entities.item.swing.ISwinger;
 import se.chalmers.get_rect.utilities.Point;
 
-public interface IWeapon extends IModel, ISwinger{
+public interface IWeapon extends IModel{
 
     /**
      * @param direction direction aimed.

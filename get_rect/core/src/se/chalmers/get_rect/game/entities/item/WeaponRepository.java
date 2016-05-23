@@ -34,6 +34,6 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
 
     @Override
     protected IWeapon makeFromDataStore(WeaponsDataStore data) {
-        return weaponFactory.make(data.getType(), user, data.getWidth(), data.getHeight(), data.getDamage(), data.getCooldown(), data.getSpeed(), data.getSwingDegrees());
+        return weaponFactory.make(data.getType(), user, data.getReach(), data.getDamage(), data.getCooldown(), data.getSpeed(), data.getSwingDegrees(), data.getStartTilt());
     }
 }

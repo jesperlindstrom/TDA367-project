@@ -32,9 +32,6 @@ public class PlayerController implements IController {
         } else {
             player.stopMoving();
         }
-        if (gameInput.isKeyJustPressed(Actions.RESPAWN)) {
-            player.flyHome();
-        }
     }
 
     private void handleShooting() {

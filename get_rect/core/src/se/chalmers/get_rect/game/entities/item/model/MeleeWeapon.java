@@ -7,28 +7,25 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class MeleeWeapon extends AbstractWeapon implements IMelee {
 
-    private final int width;
-    private final int height;
+    private final int reach;
     private final int damage;
     private final int cooldown;
+    private final int startTilt;
     private final float swingDegrees;
     private SwingFactory swingFactory;
+    private int tilt;
     private boolean usable;
     private boolean solid;
 
-    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int cooldown, float swingDegrees, boolean solid) {
+    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int reach, int damage, int cooldown, float swingDegrees, int startTilt, boolean solid) {
         super(user, type);
-        this.width = width;
-        this.height = height;
+        this.reach = reach;
         this.damage = damage;
         this.cooldown = cooldown;
         this.swingDegrees = swingDegrees == 0 ? 90f : swingDegrees;
         this.swingFactory = swingFactory;
         this.solid = solid;
-    }
-
-    public MeleeWeapon(IPhysicsModel user, String type, SwingFactory swingFactory, int width, int height, int damage, int cooldown) {
-        this(user, type, swingFactory, width, height, damage, cooldown, 90f, false);
+        this.startTilt = startTilt;
     }
 
 
@@ -41,7 +38,7 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
         if (getUsable()) {
             setUsable(false);
             setCooldownFrames(cooldown);
-            entityHolder.add(getSwingFactory().make(damage, width, height, cooldown, getUser(), this, solid));
+            entityHolder.add(getSwingFactory().make(damage, reach, cooldown, getUser(), this, solid));
         }
     }
 
@@ -55,6 +52,13 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
         super.update(delta);
         if (getCooldownFrames() == 0) {
             usable = true;
+            tilt = startTilt*getFacing();
+        } else if (swingDegrees > 350) {
+            tilt = tilt + (int)swingDegrees*getFacing()/cooldown;
+        } else if (getCooldownFrames() > getCooldown()/2) {
+            tilt = tilt + (int)swingDegrees*getFacing()*2/cooldown;
+        } else if (getCooldownFrames() < getCooldown()/2) {
+            tilt = tilt - (int)swingDegrees*getFacing()*2/cooldown;
         }
     }
 
@@ -68,5 +72,10 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
 
     public float getSwingDegrees() {
         return swingDegrees;
+    }
+
+    @Override
+    public int getTilt() {
+        return tilt;
     }
 }

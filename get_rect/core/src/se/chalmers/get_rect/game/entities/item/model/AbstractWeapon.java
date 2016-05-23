@@ -28,8 +28,6 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
         return user.getPosition().add(getFacing() < 0 ? 30 : 40, 70);
     }
 
-
-
     public int getFacing() {
         if (user.getVelocity().getX() != 0) {
             facing = user.getVelocity().normalize().getX();
