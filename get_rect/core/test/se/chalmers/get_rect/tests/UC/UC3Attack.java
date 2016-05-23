@@ -5,20 +5,20 @@ import org.junit.Test;
 import static org.mockito.Mockito.*;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.game.entities.item.model.MeleeWeapon;
-import se.chalmers.get_rect.game.scenes.IScene;
+import se.chalmers.get_rect.game.world.IWorld;
 import se.chalmers.get_rect.game.entities.player.Player;
-import se.chalmers.get_rect.game.scenes.TestScene;
+import se.chalmers.get_rect.game.world.TestWorld;
 import se.chalmers.get_rect.utilities.Point;
 
 
 public class UC3Attack {
 
     private Player player;
-    private IScene scene;
+    private IWorld scene;
 
     @Before
     public void setup(){
-        this.scene = mock(TestScene.class);
+        this.scene = mock(TestWorld.class);
         this.player = mock(Player.class);
         IWeapon weapon = mock(MeleeWeapon.class);
         this.player.setScene(scene);

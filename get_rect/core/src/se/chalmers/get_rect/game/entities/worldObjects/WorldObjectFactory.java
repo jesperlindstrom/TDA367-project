@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities.worldObjects;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
 import se.chalmers.get_rect.game.entities.worldObjects.view.*;
@@ -12,7 +11,6 @@ import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
 import se.chalmers.get_rect.game.entities.worldObjects.model.Door;
 import se.chalmers.get_rect.game.entities.worldObjects.model.Trampoline;
-import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -72,14 +70,14 @@ public class WorldObjectFactory {
         return new Entity(model, view);
     }
     private IEntity makeHorsalsvagenBg() {
-        return new Entity(null, new HorsalsvagenSceneView(camera, audioManager));
+        return new Entity(null, new HorsalsvagenWorldView(camera, audioManager));
     }
 
     private IEntity makeTestBg() {
-        return new Entity(null, new TestSceneView(camera, audioManager));
+        return new Entity(null, new TestWorldView(camera, audioManager));
     }
 
     private IEntity makeHubbenBg() {
-        return new Entity(null, new HubbenSceneView(camera, audioManager));
+        return new Entity(null, new HubbenWorldView(camera, audioManager));
     }
 }
