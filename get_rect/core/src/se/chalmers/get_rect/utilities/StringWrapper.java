@@ -4,13 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringWrapper {
-
-
-    public StringWrapper(){
-    }
-
-
-    public String[] wrap(String string){
+    public static String[] wrap(String string){
         StringBuilder sb = new StringBuilder(string);
         int i = 0;
         while (i + 25 < sb.length() && (i = sb.lastIndexOf(" ", i + 25)) != -1) {
@@ -20,7 +14,7 @@ public class StringWrapper {
     }
 
 
-    private String[] trimString(StringBuilder sb) {
+    private static String[] trimString(StringBuilder sb) {
         String[] trimmedString = sb.toString().split("\n");
         List<String> tmp = new ArrayList<>();
         String parseString = "";
@@ -39,10 +33,11 @@ public class StringWrapper {
 
 
         String[] returnMe = new String[tmp.size()];
-        for (int i = 0; i < tmp.size(); i++){
+
+        for (int i = 0; i < tmp.size(); i++) {
             returnMe[i] = tmp.get(i);
         }
+
         return returnMe;
     }
-
 }

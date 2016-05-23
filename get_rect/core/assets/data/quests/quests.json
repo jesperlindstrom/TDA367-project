@@ -1,0 +1,37 @@
+[
+  {
+    "id": 0,
+    "title": "Sawmill wants to go home",
+    "acceptText": "Hello, I am Sawmill! I live in this rocket because of reasons. That is why it is called ''Sawmill Express''. But I have a problem, I can not start the rocket because I fucked up the start button. It is on the outside... Can you help me press the button? It only works if you first kill five zombies AND build a sandcastle. You're a wizard, Legolas! Now go!",
+    "completionText": "FUCK THIS, I'M OUTTA HERE",
+    "objectives": [
+      {
+        "type": "zombie",
+        "action": "died",
+        "requiredCount": 5,
+        "infoText": "Kill zombies"
+      },
+      {
+        "type": "sandCastle",
+        "action": "interacted",
+        "requiredCount": 1,
+        "infoText": "...oh, and build a sandcastle plz."
+      }
+    ]
+  },
+
+  {
+    "id": 1,
+    "title": "The first one is free",
+    "acceptText": "Hello Nollan! I am Rekoil, the Linux dealer here at IT. Sadly, all these flying Mjölnirs are really hurting my business. If you help me get rid of some flying Mjölnirs I will give you a 1GB USB stick with the finest Arch Linux in town, ready to be injected.",
+    "completionText": "Thanks a lot! Here, be discrete... I don't want GUD to know I'm distributing lightweight distros around campus.",
+    "objectives": [
+      {
+        "type": "demon",
+        "action": "died",
+        "requiredCount": 3,
+        "infoText": "Kill flying Mjölnirs"
+      }
+    ]
+  }
+]

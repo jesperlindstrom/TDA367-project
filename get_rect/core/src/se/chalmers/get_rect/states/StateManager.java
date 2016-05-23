@@ -1,9 +1,14 @@
 package se.chalmers.get_rect.states;
 
+import se.chalmers.get_rect.event.EventSource;
+import se.chalmers.get_rect.event.IEventListener;
+import se.chalmers.get_rect.event.IEventSource;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class StateManager<V extends IState> {
+public class StateManager<V extends IState> implements IEventSource {
+    private EventSource event = new EventSource();
     private Map<Integer, V> states;
     private Integer currentState;
 
@@ -11,19 +16,10 @@ public class StateManager<V extends IState> {
         this.states = new HashMap<>();
     }
 
-    /**
-     * Register a state
-     * @param key The state name
-     * @param state The state
-     */
     public void add(Integer key, V state) {
         states.put(key, state);
     }
 
-    /**
-     * Switch to another state
-     * @param stateName The state name
-     */
     public void set(Integer stateName) {
         if (!states.containsKey(stateName)) {
             throw new StateNotFoundException("Could not find a state with ID:" + stateName);
@@ -42,12 +38,10 @@ public class StateManager<V extends IState> {
 
         // Tell the new state it's becoming active
         getState().enteringState(oldState);
+
+        event.triggerEvent("state", stateName.toString());
     }
 
-    /**
-     * Get the current state
-     * @return The currently active IState
-     */
     public V getState() {
         if (currentState == null) return null;
         return getState(currentState);
@@ -64,5 +58,15 @@ public class StateManager<V extends IState> {
     public Integer getCurrentStateKey() {
         if (currentState == null) return -1;
         return currentState;
+    }
+
+    @Override
+    public void addListener(IEventListener o) {
+        event.addListener(o);
+    }
+
+    @Override
+    public void removeListener(IEventListener o) {
+        event.removeListener(o);
     }
 }

@@ -2,15 +2,37 @@ package se.chalmers.get_rect.game.entities.worldObjects.model;
 
 import se.chalmers.get_rect.game.entities.AbstractInteractableModel;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.quests.QuestManager;
+import se.chalmers.get_rect.game.quests.data.IQuest;
+import se.chalmers.get_rect.game.quests.data.Objective;
+import se.chalmers.get_rect.game.quests.data.QuestState;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
 public class SandCastle extends AbstractInteractableModel {
+    private static final int QUEST_ID = 0;
     private boolean interactedWith = false;
 
-    public SandCastle(Point position, IRectangleFactoryAdapter factory) {
+    public SandCastle(Point position, IRectangleFactoryAdapter factory, QuestManager questManager) {
         super(position, new Point(0,0), false, true, factory);
         setBoundingBox(100, 100);
+        interactedWith = isCompleted(questManager.get(QUEST_ID));
+    }
+
+    private boolean isCompleted(IQuest quest) {
+        if (quest == null)
+            return false;
+
+        if (quest.getState().equals(QuestState.COMPLETED))
+            return true;
+
+        for (Objective obj : quest.getObjectives()) {
+            if (obj.getType().equals("sandCastle") && obj.getAction().equals("interacted")) {
+                return obj.isCompleted();
+            }
+        }
+
+        return false;
     }
 
     @Override

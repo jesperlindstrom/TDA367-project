@@ -15,6 +15,7 @@ public class PlayerRepository {
 
     private Player player;
     private WeaponRepository weaponRepository;
+
     private static final String melee = "opsword";
     private static final String ranged = "pistol";
     private static final String PATH = "data/savedData/";
@@ -30,20 +31,19 @@ public class PlayerRepository {
 
     }
 
-
     public void save() throws FileNotFoundException {
-        if (!hasFile()){
+        if (!hasFilePath()){
             File theFile = new File(PATH);
             boolean tmp = theFile.mkdirs();
             if (!tmp){
                 System.out.println("Created new file path");
+                throw new RuntimeException("Failed to create save path");
             }
         }
         List<PlayerDataStore> list = new ArrayList<>();
         PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
         list.add(dataStore);
         json.save(list);
-
     }
 
     public void load() throws FileNotFoundException{
@@ -58,14 +58,20 @@ public class PlayerRepository {
     }
 
     public void reset() throws FileNotFoundException{
+        new File(PATH + FILE).delete();
+
         player.setHealth(player.getMaxHealth());
         player.setHasFoundHunch(false);
         player.setRiding(false);
         player.addNewWeapon(weaponRepository.getSingleWeapon(melee, player));
         player.addNewWeapon(weaponRepository.getSingleWeapon(ranged, player));
     }
+
     public boolean hasFile(){
         return new File(PATH + FILE).isFile();
     }
 
+    public boolean hasFilePath(){
+        return new File(PATH).isDirectory();
+    }
 }

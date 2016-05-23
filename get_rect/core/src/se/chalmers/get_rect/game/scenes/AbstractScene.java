@@ -3,7 +3,6 @@ package se.chalmers.get_rect.game.scenes;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.event.IEventSource;
-import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
@@ -20,7 +19,8 @@ import java.util.Queue;
 
 public abstract class AbstractScene implements IScene {
     private String folderName;
-    private IPhysicsEntity playerEntity;
+    private IEntity playerEntity;
+    private IPhysicsModel playerModel;
     private IRectangleFactoryAdapter rectangleFactory;
     private ICamera camera;
     private IPhysicsEngine physics;
@@ -31,65 +31,37 @@ public abstract class AbstractScene implements IScene {
     private Queue<IEntity> additions;
     private SceneLoader sceneLoader;
     private IAudioManagerAdapter audioManager;
-    private PlayerRepository playerRepository;
 
-
-    protected AbstractScene(String folderName, IPhysicsEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager, PlayerRepository playerRepository) {
+    protected AbstractScene(String folderName, IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, SceneLoader sceneLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
+        this.playerModel = (IPhysicsModel) playerEntity.getModel();
         this.rectangleFactory = rectangleFactory;
         this.camera = camera;
         this.sceneLoader = sceneLoader;
         this.quests = quests;
         this.audioManager = audioManager;
         additions = new LinkedList<>();
-        this.playerRepository = playerRepository;
     }
 
-    /**
-     * Get the camera manager
-     *
-     * @return The camera manager
-     */
     protected ICamera getCamera() {
         return camera;
     }
 
-    /**
-     * Get the rectangle factory
-     *
-     * @return Rectangle factory
-     */
     protected IRectangleFactoryAdapter getRectangleFactory() {
         return rectangleFactory;
     }
 
-    /**
-     * Get the player entity
-     *
-     * @return The player entity
-     */
-    protected IPhysicsEntity getPlayer() {
-        return playerEntity;
+    protected IPhysicsModel getPlayer() {
+        return playerModel;
     }
 
-    /**
-     * Add the player to the scene and physics, at a specified position
-     *
-     * @param x X coordinate
-     * @param y Y coordinate
-     */
     protected void addPlayerAtPosition(int x, int y) {
-        playerEntity.getModel().setPosition(new Point(x, y));
+        playerModel.setPosition(new Point(x, y));
         addEntity(playerEntity);
-        camera.snapToPosition(playerEntity.getModel().getPosition());
+        camera.snapToPosition(playerModel.getPosition());
     }
 
-    /**
-     * Update all components
-     *
-     * @param delta Time since last update in tenths of second.
-     */
     @Override
     public void update(double delta) {
         processAdditions();
@@ -98,22 +70,12 @@ public abstract class AbstractScene implements IScene {
         physics.update(delta);
     }
 
-    /**
-     * Draw all components
-     *
-     * @param graphics The graphics adapter
-     */
     @Override
     public void draw(IGraphicsAdapter graphics) {
         views.removeIf(IView::shouldBeRemoved);
         views.forEach(v -> v.draw(graphics));
     }
 
-    /**
-     * Load entities, reset and setup all components
-     *
-     * @param previousStateName The state we're coming from
-     */
     @Override
     public void enteringState(Integer previousStateName) {
         setupDone = false;
@@ -127,11 +89,6 @@ public abstract class AbstractScene implements IScene {
 
     }
 
-    /**
-     * Unload or hide components before leaving the state
-     *
-     * @param nextStateName The state we're going into
-     */
     @Override
     public void leavingState(Integer nextStateName) {
         // Remove quest manager from entities

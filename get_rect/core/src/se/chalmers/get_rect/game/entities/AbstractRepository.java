@@ -30,7 +30,5 @@ public abstract class AbstractRepository<D, T> implements IRepository<T> {
         return entities;
     }
 
-
-
     abstract protected T makeFromDataStore(D data);
 }

@@ -5,25 +5,20 @@ import se.chalmers.get_rect.event.IEventListener;
 import se.chalmers.get_rect.game.quests.data.IQuest;
 import se.chalmers.get_rect.game.quests.data.QuestState;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class QuestManager implements IEventListener {
-    private QuestRepository repository;
     private List<IQuest> quests;
 
-    public QuestManager(QuestRepository repository) {
-        this.repository = repository;
-        System.out.println("Init quest");
+    public QuestManager() {
         quests = new ArrayList<>();
-        System.out.println(quests);
-        System.out.println(repository);
-        registerQuest(0);
     }
 
-    private void registerQuest(int id) {
-        quests.add(repository.get(id));
+    public void setQuests(List<IQuest> quests) {
+        this.quests = quests;
     }
 
     public IQuest get(int id) {
@@ -34,6 +29,10 @@ public class QuestManager implements IEventListener {
         }
 
         return null;
+    }
+
+    public List<IQuest> getAll() {
+        return quests;
     }
 
     public List<IQuest> getAllActive() {

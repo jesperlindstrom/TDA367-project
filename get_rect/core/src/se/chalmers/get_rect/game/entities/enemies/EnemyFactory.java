@@ -15,37 +15,40 @@ import se.chalmers.get_rect.game.entities.enemies.view.ZombieView;
 import se.chalmers.get_rect.utilities.Point;
 
 public class EnemyFactory {
-    @Inject @Named("Player") private IPhysicsModel player;
+    @Inject @Named("Player") private IModel player;
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private IAudioManagerAdapter audioManager;
 
-    public IPhysicsEntity make(String enemyType, Point position) {
+    public IEntity make(String enemyType, Point position) {
         if (enemyType.equals("zombie"))
             return makeZombie(position);
+
         if (enemyType.equals("demon"))
             return makeDemon(position);
+
         if (enemyType.equals("broccolighost"))
             return makeGhost(position);
+
         throw new EntityNotFoundException("enemy", enemyType);
     }
 
-    private IPhysicsEntity makeZombie(Point position) {
+    private IEntity makeZombie(Point position) {
         Zombie model = new Zombie(position, rectangleFactory, player);
         IView view = new ZombieView(model, audioManager);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
-    private IPhysicsEntity makeDemon(Point position) {
+    private IEntity makeDemon(Point position) {
         Demon model = new Demon(position, rectangleFactory, player);
         IView view = new DemonView(model, audioManager);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 
-    private IPhysicsEntity makeGhost(Point position) {
+    private IEntity makeGhost(Point position) {
         GhostBroccoli model = new GhostBroccoli(position, rectangleFactory, player);
         IView view = new GhostBroccoliView(model);
 
-        return new PhysicsEntity(model, view);
+        return new Entity(model, view);
     }
 }

@@ -15,16 +15,14 @@ import se.chalmers.get_rect.game.scenes.IScene;
 import se.chalmers.get_rect.game.entities.window.controller.IWindowController;
 import se.chalmers.get_rect.states.StateManager;
 
-import java.lang.reflect.Type;
-
 public class GameModule extends AbstractModule {
-    private IPhysicsEntity playerEntity;
+    private IEntity playerEntity;
     private EntityCamera camera;
     private IGameControl game;
     private GameInput gameInput;
     private QuestManager questManager;
 
-    public GameModule(IPhysicsEntity playerEntity, EntityCamera camera, IGameControl game, GameInput gameInput, QuestManager questManager) {
+    public GameModule(IEntity playerEntity, EntityCamera camera, IGameControl game, GameInput gameInput, QuestManager questManager) {
         this.playerEntity = playerEntity;
         this.camera = camera;
         this.game = game;
@@ -35,8 +33,9 @@ public class GameModule extends AbstractModule {
     @Override
     protected void configure() {
         // Player
-        bind(IPhysicsEntity.class).annotatedWith(Names.named("Player")).toInstance(playerEntity);
-        bind(IPhysicsModel.class).annotatedWith(Names.named("Player")).toInstance(playerEntity.getModel());
+        bind(IEntity.class).annotatedWith(Names.named("Player")).toInstance(playerEntity);
+        bind(IModel.class).annotatedWith(Names.named("Player")).toInstance(playerEntity.getModel());
+        bind(IPhysicsModel.class).annotatedWith(Names.named("Player")).toInstance((IPhysicsModel) playerEntity.getModel());
         bind(Player.class).toInstance((Player) playerEntity.getModel());
 
         bind(GameInput.class).toInstance(gameInput);
@@ -54,7 +53,7 @@ public class GameModule extends AbstractModule {
         bind(StateManager.class).annotatedWith(Names.named("Window")).toInstance(windowManager);
 
         // Repositories
-        TypeLiteral repository = new TypeLiteral<IRepository<IPhysicsEntity>>() {};
+        TypeLiteral repository = new TypeLiteral<IRepository<IEntity>>() {};
         bind(repository).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
         bind(repository).annotatedWith(Names.named("npc")).to(NpcRepository.class);
         bind(repository).annotatedWith(Names.named("enemy")).to(EnemyRepository.class);

@@ -20,7 +20,7 @@ public class Pistol extends AbstractRangedWeapon {
         if (getCooldownFrames() == 0) {
             setCooldownFrames(getCooldown());
             setAimDirection(aimDirection);
-            entityHolder.add(projectileFactory.makeBullet(getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
+            entityHolder.add(projectileFactory.make("bullet", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
         }
     }
 

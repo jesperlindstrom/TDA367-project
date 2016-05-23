@@ -20,9 +20,9 @@ public class WandView extends AbstractRangedWeaponView {
 
         String imgPath;
         if (getModel().getCooldownFrames() != 0 && getModel().getCooldownFrames() > Math.abs(getModel().getCooldown()-6)) {
-            imgPath = path + "wand_down_hand.png";
+            imgPath = path + "wand_shoot.png";
         } else {
-            imgPath = path + "wand_up_hand.png";
+            imgPath = path + "wand_down_hand.png";
         }
         if (getModel().getCooldownFrames() == getModel().getCooldown()-1) {
 //            audioManager.playSound("bulletSound", 0.5f);
