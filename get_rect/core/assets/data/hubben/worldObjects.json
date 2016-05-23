@@ -25,6 +25,24 @@
   },
 
   {
+    "type": "computer",
+    "x": 1500,
+    "y": "500"
+  },
+
+  {
+    "type": "computer",
+    "x": 1300,
+    "y": "500"
+  },
+
+  {
+    "type": "computer",
+    "x": 1700,
+    "y": "500"
+  },
+
+  {
     "type": "hubbenBg",
     "x": 0,
     "y": 0

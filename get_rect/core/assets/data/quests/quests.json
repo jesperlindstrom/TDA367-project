@@ -23,14 +23,14 @@
   {
     "id": 1,
     "title": "The first one is free",
-    "acceptText": "Hello Nollan! I am Rekoil, the Linux dealer here at IT. Sadly, all these flying Mjölnirs are really hurting my business. If you help me get rid of some flying Mjölnirs I will give you a 1GB USB stick with the finest Arch Linux in town, ready to be injected.",
+    "acceptText": "Hello Nollan! I am Rekoil, the Linux dealer here at IT. I will give you a 1GB USB stick with the finest Arch Linux in town, ready to be injected. Can you please visit Hubben and install Arch on all computers you can find?.",
     "completionText": "Thanks a lot! Here, be discrete... I don't want GUD to know I'm distributing lightweight distros around campus.",
     "objectives": [
       {
-        "type": "demon",
-        "action": "died",
+        "type": "computer",
+        "action": "installed arch",
         "requiredCount": 3,
-        "infoText": "Kill flying Mjölnirs"
+        "infoText": "Install Arch Linux"
       }
     ]
   },

@@ -3,14 +3,11 @@ package se.chalmers.get_rect.game.entities.worldObjects;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
-import se.chalmers.get_rect.game.entities.worldObjects.model.SandCastle;
+import se.chalmers.get_rect.game.entities.worldObjects.model.*;
 import se.chalmers.get_rect.game.entities.worldObjects.view.*;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
-import se.chalmers.get_rect.game.entities.worldObjects.model.BoundingBox;
-import se.chalmers.get_rect.game.entities.worldObjects.model.Door;
-import se.chalmers.get_rect.game.entities.worldObjects.model.Trampoline;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -27,6 +24,9 @@ public class WorldObjectFactory {
 
         if (type.equals("trampoline"))
             return makeTrampoline(point);
+
+        if (type.equals("computer"))
+            return makeComputer(point);
 
         if (type.equals("door")){
             return makeDoor(point,width,height, path);
@@ -59,10 +59,18 @@ public class WorldObjectFactory {
         return new Entity(model, view);
     }
 
+    private IEntity makeComputer(Point point) {
+        Computer model = new Computer(point, rectangleFactory, questManager);
+        IView view = new ComputerView(model);
+
+        return new Entity(model, view);
+    }
+
     private IEntity makeDoor(Point point, int width, int height, int path){
         IPhysicsModel model = new Door(point,width,height, rectangleFactory, worldManager, path);
         return new Entity(model, null);
     }
+
     private IEntity makeSandCastle(Point point) {
         IPhysicsModel model = new SandCastle(point, rectangleFactory, questManager);
         IView view = new SandCastleView(model);
