@@ -13,7 +13,7 @@ public class OpSwordView extends AbstractMeleeWeaponView {
     private static final float SCALE = 1;
     private static final float tilt = 30;
     private IAudioManagerAdapter audioManager;
-    private boolean isUsed = false;
+    private boolean isSelected = false;
 
     public OpSwordView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, tilt, imgPath + "_icon.png");
@@ -24,9 +24,9 @@ public class OpSwordView extends AbstractMeleeWeaponView {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath + ".png", getModel().getHandPos(), new Point(0, 0), getXScale(SCALE), SCALE, getRotation());
         super.draw(graphics);
-        if (!isUsed) {
+        if (!isSelected) {
             audioManager.playMusic("swosh1");
-            isUsed = true;
+            isSelected = true;
         }
         if (isAttacking()) {
             audioManager.playMusic("swosh"+randomNumber());

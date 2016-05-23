@@ -10,7 +10,7 @@ public class PaddleView extends AbstractMeleeWeaponView {
     private static final int tilt = 70;
     private static final String imgPath = "img/items/";
     private IAudioManagerAdapter audioManager;
-    private boolean isUsed = false;
+    private boolean isSelected = false;
 
     public PaddleView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, tilt, imgPath + "paddle_icon.png");
@@ -21,9 +21,9 @@ public class PaddleView extends AbstractMeleeWeaponView {
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath + "paddle_hands.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 20 : 0, 30), new Point(-10, 5), getXScale(1), 1, getRotation());
         super.draw(graphics);
-        if (!isUsed) {
+        if (!isSelected) {
             audioManager.playMusic("paddle");
-            isUsed = true;
+            isSelected = true;
         }
         if(isAttacking()) {
             audioManager.playMusic("paddle");

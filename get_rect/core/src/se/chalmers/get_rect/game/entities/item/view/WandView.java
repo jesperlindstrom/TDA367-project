@@ -5,10 +5,13 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.utilities.Point;
 
+import java.util.Random;
+
 public class WandView extends AbstractRangedWeaponView {
     private static final String path = "img/items/";
     private static final int DRAW_PRIORITY = 6;
     private IAudioManagerAdapter audioManager;
+    private boolean isSelected = false;
 
     public WandView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, path + "wand_icon.png");
@@ -24,10 +27,13 @@ public class WandView extends AbstractRangedWeaponView {
         } else {
             imgPath = path + "wand_down_hand.png";
         }
-        if (isAttacking()) {
-//            audioManager.playSound("bulletSound", 0.5f);
-
+        if (!isSelected) {
+            audioManager.playMusic("wandMagic");
         }
+        if (isAttacking()) {
+            audioManager.playMusic("swosh" + randomNumber());
+        }
+
         graphics.draw(imgPath, getModel().getHandPos(), new Point(0, 0), getXScale(), getYScale(), getRotation());
 
     }
@@ -35,5 +41,9 @@ public class WandView extends AbstractRangedWeaponView {
     @Override
     public int getDrawPriority() {
         return DRAW_PRIORITY;
+    }
+    private int randomNumber() {
+        Random random = new Random();
+        return random.nextInt(2)+1;
     }
 }

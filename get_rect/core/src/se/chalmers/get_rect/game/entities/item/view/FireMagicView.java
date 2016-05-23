@@ -13,6 +13,7 @@ public class FireMagicView extends AbstractRangedWeaponView {
     private String imgPath = IMG_1;
     private int i = 0;
     private boolean otherFrame = false;
+    private boolean isSelected = false;
 
     private IAudioManagerAdapter audioManager;
     public FireMagicView(IWeapon model, IAudioManagerAdapter audioManager) {
@@ -32,6 +33,13 @@ public class FireMagicView extends AbstractRangedWeaponView {
                 imgPath = IMG_1;
             } else {
                 imgPath = IMG_2;
+            }
+            if (!isSelected) {
+                audioManager.playMusic("fireball");
+                isSelected = true;
+            }
+            if (getModel().getCooldownFrames() > getModel().getCooldown()-19){
+                audioManager.playMusic("fireball");
             }
         }
 
