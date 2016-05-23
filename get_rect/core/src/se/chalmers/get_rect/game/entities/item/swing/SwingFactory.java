@@ -1,6 +1,5 @@
 package se.chalmers.get_rect.game.entities.item.swing;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.Entity;
 import se.chalmers.get_rect.game.entities.IEntity;

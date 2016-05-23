@@ -54,7 +54,7 @@ public class UC2InteractTest {
         Mockito.when(questManager.get(0)).thenReturn(new Quest(0, "Sawmill's Escape", QuestState.AVAILABLE, objectives, acceptText, completionText));
 
         this.player = new Player(rectangleFactoryAdapter);
-        this.sawmillExpress = new SawmillExpress(new Point(1,1), rectangleFactoryAdapter, repository, 10, 10 ,10, questManager);
+        this.sawmillExpress = new SawmillExpress(new Point(1,1), rectangleFactoryAdapter,list, 10, 10 ,10, questManager);
         this.playerSide = new CollisionData();
         this.otherSide = new CollisionData();
         playerSide.set(Side.RIGHT);

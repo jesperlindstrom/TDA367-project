@@ -14,8 +14,8 @@ import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.item.projectile.Projectile;
-import se.chalmers.get_rect.game.scenes.IScene;
-import se.chalmers.get_rect.game.scenes.TestScene;
+import se.chalmers.get_rect.game.world.IWorld;
+import se.chalmers.get_rect.game.world.TestWorld;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.physics.CollisionData;
 
@@ -38,11 +38,11 @@ public class UC8EntityTakesDamageTest {
         Point point = Mockito.mock(Point.class);
         when(owner.getPosition()).thenReturn(new Point(0,0));
         collision = Mockito.mock(CollisionData.class);
-        IScene scene = Mockito.mock(TestScene.class);
+        IWorld scene = Mockito.mock(TestWorld.class);
         IRectangleFactoryAdapter rectangleFactory = new RectangleFactoryAdapterStub();
         IMelee meleeWeapon = mock(MeleeWeapon.class);
         this.target = new Zombie(point, rectangleFactory, owner);
-        projectile = new Projectile(new Point(), new Point(), 10, rectangleFactory, owner);
+        projectile = new Projectile(new Point(), new Point(), 10, rectangleFactory, owner, true);
         swing = new Swing(10,10,10,5, rectangleFactory,owner,meleeWeapon);
         scene.add(new Entity(projectile, null));
 
