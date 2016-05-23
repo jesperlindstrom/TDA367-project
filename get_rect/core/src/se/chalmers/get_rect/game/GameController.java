@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.event.Event;
+import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 import se.chalmers.get_rect.game.input.Actions;
@@ -35,6 +36,7 @@ public class GameController {
     @Inject private IAudioManagerAdapter audioManager;
     @Inject private QuestManager questManager;
     @Inject private QuestRepository questRepository;
+    @Inject private ICamera camera;
 
     private boolean muted = false;
     private static final String imgPath = "img/extras/";
@@ -48,7 +50,7 @@ public class GameController {
             windowManager.getState().draw(graphics);
         }
         if(muted) {
-            graphics.draw(imgPath + "noSound.png", new Point(700, 100));
+            graphics.draw(imgPath + "noSound.png", new Point((int)(camera.getAdapter().getWidth())/3, (int)(camera.getAdapter().getHeight())/6));
         }
     }
 

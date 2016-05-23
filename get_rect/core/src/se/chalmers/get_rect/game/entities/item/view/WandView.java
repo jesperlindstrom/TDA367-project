@@ -24,7 +24,7 @@ public class WandView extends AbstractRangedWeaponView {
         } else {
             imgPath = path + "wand_down_hand.png";
         }
-        if (getModel().getCooldownFrames() == getModel().getCooldown()-1) {
+        if (isAttacking()) {
 //            audioManager.playSound("bulletSound", 0.5f);
 
         }

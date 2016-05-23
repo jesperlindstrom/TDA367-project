@@ -51,4 +51,8 @@ public abstract class AbstractRangedWeaponView extends AbstractView implements I
         graphics.draw(iconPath, point);
     }
 
+    public boolean isAttacking() {
+        return getModel().getCooldownFrames() == getModel().getCooldown()-1;
+    }
+
 }
