@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.utils.Align;
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
@@ -89,13 +90,9 @@ public class LibGDXGraphicsAdapter implements IGraphicsAdapter {
     public void drawText(String text, Point point, Colors color) {
         font.setColor(colorsMap.get(color));
 
-        font.draw(batch,text,point.getX(), point.getY());
+        font.draw(batch, text, point.getX(), point.getY());
     }
 
-    @Override
-    public void drawText(String text, int x, int y) {
-        drawText(text, new Point(x, y));
-    }
 
     /**
      * Starts the collections of sprites.

@@ -4,12 +4,13 @@ import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 public class TestWorld extends AbstractWorld {
 
-    public TestWorld(IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager) {
-        super("test", playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager);
+    public TestWorld(IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager, StateManager windowManager) {
+        super("test", playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, windowManager);
     }
 
     @Override

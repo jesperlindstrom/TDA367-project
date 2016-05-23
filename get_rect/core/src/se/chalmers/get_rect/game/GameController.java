@@ -11,6 +11,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.game.quests.QuestRepository;
 import se.chalmers.get_rect.game.quests.data.IQuest;
+import se.chalmers.get_rect.game.window.model.ErrorWindow;
 import se.chalmers.get_rect.game.world.IWorld;
 import se.chalmers.get_rect.game.world.WorldFactory;
 import se.chalmers.get_rect.game.window.controller.IWindowController;
@@ -56,10 +57,11 @@ public class GameController {
         sceneManager.add(GameConfig.HORSALSVAGEN, worldFactory.make("horsalsvagen"));
         sceneManager.add(GameConfig.HUBBEN, worldFactory.make("hubben"));
 
-        windowManager.add(GameConfig.SPLASH, windowFactory.make("splash"));
-        windowManager.add(GameConfig.MAIN_MENU, windowFactory.make("mainMenu"));
-        windowManager.add(GameConfig.INGAME_MENU, windowFactory.make("inGameMenu"));
-        windowManager.add(GameConfig.INVENTORY, windowFactory.make("inventory"));
+        windowManager.add(GameConfig.SPLASH, windowFactory.makeSplash());
+        windowManager.add(GameConfig.MAIN_MENU, windowFactory.makeMainMenu());
+        windowManager.add(GameConfig.INGAME_MENU, windowFactory.makeInGameMenu());
+        windowManager.add(GameConfig.INVENTORY, windowFactory.makeInventory());
+        windowManager.add(GameConfig.ERROR_WINDOW, windowFactory.makeErrorWindow());
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
@@ -70,11 +72,10 @@ public class GameController {
     }
 
     private void onPlayerDeath(Event e) {
-        if (e.getAction().equals("died")) {
+        if (e.getAction().equals("died")) { // TODO: this is probably not what should happen..
             try {
                 playerRepository.load();
             } catch (FileNotFoundException f){
-                System.out.println(f.getMessage());
                 startNew();
             }
             sceneManager.set(GameConfig.HUBBEN);
@@ -86,8 +87,7 @@ public class GameController {
      * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-
-        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH && windowManager.getCurrentStateKey() != GameConfig.MAIN_MENU) {
+        if (windowManager.getState() == null || windowManager.getState().allowsRegularInput()) {
             handleInput();
         }
 
@@ -130,11 +130,12 @@ public class GameController {
         try {
             playerRepository.load();
             questManager.setQuests(questRepository.getAll());
+            sceneManager.set(GameConfig.HUBBEN);
+            resume();
         } catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
+            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+            windowManager.set(GameConfig.ERROR_WINDOW);
         }
-        sceneManager.set(GameConfig.HUBBEN);
-        resume();
     }
 
     public void save() {
@@ -147,8 +148,8 @@ public class GameController {
             List<IQuest> quests = questManager.getAll();
             questRepository.save(quests);
         } catch (FileNotFoundException e){
-            // todo: handle this
-            System.out.println(e.getMessage());
+            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+            windowManager.set(GameConfig.ERROR_WINDOW);
         }
     }
 
@@ -161,11 +162,12 @@ public class GameController {
             questRepository.reset();
             playerRepository.reset();
             questManager.setQuests(questRepository.getAll());
+            sceneManager.set(GameConfig.HUBBEN);
+            resume();
         } catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
+            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+            windowManager.set(GameConfig.ERROR_WINDOW);
         }
-        sceneManager.set(GameConfig.HUBBEN);
-        resume();
     }
 
     public boolean loadAvailable() {

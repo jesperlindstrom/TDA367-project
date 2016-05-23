@@ -67,4 +67,6 @@ public abstract class AbstractGridModel {
     }
 
     public abstract void reset();
+
+    public abstract boolean isAllowingRegularInput();
 }

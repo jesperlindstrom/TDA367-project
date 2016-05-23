@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.window.controller;
 
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.IView;
+import se.chalmers.get_rect.game.window.model.AbstractGridModel;
 import se.chalmers.get_rect.game.window.model.SplashModel;
 import se.chalmers.get_rect.game.window.view.IWindowView;
 
@@ -22,6 +23,16 @@ public class SplashController implements IWindowController {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         view.draw(graphics);
+    }
+
+    @Override
+    public AbstractGridModel getModel() {
+        return null;
+    }
+
+    @Override
+    public boolean allowsRegularInput() {
+        return false;
     }
 
     @Override

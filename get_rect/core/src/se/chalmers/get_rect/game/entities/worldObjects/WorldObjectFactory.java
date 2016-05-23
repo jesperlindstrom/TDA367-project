@@ -16,7 +16,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class WorldObjectFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
-    @Inject @Named("Scene") private StateManager sceneManager;
+    @Inject @Named("World") private StateManager worldManager;
     @Inject private ICamera camera;
     @Inject private IAudioManagerAdapter audioManager;
     @Inject private QuestManager questManager;
@@ -60,7 +60,7 @@ public class WorldObjectFactory {
     }
 
     private IEntity makeDoor(Point point, int width, int height, int path){
-        IPhysicsModel model = new Door(point,width,height, rectangleFactory, sceneManager, path);
+        IPhysicsModel model = new Door(point,width,height, rectangleFactory, worldManager, path);
         return new Entity(model, null);
     }
     private IEntity makeSandCastle(Point point) {
