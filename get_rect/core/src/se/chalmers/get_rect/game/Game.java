@@ -74,7 +74,7 @@ public class Game {
      * @param delta Time since last drawIcon
      */
     public void update(double delta) {
-        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
+        if (windowManager.getCurrentStateKey() != GameConfig.SPLASH || windowManager.getCurrentStateKey() != GameConfig.MAIN_MENU) {
             handleInput();
         }
 
