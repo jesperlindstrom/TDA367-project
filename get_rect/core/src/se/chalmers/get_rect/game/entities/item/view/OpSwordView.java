@@ -10,20 +10,17 @@ import java.util.Random;
 public class OpSwordView extends AbstractMeleeWeaponView {
 
     private static final String imgPath = "img/items/opsword";
-    private static final float SCALE = 1;
-    private static final float tilt = 30;
     private IAudioManagerAdapter audioManager;
     private boolean isSelected = false;
 
     public OpSwordView(IWeapon model, IAudioManagerAdapter audioManager) {
-        super(model, tilt, imgPath + "_icon.png");
+        super(model, imgPath + "_icon.png");
         this.audioManager = audioManager;
     }
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(imgPath + ".png", getModel().getHandPos(), new Point(0, 0), getXScale(SCALE), SCALE, getRotation());
-        super.draw(graphics);
+        graphics.draw(imgPath + ".png", getModel().getHandPos(), new Point(0, 0), getXScale(), 1, -getModel().getTilt());
         if (!isSelected) {
             audioManager.playMusic("swosh1");
             isSelected = true;

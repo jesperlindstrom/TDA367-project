@@ -125,6 +125,9 @@ public class GameController {
                 muted = false;
             }
         }
+        if (gameInput.isKeyJustPressed(Actions.RESPAWN)) {
+            windowManager.set(GameConfig.HUBBEN);
+        }
     }
 
     public void load() {

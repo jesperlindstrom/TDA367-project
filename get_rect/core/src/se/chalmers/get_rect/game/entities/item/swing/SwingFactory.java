@@ -9,13 +9,13 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 public class SwingFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
 
-    public IEntity make(int damage, int width, int height, int swingFrames, IPhysicsModel owner, ISwinger weapon) {
-        Swing swing = new Swing(damage, width, height, swingFrames, rectangleFactory, owner, weapon);
+    public IEntity make(int damage, int reach, int swingFrames, IPhysicsModel owner, ISwinger weapon) {
+        Swing swing = new Swing(damage, reach, swingFrames, rectangleFactory, owner, weapon);
         return new Entity(swing, null);
     }
 
-    public IEntity make(int damage, int width, int height, int swingFrames, IPhysicsModel owner, ISwinger weapon, boolean isSolid) {
-        Swing swing = new Swing(damage, width, height, swingFrames, rectangleFactory, owner, weapon, isSolid);
+    public IEntity make(int damage, int reach, int swingFrames, IPhysicsModel owner, ISwinger weapon, boolean isSolid) {
+        Swing swing = new Swing(damage, reach, swingFrames, rectangleFactory, owner, weapon, isSolid);
         return new Entity(swing, null);
     }
 }
