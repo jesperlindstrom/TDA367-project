@@ -29,6 +29,7 @@ public class WandView extends AbstractRangedWeaponView {
         }
         if (!isSelected) {
             audioManager.playMusic("wandMagic");
+            isSelected = true;
         }
         if (isAttacking()) {
             audioManager.playMusic("swosh" + randomNumber());

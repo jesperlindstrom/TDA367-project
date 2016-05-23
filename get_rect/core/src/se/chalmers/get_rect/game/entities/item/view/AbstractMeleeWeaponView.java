@@ -63,7 +63,6 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-//        graphics.drawIcon("img/entities/player/hand.png", getModel().getHandPos(), new Point(0, 0), 1, 1, getRotation());
         updateTilt();
     }
 
