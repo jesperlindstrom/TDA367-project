@@ -4,6 +4,10 @@ public class WeaponSaveDataStore {
     private String type;
     private boolean found;
 
+    public WeaponSaveDataStore(String type, boolean found) {
+        this.type = type;
+        this.found = found;
+    }
     public String getType() {
         return type;
     }

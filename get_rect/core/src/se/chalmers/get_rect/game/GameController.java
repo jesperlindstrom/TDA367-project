@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.*;
 import se.chalmers.get_rect.event.Event;
 import se.chalmers.get_rect.game.entities.ICamera;
+import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 import se.chalmers.get_rect.game.input.Actions;
@@ -34,6 +35,7 @@ public class GameController {
     @Inject private PlayerRepository playerRepository;
     @Inject private WorldFactory worldFactory;
     @Inject private WindowFactory windowFactory;
+    @Inject private WeaponRepository weaponRepository;
     @Inject private IAudioManagerAdapter audioManager;
     @Inject private QuestManager questManager;
     @Inject private QuestRepository questRepository;
@@ -152,6 +154,9 @@ public class GameController {
             // Save quest status
             List<IQuest> quests = questManager.getAll();
             questRepository.save(quests);
+
+            // Save weapon info
+            weaponRepository.saveWeapons();
         } catch (IOException e){
             error.showError(e.getMessage());
         }
@@ -164,6 +169,7 @@ public class GameController {
     public void startNew() {
         try {
             questRepository.reset();
+            weaponRepository.reset();
             playerRepository.reset();
             questManager.setQuests(questRepository.getAll());
             worldManager.set(GameConfig.HUBBEN);

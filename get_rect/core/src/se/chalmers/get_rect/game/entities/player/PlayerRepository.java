@@ -51,10 +51,11 @@ public class PlayerRepository {
         PlayerDataStore data = json.load().get(0);
         player.setHasFoundHunch(data.isHasFoundHunch());
         player.setHealth(data.getHealth());
-        IWeapon melee = weaponRepository.getSingleWeapon(data.getMelee(),player);
-        IWeapon ranged = weaponRepository.getSingleWeapon(data.getRanged(),player);
+        IWeapon melee = weaponRepository.getSingleWeapon(data.getMelee(), player);
+        IWeapon ranged = weaponRepository.getSingleWeapon(data.getRanged(), player);
         player.addNewWeapon(melee);
         player.addNewWeapon(ranged);
+
     }
 
     public void reset() throws FileNotFoundException{

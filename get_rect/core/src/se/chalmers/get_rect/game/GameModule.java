@@ -5,6 +5,7 @@ import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.enemies.EnemyRepository;
+import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.npc.NpcRepository;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.window.model.IGameControl;
@@ -21,13 +22,15 @@ public class GameModule extends AbstractModule {
     private IGameControl game;
     private GameInput gameInput;
     private QuestManager questManager;
+    private WeaponRepository weaponRepository;
 
-    public GameModule(IEntity playerEntity, EntityCamera camera, IGameControl game, GameInput gameInput, QuestManager questManager) {
+    public GameModule(IEntity playerEntity, EntityCamera camera, IGameControl game, GameInput gameInput, QuestManager questManager, WeaponRepository weaponRepository) {
         this.playerEntity = playerEntity;
         this.camera = camera;
         this.game = game;
         this.gameInput = gameInput;
         this.questManager = questManager;
+        this.weaponRepository = weaponRepository;
     }
 
     @Override
@@ -59,5 +62,6 @@ public class GameModule extends AbstractModule {
         bind(repository).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
         bind(repository).annotatedWith(Names.named("npc")).to(NpcRepository.class);
         bind(repository).annotatedWith(Names.named("enemy")).to(EnemyRepository.class);
+        bind(WeaponRepository.class).toInstance(weaponRepository);
     }
 }

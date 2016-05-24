@@ -19,7 +19,7 @@ public class Inventory extends AbstractGridModel {
         this.player = player;
         itemsMap = new HashMap<>();
         try {
-            fillGrid(weaponRepository.get("items", player));
+            fillGrid(weaponRepository.get(player));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
