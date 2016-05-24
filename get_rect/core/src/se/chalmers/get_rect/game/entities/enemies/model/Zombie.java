@@ -29,6 +29,8 @@ public class Zombie extends AbstractCombatModel {
 
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData side, boolean isSolid) {
+        super.onCollision(otherObject, side, isSolid);
+
         if (otherObject.equals(player)) {
             Player player = (Player) otherObject;
             player.takeDamage(1);
@@ -37,6 +39,9 @@ public class Zombie extends AbstractCombatModel {
 
     @Override
     public void update(double delta) {
+        if (isKnockbacked())
+            return;
+
         // Amazing AI
         int playerX = player.getPosition().getX();
         int zombieX = getPosition().getX();

@@ -7,4 +7,5 @@ public interface ICombatModel extends IPhysicsModel, IEventSource {
     int getCurrentHealth();
     void takeDamage(int dmg);
     int getMaxHealth();
+    void setKnockback();
 }
