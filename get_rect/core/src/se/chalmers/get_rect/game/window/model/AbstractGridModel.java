@@ -60,7 +60,7 @@ public abstract class AbstractGridModel {
 
     public void setIndex(Point point) {
         currentButton = new Point(point);
-        if (!itemMap.containsKey(point)) {
+        if (!itemMap.containsKey(point) || isButtonDisabled(point)) {
             System.out.println("no button at " + point);
             moveMarkDown();
             moveMarkRight();

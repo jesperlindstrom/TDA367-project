@@ -36,15 +36,13 @@ public class MainMenuView implements IWindowView {
         graphics.draw("img/splash/splash_logo.png", centerPos.add(-300, OFFSET_Y + 50));
 
         //Buttons
-        if (!model.isButtonDisabled(new Point(0, 0))) {
-            graphics.draw(IMG_PATH + "buttons/continue.png", getRealPosition(CONTINUE));
-        }
+        graphics.draw(IMG_PATH + (model.isButtonDisabled(CONTINUE) ? "buttons/continue_disabled.png" : "buttons/continue.png"), getRealPosition(CONTINUE));
 
         graphics.draw(IMG_PATH + "buttons/new_game.png", getRealPosition(NEW_GAME));
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(EXIT));
 
         // Menu overlay
-        graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(model.getCurrentlyMarked()));
+        graphics.draw(IMG_PATH + (model.isButtonDisabled(model.getCurrentlyMarked()) ? "buttons/overlay_disabled.png" : "buttons/overlay.png"), getRealPosition(model.getCurrentlyMarked()));
 
     }
 
