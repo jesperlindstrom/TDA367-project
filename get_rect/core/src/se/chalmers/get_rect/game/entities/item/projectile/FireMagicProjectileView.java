@@ -4,10 +4,10 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IModel;
 
-public class FireMagicView extends AbstractView {
+public class FireMagicProjectileView extends AbstractView {
     private IModel model;
 
-    public FireMagicView(IModel model) {
+    public FireMagicProjectileView(IModel model) {
         super(model);
         this.model = model;
     }
