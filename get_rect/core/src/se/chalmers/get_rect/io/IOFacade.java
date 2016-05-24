@@ -4,6 +4,7 @@ import se.chalmers.get_rect.io.strategies.json.JsonIOStrategy;
 import se.chalmers.get_rect.io.strategies.IOStrategy;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class IOFacade<T> {
@@ -19,7 +20,7 @@ public class IOFacade<T> {
         return io.read(file);
     }
 
-    public void save(List<T> data) {
+    public void save(List<T> data) throws IOException {
         io.write(file, data);
     }
 }

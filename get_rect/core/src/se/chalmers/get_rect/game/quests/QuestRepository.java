@@ -8,6 +8,7 @@ import se.chalmers.get_rect.io.IOFacade;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +20,9 @@ public class QuestRepository {
     private static final String SAVE_PATH = "data/savedData/";
     private static final String SAVE_FILE = SAVE_PATH + "questsSavedData.json";
     @Inject private QuestFactory factory;
+    private boolean noSaveFile = false;
 
-    public void save(List<IQuest> quests) throws FileNotFoundException {
+    public void save(List<IQuest> quests) throws IOException {
         IOFacade<QuestSaveDataStore> io = new IOFacade<>(SAVE_FILE, QuestSaveDataStore.class);
 
         if (!hasSavePath()){
@@ -56,24 +58,26 @@ public class QuestRepository {
     }
 
     public List<IQuest> getAll() throws FileNotFoundException {
-        // todo: read this from JSON
         IOFacade<QuestDataStore> io = new IOFacade<>(LOAD_FILE, QuestDataStore.class);
         List<QuestDataStore> questData = io.load();
 
-        Map<Integer, QuestSaveDataStore> saveData = getSaveData();
+        Map<Integer, QuestSaveDataStore> saveData = noSaveFile ? new HashMap<>() : getSaveData();
+
+        System.out.println(saveData);
 
         return questData.stream().map((data) -> makeFromDataStore(data, saveData.get(data.getId()))).collect(Collectors.toList());
     }
 
     public void reset() {
-        new File(SAVE_PATH + SAVE_FILE).delete();
+        noSaveFile = true;
     }
 
     private Map<Integer, QuestSaveDataStore> getSaveData() {
         Map<Integer, QuestSaveDataStore> saveData = new HashMap<>();
 
+        IOFacade<QuestSaveDataStore> io = new IOFacade<>(SAVE_FILE, QuestSaveDataStore.class);
+
         try {
-            IOFacade<QuestSaveDataStore> io = new IOFacade<>(SAVE_PATH + SAVE_FILE, QuestSaveDataStore.class);
             List<QuestSaveDataStore> questData = io.load();
 
             for (QuestSaveDataStore q : questData) {
@@ -81,7 +85,7 @@ public class QuestRepository {
             }
         } catch (FileNotFoundException e) {
             // Do nothing
-            // No save file meanings we just return the empty map
+            // No save file means we start over
         }
 
         return saveData;

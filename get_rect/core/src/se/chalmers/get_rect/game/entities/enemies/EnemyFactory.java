@@ -2,7 +2,6 @@ package se.chalmers.get_rect.game.entities.enemies;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.enemies.model.Demon;
 import se.chalmers.get_rect.game.entities.enemies.model.GhostBroccoli;

@@ -12,6 +12,7 @@ public class SplashModel {
     private StateManager<? extends IState> windowManager;
     private boolean addedAssets = false;
     private double progressValue = 0.0;
+    private String error = null;
 
     public SplashModel(IAssetManagerAdapter assetManager, StateManager<? extends IState> windowManager) {
         this.assetManager = assetManager;
@@ -30,8 +31,7 @@ public class SplashModel {
             assetManager.loadSoundsDir("sounds");
             assetManager.loadMusicDir("music");
         } catch (FileNotFoundException e) {
-            // todo: show an actual error
-            System.out.println(e.getMessage());
+            error = e.getMessage();
         }
     }
 
@@ -54,5 +54,9 @@ public class SplashModel {
 
     public boolean getAddedAssets() {
         return addedAssets;
+    }
+
+    public String getError() {
+        return error;
     }
 }
