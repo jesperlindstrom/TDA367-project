@@ -35,38 +35,26 @@ public abstract class AbstractGridModel {
     }
 
     public void moveMarkDown() {
-        for (int i = 1; i < itemMap.size(); i++) {
-            if (itemMap.containsKey(currentButton.addY(i)) && !disabled.contains(currentButton.addY(i))) {
-                currentButton = new Point(currentButton.addY(i));
-                return;
-            }
+        if (itemMap.containsKey(currentButton.addY(1))) {
+            currentButton = new Point(currentButton.addY(1));
         }
     }
 
     public void moveMarkUp() {
-        for (int i = 1; i < itemMap.size(); i++) {
-            if (itemMap.containsKey(currentButton.addY(-i)) && !disabled.contains(currentButton.addY(-i))) {
-                currentButton = new Point(currentButton.addY(-i));
-                return;
-            }
+        if (itemMap.containsKey(currentButton.addY(-1))) {
+            currentButton = new Point(currentButton.addY(-1));
         }
     }
 
     public void moveMarkLeft() {
-        for (int i = 1; i < itemMap.size(); i++) {
-            if (itemMap.containsKey(currentButton.addX(-i)) && !disabled.contains(currentButton.addX(-i))) {
-                currentButton = new Point(currentButton.addX(-i));
-                return;
-            }
+        if (itemMap.containsKey(currentButton.addX(-1))) {
+            currentButton = new Point(currentButton.addX(-1));
         }
     }
 
     public void moveMarkRight() {
-        for (int i = 1; i < itemMap.size(); i++) {
-            if (itemMap.containsKey(currentButton.addX(i)) && !disabled.contains(currentButton.addX(i))) {
-                currentButton = new Point(currentButton.addX(i));
-                return;
-            }
+        if (itemMap.containsKey(currentButton.addX(1))) {
+            currentButton = new Point(currentButton.addX(1));
         }
     }
 
@@ -82,7 +70,6 @@ public abstract class AbstractGridModel {
     public void disableButton(Point index) {
         if (!disabled.contains(index)) {
             disabled.add(index);
-
         }
     }
 

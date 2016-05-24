@@ -47,6 +47,11 @@ public class Inventory extends AbstractGridModel {
             addToMap(placement, () -> player.addNewWeapon(weapon));
 
             itemsMap.put(placement, weapon);
+
+            if (!weapon.isFound()) {
+                disableButton(placement);
+            }
+
             placement = placement.addX(1);
         }
     }
