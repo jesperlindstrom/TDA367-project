@@ -18,7 +18,14 @@
   },
 
   {
-    "type": "wand",
+    "type": "wand_fire",
+    "speed" : 100,
+    "damage": 100,
+    "cooldown": 20
+  },
+
+  {
+    "type": "wand_arcane",
     "speed" : 100,
     "damage": 50,
     "cooldown": 20
@@ -45,6 +52,12 @@
     "damage" : 20,
     "speed" : 200,
     "cooldown" : 10
+  },
+  {
+    "type" : "rock",
+    "damage" : 100,
+    "speed" : 100,
+    "cooldown" : 30
   },
 
   {

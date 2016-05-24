@@ -21,8 +21,10 @@ public class WeaponFactory {
             case "opaxe" : return new MeleeWeapon(model, type, swingFactory, reach, damage, cooldown, swingDegrees, startTilt, false);
             case "lasersword" : return new MeleeWeapon(model, type, swingFactory, reach, damage, cooldown, swingDegrees, startTilt, false);
             case "paddle" : return new MeleeWeapon(model, type, swingFactory, reach, damage, cooldown, swingDegrees, startTilt, true);
-            case "wand" : return new Wand(model, projectileFactory, damage, speed, cooldown);
+            case "wand_arcane" : return new Wand(model, projectileFactory, damage, speed, cooldown, "arcane");
+            case "wand_fire" : return new Wand(model, projectileFactory, damage, speed, cooldown, "fireMagic");
             case "firemagic" : return new FireMagic(model, projectileFactory, damage, speed, cooldown);
+            case "rock" : return new Rock(model, projectileFactory, damage, speed, cooldown);
         }
         throw new EntityNotFoundException("item", type);
     }
@@ -36,6 +38,7 @@ public class WeaponFactory {
             case "paddle" : return new PaddleView(model, audioManager);
             case "wand" : return new WandView(model, audioManager);
             case "firemagic": return new FireMagicView(model, audioManager);
+            case "rock" : return new RockView(model);
         }
 
         throw new RuntimeException("You done fucked up..  Weapon model didn't have a corresponding view");

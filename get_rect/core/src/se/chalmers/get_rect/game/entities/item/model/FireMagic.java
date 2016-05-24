@@ -7,11 +7,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class FireMagic extends AbstractRangedWeapon {
 
-    private ProjectileFactory projectileFactory;
-
     public FireMagic(IPhysicsModel user, ProjectileFactory projectileFactory, int damage, int speed, int cooldown) {
-        super(user, "firemagic", damage, speed, cooldown);
-        this.projectileFactory = projectileFactory;
+        super(user, projectileFactory, "firemagic", damage, speed, cooldown);
     }
 
     @Override
@@ -20,7 +17,7 @@ public class FireMagic extends AbstractRangedWeapon {
             setCooldownFrames(getCooldown());
             setAimDirection(aimDirection);
 
-            entityHolder.add(projectileFactory.make("fireMagic", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
+            entityHolder.add(getProjectileFactory().make("fireMagic", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
         }
     }
 

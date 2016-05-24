@@ -4,10 +4,10 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.IModel;
 
-public class BulletView extends AbstractView {
+public class BulletProjectileView extends AbstractView {
     private IModel model;
 
-    public BulletView(IModel model) {
+    public BulletProjectileView(IModel model) {
         super(model);
         this.model = model;
     }
