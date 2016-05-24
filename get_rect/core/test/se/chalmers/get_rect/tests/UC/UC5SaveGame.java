@@ -8,6 +8,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -30,13 +31,13 @@ public class UC5SaveGame extends IOSetup {
     public void testSaveGame(){
         try {
             playerRepository.reset();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         assertFalse("Should be false because file not created",playerRepository.hasFile());
         try {
             playerRepository.save();
-        } catch (FileNotFoundException e){
+        } catch (IOException e){
             System.out.println(e.getMessage());
         }
         assertTrue("Should be true because save function done", playerRepository.hasFile());
@@ -58,7 +59,7 @@ public class UC5SaveGame extends IOSetup {
 
         try {
             playerRepository.save();
-        } catch (FileNotFoundException e){
+        } catch (IOException e){
             System.out.println(e.getMessage());
         }
         assertTrue("Should be true because new save done", playerRepository.hasFile());

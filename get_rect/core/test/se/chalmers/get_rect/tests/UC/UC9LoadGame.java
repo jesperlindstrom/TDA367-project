@@ -13,6 +13,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerRepository;
 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -57,7 +58,7 @@ public class UC9LoadGame extends IOSetup {
         try {
             playerRepository.save();
             playerRepository.load();
-        } catch (FileNotFoundException e){
+        } catch (IOException e){
             System.out.println(e.getMessage());
         }
 
