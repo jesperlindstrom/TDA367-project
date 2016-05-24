@@ -18,4 +18,8 @@ public class SwingFactory {
         Swing swing = new Swing(damage, reach, swingFrames, rectangleFactory, owner, weapon, isSolid);
         return new Entity(swing, null);
     }
+    public IEntity makeUppercut(int damage, int reach, int swingFrames, IPhysicsModel owner, ISwinger weapon) {
+        Uppercut uppercut = new Uppercut(damage, reach, swingFrames, rectangleFactory, owner, weapon);
+        return new Entity(uppercut, null);
+    }
 }

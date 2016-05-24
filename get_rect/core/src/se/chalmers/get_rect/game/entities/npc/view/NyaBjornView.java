@@ -9,6 +9,7 @@ public class NyaBjornView extends AbstractAnimatedView {
     private static final int DEFAULT = 1;
     private static final int ON_THE_WAY = 2;
     private static final int SHOW = 3;
+    private static final int NYA_BJORN = 4;
     private NyaBjorn model;
 
     public NyaBjornView(NyaBjorn model) {
@@ -19,6 +20,7 @@ public class NyaBjornView extends AbstractAnimatedView {
         addAnimationFrame(ON_THE_WAY, "img/entities/urza/urzaToilet2.png", 60);
         addAnimationFrame(ON_THE_WAY, "img/entities/urza/urzaToilet3.png", 60);
         addAnimationFrame(SHOW, "img/entities/urza/urzaToilet4.png");
+        addAnimationFrame(NYA_BJORN, "img/entities/urza/nyaBjorn.png");
     }
 
     @Override
@@ -27,7 +29,7 @@ public class NyaBjornView extends AbstractAnimatedView {
             addAnimationFrame(0, "img/interact/exclamation.png");
             playSequence(ON_THE_WAY);
             if (model.isShowingFull()) {
-                playSequence(SHOW);
+                playSequence(NYA_BJORN);
             }
         } else {
             playSequence(DEFAULT);

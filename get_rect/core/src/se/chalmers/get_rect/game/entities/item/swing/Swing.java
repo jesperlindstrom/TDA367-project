@@ -66,4 +66,8 @@ public class Swing extends AbstractPhysicsModel{
     protected void setBoundingBox(int width, int height) {
         super.setBoundingBox(width, height);
     }
+
+    protected boolean isOwner(IPhysicsObject other) {
+        return owner.equals(other);
+    }
 }

@@ -2,6 +2,8 @@ package se.chalmers.get_rect.game.entities;
 
 import se.chalmers.get_rect.event.EventSource;
 import se.chalmers.get_rect.event.IEventListener;
+import se.chalmers.get_rect.physics.CollisionData;
+import se.chalmers.get_rect.physics.IPhysicsObject;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -10,6 +12,7 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
     private int currentHealth;
     private int maxHealth;
     private boolean isDead = false;
+    private boolean knockback = false;
 
     protected AbstractCombatModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory, int maxHealth) {
         super(position, velocity, solid, affectedByGravity, rectangleFactory);
@@ -18,6 +21,22 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
         this.currentHealth = this.maxHealth;
     }
 
+    @Override
+    public void setKnockback() {
+        knockback = true;
+    }
+
+    @Override
+    public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
+        super.onCollision(otherObject, collisionSide, isSolid);
+
+        if (isSolid)
+            knockback = false;
+    }
+
+    protected boolean isKnockbacked() {
+        return knockback;
+    }
 
     @Override
     public void addHealth(int health) {

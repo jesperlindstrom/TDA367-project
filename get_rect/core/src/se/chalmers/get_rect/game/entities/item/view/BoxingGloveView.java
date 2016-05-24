@@ -17,7 +17,7 @@ public class BoxingGloveView extends AbstractMeleeWeaponView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(imgPath + "boxingGlove.png", getModel().getHandPos(), new Point(0, 0), getXScale(), 1, -getModel().getTilt());
+        graphics.draw(imgPath + "boxingGlove.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 50 : -50, 50), new Point(0, 0), getXScale(), 1, - getModel().getTilt());
     }
 
     @Override

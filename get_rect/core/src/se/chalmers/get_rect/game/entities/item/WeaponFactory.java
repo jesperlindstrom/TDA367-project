@@ -25,7 +25,7 @@ public class WeaponFactory {
             case "wand_fire" : return new Wand(model, projectileFactory, damage, speed, cooldown, "fireMagic");
             case "firemagic" : return new FireMagic(model, projectileFactory, damage, speed, cooldown);
             case "rock" : return new Rock(model, projectileFactory, damage, speed, cooldown);
-            case "boxingGlove" : return new MeleeWeapon(model, type, swingFactory, reach, damage, cooldown, swingDegrees, startTilt, false);
+            case "boxingGlove" : return new BoxingGlove(model, type, swingFactory, reach, damage, cooldown, swingDegrees, startTilt, false);
         }
         throw new EntityNotFoundException("item", type);
     }
