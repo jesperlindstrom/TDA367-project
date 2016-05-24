@@ -26,10 +26,15 @@ public class SplashView implements IWindowView {
 
         Point centerPos = camera.getPosition();
 
-        graphics.draw("img/splash/splash_logo.png", centerPos.add(-300, BARS_OFFSET_Y+100));
-
-        graphics.draw("img/splash/progress_bar_bg.png", centerPos.add(BAR_BG_OFFSET, BARS_OFFSET_Y+12));
         int progressWidth = (int) (BAR_WIDTH * model.getProgressValue());
+
+        if (model.getError() != null) {
+            graphics.drawText(model.getError(), centerPos);
+            return;
+        }
+
+        graphics.draw("img/splash/splash_logo.png", centerPos.add(-300, BARS_OFFSET_Y+100));
+        graphics.draw("img/splash/progress_bar_bg.png", centerPos.add(BAR_BG_OFFSET, BARS_OFFSET_Y+12));
         graphics.draw("img/splash/loading_fill.png", centerPos.add(BAR_FILL_OFFSET, BARS_OFFSET_Y), progressWidth, 60);
     }
 }

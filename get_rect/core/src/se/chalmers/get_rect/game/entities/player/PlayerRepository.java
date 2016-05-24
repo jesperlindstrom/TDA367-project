@@ -8,18 +8,17 @@ import se.chalmers.get_rect.io.IOFacade;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerRepository {
-
-    private Player player;
-    private WeaponRepository weaponRepository;
-
     private static final String melee = "opsword";
     private static final String ranged = "pistol";
     private static final String PATH = "data/savedData/";
-    private static final String  FILE = "playerSavedData.json";
+    private static final String FILE = "playerSavedData.json";
+    private Player player;
+    private WeaponRepository weaponRepository;
 
     private IOFacade<PlayerDataStore> json;
 
@@ -31,18 +30,19 @@ public class PlayerRepository {
 
     }
 
-    public void save() throws FileNotFoundException {
+    public void save() throws IOException {
         if (!hasFilePath()){
             File theFile = new File(PATH);
             boolean tmp = theFile.mkdirs();
+
             if (!tmp){
-                System.out.println("Failed created new file path");
-                throw new RuntimeException("Failed to create save path");
+                throw new IOException("Failed to create save path: " + PATH);
             }
         }
         List<PlayerDataStore> list = new ArrayList<>();
         PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
         list.add(dataStore);
+
         json.save(list);
     }
 

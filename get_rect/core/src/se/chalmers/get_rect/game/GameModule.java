@@ -52,6 +52,8 @@ public class GameModule extends AbstractModule {
         bind(new TypeLiteral<StateManager<IWindowController>>() {}).toInstance(windowManager);
         bind(StateManager.class).annotatedWith(Names.named("Window")).toInstance(windowManager);
 
+        bind(ErrorHandler.class).toInstance(new ErrorHandler(windowManager));
+
         // Repositories
         TypeLiteral repository = new TypeLiteral<IRepository<IEntity>>() {};
         bind(repository).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);

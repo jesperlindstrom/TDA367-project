@@ -2,7 +2,7 @@
   {
     "type": "opsword",
     "reach": 175,
-    "damage": 2,
+    "damage": 5,
     "cooldown": 30,
     "startTilt" : 10,
     "swingDegrees" : 110
@@ -35,7 +35,7 @@
   {
     "type": "opaxe",
     "reach": 200,
-    "damage": 6,
+    "damage": 20,
     "cooldown": 60,
     "swingDegrees" : 360,
     "startTilt" : 0
@@ -50,7 +50,7 @@
   {
     "type" : "lasersword",
     "reach": 200,
-    "damage" : 10,
+    "damage" : 50,
     "cooldown" : 30,
     "swingDegrees" : 360,
     "startTilt" : 35

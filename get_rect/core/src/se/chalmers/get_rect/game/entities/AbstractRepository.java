@@ -15,7 +15,7 @@ public abstract class AbstractRepository<D, T> implements IRepository<T> {
         this.className = className;
     }
 
-    public List<T> get(String folderName) throws FileNotFoundException, EntityNotFoundException {
+    public List<T> get(String folderName) throws FileNotFoundException {
         List<T> entities = new ArrayList<>();
 
         IOFacade<D> dataLoader = new IOFacade<>("data/" + folderName + "/" + fileName + ".json", className);
@@ -30,5 +30,5 @@ public abstract class AbstractRepository<D, T> implements IRepository<T> {
         return entities;
     }
 
-    abstract protected T makeFromDataStore(D data);
+    abstract protected T makeFromDataStore(D data) throws FileNotFoundException;
 }

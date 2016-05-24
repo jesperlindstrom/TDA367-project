@@ -135,7 +135,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
     @Override
     public Point getDirection() {
         if (controller == null) return new Point(0, 0);
-        return new Point(rightStick).multiply(new Point(1, -1));  // TODO: this solved it.. it should work from the start
+        return new Point(rightStick).multiply(new Point(1, -1));
     }
 
     @Override

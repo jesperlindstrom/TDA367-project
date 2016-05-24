@@ -22,7 +22,7 @@ public class Computer extends AbstractInteractableModel {
     public Computer(Point position, IRectangleFactoryAdapter factory, QuestManager questManager) {
         super(position, new Point(0,0), false, true, factory);
         setBoundingBox(69, 54);
-        quest = questManager.get(0);
+        quest = questManager.get(1);
 
         if (quest.getState().equals(QuestState.COMPLETED)) {
             currentState = ARCH;
@@ -37,7 +37,7 @@ public class Computer extends AbstractInteractableModel {
             installTicks++;
         }
 
-        if (installTicks == ARCH_INSTALL_TIME) {
+        if (currentState == ARCH_INSTALL && installTicks == ARCH_INSTALL_TIME) {
             currentState = ARCH;
             triggerEvent("computer", "installed arch");
         }
