@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.world;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.event.IEventSource;
+import se.chalmers.get_rect.game.ErrorHandler;
 import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.game.window.controller.GridController;
@@ -35,9 +36,9 @@ public abstract class AbstractWorld implements IWorld {
     private Queue<IEntity> additions;
     private WorldLoader worldLoader;
     private IAudioManagerAdapter audioManager;
-    private StateManager<GridController> windowManager;
+    private ErrorHandler errorHandler;
 
-    protected AbstractWorld(String folderName, IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager, StateManager windowManager) {
+    protected AbstractWorld(String folderName, IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager, ErrorHandler error) {
         this.folderName = folderName;
         this.playerEntity = playerEntity;
         this.playerModel = (IPhysicsModel) playerEntity.getModel();
@@ -46,7 +47,7 @@ public abstract class AbstractWorld implements IWorld {
         this.worldLoader = worldLoader;
         this.quests = quests;
         this.audioManager = audioManager;
-        this.windowManager = windowManager;
+        this.errorHandler = error;
         additions = new LinkedList<>();
     }
 
@@ -108,12 +109,11 @@ public abstract class AbstractWorld implements IWorld {
     private void setupEntities() {
         views = new ArrayList<>();
         models = new ArrayList<>();
+        
         try {
             worldLoader.getEntities(folderName).forEach(this::addEntity);
         } catch (FileNotFoundException e) {
-            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
-            windowManager.set(GameConfig.ERROR_WINDOW);
-            System.out.println(e.getMessage());
+            errorHandler.showError(e.getMessage());
         }
     }
 
