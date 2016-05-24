@@ -77,13 +77,12 @@ public class NpcFactory {
 
         return new Entity(model, view);
     }
-    private IEntity makeNyaBjorn(Point point) {
+    private IEntity makeNyaBjorn(Point point) throws FileNotFoundException{
         List<String> phrases = getPhrases("nyaBjorn");
         NyaBjorn model = new NyaBjorn(point, rectangleFactory, phrases, quests);
         IView view = new NyaBjornView(model);
         return new Entity(model, view);
     }
-
 
     private List<String> getPhrases(String npc) throws FileNotFoundException {
         return new DialogRepository(npc).get();
