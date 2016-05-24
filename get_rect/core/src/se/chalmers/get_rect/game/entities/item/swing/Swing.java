@@ -8,12 +8,16 @@ import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.utilities.Point;
 import se.chalmers.get_rect.physics.CollisionData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Swing extends AbstractPhysicsModel{
     private IPhysicsModel owner;
     private ISwinger weapon;
     private int swingFrames;
     private int damage;
     private int reach;
+    private List<IPhysicsObject> hitEnemies;
 
     public Swing(int damage, int reach, int swingFrames, IRectangleFactoryAdapter rectangleFactory, IPhysicsModel owner, ISwinger weapon) {
         this(damage, reach, swingFrames, rectangleFactory, owner, weapon, false);
@@ -25,6 +29,7 @@ public class Swing extends AbstractPhysicsModel{
         this.weapon = weapon;
         this.swingFrames = swingFrames;
         this.reach = reach;
+        hitEnemies = new ArrayList<>();
         setBoundingBox((int)Math.sin(Math.toRadians(weapon.getTilt()))*reach, (int)(Math.sin(Math.toRadians(weapon.getTilt()))*reach));
     }
 
@@ -43,8 +48,9 @@ public class Swing extends AbstractPhysicsModel{
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
         super.onCollision(otherObject, collisionSide, isSolid);
-        if (otherObject instanceof ICombatModel && !otherObject.equals(owner)) {
+        if (otherObject instanceof ICombatModel && !otherObject.equals(owner) && !hitEnemies.contains(otherObject)) {
             ((ICombatModel)otherObject).takeDamage(damage);
+            hitEnemies.add(otherObject);
         }
     }
 
