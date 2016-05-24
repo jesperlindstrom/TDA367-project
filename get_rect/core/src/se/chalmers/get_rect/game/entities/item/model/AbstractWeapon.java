@@ -10,6 +10,7 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
     private int facing;
     private int cooldownFrames;
     private IPhysicsModel user;
+    private boolean found;
 
     protected AbstractWeapon(IPhysicsModel user, String type) {
         super(user.getPosition());
@@ -31,8 +32,19 @@ public abstract class AbstractWeapon extends AbstractModel implements IWeapon {
     public int getFacing() {
         if (user.getVelocity().getX() != 0) {
             facing = user.getVelocity().normalize().getX();
+            if (facing == 0)
+                facing = 1;
         }
         return facing;
+    }
+
+    @Override
+    public boolean isFound() {
+        return found;
+    }
+
+    public void setFound(boolean found) {
+        this.found = found;
     }
 
     @Override

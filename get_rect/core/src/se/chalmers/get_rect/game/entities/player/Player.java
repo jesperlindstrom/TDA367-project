@@ -135,6 +135,7 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
         } else if (model instanceof IRanged) {
             rangedWeapon = (IRanged)model;
         }
+        model.setFound(true);
         setActiveWeapon(model);
     }
 

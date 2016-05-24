@@ -9,7 +9,6 @@ public class InGameMenu extends AbstractGridModel {
         addToMap(0, 0, game::resume);
         addToMap(0, 1, () -> {
             game.save();
-            moveMarkUp();
             disableButton(new Point(0, 1));
         });
         addToMap(0, 2, game::exit);

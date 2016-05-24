@@ -38,8 +38,11 @@ public class InventoryView implements IWindowView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(IMG_PATH+"chezzt.png", camera.getPosition().add(windowPosition));
-        weaponViewMap.forEach((K, V) -> V.drawIcon(graphics, getRealPosition(K, ITEM_FIRST_OFFSET, ITEM_OFFSET)));
-        graphics.draw("img/pauseMenu/inventory/item_active.png", getRealPosition(inventory.getCurrentlyMarked(), MARK_FIRST_OFFSET, MARK_OFFSET));
+        weaponViewMap.forEach((K, V) -> {
+            V.drawIcon(graphics, getRealPosition(K, ITEM_FIRST_OFFSET, ITEM_OFFSET));
+        });
+
+        graphics.draw("img/pauseMenu/inventory/" + (inventory.isButtonDisabled(inventory.getCurrentlyMarked()) ? "overlay_disabled.png" : "item_active.png"), getRealPosition(inventory.getCurrentlyMarked(), MARK_FIRST_OFFSET, MARK_OFFSET));
     }
 
     private Point getRealPosition(Point gridPosition, Point firstOffset, Point offset) {
