@@ -3,6 +3,7 @@ package se.chalmers.get_rect.tests.models;
 
 import org.junit.Before;
 import org.junit.Test;
+import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.npc.model.SawmillExpress;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.quests.QuestManager;
@@ -27,17 +28,19 @@ public class SawmillExpressTest {
     private IQuest quest;
     private QuestManager questManager;
     private List<String> list;
+    private WeaponRepository weaponRepository;
 
     @Before
     public void setup() {
         player = mock(Player.class);
+        weaponRepository = mock(WeaponRepository.class);
         list = new ArrayList<>();
         questManager = mock(QuestManager.class);
         quest = mock(IQuest.class);
         when(quest.getState()).thenReturn(QuestState.IN_PROGRESS);
         when(questManager.get(0)).thenReturn(quest);
         list.add("SawmillExpress");
-        sawmillExpress = new SawmillExpress(new Point(), new RectangleFactoryAdapterStub(), list,questManager);
+        sawmillExpress = new SawmillExpress(new Point(), new RectangleFactoryAdapterStub(), list,questManager, weaponRepository);
     }
 
     @Test
@@ -45,7 +48,7 @@ public class SawmillExpressTest {
         sawmillExpress.onInteract(player);
         assertEquals("Should be equal to SawmillExpress", "SawmillExpress\n", sawmillExpress.getDialog());
         when(quest.getState()).thenReturn(QuestState.COMPLETED);
-        sawmillExpress = new SawmillExpress(new Point(),new RectangleFactoryAdapterStub(),list, questManager);
+        sawmillExpress = new SawmillExpress(new Point(),new RectangleFactoryAdapterStub(),list, questManager, weaponRepository);
         assertTrue("Should be removed", sawmillExpress.shouldBeRemoved());
     }
 

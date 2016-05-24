@@ -40,8 +40,8 @@ public class IOSetup {
             weaponList.add(melee);
             weaponList.add(ranged);
             Mockito.when(weaponRepository.get("data/items/weapons.json")).thenReturn(weaponList);
-            Mockito.when(weaponRepository.getSingleWeapon("opsword", player)).thenReturn(melee);
-            Mockito.when(weaponRepository.getSingleWeapon("pistol", player)).thenReturn(ranged);
+            Mockito.when(weaponRepository.getSingleWeapon("opsword")).thenReturn(melee);
+            Mockito.when(weaponRepository.getSingleWeapon("pistol")).thenReturn(ranged);
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }

@@ -29,11 +29,7 @@ public class UC5SaveGame extends IOSetup {
 
     @Test
     public void testSaveGame(){
-        try {
-            playerRepository.reset();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        playerRepository.reset();
         assertFalse("Should be false because file not created",playerRepository.hasFile());
         try {
             playerRepository.save();
@@ -45,7 +41,7 @@ public class UC5SaveGame extends IOSetup {
 
     @Test
     public void testFileNotExists(){
-        if(playerRepository.hasFilePath()){
+        if(playerRepository.hasFile()){
             File file = new File("data/savedData/");
             String[]entries = file.list();
             for(String s: entries){
@@ -54,7 +50,7 @@ public class UC5SaveGame extends IOSetup {
             }
 
             file.delete();
-            assertFalse("Should be false because repo is deleted" , playerRepository.hasFilePath());
+            assertFalse("Should be false because repo is deleted" , playerRepository.hasFile());
         }
 
         try {
@@ -63,8 +59,6 @@ public class UC5SaveGame extends IOSetup {
             System.out.println(e.getMessage());
         }
         assertTrue("Should be true because new save done", playerRepository.hasFile());
-        assertTrue("Should be true because new save done", playerRepository.hasFilePath());
-
     }
 
 }

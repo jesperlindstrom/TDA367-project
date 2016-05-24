@@ -40,12 +40,8 @@ public class UC9LoadGame extends IOSetup {
 
     @Test
     public void testLoadGame(){
-        assertTrue("Should be true because file needs to exists" , playerRepository.hasFilePath() && playerRepository.hasFile());
-        try {
-            playerRepository.reset();
-        } catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
-        }
+        assertTrue("Should be true because file needs to exists" , playerRepository.hasFile() && playerRepository.hasFile());
+        playerRepository.reset();
 
         int oldHelath = player.getCurrentHealth();
         boolean oldHasFoundHunch = player.hasFoundHunch();
