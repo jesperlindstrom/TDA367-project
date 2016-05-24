@@ -10,7 +10,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 import static org.junit.Assert.*;
 
-public class DemonTest extends CombatCollisionTest {
+public class DemonTest extends modelUtilsTest {
 
 
     @Before
