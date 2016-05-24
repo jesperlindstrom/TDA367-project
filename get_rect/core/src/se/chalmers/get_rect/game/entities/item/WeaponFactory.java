@@ -39,7 +39,7 @@ public class WeaponFactory {
             case "paddle" : return new PaddleView(model, audioManager);
             case "wand" : return new WandView(model, audioManager);
             case "firemagic": return new FireMagicView(model, audioManager);
-            case "rock" : return new RockView(model);
+            case "rock" : return new RockView(model, audioManager);
             case "boxingGlove" : return new BoxingGloveView(model, audioManager);
         }
 

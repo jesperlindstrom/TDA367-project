@@ -42,7 +42,6 @@ public class Swing extends AbstractPhysicsModel{
         if (swingFrames == 0) {
             setShouldBeRemoved();
         }
-
     }
 
     @Override

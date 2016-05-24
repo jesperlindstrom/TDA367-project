@@ -43,6 +43,7 @@ public class WandView extends AbstractRangedWeaponView {
     public int getDrawPriority() {
         return DRAW_PRIORITY;
     }
+
     private int randomNumber() {
         Random random = new Random();
         return random.nextInt(2)+1;

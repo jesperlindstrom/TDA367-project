@@ -72,9 +72,9 @@
     "type" : "boxingGlove",
     "reach": 200,
     "damage" : 0,
-    "cooldown" : 60,
-    "swingDegrees" : 180,
-    "startTilt" : 45
+    "cooldown" : 30,
+    "swingDegrees" : -90,
+    "startTilt" : 135
   }
 
 ]
