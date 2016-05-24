@@ -13,7 +13,7 @@ public class ProjectileFactory {
         if (type.equals("bullet"))
             return makeBullet(point, velocity, damage, owner);
 
-        if (type.equals("magic"))
+        if (type.equals("arcane"))
             return makeMagic(point, velocity, damage, owner);
 
         if (type.equals("fireMagic"))
@@ -23,18 +23,22 @@ public class ProjectileFactory {
             return makeFireMagic(point, velocity, damage, owner, true);
         }
 
+        if (type.equals("rock")) {
+            return makeRock(point, velocity, damage, owner);
+        }
+
         throw new EntityNotFoundException("projectile", type);
     }
 
     private IEntity makeBullet(Point point, Point velocity, int damage, IModel owner) {
         Projectile model = new Projectile(point, velocity, damage, rectangleFactory, owner, false);
-        IView view = new BulletView(model);
+        IView view = new BulletProjectileView(model);
         return new Entity(model, view);
     }
 
     private IEntity makeMagic(Point point, Point velocity, int damage, IModel owner) {
         Projectile model = new Projectile(point, velocity, damage, rectangleFactory, owner, false);
-        IView view = new MagicView(model);
+        IView view = new ArcaneMagicProjectileView(model);
         return new Entity(model, view);
     }
 
@@ -47,7 +51,12 @@ public class ProjectileFactory {
             model = new Projectile(point, velocity, damage, rectangleFactory, owner, true, this, "fireMagicCluster");
         }
 
-        IView view = new FireMagicView(model);
+        IView view = new FireMagicProjectileView(model);
+        return new Entity(model, view);
+    }
+    private IEntity makeRock(Point point, Point velocity, int damage, IModel owner) {
+        Projectile model = new Projectile(point, velocity, damage, rectangleFactory, owner, true);
+        IView view = new RockProjectileView(model);
         return new Entity(model, view);
     }
 }

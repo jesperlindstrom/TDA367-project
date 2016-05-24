@@ -47,5 +47,19 @@
         "infoText": "Kill a ghost broccoli!"
       }
     ]
+  },
+  {
+    "id": 3,
+    "title": "#NyaBjörn",
+    "acceptText": "Hjälp mig att bli nya Björn",
+    "completionText": "Tack så mycket!",
+    "objectives": [
+      {
+        "type": "demon",
+        "action": "died",
+        "requiredCount": 5,
+        "infoText": "Kill Mjölnir!"
+      }
+    ]
   }
 ]

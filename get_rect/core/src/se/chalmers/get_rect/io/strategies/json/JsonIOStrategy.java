@@ -31,10 +31,7 @@ public class JsonIOStrategy<T> implements IOStrategy<T> {
 
         File myFile = new File(file);
 
-       boolean tmp =  myFile.createNewFile();
-        if (!tmp){
-            System.out.println("Failed to create a new save file");
-        }
+        boolean tmp = myFile.createNewFile();
         FileOutputStream fOut = new FileOutputStream(myFile);
         OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut, charset);
         myOutWriter.append(s);

@@ -1,6 +1,8 @@
 package se.chalmers.get_rect.game.entities.item.model;
 
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
+import se.chalmers.get_rect.game.entities.item.projectile.Projectile;
+import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.utilities.Point;
 
 public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRanged {
@@ -9,12 +11,14 @@ public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRa
     private final int damage;
     private final int speed;
     private final int cooldown;
+    private final ProjectileFactory projectileFactory;
 
-    protected AbstractRangedWeapon(IPhysicsModel user, String type, int damage, int speed, int cooldown) {
+    protected AbstractRangedWeapon(IPhysicsModel user, ProjectileFactory projectileFactory, String type, int damage, int speed, int cooldown) {
         super(user, type);
         this.damage = damage;
         this.speed = speed;
         this.cooldown = cooldown;
+        this.projectileFactory = projectileFactory;
         setAimDirection(user.getVelocity().normalize());
     }
 
@@ -29,7 +33,7 @@ public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRa
 
 
     protected Point getFireVelocity(int speed) {
-        return aimDirection.multiply(speed).add(getUser().getVelocity());
+        return aimDirection.multiply(speed).add(getUser().getVelocity().multiply(0.5));
     }
 
     protected int getSpeed() {
@@ -38,6 +42,10 @@ public abstract class AbstractRangedWeapon extends AbstractWeapon implements IRa
 
     protected int getDamage() {
         return damage;
+    }
+
+    protected ProjectileFactory getProjectileFactory() {
+        return projectileFactory;
     }
 
     public int getCooldown() { return cooldown; }

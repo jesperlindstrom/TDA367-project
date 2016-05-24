@@ -8,10 +8,10 @@ import se.chalmers.get_rect.utilities.Point;
 public interface IWeapon extends IModel{
 
     /**
-     * @param direction direction aimed.
+     * @param aimDirection direction aimed.
      * @param entityHolder
      */
-    void use(Point direction, IEntityHolder entityHolder);
+    void use(Point aimDirection, IEntityHolder entityHolder);
 
     void remove();
     /**

@@ -58,8 +58,6 @@ public class PlayerRepository {
     }
 
     public void reset() throws FileNotFoundException{
-        new File(PATH + FILE).delete();
-
         player.setHealth(player.getMaxHealth());
         player.setHasFoundHunch(false);
         player.setRiding(false);

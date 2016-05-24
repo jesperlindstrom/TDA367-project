@@ -7,12 +7,9 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class Pistol extends AbstractRangedWeapon {
 
-    private ProjectileFactory projectileFactory;
-
 
     public Pistol(IPhysicsModel user, ProjectileFactory projectileFactory, int damage, int speed, int cooldown) {
-        super(user, "pistol", damage, speed, cooldown);
-        this.projectileFactory = projectileFactory;
+        super(user, projectileFactory, "pistol", damage, speed, cooldown);
     }
 
     @Override
@@ -20,7 +17,7 @@ public class Pistol extends AbstractRangedWeapon {
         if (getCooldownFrames() == 0) {
             setCooldownFrames(getCooldown());
             setAimDirection(aimDirection);
-            entityHolder.add(projectileFactory.make("bullet", getSpawnPoint(), getFireVelocity(getSpeed()), getDamage(), getUser()));
+            entityHolder.add(getProjectileFactory().make("bullet", getSpawnPoint(), aimDirection.multiply(getSpeed()), getDamage(), getUser()));
         }
     }
 

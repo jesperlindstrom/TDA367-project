@@ -4,6 +4,7 @@ import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.entities.AbstractView;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.window.model.AbstractGridModel;
+import se.chalmers.get_rect.game.window.model.InGameMenu;
 import se.chalmers.get_rect.utilities.Point;
 
 public class InGameMenuView implements IWindowView {
@@ -13,9 +14,9 @@ public class InGameMenuView implements IWindowView {
     private Point offset = new Point(70, 300);
     private static final String IMG_PATH = "img/pauseMenu/";
     private ICamera camera;
-    private AbstractGridModel model;
+    private InGameMenu model;
 
-    public InGameMenuView(AbstractGridModel model, ICamera camera) {
+    public InGameMenuView(InGameMenu model, ICamera camera) {
         this.camera = camera;
         this.model = model;
     }
@@ -31,9 +32,11 @@ public class InGameMenuView implements IWindowView {
 
         //Buttons
         graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(menuPos, CONTINUE));
-        graphics.draw(IMG_PATH + "buttons/save.png", getRealPosition(menuPos, SAVE));
-        graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(menuPos, EXIT));
 
+        String saveButton = model.isSaved() ? "buttons/saved.png" : "buttons/save.png";
+        graphics.draw(IMG_PATH + saveButton, getRealPosition(menuPos, SAVE));
+
+        graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(menuPos, EXIT));
         graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(menuPos, model.getCurrentlyMarked()));
     }
 
