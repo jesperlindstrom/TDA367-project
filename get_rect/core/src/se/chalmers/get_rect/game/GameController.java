@@ -136,6 +136,7 @@ public class GameController {
 
     public void load() {
         try {
+            weaponRepository.preload(player);
             playerRepository.load();
             questManager.setQuests(questRepository.getAll());
             worldManager.set(GameConfig.HUBBEN);
@@ -170,6 +171,7 @@ public class GameController {
         try {
             questRepository.reset();
             weaponRepository.reset();
+            weaponRepository.preload(player);
             playerRepository.reset();
             questManager.setQuests(questRepository.getAll());
             worldManager.set(GameConfig.HUBBEN);

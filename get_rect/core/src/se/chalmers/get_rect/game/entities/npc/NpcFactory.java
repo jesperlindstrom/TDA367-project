@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.npc;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import se.chalmers.get_rect.game.entities.*;
+import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.npc.model.*;
 import se.chalmers.get_rect.game.entities.npc.view.*;
 import se.chalmers.get_rect.game.entities.player.Player;
@@ -20,6 +21,7 @@ public class NpcFactory {
     @Inject @Named("Window") private StateManager windowManager;
     @Inject private QuestManager quests;
     @Inject private Player player;
+    @Inject private WeaponRepository weaponRepository;
 
     public IEntity make(String type, Point point) throws FileNotFoundException {
         if (type.equals("sawmillExpress"))
@@ -51,7 +53,7 @@ public class NpcFactory {
 
     private IEntity makeSawmillExpress(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("sawmill");
-        SawmillExpress model = new SawmillExpress(point, rectangleFactory, phrases, quests);
+        SawmillExpress model = new SawmillExpress(point, rectangleFactory, phrases, quests, weaponRepository);
         IView view = new SawmillView(model);
 
         return new Entity(model, view);

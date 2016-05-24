@@ -5,8 +5,8 @@ import se.chalmers.get_rect.game.quests.data.*;
 import se.chalmers.get_rect.game.quests.saveData.ObjectiveSaveDataStore;
 import se.chalmers.get_rect.game.quests.saveData.QuestSaveDataStore;
 import se.chalmers.get_rect.io.IOFacade;
+import se.chalmers.get_rect.utilities.FileUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,13 +25,8 @@ public class QuestRepository {
     public void save(List<IQuest> quests) throws IOException {
         IOFacade<QuestSaveDataStore> io = new IOFacade<>(SAVE_FILE, QuestSaveDataStore.class);
 
-        if (!hasSavePath()){
-            File theFile = new File(SAVE_PATH);
-            boolean tmp = theFile.mkdirs();
-
-            if (!tmp){
-                throw new RuntimeException("Failed to create save path");
-            }
+        if (!FileUtils.folderExists(SAVE_PATH)){
+            FileUtils.createFolder(SAVE_PATH);
         }
 
         List<QuestSaveDataStore> saveData = new ArrayList<>();
@@ -51,10 +46,6 @@ public class QuestRepository {
         }
 
         return new QuestSaveDataStore(quest.getId(), quest.getState(), objectives);
-    }
-
-    private boolean hasSavePath() {
-        return new File(SAVE_PATH).isDirectory();
     }
 
     public List<IQuest> getAll() throws FileNotFoundException {
