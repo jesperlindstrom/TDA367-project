@@ -10,7 +10,7 @@ public class SplashView implements IWindowView {
     private static final int BAR_WIDTH = 578;
     private static final int BARS_OFFSET = -55;
     private static final int BARS_OFFSET_Y = -250;
-    private static final int BAR_BG_OFFSET = -350 + BARS_OFFSET;
+    private static final int BAR_BG_OFFSET = -355 + BARS_OFFSET;
     private static final int BAR_FILL_OFFSET = -145 + BARS_OFFSET;
     private SplashModel model;
     private ICameraAdapter camera;
@@ -34,7 +34,7 @@ public class SplashView implements IWindowView {
         }
 
         graphics.draw("img/splash/splash_logo.png", centerPos.add(-300, BARS_OFFSET_Y+100));
-        graphics.draw("img/splash/progress_bar_bg.png", centerPos.add(BAR_BG_OFFSET, BARS_OFFSET_Y+12));
+        graphics.draw("img/splash/progress_bar_bg.png", centerPos.add(BAR_BG_OFFSET, BARS_OFFSET_Y+10));
         graphics.draw("img/splash/loading_fill.png", centerPos.add(BAR_FILL_OFFSET, BARS_OFFSET_Y), progressWidth, 60);
     }
 }
