@@ -43,7 +43,7 @@ public class Hunchen extends AbstractNPCModel {
         }
 
 
-        IRectangleAdapter rect = getRectangleFactory().make(getPosition().getX()-30, getPosition().getY(), 81+60, 51);
+        IRectangleAdapter rect = getRectangleFactory().make(getPosition().getX()-30, getPosition().getY(), 141, 51);
         CollisionData collision = player.getBoundingBox().intersects(rect);
 
         if (collision == null){
