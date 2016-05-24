@@ -15,12 +15,18 @@ public class Computer extends AbstractInteractableModel {
     public static final int ARCH_INSTALL = 2;
     public static final int ARCH = 3;
     private static final int ARCH_INSTALL_TIME = 120;
+    private IQuest quest;
     private int currentState = MAC;
     private int installTicks = 0;
 
     public Computer(Point position, IRectangleFactoryAdapter factory, QuestManager questManager) {
         super(position, new Point(0,0), false, true, factory);
         setBoundingBox(69, 54);
+        quest = questManager.get(0);
+
+        if (quest.getState().equals(QuestState.COMPLETED)) {
+            currentState = ARCH;
+        }
     }
 
     @Override
@@ -39,6 +45,9 @@ public class Computer extends AbstractInteractableModel {
 
     @Override
     public void onInteract(IModel model) {
+        if (!quest.getState().equals(QuestState.IN_PROGRESS))
+            return;
+
         triggerEvent("computer", "interacted");
 
         if (currentState == MAC) {

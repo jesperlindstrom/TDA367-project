@@ -19,7 +19,8 @@ public class SplashModel {
     }
 
     public void preload() {
-        assetManager.loadTexture("img/splash/splash_bg.jpg");
+        assetManager.loadTexture("img/splash/splash_logo.png");
+        assetManager.loadTexture("img/splash/progress_bar_bg.png");
         assetManager.loadTexture("img/splash/loading_fill.png");
     }
 
