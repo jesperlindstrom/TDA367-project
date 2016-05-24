@@ -24,9 +24,4 @@ public class Uppercut extends Swing {
             ((ICombatModel)otherObject).setKnockback();
         }
     }
-
-    @Override
-    public void update(double delta) {
-        super.update(delta);
-    }
 }
