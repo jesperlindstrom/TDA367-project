@@ -56,7 +56,6 @@ public class QuestRepository {
     }
 
     public List<IQuest> getAll() throws FileNotFoundException {
-        // todo: read this from JSON
         IOFacade<QuestDataStore> io = new IOFacade<>(LOAD_FILE, QuestDataStore.class);
         List<QuestDataStore> questData = io.load();
 

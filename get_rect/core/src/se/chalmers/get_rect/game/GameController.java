@@ -73,7 +73,7 @@ public class GameController {
     }
 
     private void onPlayerDeath(Event e) {
-        if (e.getAction().equals("died")) { // TODO: this is probably not what should happen..
+        if (e.getAction().equals("died")) {
             try {
                 playerRepository.load();
             } catch (FileNotFoundException f){

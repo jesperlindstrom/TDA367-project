@@ -109,7 +109,7 @@ public abstract class AbstractWorld implements IWorld {
     private void setupEntities() {
         views = new ArrayList<>();
         models = new ArrayList<>();
-        
+
         try {
             worldLoader.getEntities(folderName).forEach(this::addEntity);
         } catch (FileNotFoundException e) {

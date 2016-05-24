@@ -21,7 +21,7 @@ public class NpcFactory {
     @Inject private QuestManager quests;
     @Inject private Player player;
 
-    public IEntity make(String type, Point point) {
+    public IEntity make(String type, Point point) throws FileNotFoundException {
         if (type.equals("sawmillExpress"))
             return makeSawmillExpress(point);
 
@@ -40,34 +40,34 @@ public class NpcFactory {
         throw new EntityNotFoundException("NPC", type);
     }
 
-    private IEntity makeHunchen(Point point){
+    private IEntity makeHunchen(Point point) throws FileNotFoundException {
         Hunchen model = new Hunchen(point, rectangleFactory, player);
         IView view = new HunchenView(model);
         return new Entity(model,view);
     }
 
-    private IEntity makeSawmillExpress(Point point) {
+    private IEntity makeSawmillExpress(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("sawmill");
         SawmillExpress model = new SawmillExpress(point, rectangleFactory, phrases, quests);
         IView view = new SawmillView(model);
 
         return new Entity(model, view);
     }
-    private IEntity makeRekoil(Point point) {
+    private IEntity makeRekoil(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("rekoil");
         Rekoil model = new Rekoil(point, rectangleFactory, phrases, quests);
         IView view = new RekoilView(model);
         return new Entity(model, view);
     }
 
-    private IEntity makeChessT(Point point) {
+    private IEntity makeChessT(Point point) throws FileNotFoundException {
         ChessT model = new ChessT(point, rectangleFactory, windowManager, player);
         IView view = new ChessTView(model);
 
         return new Entity(model, view);
     }
 
-    private IEntity makeHorv(Point point) {
+    private IEntity makeHorv(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("horv");
         Horv model = new Horv(point, rectangleFactory, phrases, quests);
         IView view = new HorvView(model);
@@ -75,17 +75,7 @@ public class NpcFactory {
         return new Entity(model, view);
     }
 
-    private List<String> getPhrases(String npc) {
-        DialogRepository repository = new DialogRepository(npc);
-        List<String> list = new ArrayList<>();
-
-        try {
-            list = repository.get();
-        } catch (FileNotFoundException e){
-            // todo: this should probably be thrown further up
-            System.out.println(e.getMessage());
-        }
-
-        return list;
+    private List<String> getPhrases(String npc) throws FileNotFoundException {
+        return new DialogRepository(npc).get();
     }
 }
