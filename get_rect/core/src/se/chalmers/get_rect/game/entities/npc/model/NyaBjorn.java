@@ -51,6 +51,7 @@ public class NyaBjorn extends AbstractNPCModel {
     public boolean isShowing() {
         return isShowing;
     }
+
     public boolean isShowingFull() {
         return showingFull;
     }
