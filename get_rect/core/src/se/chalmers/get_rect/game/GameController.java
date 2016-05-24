@@ -109,6 +109,7 @@ public class GameController {
     }
 
     private void handleInput() {
+        // todo: this is a code soup
         if (gameInput.isKeyJustPressed(Actions.MENU)) {
             if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
@@ -136,11 +137,13 @@ public class GameController {
 
     public void load() {
         try {
+            weaponRepository.preload(player);
             playerRepository.load();
             questManager.setQuests(questRepository.getAll());
             worldManager.set(GameConfig.HUBBEN);
             resume();
         } catch (FileNotFoundException e){
+            // todo use error handler
             ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
             windowManager.set(GameConfig.ERROR_WINDOW);
         }
@@ -169,12 +172,17 @@ public class GameController {
     public void startNew() {
         try {
             weaponRepository.reset();
+            weaponRepository.preload(player);
+
             questRepository.reset();
-            playerRepository.reset();
             questManager.setQuests(questRepository.getAll());
+
+            playerRepository.reset();
+
             worldManager.set(GameConfig.HUBBEN);
             resume();
         } catch (FileNotFoundException e){
+            // todo: use errorhandler
             ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
             windowManager.set(GameConfig.ERROR_WINDOW);
         }

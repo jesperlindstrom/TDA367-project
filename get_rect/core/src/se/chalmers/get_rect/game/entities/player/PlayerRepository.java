@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.io.IOFacade;
+import se.chalmers.get_rect.utilities.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,13 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerRepository {
-    private static final String MELEE = "opsword";
-    private static final String RANGED = "pistol";
+    private static final String DEFAULT_MELEE = "opsword";
+    private static final String DEFAULT_RANGED = "pistol";
     private static final String PATH = "data/savedData/";
     private static final String FILE = "playerSavedData.json";
     private Player player;
     private WeaponRepository weaponRepository;
-
     private IOFacade<PlayerDataStore> json;
 
     @Inject
@@ -31,14 +31,10 @@ public class PlayerRepository {
     }
 
     public void save() throws IOException {
-        if (!hasFilePath()){
-            File theFile = new File(PATH);
-            boolean tmp = theFile.mkdirs();
-
-            if (!tmp){
-                throw new IOException("Failed to create save path: " + PATH);
-            }
+        if (!FileUtils.folderExists(PATH)){
+            FileUtils.createFolder(PATH);
         }
+
         List<PlayerDataStore> list = new ArrayList<>();
         PlayerDataStore dataStore = new PlayerDataStore(player.getCurrentHealth(), player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
         list.add(dataStore);
@@ -51,26 +47,22 @@ public class PlayerRepository {
         PlayerDataStore data = json.load().get(0);
         player.setHasFoundHunch(data.isHasFoundHunch());
         player.setHealth(data.getHealth());
-        IWeapon melee = weaponRepository.getSingleWeapon(data.getMelee(), player);
-        IWeapon ranged = weaponRepository.getSingleWeapon(data.getRanged(), player);
+        IWeapon melee = weaponRepository.getSingleWeapon(data.getMelee());
+        IWeapon ranged = weaponRepository.getSingleWeapon(data.getRanged());
         player.addNewWeapon(melee);
         player.addNewWeapon(ranged);
 
     }
 
-    public void reset() throws FileNotFoundException{
+    public void reset() {
         player.setHealth(player.getMaxHealth());
         player.setHasFoundHunch(false);
         player.setRiding(false);
-        player.addNewWeapon(weaponRepository.getSingleWeapon(MELEE, player));
-        player.addNewWeapon(weaponRepository.getSingleWeapon(RANGED, player));
+        player.addNewWeapon(weaponRepository.getSingleWeapon(DEFAULT_MELEE));
+        player.addNewWeapon(weaponRepository.getSingleWeapon(DEFAULT_RANGED));
     }
 
     public boolean hasFile(){
-        return new File(PATH + FILE).isFile();
-    }
-
-    public boolean hasFilePath(){
-        return new File(PATH).isDirectory();
+        return FileUtils.fileExists(PATH + FILE);
     }
 }

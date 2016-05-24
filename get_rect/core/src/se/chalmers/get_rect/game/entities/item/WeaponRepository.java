@@ -4,9 +4,8 @@ import se.chalmers.get_rect.game.entities.AbstractRepository;
 import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.io.IOFacade;
-import se.chalmers.get_rect.utilities.Point;
+import se.chalmers.get_rect.utilities.FileUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeapon> {
-
     private WeaponFactory weaponFactory;
     private IPhysicsModel user;
     private IOFacade<WeaponSaveDataStore> json;
@@ -30,9 +28,9 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
         json = new IOFacade<>(PATH+FILE, WeaponSaveDataStore.class);
     }
 
-    public IWeapon getSingleWeapon(String type, IPhysicsModel user) throws FileNotFoundException {
+    public IWeapon getSingleWeapon(String type) {
         if (weaponList == null)
-            get(user);
+            throw new RuntimeException("WeaponRepository must be preloaded before access");
 
         for (IWeapon weapon : weaponList) {
             if (weapon.getType().equals(type)) {
@@ -40,10 +38,11 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
                 return weapon;
             }
         }
+
         return null;
     }
 
-    public List<IWeapon> get(IPhysicsModel user) throws FileNotFoundException {
+    public void preload(IPhysicsModel user) throws FileNotFoundException {
         this.user = user;
 
         if (weaponList == null) {
@@ -56,8 +55,13 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
                     weapon.setFound(isFound);
                 }
             }
-
         }
+    }
+
+    public List<IWeapon> get() {
+        if (weaponList == null)
+            throw new RuntimeException("WeaponRepository must be preloaded before access");
+
         return weaponList;
     }
 
@@ -85,14 +89,10 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
     }
 
      public void saveWeapons() throws IOException {
-         if (!hasFilePath()){
-             File theFile = new File(PATH);
-             boolean tmp = theFile.mkdirs();
-
-             if (!tmp){
-                 throw new IOException("Failed to create save path: " + PATH);
-             }
+         if (!FileUtils.folderExists(PATH)) {
+             FileUtils.createFolder(PATH);
          }
+
          List<WeaponSaveDataStore> list = new ArrayList<>();
          for (IWeapon weapon : weaponList) {
              WeaponSaveDataStore dataStore = new WeaponSaveDataStore(weapon.getType(), weapon.isFound());
@@ -102,17 +102,12 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
          json.save(list);
      }
 
-
-    public boolean hasFile(){
-        return new File(PATH + FILE).isFile();
-    }
-
-    public boolean hasFilePath(){
-        return new File(PATH).isDirectory();
-    }
-
     public void reset() {
         useSave = false;
+
+        if (weaponList == null)
+            return;
+
         for (IWeapon weapon : weaponList) {
             weapon.setFound(false);
         }
