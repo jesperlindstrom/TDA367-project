@@ -21,6 +21,7 @@ import se.chalmers.get_rect.states.*;
 import se.chalmers.get_rect.utilities.Point;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class GameController {
@@ -37,6 +38,7 @@ public class GameController {
     @Inject private QuestManager questManager;
     @Inject private QuestRepository questRepository;
     @Inject private ICamera camera;
+    @Inject private ErrorHandler error;
 
     private boolean muted = false;
     private static final String imgPath = "img/extras/";
@@ -150,9 +152,8 @@ public class GameController {
             // Save quest status
             List<IQuest> quests = questManager.getAll();
             questRepository.save(quests);
-        } catch (FileNotFoundException e){
-            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
-            windowManager.set(GameConfig.ERROR_WINDOW);
+        } catch (IOException e){
+            error.showError(e.getMessage());
         }
     }
 

@@ -25,25 +25,20 @@ public class JsonIOStrategy<T> implements IOStrategy<T> {
     }
 
     @Override
-    public void write(String file, List data) {
+    public void write(String file, List data) throws IOException {
         Gson gson = new Gson();
         String s = gson.toJson(data);
 
         File myFile = new File(file);
 
-        try {
-           boolean tmp =  myFile.createNewFile();
-            if (!tmp){
-                System.out.println("Failed to create a new save file");
-            }
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut, charset);
-            myOutWriter.append(s);
-            myOutWriter.close();
-            fOut.close();
-        } catch (IOException e){
-            // todo: throw this out of here
-            System.out.println(e.getMessage());
+       boolean tmp =  myFile.createNewFile();
+        if (!tmp){
+            System.out.println("Failed to create a new save file");
         }
+        FileOutputStream fOut = new FileOutputStream(myFile);
+        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut, charset);
+        myOutWriter.append(s);
+        myOutWriter.close();
+        fOut.close();
     }
 }

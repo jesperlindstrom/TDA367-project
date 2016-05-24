@@ -8,6 +8,7 @@ import se.chalmers.get_rect.io.IOFacade;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class QuestRepository {
     private static final String SAVE_FILE = SAVE_PATH + "questsSavedData.json";
     @Inject private QuestFactory factory;
 
-    public void save(List<IQuest> quests) throws FileNotFoundException {
+    public void save(List<IQuest> quests) throws IOException {
         IOFacade<QuestSaveDataStore> io = new IOFacade<>(SAVE_FILE, QuestSaveDataStore.class);
 
         if (!hasSavePath()){
