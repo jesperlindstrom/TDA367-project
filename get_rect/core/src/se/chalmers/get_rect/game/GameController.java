@@ -52,7 +52,7 @@ public class GameController {
             windowManager.getState().draw(graphics);
         }
         if(muted) {
-            graphics.draw(imgPath + "noSound.png", new Point((int)(camera.getAdapter().getWidth())/3, (int)(camera.getAdapter().getHeight())/6));
+            graphics.draw(imgPath + "noSound.png", new Point((camera.getAdapter().getPosition().getX()) + (int)(camera.getAdapter().getWidth()/3), (camera.getAdapter().getPosition().getY()) - (int)(camera.getAdapter().getWidth()/4)));
         }
     }
 

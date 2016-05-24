@@ -18,7 +18,7 @@ public class PaddleView extends AbstractMeleeWeaponView {
 
     @Override
     public void draw(IGraphicsAdapter graphics) {
-        graphics.draw(imgPath + "paddle_hands.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 20 : 0, 30), new Point(-10, 5), getXScale(), 1, -getModel().getTilt());
+        graphics.draw(imgPath + "paddle_hands.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 20 : 0, 30), new Point(-10, 5), getXScale(), 1, 0);
         if (!isSelected) {
             audioManager.playMusic("paddle");
             isSelected = true;

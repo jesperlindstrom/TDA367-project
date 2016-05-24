@@ -36,7 +36,7 @@ public class MainMenuView implements IWindowView {
         graphics.draw("img/splash/splash_logo.png", centerPos.add(-300, OFFSET_Y + 50));
 
         //Buttons
-        if (model.isContinueAvailable()) {
+        if (!model.isButtonDisabled(new Point(0, 0))) {
             graphics.draw(IMG_PATH + "buttons/continue.png", getRealPosition(CONTINUE));
         }
 
