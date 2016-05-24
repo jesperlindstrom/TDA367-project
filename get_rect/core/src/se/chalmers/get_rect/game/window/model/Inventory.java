@@ -23,6 +23,7 @@ public class Inventory extends AbstractGridModel {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
+        activateButton(new Point());
     }
 
     @Override
@@ -54,6 +55,14 @@ public class Inventory extends AbstractGridModel {
 
             placement = placement.addX(1);
         }
+    }
+
+    @Override
+    public void setIndex(Point point) {
+        if (itemsMap.get(point).isFound()) {
+            activateButton(point);
+        }
+        super.setIndex(point);
     }
 
     public Map<Point, IWeapon> getItemsMap() {

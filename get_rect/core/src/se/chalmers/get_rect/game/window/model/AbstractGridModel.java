@@ -36,34 +36,32 @@ public abstract class AbstractGridModel {
 
     public void moveMarkDown() {
         if (itemMap.containsKey(currentButton.addY(1))) {
-            currentButton = new Point(currentButton.addY(1));
+            setIndex(currentButton.addY(1));
         }
     }
 
     public void moveMarkUp() {
         if (itemMap.containsKey(currentButton.addY(-1))) {
-            currentButton = new Point(currentButton.addY(-1));
+            setIndex(currentButton.addY(-1));
         }
     }
 
     public void moveMarkLeft() {
         if (itemMap.containsKey(currentButton.addX(-1))) {
-            currentButton = new Point(currentButton.addX(-1));
+            setIndex(currentButton.addX(-1));
         }
     }
 
     public void moveMarkRight() {
         if (itemMap.containsKey(currentButton.addX(1))) {
-            currentButton = new Point(currentButton.addX(1));
+            setIndex(currentButton.addX(1));
         }
     }
 
     public void setIndex(Point point) {
         currentButton = new Point(point);
-        if (!itemMap.containsKey(point) || isButtonDisabled(point)) {
+        if (!itemMap.containsKey(point)) {
             System.out.println("no button at " + point);
-            moveMarkDown();
-            moveMarkRight();
         }
     }
 

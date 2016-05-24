@@ -47,7 +47,6 @@ public class Swing extends AbstractPhysicsModel{
 
     @Override
     public void onCollision(IPhysicsObject otherObject, CollisionData collisionSide, boolean isSolid) {
-        super.onCollision(otherObject, collisionSide, isSolid);
         if (otherObject instanceof ICombatModel && !otherObject.equals(owner) && !hitEnemies.contains(otherObject)) {
             ((ICombatModel)otherObject).takeDamage(damage);
             hitEnemies.add(otherObject);

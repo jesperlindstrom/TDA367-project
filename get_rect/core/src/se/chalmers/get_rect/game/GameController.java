@@ -168,8 +168,8 @@ public class GameController {
 
     public void startNew() {
         try {
-            questRepository.reset();
             weaponRepository.reset();
+            questRepository.reset();
             playerRepository.reset();
             questManager.setQuests(questRepository.getAll());
             worldManager.set(GameConfig.HUBBEN);
