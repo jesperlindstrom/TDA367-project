@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.world;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
+import se.chalmers.get_rect.game.ErrorHandler;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.quests.QuestManager;
@@ -14,9 +15,9 @@ public class WorldFactory {
     @Inject private IRectangleFactoryAdapter rectangleFactory;
     @Inject private ICamera camera;
     @Inject private WorldLoader worldLoader;
-    @Inject @Named("Window") private StateManager windowManager;
     @Inject private QuestManager quests;
     @Inject private IAudioManagerAdapter audioManager;
+    @Inject private ErrorHandler error;
 
     public IWorld make(String name) {
         if (name.equals("horsalsvagen"))
@@ -32,15 +33,15 @@ public class WorldFactory {
     }
 
     private IWorld makeHorsalsvagen() {
-        return new HorsalsvagenWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, windowManager);
+        return new HorsalsvagenWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, error);
     }
 
 
     private IWorld makeTest() {
-        return new TestWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, windowManager);
+        return new TestWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, error);
     }
 
-    private IWorld makeHubben(){
-        return new HubbenWorld(playerEntity,rectangleFactory,camera, worldLoader, quests, audioManager, windowManager);
+    private IWorld makeHubben() {
+        return new HubbenWorld(playerEntity,rectangleFactory,camera, worldLoader, quests, audioManager, error);
     }
 }

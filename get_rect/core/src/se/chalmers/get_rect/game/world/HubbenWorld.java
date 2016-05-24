@@ -1,6 +1,7 @@
 package se.chalmers.get_rect.game.world;
 
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
+import se.chalmers.get_rect.game.ErrorHandler;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.quests.QuestManager;
@@ -10,8 +11,8 @@ import se.chalmers.get_rect.utilities.Point;
 
 public class HubbenWorld extends AbstractWorld {
 
-    public HubbenWorld(IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager, StateManager windowManager) {
-        super("hubben", playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, windowManager);
+    public HubbenWorld(IEntity playerEntity, IRectangleFactoryAdapter rectangleFactory, ICamera camera, WorldLoader worldLoader, QuestManager quests, IAudioManagerAdapter audioManager, ErrorHandler error) {
+        super("hubben", playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, error);
     }
 
 

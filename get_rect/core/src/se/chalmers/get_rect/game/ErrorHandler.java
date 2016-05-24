@@ -1,21 +1,33 @@
 package se.chalmers.get_rect.game;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import se.chalmers.get_rect.game.window.controller.IWindowController;
 import se.chalmers.get_rect.game.window.model.ErrorWindow;
 import se.chalmers.get_rect.states.StateManager;
 
 public class ErrorHandler {
-    @Inject @Named("Window") private StateManager windowManager;
-    private ErrorWindow errorWindow;
+    private StateManager<IWindowController> windowManager;
 
-    public ErrorHandler() {
-        //errorWindow = ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+    public ErrorHandler(StateManager<IWindowController> windowManager) {
+        this.windowManager = windowManager;
     }
 
     public void showError(String message) {
-        /*((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
+        ErrorWindow window = getWindow();
+
+        if (window == null) {
+            throw new RuntimeException("The error window can't be displayed. Error: " + message);
+        }
+
+        window.setMessage(message);
         windowManager.set(GameConfig.ERROR_WINDOW);
-        System.out.println(e.getMessage());*/
+    }
+
+    private ErrorWindow getWindow() {
+        IWindowController controller = windowManager.getState(GameConfig.ERROR_WINDOW);
+
+        if (controller.getModel() instanceof ErrorWindow)
+            return (ErrorWindow) controller.getModel();
+
+        return null;
     }
 }
