@@ -13,6 +13,10 @@ public interface IWeapon extends IModel{
      */
     void use(Point aimDirection, IEntityHolder entityHolder);
 
+    boolean isFound();
+
+    void setFound(boolean found);
+
     void remove();
     /**
      * @return returns the position of the players hand

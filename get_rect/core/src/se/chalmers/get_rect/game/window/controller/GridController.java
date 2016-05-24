@@ -21,7 +21,11 @@ public class GridController implements IWindowController {
     @Override
     public void update(double delta) {
         if (gameInput.isKeyJustPressed(Actions.CONFIRM)) {
-            model.getCurrentlyMarkedButton().executeAction();
+            if (model.isButtonDisabled(model.getCurrentlyMarked())) {
+                // TODO: play wääh sound
+            } else {
+                model.getCurrentlyMarkedButton().executeAction();
+            }
         }
 
         if (gameInput.isKeyJustPressed(Actions.MENU_UP)) {

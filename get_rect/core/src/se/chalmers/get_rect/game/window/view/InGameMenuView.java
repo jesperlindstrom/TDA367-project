@@ -37,7 +37,7 @@ public class InGameMenuView implements IWindowView {
         graphics.draw(IMG_PATH + saveButton, getRealPosition(menuPos, SAVE));
 
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(menuPos, EXIT));
-        graphics.draw(IMG_PATH + "buttons/overlay.png", getRealPosition(menuPos, model.getCurrentlyMarked()));
+        graphics.draw(IMG_PATH + (model.isButtonDisabled(model.getCurrentlyMarked()) ? "buttons/overlay_disabled.png" : "buttons/overlay.png"), getRealPosition(menuPos, model.getCurrentlyMarked()));
     }
 
     private Point getRealPosition(Point menuBoxPos, Point gridPosition) {

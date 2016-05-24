@@ -95,6 +95,7 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
 
     public void setHealth(int health){
         currentHealth = health;
+        isDead = false;
         if (currentHealth > maxHealth){
             currentHealth = maxHealth;
         }
