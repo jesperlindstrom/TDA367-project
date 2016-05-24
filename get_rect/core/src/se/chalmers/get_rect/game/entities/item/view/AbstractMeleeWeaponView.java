@@ -41,7 +41,7 @@ public abstract class AbstractMeleeWeaponView extends AbstractView implements IW
     public void drawIcon(IGraphicsAdapter graphics, Point point) {
         graphics.draw(iconPath, point);
         if (!model.isFound()) {
-            graphics.draw("img/pauseMenu/inventory/item_disabled.png", point.add(-20, -19));
+            graphics.draw("img/pauseMenu/inventory/item_disabled.png", point);
         }
     }
 }
