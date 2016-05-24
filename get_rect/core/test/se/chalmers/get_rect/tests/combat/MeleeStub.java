@@ -21,6 +21,16 @@ public class MeleeStub implements IMelee {
     }
 
     @Override
+    public boolean isFound() {
+        return false;
+    }
+
+    @Override
+    public void setFound(boolean found) {
+
+    }
+
+    @Override
     public void remove() {
 
     }

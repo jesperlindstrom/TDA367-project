@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerRepository {
-    private static final String melee = "opsword";
-    private static final String ranged = "pistol";
+    private static final String MELEE = "opsword";
+    private static final String RANGED = "pistol";
     private static final String PATH = "data/savedData/";
     private static final String FILE = "playerSavedData.json";
     private Player player;
@@ -62,8 +62,8 @@ public class PlayerRepository {
         player.setHealth(player.getMaxHealth());
         player.setHasFoundHunch(false);
         player.setRiding(false);
-        player.addNewWeapon(weaponRepository.getSingleWeapon(melee, player));
-        player.addNewWeapon(weaponRepository.getSingleWeapon(ranged, player));
+        player.addNewWeapon(weaponRepository.getSingleWeapon(MELEE, player));
+        player.addNewWeapon(weaponRepository.getSingleWeapon(RANGED, player));
     }
 
     public boolean hasFile(){

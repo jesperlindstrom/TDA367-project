@@ -29,21 +29,23 @@ public class IOSetup {
     public void setup(){
         this.player = new Player(new RectangleFactoryAdapterStub());
         WeaponRepository weaponRepository = Mockito.mock(WeaponRepository.class);
+        SwingFactory swingFactory = new SwingFactory();
+        melee = new MeleeWeapon(player,"opsword", swingFactory,10,10,10,5, 10, false);
+        ProjectileFactory projectileFactory = new ProjectileFactory();
+        ranged = new Pistol(player, projectileFactory,10,10,5);
+        player.addNewWeapon(melee);
+        player.addNewWeapon(ranged);
         try {
             List<IWeapon> weaponList = new ArrayList<>();
             weaponList.add(melee);
             weaponList.add(ranged);
             Mockito.when(weaponRepository.get("data/items/weapons.json")).thenReturn(weaponList);
+            Mockito.when(weaponRepository.getSingleWeapon("opsword", player)).thenReturn(melee);
+            Mockito.when(weaponRepository.getSingleWeapon("pistol", player)).thenReturn(ranged);
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
         this.playerRepository = new PlayerRepository(player, weaponRepository);
-        SwingFactory swingFactory = new SwingFactory();
-        melee = new MeleeWeapon(player,"melee", swingFactory,10,10,10,5, 10, false);
-        ProjectileFactory projectileFactory = new ProjectileFactory();
-        ranged = new Pistol(player, projectileFactory,10,10,5);
-        player.addNewWeapon(melee);
-        player.addNewWeapon(ranged);
         this.dataStore = new PlayerDataStore(player.getCurrentHealth(),player.hasFoundHunch(), player.getMeleeWeapon().getType(), player.getRangedWeapon().getType());
     }
 
