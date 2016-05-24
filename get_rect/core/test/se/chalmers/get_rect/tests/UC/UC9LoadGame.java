@@ -26,7 +26,7 @@ public class UC9LoadGame extends IOSetup {
     private IWeapon newMelee;
     private IWeapon newRanged;
     private String rangedName = "firemagic";
-    private String meleeName = "opaxe";
+    private String meleeName = "opsword";
 
     @Before
     public void setup(){

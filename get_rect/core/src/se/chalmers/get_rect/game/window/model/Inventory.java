@@ -14,20 +14,22 @@ public class Inventory extends AbstractGridModel {
     private Player player;
     private Map<Point, IWeapon> itemsMap;
     private static final int COLUMNS = 4;
+    private boolean isSetup = false;
+    private WeaponRepository weaponRepository;
 
     public Inventory(Player player, WeaponRepository weaponRepository) {
         this.player = player;
-        itemsMap = new HashMap<>();
-        try {
-            fillGrid(weaponRepository.get(player));
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+        this.weaponRepository = weaponRepository;
     }
 
     @Override
     public void reset() {
-
+        if (!isSetup) {
+            itemsMap = new HashMap<>();
+            fillGrid(weaponRepository.get());
+            activateButton(new Point());
+            isSetup = true;
+        }
     }
 
     @Override
@@ -54,6 +56,14 @@ public class Inventory extends AbstractGridModel {
 
             placement = placement.addX(1);
         }
+    }
+
+    @Override
+    public void setIndex(Point point) {
+        if (itemsMap.get(point).isFound()) {
+            activateButton(point);
+        }
+        super.setIndex(point);
     }
 
     public Map<Point, IWeapon> getItemsMap() {

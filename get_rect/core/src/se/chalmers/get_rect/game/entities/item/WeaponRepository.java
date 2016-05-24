@@ -6,7 +6,6 @@ import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.io.IOFacade;
 import se.chalmers.get_rect.utilities.FileUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,5 +104,12 @@ public class WeaponRepository extends AbstractRepository<WeaponsDataStore, IWeap
 
     public void reset() {
         useSave = false;
+
+        if (weaponList == null)
+            return;
+
+        for (IWeapon weapon : weaponList) {
+            weapon.setFound(false);
+        }
     }
 }

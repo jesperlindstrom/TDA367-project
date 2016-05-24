@@ -9,6 +9,7 @@ public class BoxingGloveView extends AbstractMeleeWeaponView {
 
     private static final String imgPath = "img/items/";
     private IAudioManagerAdapter audioManager;
+    private boolean isSelected = false;
 
     public BoxingGloveView(IWeapon model, IAudioManagerAdapter audioManager) {
         super(model, imgPath + "boxingGlove_icon.png");
@@ -18,6 +19,13 @@ public class BoxingGloveView extends AbstractMeleeWeaponView {
     @Override
     public void draw(IGraphicsAdapter graphics) {
         graphics.draw(imgPath + "boxingGlove.png", getModel().getHandPos().add(getModel().getFacing() < 0 ? 50 : -50, 50), new Point(0, 0), getXScale(), 1, - getModel().getTilt());
+        if (!isSelected) {
+            audioManager.playMusic("punch");
+            isSelected = true;
+        }
+        if (isAttacking()) {
+            audioManager.playMusic("punch");
+        }
     }
 
     @Override

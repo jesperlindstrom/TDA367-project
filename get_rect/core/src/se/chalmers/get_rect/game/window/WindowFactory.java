@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.window;
 
 import com.google.inject.Inject;
 import se.chalmers.get_rect.adapters.IAssetManagerAdapter;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.window.model.*;
 import se.chalmers.get_rect.game.input.GameInput;
 import se.chalmers.get_rect.game.entities.EntityNotFoundException;
@@ -25,6 +26,7 @@ public class WindowFactory {
     @Inject private Player player;
     @Inject private WeaponRepository weaponRepository;
     @Inject private WeaponFactory weaponFactory;
+    @Inject private IAudioManagerAdapter audioManager;
 
     public IWindowController makeSplash() {
         SplashModel model = new SplashModel(assetManager, windowManager);
@@ -35,24 +37,24 @@ public class WindowFactory {
     public IWindowController makeMainMenu() {
         MainMenu model = new MainMenu(game);
         IWindowView view = new MainMenuView(model, camera);
-        return new GridController(gameInput, model, view);
+        return new GridController(gameInput, model, view, audioManager);
     }
 
     public IWindowController makeInGameMenu() {
         InGameMenu model = new InGameMenu(game);
         IWindowView view = new InGameMenuView(model, camera);
-        return new GridController(gameInput, model, view);
+        return new GridController(gameInput, model, view, audioManager);
     }
 
     public IWindowController makeInventory() {
         Inventory model = new Inventory(player, weaponRepository);
         IWindowView view = new InventoryView(model, camera, weaponFactory);
-        return new GridController(gameInput, model, view);
+        return new GridController(gameInput, model, view, audioManager);
     }
 
     public IWindowController makeErrorWindow() {
         ErrorWindow model = new ErrorWindow(game);
         IWindowView view = new ErrorWindowView(model, camera);
-        return new GridController(gameInput, model, view);
+        return new GridController(gameInput, model, view, audioManager);
     }
 }

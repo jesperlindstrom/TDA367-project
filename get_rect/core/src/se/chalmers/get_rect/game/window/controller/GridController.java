@@ -1,5 +1,6 @@
 package se.chalmers.get_rect.game.window.controller;
 
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.adapters.IGraphicsAdapter;
 import se.chalmers.get_rect.game.input.Actions;
 import se.chalmers.get_rect.game.input.GameInput;
@@ -11,18 +12,20 @@ public class GridController implements IWindowController {
     private GameInput gameInput;
     private AbstractGridModel model;
     private IWindowView view;
+    private IAudioManagerAdapter audioManager;
 
-    public GridController(GameInput gameInput, AbstractGridModel model, IWindowView view) {
+    public GridController(GameInput gameInput, AbstractGridModel model, IWindowView view, IAudioManagerAdapter audioManager) {
         this.gameInput = gameInput;
         this.model = model;
         this.view = view;
+        this.audioManager = audioManager;
     }
 
     @Override
     public void update(double delta) {
         if (gameInput.isKeyJustPressed(Actions.CONFIRM)) {
             if (model.isButtonDisabled(model.getCurrentlyMarked())) {
-                // TODO: play wääh sound
+                audioManager.playMusic("errorSound");
             } else {
                 model.getCurrentlyMarkedButton().executeAction();
             }
