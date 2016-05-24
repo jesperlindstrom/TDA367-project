@@ -9,6 +9,7 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
     private EventSource eventSource;
     private int currentHealth;
     private int maxHealth;
+    private boolean isDead = false;
 
     protected AbstractCombatModel(Point position, Point velocity, boolean solid, boolean affectedByGravity, IRectangleFactoryAdapter rectangleFactory, int maxHealth) {
         super(position, velocity, solid, affectedByGravity, rectangleFactory);
@@ -21,8 +22,13 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
     @Override
     public void addHealth(int health) {
         currentHealth += health;
-        if(currentHealth > maxHealth){
+
+        if(currentHealth > maxHealth) {
             currentHealth = maxHealth;
+        }
+
+        if (currentHealth > 0) {
+            isDead = false;
         }
     }
 
@@ -34,7 +40,9 @@ public abstract class AbstractCombatModel extends AbstractPhysicsModel implement
     @Override
     public void takeDamage(int dmg) {
         currentHealth -= dmg;
-        if (currentHealth <= 0){
+
+        if (currentHealth <= 0 && !isDead) {
+            isDead = true;
             die();
         }
     }
