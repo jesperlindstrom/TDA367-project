@@ -37,6 +37,9 @@ public class NpcFactory {
         if (type.equals("horv"))
             return makeHorv(point);
 
+        if (type.equals("nyaBjorn"))
+            return makeNyaBjorn(point);
+
         throw new EntityNotFoundException("NPC", type);
     }
 
@@ -74,6 +77,13 @@ public class NpcFactory {
 
         return new Entity(model, view);
     }
+    private IEntity makeNyaBjorn(Point point) {
+        List<String> phrases = getPhrases("nyaBjorn");
+        NyaBjorn model = new NyaBjorn(point, rectangleFactory, phrases, quests);
+        IView view = new NyaBjornView(model);
+        return new Entity(model, view);
+    }
+
 
     private List<String> getPhrases(String npc) {
         DialogRepository repository = new DialogRepository(npc);
