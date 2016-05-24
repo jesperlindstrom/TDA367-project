@@ -33,7 +33,7 @@ public class InGameMenuView implements IWindowView {
         //Buttons
         graphics.draw(IMG_PATH + "buttons/resume_game.png", getRealPosition(menuPos, CONTINUE));
 
-        String saveButton = model.isSaved() ? "buttons/saved.png" : "buttons/save.png";
+        String saveButton = model.isButtonDisabled(new Point(0, 1)) ? "buttons/saved.png" : "buttons/save.png";
         graphics.draw(IMG_PATH + saveButton, getRealPosition(menuPos, SAVE));
 
         graphics.draw(IMG_PATH + "buttons/exit.png", getRealPosition(menuPos, EXIT));
