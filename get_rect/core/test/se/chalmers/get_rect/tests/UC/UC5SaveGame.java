@@ -29,8 +29,6 @@ public class UC5SaveGame extends IOSetup {
 
     @Test
     public void testSaveGame(){
-        playerRepository.reset();
-        assertFalse("Should be false because file not created",playerRepository.hasFile());
         try {
             playerRepository.save();
         } catch (IOException e){

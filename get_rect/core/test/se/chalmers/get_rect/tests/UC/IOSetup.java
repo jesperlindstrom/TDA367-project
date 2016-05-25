@@ -4,6 +4,7 @@ package se.chalmers.get_rect.tests.UC;
 import org.junit.Before;
 import org.mockito.Mockito;
 import se.chalmers.get_rect.game.entities.item.WeaponRepository;
+import se.chalmers.get_rect.game.entities.item.model.FireMagic;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.game.entities.item.model.MeleeWeapon;
 import se.chalmers.get_rect.game.entities.item.model.Pistol;
@@ -41,6 +42,8 @@ public class IOSetup {
             weaponList.add(ranged);
             Mockito.when(weaponRepository.get("data/items/weapons.json")).thenReturn(weaponList);
             Mockito.when(weaponRepository.getSingleWeapon("opsword")).thenReturn(melee);
+            IWeapon firemagic = Mockito.mock(FireMagic.class);
+            Mockito.when(weaponRepository.getSingleWeapon("firemagic")).thenReturn(firemagic);
             Mockito.when(weaponRepository.getSingleWeapon("pistol")).thenReturn(ranged);
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
