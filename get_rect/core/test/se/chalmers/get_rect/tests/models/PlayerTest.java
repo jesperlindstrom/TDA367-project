@@ -57,7 +57,6 @@ public class PlayerTest {
             isDead = true;
         });
 
-        System.out.println("before" + isDead);
         player.takeDamage(player.getCurrentHealth());
         assertTrue("Player has died", isDead);
     }
