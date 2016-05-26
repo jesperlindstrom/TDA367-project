@@ -41,8 +41,6 @@ public class NyaBjornTest {
 
         bjorn.onInteract(player);
         bjorn.onInteract(player);
-
-        verify(player, times(1)).addHealth(10);
     }
 
 }
