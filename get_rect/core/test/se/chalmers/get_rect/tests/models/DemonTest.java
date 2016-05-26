@@ -10,7 +10,7 @@ import se.chalmers.get_rect.utilities.Point;
 
 import static org.junit.Assert.*;
 
-public class DemonTest extends modelUtilsTest {
+public class DemonTest extends ModelUtilsTest {
 
 
     @Before

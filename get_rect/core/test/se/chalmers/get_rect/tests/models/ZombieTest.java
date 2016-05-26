@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.Point;
 import static org.junit.Assert.*;
 
 
-public class ZombieTest extends modelUtilsTest {
+public class ZombieTest extends ModelUtilsTest {
     @Before
     public void setup(){
         super.setup();

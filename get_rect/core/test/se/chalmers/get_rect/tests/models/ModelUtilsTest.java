@@ -12,7 +12,7 @@ import se.chalmers.get_rect.utilities.Side;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-public class modelUtilsTest {
+public class ModelUtilsTest {
 
     private Player player;
     private ICombatModel combatModel;
