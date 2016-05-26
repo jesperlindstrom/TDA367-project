@@ -34,12 +34,11 @@ public class Rekoil extends AbstractNPCModel {
     }
 
     @Override
-    protected void onQuestCompletion(IModel model) {
+    public void onQuestCompletion(IModel model) {
         if (model instanceof ICombatModel){
             ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
+            isShowingArch = true;
         }
-
-        isShowingArch = true;
     }
 
     @Override
