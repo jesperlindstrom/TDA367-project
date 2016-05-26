@@ -8,6 +8,7 @@ import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.window.controller.IWindowController;
 import se.chalmers.get_rect.physics.CollisionData;
 import se.chalmers.get_rect.physics.IRectangleAdapter;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.tests.physics.RectangleAdapterStub;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
@@ -23,15 +24,13 @@ public class ChessTTest {
     private Player player;
     private ChessT chessT;
     private RectangleAdapterStub recPlay;
-    private RectangleFactoryAdapterStub recFac;
-
-
 
     @Before
+    @SuppressWarnings("unchecked")
     public void setup(){
         this.player = mock(Player.class);
-        StateManager<IWindowController> stateManager = mock(StateManager.class);
-        recFac = new RectangleFactoryAdapterStub();
+        StateManager<IWindowController> stateManager = (StateManager<IWindowController>) mock(StateManager.class);
+        IRectangleFactoryAdapter recFac = new RectangleFactoryAdapterStub();
         recPlay = Mockito.mock(RectangleAdapterStub.class);
         this.chessT = new ChessT(new Point(), recFac, stateManager,player);
     }

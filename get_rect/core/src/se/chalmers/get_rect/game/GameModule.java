@@ -34,6 +34,7 @@ public class GameModule extends AbstractModule {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void configure() {
         // Player
         bind(IEntity.class).annotatedWith(Names.named("Player")).toInstance(playerEntity);
@@ -59,6 +60,8 @@ public class GameModule extends AbstractModule {
 
         // Repositories
         TypeLiteral repository = new TypeLiteral<IRepository<IEntity>>() {};
+
+        // The "unchecked call" is not a problem here, since we know that WorldObjectRepository etc. are IRepository<IEntity>
         bind(repository).annotatedWith(Names.named("worldObject")).to(WorldObjectRepository.class);
         bind(repository).annotatedWith(Names.named("npc")).to(NpcRepository.class);
         bind(repository).annotatedWith(Names.named("enemy")).to(EnemyRepository.class);
