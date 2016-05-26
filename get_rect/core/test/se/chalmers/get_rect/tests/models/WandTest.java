@@ -44,17 +44,13 @@ public class WandTest {
 
     @Test
     public void testUse() {
-        assertEquals("There should be no cooldown", wand.getCooldownFrames(), 0);
-
+        assertEquals("Should be no cooldown", wand.getCooldownFrames(), 0);
         wand.use(point, holder);
         verify(holder).add(projectileEntity);
     }
     @Test
     public void testGetSpawnPoint() {
-
         wand.use(point, holder);
-        assertNotEquals(wand.getAimDirection().getX(), 0);
-
-
+        assertNotEquals("Aimdirection shouldn't be 0 ",wand.getAimDirection().getX(), 0);
     }
 }
