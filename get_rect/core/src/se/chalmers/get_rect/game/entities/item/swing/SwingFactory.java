@@ -14,12 +14,12 @@ public class SwingFactory {
         return new Entity(swing, null);
     }
 
-    public IEntity make(int damage, int reach, int swingFrames, IPhysicsModel owner, ISwinger weapon, boolean isSolid) {
-        Swing swing = new Swing(damage, reach, swingFrames, rectangleFactory, owner, weapon, isSolid);
+    public IEntity make(int damage, int reach, int cooldown, IPhysicsModel owner, ISwinger weapon, boolean isSolid) {
+        Swing swing = new Swing(damage, reach, cooldown, rectangleFactory, owner, weapon, isSolid);
         return new Entity(swing, null);
     }
-    public IEntity makeUppercut(int damage, int reach, int swingFrames, IPhysicsModel owner, ISwinger weapon) {
-        Uppercut uppercut = new Uppercut(damage, reach, swingFrames, rectangleFactory, owner, weapon);
+    public IEntity makeUppercut(int damage, int reach, int cooldown, IPhysicsModel owner, ISwinger weapon) {
+        Uppercut uppercut = new Uppercut(damage, reach, cooldown, rectangleFactory, owner, weapon);
         return new Entity(uppercut, null);
     }
 }

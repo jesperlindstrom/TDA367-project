@@ -19,6 +19,7 @@ public class BoxingGlove extends MeleeWeapon {
 
     @Override
     public void use(Point aimDirection, IEntityHolder entityHolder) {
+        System.out.println(getUsable());
         if (getUsable()) {
             setUsable(false);
             setCooldownFrames(cooldown);
