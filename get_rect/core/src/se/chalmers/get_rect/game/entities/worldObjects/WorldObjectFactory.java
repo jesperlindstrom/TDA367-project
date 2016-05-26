@@ -3,6 +3,7 @@ package se.chalmers.get_rect.game.entities.worldObjects;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
+import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.worldObjects.model.*;
 import se.chalmers.get_rect.game.entities.worldObjects.view.*;
 import se.chalmers.get_rect.game.quests.QuestManager;
@@ -17,6 +18,7 @@ public class WorldObjectFactory {
     @Inject private ICamera camera;
     @Inject private IAudioManagerAdapter audioManager;
     @Inject private QuestManager questManager;
+    @Inject private WeaponRepository weaponRepository;
 
     public IEntity make(String type, Point point, int width, int height, int path) {
         if (type.equals("boundingBox"))
@@ -72,7 +74,7 @@ public class WorldObjectFactory {
     }
 
     private IEntity makeSandCastle(Point point) {
-        IPhysicsModel model = new SandCastle(point, rectangleFactory, questManager);
+        IPhysicsModel model = new SandCastle(point, rectangleFactory, questManager, weaponRepository);
         IView view = new SandCastleView(model);
 
         return new Entity(model, view);

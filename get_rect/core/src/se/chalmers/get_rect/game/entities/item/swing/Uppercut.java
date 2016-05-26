@@ -20,7 +20,7 @@ public class Uppercut extends Swing {
         super.onCollision(otherObject, collisionSide, isSolid);
 
         if (otherObject instanceof ICombatModel && !isOwner(otherObject)){
-            otherObject.setVelocity(new Point(50 * weapon.getTilt(), 50));
+            otherObject.setVelocity(new Point(75 * weapon.getFacing(), 75));
             ((ICombatModel)otherObject).setKnockback();
         }
     }

@@ -86,6 +86,10 @@ public class PlayerTest {
         assertTrue("New x velocity should be closer to 0 then old", oldVelX < player.getVelocity().getX());
         assertFalse("Should be false, no move", player.isWalking());
 
+        player.setVelocity(new Point(3, 0));
+        player.stopMoving();
+        assertEquals("Player should stop", player.getVelocity(), new Point(0, 0));
+
 
         player.setRiding(true);
         assertTrue("Should be true, playe is riding", player.isRiding());

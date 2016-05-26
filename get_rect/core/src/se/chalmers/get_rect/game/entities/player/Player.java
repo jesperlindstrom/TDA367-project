@@ -83,7 +83,15 @@ public class Player extends AbstractCombatModel implements IInteractorModel {
     }
 
     public void stopMoving() {
-        setVelocity(getVelocity().addX(getVelocity().getX() > -10 && getVelocity().getX() < 10 ? -getVelocity().getX() : (-getVelocity().getX()/10)));
+        int velX;
+
+        if (getVelocity().getX() > -10 && getVelocity().getX() < 10) {
+            velX = -getVelocity().getX();
+        } else {
+            velX = -getVelocity().getX()/10;
+        }
+
+        setVelocity(getVelocity().addX(velX));
         isWalking = false;
     }
 
