@@ -94,7 +94,6 @@ project(":core") {
 
 
     test {
-
         finalizedBy jacocoTestReport
     }
 }

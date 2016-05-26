@@ -132,7 +132,5 @@ public class PlayerTest {
         assertEquals("Active weapon should be ranges", player.getActiveWeapon(), ranged);
         player.switchWeapon();
         assertEquals("Active weapon is melee", player.getActiveWeapon(), melee);
-
-
     }
 }
