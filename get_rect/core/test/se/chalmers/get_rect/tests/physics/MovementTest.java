@@ -55,6 +55,12 @@ public class MovementTest {
         CollisionData rectCollision2 = new CollisionData();
         rectCollision1.set(Side.RIGHT);
         rectCollision2.set(Side.LEFT);
+
+        RectangleAdapterStub overlap = new RectangleAdapterStub(0, 0, 100, 100);
+
+        rectCollision1.setSolidOverlap(overlap);
+        rectCollision2.setSolidOverlap(overlap);
+
         when(rect1.intersects(rect2)).thenReturn(rectCollision1);
         when(rect2.intersects(rect1)).thenReturn(rectCollision2);
         when(player.getBoundingBox()).thenReturn(rect1);

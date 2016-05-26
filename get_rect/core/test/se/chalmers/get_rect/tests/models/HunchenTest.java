@@ -39,6 +39,11 @@ public class HunchenTest {
         assertFalse("Player not found hunchen", player.hasFoundHunch() && player.isRiding());
         hunchen.onInteract(player);
         verify(player, times(1)).setHasFoundHunch(true);
+
+        when(player.isRiding()).thenReturn(true);
+        hunchen.onInteract(player);
+        assertEquals("Should have 0 y velocity", hunchen.getVelocity().getY(), 0);
+        verify(player, times(1)).setRiding(false);
     }
 
     @Test

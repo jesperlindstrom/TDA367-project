@@ -48,6 +48,5 @@ public class SandcastleTest {
         QuestManager questManager = Mockito.mock(QuestManager.class);
         Mockito.when(questManager.get(0)).thenReturn(quest);
         SandCastle sandCastle = new SandCastle(new Point(), new RectangleFactoryAdapterStub(), questManager);
-
     }
 }
