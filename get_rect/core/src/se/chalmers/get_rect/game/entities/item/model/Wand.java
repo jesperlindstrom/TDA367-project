@@ -5,7 +5,7 @@ import se.chalmers.get_rect.game.entities.IPhysicsModel;
 import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.utilities.Point;
 
-public class    Wand extends AbstractRangedWeapon {
+public class Wand extends AbstractRangedWeapon {
     private String magic;
 
     public Wand(IPhysicsModel user, ProjectileFactory projectileFactory, int damage, int speed, int cooldown, String magic) {
