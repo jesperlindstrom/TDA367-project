@@ -11,7 +11,7 @@ import se.chalmers.get_rect.utilities.Point;
 import static org.junit.Assert.*;
 
 
-public class GhostBroccoliTest extends modelUtilsTest {
+public class GhostBroccoliTest extends ModelUtilsTest {
 
     @Before
     public void setup(){
