@@ -47,6 +47,7 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
     public CollisionData intersects(IRectangleAdapter rect) {
         Rectangle otherRectangle = getRealRectangle(rect);
         Rectangle intersection = new Rectangle();
+
         Intersector.intersectRectangles(rectangle, otherRectangle, intersection);
 
         CollisionData collisionData = new CollisionData();
