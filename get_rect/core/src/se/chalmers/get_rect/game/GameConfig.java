@@ -17,6 +17,7 @@ public class GameConfig {
     public static final int INGAME_MENU = 31;
     public static final int INVENTORY = 32;
     public static final int ERROR_WINDOW = 33;
+    public static final int GAME_OVER_WINDOW = 34;
 
     public static final boolean SHOW_FPS = true;
 

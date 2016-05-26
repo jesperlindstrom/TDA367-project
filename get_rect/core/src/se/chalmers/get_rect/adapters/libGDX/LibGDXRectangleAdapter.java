@@ -9,9 +9,15 @@ import se.chalmers.get_rect.utilities.Side;
 
 public class LibGDXRectangleAdapter implements IRectangleAdapter {
     private Rectangle rectangle;
+    private boolean flippedX;
+    private boolean flippedY;
 
     public LibGDXRectangleAdapter(float x, float y, float width, float height) {
-        rectangle = new Rectangle(x, y, width, height);
+        if (width >= 0 && height >= 0) {
+            rectangle = new Rectangle(x, y, width, height);
+        } else {
+            rectangle = translateRectangle(x, y, width, height);
+        }
     }
 
     public LibGDXRectangleAdapter(Rectangle rectangle) {
@@ -103,12 +109,32 @@ public class LibGDXRectangleAdapter implements IRectangleAdapter {
     @Override
     public void setPosition(Point newPoint) {
 
-        rectangle.setX(newPoint.getX());
-        rectangle.setY(newPoint.getY());
+        rectangle.setX(flippedX ? (newPoint.getX() - rectangle.width) : newPoint.getX());
+        rectangle.setY(flippedY ? (newPoint.getY() - rectangle.height) : newPoint.getY());
 
     }
 
     public Rectangle getRectangle() {
         return rectangle;
+    }
+
+    private Rectangle translateRectangle(float x, float y, float width, float height) {
+        float newX = x;
+        float newY = y;
+        if (width < 0) {
+            newX = x + width;
+            flippedX = true;
+        }
+        if (height < 0) {
+            newY = y + height;
+            flippedY = true;
+        }
+
+        return new Rectangle(newX, newY, Math.abs(width), Math.abs(height));
+    }
+
+    @Override
+    public String toString() {
+        return "x = " + getX() + " y = " + getY() + " width = " + getWidth() + " height = " + getHeight();
     }
 }
