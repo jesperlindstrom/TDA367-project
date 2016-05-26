@@ -98,4 +98,21 @@ public class MeleeWeaponTest {
         assertEquals("should be back to original position", weapon.getTilt(), 20);
     }
 
+    @Test
+    public void testRemove() {
+        weapon.remove();
+        assertTrue("Weapon should be removed", weapon.shouldBeRemoved());
+    }
+    @Test
+    public void testGetFacing() {
+        Point point = new Point();
+        when(model.getVelocity()).thenReturn(point);
+        assertEquals("Facing should be 1 if 0", weapon.getFacing(), 0);
+    }
+    @Test
+    public void testIsFound() {
+        weapon.setFound(true);
+        assertTrue("Weapon should be found", weapon.isFound());
+    }
+
 }
