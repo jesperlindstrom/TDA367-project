@@ -39,7 +39,6 @@ public class WandTest {
         wand = new Wand(model, projectileFactory, 5, 5, 5 , "arcane");
         when(model.getPosition()).thenReturn(point);
         when(projectileFactory.make(anyString(), any(Point.class), any(Point.class), anyInt(), any(IModel.class))).thenReturn(projectileEntity);
-        System.out.println("projectileEntity = " + projectileEntity);
         wand.update(1);
     }
 
