@@ -68,6 +68,7 @@ public class GameController {
         windowManager.add(GameConfig.INGAME_MENU, windowFactory.makeInGameMenu());
         windowManager.add(GameConfig.INVENTORY, windowFactory.makeInventory());
         windowManager.add(GameConfig.ERROR_WINDOW, windowFactory.makeErrorWindow());
+        windowManager.add(GameConfig.GAME_OVER_WINDOW, windowFactory.makeGameOverWindow());
 
         // Set the active state
         windowManager.set(GameConfig.SPLASH);
@@ -78,12 +79,7 @@ public class GameController {
 
     private void onPlayerDeath(Event e) {
         if (e.getAction().equals("died")) {
-            try {
-                playerRepository.load();
-            } catch (FileNotFoundException f){
-                startNew();
-            }
-            worldManager.set(GameConfig.HUBBEN);
+            windowManager.set(GameConfig.GAME_OVER_WINDOW);
         }
     }
 

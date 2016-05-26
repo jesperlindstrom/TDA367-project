@@ -42,6 +42,7 @@ public class Swing extends AbstractPhysicsModel{
         if (swingFrames == 0) {
             setShouldBeRemoved();
         }
+            System.out.println(getBoundingBox());
     }
 
     @Override
@@ -58,11 +59,6 @@ public class Swing extends AbstractPhysicsModel{
 
     private void setNewHitBox() {
         setBoundingBox((int)(Math.sin(Math.toRadians(weapon.getTilt()))*reach), (int)(Math.cos(Math.toRadians(weapon.getTilt()))*reach));
-    }
-
-    @Override
-    protected void setBoundingBox(int width, int height) {
-        super.setBoundingBox(width, height);
     }
 
     protected boolean isOwner(IPhysicsObject other) {

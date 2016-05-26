@@ -57,4 +57,10 @@ public class WindowFactory {
         IWindowView view = new ErrorWindowView(model, camera);
         return new GridController(gameInput, model, view, audioManager);
     }
+
+    public IWindowController makeGameOverWindow() {
+        GameOverMenu model = new GameOverMenu(game);
+        IWindowView view = new GameOverView(model, camera);
+        return new GridController(gameInput, model, view, audioManager);
+    }
 }

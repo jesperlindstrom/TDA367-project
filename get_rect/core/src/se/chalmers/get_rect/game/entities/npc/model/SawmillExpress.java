@@ -75,4 +75,8 @@ public class SawmillExpress extends AbstractNPCModel {
     public boolean isFlying() {
         return isFlying;
     }
+
+    public void setFlying() {
+        isFlying = true;
+    }
 }

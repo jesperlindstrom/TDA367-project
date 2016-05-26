@@ -11,4 +11,5 @@ public interface IRectangleAdapter {
     void setPosition(Point newPoint);
     CollisionData intersects(IRectangleAdapter rectangle);
     IRectangleAdapter getIntersection(IRectangleAdapter rect);
+    String toString();
 }
