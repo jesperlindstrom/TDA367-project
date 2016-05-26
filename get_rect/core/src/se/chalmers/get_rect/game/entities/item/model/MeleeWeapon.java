@@ -26,6 +26,8 @@ public class MeleeWeapon extends AbstractWeapon implements IMelee {
         this.swingFactory = swingFactory;
         this.solid = solid;
         this.startTilt = startTilt;
+        this.tilt = startTilt;
+        this.usable = true;
     }
 
 
