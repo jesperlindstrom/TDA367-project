@@ -49,7 +49,6 @@ public class InventoryTest {
         Map<Point, IWeapon> map = inventory.getItemsMap();
         inventory.reset();
         assertEquals("Should not have reset", inventory.getItemsMap(), map);
-
         assertTrue("Bottom right position should be disabled", inventory.isButtonDisabled(new Point(3, 3)));
     }
 

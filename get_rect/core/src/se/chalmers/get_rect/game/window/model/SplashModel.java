@@ -59,4 +59,8 @@ public class SplashModel {
     public String getError() {
         return error;
     }
+
+    public void setProgress(double progressValue) {
+        this.progressValue = progressValue;
+    }
 }
