@@ -54,7 +54,4 @@ public class Rekoil extends AbstractNPCModel {
     public boolean isInteractedWith() {
         return isInteractedWith;
     }
-    public void resetInteractedWith() {
-        isInteractedWith = false;
-    }
 }

@@ -11,7 +11,6 @@ public class RekoilView extends AbstractAnimatedView {
     private static final int SHOW_ARCH = 2;
     private Rekoil model;
     private IAudioManagerAdapter audioManager;
-    private boolean hasPlayed = false;
     private boolean questTaken = false;
 
     public RekoilView(Rekoil model, IAudioManagerAdapter audioManager) {
@@ -30,10 +29,6 @@ public class RekoilView extends AbstractAnimatedView {
             questTaken = true;
         }
         if (model.showArch()) {
-            if (!hasPlayed) {
-                audioManager.playMusic("RKLUppdragKlart");
-                hasPlayed = true;
-            }
             addAnimationFrame(0, "img/interact/exclamation.png");
             playSequence(SHOW_ARCH);
         } else {
