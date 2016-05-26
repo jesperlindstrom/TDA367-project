@@ -26,9 +26,14 @@ public class PistolTest {
         Projectile projectile = mock(Projectile.class);
         IEntity entity = new Entity(projectile,view);
         when(projectileFactory.make(anyString(),any(Point.class),any(Point.class),anyInt(),any(IModel.class))).thenReturn(entity);
-        Pistol pistol = new Pistol(player,projectileFactory,10,10,10);
+        Pistol pistol = new Pistol(player,projectileFactory,10,10,1);
         IEntityHolder entityHolder = mock(IEntityHolder.class);
         pistol.use(new Point(),entityHolder);
         verify(entityHolder, times(1)).add(entity);
+
+        pistol.use(new Point(10,10),entityHolder);
+        verify(entityHolder,times(1)).add(entity);
+        pistol.use(new Point(10,-30),entityHolder);
+        verify(entityHolder,times(1)).add(entity);
     }
 }
