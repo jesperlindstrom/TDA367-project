@@ -15,5 +15,6 @@ public class HorvView extends AbstractAnimatedView{
     @Override
     public void draw(IGraphicsAdapter graphics) {
         super.draw(graphics);
+
     }
 }

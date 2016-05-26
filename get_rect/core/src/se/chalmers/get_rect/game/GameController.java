@@ -105,7 +105,6 @@ public class GameController {
     }
 
     private void handleInput() {
-        // todo: this is a code soup
         if (gameInput.isKeyJustPressed(Actions.MENU)) {
             if (windowManager.getState() == null) {
                 windowManager.set(GameConfig.INGAME_MENU);
@@ -139,9 +138,7 @@ public class GameController {
             worldManager.set(GameConfig.HUBBEN);
             resume();
         } catch (FileNotFoundException e){
-            // todo use error handler
-            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
-            windowManager.set(GameConfig.ERROR_WINDOW);
+            error.showError(e.getMessage());
         }
     }
 
@@ -178,9 +175,7 @@ public class GameController {
             worldManager.set(GameConfig.HUBBEN);
             resume();
         } catch (FileNotFoundException e){
-            // todo: use errorhandler
-            ((ErrorWindow)windowManager.getState(GameConfig.ERROR_WINDOW).getModel()).setMessage(e.getMessage());
-            windowManager.set(GameConfig.ERROR_WINDOW);
+            error.showError(e.getMessage());
         }
     }
 

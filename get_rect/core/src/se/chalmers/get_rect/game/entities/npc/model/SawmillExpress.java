@@ -19,6 +19,8 @@ public class SawmillExpress extends AbstractNPCModel {
     private boolean isFlying = false;
     private List<String> dialogList;
     private WeaponRepository weaponRepository;
+    private boolean isInteractedWith = false;
+
     public SawmillExpress(Point point, IRectangleFactoryAdapter rectangleFactory, List<String> dialogList, QuestManager quests, WeaponRepository weaponRepository) {
         this(point, rectangleFactory, dialogList, 50, 219, 200, quests);
         this.weaponRepository = weaponRepository;
@@ -52,6 +54,7 @@ public class SawmillExpress extends AbstractNPCModel {
     public void onInteract(IModel model) {
         super.onInteract(model);
         triggerEvent("sawmillExpress", "interacted");
+        isInteractedWith = true;
     }
 
     @Override
@@ -78,5 +81,8 @@ public class SawmillExpress extends AbstractNPCModel {
 
     public void setFlying() {
         isFlying = true;
+    }
+    public boolean isInteractedWith() {
+        return isInteractedWith;
     }
 }

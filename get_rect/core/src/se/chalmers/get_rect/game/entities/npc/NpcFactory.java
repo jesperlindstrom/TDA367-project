@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.entities.npc;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.npc.model.*;
@@ -22,6 +23,7 @@ public class NpcFactory {
     @Inject private QuestManager quests;
     @Inject private Player player;
     @Inject private WeaponRepository weaponRepository;
+    @Inject private IAudioManagerAdapter audioManager;
 
     public IEntity make(String type, Point point) throws FileNotFoundException {
         if (type.equals("sawmillExpress"))
@@ -54,14 +56,14 @@ public class NpcFactory {
     private IEntity makeSawmillExpress(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("sawmill");
         SawmillExpress model = new SawmillExpress(point, rectangleFactory, phrases, quests, weaponRepository);
-        IView view = new SawmillView(model);
+        IView view = new SawmillView(model, audioManager);
 
         return new Entity(model, view);
     }
     private IEntity makeRekoil(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("rekoil");
         Rekoil model = new Rekoil(point, rectangleFactory, phrases, quests);
-        IView view = new RekoilView(model);
+        IView view = new RekoilView(model, audioManager);
         return new Entity(model, view);
     }
 

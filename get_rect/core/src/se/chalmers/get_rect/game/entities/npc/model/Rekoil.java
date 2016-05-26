@@ -13,6 +13,7 @@ public class Rekoil extends AbstractNPCModel {
     private final int height;
     private boolean isShowingArch = false;
     private List<String> dialogList;
+    private boolean isInteractedWith = false;
 
     public Rekoil(Point point, IRectangleFactoryAdapter rectangleFactory, List<String> phrases, int width, int height, QuestManager quests) {
         super(point, new Point(0, 0), false, true, rectangleFactory);
@@ -31,6 +32,7 @@ public class Rekoil extends AbstractNPCModel {
     public void onInteract(IModel model) {
         super.onInteract(model);
         triggerEvent("rekoil", "interacted");
+        isInteractedWith = true;
     }
 
     @Override
@@ -48,5 +50,11 @@ public class Rekoil extends AbstractNPCModel {
 
     public boolean showArch() {
         return isShowingArch;
+    }
+    public boolean isInteractedWith() {
+        return isInteractedWith;
+    }
+    public void resetInteractedWith() {
+        isInteractedWith = false;
     }
 }

@@ -41,6 +41,9 @@ public class Demon extends AbstractCombatModel {
 
     @Override
     public void update(double delta) {
+        if (isKnockbacked())
+            return;
+
         int playerX = player.getPosition().getX();
         int playerY = player.getPosition().getY();
         int demonX = getPosition().getX()+(300/2);

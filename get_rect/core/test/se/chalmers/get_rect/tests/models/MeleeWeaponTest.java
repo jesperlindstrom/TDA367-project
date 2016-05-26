@@ -65,7 +65,6 @@ public class MeleeWeaponTest {
         assertEquals("the weapon should no longer be on cooldown", weapon.getCooldownFrames(), 0);
     }
 
-
     @Test
     public void testGetSwingDegrees() throws Exception {
         assertEquals("should be the same", weapon.getSwingDegrees(), 10, 0.00001);
@@ -103,12 +102,14 @@ public class MeleeWeaponTest {
         weapon.remove();
         assertTrue("Weapon should be removed", weapon.shouldBeRemoved());
     }
+
     @Test
     public void testGetFacing() {
         Point point = new Point();
         when(model.getVelocity()).thenReturn(point);
         assertEquals("Facing should be 1 if 0", weapon.getFacing(), 0);
     }
+
     @Test
     public void testIsFound() {
         weapon.setFound(true);
