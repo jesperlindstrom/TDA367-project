@@ -4,11 +4,16 @@ import org.junit.Before;
 import org.junit.Test;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
+import se.chalmers.get_rect.game.entities.item.swing.ISwinger;
+import se.chalmers.get_rect.game.entities.item.swing.Uppercut;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.physics.CollisionData;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.utilities.Point;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 
 public class ZombieTest extends ModelUtilsTest {
@@ -34,6 +39,13 @@ public class ZombieTest extends ModelUtilsTest {
         zombie.update(16.0);
         assertTrue("Should be true, velocity should be positiv beacuse player is to the right", zombie.getPosition().getX() < player.getPosition().getX()  &&  0 < zombie.getVelocity().getX());
 
+    }
+
+    @Test
+    public void testIfKnockbacked() {
+        Uppercut uppercut = new Uppercut(0, 20, 20, mock(IRectangleFactoryAdapter.class), getPlayer(), mock(ISwinger.class));
+        uppercut.onCollision(getEnemy(), mock(CollisionData.class), false);
+        getEnemy().update(1);
     }
 
     @Test

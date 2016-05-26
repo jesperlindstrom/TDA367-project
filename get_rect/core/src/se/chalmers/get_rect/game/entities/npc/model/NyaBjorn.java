@@ -36,11 +36,11 @@ public class NyaBjorn extends AbstractNPCModel {
     }
 
     @Override
-    protected void onQuestCompletion(IModel model) {
+    public void onQuestCompletion(IModel model) {
         if (model instanceof ICombatModel){
             ((ICombatModel) model).addHealth(((ICombatModel) model).getMaxHealth());
+            showingFull = true;
         }
-        showingFull = true;
     }
 
     @Override

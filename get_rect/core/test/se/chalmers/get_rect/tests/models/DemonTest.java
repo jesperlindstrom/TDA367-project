@@ -5,10 +5,12 @@ import org.junit.Test;
 import se.chalmers.get_rect.game.entities.ICombatModel;
 import se.chalmers.get_rect.game.entities.enemies.model.Demon;
 import se.chalmers.get_rect.game.entities.player.Player;
+import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.utilities.Point;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class DemonTest extends ModelUtilsTest {
 
@@ -49,6 +51,13 @@ public class DemonTest extends ModelUtilsTest {
 
         model.takeDamage(model.getCurrentHealth());
         assertTrue("Should be removed, should be true", model.shouldBeRemoved());
+    }
+
+    @Test
+    public void testOtherConstructorAndRandFlap() {
+        Demon demon = new Demon(new Point(), mock(IRectangleFactoryAdapter.class), getPlayer());
+        Demon demon2 = new Demon(new Point(), mock(IRectangleFactoryAdapter.class), getPlayer());
+        assertNotEquals("the flap time should be random", demon.getRandFlap(), demon2.getRandFlap());
     }
 
 }
