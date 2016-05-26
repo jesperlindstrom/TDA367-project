@@ -59,9 +59,8 @@ public abstract class AbstractGridModel{
     }
 
     public void setIndex(Point point) {
-        currentButton = new Point(point);
-        if (!itemMap.containsKey(point)) {
-            System.out.println("no button at " + point);
+        if (itemMap.containsKey(point)) {
+            currentButton = new Point(point);
         }
     }
 
