@@ -2,6 +2,7 @@ package se.chalmers.get_rect.game.world;
 
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
 import se.chalmers.get_rect.game.ErrorHandler;
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.quests.QuestManager;
@@ -19,9 +20,19 @@ public class HubbenWorld extends AbstractWorld {
     @Override
     public void enteringState(Integer previousState) {
         super.enteringState(previousState);
+        if (previousState != null) {
+            addPlayerAtPosition(22, 380 );
+            if (previousState == GameConfig.CAVE) {
+                addPlayerAtPosition(725, 380);
+            }
+            if (previousState == GameConfig.TEST) {
+                addPlayerAtPosition(1280, 380);
+            }
 
+        } else {
+            addPlayerAtPosition(22, 380);
+        }
         // Set the player position
-        addPlayerAtPosition(22, 500);
     }
 
     @Override

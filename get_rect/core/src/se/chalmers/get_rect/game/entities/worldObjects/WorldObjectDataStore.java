@@ -5,6 +5,8 @@ import se.chalmers.get_rect.utilities.Point;
 public class WorldObjectDataStore {
     private int x;
     private int y;
+    private int targetX;
+    private int targetY;
     private int width;
     private int height;
     private String type;
@@ -28,5 +30,7 @@ public class WorldObjectDataStore {
 
     public int getPath(){return path;}
 
-
+    public Point getTarget() {
+        return new Point(targetX, targetY);
+    }
 }

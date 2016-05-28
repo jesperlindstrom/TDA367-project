@@ -18,6 +18,13 @@ public class GhostBroccoli extends Zombie {
     }
 
     @Override
+    public void update(double delta) {
+        if (player.getPosition().distanceTo(getPosition()) > 1500)
+            return;
+        super.update(delta);
+    }
+
+    @Override
     public int getMaxHealth() {
         return 1000;
     }

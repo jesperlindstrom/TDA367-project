@@ -1,0 +1,153 @@
+[
+  {
+    "type": "boundingBox",
+    "x": 0,
+    "y": 3475,
+    "width": 2070,
+    "height": 100
+  },
+  {
+    "type": "boundingBox",
+    "x": 370,
+    "y": 4000,
+    "width": 100,
+    "height": 4000
+  },
+  {
+    "type": "boundingBox",
+    "x": 2375,
+    "y": 3475,
+    "width": 2200,
+    "height": 100
+  },
+  {
+    "type": "boundingBox",
+    "x": 800,
+    "y": 4000,
+    "width": 5000,
+    "height": 90
+  },
+  {
+    "type": "boundingBox",
+    "x": 4800,
+    "y": 3170,
+    "width": 180,
+    "height": 200
+  },
+  {
+    "type": "boundingBox",
+    "x": 5540,
+    "y": 2800,
+    "width": 180,
+    "height": 400
+  },
+  {
+    "type": "boundingBox",
+    "x": 4800,
+    "y": 3170,
+    "width": 180,
+    "height": 200
+  },
+  {
+    "type": "boundingBox",
+    "x": 375,
+    "y": 2980,
+    "width": 4625,
+    "height": 110
+  },
+  {
+    "type": "boundingBox",
+    "x": 4980,
+    "y": 4000,
+    "width": 100,
+    "height": 1100
+  },
+  {
+    "type": "boundingBox",
+    "x": 0,
+    "y": 2460,
+    "width": 5600,
+    "height": 90
+  },
+  {
+    "type": "boundingBox",
+    "x": 5000,
+    "y": 3000,
+    "width": 2500,
+    "height": 100
+  },
+  {
+    "type": "boundingBox",
+    "x": 7400,
+    "y": 4000,
+    "width": 300,
+    "height": 4000
+  },
+  {
+    "type": "door",
+    "x":550,
+    "y":4000,
+    "width": 70,
+    "height": 540,
+    "path": 22
+  },
+  {
+    "type" : "portal",
+    "x":700,
+    "y":3000,
+    "width":220,
+    "height":200,
+    "targetX": 670,
+    "targetY":2500
+  },
+  {
+    "type" : "portal",
+    "x":5330,
+    "y":2500,
+    "width":220,
+    "height":200,
+    "targetX": 5250,
+    "targetY":3000
+  },
+  {
+    "type" : "portal",
+    "x":5150,
+    "y":3000,
+    "width":220,
+    "height":200,
+    "targetX": 5450,
+    "targetY":2500
+  },
+  {
+    "type" : "portal",
+    "x":600,
+    "y":2500,
+    "width":220,
+    "height":200,
+    "targetX": 800,
+    "targetY":3000
+  },
+  {
+    "type": "computer",
+    "x": 2450,
+    "y": 3500
+  },
+
+  {
+    "type": "computer",
+    "x": 4600,
+    "y": 2500
+  },
+
+  {
+    "type": "computer",
+    "x": 7250,
+    "y": 3010
+  },
+
+  {
+    "type": "caveBg",
+    "x": 0,
+    "y": 0
+  }
+]

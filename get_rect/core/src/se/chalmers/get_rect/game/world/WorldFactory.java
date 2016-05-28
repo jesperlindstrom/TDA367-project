@@ -29,6 +29,9 @@ public class WorldFactory {
         if (name.equals("hubben"))
             return makeHubben();
 
+        if (name.equals("cave"))
+            return makeCave();
+
         throw new WorldNotFoundException(name);
     }
 
@@ -43,5 +46,9 @@ public class WorldFactory {
 
     private IWorld makeHubben() {
         return new HubbenWorld(playerEntity,rectangleFactory,camera, worldLoader, quests, audioManager, error);
+    }
+
+    private IWorld makeCave(){
+        return new CaveWorld(playerEntity, rectangleFactory, camera, worldLoader, quests, audioManager, error);
     }
 }

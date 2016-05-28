@@ -20,7 +20,7 @@ public class WorldObjectFactory {
     @Inject private QuestManager questManager;
     @Inject private WeaponRepository weaponRepository;
 
-    public IEntity make(String type, Point point, int width, int height, int path) {
+    public IEntity make(String type, Point point, int width, int height, int path, Point target) {
         if (type.equals("boundingBox"))
             return makeBoundingBox(point, width, height);
 
@@ -39,11 +39,17 @@ public class WorldObjectFactory {
         if (type.equals("horsalsvagenBg")) {
             return makeHorsalsvagenBg();
         }
+        if (type.equals("portal")) {
+            return makePortal(point, target, width, height);
+        }
         if (type.equals("testBg")) {
             return makeTestBg();
         }
         if (type.equals("hubbenBg")) {
             return makeHubbenBg();
+        }
+        if (type.equals("caveBg")) {
+            return makeCaveBg();
         }
 
         throw new EntityNotFoundException("worldObject", type);
@@ -73,6 +79,11 @@ public class WorldObjectFactory {
         return new Entity(model, null);
     }
 
+    private IEntity makePortal(Point point, Point target, int width, int height){
+        IPhysicsModel model = new Portal(point, target, width, height, rectangleFactory);
+        return new Entity(model, null);
+    }
+
     private IEntity makeSandCastle(Point point) {
         IPhysicsModel model = new SandCastle(point, rectangleFactory, questManager, weaponRepository);
         IView view = new SandCastleView(model);
@@ -89,5 +100,9 @@ public class WorldObjectFactory {
 
     private IEntity makeHubbenBg() {
         return new Entity(null, new HubbenWorldView(camera, audioManager));
+    }
+
+    private IEntity makeCaveBg() {
+        return new Entity(null, new CaveWorldView(camera, audioManager));
     }
 }

@@ -62,7 +62,7 @@ public class NpcFactory {
     }
     private IEntity makeRekoil(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("rekoil");
-        Rekoil model = new Rekoil(point, rectangleFactory, phrases, quests);
+        Rekoil model = new Rekoil(point, rectangleFactory, phrases, quests, weaponRepository);
         IView view = new RekoilView(model, audioManager);
         return new Entity(model, view);
     }

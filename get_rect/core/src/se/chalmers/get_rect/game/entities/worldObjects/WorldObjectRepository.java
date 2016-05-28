@@ -15,6 +15,6 @@ public class WorldObjectRepository extends AbstractRepository<WorldObjectDataSto
 
     @Override
     protected IEntity makeFromDataStore(WorldObjectDataStore data) throws FileNotFoundException {
-        return factory.make(data.getType(), data.getPosition(), data.getWidth(), data.getHeight(), data.getPath());
+        return factory.make(data.getType(), data.getPosition(), data.getWidth(), data.getHeight(), data.getPath(), data.getTarget());
     }
 }

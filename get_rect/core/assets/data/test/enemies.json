@@ -4,31 +4,6 @@
     "x": 900,
     "y": 100
   },
-
-  {
-    "type": "broccolighost",
-    "x": 850,
-    "y": 250
-  },
-
-  {
-    "type": "broccolighost",
-    "x": 800,
-    "y": 400
-  },
-
-  {
-    "type": "broccolighost",
-    "x": 750,
-    "y": 550
-  },
-
-  {
-    "type": "broccolighost",
-    "x": 700,
-    "y": 600
-  },
-
   {
     "type": "zombie",
     "x": 1600,

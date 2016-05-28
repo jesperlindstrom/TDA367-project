@@ -24,4 +24,5 @@ public class MainMenu extends AbstractGridModel {
     public boolean isAllowingRegularInput() {
         return false;
     }
+
 }

@@ -56,21 +56,30 @@
   {
     "type": "trampoline",
     "x": 1500,
-    "y": 50
+    "y": 100
   },
 
   {
     "type": "trampoline",
     "x": 160,
-    "y": 300
+    "y": 500
+  },
+
+  {
+  "type": "door",
+  "x": 200,
+  "y": 1050,
+  "width":300,
+  "height":150,
+  "path": 21
   },
 
   {
     "type": "door",
-    "x": 200,
-    "y": 1050,
+    "x": 2500,
+    "y": 200,
     "width":300,
     "height":150,
-    "path": 21
+    "path": 23
   }
 ]

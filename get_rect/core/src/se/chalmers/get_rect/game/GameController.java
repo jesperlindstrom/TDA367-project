@@ -53,7 +53,7 @@ public class GameController {
         if (windowManager.getState() != null) {
             windowManager.getState().draw(graphics);
         }
-        if(muted) {
+        if(muted && windowManager.getCurrentStateKey() != GameConfig.SPLASH) {
             graphics.draw(imgPath + "noSound.png", new Point((camera.getAdapter().getPosition().getX()) + (int)(camera.getAdapter().getWidth()/3), (camera.getAdapter().getPosition().getY()) - (int)(camera.getAdapter().getWidth()/4)));
         }
     }
@@ -62,6 +62,7 @@ public class GameController {
         worldManager.add(GameConfig.TEST, worldFactory.make("test"));
         worldManager.add(GameConfig.HORSALSVAGEN, worldFactory.make("horsalsvagen"));
         worldManager.add(GameConfig.HUBBEN, worldFactory.make("hubben"));
+        worldManager.add(GameConfig.CAVE, worldFactory.make("cave"));
 
         windowManager.add(GameConfig.SPLASH, windowFactory.makeSplash());
         windowManager.add(GameConfig.MAIN_MENU, windowFactory.makeMainMenu());
@@ -91,7 +92,7 @@ public class GameController {
         if (windowManager.getState() == null || windowManager.getState().allowsRegularInput()) {
             handleInput();
         }
-
+        handleSound();
         // Will update the menu if it is active and pause the current scene.
         if (windowManager.getState() != null) {
             windowManager.getState().update(delta);
@@ -115,15 +116,6 @@ public class GameController {
         if (gameInput.isKeyJustPressed(Actions.EXIT_MENU)) {
             if (windowManager.getState() != null)
                 resume();
-        }
-        if (gameInput.isKeyJustPressed(Actions.MUTE)) {
-            if (!muted) {
-                audioManager.mute();
-                muted = true;
-            } else {
-                audioManager.unmute();
-                muted = false;
-            }
         }
         if (gameInput.isKeyJustPressed(Actions.RESPAWN)) {
             worldManager.set(GameConfig.HUBBEN);
@@ -176,6 +168,18 @@ public class GameController {
             resume();
         } catch (FileNotFoundException e){
             error.showError(e.getMessage());
+        }
+    }
+
+    private void handleSound() {
+        if (gameInput.isKeyJustPressed(Actions.MUTE)) {
+            if (!muted) {
+                audioManager.mute();
+                muted = true;
+            } else {
+                audioManager.unmute();
+                muted = false;
+            }
         }
     }
 
