@@ -39,12 +39,21 @@
   },
 
   {
-    "type": "door",
-    "x":2220,
-    "y":560,
-    "width": 240,
-    "height": 190,
-    "path": 22
+    "type": "computer",
+    "x": 1040,
+    "y": 510
+  },
+
+  {
+    "type": "computer",
+    "x": 1305,
+    "y": 510
+  },
+
+  {
+    "type": "computer",
+    "x": 1440,
+    "y": 510
   },
 
   {

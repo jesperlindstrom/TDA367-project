@@ -15,7 +15,7 @@ public class NyaBjornView extends AbstractAnimatedView {
     public NyaBjornView(NyaBjorn model) {
         super(model, DEFAULT);
         this.model = model;
-        super.setDrawOffset(new Point(-40, -40));
+        super.setDrawOffset(new Point(-40, 0));
         addAnimationFrame(DEFAULT, "img/entities/urza/urzaToilet1.png");
         addAnimationFrame(ON_THE_WAY, "img/entities/urza/urzaToilet2.png", 60);
         addAnimationFrame(ON_THE_WAY, "img/entities/urza/urzaToilet3.png", 60);
