@@ -34,7 +34,11 @@ public class RekoilTest {
         questManager = mock(QuestManager.class);
         WeaponRepository weaponRepository = mock(WeaponRepository.class);
         list.add("Rekoil");
+<<<<<<< HEAD
         rekoil = new Rekoil(new Point(),new RectangleFactoryAdapterStub(), list, questManager, weaponRepository);
+=======
+        rekoil = new Rekoil(new Point(),new RectangleFactoryAdapterStub(),list, questManager, weaponRepository);
+>>>>>>> 1cc1ad89cf5b5e5695dd867c528ed12b995d8d18
     }
 
     @Test
