@@ -2,7 +2,7 @@
   {
     "id": 0,
     "title": "Sawmill wants to go home",
-    "acceptText": "Hello, I am Sawmill! I live in this rocket because of reasons. That is why it is called ''Sawmill Express''. But I have a problem, I can not start the rocket because I fucked up the start button. It is on the outside... Can you help me press the button? It only works if you first kill five zombies AND build a sandcastle. You're a wizard, Legolas! Now go!",
+    "acceptText": "Hello, I am Sawmill! I live in this rocket because of reasons. That is why it is called ''Sawmill Express''. But I have a problem, I can not start the rocket because I fucked up the start button. It is on the outside... Can you help me press the button? It only works if you first kill five zombies AND build a sandcastle. Use the force, you're a wizard, Legolas! Now go!",
     "completionText": "FUCK THIS, I'M OUTTA HERE",
     "objectives": [
       {

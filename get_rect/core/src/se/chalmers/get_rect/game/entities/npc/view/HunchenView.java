@@ -9,6 +9,7 @@ public class HunchenView extends AbstractAnimatedView {
 
     private static final int FREE = 1;
     private Hunchen model;
+    private int DRAW_PRIORITY = 7;
 
     public HunchenView(Hunchen model) {
         super(model, FREE);
@@ -27,5 +28,10 @@ public class HunchenView extends AbstractAnimatedView {
             }
             super.draw(graphics);
         }
+    }
+
+    @Override
+    public int getDrawPriority() {
+        return DRAW_PRIORITY;
     }
 }
