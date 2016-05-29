@@ -35,7 +35,9 @@ public class DemonView extends AbstractAnimatedView {
         }
         playSequence(getSequence());
         super.draw(graphics);
-        audioManager.playMusic("mjolnirLaugh");
+        if (model.isPlayerClose()) {
+            audioManager.playMusic("mjolnirLaugh");
+        }
 
     }
     private int getSequence() {

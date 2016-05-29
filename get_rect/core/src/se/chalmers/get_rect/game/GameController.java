@@ -130,7 +130,7 @@ public class GameController {
             worldManager.set(GameConfig.HUBBEN);
             resume();
         } catch (FileNotFoundException e){
-            error.showError(e.getMessage());
+            startNew();
         }
     }
 

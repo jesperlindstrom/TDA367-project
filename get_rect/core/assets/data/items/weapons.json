@@ -2,7 +2,7 @@
   {
     "type": "opsword",
     "reach": 175,
-    "damage": 5,
+    "damage": 20,
     "cooldown": 30,
     "startTilt" : 10,
     "swingDegrees" : 110
@@ -55,7 +55,7 @@
   },
   {
     "type" : "rock",
-    "damage" : 100,
+    "damage" : 10,
     "speed" : 100,
     "cooldown" : 30
   },

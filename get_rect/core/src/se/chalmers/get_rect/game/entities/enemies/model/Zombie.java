@@ -47,7 +47,7 @@ public class Zombie extends AbstractCombatModel {
         int playerX = player.getPosition().getX();
         int zombieX = getPosition().getX();
 
-        if (Math.abs(playerX - zombieX) > 820 && Math.abs(player.getPosition().getY() - getPosition().getY()) > 100)
+        if (Math.abs(playerX - zombieX) > 700 || Math.abs(player.getPosition().getY() - getPosition().getY()) > 100)
             return;
 
         int velX = 0;

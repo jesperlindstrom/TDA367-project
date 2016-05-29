@@ -15,7 +15,7 @@ import java.util.List;
 
 public class PlayerRepository {
     private static final String DEFAULT_MELEE = "opsword";
-    private static final String DEFAULT_RANGED = "pistol";
+    private static final String DEFAULT_RANGED = "rock";
     private static final String PATH = "data/savedData/";
     private static final String FILE = "playerSavedData.json";
     private Player player;

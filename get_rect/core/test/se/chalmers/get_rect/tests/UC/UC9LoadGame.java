@@ -5,6 +5,7 @@ import org.junit.Test;
 import se.chalmers.get_rect.game.entities.item.model.FireMagic;
 import se.chalmers.get_rect.game.entities.item.model.IWeapon;
 import se.chalmers.get_rect.game.entities.item.model.MeleeWeapon;
+import se.chalmers.get_rect.game.entities.item.model.Rock;
 import se.chalmers.get_rect.game.entities.item.projectile.ProjectileFactory;
 import se.chalmers.get_rect.game.entities.item.swing.SwingFactory;
 import se.chalmers.get_rect.game.entities.player.Player;
@@ -25,7 +26,7 @@ public class UC9LoadGame extends IOSetup {
     private PlayerDataStore dataStore;
     private IWeapon newMelee;
     private IWeapon newRanged;
-    private String rangedName = "firemagic";
+    private String rangedName = "rock";
     private String meleeName = "opsword";
 
     @Before
@@ -34,7 +35,7 @@ public class UC9LoadGame extends IOSetup {
         this.player = getPlayer();
         this.playerRepository = getPlayerRepository();
         this.dataStore = getDataStore();
-        newRanged= new FireMagic(player, new ProjectileFactory(),10,10,10);
+        newRanged= new Rock(player, new ProjectileFactory(),10,10,10);
         newMelee = new MeleeWeapon(player,meleeName,new SwingFactory(),10,10,10,10,10,false);
     }
 

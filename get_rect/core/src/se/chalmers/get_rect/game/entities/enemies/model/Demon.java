@@ -16,6 +16,7 @@ public class Demon extends AbstractCombatModel {
     private int randHeight;
     private int randFlap;
     private boolean isAttacking = false;
+    private boolean playerClose;
 
     public Demon(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player, int width, int height){
         super(point, new Point(0, 0), false, true, rectangleFactory, 30);
@@ -49,8 +50,11 @@ public class Demon extends AbstractCombatModel {
         int demonX = getPosition().getX()+(300/2);
         int demonY = getPosition().getY();
 
-        if (Math.abs(playerX - demonX) > 800 || Math.abs(playerY - demonY) > 400)
+        if (Math.abs(playerX - demonX) > 800 || Math.abs(playerY - demonY) > 400) {
+            playerClose = false;
             return;
+        }
+        playerClose = true;
 
         int velX = 0;
 
@@ -80,6 +84,10 @@ public class Demon extends AbstractCombatModel {
 
     public boolean isAttacking() {
         return isAttacking;
+    }
+
+    public boolean isPlayerClose() {
+        return playerClose;
     }
 
     @Override

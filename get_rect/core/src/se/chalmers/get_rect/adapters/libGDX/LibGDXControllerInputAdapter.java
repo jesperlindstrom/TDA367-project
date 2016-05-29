@@ -22,7 +22,7 @@ public class LibGDXControllerInputAdapter extends ControllerAdapter implements I
     private static final int R_HORIZONTAL = Xbox.R_STICK_HORIZONTAL_AXIS;
     private static final int L_TRIGGER = Xbox.L_TRIGGER;
     private static final int R_TRIGGER = Xbox.R_TRIGGER;
-    private static final float SENSITIVITY = 0.8f;
+    private static final float SENSITIVITY = 0.9f;
 
     public LibGDXControllerInputAdapter() {
         controller = getXboxController();

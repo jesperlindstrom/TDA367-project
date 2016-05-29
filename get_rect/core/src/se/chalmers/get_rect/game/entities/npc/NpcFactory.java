@@ -93,7 +93,7 @@ public class NpcFactory {
     }
     private IEntity makeFishur(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("fishur");
-        Fishur model = new Fishur(point, rectangleFactory, phrases, quests);
+        Fishur model = new Fishur(point, rectangleFactory, phrases, quests, weaponRepository);
         IView view = new FishurView(model, audioManager);
 
         return new Entity(model, view);

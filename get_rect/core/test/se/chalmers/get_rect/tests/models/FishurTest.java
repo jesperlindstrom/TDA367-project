@@ -2,9 +2,11 @@ package se.chalmers.get_rect.tests.models;
 
 import org.junit.Before;
 import org.junit.Test;
+import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.npc.model.Fishur;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.quests.QuestManager;
+import se.chalmers.get_rect.game.quests.data.Quest;
 import se.chalmers.get_rect.tests.physics.RectangleFactoryAdapterStub;
 import se.chalmers.get_rect.utilities.Point;
 
@@ -22,9 +24,10 @@ public class FishurTest {
     @Before
     public void setup(){
         QuestManager questManager = mock(QuestManager.class);
+        WeaponRepository weaponRepository = mock(WeaponRepository.class);
         List<String> list = new ArrayList<>();
         list.add("Fishur");
-        fishur = new Fishur(new Point(),new RectangleFactoryAdapterStub(), list, questManager);
+        fishur = new Fishur(new Point(),new RectangleFactoryAdapterStub(), list, questManager, weaponRepository);
         player = mock(Player.class);
     }
 
