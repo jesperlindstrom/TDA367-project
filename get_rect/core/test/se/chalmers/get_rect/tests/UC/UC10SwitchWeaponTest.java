@@ -11,10 +11,10 @@ import se.chalmers.get_rect.game.entities.player.Player;
 
 import static org.junit.Assert.*;
 
-public class UC10SwichWeaponTest {
+public class UC10SwitchWeaponTest {
 
     private Player player;
-    private IWeapon storedWeapon; // TODO: name in progress
+    private IWeapon storedWeapon;
 
     @Before
     public void setup(){
