@@ -21,6 +21,7 @@ public class SplashTest {
         IAssetManagerAdapter assets = mock(IAssetManagerAdapter.class);
         StateManager<IWindowController> windows = (StateManager<IWindowController>) mock(StateManager.class);
         SplashModel splash = new SplashModel(assets, windows);
+        assertFalse(splash.getAddedAssets());
 
         when(assets.update()).thenReturn(true);
         splash.preload();
@@ -43,6 +44,8 @@ public class SplashTest {
         splash.setProgress(1.0f);
         splash.update(0);
 
+        assertEquals("no error should have been thrown", null, splash.getError());
+        assertTrue(splash.getAddedAssets());
         verify(windows).set(GameConfig.MAIN_MENU);
     }
 }
