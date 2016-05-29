@@ -28,7 +28,7 @@ public class ChessTTest {
     @Before
     @SuppressWarnings("unchecked")
     public void setup(){
-        this.player = mock(Player.class);
+        player = mock(Player.class);
         StateManager<IWindowController> stateManager = (StateManager<IWindowController>) mock(StateManager.class);
         IRectangleFactoryAdapter recFac = new RectangleFactoryAdapterStub();
         recPlay = Mockito.mock(RectangleAdapterStub.class);
