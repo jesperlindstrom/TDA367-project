@@ -1,45 +1,50 @@
 [
-{
-  "type": "boundingBox",
-  "x": -3000,
-  "y": 370,
-  "width": 5000,
-  "height": 1000
-},
+  {
+    "type": "boundingBox",
+    "x": 0,
+    "y": 1080,
+    "width": 100,
+    "height": 1080
+  },
+  {
+    "type": "boundingBox",
+    "x": 0,
+    "y": 360,
+    "width": 3500,
+    "height": 200
+  },
+  {
+    "type": "boundingBox",
+    "x": 2990,
+    "y": 1080,
+    "width": 100,
+    "height": 1080
+  },
   {
     "type": "door",
-    "x":1140,
-    "y":580,
-    "width": 260,
-    "height": 240,
-    "path": 22
+    "x":100,
+    "y":560,
+    "width": 200,
+    "height": 200,
+    "path": 21
   },
 
   {
     "type": "door",
-    "x":600,
-    "y":570,
+    "x":1680,
+    "y":360,
     "width": 240,
     "height": 190,
     "path": 24
   },
 
   {
-    "type": "computer",
-    "x": 1500,
-    "y": "500"
-  },
-
-  {
-    "type": "computer",
-    "x": 1300,
-    "y": "500"
-  },
-
-  {
-    "type": "computer",
-    "x": 1700,
-    "y": "500"
+    "type": "door",
+    "x":2220,
+    "y":360,
+    "width": 100,
+    "height": 190,
+    "path": 23
   },
 
   {

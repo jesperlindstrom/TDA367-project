@@ -16,11 +16,11 @@ public class CaveWorld extends AbstractWorld {
     @Override
     public void enteringState(Integer previousStateName) {
         super.enteringState(previousStateName);
-        addPlayerAtPosition(520, 3450);
+        addPlayerAtPosition(520, 1450);
     }
 
     @Override
     public void respawn() {
-        getPlayer().setPosition(new Point(520, 3450));
+        getPlayer().setPosition(new Point(520, 1450));
     }
 }

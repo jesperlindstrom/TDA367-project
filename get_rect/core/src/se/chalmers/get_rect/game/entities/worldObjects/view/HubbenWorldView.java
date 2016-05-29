@@ -9,7 +9,7 @@ public class HubbenWorldView extends AbstractBackgroundView {
     private IAudioManagerAdapter audioManager;
 
     public HubbenWorldView(ICamera camera, IAudioManagerAdapter audioManager) {
-        super(camera, "img/backgrounds/hubben.png");
+        super(camera, "img/backgrounds/hubben2.png");
         this.audioManager = audioManager;
     }
 

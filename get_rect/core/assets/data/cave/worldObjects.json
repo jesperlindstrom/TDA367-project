@@ -2,149 +2,169 @@
   {
     "type": "boundingBox",
     "x": 0,
-    "y": 3475,
+    "y": 1475,
     "width": 2070,
     "height": 100
   },
   {
     "type": "boundingBox",
     "x": 370,
-    "y": 4000,
+    "y": 2000,
     "width": 100,
-    "height": 4000
+    "height": 2000
   },
   {
     "type": "boundingBox",
     "x": 2375,
-    "y": 3475,
+    "y": 1475,
     "width": 2200,
     "height": 100
   },
   {
     "type": "boundingBox",
     "x": 800,
-    "y": 4000,
+    "y": 2000,
     "width": 5000,
     "height": 90
   },
   {
     "type": "boundingBox",
     "x": 4800,
-    "y": 3170,
+    "y": 1170,
     "width": 180,
     "height": 200
   },
   {
     "type": "boundingBox",
     "x": 5540,
-    "y": 2800,
+    "y": 800,
     "width": 180,
     "height": 400
   },
   {
     "type": "boundingBox",
     "x": 4800,
-    "y": 3170,
+    "y": 1170,
     "width": 180,
     "height": 200
   },
   {
     "type": "boundingBox",
-    "x": 375,
-    "y": 2980,
-    "width": 4625,
+    "x": 300,
+    "y": 980,
+    "width": 1800,
+    "height": 110
+  },
+  {
+    "type": "trapfloor",
+    "x": 2100,
+    "y": 980,
+    "width": 310,
+    "height": 110
+  },
+  {
+    "type": "boundingBox",
+    "x": 2410,
+    "y": 980,
+    "width": 2600,
     "height": 110
   },
   {
     "type": "boundingBox",
     "x": 4980,
-    "y": 4000,
+    "y": 2000,
     "width": 100,
     "height": 1100
   },
   {
     "type": "boundingBox",
     "x": 0,
-    "y": 2460,
+    "y": 460,
     "width": 5600,
     "height": 90
   },
   {
     "type": "boundingBox",
     "x": 5000,
-    "y": 3000,
+    "y": 1000,
     "width": 2500,
     "height": 100
   },
   {
     "type": "boundingBox",
     "x": 7400,
-    "y": 4000,
+    "y": 2000,
     "width": 300,
-    "height": 4000
+    "height": 2000
   },
   {
     "type": "door",
     "x":550,
-    "y":4000,
+    "y":1800,
     "width": 70,
-    "height": 540,
-    "path": 22
+    "height": 250,
+    "path": 23
   },
   {
     "type" : "portal",
     "x":700,
-    "y":3000,
+    "y":1000,
     "width":220,
     "height":200,
     "targetX": 670,
-    "targetY":2500
+    "targetY":500
   },
   {
     "type" : "portal",
     "x":5330,
-    "y":2500,
+    "y":500,
     "width":220,
     "height":200,
     "targetX": 5250,
-    "targetY":3000
+    "targetY":1000
   },
   {
     "type" : "portal",
     "x":5150,
-    "y":3000,
+    "y":1000,
     "width":220,
     "height":200,
     "targetX": 5450,
-    "targetY":2500
+    "targetY":500
   },
   {
     "type" : "portal",
     "x":600,
-    "y":2500,
+    "y":500,
     "width":220,
     "height":200,
     "targetX": 800,
-    "targetY":3000
+    "targetY":1000
   },
   {
     "type": "computer",
     "x": 2450,
-    "y": 3500
+    "y": 1500
   },
 
   {
     "type": "computer",
     "x": 4600,
-    "y": 2500
+    "y": 500
   },
 
   {
     "type": "computer",
     "x": 7250,
-    "y": 3010
+    "y": 1010
   },
-
+  {
+    "type": "pitfall",
+    "x": 2080,
+    "y": 850,
+    "width" : 342,
+    "height" : 100
+  },
   {
     "type": "caveBg",
     "x": 0,

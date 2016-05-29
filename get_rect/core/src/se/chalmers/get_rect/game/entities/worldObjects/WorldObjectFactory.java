@@ -42,6 +42,12 @@ public class WorldObjectFactory {
         if (type.equals("portal")) {
             return makePortal(point, target, width, height);
         }
+        if (type.equals("pitfall")) {
+            return makePitfall(point, width, height);
+        }
+        if (type.equals("trapfloor")) {
+            return makeTrapfloor(point, width, height);
+        }
         if (type.equals("testBg")) {
             return makeTestBg();
         }
@@ -89,6 +95,16 @@ public class WorldObjectFactory {
         IView view = new SandCastleView(model);
 
         return new Entity(model, view);
+    }
+
+    private IEntity makePitfall(Point point, int width, int height) {
+        Pitfall model = new Pitfall(point, width, height, new Point(), false, false, rectangleFactory);
+        IView view = new PitfallView(model);
+        return new Entity(model, null);
+    }
+    private IEntity makeTrapfloor(Point point, int width, int height) {
+        IPhysicsModel model = new Trapfloor(point, width, height, rectangleFactory);
+        return new Entity(model, null);
     }
     private IEntity makeHorsalsvagenBg() {
         return new Entity(null, new HorsalsvagenWorldView(camera, audioManager));
