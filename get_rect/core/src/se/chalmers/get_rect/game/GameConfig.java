@@ -4,7 +4,7 @@ public class GameConfig {
     // Game settings
     public static final int SCREEN_WIDTH = 1920;
     public static final int SCREEN_HEIGHT = 1080;
-    public static final boolean FULLSCREEN = true;
+    public static final boolean FULLSCREEN = false;
 
     // Game state IDs
     public static final int SPLASH = 11;
@@ -23,7 +23,7 @@ public class GameConfig {
     public static final boolean SHOW_FPS = true;
 
     // Debug booleans
-    public static final boolean DISABLE_ALL = true;
+    public static final boolean DISABLE_ALL = false;
 
     public static final boolean PRINT_CONTROLLERVALUES = false;
     public static final boolean SHOW_LOWESTFPS = true;

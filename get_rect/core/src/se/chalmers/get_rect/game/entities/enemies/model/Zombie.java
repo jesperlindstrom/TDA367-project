@@ -42,9 +42,13 @@ public class Zombie extends AbstractCombatModel {
         if (isKnockbacked())
             return;
 
+
         // Amazing AI
         int playerX = player.getPosition().getX();
         int zombieX = getPosition().getX();
+
+        if (Math.abs(playerX - zombieX) > 820 && Math.abs(player.getPosition().getY() - getPosition().getY()) > 100)
+            return;
 
         int velX = 0;
 

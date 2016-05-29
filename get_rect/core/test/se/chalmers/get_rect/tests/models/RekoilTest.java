@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import se.chalmers.get_rect.game.entities.IModel;
+import se.chalmers.get_rect.game.entities.item.WeaponRepository;
 import se.chalmers.get_rect.game.entities.npc.model.Rekoil;
 import se.chalmers.get_rect.game.entities.player.Player;
 import se.chalmers.get_rect.game.quests.QuestManager;
@@ -31,8 +32,9 @@ public class RekoilTest {
         player = mock(Player.class);
         List<String> list = new ArrayList<>();
         questManager = mock(QuestManager.class);
+        WeaponRepository weaponRepository = mock(WeaponRepository.class);
         list.add("Rekoil");
-        rekoil = new Rekoil(new Point(),new RectangleFactoryAdapterStub(),list, questManager);
+        rekoil = new Rekoil(new Point(),new RectangleFactoryAdapterStub(), list, questManager, weaponRepository);
     }
 
     @Test
