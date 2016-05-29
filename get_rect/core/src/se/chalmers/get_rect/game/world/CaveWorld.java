@@ -1,7 +1,7 @@
 package se.chalmers.get_rect.game.world;
 
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
-import se.chalmers.get_rect.game.ErrorHandler;
+import se.chalmers.get_rect.game.window.ErrorHandler;
 import se.chalmers.get_rect.game.entities.ICamera;
 import se.chalmers.get_rect.game.entities.IEntity;
 import se.chalmers.get_rect.game.quests.QuestManager;

@@ -1,11 +1,10 @@
 package se.chalmers.get_rect.game.world;
 
 import se.chalmers.get_rect.adapters.IAudioManagerAdapter;
-import se.chalmers.get_rect.game.ErrorHandler;
+import se.chalmers.get_rect.game.window.ErrorHandler;
 import se.chalmers.get_rect.game.entities.*;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.physics.IRectangleFactoryAdapter;
-import se.chalmers.get_rect.states.StateManager;
 import se.chalmers.get_rect.utilities.Point;
 
 public class HorsalsvagenWorld extends AbstractWorld {
