@@ -20,7 +20,7 @@ public class Computer extends AbstractInteractableModel {
     private int installTicks = 0;
 
     public Computer(Point position, IRectangleFactoryAdapter factory, QuestManager questManager) {
-        super(position, new Point(0,0), false, true, factory);
+        super(position, new Point(0,0), false, false, factory);
         setBoundingBox(69, 54);
         quest = questManager.get(1);
 
