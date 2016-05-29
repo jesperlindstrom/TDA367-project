@@ -77,7 +77,7 @@ public class NpcFactory {
     private IEntity makeHorv(Point point) throws FileNotFoundException {
         List<String> phrases = getPhrases("horv");
         Horv model = new Horv(point, rectangleFactory, phrases, quests);
-        IView view = new HorvView(model);
+        IView view = new HorvView(model, audioManager);
 
         return new Entity(model, view);
     }

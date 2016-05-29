@@ -12,6 +12,7 @@ public class Horv extends AbstractNPCModel {
     private final int width;
     private final int height;
     private List<String> dialogList;
+    private boolean isInteractedWith = false;
 
     public Horv(Point point, IRectangleFactoryAdapter rectangleFactory, List<String> phrases, int width, int height, QuestManager quests) {
         super(point, new Point(0, 0), false, true, rectangleFactory);
@@ -35,5 +36,9 @@ public class Horv extends AbstractNPCModel {
     public void onInteract(IModel model) {
         super.onInteract(model);
         triggerEvent("horv", "interacted");
+        isInteractedWith = true;
+    }
+    public boolean isInteractedWith() {
+        return isInteractedWith;
     }
 }

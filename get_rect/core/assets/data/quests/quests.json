@@ -23,7 +23,7 @@
   {
     "id": 1,
     "title": "The first one is free",
-    "acceptText": "Hello Nollan! I am Rekoil, the Linux dealer here at IT. Here's a 1GB USB stick with the finest Arch Linux in town, ready to be injected. I want you to take it and go to Hubben and install Arch Linux on all the computers you can find.",
+    "acceptText": "Hello Nollan! I am Rekoil, the Linux dealer here at IT. Here's a 1GB USB stick with the finest Arch Linux in town, ready to be injected. I want you to take it and go to Hubben, once there, I want you to install Arch Linux on all the computers you can find.",
     "completionText": "Thanks a lot! Here, be discrete... I don't want GUD to know I'm distributing lightweight distros around campus.",
     "objectives": [
       {
@@ -36,8 +36,8 @@
   },
   {
     "id": 2,
-    "title": "Horv",
-    "acceptText": "Horv, horv horv horv",
+    "title": "Galen processor",
+    "acceptText": "När jag blir stor vill jag bli en galen processor",
     "completionText": "Horveri!",
     "objectives": [
       {
