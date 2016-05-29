@@ -1,5 +1,6 @@
-package se.chalmers.get_rect.game;
+package se.chalmers.get_rect.game.window;
 
+import se.chalmers.get_rect.game.GameConfig;
 import se.chalmers.get_rect.game.window.controller.IWindowController;
 import se.chalmers.get_rect.game.window.model.ErrorWindow;
 import se.chalmers.get_rect.states.StateManager;

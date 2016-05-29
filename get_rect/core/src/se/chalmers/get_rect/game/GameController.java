@@ -13,7 +13,7 @@ import se.chalmers.get_rect.game.entities.player.PlayerController;
 import se.chalmers.get_rect.game.quests.QuestManager;
 import se.chalmers.get_rect.game.quests.QuestRepository;
 import se.chalmers.get_rect.game.quests.data.IQuest;
-import se.chalmers.get_rect.game.window.model.ErrorWindow;
+import se.chalmers.get_rect.game.window.ErrorHandler;
 import se.chalmers.get_rect.game.world.IWorld;
 import se.chalmers.get_rect.game.world.WorldFactory;
 import se.chalmers.get_rect.game.window.controller.IWindowController;

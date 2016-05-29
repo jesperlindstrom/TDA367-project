@@ -49,6 +49,9 @@ public class Demon extends AbstractCombatModel {
         int demonX = getPosition().getX()+(300/2);
         int demonY = getPosition().getY();
 
+        if (Math.abs(playerX - demonX) > 800 || Math.abs(playerY - demonY) > 400)
+            return;
+
         int velX = 0;
 
         if (demonX < playerX ) {

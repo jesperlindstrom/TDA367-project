@@ -56,13 +56,6 @@
     "height": 110
   },
   {
-    "type": "trapfloor",
-    "x": 2100,
-    "y": 980,
-    "width": 310,
-    "height": 110
-  },
-  {
     "type": "boundingBox",
     "x": 2410,
     "y": 980,
