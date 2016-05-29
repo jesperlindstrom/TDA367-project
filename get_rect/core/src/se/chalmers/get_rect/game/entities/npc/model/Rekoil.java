@@ -38,6 +38,7 @@ public class Rekoil extends AbstractNPCModel {
         super.onInteract(model);
         triggerEvent("rekoil", "interacted");
         isInteractedWith = true;
+
     }
 
     @Override
@@ -57,6 +58,7 @@ public class Rekoil extends AbstractNPCModel {
     public boolean showArch() {
         return isShowingArch;
     }
+
     public boolean isInteractedWith() {
         return isInteractedWith;
     }

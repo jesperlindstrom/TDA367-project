@@ -44,6 +44,10 @@ public class NpcFactory {
         if (type.equals("nyaBjorn"))
             return makeNyaBjorn(point);
 
+        if (type.equals("fishur"))
+            return makeFishur(point);
+
+
         throw new EntityNotFoundException("NPC", type);
     }
 
@@ -85,6 +89,13 @@ public class NpcFactory {
         List<String> phrases = getPhrases("nyaBjorn");
         NyaBjorn model = new NyaBjorn(point, rectangleFactory, phrases, quests);
         IView view = new NyaBjornView(model);
+        return new Entity(model, view);
+    }
+    private IEntity makeFishur(Point point) throws FileNotFoundException {
+        List<String> phrases = getPhrases("fishur");
+        Fishur model = new Fishur(point, rectangleFactory, phrases, quests);
+        IView view = new FishurView(model, audioManager);
+
         return new Entity(model, view);
     }
 

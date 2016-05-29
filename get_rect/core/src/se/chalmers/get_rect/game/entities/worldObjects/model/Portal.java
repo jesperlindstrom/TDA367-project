@@ -17,7 +17,6 @@ public class Portal extends AbstractInteractableModel{
         this.target = target;
     }
 
-
     @Override
     public void onInteract(IModel model) {
         if (model instanceof Player) {

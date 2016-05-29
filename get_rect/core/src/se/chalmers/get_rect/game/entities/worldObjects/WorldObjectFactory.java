@@ -36,6 +36,9 @@ public class WorldObjectFactory {
         if (type.equals("sandCastle")){
             return makeSandCastle(point);
         }
+        if (type.equals("coffee")) {
+            return makeCoffee(point);
+        }
         if (type.equals("horsalsvagenBg")) {
             return makeHorsalsvagenBg();
         }
@@ -96,10 +99,15 @@ public class WorldObjectFactory {
 
         return new Entity(model, view);
     }
+    private IEntity makeCoffee(Point point) {
+        IPhysicsModel model = new Coffee(point, rectangleFactory, questManager);
+        IView view = new CoffeeView(model);
+
+        return new Entity(model, view);
+    }
 
     private IEntity makePitfall(Point point, int width, int height) {
         Pitfall model = new Pitfall(point, width, height, new Point(), false, false, rectangleFactory);
-        IView view = new PitfallView(model);
         return new Entity(model, null);
     }
     private IEntity makeTrapfloor(Point point, int width, int height) {

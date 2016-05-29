@@ -23,7 +23,6 @@ public class DemonView extends AbstractAnimatedView {
         addAnimationFrame(FLYING, "img/entities/demons/mjolnir1.png", changeFrame);
         addAnimationFrame(FLYING, "img/entities/demons/mjolnir2.png", changeFrame);
         addAnimationFrame(ATTACK, "img/entities/demons/mjolnir_attack.png", changeFrame);
-
     }
 
     @Override

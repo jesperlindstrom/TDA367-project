@@ -61,5 +61,20 @@
         "infoText": "Kill Mjölnir!"
       }
     ]
+  },
+  {
+    "id": 4,
+    "title": "Farbror fishur",
+    "acceptText": "Tjenare Nollan! Det är jag som är fishur, jag har ett uppdrag till dig, jag skulle vilja att du hämtar en kopp kaffe till mig. Om du gör det, så bjuder jag på ditt nästa häfv!",
+    "completionText": "Tackar!",
+    "objectives": [
+      {
+        "type": "coffee",
+        "action": "interacted",
+        "requiredCount": 1,
+        "infoText": "Get fishur some kaffe!"
+      }
+    ]
   }
+
 ]

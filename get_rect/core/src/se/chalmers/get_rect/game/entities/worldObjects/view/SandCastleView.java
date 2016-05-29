@@ -26,7 +26,6 @@ public class SandCastleView extends AbstractAnimatedView {
         }else{
             playSequence(NONE);
         }
-
         super.draw(graphics);
     }
 }
