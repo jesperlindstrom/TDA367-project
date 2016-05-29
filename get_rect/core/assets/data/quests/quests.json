@@ -29,7 +29,7 @@
       {
         "type": "computer",
         "action": "installed arch",
-        "requiredCount": 3,
+        "requiredCount": 6,
         "infoText": "Install Arch Linux"
       }
     ]
