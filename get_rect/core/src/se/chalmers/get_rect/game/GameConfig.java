@@ -4,7 +4,7 @@ public class GameConfig {
     // Game settings
     public static final int SCREEN_WIDTH = 1920;
     public static final int SCREEN_HEIGHT = 1080;
-    public static final boolean FULLSCREEN = false;
+    public static final boolean FULLSCREEN = true;
 
     // Game state IDs
     public static final int SPLASH = 11;

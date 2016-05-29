@@ -21,16 +21,15 @@ public class HubbenWorld extends AbstractWorld {
     public void enteringState(Integer previousState) {
         super.enteringState(previousState);
         if (previousState != null) {
-            addPlayerAtPosition(22, 380 );
             if (previousState == GameConfig.CAVE) {
-                addPlayerAtPosition(725, 380);
+                addPlayerAtPosition(1760, 380);
+            } else if (previousState == GameConfig.TEST) {
+                addPlayerAtPosition(2280, 380);
+            } else {
+                addPlayerAtPosition(380, 380);
             }
-            if (previousState == GameConfig.TEST) {
-                addPlayerAtPosition(1280, 380);
-            }
-
         } else {
-            addPlayerAtPosition(22, 380);
+            addPlayerAtPosition(380, 380);
         }
         // Set the player position
     }
