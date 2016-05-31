@@ -73,9 +73,9 @@ class PlayerView extends AbstractAnimatedView {
             audioManager.stopMusic("walkingSound");
         }
         if (getSequence() == RIDING) {
-            audioManager.playMusic("ridingSound");
+//            audioManager.playMusic("ridingSound");
         } else {
-            audioManager.stopMusic("ridingSound");
+//            audioManager.stopMusic("ridingSound");
         }
 
 

@@ -11,6 +11,7 @@ import se.chalmers.get_rect.game.entities.enemies.model.Zombie;
 public class ZombieView extends AbstractAnimatedView implements IEventListener {
     private static final int DRAW_PRIORITY = 4;
     private static final int WALKING = 1;
+    private static int deadZombies;
     private IAudioManagerAdapter audioManager;
 
     public ZombieView(Zombie model, IAudioManagerAdapter audioManager){
@@ -30,9 +31,10 @@ public class ZombieView extends AbstractAnimatedView implements IEventListener {
 
     @Override
     public void handleEvent(Event e) {
-        if (e.getType().equals("zombie") && e.getAction().equals("died")) {
+        if (e.getType().equals("zombie") && e.getAction().equals("died") && deadZombies % 2 == 0) {
             audioManager.playSound("scream");
         }
+        deadZombies++;
     }
 
     @Override
