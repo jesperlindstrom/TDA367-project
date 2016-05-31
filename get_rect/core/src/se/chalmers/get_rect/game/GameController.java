@@ -164,7 +164,7 @@ public class GameController {
 
             playerRepository.reset();
 
-            worldManager.set(GameConfig.HUBBEN);
+            worldManager.set(GameConfig.HORSALSVAGEN);
             resume();
         } catch (FileNotFoundException e){
             error.showError(e.getMessage());

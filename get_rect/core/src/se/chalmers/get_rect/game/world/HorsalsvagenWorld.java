@@ -17,7 +17,7 @@ public class HorsalsvagenWorld extends AbstractWorld {
         super.enteringState(previousState);
 
         // Set the player position
-        addPlayerAtPosition(1200, 500);
+        addPlayerAtPosition(3500, 370);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Zombie extends AbstractCombatModel {
         this.player = player;
 
         Random rand = new Random();
-        speed = rand.nextInt(20) + 5;
+        setSpeed(rand.nextInt(20) + 5);
     }
     public Zombie(Point point, IRectangleFactoryAdapter rectangleFactory, IModel player){
         this(point, rectangleFactory, player, 100, 100);
@@ -65,5 +65,9 @@ public class Zombie extends AbstractCombatModel {
     protected void die() {
         super.die();
         triggerEvent("zombie", "died");
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }

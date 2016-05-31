@@ -15,6 +15,7 @@ public class GhostBroccoli extends Zombie {
         super(point, rectangleFactory, player, 100, 100);
         this.player = (Player)player;
         health = getMaxHealth();
+        setSpeed(10);
     }
 
     @Override

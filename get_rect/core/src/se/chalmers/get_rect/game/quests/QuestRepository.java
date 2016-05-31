@@ -36,6 +36,7 @@ public class QuestRepository {
         }
 
         io.save(saveData);
+        noSaveFile = false;
     }
 
     private QuestSaveDataStore saveToDataStore(IQuest quest) {
@@ -53,8 +54,6 @@ public class QuestRepository {
         List<QuestDataStore> questData = io.load();
 
         Map<Integer, QuestSaveDataStore> saveData = noSaveFile ? new HashMap<>() : getSaveData();
-
-        System.out.println(saveData);
 
         return questData.stream().map((data) -> makeFromDataStore(data, saveData.get(data.getId()))).collect(Collectors.toList());
     }
